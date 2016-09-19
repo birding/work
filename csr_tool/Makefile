@@ -22,16 +22,14 @@ CXX=$(CROSS)g++
 STRIP=$(CROSS)strip
 
 BINS = \
-	$(DIR)/oct-remote-csr 
-	
+	$(DIR)/oct-remote-csr \
+	$(DIR)/oct-gen-code
 
 .PHONY: all
 all: $(BINS)
 #	- $(STRIP) $(BINS)
 	- sudo chown -f root $(BINS)
-ifndef OCTEON_LIQUIDIO
 	- sudo chmod -f +s,g+r,o+r $(BINS)
-endif
 
 
 CVMX_FILES = $(OCTEON_ROOT)/executive/cvmx-csr-db.c \
@@ -42,6 +40,8 @@ CVMX_FILES = $(OCTEON_ROOT)/executive/cvmx-csr-db.c \
 $(DIR)/oct-remote-csr: $(DIR)/oct-remote-csr.c $(CVMX_FILES)
 	$(CC) $(CFLAGS) -o $@ $^ 
 	
+$(DIR)/oct-gen-code: $(DIR)/oct-gen-code.c $(CVMX_FILES)
+	$(CC) $(CFLAGS) -o $@ $^ 
 
 .PHONY: clean
 clean:
