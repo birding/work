@@ -1,29 +1,32 @@
-this oct-remote-csr is a X86 tool that can translate the CSR value
-into a readable format.
+the oct-csr-tool is a X86 tool. 
 
-1. prepare the csrdump.txt file
-please check the ./csrdump.txt, the format of register dumping:
-[root@localhost csr_tool]# cat csrdump.txt
-CVMX_PKI_CL0_STYLE63_CFG 0x80011800445001f8 0x000000000001000f
-CVMX_PKI_CL1_STYLE0_CFG 0x8001180044510000 0x000000000001000f
-CVMX_GSER3_CFG 0x8001180093000080 0x0000000000000014
-
-print example code:
-cvmx_dprintf("CVMX_PKI_PKIND%d_ICGSEL 0x%16llx 0x%16llx", pkind, CVMX_PKI_PKINDX_ICGSEL(pkind), 
-				cvmx_read_csr_node(node, CVMX_PKI_PKINDX_ICGSEL(pkind));
-
-printk("CVMX_GSERX%d_CFG 0x%16llx 0x%16llx", qlm, CVMX_GSERX_CFG(qlm),
-				cvmx_read_csr_node(node, CVMX_GSERX_CFG(qlm));
-	
-				
-
-2.To Run:
-        ./host/remote-utils/oct-remote-csr -v
-        ./host/remote-utils/oct-remote-csr -h
-        ./host/remote-utils/oct-remote-csr -t cn78XX -i csrdump.txt
+Features:
+1.search all the related registers.
+2.generate the dumping code
+3.translate the CSR value into a readable format.
 
 
-  ./host/remote-utils/oct-gen-code  -t cn78XX -g Gser6 > gser6_reg.txt
-  ./host/remote-utils/oct-gen-code -t cn78XX -i gser6_reg.txt 
-  ./host/remote-utils/oct-gen-code  -t cn78XX -g bgx2 > bgx2_reg.txt
-  ./host/remote-utils/oct-gen-code  -t cn78XX -i bgx2_reg.txt
+Usage:
+1. dump all the registers of PEM1
+a ./oct-csr-tool -t cn78XX -s -i pem1 > pem1.txt
+b ./oct-csr-tool -t cn78XX -g -i pem1.txt 
+		the output of this command should be a C file "cn78XX_pem1.txt.c". 
+		then merge the code to your software.
+c. once we get the printf result of the dumping code. copy it to 'csrdump.txt'
+d ./oct-csr-tool -t cn78XX -f -i csrdump.txt
+
+
+2. dump all the PCIE RC-mode configuration registers of pcierc1
+a ./oct-csr-tool -t cn78XX -s -i pcierc1 > pcierc1.txt
+b ./oct-csr-tool -t cn78XX -g -i pcierc1.txt  
+		the output of this command should be a C file "cn78XX_pcierc1.txt.c". 
+		then merge the code to your software.
+c. once we get the printf result of the dumping code. copy it to 'csrdump.txt'
+d ./oct-csr-tool -t cn78XX -f -i csrdump.txt
+
+[root@localhost csr_tool]# ./host/remote-utils/oct-csr-tool -v
+./host/remote-utils/oct-csr-tool version: 1.1.1
+SDK version: Cavium Inc. OCTEON SDK version 3.1.2-p6, build 587
+
+
+

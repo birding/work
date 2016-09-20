@@ -22,8 +22,7 @@ CXX=$(CROSS)g++
 STRIP=$(CROSS)strip
 
 BINS = \
-	$(DIR)/oct-remote-csr \
-	$(DIR)/oct-gen-code
+	$(DIR)/oct-csr-tool
 
 .PHONY: all
 all: $(BINS)
@@ -35,13 +34,14 @@ all: $(BINS)
 CVMX_FILES = $(OCTEON_ROOT)/executive/cvmx-csr-db.c \
 		 $(OCTEON_ROOT)/executive/cvmx-csr-db-support.c
 		 
+CSR_FILES = $(DIR)/oct-csr-tool.c
+CSR_FILES += $(DIR)/oct-gen-code.c
+CSR_FILES += $(DIR)/oct-reg-search.c
+CSR_FILES += $(DIR)/oct-dump-format.c
 
-
-$(DIR)/oct-remote-csr: $(DIR)/oct-remote-csr.c $(CVMX_FILES)
+$(DIR)/oct-csr-tool: $(CSR_FILES) $(CVMX_FILES)
 	$(CC) $(CFLAGS) -o $@ $^ 
 	
-$(DIR)/oct-gen-code: $(DIR)/oct-gen-code.c $(CVMX_FILES)
-	$(CC) $(CFLAGS) -o $@ $^ 
 
 .PHONY: clean
 clean:

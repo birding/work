@@ -14,112 +14,11 @@
 #define Debug_printf(x,...) 
 #endif
 
-int octeon_model = 0;
-char * regStr = NULL;
-char * inputfile = NULL;
-
-#if 1
-unsigned int cvmx_get_node_num(void)
-{
-	return 0;
-}
-
-uint32_t cvmx_read64_uint32(uint64_t csr_addr)
-{
-    return 0;
-}
-
-uint64_t cvmx_read_csr_node(uint64_t node __attribute__ ((unused)), uint64_t csr_addr)
-{
-    return 0;
-}
-
-uint32_t cvmx_get_proc_id(void)
-{
-    return octeon_model;
-}
-#endif
 
 
 
-//0x000d9600:	/* CN70XX */
-//0x000d9500:	/* CN78XX */
-//0x000d9700:	/* CN73XX */
- int csr_get_model(char * p)
-{
-	if (strncasecmp(p, "CN70XX", 6) == 0) {
-		return 0x000d9600;
-	}
-	if (strncasecmp(p, "CN71XX", 6) == 0) {
-		return 0x000d9600;
-	}	
-	if (strncasecmp(p, "CN78XX", 6) == 0) {
-		return 0x000d9500;
-	}
-	if (strncasecmp(p, "CN73XX", 6) == 0) {
-		return 0x000d9700;
-	}	
-	return 0;
-}
 
 
-
-void usage(char * const *argv) {
-	printf("\n" "Usage: %s \n"
-	" -t cn78XX -g Gser1_pll > reg.txt\n"
-	" -t cn78XX -i reg.txt\n"
-	" -v : display version\n\n",
-	argv[0]);
-}
-
-int parse_options(int argc, char * const *argv)
-{
-    const struct option long_options[] =
-    {
-    	 {"target", 1, 0, 't'},
-        {"generate", 1, 0, 'g'},
-        {"input", 1, 0, 'i'},
-        {"help", 0, 0, 'h'},
-        {"version", 0, 0, 'v'},
-        {NULL, 0, 0, 0}
-    };
-
-    while (1)
-    {
-        char option = getopt_long(argc, argv, "i:t:g:hv", long_options, NULL);
-        if (option <= 0)
-            break;
-
-        switch (option)
-        {
-            case 'g':
-                	regStr = optarg;
-                break;
-            case 'i':
-			inputfile = optarg;	
-			break;
-            case 't':
-			octeon_model = csr_get_model(optarg);
-			//printf("[%d]octeon_model: %s 0x%08x\n", __LINE__, optarg, octeon_model); 			
-                break;			
-	    /* fallthrough */
-            case 'v':
-                printf("SDK version: %s\n", OCTEON_SDK_VERSION_STRING); 
-			exit(0);
-            default:
-                usage(argv);
-                return -1;
-        }
-    }
-
-    if (optind > argc)
-    {
-        usage(argv);
-        return -1;
-    }
-	
-    return 0;
-}
 
  #define MAX_LINE 1024
 
@@ -140,7 +39,7 @@ int string_to_upper(char * p)
 	return len;
 }
 
-int generate_code(void)
+int generate_code(char * inputfile, int cpuid, char *pattern)
 {
 	FILE *infile = NULL;
 	FILE *outfile = NULL;
@@ -151,7 +50,7 @@ int generate_code(void)
 	char outbuf[MAX_LINE];
 	
 	memset(buf, 0, MAX_LINE);
-	sprintf(buf, "%s_%x.c", inputfile, octeon_model);
+	sprintf(buf, "%s_%s.c", pattern, inputfile);
 	//printf("\n %s \n", buf);
 	
 	outfile = fopen(buf, "wt+");
@@ -169,7 +68,7 @@ int generate_code(void)
 	}
 	
 	memset(outbuf, 0, MAX_LINE);
-	sprintf(outbuf, "void registers_dump_%x(void)\n{\n", octeon_model);
+	sprintf(outbuf, "void %s_registers_dump(void)\n{\n", pattern);
 	fwrite (outbuf , strlen(outbuf), 1 , outfile);
 
 	memset(outbuf, 0, MAX_LINE);
@@ -180,18 +79,33 @@ int generate_code(void)
 		buf[len-1] = '\0';  
 		//printf("buf %s %d \n",buf,len - 1);
 		
-		cvmx_csr_db_get_params(octeon_model, 
+		cvmx_csr_db_get_params(cpuid, 
 				buf, &csr_addr, &csr_type, NULL, &csr_widthbits);
 		//printf("0x%016llx \n", (unsigned long long)csr_addr);
-		csr_addr |= (1ull <<63);
+		//sprintf(outbuf, "%s 0x%016llx\n", buf, (unsigned long long)csr_addr);
 		
-#if 0		
-		sprintf(outbuf, "%s 0x%016llx\n", buf, (unsigned long long)csr_addr);
-#else
-		sprintf(outbuf, "\tcvmx_dprintf(\"%s 0x%016llx 0x%%016llx\\n\","
-					"(long long)cvmx_read_csr_node(0,0x%016llx));\n", 
-					buf, (unsigned long long)csr_addr, (unsigned long long)csr_addr);
-#endif
+		if ((csr_type == CVMX_CSR_DB_TYPE_PCICONFIGEP) || (csr_type == CVMX_CSR_DB_TYPE_PCICONFIGRC)) {
+			/* Names are of the format "PCIE??#_CFG???". The # is the pcie port number */
+			int pcie_port = (buf[6] - '0');
+		
+			sprintf(outbuf, "\t{\n\t"
+						"cvmx_pemx_cfg_rd_t pemx_cfg_rd; pemx_cfg_rd.u64 = 0;pemx_cfg_rd.s.addr = 0x%x;\n\t"
+						"cvmx_write_csr(CVMX_PEMX_CFG_RD(%d), pemx_cfg_rd.u64);"
+						"pemx_cfg_rd.u64 = cvmx_read_csr(CVMX_PEMX_CFG_RD(%d));\n\t"
+						"cvmx_dprintf(\"%s 0x%016llx 0x%%016llx\\n\","
+						"(long long)(0xffffffffull & pemx_cfg_rd.s.data));\n\t"
+						"}\n", 
+						(unsigned int)(csr_addr&0xffffFFFF),//?????? 
+						pcie_port,
+						pcie_port,
+						buf, (unsigned long long)csr_addr);
+		}else{
+			csr_addr |= (1ull <<63);
+			sprintf(outbuf, "\tcvmx_dprintf(\"%s 0x%016llx 0x%%016llx\\n\","
+						"(long long)cvmx_read_csr(0x%016llx));\n", 
+						buf, (unsigned long long)csr_addr, (unsigned long long)csr_addr);
+		}
+		
 		fwrite (outbuf , strlen(outbuf), 1 , outfile);
 		
 		memset(buf, 0, MAX_LINE);
@@ -207,31 +121,4 @@ int generate_code(void)
 	return 0;
 }
 
-int main(int argc, char * const *argv) 
-{
 
-	
-	/* Make sure we got the correct number of arguments */
-	if (parse_options(argc, argv)){
-		return -1;
-	}
-
-	if(0 == octeon_model){
-	        usage(argv);
-	        return -1;
-	}
-	
-	if(NULL != regStr)
-	{
-		cvmx_csr_db_print_decode_by_prefix_node(0, octeon_model, regStr, 0);
-		return 0;
-	}
-
-	if(NULL != inputfile){
-		generate_code();
-		return 0;
-	}
-
-	usage(argv);
-	return 0;
-}
