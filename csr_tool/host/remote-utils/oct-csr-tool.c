@@ -8,7 +8,7 @@
 #include "cvmx-version.h"
 
 
-#define OCT_CSR_TOOL_VERSION_STRING "1.1.2"
+#define OCT_CSR_TOOL_VERSION_STRING "1.1.3"
 
 int octeon_model = -1;
 char * octeon_modelStr = NULL;
@@ -48,20 +48,23 @@ uint32_t cvmx_get_proc_id(void)
 //0x000d9700:	/* CN73XX */
  int csr_get_model(char * p)
 {
-	if (strncasecmp(p, "CN70XX", 6) == 0) {
+	if( (strncasecmp(p, "CN70XX", 6) == 0) ||(strncasecmp(p, "CN71XX", 6) == 0) ){
 		return 0x000d9600;
 	}
-	if (strncasecmp(p, "CN71XX", 6) == 0) {
-		return 0x000d9600;
-	}
+	if( (strncasecmp(p, "CN70XXp1", 6) == 0) ||(strncasecmp(p, "CN71XXp1", 6) == 0) ){
+		return 0x000d9601;
+	}	
 	if (strncasecmp(p, "CN78XXp2", 8) == 0) {
 		return 0x000d9508;
 	}	
 	if (strncasecmp(p, "CN78XX", 6) == 0) {
 		return 0x000d9500;
 	}
-	if (strncasecmp(p, "CN73XX", 6) == 0) {
+	if( (strncasecmp(p, "CN73XX", 6) == 0) || ((strncasecmp(p, "CN72XX", 6) == 0) )){
 		return 0x000d9700;
+	}	
+	if (strncasecmp(p, "CN68XX", 6) == 0) {
+		return 0x000d9100;
 	}	
 	return 0;
 }
@@ -70,6 +73,7 @@ void usage(char * const *argv) {
 	printf("\n" "Usage: %s \n"
 		"    -h : help\n"
 		"    -v : display version\n"
+		"    -t : target in (CN70XX,CN70XXp1,CN78XX,CN78XXp2,CN73XX,CN68XX)\n"
 		"    -s : search the registers\n"
 		"    -g : generate the dumping code\n"
 		"    -f : format the dumping results\n"
