@@ -875,11 +875,11 @@ union cvmx_dpi_dmax_err_rsp_status {
 	struct cvmx_dpi_dmax_err_rsp_status_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_6_63                : 58;
-	uint64_t status                       : 6;  /**< STATUS captures the ErrorResponse status of the last 6 instructions for each instruction
-                                                         queue. STATUS<5> represents the status for first instruction in instruction order while
-                                                         STATUS<0> represents the last or most recent instruction. If STATUS<n> is set, then the
-                                                         Nth instruction in the given queue experienced an ErrorResponse. Otherwise, it completed
-                                                         normally. */
+	uint64_t status                       : 6;  /**< [STATUS] captures the ErrorResponse status of the last 6 instructions for each
+                                                         instruction queue. [STATUS]<5> represents the status for first instruction in
+                                                         instruction order while [STATUS]<0> represents the last or most recent
+                                                         instruction. If [STATUS]<n> is set, then the Nth instruction in the given queue
+                                                         experienced an ErrorResponse. Otherwise, it completed normally. */
 #else
 	uint64_t status                       : 6;
 	uint64_t reserved_6_63                : 58;
@@ -1234,7 +1234,7 @@ union cvmx_dpi_dma_control {
                                                          When [WQECSDIS] is set, DPI never writes completion status into a work queue entry. */
 	uint64_t wqecsoff                     : 7;  /**< Work queue completion status byte offset. For a DPI_HDR_PT_WQP_E::STATUSCA
                                                          or DPI_HDR_PT_WQP_E::STATUSNC DPI DMA instruction, DPI writes a
-                                                         non-DPI_CS_E::NOERR (i.e. non-zero) completion status byte to (big-endian
+                                                         non-DPI_CS_E::NOERR (i.e. nonzero) completion status byte to (big-endian
                                                          byte address) L2/DRAM address
                                                             (DPI_DMA_INSTR_HDR_S[PTR] & 0xFFFFFFFFFFFFFFF8) + [WQECSOFF]
                                                          With the reset value 0x7, DPI will write WORD0<7:0> of the WQE. */
@@ -1246,7 +1246,7 @@ union cvmx_dpi_dma_control {
                                                                DPI_HDR_PT_E::WQP DPI DMA instructions with DPI_CS_E::NOERR (i.e. zero)
                                                                completion status, regardless of the DPI_HDR_PT_WQP_E selection of
                                                                DPI_DMA_INSTR_HDR_S[PTR<2:0>]. DPI will write the completion
-                                                               status byte for all other DPI_CS_E (i.e. non-zero) values
+                                                               status byte for all other DPI_CS_E (i.e. nonzero) values
                                                                when DPI_DMA_INSTR_HDR_S[PTR<2:0>] is DPI_HDR_PT_WQP_E::STATUSCA
                                                                or DPI_HDR_PT_WQP_E::STATUSNC and [WQECSDIS] is clear.
                                                          0x1 = DPI will perform the completion status byte write for all
@@ -1616,7 +1616,7 @@ union cvmx_dpi_dma_control {
                                                          When [WQECSDIS] is set, DPI never writes completion status into a work queue entry. */
 	uint64_t wqecsoff                     : 7;  /**< Work queue completion status byte offset. For a DPI_HDR_PT_WQP_E::STATUSCA
                                                          or DPI_HDR_PT_WQP_E::STATUSNC DPI DMA instruction, DPI writes a
-                                                         non-DPI_CS_E::NOERR (i.e. non-zero) completion status byte to (big-endian
+                                                         non-DPI_CS_E::NOERR (i.e. nonzero) completion status byte to (big-endian
                                                          byte address) L2/DRAM address
                                                             (DPI_DMA_INSTR_HDR_S[PTR] & 0xFFFFFFFFFFFFFFF8) + [WQECSOFF]
                                                          With the reset value 0x7, DPI will write WORD0<7:0> of the WQE. */
@@ -1628,7 +1628,7 @@ union cvmx_dpi_dma_control {
                                                                DPI_HDR_PT_E::WQP DPI DMA instructions with DPI_CS_E::NOERR (i.e. zero)
                                                                completion status, regardless of the DPI_HDR_PT_WQP_E selection of
                                                                DPI_DMA_INSTR_HDR_S[PTR<2:0>]. DPI will write the completion
-                                                               status byte for all other DPI_CS_E (i.e. non-zero) values
+                                                               status byte for all other DPI_CS_E (i.e. nonzero) values
                                                                when DPI_DMA_INSTR_HDR_S[PTR<2:0>] is DPI_HDR_PT_WQP_E::STATUSCA
                                                                or DPI_HDR_PT_WQP_E::STATUSNC and [WQECSDIS] is clear.
                                                          0x1 = DPI will perform the completion status byte write for all
@@ -2820,7 +2820,12 @@ union cvmx_dpi_sli_prtx_cfg {
                                                          Note that DPI uses DPI_NCB_CTL[NCBSEL_REQ] for reading DPI_DMA_INSTR_HDR_S's
                                                          and first/last pointers, not [NCBSEL]. DPI_NCB_CTL[NCBSEL_SRC,NCBSEL_DST]
                                                          are the equivalent of [NCBSEL] for DPI_HDR_XTYPE_E::INTERNAL_ONLY DPI DMA
-                                                         instructions. */
+                                                         instructions.
+                                                         A typical configuration might be:
+                                                         _ DPI_SLI_PRT(0)_CFG[NCBSEL]=1.
+                                                         _ DPI_SLI_PRT(1)_CFG[NCBSEL]=1.
+                                                         _ DPI_SLI_PRT(2)_CFG[NCBSEL]=0.
+                                                         _ DPI_SLI_PRT(3)_CFG[NCBSEL]=0. */
 	uint64_t reserved_25_27               : 3;
 	uint64_t halt                         : 1;  /**< When set, HALT indicates that the MAC has detected a reset condition. No further
                                                          instructions that reference the MAC from any instruction queue will be issued until the
@@ -3189,7 +3194,12 @@ union cvmx_dpi_sli_prtx_cfg {
                                                          Note that DPI uses DPI_NCB_CTL[NCBSEL_REQ] for reading DPI_DMA_INSTR_HDR_S's
                                                          and first/last pointers, not [NCBSEL]. DPI_NCB_CTL[NCBSEL_SRC,NCBSEL_DST]
                                                          are the equivalent of [NCBSEL] for DPI_HDR_XTYPE_E::INTERNAL_ONLY DPI DMA
-                                                         instructions. */
+                                                         instructions.
+                                                         A typical configuration might be:
+                                                         _ DPI_SLI_PRT(0)_CFG[NCBSEL]=1.
+                                                         _ DPI_SLI_PRT(1)_CFG[NCBSEL]=1.
+                                                         _ DPI_SLI_PRT(2)_CFG[NCBSEL]=0.
+                                                         _ DPI_SLI_PRT(3)_CFG[NCBSEL]=0. */
 	uint64_t reserved_25_27               : 3;
 	uint64_t halt                         : 1;  /**< When set, HALT indicates that the MAC has detected a reset condition. No further
                                                          instructions that reference the MAC from any instruction queue will be issued until the
@@ -3346,7 +3356,7 @@ union cvmx_dpi_sli_prtx_err_info {
 	struct cvmx_dpi_sli_prtx_err_info_cn73xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t pvf                          : 16; /**< Physical/Virtual function that caused the ErrorResponse. DPI_DMA_FUNC_SEL_S format. */
+	uint64_t pvf                          : 16; /**< Physical/virtual function that caused the ErrorResponse. DPI_DMA_FUNC_SEL_S format. */
 	uint64_t reserved_9_15                : 7;
 	uint64_t lock                         : 1;  /**< DPI_SLI_PRT()_ERR and DPI_SLI_PRT()_ERR_INFO have captured and locked contents.
                                                          When CNXXXX first detects an ErrorResponse, the TYPE, REQQ, and ADDR of the error is saved

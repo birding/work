@@ -308,7 +308,7 @@ union cvmx_lbk_sft_rst {
 	struct cvmx_lbk_sft_rst_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_1_63                : 63;
-	uint64_t reset                        : 1;  /**< Reset. When set, causes a reset of Loopback, except RSL. */
+	uint64_t reset                        : 1;  /**< Reset. When set, causes a reset of LBK, excluding RSL. */
 #else
 	uint64_t reset                        : 1;
 	uint64_t reserved_1_63                : 63;

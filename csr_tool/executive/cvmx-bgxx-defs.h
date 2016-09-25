@@ -2440,14 +2440,15 @@ union cvmx_bgxx_cmrx_config {
                                                          setting this bit to enable the LMAC. This bit together with [LMAC_TYPE] is also used to
                                                          enable the clocking to the GMP and/or blocks of the Super path (SMU and SPU). CMR clocking
                                                          is enabled when any of the paths are enabled. */
-	uint64_t data_pkt_rx_en               : 1;  /**< Data packet receive enable. When ENABLE = 1 and [DATA_PKT_RX_EN] = 1, the reception of
+	uint64_t data_pkt_rx_en               : 1;  /**< Data packet receive enable. When [ENABLE] = 1 and [DATA_PKT_RX_EN] = 1, the reception of
                                                          data
-                                                         packets is enabled in the MAC layer. When ENABLE = 1 and [DATA_PKT_RX_EN] = 0, the MAC
+                                                         packets is enabled in the MAC layer. When [ENABLE] = 1 and [DATA_PKT_RX_EN] = 0, the MAC
                                                          layer
                                                          drops received data and flow-control packets. */
-	uint64_t data_pkt_tx_en               : 1;  /**< Data packet transmit enable. When ENABLE = 1 and [DATA_PKT_TX_EN] = 1, the transmission of
+	uint64_t data_pkt_tx_en               : 1;  /**< Data packet transmit enable. When [ENABLE] = 1 and [DATA_PKT_TX_EN] = 1, the transmission
+                                                         of
                                                          data
-                                                         packets is enabled in the MAC layer. When ENABLE = 1 and [DATA_PKT_TX_EN] = 0, the MAC
+                                                         packets is enabled in the MAC layer. When [ENABLE] = 1 and [DATA_PKT_TX_EN] = 0, the MAC
                                                          layer
                                                          suppresses the transmission of new data and packets for the LMAC. */
 	uint64_t int_beat_gen                 : 1;  /**< Internal beat generation. This bit is used for debug/test purposes and should be clear
@@ -2478,8 +2479,8 @@ union cvmx_bgxx_cmrx_config {
                                                          SerDes interface.  The RGMII setting is only available for LMAC 0.
                                                          This field must be programmed to its final value before [ENABLE] is set, and must not
                                                          be changed when [ENABLE] = 1. */
-	uint64_t lane_to_sds                  : 8;  /**< PCS lane-to-SerDes Mapping.
-                                                         This is an array of 2-bit values that map each logical PCS Lane to a
+	uint64_t lane_to_sds                  : 8;  /**< PCS lane-to-SerDes mapping.
+                                                         This is an array of 2-bit values that map each logical PCS lane to a
                                                          physical SerDes lane, as follows:
                                                          <pre>
                                                            Bits    Description            Reset value
@@ -2529,8 +2530,7 @@ union cvmx_bgxx_cmrx_int {
 	struct cvmx_bgxx_cmrx_int_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_3_63                : 61;
-	uint64_t pko_nxc                      : 1;  /**< TX channel out-of-range from PKO interface. Assigned to the LMAC ID based on the lower 2
-                                                         bits of the offending channel. */
+	uint64_t pko_nxc                      : 1;  /**< TX channel out-of-range from PKO interface. */
 	uint64_t overflw                      : 1;  /**< RX overflow. */
 	uint64_t pause_drp                    : 1;  /**< RX PAUSE packet was dropped due to full RXB FIFO or during partner reset. */
 #else
@@ -2618,9 +2618,9 @@ union cvmx_bgxx_cmrx_rx_bp_drop {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_7_63                : 57;
 	uint64_t mark                         : 7;  /**< Number of eight-byte cycles to reserve in the RX FIFO. When the number of free
-                                                         entries in the RX FIFO is less than or equal to MARK, incoming packet data is
-                                                         dropped. Mark additionally indicates the number of entries to reserve in the RX FIFO for
-                                                         closing partially received packets. MARK should typically be programmed to its reset
+                                                         entries in the RX FIFO is less than or equal to [MARK], incoming packet data is
+                                                         dropped. [MARK] additionally indicates the number of entries to reserve in the RX FIFO for
+                                                         closing partially received packets. [MARK] should typically be programmed to its reset
                                                          value; failure to program correctly can lead to system instability. */
 #else
 	uint64_t mark                         : 7;
@@ -2863,7 +2863,7 @@ union cvmx_bgxx_cmrx_rx_stat0 {
 	struct cvmx_bgxx_cmrx_rx_stat0_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
-	uint64_t cnt                          : 48; /**< Count of received packets. CNT will wrap and is cleared if LMAC is disabled with
+	uint64_t cnt                          : 48; /**< Count of received packets. [CNT] will wrap and is cleared if LMAC is disabled with
                                                          BGX()_CMR()_CONFIG[ENABLE]=0. */
 #else
 	uint64_t cnt                          : 48;
@@ -2888,7 +2888,7 @@ union cvmx_bgxx_cmrx_rx_stat1 {
 	struct cvmx_bgxx_cmrx_rx_stat1_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
-	uint64_t cnt                          : 48; /**< Octet count of received packets. CNT will wrap and is cleared if LMAC is disabled with
+	uint64_t cnt                          : 48; /**< Octet count of received packets. [CNT] will wrap and is cleared if LMAC is disabled with
                                                          BGX()_CMR()_CONFIG[ENABLE]=0. */
 #else
 	uint64_t cnt                          : 48;
@@ -2917,7 +2917,7 @@ union cvmx_bgxx_cmrx_rx_stat2 {
 	struct cvmx_bgxx_cmrx_rx_stat2_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
-	uint64_t cnt                          : 48; /**< Count of received PAUSE packets. CNT will wrap and is cleared if LMAC is disabled with
+	uint64_t cnt                          : 48; /**< Count of received PAUSE packets. [CNT] will wrap and is cleared if LMAC is disabled with
                                                          BGX()_CMR()_CONFIG[ENABLE]=0. */
 #else
 	uint64_t cnt                          : 48;
@@ -2942,7 +2942,7 @@ union cvmx_bgxx_cmrx_rx_stat3 {
 	struct cvmx_bgxx_cmrx_rx_stat3_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
-	uint64_t cnt                          : 48; /**< Octet count of received PAUSE packets. CNT will wrap and is cleared if LMAC is disabled
+	uint64_t cnt                          : 48; /**< Octet count of received PAUSE packets. [CNT] will wrap and is cleared if LMAC is disabled
                                                          with BGX()_CMR()_CONFIG[ENABLE]=0. */
 #else
 	uint64_t cnt                          : 48;
@@ -2970,7 +2970,7 @@ union cvmx_bgxx_cmrx_rx_stat4 {
 	struct cvmx_bgxx_cmrx_rx_stat4_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
-	uint64_t cnt                          : 48; /**< Count of filtered DMAC packets. CNT will wrap and is cleared if LMAC is disabled with
+	uint64_t cnt                          : 48; /**< Count of filtered DMAC packets. [CNT] will wrap and is cleared if LMAC is disabled with
                                                          BGX()_CMR()_CONFIG[ENABLE]=0. */
 #else
 	uint64_t cnt                          : 48;
@@ -2995,7 +2995,7 @@ union cvmx_bgxx_cmrx_rx_stat5 {
 	struct cvmx_bgxx_cmrx_rx_stat5_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
-	uint64_t cnt                          : 48; /**< Octet count of filtered DMAC packets. CNT will wrap and is cleared if LMAC is disabled
+	uint64_t cnt                          : 48; /**< Octet count of filtered DMAC packets. [CNT] will wrap and is cleared if LMAC is disabled
                                                          with BGX()_CMR()_CONFIG[ENABLE]=0. */
 #else
 	uint64_t cnt                          : 48;
@@ -3022,7 +3022,7 @@ union cvmx_bgxx_cmrx_rx_stat6 {
 	struct cvmx_bgxx_cmrx_rx_stat6_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
-	uint64_t cnt                          : 48; /**< Count of dropped packets. CNT will wrap and is cleared if LMAC is disabled with
+	uint64_t cnt                          : 48; /**< Count of dropped packets. [CNT] will wrap and is cleared if LMAC is disabled with
                                                          BGX()_CMR()_CONFIG[ENABLE]=0. */
 #else
 	uint64_t cnt                          : 48;
@@ -3047,7 +3047,7 @@ union cvmx_bgxx_cmrx_rx_stat7 {
 	struct cvmx_bgxx_cmrx_rx_stat7_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
-	uint64_t cnt                          : 48; /**< Octet count of dropped packets. CNT will wrap and is cleared if LMAC is disabled with
+	uint64_t cnt                          : 48; /**< Octet count of dropped packets. [CNT] will wrap and is cleared if LMAC is disabled with
                                                          BGX()_CMR()_CONFIG[ENABLE]=0. */
 #else
 	uint64_t cnt                          : 48;
@@ -3089,7 +3089,7 @@ union cvmx_bgxx_cmrx_rx_stat8 {
 	struct cvmx_bgxx_cmrx_rx_stat8_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
-	uint64_t cnt                          : 48; /**< Count of error packets. CNT will wrap and is cleared if LMAC is disabled with
+	uint64_t cnt                          : 48; /**< Count of error packets. [CNT] will wrap and is cleared if LMAC is disabled with
                                                          BGX()_CMR()_CONFIG[ENABLE]=0. */
 #else
 	uint64_t cnt                          : 48;
@@ -3137,9 +3137,10 @@ union cvmx_bgxx_cmrx_tx_channel {
 	uint64_t msk                          : 16; /**< Backpressure channel mask. BGX can completely ignore the channel backpressure for channel
                                                          specified by this field. Any channel in which MSK<n> is set never sends backpressure
                                                          information to PKO. */
-	uint64_t dis                          : 16; /**< Credit return backpressure disable. BGX stops returning channel credits for any channel
-                                                         that is backpressured. These bits can be used to override that. If DIS<n> is set, channel
-                                                         credits may flow back regardless of the backpressure for that channel. */
+	uint64_t dis                          : 16; /**< Credit return backpressure disable. BGX stops returning channel credits for any
+                                                         channel that is backpressured. These bits can be used to override that. If
+                                                         [DIS]<n> is set, channel credits may flow back regardless of the backpressure
+                                                         for that channel. */
 #else
 	uint64_t dis                          : 16;
 	uint64_t msk                          : 16;
@@ -3187,10 +3188,10 @@ union cvmx_bgxx_cmrx_tx_hg2_status {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
 	uint64_t xof                          : 16; /**< 16-bit XOF back pressure vector from HiGig2 message packet or from PFC packets. Non-
-                                                         zero only when logical back pressure is active. All bits are 0 when LGTIM2GO=0x0. */
+                                                         zero only when logical back pressure is active. All bits are 0 when [LGTIM2GO] = 0x0. */
 	uint64_t lgtim2go                     : 16; /**< Logical packet flow back pressure time remaining. Initial value set from XOF time field of
                                                          HiGig2 message packet received or a function of the enabled and current timers for
-                                                         PFC packets. Non-zero only when logical back pressure is active. */
+                                                         PFC packets. Nonzero only when logical back pressure is active. */
 #else
 	uint64_t lgtim2go                     : 16;
 	uint64_t xof                          : 16;
@@ -3740,12 +3741,11 @@ union cvmx_bgxx_cmr_chan_msk_and {
                                                          _ phys_bp_msk_and = [MSK_AND]<x:y> != 0 && (chan_vector<x:y> & [MSK_AND]<x:y>) ==
                                                          [MSK_AND]<x:y>
                                                          _ phys_bp = phys_bp_msk_or || phys_bp_msk_and
-                                                         In single LMAC configurations, x = 63, y = 0.
-                                                         In multi-LMAC configurations, x/y are set as follows:
-                                                         _ LMAC interface 0, x = 15, y = 0.
-                                                         _ LMAC interface 1, x = 31, y = 16.
-                                                         _ LMAC interface 2, x = 47, y = 32.
-                                                         _ LMAC interface 3, x = 63, y = 48. */
+                                                         x/y are as follows:
+                                                         _ LMAC 0: <x:y> = <15:0>.
+                                                         _ LMAC 1: <x:y> = <31:16>.
+                                                         _ LMAC 2: <x:y> = <47:32>.
+                                                         _ LMAC 3: <x:y> = <63:48>. */
 #else
 	uint64_t msk_and                      : 64;
 #endif
@@ -3768,12 +3768,11 @@ union cvmx_bgxx_cmr_chan_msk_or {
                                                          indicates backpressure as follows:
                                                          _ phys_bp_msk_or = (chan_vector<x:y> & [MSK_OR]<x:y>) != 0
                                                          _ phys_bp = phys_bp_msk_or || phys_bp_msk_and
-                                                         In single LMAC configurations, x = 63, y = 0.
-                                                         In multi-LMAC configurations, x/y are set as follows:
-                                                         _ LMAC interface 0, x = 15, y = 0.
-                                                         _ LMAC interface 1, x = 31, y = 16.
-                                                         _ LMAC interface 2, x = 47, y = 32.
-                                                         _ LMAC interface 3, x = 63, y = 48. */
+                                                         x/y are as follows:
+                                                         _ LMAC 0: <x:y> = <15:0>.
+                                                         _ LMAC 1: <x:y> = <31:16>.
+                                                         _ LMAC 2: <x:y> = <47:32>.
+                                                         _ LMAC 3: <x:y> = <63:48>. */
 #else
 	uint64_t msk_or                       : 64;
 #endif
@@ -4304,7 +4303,7 @@ union cvmx_bgxx_gmp_gmi_rxx_frm_ctl {
                                                          the PREAMBLE+SFD bytes are thrown away or sent to the core as part of the packet. In
                                                          either mode, the PREAMBLE+SFD bytes are not counted toward the packet size when checking
                                                          against the MIN and MAX bounds. Furthermore, the bytes are skipped when locating the start
-                                                         of the L2 header for DMAC and Control frame recognition. */
+                                                         of the L2 header for DMAC and control frame recognition. */
 	uint64_t pre_chk                      : 1;  /**< Check the preamble for correctness. This port is configured to send a valid 802.3 PREAMBLE
                                                          to begin every frame. GMI checks that a valid PREAMBLE is received (based on [PRE_FREE]).
                                                          When a problem does occur within the PREAMBLE sequence, the frame is marked as bad and not
@@ -4436,8 +4435,8 @@ union cvmx_bgxx_gmp_gmi_rxx_jabber {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_16_63               : 48;
 	uint64_t cnt                          : 16; /**< Byte count for jabber check. Failing packets set the JABBER interrupt and are optionally
-                                                         sent with opcode = JABBER. GMI truncates the packet to CNT bytes.
-                                                         CNT must be 8-byte aligned such that CNT<2:0> = 000. */
+                                                         sent with opcode = JABBER. GMI truncates the packet to [CNT] bytes.
+                                                         [CNT] must be 8-byte aligned such that CNT<2:0> = 000. */
 #else
 	uint64_t cnt                          : 16;
 	uint64_t reserved_16_63               : 48;
@@ -4466,7 +4465,7 @@ union cvmx_bgxx_gmp_gmi_rxx_udd_skp {
                                                          1 = The skip bytes are not included in FCS.
                                                          The skip bytes are part of the packet and are
                                                          handled by PKI. The system can determine if the UDD bytes are included in the FCS check by
-                                                         using the FCSSEL field, if the FCS check is enabled. */
+                                                         using [FCSSEL], if the FCS check is enabled. */
 	uint64_t reserved_7_7                 : 1;
 	uint64_t len                          : 7;  /**< Amount of user-defined data before the start of the L2C data, in bytes.
                                                          Setting to 0 means L2C comes first; maximum value is 64.
@@ -5207,7 +5206,7 @@ typedef union cvmx_bgxx_gmp_pcs_intx cvmx_bgxx_gmp_pcs_intx_t;
 /**
  * cvmx_bgx#_gmp_pcs_link#_timer
  *
- * This is the 1.6 ms nominal Link timer register.
+ * This is the 1.6 ms nominal link timer register.
  *
  */
 union cvmx_bgxx_gmp_pcs_linkx_timer {
@@ -5301,7 +5300,7 @@ union cvmx_bgxx_gmp_pcs_mrx_control {
                                                          1 = Software PCS reset.
                                                          The bit returns to 0 after PCS has been reset. Takes 32 coprocessor-clock cycles to reset
                                                          PCS.  This bit, when set, also drains the tx gmi fifo and can be used as a fifo draining
-                                                         mechanism for both Serdes reset conditions and for XCV reset conditions. */
+                                                         mechanism for both SerDes reset conditions and for XCV reset conditions. */
 	uint64_t loopbck1                     : 1;  /**< Enable loopback:
                                                            0 = Normal operation.
                                                            1 = Internal loopback mode.
@@ -5487,7 +5486,7 @@ typedef union cvmx_bgxx_gmp_pcs_rxx_sync cvmx_bgxx_gmp_pcs_rxx_sync_t;
 /**
  * cvmx_bgx#_gmp_pcs_sgm#_an_adv
  *
- * This is the SGMII Autonegotiation advertisement register (sent out as tx_Config_Reg<15:0> as
+ * This is the SGMII autonegotiation advertisement register (sent out as tx_Config_Reg<15:0> as
  * defined in IEEE 802.3 clause 37). This register is sent during autonegotiation if
  * BGX()_GMP_PCS_MISC()_CTL[MAC_PHY] is set (1 = PHY mode). If the bit is not set (0 =
  * MAC mode), then tx_Config_Reg<14> becomes ACK bit and tx_Config_Reg<0> is always 1. All other
@@ -5498,7 +5497,7 @@ union cvmx_bgxx_gmp_pcs_sgmx_an_adv {
 	struct cvmx_bgxx_gmp_pcs_sgmx_an_adv_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_16_63               : 48;
-	uint64_t link                         : 1;  /**< Link status: 1 = Link up, 0 = Link down. */
+	uint64_t link                         : 1;  /**< Link status: 1 = Link up. 0 = Link down. */
 	uint64_t ack                          : 1;  /**< Autonegotiation acknowledgement. */
 	uint64_t reserved_13_13               : 1;
 	uint64_t dup                          : 1;  /**< Duplex mode: 1 = full duplex, 0 = half duplex. */
@@ -5530,7 +5529,7 @@ typedef union cvmx_bgxx_gmp_pcs_sgmx_an_adv cvmx_bgxx_gmp_pcs_sgmx_an_adv_t;
 /**
  * cvmx_bgx#_gmp_pcs_sgm#_lp_adv
  *
- * This is the SGMII Link partner advertisement register (received as rx_Config_Reg<15:0> as
+ * This is the SGMII link partner advertisement register (received as rx_Config_Reg<15:0> as
  * defined in IEEE 802.3 clause 37).
  */
 union cvmx_bgxx_gmp_pcs_sgmx_lp_adv {
@@ -5538,7 +5537,7 @@ union cvmx_bgxx_gmp_pcs_sgmx_lp_adv {
 	struct cvmx_bgxx_gmp_pcs_sgmx_lp_adv_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_16_63               : 48;
-	uint64_t link                         : 1;  /**< Link status: 1 = Link up, 0 = Link down. */
+	uint64_t link                         : 1;  /**< Link status: 1 = Link up. 0 = Link down. */
 	uint64_t reserved_13_14               : 2;
 	uint64_t dup                          : 1;  /**< Duplex mode: 1 = Full duplex, 0 = Half duplex. */
 	uint64_t speed                        : 2;  /**< Link speed:
@@ -5733,7 +5732,7 @@ typedef union cvmx_bgxx_smux_ext_loopback cvmx_bgxx_smux_ext_loopback_t;
  * [HG2RX_EN] are set. BGX()_SMU()_RX_UDD_SKP[LEN] must be set to 16 (to select HiGig2)
  * whenever either [HG2TX_EN] or [HG2RX_EN] are set.
  *
- * BGX()_CMR_RX_OVR_BP[EN<0>] must be set and BGX()_CMR_RX_OVR_BP[BP<0>] must be cleared
+ * BGX()_CMR_RX_OVR_BP[EN]<0> must be set and BGX()_CMR_RX_OVR_BP[BP]<0> must be cleared
  * to 0 (to forcibly disable hardware-automatic 802.3 PAUSE packet generation) with the HiGig2
  * Protocol when [HG2TX_EN] = 0. (The HiGig2 protocol is indicated
  * by BGX()_SMU()_TX_CTL[HG_EN] = 1 and BGX()_SMU()_RX_UDD_SKP[LEN]=16.) Hardware
@@ -6846,7 +6845,7 @@ union cvmx_bgxx_spux_an_xnp_tx {
                                                          the task) defined in the message. */
 	uint64_t toggle                       : 1;  /**< This bit is ignored by hardware. The value of the TOGGLE bit in transmitted next pages is
                                                          automatically generated by hardware. */
-	uint64_t m_u                          : 11; /**< Message/Unformatted code field: When the MP bit is set, this field contains the message
+	uint64_t m_u                          : 11; /**< Message/unformatted code field: When the MP bit is set, this field contains the message
                                                          code field (M) of the message next page. When MP is clear, this field contains the lower
                                                          11 bits of the 43-bit unformatted code field of the unformatted next page. */
 #else
@@ -7003,7 +7002,7 @@ union cvmx_bgxx_spux_br_pmd_control {
 	struct cvmx_bgxx_spux_br_pmd_control_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_2_63                : 62;
-	uint64_t train_en                     : 1;  /**< BASE-R training enable */
+	uint64_t train_en                     : 1;  /**< BASE-R training enable. */
 	uint64_t train_restart                : 1;  /**< BASE-R training restart. Writing a 1 to this bit restarts the training process if
                                                          [TRAIN_EN] is also set. This is a self-clearing bit. Software should
                                                          wait a minimum of 1.7ms after BGX()_SPU()_INT[TRAINING_FAILURE] is set before
@@ -7244,14 +7243,14 @@ union cvmx_bgxx_spux_br_status1 {
 	uint64_t prbs9                        : 1;  /**< 10GBASE-R PRBS9 pattern testing ability. Always 0; PRBS9 pattern testing is not supported. */
 	uint64_t prbs31                       : 1;  /**< 10GBASE-R PRBS31 pattern testing ability. Always 0; PRBS31 pattern testing is not supported. */
 	uint64_t hi_ber                       : 1;  /**< BASE-R PCS high bit-error rate.
-                                                         0 = 64B/66B receiver is detecting a bit-error rate of < 10.4.
-                                                         1 = 64B/66B receiver is detecting a bit-error rate of >= 10.4.
-                                                         This bit is a direct reflection of the state of the HI_BER variable in the 64B/66B state
+                                                         0 = 64/66 bit receiver is detecting a bit-error rate of < 10.4.
+                                                         1 = 64/66 bit receiver is detecting a bit-error rate of >= 10.4.
+                                                         This bit is a direct reflection of the state of the HI_BER variable in the 64 B/66 B state
                                                          diagram and is defined in Std 802.3 sections 49.2.13.2.2 and 82.2.18.2.2. */
 	uint64_t blk_lock                     : 1;  /**< BASE-R PCS block lock.
                                                          0 = No block lock.
-                                                         1 = 64B/66B receiver for BASE-R has block lock.
-                                                         This bit is a direct reflection of the state of the BLOCK_LOCK variable in the 64B/66B
+                                                         1 = 64/66 bit receiver for BASE-R has block lock.
+                                                         This bit is a direct reflection of the state of the BLOCK_LOCK variable in the 64 B/66 B
                                                          state diagram and is defined in Std 802.3 sections 49.2.13.2.2 and 82.2.18.2.2.
                                                          For a multilane logical PCS (i.e. 40GBASE-R), this bit indicates that the receiver has
                                                          both block lock and alignment for all lanes and is identical to
@@ -7313,14 +7312,14 @@ union cvmx_bgxx_spux_br_status2 {
                                                          This field is writable for test purposes, rather than read-only as specified in Std 802.3. */
 	uint64_t latched_lock                 : 1;  /**< Latched-block lock.
                                                          0 = No block.
-                                                         1 = 64B/66B receiver for BASE-R has block lock.
+                                                         1 = 64/66 bit receiver for BASE-R has block lock.
                                                          This is a latching-low version of BGX()_SPU()_BR_STATUS1[BLK_LOCK]; it stays clear
                                                          until the register is read by software.
                                                          Note that in order to avoid read side effects, this is implemented as a write-1-to-set
                                                          bit, rather than latching low read-only as specified in 802.3. */
 	uint64_t latched_ber                  : 1;  /**< Latched-high bit-error rate.
                                                          0 = Not a high BER.
-                                                         1 = 64B/66B receiver is detecting a high BER.
+                                                         1 = 64/66 bit receiver is detecting a high BER.
                                                          This is a latching-high version of BGX()_SPU()_BR_STATUS1[HI_BER]; it stays set until
                                                          the register is read by software.
                                                          Note that in order to avoid read side effects, this is implemented as a write-1-to-clear
@@ -7583,7 +7582,7 @@ union cvmx_bgxx_spux_fec_control {
                                                          variable for BASE-R as defined in 802.3 Clause 74. When FEC is enabled ([FEC_EN] is set)
                                                          and this bit is set, the FEC decoder on the receive side signals an
                                                          uncorrectable FEC error to the BASE-R decoder by driving a value of 2'b11 on the sync bits
-                                                         for some of the 32 64B/66B blocks belonging to the uncorrectable FEC block. See
+                                                         for some of the 32 64/66 bit blocks belonging to the uncorrectable FEC block. See
                                                          802.3-2008/802.3ba-2010 section 74.7.4.5.1 for more details. */
 	uint64_t fec_en                       : 1;  /**< BASE-R FEC enable. When this bit is set and the LPCS type is BASE-R
                                                          (BGX()_CMR()_CONFIG[LMAC_TYPE] = 0x4), forward error correction is enabled. FEC is
@@ -7897,11 +7896,11 @@ union cvmx_bgxx_spux_misc_control {
                                                          received errors and faults will be ignored while receive packets are discarded; idles will
                                                          be sent to the MAC layer (SMU) and the errored blocks counter
                                                          (BGX()_SPU()_BR_STATUS2[ERR_BLKS]) will not increment. */
-	uint64_t skip_after_term              : 1;  /**< Enable sending of Idle Skip after Terminate. This bit is meaningful when the logical PCS
+	uint64_t skip_after_term              : 1;  /**< Enable sending of idle skip after terminate. This bit is meaningful when the logical PCS
                                                          type is XAUI or RXAUI (selected by BGX()_CMR()_CONFIG[LMAC_TYPE]), and has no
-                                                         effect otherwise. When set, the LMAC/LPCS transmits more Idle Skip columns for clock
+                                                         effect otherwise. When set, the LMAC/LPCS transmits more idle skip columns for clock
                                                          compensation. Typically set in HiGig/HiGig2 modes; clear otherwise. This field can be set
-                                                         to ensure sufficient density of XAUI Idle Skip (||R||) columns with a small transmit
+                                                         to ensure sufficient density of XAUI idle skip (||R||) columns with a small transmit
                                                          inter-frame gap (IFG) in order to allow the link partner's receiver to delete ||R
                                                          columns as needed for clock rate compensation. It is usually set when the LMAC's transmit
                                                          IFG is set to 8 bytes in HiGig/HiGig2 modes (i.e. BGX()_SMU()_TX_IFG[IFG1] +
@@ -7922,7 +7921,7 @@ union cvmx_bgxx_spux_misc_control {
                                                          _ 0 = Common running disparity. Common running disparity is computed for even
                                                          and odd code-groups of an RXAUI lane, i.e. interleave lanes before PCS layer as
                                                          described in the Dune Networks/Broadcom RXAUI v2.1 specification. This obeys
-                                                         6.25GHz serdes disparity.
+                                                         6.25GHz SerDes disparity.
                                                          _ 1 = Interleaved running disparity: Running disparity is computed separately for even and
                                                          odd code-groups of an RXAUI lane, i.e. interleave lanes after PCS layer as described in
                                                          the Marvell RXAUI Interface specification. This does not obey 6.25GHz SerDes disparity. */
@@ -8105,8 +8104,9 @@ union cvmx_bgxx_spu_dbg_control {
                                                          Setting it disables the BASE-R BER monitor state machine defined in 802.3-2008 Figure
                                                          49-13 for 10GBASE-R and 802.3ba-2010 Figure 82-13 for 40GBASE-R. */
 	uint64_t an_nonce_match_dis           : 1;  /**< Autonegotiation nonce match disable. This bit should be clear for normal operation.
-                                                         Setting it disables Nonce Match check by forcing nonce_match variable to 0 in the Auto-
-                                                         Negotiation arbitration state diagram, as defined in 802.3-2008 Figure 73-11. This bit can
+                                                         Setting it disables Nonce Match check by forcing nonce_match variable to 0 in the
+                                                         autonegotiation arbitration state diagram, as defined in 802.3-2008 Figure 73-11. This bit
+                                                         can
                                                          be set by software for test purposes, e.g. for running autonegotiation in loopback mode. */
 	uint64_t timestamp_norm_dis           : 1;  /**< 40GBASE-R RX timestamp normalization disable. This bit controls the generation of the
                                                          receive SOP timestamp passed to the SMU sub-block for a 40GBASE-R LMAC/LPCS. When this bit
@@ -8158,8 +8158,8 @@ union cvmx_bgxx_spu_dbg_control {
                                                          BGX()_SPU()_BR_PMD_CONTROL[TRAIN_EN] is set, the link training protocol is fully
                                                          automated in hardware, whereby the contents BGX()_SPU()_BR_PMD_LD_CUP and
                                                          BGX()_SPU()_BR_PMD_LD_REP registers are automatically updated by hardware. */
-	uint64_t an_arb_link_chk_en           : 1;  /**< Enable link status checking by autonegotiation arbitration state machine. When Auto-
-                                                         Negotiation is enabled (BGX()_SPU()_AN_CONTROL[AN_EN] is set), this bit controls
+	uint64_t an_arb_link_chk_en           : 1;  /**< Enable link status checking by autonegotiation arbitration state machine. When
+                                                         autonegotiation is enabled (BGX()_SPU()_AN_CONTROL[AN_EN] is set), this bit controls
                                                          the behavior of the autonegotiation arbitration state machine when it reaches the AN GOOD
                                                          CHECK state after DME pages are successfully exchanged, as defined in Figure 73-11 in
                                                          802.3-2008.

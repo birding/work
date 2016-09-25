@@ -412,28 +412,6 @@ union cvmx_hna_bist0 {
 	uint64_t u64;
 	struct cvmx_hna_bist0_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t reserved_60_63               : 4;
-	uint64_t hpc3                         : 12; /**< BIST results for HPC3 RAM(s) (per-HPU). */
-	uint64_t reserved_44_47               : 4;
-	uint64_t hpc2                         : 12; /**< BIST results for HPC2 RAM(s) (per-HPU). */
-	uint64_t reserved_28_31               : 4;
-	uint64_t hpc1                         : 12; /**< BIST results for HPC1 RAM(s) (per-HPU). */
-	uint64_t reserved_12_15               : 4;
-	uint64_t hpc0                         : 12; /**< BIST results for HPC0 RAM(s) (per-HPU). */
-#else
-	uint64_t hpc0                         : 12;
-	uint64_t reserved_12_15               : 4;
-	uint64_t hpc1                         : 12;
-	uint64_t reserved_28_31               : 4;
-	uint64_t hpc2                         : 12;
-	uint64_t reserved_44_47               : 4;
-	uint64_t hpc3                         : 12;
-	uint64_t reserved_60_63               : 4;
-#endif
-	} s;
-	struct cvmx_hna_bist0_s               cn73xx;
-	struct cvmx_hna_bist0_cn78xx {
-#ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_58_63               : 6;
 	uint64_t hpc3                         : 10; /**< BIST results for HPC3 RAM(s) (per-HPU). */
 	uint64_t reserved_42_47               : 6;
@@ -452,8 +430,22 @@ union cvmx_hna_bist0 {
 	uint64_t hpc3                         : 10;
 	uint64_t reserved_58_63               : 6;
 #endif
-	} cn78xx;
-	struct cvmx_hna_bist0_cn78xx          cn78xxp2;
+	} s;
+	struct cvmx_hna_bist0_cn73xx {
+#ifdef __BIG_ENDIAN_BITFIELD
+	uint64_t reserved_26_63               : 38;
+	uint64_t hpc1                         : 10; /**< BIST results for HPC1 RAM(s) (per-HPU). */
+	uint64_t reserved_10_15               : 6;
+	uint64_t hpc0                         : 10; /**< BIST results for HPC0 RAM(s) (per-HPU). */
+#else
+	uint64_t hpc0                         : 10;
+	uint64_t reserved_10_15               : 6;
+	uint64_t hpc1                         : 10;
+	uint64_t reserved_26_63               : 38;
+#endif
+	} cn73xx;
+	struct cvmx_hna_bist0_s               cn78xx;
+	struct cvmx_hna_bist0_s               cn78xxp2;
 };
 typedef union cvmx_hna_bist0 cvmx_hna_bist0_t;
 
@@ -484,7 +476,23 @@ union cvmx_hna_bist1 {
 	uint64_t reserved_7_63                : 57;
 #endif
 	} s;
-	struct cvmx_hna_bist1_s               cn73xx;
+	struct cvmx_hna_bist1_cn73xx {
+#ifdef __BIG_ENDIAN_BITFIELD
+	uint64_t reserved_6_63                : 58;
+	uint64_t hnc0                         : 1;  /**< SC0 BIST results for cumulative HNC0 RAMs. */
+	uint64_t mrp1                         : 1;  /**< BIST results for DSM-DLC:MRP1 RAM. */
+	uint64_t mrp0                         : 1;  /**< BIST results for DSM-DLC:MRP0 RAM. */
+	uint64_t reserved_1_2                 : 2;
+	uint64_t gib                          : 1;  /**< BIST results for GIB RAM. */
+#else
+	uint64_t gib                          : 1;
+	uint64_t reserved_1_2                 : 2;
+	uint64_t mrp0                         : 1;
+	uint64_t mrp1                         : 1;
+	uint64_t hnc0                         : 1;
+	uint64_t reserved_6_63                : 58;
+#endif
+	} cn73xx;
 	struct cvmx_hna_bist1_s               cn78xx;
 	struct cvmx_hna_bist1_s               cn78xxp2;
 };
@@ -698,7 +706,7 @@ union cvmx_hna_control {
 	uint64_t sbdnum                       : 6;  /**< Reserved. SBD debug entry number. */
 	uint64_t sbdlck                       : 1;  /**< Reserved. HNA scoreboard lock strobe. */
 	uint64_t reserved_3_4                 : 2;
-	uint64_t pmode                        : 1;  /**< Reserved. NCB-NRP arbiter mode. (0=Fixed Priority [LP=DFF,HP=RGF]/1=RR
+	uint64_t pmode                        : 1;  /**< Reserved. NCB-NRP arbiter mode. (0=fixed priority [LP=DFF,HP=RGF]/1=RR
                                                          NOTE: This should only be written to a different value during power-on software
                                                          initialization. */
 	uint64_t qmode                        : 1;  /**< Reserved. NCB-NRQ arbiter mode. 0 = Fixed priority (LP = NPF, IRF, WRF, PRF, RSRF, HP =
@@ -780,7 +788,7 @@ union cvmx_hna_difctl {
                                                          recycled back to the Free Page List maintained by FPA (once the HNA instruction has been
                                                          issued). */
 	uint64_t reserved_13_25               : 13;
-	uint64_t ldwb                         : 1;  /**< Load Don't Write Back. When set, the hardware issues LDWB command towards the cache when
+	uint64_t ldwb                         : 1;  /**< Load don't write back. When set, the hardware issues LDWB command towards the cache when
                                                          fetching last word of instructions; as a result the line is not written back when
                                                          replaced. When clear, the hardware issues regular load towards cache which will cause the
                                                          line to be written back before being replaced. */
@@ -792,7 +800,7 @@ union cvmx_hna_difctl {
                                                          a) determine when to read the next HNA instruction chunk pointer which is written by
                                                          software at the end of the current HNA instruction chunk (see HNA description of next
                                                          chunk buffer Ptr for format).
-                                                         b) determine when a HNA instruction chunk can be returned to the Free Page List maintained
+                                                         b) determine when a HNA instruction chunk can be returned to the free page list maintained
                                                          by FPA. */
 #else
 	uint64_t size                         : 9;
@@ -826,9 +834,9 @@ union cvmx_hna_difrdptr {
 	uint64_t reserved_42_63               : 22;
 	uint64_t rdptr                        : 36; /**< Represents the 64B-aligned address of the current instruction in the HNA Instruction FIFO
                                                          in main memory. The RDPTR must be seeded by software at boot time, and is then maintained
-                                                         thereafter by HNA hardware. During the software seed write, RDPTR[6]=0, since HNA
+                                                         thereafter by HNA hardware. During the software seed write, [RDPTR][6]=0, since HNA
                                                          instruction chunks must be 128B aligned. During a software read, the most recent contents
-                                                         of RDPTR are returned at the time the NCB-INB bus is driven.
+                                                         of [RDPTR] are returned at the time the NCB-INB bus is driven.
                                                          NOTE: Since HNA hardware updates this register, its contents are unpredictable in software
                                                          (unless it is guaranteed that no new doorbell register writes have occurred and HNA_DBELL
                                                          is read as zero). */
@@ -853,7 +861,7 @@ union cvmx_hna_eco {
 	struct cvmx_hna_eco_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t eco_rw                       : 32; /**< Added in pass 2. */
+	uint64_t eco_rw                       : 32; /**< Reserved. */
 #else
 	uint64_t eco_rw                       : 32;
 	uint64_t reserved_32_63               : 32;
@@ -883,7 +891,7 @@ union cvmx_hna_error {
                                                          1) An 8* replication factor is detected for any memory reference.
                                                          2) A 4* replication factor is detected for any memory reference when only 2 memory ports
                                                          are enabled.
-                                                         NOTE: If REPLERR is set during a HNA Graph Walk operation, the walk will prematurely
+                                                         NOTE: If [REPLERR] is set during a HNA graph walk operation, the walk will prematurely
                                                          terminate with RWORD0[REA] = ERR. */
 	uint64_t hnanxm                       : 1;  /**< HNA non-existent memory access. HPUs (and backdoor CSR HNA memory region reads) have
                                                          access to the following 40-bit L2/DRAM address space which maps to a 38-bit physical
@@ -896,9 +904,9 @@ union cvmx_hna_error {
                                                          In the event the HNA generates a reference to the L2/DRAM address hole (0x0000.0FFF.FFFF -
                                                          0x0000.1FFF.FFFF), the HNANXM programmable interrupt bit will be set.
                                                          Software Note:
-                                                         The HNA Graph compiler must avoid making references to this 2nd 256MB HOLE which is a non-
+                                                         The HNA graph compiler must avoid making references to this 2nd 256MB HOLE which is a non-
                                                          existent memory region.
-                                                         NOTE: If HNANXM is set during a HNA Graph Walk operation, then the walk will prematurely
+                                                         NOTE: If [HNANXM] is set during a HNA graph walk operation, then the walk will prematurely
                                                          terminate with RWORD0[REAS]=MEMERR. */
 	uint64_t dlc1_dbe                     : 1;  /**< A DLC1 response indicated a double-bit ECC error (DBE). */
 	uint64_t dlc0_dbe                     : 1;  /**< A DLC0 response indicated a double-bit ECC error (DBE). */
@@ -955,7 +963,7 @@ typedef union cvmx_hna_error cvmx_hna_error_t;
 /**
  * cvmx_hna_error_capture_data
  *
- * This register holds the HPU_STATUS data captured during HNA_ERROR events.
+ * This register holds the HPU_STATUS data captured during some HNA_ERROR events.
  *
  */
 union cvmx_hna_error_capture_data {
@@ -1009,8 +1017,13 @@ typedef union cvmx_hna_error_capture_data cvmx_hna_error_capture_data_t;
 /**
  * cvmx_hna_error_capture_info
  *
- * This register holds the meta-data for the HPU_STATUS captured during HNA_ERROR events.
- *
+ * This register holds the meta-data for the HPU_STATUS captured during some HNA_ERROR events.
+ * Upon the first occurrence of select HPU error events, the HPU status is captured in the
+ * HNA_ERROR_CAPTURE_DATA register.  The cluster and engine ID are captured in this register,
+ * along with a valid bit.  The valid bit is reset by clearing the corresponding interrupt.  Any
+ * errors that occur while the valid bit is set will be lost.  The HPU errors that are captured
+ * are memory errors (DBE, SBE, parity) in the HPU internal RAMs, HNC parity errors, and HNC
+ * overflow errors.
  */
 union cvmx_hna_error_capture_info {
 	uint64_t u64;
@@ -1187,7 +1200,7 @@ typedef union cvmx_hna_hpu_dbg cvmx_hna_hpu_dbg_t;
  *
  * Used by software to force parity or ECC errors on some internal HPU data structures. A CSR
  * write of this register forces either a parity or ECC error on the next access at cluster
- * number = CLID, HPU number = HPUID.
+ * number = [CLID], HPU number = [HPUID].
  */
 union cvmx_hna_hpu_eir {
 	uint64_t u64;
@@ -1195,8 +1208,8 @@ union cvmx_hna_hpu_eir {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_12_63               : 52;
 	uint64_t wrdone                       : 1;  /**< When HNA_HPU_EIR is written, this bit is cleared by hardware. When the targeted HPU has
-                                                         received the error injection command (i.e. error injection armed), the WRDONE bit is SET.
-                                                         Software first writes HNA_HPU_EIR, then does a polling read of the WRDONE bit (until it
+                                                         received the error injection command (i.e. error injection armed), [WRDONE] is set.
+                                                         Software first writes HNA_HPU_EIR, then does a polling read of [WRDONE] (until it
                                                          becomes 1), before issuing an HNA instruction to the targeted HPU which will inject the
                                                          intended error type for a single occurrence (one-shot). */
 	uint64_t pdperr                       : 1;  /**< Packet data buffer parity error. Forces parity error on next packet data buffer read. */

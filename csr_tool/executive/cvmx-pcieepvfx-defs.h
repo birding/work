@@ -508,18 +508,18 @@ union cvmx_pcieepvfx_cfg001 {
 	uint32_t reserved_11_18               : 8;
 	uint32_t i_dis                        : 1;  /**< VF read-only zero. */
 	uint32_t fbbe                         : 1;  /**< Fast back-to-back transaction enable. Not applicable for PCI Express. Must be hardwired to 0. */
-	uint32_t see                          : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG001[SEE]. */
+	uint32_t see                          : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG001[SEE]. */
 	uint32_t ids_wcc                      : 1;  /**< IDSEL stepping/wait cycle control. Not applicable for PCI Express. Must be hardwired to 0. */
-	uint32_t per                          : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG001[PER]. */
+	uint32_t per                          : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG001[PER]. */
 	uint32_t vps                          : 1;  /**< VGA palette snoop. Not applicable for PCI Express. Must be hardwired to 0. */
 	uint32_t mwice                        : 1;  /**< Memory write and invalidate. Not applicable for PCI Express. Must be hardwired to 0. */
 	uint32_t scse                         : 1;  /**< Special cycle enable. Not applicable for PCI Express. Must be hardwired to 0. */
 	uint32_t me                           : 1;  /**< Bus master enable. If the VF tries to master the bus when this bit is not set,
-                                                         the request is discarded. A interrupt will be generated setting the
-                                                         SPEM()_PF()_DBG_INFO[P()_BMD_E bit.
+                                                         the request is discarded. A interrupt will be generated setting
+                                                         PEM()_DBG_INFO[BMD_E].
                                                          Transactions are dropped in the Client.  Non-posted transactions returns a SWI_RSP_ERROR
                                                          to SLI/DPI/NQM soon thereafter.
-                                                         Bus master enable mimics the behavor of SPEM()_FLR_PF()_VF()_STOPREQ. */
+                                                         Bus master enable mimics the behavior of PEM()_FLR_PF0_VF_STOPREQ. */
 	uint32_t msae                         : 1;  /**< VF read-only zero. */
 	uint32_t isae                         : 1;  /**< VF read-only zero. */
 #else
@@ -566,9 +566,9 @@ union cvmx_pcieepvfx_cfg002 {
 	uint32_t u32;
 	struct cvmx_pcieepvfx_cfg002_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t bcc                          : 8;  /**< Read-only copy of the associated PF's PCIEP()_CFG002[BCC]. */
-	uint32_t sc                           : 8;  /**< Read-only copy of the associated PF's PCIEP()_CFG002[SC]. */
-	uint32_t pi                           : 8;  /**< Read-only copy of the associated PF's PCIEP()_CFG002[PI]. */
+	uint32_t bcc                          : 8;  /**< Read-only copy of the associated PF's PCIEEP()_CFG002[BCC]. */
+	uint32_t sc                           : 8;  /**< Read-only copy of the associated PF's PCIEEP()_CFG002[SC]. */
+	uint32_t pi                           : 8;  /**< Read-only copy of the associated PF's PCIEEP()_CFG002[PI]. */
 	uint32_t rid                          : 8;  /**< Read-only copy of the associated PF's PCIEP()_CFG002[RID]. */
 #else
 	uint32_t rid                          : 8;
@@ -596,10 +596,10 @@ union cvmx_pcieepvfx_cfg003 {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t bist                         : 8;  /**< The BIST register functions are not supported. All 8 bits of the BIST register are
                                                          hardwired to 0x0. */
-	uint32_t mfd                          : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG003[MFD]. */
+	uint32_t mfd                          : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG003[MFD]. */
 	uint32_t chf                          : 7;  /**< Configuration header format. Hardwired to 0x0 for type 0. */
 	uint32_t lt                           : 8;  /**< Master latency timer. Not applicable for PCI Express, hardwired to 0x0. */
-	uint32_t cls                          : 8;  /**< Read-only copy of the associated PF's PCIEP()_CFG003[CLS].
+	uint32_t cls                          : 8;  /**< Read-only copy of the associated PF's PCIEEP()_CFG003[CLS].
                                                          The cache line size register is R/W for legacy compatibility purposes and
                                                          is not applicable to PCI Express device functionality. Writing to the cache line size
                                                          register does not impact functionality of the PCI Express bus. */
@@ -760,7 +760,7 @@ union cvmx_pcieepvfx_cfg010 {
 	uint32_t u32;
 	struct cvmx_pcieepvfx_cfg010_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t cisp                         : 32; /**< Read-only copy of the associated PF's PCIEP()_CFG010[CISP]. */
+	uint32_t cisp                         : 32; /**< Read-only copy of the associated PF's PCIEEP()_CFG010[CISP]. */
 #else
 	uint32_t cisp                         : 32;
 #endif
@@ -782,8 +782,8 @@ union cvmx_pcieepvfx_cfg011 {
 	uint32_t u32;
 	struct cvmx_pcieepvfx_cfg011_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t ssid                         : 16; /**< Read-only copy of the associated PF's PCIEP()_CFG011[SSID]. */
-	uint32_t ssvid                        : 16; /**< Read-only copy of the associated PF's PCIEP()_CFG011[SSVID]. */
+	uint32_t ssid                         : 16; /**< Read-only copy of the associated PF's PCIEEP()_CFG011[SSID]. */
+	uint32_t ssvid                        : 16; /**< Read-only copy of the associated PF's PCIEEP()_CFG011[SSVID]. */
 #else
 	uint32_t ssvid                        : 16;
 	uint32_t ssid                         : 16;
@@ -806,9 +806,9 @@ union cvmx_pcieepvfx_cfg012 {
 	uint32_t u32;
 	struct cvmx_pcieepvfx_cfg012_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t eraddr                       : 16; /**< Read-only copy of the associated PF's PCIEP()_CFG012[ERADDR]. */
+	uint32_t eraddr                       : 16; /**< Read-only copy of the associated PF's PCIEEP()_CFG012[ERADDR]. */
 	uint32_t reserved_1_15                : 15;
-	uint32_t er_en                        : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG012[ER_EN]. */
+	uint32_t er_en                        : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG012[ER_EN]. */
 #else
 	uint32_t er_en                        : 1;
 	uint32_t reserved_1_15                : 15;
@@ -885,10 +885,10 @@ union cvmx_pcieepvfx_cfg028 {
 	struct cvmx_pcieepvfx_cfg028_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_30_31               : 2;
-	uint32_t imn                          : 5;  /**< Read-only copy of the associated PF's PCIEP()_CFG028[IMN]. */
-	uint32_t si                           : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG028[SI]. */
-	uint32_t dpt                          : 4;  /**< Read-only copy of the associated PF's PCIEP()_CFG028[DPT]. */
-	uint32_t pciecv                       : 4;  /**< Read-only copy of the associated PF's PCIEP()_CFG028[PCIECV]. */
+	uint32_t imn                          : 5;  /**< Read-only copy of the associated PF's PCIEEP()_CFG028[IMN]. */
+	uint32_t si                           : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG028[SI]. */
+	uint32_t dpt                          : 4;  /**< Read-only copy of the associated PF's PCIEEP()_CFG028[DPT]. */
+	uint32_t pciecv                       : 4;  /**< Read-only copy of the associated PF's PCIEEP()_CFG028[PCIECV]. */
 	uint32_t ncp                          : 8;  /**< Next capability pointer. Points to the MSI-X capabilities by default. */
 	uint32_t pcieid                       : 8;  /**< PCI Express capability ID. */
 #else
@@ -920,16 +920,16 @@ union cvmx_pcieepvfx_cfg029 {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_29_31               : 3;
 	uint32_t flr_cap                      : 1;  /**< Function level reset capability. Set to 1 for SR-IOV core. */
-	uint32_t cspls                        : 2;  /**< Read-only copy of the associated PF's PCIEP()_CFG029[CSPLS]. */
-	uint32_t csplv                        : 8;  /**< Read-only copy of the associated PF's PCIEP()_CFG029[CSPLV]. */
+	uint32_t cspls                        : 2;  /**< Read-only copy of the associated PF's PCIEEP()_CFG029[CSPLS]. */
+	uint32_t csplv                        : 8;  /**< Read-only copy of the associated PF's PCIEEP()_CFG029[CSPLV]. */
 	uint32_t reserved_16_17               : 2;
-	uint32_t rber                         : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG029[RBER]. */
+	uint32_t rber                         : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG029[RBER]. */
 	uint32_t reserved_12_14               : 3;
-	uint32_t el1al                        : 3;  /**< Read-only copy of the associated PF's PCIEP()_CFG029[EL1AL]. */
-	uint32_t el0al                        : 3;  /**< Read-only copy of the associated PF's PCIEP()_CFG029[EL0AL]. */
-	uint32_t etfs                         : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG029[ETFS]. */
-	uint32_t pfs                          : 2;  /**< Read-only copy of the associated PF's PCIEP()_CFG029[PFS]. */
-	uint32_t mpss                         : 3;  /**< Read-only copy of the associated PF's PCIEP()_CFG029[MPSS]. */
+	uint32_t el1al                        : 3;  /**< Read-only copy of the associated PF's PCIEEP()_CFG029[EL1AL]. */
+	uint32_t el0al                        : 3;  /**< Read-only copy of the associated PF's PCIEEP()_CFG029[EL0AL]. */
+	uint32_t etfs                         : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG029[ETFS]. */
+	uint32_t pfs                          : 2;  /**< Read-only copy of the associated PF's PCIEEP()_CFG029[PFS]. */
+	uint32_t mpss                         : 3;  /**< Read-only copy of the associated PF's PCIEEP()_CFG029[MPSS]. */
 #else
 	uint32_t mpss                         : 3;
 	uint32_t pfs                          : 2;
@@ -967,9 +967,10 @@ union cvmx_pcieepvfx_cfg030 {
                                                          when they are completed. */
 	uint32_t ap_d                         : 1;  /**< VF's read-only zeros. */
 	uint32_t ur_d                         : 1;  /**< Unsupported request detected. Errors are logged in this register regardless of whether or
-                                                         not error reporting is enabled in the device control register. UR_D occurs when we receive
-                                                         something unsupported. Unsupported requests are nonfatal errors, so UR_D should cause
-                                                         NFE_D. Receiving a vendor-defined message should cause an unsupported request. */
+                                                         not error reporting is enabled in the device control register. [UR_D] occurs when we
+                                                         receive
+                                                         something unsupported. Unsupported requests are nonfatal errors, so [UR_D] should cause
+                                                         [NFE_D]. Receiving a vendor-defined message should cause an unsupported request. */
 	uint32_t fe_d                         : 1;  /**< Fatal error detected. Errors are logged in this register regardless of whether or not
                                                          error reporting is enabled in the device control register. This field is set if we receive
                                                          any of the errors in PCIEEPVF()_CFG066 that has a severity set to fatal. Malformed TLPs
@@ -986,17 +987,17 @@ union cvmx_pcieepvfx_cfg030 {
 	uint32_t i_flr                        : 1;  /**< Initiate function level reset when written to one.
                                                          [I_FLR] must not be written to one via the indirect PEM()_CFG_WR. It should only ever
                                                          be written to one via a direct PCIe access. */
-	uint32_t mrrs                         : 3;  /**< Read-only copy of the associated PF's PCIEP()_CFG030[MRRS]. */
-	uint32_t ns_en                        : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG030[NS_EN]. */
-	uint32_t ap_en                        : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG030[AP_EN]. */
-	uint32_t pf_en                        : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG030[PF_EN]. */
-	uint32_t etf_en                       : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG030[ETF_EN]. */
-	uint32_t mps                          : 3;  /**< Read-only copy of the associated PF's PCIEP()_CFG030[MPS]. */
-	uint32_t ro_en                        : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG030[RO_EN]. */
-	uint32_t ur_en                        : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG030[UR_EN]. */
-	uint32_t fe_en                        : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG030[FE_EN]. */
-	uint32_t nfe_en                       : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG030[NFE_EN]. */
-	uint32_t ce_en                        : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG030[CE_EN]. */
+	uint32_t mrrs                         : 3;  /**< Read-only copy of the associated PF's PCIEEP()_CFG030[MRRS]. */
+	uint32_t ns_en                        : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG030[NS_EN]. */
+	uint32_t ap_en                        : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG030[AP_EN]. */
+	uint32_t pf_en                        : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG030[PF_EN]. */
+	uint32_t etf_en                       : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG030[ETF_EN]. */
+	uint32_t mps                          : 3;  /**< Read-only copy of the associated PF's PCIEEP()_CFG030[MPS]. */
+	uint32_t ro_en                        : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG030[RO_EN]. */
+	uint32_t ur_en                        : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG030[UR_EN]. */
+	uint32_t fe_en                        : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG030[FE_EN]. */
+	uint32_t nfe_en                       : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG030[NFE_EN]. */
+	uint32_t ce_en                        : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG030[CE_EN]. */
 #else
 	uint32_t ce_en                        : 1;
 	uint32_t nfe_en                       : 1;
@@ -1036,17 +1037,17 @@ union cvmx_pcieepvfx_cfg031 {
 	uint32_t u32;
 	struct cvmx_pcieepvfx_cfg031_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t pnum                         : 8;  /**< Read-only copy of the associated PF's PCIEP()_CFG031[PNUM]. */
+	uint32_t pnum                         : 8;  /**< Read-only copy of the associated PF's PCIEEP()_CFG031[PNUM]. */
 	uint32_t reserved_22_23               : 2;
-	uint32_t lbnc                         : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG031[LBNC]. */
-	uint32_t dllarc                       : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG031[DLLARC]. */
-	uint32_t sderc                        : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG031[SDERC]. */
-	uint32_t cpm                          : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG031[CPM]. */
-	uint32_t l1el                         : 3;  /**< Read-only copy of the associated PF's PCIEP()_CFG031[L1EL]. */
-	uint32_t l0el                         : 3;  /**< Read-only copy of the associated PF's PCIEP()_CFG031[L0EL]. */
-	uint32_t aslpms                       : 2;  /**< Read-only copy of the associated PF's PCIEP()_CFG031[ASLPMS]. */
-	uint32_t mlw                          : 6;  /**< Read-only copy of the associated PF's PCIEP()_CFG031[MLW]. */
-	uint32_t mls                          : 4;  /**< Read-only copy of the associated PF's PCIEP()_CFG031[MLS]. */
+	uint32_t lbnc                         : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG031[LBNC]. */
+	uint32_t dllarc                       : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG031[DLLARC]. */
+	uint32_t sderc                        : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG031[SDERC]. */
+	uint32_t cpm                          : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG031[CPM]. */
+	uint32_t l1el                         : 3;  /**< Read-only copy of the associated PF's PCIEEP()_CFG031[L1EL]. */
+	uint32_t l0el                         : 3;  /**< Read-only copy of the associated PF's PCIEEP()_CFG031[L0EL]. */
+	uint32_t aslpms                       : 2;  /**< Read-only copy of the associated PF's PCIEEP()_CFG031[ASLPMS]. */
+	uint32_t mlw                          : 6;  /**< Read-only copy of the associated PF's PCIEEP()_CFG031[MLW]. */
+	uint32_t mls                          : 4;  /**< Read-only copy of the associated PF's PCIEEP()_CFG031[MLS]. */
 #else
 	uint32_t mls                          : 4;
 	uint32_t mlw                          : 6;
@@ -1084,14 +1085,14 @@ union cvmx_pcieepvfx_cfg032 {
 	uint32_t lbm_int_enb                  : 1;  /**< Link bandwidth management interrupt enable. This bit is not applicable and is reserved for
                                                          endpoints. */
 	uint32_t hawd                         : 1;  /**< Hardware autonomous width disable (not supported). */
-	uint32_t ecpm                         : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG032[ECPM]. */
-	uint32_t es                           : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG032[ES]. */
-	uint32_t ccc                          : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG032[CCC]. */
+	uint32_t ecpm                         : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG032[ECPM]. */
+	uint32_t es                           : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG032[ES]. */
+	uint32_t ccc                          : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG032[CCC]. */
 	uint32_t rl                           : 1;  /**< Retrain link. Not applicable for an upstream port or endpoint device. Hardwired to 0. */
 	uint32_t ld                           : 1;  /**< Link disable. Not applicable for an upstream port or endpoint device. Hardwired to 0. */
 	uint32_t rcb                          : 1;  /**< VF's read-only zeros. */
 	uint32_t reserved_2_2                 : 1;
-	uint32_t aslpc                        : 2;  /**< Read-only copy of the associated PF's PCIEP()_CFG032[ASLPC]. */
+	uint32_t aslpc                        : 2;  /**< Read-only copy of the associated PF's PCIEEP()_CFG032[ASLPC]. */
 #else
 	uint32_t aslpc                        : 2;
 	uint32_t reserved_2_2                 : 1;
@@ -1125,7 +1126,7 @@ union cvmx_pcieepvfx_cfg037 {
 	struct cvmx_pcieepvfx_cfg037_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_24_31               : 8;
-	uint32_t meetp                        : 2;  /**< Read-only copy of the associated PF's PCIEP()_CFG037[MEETP]. */
+	uint32_t meetp                        : 2;  /**< Read-only copy of the associated PF's PCIEEP()_CFG037[MEETP]. */
 	uint32_t eetps                        : 1;  /**< End-end TLP prefix supported (not supported). */
 	uint32_t effs                         : 1;  /**< Extended fmt field supported (not supported). */
 	uint32_t obffs                        : 2;  /**< Optimized buffer flush fill (OBFF) supported (not supported). */
@@ -1193,8 +1194,8 @@ union cvmx_pcieepvfx_cfg038 {
 	uint32_t reserved_7_7                 : 1;
 	uint32_t atom_op                      : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG038[ATOM_OP]. */
 	uint32_t ari                          : 1;  /**< Alternate routing ID forwarding supported (not supported). */
-	uint32_t ctd                          : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG038[CTD]. */
-	uint32_t ctv                          : 4;  /**< Read-only copy of the associated PF's PCIEP()_CFG038[CTV]. */
+	uint32_t ctd                          : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG038[CTD]. */
+	uint32_t ctv                          : 4;  /**< Read-only copy of the associated PF's PCIEEP()_CFG038[CTV]. */
 #else
 	uint32_t ctv                          : 4;
 	uint32_t ctd                          : 1;
@@ -1228,7 +1229,7 @@ union cvmx_pcieepvfx_cfg039 {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_9_31                : 23;
 	uint32_t cls                          : 1;  /**< Crosslink supported. */
-	uint32_t slsv                         : 7;  /**< Read-only copy of the associated PF's PCIEP()_CFG039[SLSV]. */
+	uint32_t slsv                         : 7;  /**< Read-only copy of the associated PF's PCIEEP()_CFG039[SLSV]. */
 	uint32_t reserved_0_0                 : 1;
 #else
 	uint32_t reserved_0_0                 : 1;
@@ -1255,7 +1256,7 @@ union cvmx_pcieepvfx_cfg040 {
 	struct cvmx_pcieepvfx_cfg040_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_17_31               : 15;
-	uint32_t cdl                          : 1;  /**< Read-only copy of the associated PF's PCIEP()_CFG040[CDL]. */
+	uint32_t cdl                          : 1;  /**< Read-only copy of the associated PF's PCIEEP()_CFG040[CDL]. */
 	uint32_t reserved_13_15               : 3;
 	uint32_t cde                          : 1;  /**< VF's read-only zeros. */
 	uint32_t csos                         : 1;  /**< VF's read-only zeros. */
@@ -1305,7 +1306,7 @@ union cvmx_pcieepvfx_cfg044 {
 	uint32_t msixts                       : 11; /**< MSI-X table size encoded as (table size - 1).
                                                          This field is writable through PEM()_CFG_WR when PEM()_CFG_WR[ADDR[31]] is set. */
 	uint32_t ncp                          : 8;  /**< Next capability pointer. */
-	uint32_t msixcid                      : 8;  /**< MSI-X Capability ID. */
+	uint32_t msixcid                      : 8;  /**< MSI-X capability ID. */
 #else
 	uint32_t msixcid                      : 8;
 	uint32_t ncp                          : 8;
@@ -1332,8 +1333,8 @@ union cvmx_pcieepvfx_cfg045 {
 	uint32_t u32;
 	struct cvmx_pcieepvfx_cfg045_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t msixtoffs                    : 29; /**< Read-only copy of the associated PF's PCIEP()_CFG045[MSIXTS]. */
-	uint32_t msixtbir                     : 3;  /**< Read-only copy of the associated PF's PCIEP()_CFG045[MSIXTBIR]. */
+	uint32_t msixtoffs                    : 29; /**< Read-only copy of the associated PF's PCIEEP()_CFG045[MSIXTS]. */
+	uint32_t msixtbir                     : 3;  /**< Read-only copy of the associated PF's PCIEEP()_CFG045[MSIXTBIR]. */
 #else
 	uint32_t msixtbir                     : 3;
 	uint32_t msixtoffs                    : 29;
@@ -1357,7 +1358,7 @@ union cvmx_pcieepvfx_cfg046 {
 	struct cvmx_pcieepvfx_cfg046_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t msixpoffs                    : 29; /**< Read-only copy of the associated PF's PCIEP()_CFG046[MSIXPOFFS]. */
-	uint32_t msixpbir                     : 3;  /**< Read-only copy of the associated PF's PCIEP()_CFG046[MSIXPBIR]. */
+	uint32_t msixpbir                     : 3;  /**< Read-only copy of the associated PF's PCIEEP()_CFG046[MSIXPBIR]. */
 #else
 	uint32_t msixpbir                     : 3;
 	uint32_t msixpoffs                    : 29;

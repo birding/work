@@ -999,9 +999,10 @@ static int cvmx_sso3_setup(unsigned node)
 		if (taq_rsvd > taq_max)
 			taq_rsvd = taq_max;
 	} else {
-		taq_max = taq_rsvd << 7;
-		if (taq_max >= (1 << 13))
-			taq_max = (1 << 13) - 1;
+		/* Provide for streaming performance, enforce field max */
+		taq_max = taq_rsvd << 3;
+		if (taq_max >= (1 << 11))
+			taq_max = (1 << 11) - 1;
 	}
 
 	if (debug)

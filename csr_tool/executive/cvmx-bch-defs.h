@@ -270,7 +270,7 @@ union cvmx_bch_ctl {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_23_63               : 41;
 	uint64_t free_ena                     : 1;  /**< Enable freeing of command buffers. */
-	uint64_t early_term                   : 4;  /**< Threshold of zero delta interations before declaring early termination.
+	uint64_t early_term                   : 4;  /**< Threshold of zero delta iterations before declaring early termination.
                                                          0 will force all iterations to run.  For diagnostic use only. */
 	uint64_t one_cmd                      : 1;  /**< Execute a single operation at a time.  For diagnostic use only. */
 	uint64_t erase_disable                : 1;  /**< When ERASE_DISABLE=0, erased blocks bypass the BCH correction.   The 16B result word
@@ -300,7 +300,7 @@ union cvmx_bch_ctl {
 	struct cvmx_bch_ctl_cn73xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_22_63               : 42;
-	uint64_t early_term                   : 4;  /**< Threshold of zero delta interations before declaring early termination.
+	uint64_t early_term                   : 4;  /**< Threshold of zero delta iterations before declaring early termination.
                                                          0 will force all iterations to run.  For diagnostic use only. */
 	uint64_t one_cmd                      : 1;  /**< Execute a single operation at a time.  For diagnostic use only. */
 	uint64_t erase_disable                : 1;  /**< When ERASE_DISABLE=0, erased blocks bypass the BCH correction.   The 16B result word

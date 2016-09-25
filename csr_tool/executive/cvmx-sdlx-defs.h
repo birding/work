@@ -335,10 +335,10 @@ union cvmx_sdlx_dl_axc_bw_sel {
 	uint64_t reserved_32_63               : 32;
 	uint64_t bw_sel                       : 32; /**< 2-bit selects for each DL AxC. Bits[1:0] control AxC 0, bits[3:2]
                                                          control AxC 1, etc.
-                                                         0x0: AxC disabled.
-                                                         0x1: 5 MHz (i.e., 7.68 Msps).
-                                                         0x2: 10 MHz (i.e., 15.36 Msps).
-                                                         0x3: 20 MHz (i.e., 30.72 Msps). */
+                                                         0x0 = AxC disabled.
+                                                         0x1 = 5 MHz (i.e., 7.68 Msps).
+                                                         0x2 = 10 MHz (i.e., 15.36 Msps).
+                                                         0x3 = 20 MHz (i.e., 30.72 Msps). */
 #else
 	uint64_t bw_sel                       : 32;
 	uint64_t reserved_32_63               : 32;
@@ -444,10 +444,10 @@ union cvmx_sdlx_dl_bit_ctrl_sel {
 	struct cvmx_sdlx_dl_bit_ctrl_sel_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_2_63                : 62;
-	uint64_t sel                          : 2;  /**< 0x0: No truncation (recommended).
-                                                         0x1: sat.
-                                                         0x2: round trunc sat.
-                                                         0x3: reserved. */
+	uint64_t sel                          : 2;  /**< 0x0 = No truncation (recommended).
+                                                         0x1 = sat.
+                                                         0x2 = round trunc sat.
+                                                         0x3 = reserved. */
 #else
 	uint64_t sel                          : 2;
 	uint64_t reserved_2_63                : 62;
@@ -606,10 +606,10 @@ union cvmx_sdlx_mapper_loopback {
 	struct cvmx_sdlx_mapper_loopback_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_2_63                : 62;
-	uint64_t sel                          : 2;  /**< 0x0: Normal operation (no loopback).
-                                                         0x1: Loopback TX(DL) output to RX(UL) input (DL2UL internal loopback).
-                                                         0x2: Loopback RX(UL) input to TX(DL) output (UL2DL external loopback).
-                                                         0x3: Normal operation (no loopback). */
+	uint64_t sel                          : 2;  /**< 0x0 = Normal operation (no loopback).
+                                                         0x1 = Loopback TX(DL) output to RX(UL) input (DL2UL internal loopback).
+                                                         0x2 = Loopback RX(UL) input to TX(DL) output (UL2DL external loopback).
+                                                         0x3 = Normal operation (no loopback). */
 #else
 	uint64_t sel                          : 2;
 	uint64_t reserved_2_63                : 62;
@@ -727,10 +727,10 @@ union cvmx_sdlx_ul_axc_bw_sel {
 	uint64_t reserved_32_63               : 32;
 	uint64_t bw_sel                       : 32; /**< 2-bit selects for each UL AxC. Bits[1:0] control AxC 0, bits[3:2]
                                                          control AxC 1, etc.
-                                                         0x0: AxC disabled.
-                                                         0x1: 5 MHz (i.e., 7.68 Msps).
-                                                         0x2: 10 MHz (i.e., 15.36 Msps).
-                                                         0x3: 20 MHz (i.e., 30.72 Msps). */
+                                                         0x0 = AxC disabled.
+                                                         0x1 = 5 MHz (i.e., 7.68 Msps).
+                                                         0x2 = 10 MHz (i.e., 15.36 Msps).
+                                                         0x3 = 20 MHz (i.e., 30.72 Msps). */
 #else
 	uint64_t bw_sel                       : 32;
 	uint64_t reserved_32_63               : 32;
@@ -831,10 +831,10 @@ union cvmx_sdlx_ul_bit_ctrl_sel {
 	struct cvmx_sdlx_ul_bit_ctrl_sel_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_2_63                : 62;
-	uint64_t sel                          : 2;  /**< 0x0: No expansion (recommended).
-                                                         0x1: shift.
-                                                         0x2: sign ext.
-                                                         0x3: reserved. */
+	uint64_t sel                          : 2;  /**< 0x0 = No expansion (recommended).
+                                                         0x1 = shift.
+                                                         0x2 = sign ext.
+                                                         0x3 = reserved. */
 #else
 	uint64_t sel                          : 2;
 	uint64_t reserved_2_63                : 62;
@@ -855,10 +855,10 @@ union cvmx_sdlx_ul_lof_sel {
 	struct cvmx_sdlx_ul_lof_sel_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_2_63                : 62;
-	uint64_t sel                          : 2;  /**< 0x0: Never report LOF.
-                                                         0x1: Report LOF only for chip LOF.
-                                                         0x2: Report LOF only for frame LOF.
-                                                         0x3: Report LOF when either chip or frame LOF occur. */
+	uint64_t sel                          : 2;  /**< 0x0 = Never report LOF.
+                                                         0x1 = Report LOF only for chip LOF.
+                                                         0x2 = Report LOF only for frame LOF.
+                                                         0x3 = Report LOF when either chip or frame LOF occur. */
 #else
 	uint64_t sel                          : 2;
 	uint64_t reserved_2_63                : 62;

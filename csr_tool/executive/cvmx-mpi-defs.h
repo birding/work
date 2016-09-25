@@ -469,14 +469,14 @@ union cvmx_mpi_cfg {
 	uint64_t csena0                       : 1;  /**< If 0, BOOT_CE_N<6>/SPI_CS0_L pin is BOOT pin
                                                          1, BOOT_CE_N<6>/SPI_CS0_L pin is SPI pin
                                                          SPI_CS0_L drives BOOT_CE_N<6>/SPI_CS0_L */
-	uint64_t cslate                       : 1;  /**< If 0, SPI_CS asserts 1/2 SCLK before transaction
+	uint64_t cslate                       : 1;  /**< If 0, SPI_CS asserts 1/2 SPI clock before transaction.
                                                          1, SPI_CS assert coincident with transaction
                                                          NOTE: This control apply for 2 CSs */
 	uint64_t tritx                        : 1;  /**< If 0, SPI_DO pin is driven when slave is not
                                                          expected to be driving
                                                          1, SPI_DO pin is tristated when not transmitting
                                                          NOTE: only used when WIREOR==1 */
-	uint64_t idleclks                     : 2;  /**< Guarantee IDLECLKS idle sclk cycles between
+	uint64_t idleclks                     : 2;  /**< Guarantee IDLECLKS idle SPI clock cycles between
                                                          commands. */
 	uint64_t cshi                         : 1;  /**< If 0, CS is low asserted
                                                          1, CS is high asserted */
@@ -547,12 +547,12 @@ union cvmx_mpi_cfg {
                                                          1 = BOOT_CE_N<6>/SPI_CS0_L pin is MPI/SPI pin.
                                                          SPI_CS0_L drives BOOT_CE_N<6>/SPI_CS0_L. */
 	uint64_t cslate                       : 1;  /**< SPI_CSn_L late.
-                                                         0 = SPI_CSn_L asserts 1/2 coprocessor-clock cycle before the transaction.
+                                                         0 = SPI_CSn_L asserts 1/2 SPI_CK cycle before the transaction.
                                                          1 = SPI_CSn_L asserts coincident with the transaction. */
 	uint64_t tritx                        : 1;  /**< Tristate TX. Used only when WIREOR = 1
                                                          0 = SPI_DO pin is driven when slave is not expected to be driving.
                                                          1 = SPI_DO pin is tristated when not transmitting. */
-	uint64_t idleclks                     : 2;  /**< Idle clocks. When set, guarantees idle coprocessor-clock cycles between commands. */
+	uint64_t idleclks                     : 2;  /**< Idle clocks. When set, guarantees idle SPI_CK cycles between commands. */
 	uint64_t cshi                         : 1;  /**< SPI_CSn_L high: 1 = SPI_CSn_L is asserted high, 0 = SPI_CSn_L is asserted low. */
 	uint64_t reserved_5_6                 : 2;
 	uint64_t lsbfirst                     : 1;  /**< Shift LSB first: 0 = shift MSB first, 1 = shift LSB first. */
@@ -561,8 +561,8 @@ union cvmx_mpi_cfg {
                                                          1 = SPI_DO/DI is all from SPI_DO pin (MPI). SPI_DO pin is tristated when not transmitting.
                                                          If WIREOR = 1, SPI_DI pin is not used by the MPI/SPI engine. */
 	uint64_t clk_cont                     : 1;  /**< Clock control.
-                                                         0 = clock idles to value given by IDLELO after completion of MPI/SPI transaction.
-                                                         1 = clock never idles, requires SPI_CSn_L deassertion/assertion between commands. */
+                                                         0 = Clock idles to value given by IDLELO after completion of MPI/SPI transaction.
+                                                         1 = Clock never idles, requires SPI_CSn_L deassertion/assertion between commands. */
 	uint64_t idlelo                       : 1;  /**< Clock idle low/clock invert.
                                                          0 = SPI_CK idles high, first transition is high-to-low. This mode corresponds to SPI Block
                                                          Guide options CPOL = 1, CPHA = 1.

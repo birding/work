@@ -348,7 +348,7 @@ union cvmx_lapx_cfg {
                                                          0 = If an ILA/ASE channel is backpressured, the response timeout counters are paused.
                                                          1 = If an ILA/ASE channel is backpressured, the response timeout counters continue to run.
                                                          This may result in timeouts due to temporary backpressure. */
-	uint64_t ooo                          : 1;  /**< Out-of-order Transaction ID mode:
+	uint64_t ooo                          : 1;  /**< Out-of-order transaction ID mode:
                                                          0 = FIFO ordering on each ILA/ASE channel, no transaction id (XID) inserted.
                                                          1 = Allow out of order returns of packets from the TCAM/ASE; insert a transaction id (XID)
                                                          into request packets, and expect one in response packets.
@@ -389,10 +389,10 @@ union cvmx_lapx_edat_err_st {
 	struct cvmx_lapx_edat_err_st_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_24_63               : 40;
-	uint64_t fsyn                         : 8;  /**< Syndrome of last Expected Mask Ram ECC error. Latched when LAP()_GEN_INT[EDAT_SBE] or
+	uint64_t fsyn                         : 8;  /**< Syndrome of last expected mask ram ECC error. Latched when LAP()_GEN_INT[EDAT_SBE] or
                                                          [EDAT_DBE] set */
 	uint64_t reserved_4_15                : 12;
-	uint64_t fadr                         : 4;  /**< Address of last Expected Mask Ram ECC error. Latched when LAP()_GEN_INT[EDAT_SBE] or
+	uint64_t fadr                         : 4;  /**< Address of last expected mask ram ECC error. Latched when LAP()_GEN_INT[EDAT_SBE] or
                                                          [EDAT_DBE] set. */
 #else
 	uint64_t fadr                         : 4;
@@ -417,10 +417,10 @@ union cvmx_lapx_emsk_err_st {
 	struct cvmx_lapx_emsk_err_st_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_24_63               : 40;
-	uint64_t fsyn                         : 8;  /**< Syndrome of last Expected Data Ram ECC error. Latched when LAP()_GEN_INT[EMSK_SBE] or
+	uint64_t fsyn                         : 8;  /**< Syndrome of last expected data ram ECC error. Latched when LAP()_GEN_INT[EMSK_SBE] or
                                                          [EMSK_DBE] set */
 	uint64_t reserved_4_15                : 12;
-	uint64_t fadr                         : 4;  /**< Address of last Expected Data Ram ECC error. Latched when LAP()_GEN_INT[EMSK_SBE] or
+	uint64_t fadr                         : 4;  /**< Address of last expected data ram ECC error. Latched when LAP()_GEN_INT[EMSK_SBE] or
                                                          [EMSK_DBE] set. */
 #else
 	uint64_t fadr                         : 4;

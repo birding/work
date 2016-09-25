@@ -1,5 +1,5 @@
 /***********************license start***************
- * Copyright (c) 2011-2015  Cavium Inc. (support@cavium.com). All rights
+ * Copyright (c) 2011-2016  Cavium Inc. (support@cavium.com). All rights
  * reserved.
  *
  *
@@ -42,7 +42,7 @@
  *
  * Helper utilities for qlm.
  *
- * <hr>$Revision: 137860 $<hr>
+ * <hr>$Revision: 144112 $<hr>
  */
 #ifdef CVMX_BUILD_FOR_LINUX_KERNEL
 #include <asm/octeon/cvmx.h>
@@ -2127,6 +2127,7 @@ int cvmx_qlm_measure_clock(int qlm)
 }
 
 //#define DEBUG_QLM
+//#define DEBUG_QLM_RX
 
 /*
  * Perform RX equalization on a QLM
@@ -2153,6 +2154,20 @@ int __cvmx_qlm_rx_equalization(int node, int qlm, int lane)
 	phy_ctl.u64 = cvmx_read_csr_node(node, CVMX_GSERX_PHY_CTL(qlm));
 	if (phy_ctl.s.phy_pd || phy_ctl.s.phy_reset)
 		return -1;
+
+	/* Check whether GSER PRBS pattern matcher is enabled on any of the
+	   applicable lanes. Can't complete RX Equalization while pattern matcher
+	   is enabled because it causes errors */
+	for (l = 0; l < max_lanes; l++) {
+		cvmx_gserx_lanex_lbert_cfg_t lbert_cfg;
+
+		if ((lane != -1) && (lane != l))
+			continue;
+
+		lbert_cfg.u64 = cvmx_read_csr_node(node, CVMX_GSERX_LANEX_LBERT_CFG(l, qlm));
+		if (lbert_cfg.s.lbert_pm_en == 1)
+			return -1;
+	}
 
 	/* Get Lane Mode */
 	lmode.u64 = cvmx_read_csr_node(node, CVMX_GSERX_LANE_MODE(qlm));
@@ -2207,7 +2222,9 @@ int __cvmx_qlm_rx_equalization(int node, int qlm, int lane)
 		if (CVMX_WAIT_FOR_FIELD64_NODE(node, CVMX_GSERX_RX_EIE_DETSTS(qlm),
 				cvmx_gserx_rx_eie_detsts_t, cdrlock, ==, (1<<max_lanes) - 1, 500)) {
 #ifdef DEBUG_QLM
-			cvmx_dprintf("ERROR: %d:QLM%d: CDR Lock not detected for all 4 lanes\n", node, qlm);
+			cvmx_gserx_rx_eie_detsts_t rx_eie_detsts;
+			rx_eie_detsts.u64 = cvmx_read_csr_node(node, CVMX_GSERX_RX_EIE_DETSTS(qlm));
+			cvmx_dprintf("ERROR: %d:QLM%d: CDR Lock not detected for all 4 lanes. CDR_LOCK(0x%x)\n", node, qlm, rx_eie_detsts.s.cdrlock);
 #endif
 			return -1;
 		}
@@ -2215,7 +2232,9 @@ int __cvmx_qlm_rx_equalization(int node, int qlm, int lane)
 		if (CVMX_WAIT_FOR_FIELD64_NODE(node, CVMX_GSERX_RX_EIE_DETSTS(qlm),
 				cvmx_gserx_rx_eie_detsts_t, cdrlock, &,  (1 << lane), 500)) {
 #ifdef DEBUG_QLM
-			cvmx_dprintf("ERROR: %d:QLM%d: CDR Lock not detected for Lane%d\n", node, qlm, lane);
+			cvmx_gserx_rx_eie_detsts_t rx_eie_detsts;
+			rx_eie_detsts.u64 = cvmx_read_csr_node(node, CVMX_GSERX_RX_EIE_DETSTS(qlm));
+			cvmx_dprintf("ERROR: %d:QLM%d: CDR Lock not detected for Lane%d CDR_LOCK(0x%x)\n", node, qlm, lane, rx_eie_detsts.s.cdrlock);
 #endif
 			return -1;
 		}
@@ -2271,8 +2290,10 @@ int __cvmx_qlm_rx_equalization(int node, int qlm, int lane)
 		if ((lane != -1) && (lane != l))
 			continue;
 
+		/* Wait for 250ms, approx 10x times measured value, as XFI/XLAUI
+		   can take 21-23ms, other interfaces can take 2-3ms.  */
 		CVMX_WAIT_FOR_FIELD64_NODE(node, CVMX_GSERX_BR_RXX_EER(l, qlm),
-				cvmx_gserx_br_rxx_eer_t, rxt_esv, ==, 1, 1000000);
+				cvmx_gserx_br_rxx_eer_t, rxt_esv, ==, 1, 250000);
 		rxx_eer.u64 = cvmx_read_csr_node(node, CVMX_GSERX_BR_RXX_EER(l, qlm));
 		/* Switch back to hardware control */
 		rxx_ctl.u64 = cvmx_read_csr_node(node, CVMX_GSERX_BR_RXX_CTL(l, qlm));
@@ -2281,6 +2302,13 @@ int __cvmx_qlm_rx_equalization(int node, int qlm, int lane)
 		if (rxx_eer.s.rxt_esv) {
 #ifdef DEBUG_QLM
 			char *dir_label[4] = {"Hold", "Inc", "Dec", "Hold"};
+# ifdef DEBUG_QLM_RX
+			cvmx_gserx_lanex_rx_aeq_out_0_t rx_aeq_out_0;
+			cvmx_gserx_lanex_rx_aeq_out_1_t rx_aeq_out_1;
+			cvmx_gserx_lanex_rx_aeq_out_2_t rx_aeq_out_2;
+			cvmx_gserx_lanex_rx_vma_status_0_t rx_vma_status_0;
+			int dfe1, dfe2, dfe3, dfe4, dfe5, pre_ctle, post_ctle, ctle_pole, ctle_peak;
+# endif
 			cvmx_dprintf("%d:QLM%d: Lane %d RX equalization completed.\n",
 				node, qlm, l);
 			cvmx_dprintf("%d:QLM%d: Tx Direction Hints TXPRE: %s, TXMAIN: %s, TXPOST: %s, Figure of Merit: %d\n",
@@ -2289,6 +2317,33 @@ int __cvmx_qlm_rx_equalization(int node, int qlm, int lane)
 				dir_label[((rxx_eer.s.rxt_esm) >> 2) & 0x3],
 				dir_label[((rxx_eer.s.rxt_esm) >> 4) & 0x3],
 				rxx_eer.s.rxt_esm >> 6);
+
+# ifdef DEBUG_QLM_RX
+
+			rx_aeq_out_0.u64 = cvmx_read_csr_node(node, CVMX_GSERX_LANEX_RX_AEQ_OUT_0(l, qlm));
+			rx_aeq_out_1.u64 = cvmx_read_csr_node(node, CVMX_GSERX_LANEX_RX_AEQ_OUT_1(l, qlm));
+			rx_aeq_out_2.u64 = cvmx_read_csr_node(node, CVMX_GSERX_LANEX_RX_AEQ_OUT_2(l, qlm));
+			rx_vma_status_0.u64 = cvmx_read_csr_node(node, CVMX_GSERX_LANEX_RX_VMA_STATUS_0(l, qlm));                                     
+
+			dfe1 = rx_aeq_out_1.s.sds_pcs_rx_aeq_out & 0x1f;
+			dfe2 = (rx_aeq_out_1.s.sds_pcs_rx_aeq_out >> 5) & 0x1f;
+			dfe3 = (rx_aeq_out_1.s.sds_pcs_rx_aeq_out >> 10) & 0x1f;
+			dfe4 = rx_aeq_out_0.s.sds_pcs_rx_aeq_out & 0x1f;
+			dfe5 = (rx_aeq_out_0.s.sds_pcs_rx_aeq_out >> 5) & 0x1f;
+			post_ctle = rx_aeq_out_2.s.sds_pcs_rx_aeq_out & 0xf;
+			pre_ctle = (rx_aeq_out_2.s.sds_pcs_rx_aeq_out >> 4) & 0xf;
+			ctle_pole = rx_vma_status_0.s.sds_pcs_rx_vma_status & 0x3;
+			ctle_peak = (rx_vma_status_0.s.sds_pcs_rx_vma_status >> 2) & 0xf;
+ 
+			cvmx_dprintf("%d:QLM%d: Lane%d: DFE Tap1:0x%x, DFE Tap2:0x%x, DFE Tap3:0x%x\n",
+					node, qlm, l, dfe1, dfe2, dfe3);
+			cvmx_dprintf("%d:QLM%d: Lane%d: DFE Tap4:0x%x, DFE Tap5:0x%x\n",
+					node, qlm, l, dfe4, dfe5);
+			cvmx_dprintf("%d:QLM%d: Lane%d: Pre-CTLE gain:0x%x, Post-CTLE gain:0x%x\n",
+					node, qlm, l, pre_ctle, post_ctle);
+			cvmx_dprintf("%d:QLM%d: Lane%d: CTLE pole:0x%x, CTLE peak:0x%x\n",
+					node, qlm, l, ctle_pole, ctle_peak);
+# endif
 #endif
 		} else {
 #ifdef DEBUG_QLM
@@ -2315,7 +2370,9 @@ int cvmx_qlm_gser_errata_27882(int node, int qlm, int lane)
 	cvmx_gserx_lanex_pcs_ctlifc_0_t clifc0;
 	cvmx_gserx_lanex_pcs_ctlifc_2_t clifc2;
 
-	if (!(OCTEON_IS_MODEL(OCTEON_CN73XX_PASS1_X)
+	if (!(OCTEON_IS_MODEL(OCTEON_CN73XX_PASS1_0)
+	      || OCTEON_IS_MODEL(OCTEON_CN73XX_PASS1_1)
+	      || OCTEON_IS_MODEL(OCTEON_CN73XX_PASS1_2)
 	      || OCTEON_IS_MODEL(OCTEON_CNF75XX_PASS1_0)
 	      || OCTEON_IS_MODEL(OCTEON_CN78XX)))
 		return 0;

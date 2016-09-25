@@ -42,7 +42,7 @@
  *
  * This is file defines ASM primitives for the executive.
 
- * <hr>$Revision: 129707 $<hr>
+ * <hr>$Revision: 142870 $<hr>
  *
  *
  */
@@ -734,8 +734,8 @@ extern "C" {
 #define TLB_GLOBAL  (0x1ULL<<0)
 
 /* Macros to PUSH and POP Octeon2 ISA. */
-#define CVMX_PUSH_OCTEON2    asm volatile (".set push\n.set arch=octeon2")
-#define CVMX_POP_OCTEON2     asm volatile (".set pop")
+#define CVMX_PUSH_OCTEON2_STR    "\n.set push\n.set arch=octeon2\n"
+#define CVMX_POP_OCTEON2_STR     "\n.set pop\n"
 
 /* assembler macros to guarantee byte loads/stores are used */
 /* for an unaligned 16-bit access (these use AT register) */

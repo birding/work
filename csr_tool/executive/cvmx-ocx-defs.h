@@ -1051,7 +1051,7 @@ union cvmx_ocx_com_linkx_ctl {
 	uint64_t gate                         : 1;  /**< Reserved. */
 	uint64_t auto_clr                     : 1;  /**< When set, automatically clears the local DROP bit if link partner forces
                                                          a reinitialization.  Typically disabled once software is running.
-                                                         If clear, software must manage clearing the DROP bit after it has verified
+                                                         If clear, software must manage clearing [DROP] after it has verified
                                                          that any pending transactions have timed out. */
 	uint64_t drop                         : 1;  /**< Drop all requests on given link. Typically set by hardware when link has failed or been
                                                          reinitialized. Cleared by software once pending link traffic is removed. (See
@@ -1198,16 +1198,16 @@ union cvmx_ocx_dllx_status {
 	struct cvmx_ocx_dllx_status_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_60_63               : 4;
-	uint64_t max_dll_setting              : 12; /**< Max reported DLL setting. Added in pass 2. */
-	uint64_t min_dll_setting              : 12; /**< Min reported DLL setting. Added in pass 2. */
-	uint64_t pd_pos_rclk_refclk           : 1;  /**< Phase detector output. Added in pass 2. */
-	uint64_t pdl_rclk_refclk              : 1;  /**< Phase detector output. Added in pass 2. */
-	uint64_t pdr_rclk_refclk              : 1;  /**< Phase detector output. Added in pass 2. */
+	uint64_t max_dll_setting              : 12; /**< Max reported DLL setting. */
+	uint64_t min_dll_setting              : 12; /**< Min reported DLL setting. */
+	uint64_t pd_pos_rclk_refclk           : 1;  /**< Phase detector output. */
+	uint64_t pdl_rclk_refclk              : 1;  /**< Phase detector output. */
+	uint64_t pdr_rclk_refclk              : 1;  /**< Phase detector output. */
 	uint64_t reserved_32_32               : 1;
-	uint64_t dly_elem_enable              : 16; /**< Delay element enable. Added in pass 2. */
-	uint64_t dll_setting                  : 12; /**< DLL setting. Added in pass 2. */
+	uint64_t dly_elem_enable              : 16; /**< Delay element enable. */
+	uint64_t dll_setting                  : 12; /**< DLL setting. */
 	uint64_t reserved_1_3                 : 3;
-	uint64_t dll_lock                     : 1;  /**< DLL lock: 1 = locked, 0 = unlocked. Added in pass 2. */
+	uint64_t dll_lock                     : 1;  /**< DLL lock: 1 = locked, 0 = unlocked. */
 #else
 	uint64_t dll_lock                     : 1;
 	uint64_t reserved_1_3                 : 3;
@@ -1902,8 +1902,10 @@ union cvmx_ocx_lne_dbg {
                                                          OCX_QLM(0..5)_CFG[SER_LANE_BAD]. For diagnostic use only. */
 	uint64_t reserved_38_39               : 2;
 	uint64_t frc_stats_ena                : 1;  /**< Enable FRC statistic counters. */
-	uint64_t rx_dis_psh_skip              : 1;  /**< When RX_DIS_PSH_SKIP=0, skip words are destripped. When RX_DIS_PSH_SKIP=1, skip words are
-                                                         discarded in the lane logic. If the lane is in internal loopback mode, RX_DIS_PSH_SKIP is
+	uint64_t rx_dis_psh_skip              : 1;  /**< When [RX_DIS_PSH_SKIP]=0, skip words are destriped. When [RX_DIS_PSH_SKIP]=1, skip words
+                                                         are
+                                                         discarded in the lane logic. If the lane is in internal loopback mode, [RX_DIS_PSH_SKIP]
+                                                         is
                                                          ignored and skip words are always discarded in the lane logic. */
 	uint64_t rx_mfrm_len                  : 2;  /**< The quantity of data received on each lane including one sync word, scrambler state,
                                                          diagnostic word, zero or more skip words, and the data payload.
@@ -1917,7 +1919,7 @@ union cvmx_ocx_lne_dbg {
 	uint64_t reserved_5_31                : 27;
 	uint64_t tx_lane_rev                  : 1;  /**< TX lane reversal. When enabled, lane destriping is performed from the most significant
                                                          lane enabled to least significant lane enabled QLM_SELECT must be zero before changing
-                                                         LANE_REV. */
+                                                         [LANE_REV]. */
 	uint64_t tx_mfrm_len                  : 2;  /**< The quantity of data sent on each lane including one sync word, scrambler state,
                                                          diagnostic word, zero or more skip words, and the data payload.
                                                          0x0 = 2048 words.
@@ -1973,7 +1975,7 @@ union cvmx_ocx_lnkx_cfg {
 	uint64_t qlm_select                   : 6;  /**< QLM select mask, where each bit corresponds to a QLM. A link will transmit/receive data
                                                          using only the selected QLMs. A link is enabled if any QLM is selected. The same QLM
                                                          should not be selected for multiple links.
-                                                         LANE_REV has no effect on this mapping.
+                                                         [LANE_REV] has no effect on this mapping.
                                                          _ QLM_SELECT<0> = LNE(0..3) = QLM0.
                                                          _ QLM_SELECT<1> = LNE(7..4) = QLM1.
                                                          _ QLM_SELECT<2> = LNE(11..8) = QLM2.
@@ -1985,30 +1987,29 @@ union cvmx_ocx_lnkx_cfg {
                                                          _ LINK 2 may not select QLM0, QLM1.
                                                          _ LINK 2 may not select QLM2 or QLM3 when LINK1 selects any QLM.
                                                          _ LINK 0 may not select QLM2 or QLM3 when LINK1 selects any QLM.
-                                                         _ LINK 0 automatically selects QLM0 when QLM_MANUAL<0>=0.
-                                                         _ LINK 0 automatically selects QLM1 when QLM_MANUAL<1>=0.
-                                                         _ LINK 0 automatically selects QLM2 when QLM_MANUAL<2>=0 and OCX_QLM2_CFG.SER_LOCAL=0.
-                                                         _ LINK 1 automatically selects QLM2 when QLM_MANUAL<2>=0 and OCX_QLM2_CFG.SER_LOCAL=1.
-                                                         _ LINK 1 automatically selects QLM3 when QLM_MANUAL<3>=0 and OCX_QLM3_CFG.SER_LOCAL=1.
-                                                         _ LINK 2 automatically selects QLM3 when QLM_MANUAL<3>=0 and OCX_QLM3_CFG.SER_LOCAL=0.
-                                                         _ LINK 3 automatically selects QLM4 when QLM_MANUAL<4>=0.
-                                                         _ LINK 3 automatically selects QLM5 when QLM_MANUAL<5>=0.
+                                                         _ LINK 0 automatically selects QLM0 when [QLM_MANUAL]<0>=0.
+                                                         _ LINK 0 automatically selects QLM1 when [QLM_MANUAL]<1>=0.
+                                                         _ LINK 0 automatically selects QLM2 when [QLM_MANUAL]<2>=0 and OCX_QLM2_CFG.SER_LOCAL=0.
+                                                         _ LINK 1 automatically selects QLM2 when [QLM_MANUAL]<2>=0 and OCX_QLM2_CFG.SER_LOCAL=1.
+                                                         _ LINK 1 automatically selects QLM3 when [QLM_MANUAL]<3>=0 and OCX_QLM3_CFG.SER_LOCAL=1.
+                                                         _ LINK 2 automatically selects QLM3 when [QLM_MANUAL]<3>=0 and OCX_QLM3_CFG.SER_LOCAL=0.
+                                                         _ LINK 3 automatically selects QLM4 when [QLM_MANUAL]<4>=0.
+                                                         _ LINK 3 automatically selects QLM5 when [QLM_MANUAL]<5>=0.
                                                          A link with QLM_SELECT = 000000 is invalid and will never exchange traffic with the
                                                          link partner. */
 	uint64_t reserved_29_31               : 3;
-	uint64_t data_rate                    : 13; /**< The number of rclk to transmit 32 words, where each word is 67 bits.  HW will
+	uint64_t data_rate                    : 13; /**< The number of rclk to transmit 32 words, where each word is 67 bits.  hardware will
                                                          automatically
-                                                         calculate a conservative value for this field.   SW can override the calculation by
+                                                         calculate a conservative value for this field.   Software can override the calculation by
                                                          writing
-                                                         TX_DAT_RATE=roundup((67*RCLK / GBAUD)*32).  Added in pass 2. */
-	uint64_t low_delay                    : 6;  /**< The delay before reacting to a lane low data indication, as a multiple of 64 rclks.
-                                                         Added in pass 2. */
+                                                         TX_DAT_RATE=roundup((67*RCLK / GBAUD)*32). */
+	uint64_t low_delay                    : 6;  /**< The delay before reacting to a lane low data indication, as a multiple of 64 rclks. */
 	uint64_t lane_align_dis               : 1;  /**< Disable the RX lane alignment. */
 	uint64_t lane_rev                     : 1;  /**< RX lane reversal.   When enabled, lane destriping is performed from the most significant
-                                                         lane enabled to least significant lane enabled QLM_SELECT must be zero before changing
-                                                         LANE_REV. */
-	uint64_t lane_rev_auto                : 1;  /**< Automatically detect RX lane reversal.   When enable, LANE_REV will be updated by HW.
-                                                         Added in pass 2. */
+                                                         lane enabled to least significant lane enabled [QLM_SELECT] must be zero before changing
+                                                         [LANE_REV]. */
+	uint64_t lane_rev_auto                : 1;  /**< Automatically detect RX lane reversal.  When enabled, [LANE_REV] will be updated by
+                                                         hardware. */
 	uint64_t reserved_0_6                 : 7;
 #else
 	uint64_t reserved_0_6                 : 7;
@@ -2129,7 +2130,7 @@ union cvmx_ocx_qlmx_cfg {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t ser_low                      : 4;  /**< Reduce latency by limiting the amount of data in flight for each SerDes.  Writing to 0
                                                          causes
-                                                         hardware to determine a typically optimal value.   Added in pass 2. */
+                                                         hardware to determine a typically optimal value. */
 	uint64_t reserved_42_59               : 18;
 	uint64_t ser_limit                    : 10; /**< Reserved.  Removed in pass 2. */
 	uint64_t crd_dis                      : 1;  /**< For diagnostic use only. */
@@ -2372,7 +2373,7 @@ typedef union cvmx_ocx_rlkx_mcd_ctl cvmx_ocx_rlkx_mcd_ctl_t;
 /**
  * cvmx_ocx_strap
  *
- * This register provide read-only access to OCI straps.  Added in pass 2.
+ * This register provide read-only access to OCI straps.
  *
  */
 union cvmx_ocx_strap {
@@ -2416,7 +2417,7 @@ union cvmx_ocx_tlkx_bist_status {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_15_63               : 49;
 	uint64_t status                       : 15; /**< <14:13> = REPLAY Memories BIST Status <1:0>.
-                                                         <12:0> = TX_FIFO[12:0] by Link VC number. */
+                                                         <12:0> = TX_FIFO<12:0> by link VC number. */
 #else
 	uint64_t status                       : 15;
 	uint64_t reserved_15_63               : 49;
@@ -2430,7 +2431,7 @@ typedef union cvmx_ocx_tlkx_bist_status cvmx_ocx_tlkx_bist_status_t;
 /**
  * cvmx_ocx_tlk#_byp_ctl
  *
- * This register is for diagnostic use.  Added in pass 2.
+ * This register is for diagnostic use.
  *
  */
 union cvmx_ocx_tlkx_byp_ctl {
@@ -2693,7 +2694,7 @@ union cvmx_ocx_tlkx_stat_matchx {
 	uint64_t vc                           : 4;  /**< These bits are compared against the link VC number for each packet sent over the link.
                                                          If both the unmasked VC and CMD bits match, then OCX_TLK()_STAT_MAT()_CNT is
                                                          incremented.  Only memory and I/O traffic are monitored.  Matches are limited to
-                                                         VC0 thru VC11. */
+                                                         VC0 through VC11. */
 #else
 	uint64_t vc                           : 4;
 	uint64_t cmd                          : 5;

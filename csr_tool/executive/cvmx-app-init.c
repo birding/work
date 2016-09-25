@@ -541,13 +541,17 @@ int cvmx_user_app_init(void)
 		tmp &= ~(0xfull << 11);
 		tmp |= 4 << 11;
 	}
-	/* Setup LMTDMA for Octeon3 PKO3 usage */
-	if (octeon_has_feature(OCTEON_FEATURE_PKO3)) {
+	
+	/* Init LMTLINE - all CN7XXX has/use it for Wide Atomic Write Operation */
+	if (OCTEON_IS_OCTEON3()) {
 		uint64_t addr;
 		uint64_t end_addr;
 
-		/* enable LMTDMA */
+		/* ONLY Octeon3 has/use LMTST/LMTDMA operations for PKO3 & LAP */
+		if (octeon_has_feature(OCTEON_FEATURE_PKO3)) {
+			/* enable LMTDMA/LMTST (Root.CvmMemCtl[LMTENA]=1) */
 		tmp |= (1ull << 51);
+		}
 		/* configure scratch line 2 for LMT */
 		/* TODO: reserve this scratch line,
  		 * so that others will not use it */

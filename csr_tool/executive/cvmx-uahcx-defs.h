@@ -2853,7 +2853,7 @@ typedef union cvmx_uahcx_erstszx cvmx_uahcx_erstszx_t;
 /**
  * cvmx_uahc#_gbuserraddr
  *
- * When the AXI Master Bus returns Error response, the SoC Bus Error is generated. In the host
+ * When the AXI master bus returns error response, the SoC bus error is generated. In the host
  * mode, the host_system_err port indicates this condition. In addition, it is also indicated in
  * UAHC()_USBSTS[HSE]. Due to the nature of AXI, it is possible that multiple AXI transactions
  * are active at a time. The host controller does not keep track of the start address of all
@@ -2861,8 +2861,8 @@ typedef union cvmx_uahcx_erstszx cvmx_uahcx_erstszx_t;
  * associated with all active transactions. It is this address that is reported in
  * UAHC()_GBUSERRADDR when a bus error occurs. For example, if the host controller initiates a
  * DMA
- * transfer to write 1k of packet data starting at buffer address 0xABCD0000, and this DMA is
- * broken up into multiple 256B bursts on the AXI, then if a bus error occurs on any of these
+ * transfer to write 1 k of packet data starting at buffer address 0xABCD0000, and this DMA is
+ * broken up into multiple 256 B bursts on the AXI, then if a bus error occurs on any of these
  * associated AXI transfers, UAHC()_GBUSERRADDR reflects the DMA start address of 0xABCD0000
  * regardless of which AXI transaction received the error.
  *
@@ -2902,7 +2902,7 @@ union cvmx_uahcx_gctl {
                                                          kHz = 1563 (rounded up).
                                                          The minimum suspend-clock frequency is 32 KHz, and maximum suspend-clock frequency is 125
                                                          MHz.
-                                                         The LTSSM uses Suspend clock for 12-ms and 100-ms timers during suspend mode. According to
+                                                         The LTSSM uses suspend clock for 12-ms and 100-ms timers during suspend mode. According to
                                                          the USB 3.0 specification, the accuracy on these timers is 0% to +50%. 12 ms + 0~+50%
                                                          accuracy = 18 ms (Range is 12 ms - 18 ms)
                                                          100 ms + 0~+50% accuracy = 150 ms (Range is 100 ms - 150 ms).
@@ -2911,8 +2911,8 @@ union cvmx_uahcx_gctl {
                                                          18,000
                                                          _ (100,000/62.5) * (GCTL[31:19]) * actual suspend_clk_period should be between 100,000 and
                                                          150,000
-                                                         For example, if your suspend_clk frequency varies from 7.5 MHz to 10.5MHz, then the value
-                                                         needs to programmed is: Power Down Scale = 10500/16 = 657 (rounded up; and fastest
+                                                         For example, if your suspend_clk frequency varies from 7.5 MHz to 10.5 MHz, then the value
+                                                         needs to programmed is: power down scale = 10500/16 = 657 (rounded up; and fastest
                                                          frequency used). */
 	uint32_t masterfiltbypass             : 1;  /**< Master filter bypass. Not relevant for Cavium's configuration. */
 	uint32_t reserved_16_17               : 2;
@@ -2922,7 +2922,7 @@ union cvmx_uahcx_gctl {
                                                          0x1 = Interval is 62.5 us.
                                                          0x2 = Interval is 31.25 us.
                                                          0x3 = Interval is 15.625 us.
-                                                         For full-speed mode, the scale-down value is multiplied by 8. */
+                                                         For full speed mode, the scale down value is multiplied by 8. */
 	uint32_t prtcapdir                    : 2;  /**< Port capability direction. Always keep set to 0x1. */
 	uint32_t coresoftreset                : 1;  /**< Core soft reset: 1 = soft reset to core, 0 = no soft reset.
                                                          Clears the interrupts and all the UAHC()_* CSRs except the
@@ -2946,7 +2946,8 @@ union cvmx_uahcx_gctl {
                                                          based counter. Otherwise, ITP and SOF are generated off of UTMI/ULPI_CLK[0] based counter.
                                                          To program the reference clock period inside the core, refer to UAHC()_GUCTL[REFCLKPER].
                                                          If you do not plan to ever use this feature or the UAHC()_GFLADJ[GFLADJ_REFCLK_LPM_SEL]
-                                                         feature, the minimum frequency for the ref_clk can be as low as 32KHz. You can connect the
+                                                         feature, the minimum frequency for the ref_clk can be as low as 32 KHz. You can connect
+                                                         the
                                                          SUSPEND_CLK (as low as 32 KHz) to REF_CLK.
                                                          If you plan to enable hardware-based LPM (PORTPMSC[HLE] = 1), this feature cannot be used.
                                                          Turn off this feature by setting this bit to zero and use the
@@ -2959,7 +2960,7 @@ union cvmx_uahcx_gctl {
 	uint32_t debugattach                  : 1;  /**< Debug attach. When this bit is set:
                                                          * SuperSpeed link proceeds directly to the polling-link state (UAHC()_DCTL[RS] = 1)
                                                          without checking remote termination.
-                                                         * Link LFPS polling timeout is infinite
+                                                         * Link LFPS polling timeout is infinite.
                                                          * Polling timeout during TS1 is infinite (in case link is waiting for TXEQ to finish). */
 	uint32_t ramclksel                    : 2;  /**< RAM clock select. Always keep set to 0x0. */
 	uint32_t scaledown                    : 2;  /**< Scale-down mode. When scale-down mode is enabled for simulation, the core uses scaled-down
@@ -2968,28 +2969,28 @@ union cvmx_uahcx_gctl {
                                                          High-speed/full-speed/low-speed modes:
                                                          0x0 = Disables all scale-downs. Actual timing values are used.
                                                          0x1 = Enables scale-down of all timing values. These include:
-                                                         * Speed enumeration
-                                                         * HNP/SRP
-                                                         * Suspend and resume
+                                                         * Speed enumeration.
+                                                         * HNP/SRP.
+                                                         * Suspend and resume.
                                                          0x2 = N/A.
                                                          0x3 = Enables bits <0> and <1> scale-down timing values.
                                                          SuperSpeed mode:
                                                          0x0 = Disables all scale-downs. Actual timing values are used.
                                                          0x1 = Enables scaled down SuperSpeed timing and repeat values including:
-                                                         * Number of TxEq training sequences reduce to eight
-                                                         * LFPS polling burst time reduce to 100 ns
+                                                         * Number of TxEq training sequences reduce to eight.
+                                                         * LFPS polling burst time reduce to 100 ns.
                                                          * LFPS warm reset receive reduce to 30 us. */
 	uint32_t disscramble                  : 1;  /**< Disable scrambling. Transmit request to link partner on next transition to recovery or polling. */
 	uint32_t u2exit_lfps                  : 1;  /**< LFPS U2 exit.
-                                                         0 = The link treats 248ns LFPS as a valid U2 exit.
-                                                         1 = The link waits for 8us of LFPS before it detects a valid U2 exit.
+                                                         0 = The link treats 248 ns LFPS as a valid U2 exit.
+                                                         1 = The link waits for 8 us of LFPS before it detects a valid U2 exit.
                                                          This bit is added to improve interoperability with a third party host controller. This
                                                          host controller in U2 state while performing receiver detection generates an LFPS glitch
                                                          of about 4s duration. This causes the device to exit from U2 state because the LFPS filter
-                                                         value is 248ns. With the new functionality enabled, the device can stay in U2 while
+                                                         value is 248 ns. With the new functionality enabled, the device can stay in U2 while
                                                          ignoring this glitch from the host controller. */
 	uint32_t reserved_1_1                 : 1;
-	uint32_t dsblclkgtng                  : 1;  /**< Disable clock gating. When set to 1 and the core is in low-power mode, internal clock
+	uint32_t dsblclkgtng                  : 1;  /**< Disable clock gating. When set to 1 and the core is in low power mode, internal clock
                                                          gating is disabled, which means the clocks are always running. This bit can be set to 1
                                                          after power-up reset. */
 #else
@@ -3213,7 +3214,7 @@ union cvmx_uahcx_gdbgltssm {
                                                          _ 0x5 = PHY_PWR_B (wait for Phy_Status(Power-state change request)).
                                                          _ <10:9> Power down.
                                                          _ <8> RxEq train.
-                                                         _ <7:6> TX de-emphasis.
+                                                         _ <7:6> TX deemphasis.
                                                          _ <5:3> LTSSM clock state.
                                                          _ 0x0 = CLK_NORM (PHY is in non-P3 state and PCLK is running).
                                                          _ 0x1 = CLK_TO_P3 (P3 entry request to PHY).
@@ -3299,32 +3300,32 @@ union cvmx_uahcx_gfladj {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t gfladj_refclk_240mhzdecr_pls1 : 1; /**< This field indicates that the decrement value that the controller applies for each REF_CLK
                                                          must be GFLADJ_REFCLK_240MHZ_DECR and GFLADJ_REFCLK_240MHZ_DECR +1 alternatively on each
-                                                         REF_CLK. Set this bit to 1 only if GFLADJ_REFCLK_LPM_SEL is set to 1 and the fractional
+                                                         REF_CLK. Set this bit to 1 only if [GFLADJ_REFCLK_LPM_SEL] is set to 1 and the fractional
                                                          component of 240/ref_frequency is greater than or equal to 0.5.
                                                          Example:
-                                                         If the REF_CLK is 19.2 MHz then,
+                                                         If the REF_CLK is 19.2 MHz then:
                                                          * UAHC()_GUCTL[REFCLKPER] = 52.
-                                                         * GFLADJ_REFCLK_240MHZ_DECR = (240/19.2) = 12.5.
-                                                         * GFLADJ_REFCLK_240MHZDECR_PLS1 = 1.
-                                                         If the REF_CLK is 24 MHz then,
+                                                         * [GFLADJ_REFCLK_240MHZ_DECR] = (240/19.2) = 12.5.
+                                                         * [GFLADJ_REFCLK_240MHZDECR_PLS1] = 1.
+                                                         If the REF_CLK is 24 MHz then:
                                                          * UAHC()_GUCTL[REFCLKPER] = 41.
-                                                         * GFLADJ_REFCLK_240MHZ_DECR = (240/24) = 10.
-                                                         * GFLADJ_REFCLK_240MHZDECR_PLS1 = 0. */
+                                                         * [GFLADJ_REFCLK_240MHZ_DECR] = (240/24) = 10.
+                                                         * [GFLADJ_REFCLK_240MHZDECR_PLS1] = 0. */
 	uint32_t gfladj_refclk_240mhz_decr    : 7;  /**< This field indicates the decrement value that the controller applies for each REF_CLK in
                                                          order to derive a frame timer in terms of a 240-MHz clock. This field must be programmed
-                                                         to a non-zero value only if GFLADJ_REFCLK_LPM_SEL is set to 1.
+                                                         to a nonzero value only if [GFLADJ_REFCLK_LPM_SEL] is set to 1.
                                                          The value is derived as follows:
-                                                         _ GFLADJ_REFCLK_240MHZ_DECR = 240/ref_clk_frequency
+                                                         _ [GFLADJ_REFCLK_240MHZ_DECR] = 240/ref_clk_frequency
                                                          Examples:
-                                                         If the REF_CLK is 24 MHz then,
+                                                         If the REF_CLK is 24 MHz then:
                                                          * UAHC()_GUCTL[REFCLKPER] = 41.
-                                                         * GFLADJ_REFCLK_240MHZ_DECR = 240/24 = 10.
-                                                         If the REF_CLK is 48 MHz then,
+                                                         * [GFLADJ_REFCLK_240MHZ_DECR] = 240/24 = 10.
+                                                         If the REF_CLK is 48 MHz then:
                                                          * UAHC()_GUCTL[REFCLKPER] = 20.
-                                                         * GFLADJ_REFCLK_240MHZ_DECR = 240/48 = 5.
-                                                         If the REF_CLK is 17 MHz then,
+                                                         * [GFLADJ_REFCLK_240MHZ_DECR] = 240/48 = 5.
+                                                         If the REF_CLK is 17 MHz then:
                                                          * UAHC()_GUCTL[REFCLKPER] = 58.
-                                                         * GFLADJ_REFCLK_240MHZ_DECR = 240/17 = 14. */
+                                                         * [GFLADJ_REFCLK_240MHZ_DECR] = 240/17 = 14. */
 	uint32_t gfladj_refclk_lpm_sel        : 1;  /**< This bit enables the functionality of running SOF/ITP counters on the REF_CLK.
                                                          This bit must not be set to 1 if UAHC()_GCTL[SOFITPSYNC] = 1. Similarly, if
                                                          GFLADJ_REFCLK_LPM_SEL = 1, UAHC()_GCTL[SOFITPSYNC] must not be set to 1.
@@ -3335,8 +3336,8 @@ union cvmx_uahcx_gfladj {
 	uint32_t gfladj_refclk_fladj          : 14; /**< This field indicates the frame length adjustment to be applied when SOF/ITP counter is
                                                          running off of the REF_CLK. This register value is used to adjust:.
                                                          * ITP interval when UAHC()_GCTL[SOFITPSYNC] = 1
-                                                         * both SOF and ITP interval when GFLADJ_REFCLK_LPM_SEL = 1.
-                                                         This field must be programmed to a non-zero value only if GFLADJ_REFCLK_LPM_SEL = 1 or
+                                                         * both SOF and ITP interval when [GFLADJ_REFCLK_LPM_SEL] = 1.
+                                                         This field must be programmed to a nonzero value only if [GFLADJ_REFCLK_LPM_SEL] = 1 or
                                                          UAHC()_GCTL[SOFITPSYNC] = 1.
                                                          The value is derived as below:
                                                          _ FLADJ_REF_CLK_FLADJ = ((125000/ref_clk_period_integer) - (125000/ref_clk_period)) *
@@ -3346,23 +3347,25 @@ union cvmx_uahcx_gfladj {
                                                          the decimal (fractional) value that is programmed in UAHC()_GUCTL[REFCLKPER].
                                                          * the ref_clk_period is the REF_CLK period including the fractional value.
                                                          Examples:
-                                                         If the REF_CLK is 24 MHz then,
+                                                         If the REF_CLK is 24 MHz then:
                                                          * UAHC()_GUCTL[REFCLKPER] = 41.
                                                          * GLADJ_REFCLK_FLADJ = ((125000/41) -
                                                          (125000/41.6666)) * 41.6666 = 2032 (ignoring the fractional value).
-                                                         If the REF_CLK is 48 MHz then,
+                                                         If the REF_CLK is 48 MHz then:
                                                          * UAHC()_GUCTL[REFCLKPER] = 20.
                                                          * GLADJ_REFCLK_FLADJ = ((125000/20) -
                                                          (125000/20.8333)) * 20.8333 = 5208 (ignoring the fractional value). */
-	uint32_t gfladj_30mhz_reg_sel         : 1;  /**< This field selects whether to use the input signal fladj_30mhz_reg or the GFLADJ_30MHZ to
+	uint32_t gfladj_30mhz_reg_sel         : 1;  /**< This field selects whether to use the input signal fladj_30mhz_reg or the [GFLADJ_30MHZ]
+                                                         to
                                                          adjust the frame length for the SOF/ITP. When this bit is set to, 1, the controller uses
-                                                         GFLADJ_30MHZ value 0x0, the controller uses the input signal fladj_30mhz_reg value. */
+                                                         [GFLADJ_30MHZ] value 0x0, the controller uses the input signal fladj_30mhz_reg value. */
 	uint32_t reserved_6_6                 : 1;
 	uint32_t gfladj_30mhz                 : 6;  /**< This field indicates the value that is used for frame length adjustment instead of
                                                          considering from the sideband input signal fladj_30mhz_reg. This enables post-silicon
                                                          frame length adjustment in case the input signal fladj_30mhz_reg is connected to a wrong
-                                                         value or is not valid. The controller uses this value if GFLADJ_30MHZ_REG_SEL = 1 and the
-                                                         SOF/ITP counters are running off of UTMI(ULPI) clock (GFLADJ_REFCLK_LPM_SEL = 0 and
+                                                         value or is not valid. The controller uses this value if [GFLADJ_30MHZ_REG_SEL] = 1 and
+                                                         the
+                                                         SOF/ITP counters are running off of UTMI(ULPI) clock ([GFLADJ_REFCLK_LPM_SEL] = 0 and
                                                          UAHC()_GCTL[SOFITPSYNC] is 1 or 0). For details on how to set this value, refer to
                                                          section 5.2.4 Frame Length Adjustment Register (FLADJ) of the xHCI Specification. */
 #else
@@ -3519,7 +3522,7 @@ union cvmx_uahcx_ghwparams3 {
 	uint32_t cache_total_xfer_resources   : 8;  /**< Maximum number of transfer resources in the core. */
 	uint32_t num_in_eps                   : 5;  /**< Maximum number of device-mode (unsupported) IN endpoints active. */
 	uint32_t num_eps                      : 6;  /**< Number of device-mode (unsupported) single-directional endpoints. */
-	uint32_t ulpi_carkit                  : 1;  /**< ULPI Carkit is not supported. */
+	uint32_t ulpi_carkit                  : 1;  /**< ULPI carkit is not supported. */
 	uint32_t vendor_ctl_interface         : 1;  /**< UTMI+ PHY vendor control interface enabled. */
 	uint32_t reserved_8_9                 : 2;
 	uint32_t hsphy_dwidth                 : 2;  /**< Data width of the UTMI+ PHY interface: 0x2 = 8-or-16 bits. */
@@ -3621,17 +3624,17 @@ union cvmx_uahcx_ghwparams6 {
 	uint32_t u32;
 	struct cvmx_uahcx_ghwparams6_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t ram0_depth                   : 16; /**< RAM0 Depth. */
+	uint32_t ram0_depth                   : 16; /**< RAM0 depth. */
 	uint32_t en_bus_filters               : 1;  /**< Enable VBus filters support. */
-	uint32_t en_bc                        : 1;  /**< Enable battery-charging support. */
+	uint32_t en_bc                        : 1;  /**< Enable battery charging support. */
 	uint32_t en_otg_ss                    : 1;  /**< Enable OTG SuperSpeed support. */
 	uint32_t en_adp                       : 1;  /**< Enable ADP support. */
 	uint32_t hnp_support                  : 1;  /**< HNP support. */
 	uint32_t srp_support                  : 1;  /**< SRP support. */
 	uint32_t reserved_8_9                 : 2;
 	uint32_t en_fpga                      : 1;  /**< Enable FPGA implementation. */
-	uint32_t en_dbg_ports                 : 1;  /**< Enable Debug ports for FGPA. */
-	uint32_t psq_fifo_depth               : 6;  /**< Size of the BMU-protocol status queue. */
+	uint32_t en_dbg_ports                 : 1;  /**< Enable debug ports for FGPA. */
+	uint32_t psq_fifo_depth               : 6;  /**< Size of the BMU protocol status queue. */
 #else
 	uint32_t psq_fifo_depth               : 6;
 	uint32_t en_dbg_ports                 : 1;
@@ -3700,7 +3703,7 @@ typedef union cvmx_uahcx_ghwparams8 cvmx_uahcx_ghwparams8_t;
  * registers are for debug purposes. They provide debug information on the internal status and
  * state machines. Global debug registers have design-specific information, and are used by for
  * debugging purposes. These registers are not intended to be used by the customer. If any debug
- * assistance is needed for the silicon, contact Customer Support with a dump of these registers.
+ * assistance is needed for the silicon, contact customer support with a dump of these registers.
  *
  * This register can be reset by IOI reset or with UCTL()_CTL[UAHC_RST].
  */
@@ -3926,7 +3929,7 @@ typedef union cvmx_uahcx_grxfifosizx cvmx_uahcx_grxfifosizx_t;
  * Receive Path:
  * * The RX threshold is controlled by USBRXPKTCNT and the RX burst size is controlled by
  * USBMAXRXBURSTSIZE.
- * * Selecting optimal RX FIFO size, RX Threshold, and RX burst size avoids RX burst aborts due
+ * * Selecting optimal RX FIFO size, RX threshold, and RX burst size avoids RX burst aborts due
  * to overrun if the system bus is slower than USB. Once in a while overrun is OK, and there is
  * no functional issue.
  * * Some devices do not support terminating ACK retry. With these devices, host cannot set ACK=0
@@ -3952,14 +3955,14 @@ union cvmx_uahcx_grxthrcfg {
 	uint32_t usbrxpktcnt                  : 4;  /**< USB receive-packet count. In host-mode, specifies space (in number of packets) that must
                                                          be available in the RX FIFO before the core can start the corresponding USB RX transaction
                                                          (burst).
-                                                         This field is only valid when USBRXPKTCNTSEL = 1. The valid values are from 0x1 to 0xF.
-                                                         This field must be <= USBMAXRXBURSTSIZE. */
+                                                         This field is only valid when [USBRXPKTCNTSEL] = 1. The valid values are from 0x1 to 0xF.
+                                                         This field must be <= [USBMAXRXBURSTSIZE]. */
 	uint32_t usbmaxrxburstsize            : 5;  /**< USB maximum receive-burst size. In host-mode, specifies the maximum bulk IN burst the core
                                                          should do. When the system bus is slower than the USB, RX FIFO can overrun during a long
                                                          burst.
                                                          Program a smaller value to this field to limit the RX burst size that the core can do. It
                                                          only applies to SuperSpeed Bulk, Isochronous, and Interrupt IN endpoints in the host mode.
-                                                         This field is only valid when USBRXPKTCNTSEL = 1. The valid values are from 0x1 to 0x10. */
+                                                         This field is only valid when [USBRXPKTCNTSEL] = 1. The valid values are from 0x1 to 0x10. */
 	uint32_t reserved_0_18                : 19;
 #else
 	uint32_t reserved_0_18                : 19;
@@ -3981,7 +3984,7 @@ typedef union cvmx_uahcx_grxthrcfg cvmx_uahcx_grxthrcfg_t;
  * This register can be used to configure the core after power-on or a change in mode of
  * operation. This register mainly contains AXI system-related configuration parameters. Do not
  * change this register after the initial programming. The application must program this register
- * before starting any transactions on AXI. When INCRBRSTENA is enabled, it has the highest
+ * before starting any transactions on AXI. When [INCRBRSTENA] is enabled, it has the highest
  * priority over other burst lengths. The core always performs the largest burst when enabled.
  *
  * This register can be reset by IOI reset or with UCTL()_CTL[UAHC_RST].
@@ -4203,10 +4206,10 @@ typedef union cvmx_uahcx_gtxfifosizx cvmx_uahcx_gtxfifosizx_t;
  * burst causing unnecessary performance reduction. This register allows the configuration of
  * threshold and burst size control. This feature is enabled by [USBTXPKTCNTSEL].
  *
- * Transmit Path:
- * * The TX Threshold is controlled by [USBTXPKTCNT], and the TX burst size is controlled by
+ * Transmit path:
+ * * The TX threshold is controlled by [USBTXPKTCNT], and the TX burst size is controlled by
  * [USBMAXTXBURSTSIZE].
- * * Selecting optimal TX FIFO size, TX Threshold, and TX burst size avoids TX burst aborts due
+ * * Selecting optimal TX FIFO size, TX threshold, and TX burst size avoids TX burst aborts due
  * to an underrun if the system bus is slower than USB. Once in a while an underrun is OK, and
  * there is no functional issue.
  * * A larger threshold affects the performance, since the scheduler is idle during this time.
@@ -4230,13 +4233,14 @@ union cvmx_uahcx_gtxthrcfg {
 	uint32_t reserved_28_28               : 1;
 	uint32_t usbtxpktcnt                  : 4;  /**< USB transmit-packet count. Specifies the number of packets that must be in the TXFIFO
                                                          before the core can start transmission for the corresponding USB transaction (burst). This
-                                                         field is only valid when USBTXPKTCNTSEL = 1. Valid values are from 0x1 to 0xF.
-                                                         This field must be <= USBMAXTXBURSTSIZE. */
-	uint32_t usbmaxtxburstsize            : 8;  /**< USB maximum TX burst size. When USBTXPKTCNTSEL = 1, this field specifies the maximum bulk
-                                                         OUT burst the core should do. When the system bus is slower than the USB, TX FIFO can
-                                                         underrun during a long burst. Program a smaller value to this field to limit the TX burst
-                                                         size that the core can do. It only applies to SuperSpeed Bulk, Isochronous, and Interrupt
-                                                         OUT endpoints in the host mode. Valid values are from 0x1 to 0x10. */
+                                                         field is only valid when [USBTXPKTCNTSEL] = 1. Valid values are from 0x1 to 0xF.
+                                                         This field must be <= [USBMAXTXBURSTSIZE]. */
+	uint32_t usbmaxtxburstsize            : 8;  /**< USB maximum TX burst size. When [USBTXPKTCNTSEL] = 1, this field specifies the
+                                                         maximum bulk OUT burst the core should do. When the system bus is slower than
+                                                         the USB, TX FIFO can underrun during a long burst. Program a smaller value to
+                                                         this field to limit the TX burst size that the core can do. It only applies to
+                                                         SuperSpeed bulk, isochronous, and interrupt OUT endpoints in the host
+                                                         mode. Valid values are from 0x1 to 0x10. */
 	uint32_t reserved_0_15                : 16;
 #else
 	uint32_t reserved_0_15                : 16;
@@ -4336,16 +4340,18 @@ union cvmx_uahcx_guctl {
                                                          full-speed endpoint to work around the device issue. */
 	uint32_t dtct                         : 2;  /**< Device timeout coarse tuning. This field determines how long the host waits for a response
                                                          from device before considering a timeout.
-                                                         The core first checks the DTCT value. If it is 0, then the timeout value is defined by the
-                                                         DTFT. If it is non-zero, then it uses the following timeout values:
-                                                         0x0 = 0 us; use DTFT value instead.
+                                                         The core first checks the [DTCT] value. If it is 0, then the timeout value is defined by
+                                                         the
+                                                         [DTFT]. If it is nonzero, then it uses the following timeout values:
+                                                         0x0 = 0 us; use [DTFT] value instead.
                                                          0x1 = 500 us.
                                                          0x2 = 1.5 ms.
                                                          0x3 = 6.5 ms. */
 	uint32_t dtft                         : 9;  /**< Device timeout fine tuning. This field determines how long the host waits for a response
-                                                         from a device before considering a timeout. For DTFT to take effect, DTCT must be set to
+                                                         from a device before considering a timeout. For [DTFT] to take effect, [DTCT] must be set
+                                                         to
                                                          0x0.
-                                                         The DTFT value specifies the number of 125MHz clock cycles * 256 to count before
+                                                         The [DTFT] value specifies the number of 125 MHz clock cycles * 256 to count before
                                                          considering a device timeout. For the 125 MHz clock cycles (8 ns period), this is
                                                          calculated as follows:
                                                          _ [DTFT value] * 256 * 8 (ns)
@@ -4406,7 +4412,7 @@ typedef union cvmx_uahcx_guctl1 cvmx_uahcx_guctl1_t;
  * cvmx_uahc#_guid
  *
  * This is a read/write register containing the User ID. The power-on value for this register is
- * specified as the User Identification Register. This register can be used in the following
+ * specified as the user identification register. This register can be used in the following
  * ways:
  * * To store the version or revision of your system.
  * * To store hardware configurations that are outside of the core.
@@ -4661,8 +4667,13 @@ union cvmx_uahcx_gusb3pipectlx {
 	uint32_t reserved_7_7                 : 1;
 	uint32_t txswing                      : 1;  /**< TX swing. Refer to the PIPE3 specification. */
 	uint32_t txmargin                     : 3;  /**< TX margin. Refer to the PIPE3 specification, table 5-3. */
-	uint32_t txdeemphasis                 : 2;  /**< TX de-emphasis. The value driven to the PHY is controlled by the LTSSM during USB3
-                                                         compliance mode. Refer to the PIPE3 specification, table 5-3. */
+	uint32_t txdeemphasis                 : 2;  /**< TX deemphasis. The value driven to the PHY is controlled by the LTSSM during USB3
+                                                         compliance mode. Refer to the PIPE3 specification, table 5-3.
+                                                         Use the following values for the appropriate level of de-emphasis (From pipe3 spec):
+                                                         0x0 =   -6 dB de-emphasis, use UCTL()_PORT()_CFG_SS[PCS_TX_DEEMPH_6DB].
+                                                         0x1 = -3.5 dB de-emphasis, use UCTL()_PORT()_CFG_SS[PCS_TX_DEEMPH_3P5DB].
+                                                         0x2 =     No de-emphasis.
+                                                         0x3 =     Reserved. */
 	uint32_t elasticbuffermode            : 1;  /**< Elastic buffer mode. Refer to the PIPE3 specification, table 5-3. */
 #else
 	uint32_t elasticbuffermode            : 1;
@@ -6124,7 +6135,7 @@ union cvmx_uahcx_porthlpmc_20x {
 	uint32_t hirdd                        : 4;  /**< See section 5.4.11.2 of the XHCI Spec 1.1.
                                                          If UAHC()_SUPTPRT2_DW2[BLC] = 0, then HIRD timing is applied to this field.
                                                          If UAHC()_SUPTPRT2_DW2[BLC] = 1, then BESL timing is applied to this field. */
-	uint32_t l1_timeout                   : 8;  /**< Timeout value for the L1 inactivity timer (LPM Timer). This field is set to 0x0 by the
+	uint32_t l1_timeout                   : 8;  /**< Timeout value for the L1 inactivity timer (LPM timer). This field is set to 0x0 by the
                                                          assertion of PR to 1. Refer to section 4.23.5.1.1.1 (in XHCI spec 1.1) for more
                                                          information on L1 Timeout operation.
                                                          The following are permissible values:
@@ -6150,7 +6161,7 @@ typedef union cvmx_uahcx_porthlpmc_20x cvmx_uahcx_porthlpmc_20x_t;
 /**
  * cvmx_uahc#_porthlpmc_ss#
  *
- * The USB3 Port Hardware LPM Control register is reserved and shall be treated as RsvdP by
+ * The USB3 port hardware LPM control register is reserved and shall be treated as RsvdP by
  * software. See xHCI specification v1.1 section 5.4.11.1.
  *
  * This register can be reset by IOI reset,
@@ -6298,22 +6309,22 @@ union cvmx_uahcx_portscx {
 	uint32_t wpr                          : 1;  /**< Warm port reset. */
 	uint32_t dr                           : 1;  /**< Device removable. */
 	uint32_t reserved_28_29               : 2;
-	uint32_t woe                          : 1;  /**< Wake-on-overcurrent enable. */
-	uint32_t wde                          : 1;  /**< Wake-on-disconnect enable. */
-	uint32_t wce                          : 1;  /**< Wake-on-connect enable. */
-	uint32_t cas                          : 1;  /**< Cold-attach status. */
-	uint32_t cec                          : 1;  /**< Port-configuration-error change. */
-	uint32_t plc                          : 1;  /**< Port-link-state change. */
-	uint32_t prc                          : 1;  /**< Port-reset change. */
+	uint32_t woe                          : 1;  /**< Wake on overcurrent enable. */
+	uint32_t wde                          : 1;  /**< Wake on disconnect enable. */
+	uint32_t wce                          : 1;  /**< Wake on connect enable. */
+	uint32_t cas                          : 1;  /**< Cold attach status. */
+	uint32_t cec                          : 1;  /**< Port configuration error change. */
+	uint32_t plc                          : 1;  /**< Port link state change. */
+	uint32_t prc                          : 1;  /**< Port reset change. */
 	uint32_t occ                          : 1;  /**< Overcurrent change. */
-	uint32_t wrc                          : 1;  /**< Warm-port-reset change. */
+	uint32_t wrc                          : 1;  /**< Warm port reset change. */
 	uint32_t pec                          : 1;  /**< Port enabled/disabled change. */
-	uint32_t csc                          : 1;  /**< Connect-status change. */
-	uint32_t lws                          : 1;  /**< Port-link-state write strobe. */
+	uint32_t csc                          : 1;  /**< Connect status change. */
+	uint32_t lws                          : 1;  /**< Port link state write strobe. */
 	uint32_t pic                          : 2;  /**< Port indicator control. */
 	uint32_t portspeed                    : 4;  /**< Port speed. */
 	uint32_t pp                           : 1;  /**< Port power. */
-	uint32_t pls                          : 4;  /**< Port-link state. */
+	uint32_t pls                          : 4;  /**< Port link state. */
 	uint32_t pr                           : 1;  /**< Port reset. */
 	uint32_t oca                          : 1;  /**< Overcurrent active. */
 	uint32_t reserved_2_2                 : 1;
@@ -6591,11 +6602,11 @@ union cvmx_uahcx_usbcmd {
 	uint32_t ewe                          : 1;  /**< Enable wrap event. */
 	uint32_t crs                          : 1;  /**< Controller restore state. */
 	uint32_t css                          : 1;  /**< Controller save state. */
-	uint32_t lhcrst                       : 1;  /**< Light-host-controller reset. */
+	uint32_t lhcrst                       : 1;  /**< Light host controller reset. */
 	uint32_t reserved_4_6                 : 3;
-	uint32_t hsee                         : 1;  /**< Host-system-error enable. */
+	uint32_t hsee                         : 1;  /**< Host system error enable. */
 	uint32_t inte                         : 1;  /**< Interrupter enable. */
-	uint32_t hcrst                        : 1;  /**< Host-controller reset. */
+	uint32_t hcrst                        : 1;  /**< Host controller reset. */
 	uint32_t r_s                          : 1;  /**< Run/stop. */
 #else
 	uint32_t r_s                          : 1;
@@ -6724,15 +6735,15 @@ union cvmx_uahcx_usbsts {
 	struct cvmx_uahcx_usbsts_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_13_31               : 19;
-	uint32_t hce                          : 1;  /**< Host-controller error. */
+	uint32_t hce                          : 1;  /**< Host controller error. */
 	uint32_t cnr                          : 1;  /**< Controller not ready. */
 	uint32_t sre                          : 1;  /**< Save/restore error. */
 	uint32_t rss                          : 1;  /**< Restore state status. */
 	uint32_t sss                          : 1;  /**< Save state status. */
 	uint32_t reserved_5_7                 : 3;
-	uint32_t pcd                          : 1;  /**< Port-change detect. */
+	uint32_t pcd                          : 1;  /**< Port change detect. */
 	uint32_t eint                         : 1;  /**< Event interrupt. */
-	uint32_t hse                          : 1;  /**< Host-system error. The typical software response to an HSE is to reset the core. */
+	uint32_t hse                          : 1;  /**< Host system error. The typical software response to an HSE is to reset the core. */
 	uint32_t reserved_1_1                 : 1;
 	uint32_t hch                          : 1;  /**< HC halted. */
 #else

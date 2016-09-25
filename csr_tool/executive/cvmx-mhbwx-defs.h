@@ -806,10 +806,10 @@ union cvmx_mhbwx_abx_sltx_cp_fat_jtag {
                                                          cases this tag might be incorrect and a HAB-specific register should
                                                          be used to determine the correct tag. */
 	uint64_t jd_fetch                     : 16; /**< The job tag for the job that had an error when fetching the job
-                                                         descriptor header and sub-descriptor pointers. Note this tag is only
+                                                         descriptor header and subdescriptor pointers. Note this tag is only
                                                          valid for HAB 0 and slot 0. */
 	uint64_t job_sd_fetch                 : 16; /**< Job tag for the job that had an error when fetching the job
-                                                         sub-descriptors. */
+                                                         subdescriptors. */
 #else
 	uint64_t job_sd_fetch                 : 16;
 	uint64_t jd_fetch                     : 16;
@@ -824,8 +824,8 @@ typedef union cvmx_mhbwx_abx_sltx_cp_fat_jtag cvmx_mhbwx_abx_sltx_cp_fat_jtag_t;
 /**
  * cvmx_mhbw#_ab#_slt#_cp_nfat_jtag
  *
- * These registers record the job tag for HAB non-fatal errors and MHBW control
- * path non-fatal errors.  Errors are reported for the specific HAB and slot that
+ * These registers record the job tag for HAB nonfatal errors and MHBW control
+ * path nonfatal errors.  Errors are reported for the specific HAB and slot that
  * received the error.
  */
 union cvmx_mhbwx_abx_sltx_cp_nfat_jtag {
@@ -837,10 +837,10 @@ union cvmx_mhbwx_abx_sltx_cp_nfat_jtag {
                                                          cases this tag might be incorrect and a HAB-specific register should
                                                          be used to determine the correct tag. */
 	uint64_t jd_fetch                     : 16; /**< The job tag for the job that had an error when fetching the job
-                                                         descriptor header and sub-descriptor pointers. Note this tag is only
+                                                         descriptor header and subdescriptor pointers. Note this tag is only
                                                          valid for HAB 0 and slot 0. */
 	uint64_t job_sd_fetch                 : 16; /**< Job tag for the job that had an error when fetching the job
-                                                         sub-descriptors. */
+                                                         subdescriptors. */
 #else
 	uint64_t job_sd_fetch                 : 16;
 	uint64_t jd_fetch                     : 16;
@@ -991,13 +991,13 @@ typedef union cvmx_mhbwx_abx_sltx_derr_ena_w1s cvmx_mhbwx_abx_sltx_derr_ena_w1s_
  * When an error occurs, the job tag is recorded in one of the following
  * registers:
  *
- * _ Read Overflow: MHBW()_AB()_SLT()_RDERR_OFLOW_JTAG
+ * _ Read overflow: MHBW()_AB()_SLT()_RDERR_OFLOW_JTAG
  *
- * _ Read Underflow: MHBW()_AB()_SLT()_RDERR_UFLOW_JTAG
+ * _ Read underflow: MHBW()_AB()_SLT()_RDERR_UFLOW_JTAG
  *
- * _ Write Overflow: MHBW()_AB()_SLT()_WDERR_OFLOW_JTAG
+ * _ Write overflow: MHBW()_AB()_SLT()_WDERR_OFLOW_JTAG
  *
- * _ Write Underflow: MHBW()_AB()_SLT()_WDERR_UFLOW_JTAG
+ * _ Write underflow: MHBW()_AB()_SLT()_WDERR_UFLOW_JTAG
  *
  * In some cases, read overflow/underflow errors are recorded for the wrong
  * slot, and the wrong job tag is recorded.  In these cases, the correct job
@@ -1111,10 +1111,10 @@ union cvmx_mhbwx_abx_sltx_fat_err_ena_w1c {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< Fatal error reported by the HAB. */
-	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or sub-descriptor pointer fetch received a
+	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or subdescriptor pointer fetch received a
                                                          response with a fatal error.  Note that these errors are always
                                                          reported for HAB 0, slot 0. */
-	uint64_t job_sd_fetch                 : 1;  /**< Job sub-descriptor fetch received a response with a fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< Job subdescriptor fetch received a response with a fatal error. */
 	uint64_t reserved_12_15               : 4;
 	uint64_t wr_dma_port3                 : 1;  /**< Fatal error on write DMA response for write port 3. */
 	uint64_t wr_dma_port2                 : 1;  /**< Fatal error on write DMA response for write port 2. */
@@ -1155,10 +1155,10 @@ union cvmx_mhbwx_abx_sltx_fat_err_ena_w1s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< Fatal error reported by the HAB. */
-	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or sub-descriptor pointer fetch received a
+	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or subdescriptor pointer fetch received a
                                                          response with a fatal error.  Note that these errors are always
                                                          reported for HAB 0, slot 0. */
-	uint64_t job_sd_fetch                 : 1;  /**< Job sub-descriptor fetch received a response with a fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< Job subdescriptor fetch received a response with a fatal error. */
 	uint64_t reserved_12_15               : 4;
 	uint64_t wr_dma_port3                 : 1;  /**< Fatal error on write DMA response for write port 3. */
 	uint64_t wr_dma_port2                 : 1;  /**< Fatal error on write DMA response for write port 2. */
@@ -1199,10 +1199,10 @@ typedef union cvmx_mhbwx_abx_sltx_fat_err_ena_w1s cvmx_mhbwx_abx_sltx_fat_err_en
  * slots in each specific MHAB.
  *
  * Fatal errors include:
- * * ECC double-bit errors on SMEM accesses
- * * errors when accessing memory
- * * ECC double-bit errors in internal HAB memories
- * * HAB-specific fatal errors
+ * * ECC double-bit errors on SMEM accesses.
+ * * errors when accessing memory.
+ * * ECC double-bit errors in internal HAB memories.
+ * * HAB-specific fatal errors.
  *
  * When an error occurs, the job tag is recorded in one of the following
  * registers:
@@ -1224,10 +1224,10 @@ union cvmx_mhbwx_abx_sltx_fat_err_int {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< Fatal error reported by the HAB. */
-	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or sub-descriptor pointer fetch received a
+	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or subdescriptor pointer fetch received a
                                                          response with a fatal error.  Note that these errors are always
                                                          reported for HAB 0, slot 0. */
-	uint64_t job_sd_fetch                 : 1;  /**< Job sub-descriptor fetch received a response with a fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< Job subdescriptor fetch received a response with a fatal error. */
 	uint64_t reserved_12_15               : 4;
 	uint64_t wr_dma_port3                 : 1;  /**< Fatal error on write DMA response for write port 3. */
 	uint64_t wr_dma_port2                 : 1;  /**< Fatal error on write DMA response for write port 2. */
@@ -1268,10 +1268,10 @@ union cvmx_mhbwx_abx_sltx_fat_err_int_w1s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< Fatal error reported by the HAB. */
-	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or sub-descriptor pointer fetch received a
+	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or subdescriptor pointer fetch received a
                                                          response with a fatal error.  Note that these errors are always
                                                          reported for HAB 0, slot 0. */
-	uint64_t job_sd_fetch                 : 1;  /**< Job sub-descriptor fetch received a response with a fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< Job subdescriptor fetch received a response with a fatal error. */
 	uint64_t reserved_12_15               : 4;
 	uint64_t wr_dma_port3                 : 1;  /**< Fatal error on write DMA response for write port 3. */
 	uint64_t wr_dma_port2                 : 1;  /**< Fatal error on write DMA response for write port 2. */
@@ -1312,10 +1312,10 @@ union cvmx_mhbwx_abx_sltx_nfat_err_ena_w1c {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< Non-fatal error reported by the HAB. */
-	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or sub-descriptor pointer fetch received a
-                                                         response with a non-fatal error.  Note that these errors are always
+	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or subdescriptor pointer fetch received a
+                                                         response with a nonfatal error.  Note that these errors are always
                                                          reported for HAB 0, slot 0. */
-	uint64_t job_sd_fetch                 : 1;  /**< Job sub-descriptor fetch received a response with a non-fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< Job subdescriptor fetch received a response with a nonfatal error. */
 	uint64_t reserved_12_15               : 4;
 	uint64_t wr_dma_port3                 : 1;  /**< Non-fatal error on write DMA response for write port 3. */
 	uint64_t wr_dma_port2                 : 1;  /**< Non-fatal error on write DMA response for write port 2. */
@@ -1356,10 +1356,10 @@ union cvmx_mhbwx_abx_sltx_nfat_err_ena_w1s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< Non-fatal error reported by the HAB. */
-	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or sub-descriptor pointer fetch received a
-                                                         response with a non-fatal error.  Note that these errors are always
+	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or subdescriptor pointer fetch received a
+                                                         response with a nonfatal error.  Note that these errors are always
                                                          reported for HAB 0, slot 0. */
-	uint64_t job_sd_fetch                 : 1;  /**< Job sub-descriptor fetch received a response with a non-fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< Job subdescriptor fetch received a response with a nonfatal error. */
 	uint64_t reserved_12_15               : 4;
 	uint64_t wr_dma_port3                 : 1;  /**< Non-fatal error on write DMA response for write port 3. */
 	uint64_t wr_dma_port2                 : 1;  /**< Non-fatal error on write DMA response for write port 2. */
@@ -1394,15 +1394,15 @@ typedef union cvmx_mhbwx_abx_sltx_nfat_err_ena_w1s cvmx_mhbwx_abx_sltx_nfat_err_
 /**
  * cvmx_mhbw#_ab#_slt#_nfat_err_int
  *
- * These registers record non-fatal errors. There is one
+ * These registers record nonfatal errors. There is one
  * register for each job slot (SLT(0..2)) in each HAB (AB(0..3)) in each MHAB
  * (MHBW(0..19)). Note that registers only exist for the number of HABs and
  * slots in each specific MHAB.
  *
  * Fatal errors include:
- * * ECC single-bit errors on SMEM accesses
- * * ECC single-bit errors in internal HAB memories
- * * HAB-specific fatal errors
+ * * ECC single-bit errors on SMEM accesses.
+ * * ECC single-bit errors in internal HAB memories.
+ * * HAB-specific fatal errors.
  *
  * When an error occurs, the job tag is recorded in one of the following
  * registers:
@@ -1411,7 +1411,7 @@ typedef union cvmx_mhbwx_abx_sltx_nfat_err_ena_w1s cvmx_mhbwx_abx_sltx_nfat_err_
  *
  * _ Error on write DMA: MHBW()_AB()_SLT()_WR_NFAT_JTAG
  *
- * _ Other non-fatal errors: MHBW()_AB()_SLT()_CP_NFAT_JTAG
+ * _ Other nonfatal errors: MHBW()_AB()_SLT()_CP_NFAT_JTAG
  *
  * When an error occurs, the MHAB sends a fatal error message to PSM which then
  * triggers an interrupt, if enabled. In addition, the MHBW sends the command
@@ -1424,10 +1424,10 @@ union cvmx_mhbwx_abx_sltx_nfat_err_int {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< Non-fatal error reported by the HAB. */
-	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or sub-descriptor pointer fetch received a
-                                                         response with a non-fatal error.  Note that these errors are always
+	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or subdescriptor pointer fetch received a
+                                                         response with a nonfatal error.  Note that these errors are always
                                                          reported for HAB 0, slot 0. */
-	uint64_t job_sd_fetch                 : 1;  /**< Job sub-descriptor fetch received a response with a non-fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< Job subdescriptor fetch received a response with a nonfatal error. */
 	uint64_t reserved_12_15               : 4;
 	uint64_t wr_dma_port3                 : 1;  /**< Non-fatal error on write DMA response for write port 3. */
 	uint64_t wr_dma_port2                 : 1;  /**< Non-fatal error on write DMA response for write port 2. */
@@ -1468,10 +1468,10 @@ union cvmx_mhbwx_abx_sltx_nfat_err_int_w1s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< Non-fatal error reported by the HAB. */
-	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or sub-descriptor pointer fetch received a
-                                                         response with a non-fatal error.  Note that these errors are always
+	uint64_t jd_fetch                     : 1;  /**< Job descriptor header or subdescriptor pointer fetch received a
+                                                         response with a nonfatal error.  Note that these errors are always
                                                          reported for HAB 0, slot 0. */
-	uint64_t job_sd_fetch                 : 1;  /**< Job sub-descriptor fetch received a response with a non-fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< Job subdescriptor fetch received a response with a nonfatal error. */
 	uint64_t reserved_12_15               : 4;
 	uint64_t wr_dma_port3                 : 1;  /**< Non-fatal error on write DMA response for write port 3. */
 	uint64_t wr_dma_port2                 : 1;  /**< Non-fatal error on write DMA response for write port 2. */
@@ -1533,7 +1533,7 @@ typedef union cvmx_mhbwx_abx_sltx_rd_fat_jtag cvmx_mhbwx_abx_sltx_rd_fat_jtag_t;
  * cvmx_mhbw#_ab#_slt#_rd_nfat_jtag
  *
  * These registers record the job tag when a read DMA receives a response
- * indicating a non-fatal error. Errors are reported for the specific HAB and slot
+ * indicating a nonfatal error. Errors are reported for the specific HAB and slot
  * that received the error.
  */
 union cvmx_mhbwx_abx_sltx_rd_nfat_jtag {
@@ -1689,7 +1689,7 @@ typedef union cvmx_mhbwx_abx_sltx_wr_fat_jtag cvmx_mhbwx_abx_sltx_wr_fat_jtag_t;
  * cvmx_mhbw#_ab#_slt#_wr_nfat_jtag
  *
  * These registers record the job tag when a write DMA receives a response
- * indicating a non-fatal error. Errors are reported for the specific HAB and slot
+ * indicating a nonfatal error. Errors are reported for the specific HAB and slot
  * that received the error.
  */
 union cvmx_mhbwx_abx_sltx_wr_nfat_jtag {
@@ -1839,7 +1839,7 @@ typedef union cvmx_mhbwx_eco cvmx_mhbwx_eco_t;
 /**
  * cvmx_mhbw#_err_stat0
  *
- * These registers count fatal and non-fatal errors (excluding ECC errors in
+ * These registers count fatal and nonfatal errors (excluding ECC errors in
  * MHBW memories). Note that if multiple HABs have errors in the exact same
  * cycle, only one is counted. Both counters wrap to zero at 2^32.
  */
@@ -1847,7 +1847,7 @@ union cvmx_mhbwx_err_stat0 {
 	uint64_t u64;
 	struct cvmx_mhbwx_err_stat0_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t nfat_err_stat                : 32; /**< Count of non-fatal errors. */
+	uint64_t nfat_err_stat                : 32; /**< Count of nonfatal errors. */
 	uint64_t fat_err_stat                 : 32; /**< Count of fatal errors. */
 #else
 	uint64_t fat_err_stat                 : 32;
@@ -2062,7 +2062,7 @@ union cvmx_mhbwx_jd_cfg {
                                                          details. */
 	uint64_t reserved_2_3                 : 2;
 	uint64_t jd_fetch_cmd_type            : 2;  /**< Specifies the command type used when reading a job descriptor
-                                                         (including sub-descriptor sections) from main memory. Command types
+                                                         (including subdescriptor sections) from main memory. Command types
                                                          are enumerated in MHBW_PNB_RD_CMD_E.  Note that if
                                                          MHBW_PNB_RD_CMD_E::LDWB is specified, then any requests for less than
                                                          128 bytes will be automatically converted to type LDT to avoid
@@ -2538,7 +2538,7 @@ typedef union cvmx_mhbwx_mem_sbe0_ena_w1s cvmx_mhbwx_mem_sbe0_ena_w1s_t;
  * cvmx_mhbw#_mem_sbe0_int
  *
  * These registers report single-bit ECC errors for internal MHBW memories.
- * On a single-bit ECC error, the MHBW will report a non-fatal error to the
+ * On a single-bit ECC error, the MHBW will report a nonfatal error to the
  * PSM which then triggers an interrupt, if enable. In addition, the MHBW sends
  * the command specified by
  * <MHBW()_NON_FATAL_ERROR_JCE_W1,MHBW()_NON_FATAL_ERROR_JCE_W0> to the PSM.
@@ -2625,7 +2625,7 @@ typedef union cvmx_mhbwx_mem_sbe1_ena_w1s cvmx_mhbwx_mem_sbe1_ena_w1s_t;
  * cvmx_mhbw#_mem_sbe1_int
  *
  * These registers report single-bit ECC errors for internal MHBW memories.
- * On a single-bit ECC error, the MHBW will report a non-fatal error to the
+ * On a single-bit ECC error, the MHBW will report a nonfatal error to the
  * PSM which then triggers an interrupt, if enable. In addition, the MHBW sends
  * the command specified by
  * <MHBW()_NON_FATAL_ERROR_JCE_W1,MHBW()_NON_FATAL_ERROR_JCE_W0> to the PSM.
@@ -2672,13 +2672,13 @@ typedef union cvmx_mhbwx_mem_sbe1_int_w1s cvmx_mhbwx_mem_sbe1_int_w1s_t;
  * cvmx_mhbw#_non_fatal_error_jce_w0
  *
  * This register specifies the low 64 bits of a PSM command issued when the
- * MHBW or one of its HABs suffer a non-fatal error.
+ * MHBW or one of its HABs suffer a nonfatal error.
  */
 union cvmx_mhbwx_non_fatal_error_jce_w0 {
 	uint64_t u64;
 	struct cvmx_mhbwx_non_fatal_error_jce_w0_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t ls_word                      : 64; /**< The first word of the PSM command to send on a non-fatal error. */
+	uint64_t ls_word                      : 64; /**< The first word of the PSM command to send on a nonfatal error. */
 #else
 	uint64_t ls_word                      : 64;
 #endif
@@ -2691,13 +2691,13 @@ typedef union cvmx_mhbwx_non_fatal_error_jce_w0 cvmx_mhbwx_non_fatal_error_jce_w
  * cvmx_mhbw#_non_fatal_error_jce_w1
  *
  * This register specifies the high 64 bits of a PSM command issued when the
- * MHBW or one of its HABs suffer a non-fatal error.
+ * MHBW or one of its HABs suffer a nonfatal error.
  */
 union cvmx_mhbwx_non_fatal_error_jce_w1 {
 	uint64_t u64;
 	struct cvmx_mhbwx_non_fatal_error_jce_w1_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t ms_word                      : 64; /**< The second word of the PSM command to send on a non-fatal error. */
+	uint64_t ms_word                      : 64; /**< The second word of the PSM command to send on a nonfatal error. */
 #else
 	uint64_t ms_word                      : 64;
 #endif

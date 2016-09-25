@@ -604,14 +604,14 @@ union cvmx_sata_uahc_gbl_bistafr {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_16_31               : 16;
 	uint32_t ncp                          : 8;  /**< Bits 7:0 of the second DWORD of BIST activate FIS.
-                                                         0xF1 = low transition density pattern (LTDP).
-                                                         0xB5 = high transition density pattern (HTDP).
-                                                         0xAB = low frequency spectral component pattern (LFSCP).
-                                                         0x7F = simultaneous switching outputs pattern (SSOP).
-                                                         0x78 = mid frequency test pattern (MFTP).
-                                                         0x4A = high frequency test pattern (HFTP).
-                                                         0x7E = low frequency test pattern (LFTP).
-                                                         else = lone bit pattern (LBP). */
+                                                         0xF1 = Low transition density pattern (LTDP).
+                                                         0xB5 = High transition density pattern (HTDP).
+                                                         0xAB = Low frequency spectral component pattern (LFSCP).
+                                                         0x7F = Simultaneous switching outputs pattern (SSOP).
+                                                         0x78 = Mid frequency test pattern (MFTP).
+                                                         0x4A = High frequency test pattern (HFTP).
+                                                         0x7E = Low frequency test pattern (LFTP).
+                                                         else = Lone bit pattern (LBP). */
 	uint32_t pd                           : 8;  /**< Bits 23:16 of the first DWORD of the BIST activate FIS. Only the following values are
                                                          supported:
                                                          0x10 = Far-end retimed.
@@ -777,7 +777,7 @@ union cvmx_sata_uahc_gbl_cap {
 	uint32_t sal                          : 1;  /**< Supports activity LED. */
 	uint32_t sclo                         : 1;  /**< Supports command list override. */
 	uint32_t iss                          : 4;  /**< Interface speed support. */
-	uint32_t snzo                         : 1;  /**< Supports non-zero DMA offsets. */
+	uint32_t snzo                         : 1;  /**< Supports nonzero DMA offsets. */
 	uint32_t sam                          : 1;  /**< Supports AHCI mode only. */
 	uint32_t spm                          : 1;  /**< Supports port multiplier. */
 	uint32_t fbss                         : 1;  /**< Supports FIS-based switching. */
@@ -991,7 +991,7 @@ union cvmx_sata_uahc_gbl_gparam2r {
 	uint32_t fbs_support                  : 1;  /**< FIS-based switching support (FBS_SUPPORT). */
 	uint32_t dev_cp                       : 1;  /**< Cold presence detect (DEV_CP_DET). */
 	uint32_t dev_mp                       : 1;  /**< Mechanical presence switch (DEV_MP_SWITCH). */
-	uint32_t encode_m                     : 1;  /**< 8b/10b encoding/decoding (ENCODE_MODE). */
+	uint32_t encode_m                     : 1;  /**< 8/10 bit encoding/decoding (ENCODE_MODE). */
 	uint32_t rxoob_clk_m                  : 1;  /**< RX OOB clock mode (RXOOB_CLK_MODE). */
 	uint32_t rx_oob_m                     : 1;  /**< RX OOB mode (RX_OOB_MODE). */
 	uint32_t tx_oob_m                     : 1;  /**< TX OOB mode (TX_OOB_MODE). */
@@ -1022,7 +1022,7 @@ union cvmx_sata_uahc_gbl_gparam2r {
 	uint32_t fbs_support                  : 1;  /**< FIS-based switching support (FBS_SUPPORT). */
 	uint32_t dev_cp                       : 1;  /**< Cold presence detect (DEV_CP_DET). */
 	uint32_t dev_mp                       : 1;  /**< Mechanical presence switch (DEV_MP_SWITCH). */
-	uint32_t encode_m                     : 1;  /**< 8b/10b encoding/decoding (ENCODE_MODE). */
+	uint32_t encode_m                     : 1;  /**< 8/10 bit encoding/decoding (ENCODE_MODE). */
 	uint32_t rxoob_clk_m                  : 1;  /**< RX OOB clock mode (RXOOB_CLK_MODE). */
 	uint32_t rx_oob_m                     : 1;  /**< RX OOB mode (RX_OOB_MODE). */
 	uint32_t tx_oob_m                     : 1;  /**< TX OOB mode (TX_OOB_MODE). */
@@ -1054,7 +1054,7 @@ union cvmx_sata_uahc_gbl_gparam2r {
 	uint32_t fbs_support                  : 1;  /**< FIS-based switching support (FBS_SUPPORT). */
 	uint32_t dev_cp                       : 1;  /**< Cold presence detect (DEV_CP_DET). */
 	uint32_t dev_mp                       : 1;  /**< Mechanical presence switch (DEV_MP_SWITCH). */
-	uint32_t encode_m                     : 1;  /**< 8b/10b encoding/decoding (ENCODE_MODE). */
+	uint32_t encode_m                     : 1;  /**< 8/10 bit encoding/decoding (ENCODE_MODE). */
 	uint32_t rxoob_clk_m                  : 1;  /**< RX OOB clock mode (RXOOB_CLK_MODE). */
 	uint32_t rx_oob_m                     : 1;  /**< RX OOB mode (RX_OOB_MODE). */
 	uint32_t tx_oob_m                     : 1;  /**< TX OOB mode (TX_OOB_MODE). */
@@ -1692,7 +1692,7 @@ union cvmx_sata_uahc_px_serr {
 	uint32_t diag_h                       : 1;  /**< Handshake error. */
 	uint32_t diag_c                       : 1;  /**< CRC error. */
 	uint32_t diag_d                       : 1;  /**< Disparity error. */
-	uint32_t diag_b                       : 1;  /**< 10B to 8B decode error. */
+	uint32_t diag_b                       : 1;  /**< 10/8 bit decode error. */
 	uint32_t diag_w                       : 1;  /**< COMWAKE detected. */
 	uint32_t diag_i                       : 1;  /**< PHY internal error. */
 	uint32_t diag_n                       : 1;  /**< PHY ready change. */

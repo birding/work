@@ -83,8 +83,8 @@ static inline uint64_t CVMX_SLITB_MSIX_MACX_PFX_TABLE_ADDR(unsigned long offset,
 {
 	if (!(
 	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 1)) && ((block_id <= 3))))))
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset == 0)) && ((block_id <= 3)))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset == 0)) && ((block_id <= 3))))))
 		cvmx_warn("CVMX_SLITB_MSIX_MACX_PFX_TABLE_ADDR(%lu,%lu) is invalid on this chip\n", offset, block_id);
 	return 0x0000000000002000ull + ((offset) & 1) * 4096 + ((block_id) & 3) * 0x10ull;
 }
@@ -96,8 +96,8 @@ static inline uint64_t CVMX_SLITB_MSIX_MACX_PFX_TABLE_DATA(unsigned long offset,
 {
 	if (!(
 	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 1)) && ((block_id <= 3))))))
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset == 0)) && ((block_id <= 3)))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset == 0)) && ((block_id <= 3))))))
 		cvmx_warn("CVMX_SLITB_MSIX_MACX_PFX_TABLE_DATA(%lu,%lu) is invalid on this chip\n", offset, block_id);
 	return 0x0000000000002008ull + ((offset) & 1) * 4096 + ((block_id) & 3) * 0x10ull;
 }
@@ -340,10 +340,10 @@ union cvmx_slitb_pfx_pkt_int {
 	uint64_t ring                         : 64; /**< Multi-ring packet interrupt register. Each RING<i> is set whenever any
                                                          of these three conditions are true:
                                                           * SLI_PKT(i)_CNTS[CNT] > SLI_PKT(i)_INT_LEVELS[CNT] (i.e. SLI_PKT_CNT_INT<i>
-                                                            is set), or
-                                                          * SLI_PKT(i)_CNTS[TIMER] > SLI_PKT(i)_INT_LEVELS[TIME] (i.e. SLI_PKT_TIME_INT<i>
-                                                            is set), or
-                                                          * SLI_PKT_IN_DONE(i)_CNTS[PI_INT] (i.e. SLI_PKT_IN_INT<i>) is set.
+                                                            is set),
+                                                          * Or, SLI_PKT(i)_CNTS[TIMER] > SLI_PKT(i)_INT_LEVELS[TIME] (i.e. SLI_PKT_TIME_INT<i>
+                                                            is set).
+                                                          * Or, SLI_PKT_IN_DONE(i)_CNTS[PI_INT] (i.e. SLI_PKT_IN_INT<i>) is set.
                                                          Any of these three conditions can cause an MSI-X interrupt, but only
                                                          the first two (i.e. SLI_PKT_CNT_INT and SLI_PKT_TIME_INT) can cause
                                                          INTA/B/C/D and MSI interrupts.
@@ -418,7 +418,7 @@ union cvmx_slitb_pktx_pf_vf_mbox_sigx {
 	uint64_t u64;
 	struct cvmx_slitb_pktx_pf_vf_mbox_sigx_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t data                         : 64; /**< Communication data from PF to VF. Writes to SLI_PKT(0..127)_PF_VF_MBOX_SIG(0)
+	uint64_t data                         : 64; /**< Communication data from PF to VF. Writes to SLI_PKT()_PF_VF_MBOX_SIG(0)
                                                          in the corresponding VF. */
 #else
 	uint64_t data                         : 64;

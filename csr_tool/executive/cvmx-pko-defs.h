@@ -3468,7 +3468,7 @@ union cvmx_pko_dpfi_fpa_aura {
 	uint64_t reserved_12_63               : 52;
 	uint64_t node                         : 2;  /**< Reserved. */
 	uint64_t laura                        : 10; /**< FPA local-node aura to use for PKO command buffering allocations and frees. The
-                                                         FPA aura selected by LAURA must correspond to a pool where the buffers (after
+                                                         FPA aura selected by [LAURA] must correspond to a pool where the buffers (after
                                                          any FPA_POOL()_CFG[BUF_OFFSET]) are at least 4 KB. */
 #else
 	uint64_t laura                        : 10;
@@ -3495,18 +3495,18 @@ union cvmx_pko_dpfi_status {
 	uint64_t reserved_27_31               : 5;
 	uint64_t xpd_fif_cnt                  : 4;  /**< XPD FIFO count. This FIFO has 8 entries and is used to hold pointers that are actively
                                                          being returned to the FPA. Typically, the value of this counter is zero. Should the
-                                                         count be non-zero for a prolonged period it would indicate that the FPA is delayed in
+                                                         count be nonzero for a prolonged period it would indicate that the FPA is delayed in
                                                          accepting pointers back from the PKO. */
-	uint64_t dalc_fif_cnt                 : 4;  /**< Deallocation FIFO count. This FIFO has 8 entries and is used to buffer pointers that
-                                                         are being returned to the DPFI by the PKO PDM. The PKO does not immediately return
-                                                         these pointers to the FPA but instead holds them and uses them to replenish the pointer
-                                                         Allocation FIFO saving an access to the FPA. Should the Deallocation FIFO become full
-                                                         the next pointer pushed into it will push out the oldest pointer and this overflow
-                                                         will be transfered to the XPD FIFO and a pointer return request made to the FPA.
-                                                         Normally, the Deallocation FIFO is empty or near empty. This FIFO can be drained and
-                                                         all pointers returned to the FPA by setting the FLUSH_EN bit in the PKO_DPFI_FLUSH CSR.
-                                                         When the flush is complete the CACHE_FLUSHED flag will be set in the PKO_DPFI_STATUS
-                                                         CSR and the DALC_FIF_CNT will be zero. */
+	uint64_t dalc_fif_cnt                 : 4;  /**< Deallocation FIFO count. This FIFO has 8 entries and is used to buffer pointers that are
+                                                         being returned to the DPFI by the PKO PDM. The PKO does not immediately return these
+                                                         pointers to the FPA but instead holds them and uses them to replenish the pointer
+                                                         allocation FIFO saving an access to the FPA. Should the deallocation FIFO become full
+                                                         the next pointer pushed into it will push out the oldest pointer and this overflow will
+                                                         be transferred to the XPD FIFO and a pointer return request made to the FPA. Normally,
+                                                         the deallocation FIFO is empty or near empty. This FIFO can be drained and all pointers
+                                                         returned to the FPA by setting the FLUSH_EN bit in the PKO_DPFI_FLUSH CSR. When the
+                                                         flush is complete the CACHE_FLUSHED flag will be set in the PKO_DPFI_STATUS CSR and the
+                                                         DALC_FIF_CNT will be zero. */
 	uint64_t alc_fif_cnt                  : 5;  /**< Allocation FIFO count. This FIFO has 16 entries and acts as a pointer prefetch buffer.
                                                          The DPFI attempts to keep this FIFO full at all times. Out of reset, the PKO requests
                                                          pointers from the FPA to fill this FIFO. The PKO_READY flag will not be asserted until
@@ -3643,19 +3643,19 @@ union cvmx_pko_dqx_cir {
 	struct cvmx_pko_dqx_cir_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_41_63               : 23;
-	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
-	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
 	uint64_t reserved_17_28               : 12;
 	uint64_t rate_divider_exponent        : 4;  /**< Rate divider exponent. This 4-bit base-2 exponent is used to divide the credit rate by
                                                          specifying the number of time-wheel turns required before the accumulator is increased.
-                                                         RATE_DIVIDER_EXPONENT should be used to specify data rates lower than ~10 Kbps and
-                                                         RATE_EXPONENT should be set to zero whenever it is used.
-                                                         The rate count = (1 << RATE_DIVIDER_EXPONENT). The supported range for
-                                                         RATE_DIVIDER_EXPONENT is 0 to 12. Programmed values greater than 12 are treated as 12.
+                                                         [RATE_DIVIDER_EXPONENT] should be used to specify data rates lower than ~10 Kbps and
+                                                         [RATE_EXPONENT] should be set to zero whenever it is used.
+                                                         The rate count = (1 << [RATE_DIVIDER_EXPONENT]). The supported range for
+                                                         [RATE_DIVIDER_EXPONENT] is 0 to 12. Programmed values greater than 12 are treated as 12.
                                                          Note that for the L1-SQs, a time-wheel turn is 48 clocks (SCLK). For the other levels a
                                                          time-wheel turn is 768 clocks (SCLK).
                                                          For L1_SQ: RATE (bytes/second) =
@@ -3664,10 +3664,10 @@ union cvmx_pko_dqx_cir {
                                                          For L[5:2]_SQ: RATE (bytes/second) =
                                                            (SCLK_FREQUENCY / 768) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1 <<
                                                          RATE_DIVIDER_EXPONENT) */
-	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT.
-                                                         RATE_EXPONENT should be used to specify data rates higher than ~10 Kbps and
-                                                         RATE_DIVIDER_EXPONENT should be set to zero whenever it is non-zero. */
-	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT. */
+	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT].
+                                                         [RATE_EXPONENT] should be used to specify data rates higher than ~10 Kbps and
+                                                         [RATE_DIVIDER_EXPONENT] should be set to zero whenever it is nonzero. */
+	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT]. */
 	uint64_t enable                       : 1;  /**< Enable. Enables CIR shaping. */
 #else
 	uint64_t enable                       : 1;
@@ -3690,7 +3690,7 @@ typedef union cvmx_pko_dqx_cir cvmx_pko_dqx_cir_t;
 /**
  * cvmx_pko_dq#_dropped_bytes
  *
- * This register has the same bit fields as PKO_L1_SQ)_GREEN_BYTES.
+ * This register has the same bit fields as PKO_L1_SQ()_GREEN_BYTES.
  *
  */
 union cvmx_pko_dqx_dropped_bytes {
@@ -3875,19 +3875,19 @@ union cvmx_pko_dqx_pir {
 	struct cvmx_pko_dqx_pir_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_41_63               : 23;
-	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
-	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
 	uint64_t reserved_17_28               : 12;
 	uint64_t rate_divider_exponent        : 4;  /**< Rate divider exponent. This 4-bit base-2 exponent is used to divide the credit rate by
                                                          specifying the number of time-wheel turns required before the accumulator is increased.
-                                                         RATE_DIVIDER_EXPONENT should be used to specify data rates lower than ~10 Kbps and
-                                                         RATE_EXPONENT should be set to zero whenever it is used.
-                                                         The rate count = (1 << RATE_DIVIDER_EXPONENT). The supported range for
-                                                         RATE_DIVIDER_EXPONENT is 0 to 12. Programmed values greater than 12 are treated as 12.
+                                                         [RATE_DIVIDER_EXPONENT] should be used to specify data rates lower than ~10 Kbps and
+                                                         [RATE_EXPONENT] should be set to zero whenever it is used.
+                                                         The rate count = (1 << [RATE_DIVIDER_EXPONENT]). The supported range for
+                                                         [RATE_DIVIDER_EXPONENT] is 0 to 12. Programmed values greater than 12 are treated as 12.
                                                          Note that for the L1-SQs, a time-wheel turn is 48 clocks (SCLK). For the other levels a
                                                          time-wheel turn is 768 clocks (SCLK).
                                                          For L1_SQ: RATE (bytes/second) =
@@ -3896,10 +3896,10 @@ union cvmx_pko_dqx_pir {
                                                          For L[5:2]_SQ: RATE (bytes/second) =
                                                            (SCLK_FREQUENCY / 768) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1 <<
                                                          RATE_DIVIDER_EXPONENT) */
-	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT.
-                                                         RATE_EXPONENT should be used to specify data rates higher than ~10 Kbps and
-                                                         RATE_DIVIDER_EXPONENT should be set to zero whenever it is non-zero. */
-	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT. */
+	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT].
+                                                         [RATE_EXPONENT] should be used to specify data rates higher than ~10 Kbps and
+                                                         [RATE_DIVIDER_EXPONENT] should be set to zero whenever it is nonzero. */
+	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT]. */
 	uint64_t enable                       : 1;  /**< Enable. Enables CIR shaping. */
 #else
 	uint64_t enable                       : 1;
@@ -3995,9 +3995,9 @@ union cvmx_pko_dqx_schedule {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_28_63               : 36;
 	uint64_t prio                         : 4;  /**< Priority. The priority used for this SQ in the (lower-level) parent's scheduling
-                                                         algorithm. When this SQ is not used, we recommend setting PRIO to zero. The legal PRIO
-                                                         values are 0-9 when the SQ is used. In addition to priority, PRIO determines whether the
-                                                         SQ is a static queue or not: If PRIO equals PKO_*_SQn_TOPOLOGY[RR_PRIO], where
+                                                         algorithm. When this SQ is not used, we recommend setting [PRIO] to zero. The legal [PRIO]
+                                                         values are 0-9 when the SQ is used. In addition to priority, [PRIO] determines whether the
+                                                         SQ is a static queue or not: If [PRIO] equals PKO_*_SQn_TOPOLOGY[RR_PRIO], where
                                                          PKO_*_TOPOLOGY[PARENT] for this SQ equals n, then this is a round-robin child queue into
                                                          the shaper at the next level. */
 	uint64_t rr_quantum                   : 24; /**< Round-robin (DWRR) quantum. The deficit-weighted round-robin quantum (24-bit unsigned
@@ -4127,13 +4127,13 @@ union cvmx_pko_dqx_sw_xoff {
 	uint64_t reserved_4_63                : 60;
 	uint64_t drain_irq                    : 1;  /**< Drain IRQ. Enables an interrupt that fires when the drain operation has completed.
                                                          [DRAIN_IRQ] should be set whenever [DRAIN] is, and must not be set
-                                                         when [DRAIN] isn't set.  DRAIN_IRQ has no effect unless DRAIN and XOFF is also set. */
+                                                         when [DRAIN] isn't set. [DRAIN_IRQ] has no effect unless [DRAIN] and [XOFF] are also set. */
 	uint64_t drain_null_link              : 1;  /**< Drain null link. This setting only has effect when the L1 node is
                                                          mapped to the NULL FIFO.  Conditions the drain path to drain through
                                                          the NULL FIFO (i.e. link 14). As such, channel credits, HW_XOFF, and
                                                          shaping are disabled on the draining path until the path has drained.
                                                          [DRAIN_NULL_LINK] must not be set when [DRAIN] isn't set.
-                                                         DRAIN_NULL_LINK has no effect unless DRAIN and XOFF is also set. */
+                                                         [DRAIN_NULL_LINK] has no effect unless [DRAIN] and [XOFF] are also set. */
 	uint64_t drain                        : 1;  /**< Drain. This control activates a drain path through the PSE that starts at this node and
                                                          ends at the SQ1 level. The drain path is prioritized over other paths through PSE and can
                                                          be used in combination with [DRAIN_NULL_LINK] and [DRAIN_IRQ]. [DRAIN] need never be
@@ -4141,16 +4141,16 @@ union cvmx_pko_dqx_sw_xoff {
                                                          PKO_DRAIN_IRQ[INTR] should be clear prior to initiating a [DRAIN]=1 write to this CSR.
                                                          After [DRAIN] is set for an SQ/DQ, it should not be set again, for this or any other
                                                          SQ/DQ, until after a 0->1 transition has been observed on PKO_DRAIN_IRQ[INTR]
-                                                         (and/or the PKO_INTSN_E::PKO_PSE_PQ_DRAIN CIU interrupt has occured) and
-                                                         PKO_DRAIN_IRQ[INTR] has been cleared.  DRAIN has no effect unless XOFF is also set.
-                                                         Only one DRAIN command is allowed to be active at a time. */
+                                                         (and/or the PKO_INTSN_E::PKO_PSE_PQ_DRAIN CIU interrupt has occurred) and
+                                                         PKO_DRAIN_IRQ[INTR] has been cleared. [DRAIN] has no effect unless [XOFF] is also set.
+                                                         Only one [DRAIN] command is allowed to be active at a time. */
 	uint64_t xoff                         : 1;  /**< XOFF. Stops meta flow out of the SQ/DQ. When [XOFF] is set, the corresponding
                                                          PKO_*_PICK (i.e. the meta) in the SQ/DQ cannot be transferred to the
                                                          next level. The corresponding PKO_*_PICK may become valid while [XOFF] is set,
                                                          but it cannot change from valid to invalid while [XOFF] is set.
                                                          NOTE: The associated PKO_*_TOPOLOGY[LINK/PARENT] should normally be configured before
                                                          [XOFF] is set. Setting [XOFF] before the associated PKO_*_TOPOLOGY[LINK/PARENT]
-                                                         value is configured can result in modifying the software XOFF state of the wrong SQ. */
+                                                         value is configured can result in modifying the software [XOFF] state of the wrong SQ. */
 #else
 	uint64_t xoff                         : 1;
 	uint64_t drain                        : 1;
@@ -4209,12 +4209,13 @@ union cvmx_pko_dqx_wm_buf_cnt {
 	uint64_t reserved_36_63               : 28;
 	uint64_t count                        : 36; /**< Watermark buffer count. The number of buffers allocated (from
                                                          FPA aura PKO_DPFI_FPA_AURA[NODE,LAURA]) for this DQ.
-                                                         Note that there is a worstcase watermark accuracy error from hardware of 167 pointers.
-                                                         This means that the CSR read could have 167 pointers unaccounted for in the read data from
-                                                         send-packets queued up in PDM. Note the maximum error is smaller if TSO is not used; with
-                                                         no TSO the max number of pointers the hardware is off by should be 8. Because software
-                                                         doesn't know which DQs have unaccounted for pointers, it must assume every queue is off by
-                                                         the max number of pointers (167 if TSO, 8 if no TSO). */
+                                                         Note that there is a worst case watermark accuracy error from hardware of 167
+                                                         pointers. This means that the CSR read could have 167 pointers unaccounted for
+                                                         in the read data from send-packets queued up in PDM. Note the maximum error is
+                                                         smaller if TSO is not used; with no TSO the max number of pointers the hardware
+                                                         is off by should be 8. Because software doesn't know which DQs have unaccounted
+                                                         for pointers, it must assume every queue is off by the max number of pointers
+                                                         (167 if TSO, 8 if no TSO). */
 #else
 	uint64_t count                        : 36;
 	uint64_t reserved_36_63               : 28;
@@ -4238,11 +4239,11 @@ union cvmx_pko_dqx_wm_buf_ctl {
 	uint64_t enable                       : 1;  /**< Watermark interrupt enable for [THRESHOLD] comparison to PKO_DQ()_WM_BUF_CNT[COUNT].
                                                          See the [INTR] description. */
 	uint64_t reserved_49_49               : 1;
-	uint64_t intr                         : 1;  /**< Watermark Buffer Interrupt. If [INTR] is clear and [ENABLE] is set, PKO
+	uint64_t intr                         : 1;  /**< Watermark buffer interrupt. If [INTR] is clear and [ENABLE] is set, PKO
                                                          sets [INTR] and throws PKO_INTSN_E::PKO_DQ()_WM whenever it
                                                          modifies PKO_DQ()_WM_BUF_CNT[COUNT] to equal or cross [THRESHOLD]. */
 	uint64_t reserved_36_47               : 12;
-	uint64_t threshold                    : 36; /**< Watermark interrupt Buffer Threshold for PKO_DQ()_WM_BUF_CNT[COUNT].
+	uint64_t threshold                    : 36; /**< Watermark interrupt buffer threshold for PKO_DQ()_WM_BUF_CNT[COUNT].
                                                          See the [INTR] description. */
 #else
 	uint64_t threshold                    : 36;
@@ -4295,7 +4296,7 @@ union cvmx_pko_dqx_wm_cnt {
 	uint64_t count                        : 48; /**< Watermark count. The running value of the watermark counter. This value is a count of
                                                          bytes or packets as specified by PKO_DQ()_WM_CTL[KIND]. [COUNT] covers all metas
                                                          for the DQ between when the PKO SEND LMTDMA/LMTST enqueues the descriptor until
-                                                         PKO PEB (i.e. the packet engines and FIFO's) first receives the meta descriptor.
+                                                         PKO PEB (i.e. the packet engines and FIFOs) first receives the meta descriptor.
                                                          It includes all descriptors whose meta's are held in either L2/DRAM for the DQ
                                                          (i.e. whose metas are held in PKO PDM) or any DQ or SQ (i.e. whose metas are held
                                                          in PKO PSE). */
@@ -4321,7 +4322,7 @@ union cvmx_pko_dqx_wm_ctl {
 	uint64_t reserved_52_63               : 12;
 	uint64_t ncb_query_rsp                : 1;  /**< NCB query response.  Specifies what value is returned in the
                                                          PKO_QUERY_RTN_S[DEPTH] field.  When set to '0', the value held in
-                                                         PKO_DQ()_WM_CNT[COUNT] is returned.  When set to '1 the value held
+                                                         PKO_DQ()_WM_CNT[COUNT] is returned.  When set to '1' the value held
                                                          in PKO_DQ()_WM_BUF_CNT[COUNT] is returned. */
 	uint64_t enable                       : 1;  /**< Reserved. */
 	uint64_t kind                         : 1;  /**< Selects the contents of PKO_DQ()_WM_CNT[COUNT].
@@ -4463,15 +4464,18 @@ typedef union cvmx_pko_enable cvmx_pko_enable_t;
  *
  * For example, if MARKPTR is 3 and [OFFSET] is 5 and the packet is YELLOW,
  * the PKO marking hardware would do this:
- *    byte[3]<2:0> |=   Y_VAL<3:1>
- *    byte[3]<2:0> &= ~Y_MASK<3:1>
- *    byte[4]<7>   |=   Y_VAL<0>
- *    byte[4]<7>   &= ~Y_MASK<0>
+ *
+ * _  byte[3]<2:0> |=   Y_VAL<3:1>
+ * _  byte[3]<2:0> &= ~Y_MASK<3:1>
+ * _  byte[4]<7>   |=   Y_VAL<0>
+ * _  byte[4]<7>   &= ~Y_MASK<0>
+ *
  * where byte[3] is the 3rd byte in the packet, and byte[4] the 4th.
  *
  * For another example, if MARKPTR is 3 and [OFFSET] is 0 and the packet is RED_SEND,
- *    byte[3]<7:4> |=   R_VAL<3:0>
- *    byte[3]<7:4> &= ~R_MASK<3:0>
+ *
+ * _   byte[3]<7:4> |=   R_VAL<3:0>
+ * _   byte[3]<7:4> &= ~R_MASK<3:0>
  */
 union cvmx_pko_formatx_ctl {
 	uint64_t u64;
@@ -4513,19 +4517,19 @@ union cvmx_pko_l1_sqx_cir {
 	struct cvmx_pko_l1_sqx_cir_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_41_63               : 23;
-	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
-	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
 	uint64_t reserved_17_28               : 12;
 	uint64_t rate_divider_exponent        : 4;  /**< Rate divider exponent. This 4-bit base-2 exponent is used to divide the credit rate by
                                                          specifying the number of time-wheel turns required before the accumulator is increased.
-                                                         RATE_DIVIDER_EXPONENT should be used to specify data rates lower than ~10 Kbps and
-                                                         RATE_EXPONENT should be set to zero whenever it is used.
-                                                         The rate count = (1 << RATE_DIVIDER_EXPONENT). The supported range for
-                                                         RATE_DIVIDER_EXPONENT is 0 to 12. Programmed values greater than 12 are treated as 12.
+                                                         [RATE_DIVIDER_EXPONENT] should be used to specify data rates lower than ~10 Kbps and
+                                                         [RATE_EXPONENT] should be set to zero whenever it is used.
+                                                         The rate count = (1 << [RATE_DIVIDER_EXPONENT]). The supported range for
+                                                         [RATE_DIVIDER_EXPONENT] is 0 to 12. Programmed values greater than 12 are treated as 12.
                                                          Note that for the L1-SQs, a time-wheel turn is 48 clocks (SCLK). For the other levels a
                                                          time-wheel turn is 768 clocks (SCLK).
                                                          For L1_SQ: RATE (bytes/second) =
@@ -4534,10 +4538,10 @@ union cvmx_pko_l1_sqx_cir {
                                                          For L[5:2]_SQ: RATE (bytes/second) =
                                                            (SCLK_FREQUENCY / 768) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1 <<
                                                          RATE_DIVIDER_EXPONENT) */
-	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT.
-                                                         RATE_EXPONENT should be used to specify data rates higher than ~10 Kbps and
-                                                         RATE_DIVIDER_EXPONENT should be set to zero whenever it is non-zero. */
-	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT. */
+	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT].
+                                                         [RATE_EXPONENT] should be used to specify data rates higher than ~10 Kbps and
+                                                         [RATE_DIVIDER_EXPONENT] should be set to zero whenever it is nonzero. */
+	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT]. */
 	uint64_t enable                       : 1;  /**< Enable. Enables CIR shaping. */
 #else
 	uint64_t enable                       : 1;
@@ -4705,7 +4709,7 @@ union cvmx_pko_l1_sqx_link {
                                                          not allowed to flow when the count is less than zero. As such the most significant bit
                                                          should normally be programmed as zero (positive count). This gives a maximum value for
                                                          this field of 2^9 - 1. */
-	uint64_t cc_enable                    : 1;  /**< Channel credit enable. Enables CC_WORD_CNT and CC_PACKET_CNT aggregate credit processing. */
+	uint64_t cc_enable                    : 1;  /**< Channel credit enable. Enables [CC_WORD_CNT] and [CC_PACKET_CNT] aggregate credit processing. */
 	uint64_t reserved_0_0                 : 1;
 #else
 	uint64_t reserved_0_0                 : 1;
@@ -4734,7 +4738,7 @@ union cvmx_pko_l1_sqx_link {
                                                          not allowed to flow when the count is less than zero. As such the most significant bit
                                                          should normally be programmed as zero (positive count). This gives a maximum value for
                                                          this field of 2^9 - 1. */
-	uint64_t cc_enable                    : 1;  /**< Channel credit enable. Enables CC_WORD_CNT and CC_PACKET_CNT aggregate credit processing. */
+	uint64_t cc_enable                    : 1;  /**< Channel credit enable. Enables [CC_WORD_CNT] and [CC_PACKET_CNT] aggregate credit processing. */
 	uint64_t reserved_0_0                 : 1;
 #else
 	uint64_t reserved_0_0                 : 1;
@@ -5058,13 +5062,13 @@ union cvmx_pko_l1_sqx_sw_xoff {
 	uint64_t reserved_4_63                : 60;
 	uint64_t drain_irq                    : 1;  /**< Drain IRQ. Enables an interrupt that fires when the drain operation has completed.
                                                          [DRAIN_IRQ] should be set whenever [DRAIN] is, and must not be set
-                                                         when [DRAIN] isn't set.  DRAIN_IRQ has no effect unless DRAIN and XOFF is also set. */
+                                                         when [DRAIN] isn't set. [DRAIN_IRQ] has no effect unless [DRAIN] and [XOFF] are also set. */
 	uint64_t drain_null_link              : 1;  /**< Drain null link. This setting only has effect when the L1 node is
                                                          mapped to the NULL FIFO.  Conditions the drain path to drain through
                                                          the NULL FIFO (i.e. link 14). As such, channel credits, HW_XOFF, and
                                                          shaping are disabled on the draining path until the path has drained.
                                                          [DRAIN_NULL_LINK] must not be set when [DRAIN] isn't set.
-                                                         DRAIN_NULL_LINK has no effect unless DRAIN and XOFF is also set. */
+                                                         [DRAIN_NULL_LINK] has no effect unless [DRAIN] and [XOFF] are also set. */
 	uint64_t drain                        : 1;  /**< Drain. This control activates a drain path through the PSE that starts at this node and
                                                          ends at the SQ1 level. The drain path is prioritized over other paths through PSE and can
                                                          be used in combination with [DRAIN_NULL_LINK] and [DRAIN_IRQ]. [DRAIN] need never be
@@ -5072,16 +5076,16 @@ union cvmx_pko_l1_sqx_sw_xoff {
                                                          PKO_DRAIN_IRQ[INTR] should be clear prior to initiating a [DRAIN]=1 write to this CSR.
                                                          After [DRAIN] is set for an SQ/DQ, it should not be set again, for this or any other
                                                          SQ/DQ, until after a 0->1 transition has been observed on PKO_DRAIN_IRQ[INTR]
-                                                         (and/or the PKO_INTSN_E::PKO_PSE_PQ_DRAIN CIU interrupt has occured) and
-                                                         PKO_DRAIN_IRQ[INTR] has been cleared.  DRAIN has no effect unless XOFF is also set.
-                                                         Only one DRAIN command is allowed to be active at a time. */
+                                                         (and/or the PKO_INTSN_E::PKO_PSE_PQ_DRAIN CIU interrupt has occurred) and
+                                                         PKO_DRAIN_IRQ[INTR] has been cleared. [DRAIN] has no effect unless [XOFF] is also set.
+                                                         Only one [DRAIN] command is allowed to be active at a time. */
 	uint64_t xoff                         : 1;  /**< XOFF. Stops meta flow out of the SQ/DQ. When [XOFF] is set, the corresponding
                                                          PKO_*_PICK (i.e. the meta) in the SQ/DQ cannot be transferred to the
                                                          next level. The corresponding PKO_*_PICK may become valid while [XOFF] is set,
                                                          but it cannot change from valid to invalid while [XOFF] is set.
                                                          NOTE: The associated PKO_*_TOPOLOGY[LINK/PARENT] should normally be configured before
                                                          [XOFF] is set. Setting [XOFF] before the associated PKO_*_TOPOLOGY[LINK/PARENT]
-                                                         value is configured can result in modifying the software XOFF state of the wrong SQ. */
+                                                         value is configured can result in modifying the software [XOFF] state of the wrong SQ. */
 #else
 	uint64_t xoff                         : 1;
 	uint64_t drain                        : 1;
@@ -5105,15 +5109,15 @@ union cvmx_pko_l1_sqx_topology {
 	struct cvmx_pko_l1_sqx_topology_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_41_63               : 23;
-	uint64_t prio_anchor                  : 9;  /**< Priority Anchor. The base index positioning the static priority child queues of this
+	uint64_t prio_anchor                  : 9;  /**< Priority anchor. The base index positioning the static priority child queues of this
                                                          shaper. A higher-level queue is a child queue of this shaper when its
                                                          PKO_*_TOPOLOGY[PARENT] selects this shaper, and it further is a static priority child
-                                                         queue when its PKO_*_SQn_SCHEDULE[PRIO] does not equal RR_PRIO. A static priority child
-                                                         queue with priority PRIO must be located at n=PRIO_ANCHOR+PRIO, where
+                                                         queue when its PKO_*_SQn_SCHEDULE[PRIO] does not equal [RR_PRIO]. A static priority child
+                                                         queue with priority PRIO must be located at n=[PRIO_ANCHOR]+PRIO, where
                                                          PRIO=PKO_*_SQn_SCHEDULE[PRIO]. There can be at most one static priority child queue at
                                                          each priority. When there are no static priority child queues attached at any priority, or
-                                                         if this shaper isn't used, the hardware does not use PRIO_ANCHOR. In this case, we
-                                                         recommend PRIO_ANCHOR be zero. Note that there are 10 available priorities, 0 through 9,
+                                                         if this shaper isn't used, the hardware does not use [PRIO_ANCHOR]. In this case, we
+                                                         recommend [PRIO_ANCHOR] be zero. Note that there are 10 available priorities, 0 through 9,
                                                          with priority 0 being the highest and priority 9 being the lowest. */
 	uint64_t reserved_21_31               : 11;
 	uint64_t link                         : 5;  /**< Link index. Selects the MAC or NULL FIFO used by the L1 SQ.
@@ -5135,15 +5139,16 @@ union cvmx_pko_l1_sqx_topology {
                                                             10            None           NULL FIFO
                                                          </pre>
                                                          When a MAC is used by the L1 SQ, [LINK] must be unique relative to
-                                                         other [LINK]'s. [LINK] should be 14 when the L1 SQ is not used. */
+                                                         other [LINK]s. [LINK] should be 14 when the L1 SQ is not used. */
 	uint64_t reserved_5_15                : 11;
 	uint64_t rr_prio                      : 4;  /**< Round-robin priority. The priority assigned to the round-robin scheduler. A higher-level
                                                          queue is a child queue of this shaper when its PKO_*_TOPOLOGY[PARENT] selects this shaper,
                                                          and it further is a round robin child queue when its PKO_*_SQn_SCHEDULE[PRIO] equals
-                                                         RR_PRIO. All round-robin queues attached to this shaper must have the same priority. But
+                                                         [RR_PRIO]. All round-robin queues attached to this shaper must have the same priority. But
                                                          the number of round-robin child queues attached (at this priority) is limited only by the
-                                                         number of higher-level queues. When this shaper is not used, we recommend RR_PRIO be zero.
-                                                         When a shaper is used, RR_PRIO should be 0xF when there are no priorities with more than
+                                                         number of higher-level queues. When this shaper is not used, we recommend [RR_PRIO] be
+                                                         zero.
+                                                         When a shaper is used, [RR_PRIO] should be 0xF when there are no priorities with more than
                                                          one child queue (i.e. when there are no round-robin child queues), and should otherwise be
                                                          a legal priority (values 0-9). */
 	uint64_t reserved_0_0                 : 1;
@@ -5160,15 +5165,15 @@ union cvmx_pko_l1_sqx_topology {
 	struct cvmx_pko_l1_sqx_topology_cn73xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_40_63               : 24;
-	uint64_t prio_anchor                  : 8;  /**< Priority Anchor. The base index positioning the static priority child queues of this
+	uint64_t prio_anchor                  : 8;  /**< Priority anchor. The base index positioning the static priority child queues of this
                                                          shaper. A higher-level queue is a child queue of this shaper when its
                                                          PKO_*_TOPOLOGY[PARENT] selects this shaper, and it further is a static priority child
-                                                         queue when its PKO_*_SQn_SCHEDULE[PRIO] does not equal RR_PRIO. A static priority child
-                                                         queue with priority PRIO must be located at n=PRIO_ANCHOR+PRIO, where
+                                                         queue when its PKO_*_SQn_SCHEDULE[PRIO] does not equal [RR_PRIO]. A static priority child
+                                                         queue with priority PRIO must be located at n=[PRIO_ANCHOR]+PRIO, where
                                                          PRIO=PKO_*_SQn_SCHEDULE[PRIO]. There can be at most one static priority child queue at
                                                          each priority. When there are no static priority child queues attached at any priority, or
-                                                         if this shaper isn't used, the hardware does not use PRIO_ANCHOR. In this case, we
-                                                         recommend PRIO_ANCHOR be zero. Note that there are 10 available priorities, 0 through 9,
+                                                         if this shaper isn't used, the hardware does not use [PRIO_ANCHOR]. In this case, we
+                                                         recommend [PRIO_ANCHOR] be zero. Note that there are 10 available priorities, 0 through 9,
                                                          with priority 0 being the highest and priority 9 being the lowest. */
 	uint64_t reserved_20_31               : 12;
 	uint64_t link                         : 4;  /**< Link index. Selects the MAC or NULL FIFO used by the L1 SQ.
@@ -5194,15 +5199,16 @@ union cvmx_pko_l1_sqx_topology {
                                                             14            None           NULL FIFO
                                                          </pre>
                                                          When a MAC is used by the L1 SQ, [LINK] must be unique relative to
-                                                         other [LINK]'s. [LINK] should be 14 when the L1 SQ is not used. */
+                                                         other [LINK]s. [LINK] should be 14 when the L1 SQ is not used. */
 	uint64_t reserved_5_15                : 11;
 	uint64_t rr_prio                      : 4;  /**< Round-robin priority. The priority assigned to the round-robin scheduler. A higher-level
                                                          queue is a child queue of this shaper when its PKO_*_TOPOLOGY[PARENT] selects this shaper,
                                                          and it further is a round robin child queue when its PKO_*_SQn_SCHEDULE[PRIO] equals
-                                                         RR_PRIO. All round-robin queues attached to this shaper must have the same priority. But
+                                                         [RR_PRIO]. All round-robin queues attached to this shaper must have the same priority. But
                                                          the number of round-robin child queues attached (at this priority) is limited only by the
-                                                         number of higher-level queues. When this shaper is not used, we recommend RR_PRIO be zero.
-                                                         When a shaper is used, RR_PRIO should be 0xF when there are no priorities with more than
+                                                         number of higher-level queues. When this shaper is not used, we recommend [RR_PRIO] be
+                                                         zero.
+                                                         When a shaper is used, [RR_PRIO] should be 0xF when there are no priorities with more than
                                                          one child queue (i.e. when there are no round-robin child queues), and should otherwise be
                                                          a legal priority (values 0-9). */
 	uint64_t reserved_0_0                 : 1;
@@ -5369,19 +5375,19 @@ union cvmx_pko_l2_sqx_cir {
 	struct cvmx_pko_l2_sqx_cir_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_41_63               : 23;
-	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
-	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
 	uint64_t reserved_17_28               : 12;
 	uint64_t rate_divider_exponent        : 4;  /**< Rate divider exponent. This 4-bit base-2 exponent is used to divide the credit rate by
                                                          specifying the number of time-wheel turns required before the accumulator is increased.
-                                                         RATE_DIVIDER_EXPONENT should be used to specify data rates lower than ~10 Kbps and
-                                                         RATE_EXPONENT should be set to zero whenever it is used.
-                                                         The rate count = (1 << RATE_DIVIDER_EXPONENT). The supported range for
-                                                         RATE_DIVIDER_EXPONENT is 0 to 12. Programmed values greater than 12 are treated as 12.
+                                                         [RATE_DIVIDER_EXPONENT] should be used to specify data rates lower than ~10 Kbps and
+                                                         [RATE_EXPONENT] should be set to zero whenever it is used.
+                                                         The rate count = (1 << [RATE_DIVIDER_EXPONENT]). The supported range for
+                                                         [RATE_DIVIDER_EXPONENT] is 0 to 12. Programmed values greater than 12 are treated as 12.
                                                          Note that for the L1-SQs, a time-wheel turn is 48 clocks (SCLK). For the other levels a
                                                          time-wheel turn is 768 clocks (SCLK).
                                                          For L1_SQ: RATE (bytes/second) =
@@ -5390,10 +5396,10 @@ union cvmx_pko_l2_sqx_cir {
                                                          For L[5:2]_SQ: RATE (bytes/second) =
                                                            (SCLK_FREQUENCY / 768) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1 <<
                                                          RATE_DIVIDER_EXPONENT) */
-	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT.
-                                                         RATE_EXPONENT should be used to specify data rates higher than ~10 Kbps and
-                                                         RATE_DIVIDER_EXPONENT should be set to zero whenever it is non-zero. */
-	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT. */
+	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT].
+                                                         [RATE_EXPONENT] should be used to specify data rates higher than ~10 Kbps and
+                                                         [RATE_DIVIDER_EXPONENT] should be set to zero whenever it is nonzero. */
+	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT]. */
 	uint64_t enable                       : 1;  /**< Enable. Enables CIR shaping. */
 #else
 	uint64_t enable                       : 1;
@@ -5543,19 +5549,19 @@ union cvmx_pko_l2_sqx_pir {
 	struct cvmx_pko_l2_sqx_pir_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_41_63               : 23;
-	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
-	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
 	uint64_t reserved_17_28               : 12;
 	uint64_t rate_divider_exponent        : 4;  /**< Rate divider exponent. This 4-bit base-2 exponent is used to divide the credit rate by
                                                          specifying the number of time-wheel turns required before the accumulator is increased.
-                                                         RATE_DIVIDER_EXPONENT should be used to specify data rates lower than ~10 Kbps and
-                                                         RATE_EXPONENT should be set to zero whenever it is used.
-                                                         The rate count = (1 << RATE_DIVIDER_EXPONENT). The supported range for
-                                                         RATE_DIVIDER_EXPONENT is 0 to 12. Programmed values greater than 12 are treated as 12.
+                                                         [RATE_DIVIDER_EXPONENT] should be used to specify data rates lower than ~10 Kbps and
+                                                         [RATE_EXPONENT] should be set to zero whenever it is used.
+                                                         The rate count = (1 << [RATE_DIVIDER_EXPONENT]). The supported range for
+                                                         [RATE_DIVIDER_EXPONENT] is 0 to 12. Programmed values greater than 12 are treated as 12.
                                                          Note that for the L1-SQs, a time-wheel turn is 48 clocks (SCLK). For the other levels a
                                                          time-wheel turn is 768 clocks (SCLK).
                                                          For L1_SQ: RATE (bytes/second) =
@@ -5564,10 +5570,10 @@ union cvmx_pko_l2_sqx_pir {
                                                          For L[5:2]_SQ: RATE (bytes/second) =
                                                            (SCLK_FREQUENCY / 768) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1 <<
                                                          RATE_DIVIDER_EXPONENT) */
-	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT.
-                                                         RATE_EXPONENT should be used to specify data rates higher than ~10 Kbps and
-                                                         RATE_DIVIDER_EXPONENT should be set to zero whenever it is non-zero. */
-	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT. */
+	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT].
+                                                         [RATE_EXPONENT] should be used to specify data rates higher than ~10 Kbps and
+                                                         [RATE_DIVIDER_EXPONENT] should be set to zero whenever it is nonzero. */
+	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT]. */
 	uint64_t enable                       : 1;  /**< Enable. Enables CIR shaping. */
 #else
 	uint64_t enable                       : 1;
@@ -5682,9 +5688,9 @@ union cvmx_pko_l2_sqx_schedule {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_28_63               : 36;
 	uint64_t prio                         : 4;  /**< Priority. The priority used for this SQ in the (lower-level) parent's scheduling
-                                                         algorithm. When this SQ is not used, we recommend setting PRIO to zero. The legal PRIO
-                                                         values are 0-9 when the SQ is used. In addition to priority, PRIO determines whether the
-                                                         SQ is a static queue or not: If PRIO equals PKO_*_SQn_TOPOLOGY[RR_PRIO], where
+                                                         algorithm. When this SQ is not used, we recommend setting [PRIO] to zero. The legal [PRIO]
+                                                         values are 0-9 when the SQ is used. In addition to priority, [PRIO] determines whether the
+                                                         SQ is a static queue or not: If [PRIO] equals PKO_*_SQn_TOPOLOGY[RR_PRIO], where
                                                          PKO_*_TOPOLOGY[PARENT] for this SQ equals n, then this is a round-robin child queue into
                                                          the shaper at the next level. */
 	uint64_t rr_quantum                   : 24; /**< Round-robin (DWRR) quantum. The deficit-weighted round-robin quantum (24-bit unsigned
@@ -5867,13 +5873,13 @@ union cvmx_pko_l2_sqx_sw_xoff {
 	uint64_t reserved_4_63                : 60;
 	uint64_t drain_irq                    : 1;  /**< Drain IRQ. Enables an interrupt that fires when the drain operation has completed.
                                                          [DRAIN_IRQ] should be set whenever [DRAIN] is, and must not be set
-                                                         when [DRAIN] isn't set.  DRAIN_IRQ has no effect unless DRAIN and XOFF is also set. */
+                                                         when [DRAIN] isn't set. [DRAIN_IRQ] has no effect unless [DRAIN] and [XOFF] are also set. */
 	uint64_t drain_null_link              : 1;  /**< Drain null link. This setting only has effect when the L1 node is
                                                          mapped to the NULL FIFO.  Conditions the drain path to drain through
                                                          the NULL FIFO (i.e. link 14). As such, channel credits, HW_XOFF, and
                                                          shaping are disabled on the draining path until the path has drained.
                                                          [DRAIN_NULL_LINK] must not be set when [DRAIN] isn't set.
-                                                         DRAIN_NULL_LINK has no effect unless DRAIN and XOFF is also set. */
+                                                         [DRAIN_NULL_LINK] has no effect unless [DRAIN] and [XOFF] are also set. */
 	uint64_t drain                        : 1;  /**< Drain. This control activates a drain path through the PSE that starts at this node and
                                                          ends at the SQ1 level. The drain path is prioritized over other paths through PSE and can
                                                          be used in combination with [DRAIN_NULL_LINK] and [DRAIN_IRQ]. [DRAIN] need never be
@@ -5881,16 +5887,16 @@ union cvmx_pko_l2_sqx_sw_xoff {
                                                          PKO_DRAIN_IRQ[INTR] should be clear prior to initiating a [DRAIN]=1 write to this CSR.
                                                          After [DRAIN] is set for an SQ/DQ, it should not be set again, for this or any other
                                                          SQ/DQ, until after a 0->1 transition has been observed on PKO_DRAIN_IRQ[INTR]
-                                                         (and/or the PKO_INTSN_E::PKO_PSE_PQ_DRAIN CIU interrupt has occured) and
-                                                         PKO_DRAIN_IRQ[INTR] has been cleared.  DRAIN has no effect unless XOFF is also set.
-                                                         Only one DRAIN command is allowed to be active at a time. */
+                                                         (and/or the PKO_INTSN_E::PKO_PSE_PQ_DRAIN CIU interrupt has occurred) and
+                                                         PKO_DRAIN_IRQ[INTR] has been cleared. [DRAIN] has no effect unless [XOFF] is also set.
+                                                         Only one [DRAIN] command is allowed to be active at a time. */
 	uint64_t xoff                         : 1;  /**< XOFF. Stops meta flow out of the SQ/DQ. When [XOFF] is set, the corresponding
                                                          PKO_*_PICK (i.e. the meta) in the SQ/DQ cannot be transferred to the
                                                          next level. The corresponding PKO_*_PICK may become valid while [XOFF] is set,
                                                          but it cannot change from valid to invalid while [XOFF] is set.
                                                          NOTE: The associated PKO_*_TOPOLOGY[LINK/PARENT] should normally be configured before
                                                          [XOFF] is set. Setting [XOFF] before the associated PKO_*_TOPOLOGY[LINK/PARENT]
-                                                         value is configured can result in modifying the software XOFF state of the wrong SQ. */
+                                                         value is configured can result in modifying the software [XOFF] state of the wrong SQ. */
 #else
 	uint64_t xoff                         : 1;
 	uint64_t drain                        : 1;
@@ -6058,7 +6064,7 @@ typedef union cvmx_pko_l2_sqb_debug cvmx_pko_l2_sqb_debug_t;
  * cvmx_pko_l3_l2_sq#_channel
  *
  * PKO_CHANNEL_LEVEL[CC_LEVEL] determines whether this CSR array is associated to
- * the L2 SQ's or the L3 SQ's.
+ * the L2 SQs or the L3 SQs.
  */
 union cvmx_pko_l3_l2_sqx_channel {
 	uint64_t u64;
@@ -6109,19 +6115,19 @@ union cvmx_pko_l3_sqx_cir {
 	struct cvmx_pko_l3_sqx_cir_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_41_63               : 23;
-	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
-	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
 	uint64_t reserved_17_28               : 12;
 	uint64_t rate_divider_exponent        : 4;  /**< Rate divider exponent. This 4-bit base-2 exponent is used to divide the credit rate by
                                                          specifying the number of time-wheel turns required before the accumulator is increased.
-                                                         RATE_DIVIDER_EXPONENT should be used to specify data rates lower than ~10 Kbps and
-                                                         RATE_EXPONENT should be set to zero whenever it is used.
-                                                         The rate count = (1 << RATE_DIVIDER_EXPONENT). The supported range for
-                                                         RATE_DIVIDER_EXPONENT is 0 to 12. Programmed values greater than 12 are treated as 12.
+                                                         [RATE_DIVIDER_EXPONENT] should be used to specify data rates lower than ~10 Kbps and
+                                                         [RATE_EXPONENT] should be set to zero whenever it is used.
+                                                         The rate count = (1 << [RATE_DIVIDER_EXPONENT]). The supported range for
+                                                         [RATE_DIVIDER_EXPONENT] is 0 to 12. Programmed values greater than 12 are treated as 12.
                                                          Note that for the L1-SQs, a time-wheel turn is 48 clocks (SCLK). For the other levels a
                                                          time-wheel turn is 768 clocks (SCLK).
                                                          For L1_SQ: RATE (bytes/second) =
@@ -6130,10 +6136,10 @@ union cvmx_pko_l3_sqx_cir {
                                                          For L[5:2]_SQ: RATE (bytes/second) =
                                                            (SCLK_FREQUENCY / 768) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1 <<
                                                          RATE_DIVIDER_EXPONENT) */
-	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT.
-                                                         RATE_EXPONENT should be used to specify data rates higher than ~10 Kbps and
-                                                         RATE_DIVIDER_EXPONENT should be set to zero whenever it is non-zero. */
-	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT. */
+	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT].
+                                                         [RATE_EXPONENT] should be used to specify data rates higher than ~10 Kbps and
+                                                         [RATE_DIVIDER_EXPONENT] should be set to zero whenever it is nonzero. */
+	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT]. */
 	uint64_t enable                       : 1;  /**< Enable. Enables CIR shaping. */
 #else
 	uint64_t enable                       : 1;
@@ -6283,7 +6289,7 @@ typedef union cvmx_pko_l3_sqx_pick cvmx_pko_l3_sqx_pick_t;
 /**
  * cvmx_pko_l3_sq#_pir
  *
- * This register has the same bit fields as PKO_L1_SQ(0..15)_CIR.
+ * This register has the same bit fields as PKO_L1_SQ()_CIR.
  *
  */
 union cvmx_pko_l3_sqx_pir {
@@ -6291,19 +6297,19 @@ union cvmx_pko_l3_sqx_pir {
 	struct cvmx_pko_l3_sqx_pir_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_41_63               : 23;
-	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
-	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
 	uint64_t reserved_17_28               : 12;
 	uint64_t rate_divider_exponent        : 4;  /**< Rate divider exponent. This 4-bit base-2 exponent is used to divide the credit rate by
                                                          specifying the number of time-wheel turns required before the accumulator is increased.
-                                                         RATE_DIVIDER_EXPONENT should be used to specify data rates lower than ~10 Kbps and
-                                                         RATE_EXPONENT should be set to zero whenever it is used.
-                                                         The rate count = (1 << RATE_DIVIDER_EXPONENT). The supported range for
-                                                         RATE_DIVIDER_EXPONENT is 0 to 12. Programmed values greater than 12 are treated as 12.
+                                                         [RATE_DIVIDER_EXPONENT] should be used to specify data rates lower than ~10 Kbps and
+                                                         [RATE_EXPONENT] should be set to zero whenever it is used.
+                                                         The rate count = (1 << [RATE_DIVIDER_EXPONENT]). The supported range for
+                                                         [RATE_DIVIDER_EXPONENT] is 0 to 12. Programmed values greater than 12 are treated as 12.
                                                          Note that for the L1-SQs, a time-wheel turn is 48 clocks (SCLK). For the other levels a
                                                          time-wheel turn is 768 clocks (SCLK).
                                                          For L1_SQ: RATE (bytes/second) =
@@ -6312,10 +6318,10 @@ union cvmx_pko_l3_sqx_pir {
                                                          For L[5:2]_SQ: RATE (bytes/second) =
                                                            (SCLK_FREQUENCY / 768) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1 <<
                                                          RATE_DIVIDER_EXPONENT) */
-	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT.
-                                                         RATE_EXPONENT should be used to specify data rates higher than ~10 Kbps and
-                                                         RATE_DIVIDER_EXPONENT should be set to zero whenever it is non-zero. */
-	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT. */
+	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT].
+                                                         [RATE_EXPONENT] should be used to specify data rates higher than ~10 Kbps and
+                                                         [RATE_DIVIDER_EXPONENT] should be set to zero whenever it is nonzero. */
+	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT]. */
 	uint64_t enable                       : 1;  /**< Enable. Enables CIR shaping. */
 #else
 	uint64_t enable                       : 1;
@@ -6416,7 +6422,7 @@ typedef union cvmx_pko_l3_sqx_red cvmx_pko_l3_sqx_red_t;
 /**
  * cvmx_pko_l3_sq#_sched_state
  *
- * This register has the same bit fields as PKO_L2_SQ(0..255)_SCHED_STATE.
+ * This register has the same bit fields as PKO_L2_SQ()_SCHED_STATE.
  *
  */
 union cvmx_pko_l3_sqx_sched_state {
@@ -6449,9 +6455,9 @@ union cvmx_pko_l3_sqx_schedule {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_28_63               : 36;
 	uint64_t prio                         : 4;  /**< Priority. The priority used for this SQ in the (lower-level) parent's scheduling
-                                                         algorithm. When this SQ is not used, we recommend setting PRIO to zero. The legal PRIO
-                                                         values are 0-9 when the SQ is used. In addition to priority, PRIO determines whether the
-                                                         SQ is a static queue or not: If PRIO equals PKO_*_SQn_TOPOLOGY[RR_PRIO], where
+                                                         algorithm. When this SQ is not used, we recommend setting [PRIO] to zero. The legal [PRIO]
+                                                         values are 0-9 when the SQ is used. In addition to priority, [PRIO] determines whether the
+                                                         SQ is a static queue or not: If [PRIO] equals PKO_*_SQn_TOPOLOGY[RR_PRIO], where
                                                          PKO_*_TOPOLOGY[PARENT] for this SQ equals n, then this is a round-robin child queue into
                                                          the shaper at the next level. */
 	uint64_t rr_quantum                   : 24; /**< Round-robin (DWRR) quantum. The deficit-weighted round-robin quantum (24-bit unsigned
@@ -6578,13 +6584,13 @@ union cvmx_pko_l3_sqx_sw_xoff {
 	uint64_t reserved_4_63                : 60;
 	uint64_t drain_irq                    : 1;  /**< Drain IRQ. Enables an interrupt that fires when the drain operation has completed.
                                                          [DRAIN_IRQ] should be set whenever [DRAIN] is, and must not be set
-                                                         when [DRAIN] isn't set.  DRAIN_IRQ has no effect unless DRAIN and XOFF is also set. */
+                                                         when [DRAIN] isn't set. [DRAIN_IRQ] has no effect unless [DRAIN] and [XOFF] are also set. */
 	uint64_t drain_null_link              : 1;  /**< Drain null link. This setting only has effect when the L1 node is
                                                          mapped to the NULL FIFO.  Conditions the drain path to drain through
                                                          the NULL FIFO (i.e. link 14). As such, channel credits, HW_XOFF, and
                                                          shaping are disabled on the draining path until the path has drained.
                                                          [DRAIN_NULL_LINK] must not be set when [DRAIN] isn't set.
-                                                         DRAIN_NULL_LINK has no effect unless DRAIN and XOFF is also set. */
+                                                         [DRAIN_NULL_LINK] has no effect unless [DRAIN] and [XOFF] are also set. */
 	uint64_t drain                        : 1;  /**< Drain. This control activates a drain path through the PSE that starts at this node and
                                                          ends at the SQ1 level. The drain path is prioritized over other paths through PSE and can
                                                          be used in combination with [DRAIN_NULL_LINK] and [DRAIN_IRQ]. [DRAIN] need never be
@@ -6592,16 +6598,16 @@ union cvmx_pko_l3_sqx_sw_xoff {
                                                          PKO_DRAIN_IRQ[INTR] should be clear prior to initiating a [DRAIN]=1 write to this CSR.
                                                          After [DRAIN] is set for an SQ/DQ, it should not be set again, for this or any other
                                                          SQ/DQ, until after a 0->1 transition has been observed on PKO_DRAIN_IRQ[INTR]
-                                                         (and/or the PKO_INTSN_E::PKO_PSE_PQ_DRAIN CIU interrupt has occured) and
-                                                         PKO_DRAIN_IRQ[INTR] has been cleared.  DRAIN has no effect unless XOFF is also set.
-                                                         Only one DRAIN command is allowed to be active at a time. */
+                                                         (and/or the PKO_INTSN_E::PKO_PSE_PQ_DRAIN CIU interrupt has occurred) and
+                                                         PKO_DRAIN_IRQ[INTR] has been cleared. [DRAIN] has no effect unless [XOFF] is also set.
+                                                         Only one [DRAIN] command is allowed to be active at a time. */
 	uint64_t xoff                         : 1;  /**< XOFF. Stops meta flow out of the SQ/DQ. When [XOFF] is set, the corresponding
                                                          PKO_*_PICK (i.e. the meta) in the SQ/DQ cannot be transferred to the
                                                          next level. The corresponding PKO_*_PICK may become valid while [XOFF] is set,
                                                          but it cannot change from valid to invalid while [XOFF] is set.
                                                          NOTE: The associated PKO_*_TOPOLOGY[LINK/PARENT] should normally be configured before
                                                          [XOFF] is set. Setting [XOFF] before the associated PKO_*_TOPOLOGY[LINK/PARENT]
-                                                         value is configured can result in modifying the software XOFF state of the wrong SQ. */
+                                                         value is configured can result in modifying the software [XOFF] state of the wrong SQ. */
 #else
 	uint64_t xoff                         : 1;
 	uint64_t drain                        : 1;
@@ -6775,31 +6781,31 @@ union cvmx_pko_l4_sqx_cir {
 	struct cvmx_pko_l4_sqx_cir_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_41_63               : 23;
-	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
-	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
 	uint64_t reserved_17_28               : 12;
 	uint64_t rate_divider_exponent        : 4;  /**< Rate divider exponent. This 4-bit base-2 exponent is used to divide the credit rate by
                                                          specifying the number of time-wheel turns required before the accumulator is increased.
-                                                         RATE_DIVIDER_EXPONENT should be used to specify data rates lower than ~10 Kbps and
-                                                         RATE_EXPONENT should be set to zero whenever it is used.
-                                                         The rate count = (1 << RATE_DIVIDER_EXPONENT). The supported range for
-                                                         RATE_DIVIDER_EXPONENT is 0 to 12. Programmed values greater than 12 are treated as 12.
+                                                         [RATE_DIVIDER_EXPONENT] should be used to specify data rates lower than ~10 Kbps and
+                                                         [RATE_EXPONENT] should be set to zero whenever it is used.
+                                                         The rate count = (1 << [RATE_DIVIDER_EXPONENT]). The supported range for
+                                                         [RATE_DIVIDER_EXPONENT] is 0 to 12. Programmed values greater than 12 are treated as 12.
                                                          Note that for the L1-SQs, a time-wheel turn is 96 clocks (SCLK). For the other levels a
                                                          time-wheel turn is 768 clocks (SCLK).
                                                          For L1_SQ: RATE (bytes/second) =
-                                                           (SCLK_FREQUENCY / 96) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1
-                                                         <<RATE_DIVIDER_EXPONENT)
+                                                           (SCLK_FREQUENCY / 96) * ((1.[RATE_MANTISSA]) << [RATE_EXPONENT]) / (1
+                                                         <<[RATE_DIVIDER_EXPONENT])
                                                          For L[5:2]_SQ: RATE (bytes/second) =
-                                                           (SCLK_FREQUENCY / 768) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1 <<
-                                                         RATE_DIVIDER_EXPONENT) */
-	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT.
-                                                         RATE_EXPONENT should be used to specify data rates higher than ~10 Kbps and
-                                                         RATE_DIVIDER_EXPONENT should be set to zero whenever it is non-zero. */
-	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT. */
+                                                           (SCLK_FREQUENCY / 768) * ((1.[RATE_MANTISSA]) << [RATE_EXPONENT]) / (1 <<
+                                                         [RATE_DIVIDER_EXPONENT]) */
+	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT].
+                                                         [RATE_EXPONENT] should be used to specify data rates higher than ~10 Kbps and
+                                                         [RATE_DIVIDER_EXPONENT] should be set to zero whenever it is nonzero. */
+	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT]. */
 	uint64_t enable                       : 1;  /**< Enable. Enables CIR shaping. */
 #else
 	uint64_t enable                       : 1;
@@ -6935,31 +6941,31 @@ union cvmx_pko_l4_sqx_pir {
 	struct cvmx_pko_l4_sqx_pir_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_41_63               : 23;
-	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
-	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
 	uint64_t reserved_17_28               : 12;
 	uint64_t rate_divider_exponent        : 4;  /**< Rate divider exponent. This 4-bit base-2 exponent is used to divide the credit rate by
                                                          specifying the number of time-wheel turns required before the accumulator is increased.
-                                                         RATE_DIVIDER_EXPONENT should be used to specify data rates lower than ~10 Kbps and
-                                                         RATE_EXPONENT should be set to zero whenever it is used.
-                                                         The rate count = (1 << RATE_DIVIDER_EXPONENT). The supported range for
-                                                         RATE_DIVIDER_EXPONENT is 0 to 12. Programmed values greater than 12 are treated as 12.
+                                                         [RATE_DIVIDER_EXPONENT] should be used to specify data rates lower than ~10 Kbps and
+                                                         [RATE_EXPONENT] should be set to zero whenever it is used.
+                                                         The rate count = (1 << [RATE_DIVIDER_EXPONENT]). The supported range for
+                                                         [RATE_DIVIDER_EXPONENT] is 0 to 12. Programmed values greater than 12 are treated as 12.
                                                          Note that for the L1-SQs, a time-wheel turn is 96 clocks (SCLK). For the other levels a
                                                          time-wheel turn is 768 clocks (SCLK).
                                                          For L1_SQ: RATE (bytes/second) =
-                                                           (SCLK_FREQUENCY / 96) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1
-                                                         <<RATE_DIVIDER_EXPONENT)
+                                                           (SCLK_FREQUENCY / 96) * ((1.[RATE_MANTISSA]) << [RATE_EXPONENT]) / (1
+                                                         <<[RATE_DIVIDER_EXPONENT])
                                                          For L[5:2]_SQ: RATE (bytes/second) =
-                                                           (SCLK_FREQUENCY / 768) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1 <<
-                                                         RATE_DIVIDER_EXPONENT) */
-	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT.
-                                                         RATE_EXPONENT should be used to specify data rates higher than ~10 Kbps and
-                                                         RATE_DIVIDER_EXPONENT should be set to zero whenever it is non-zero. */
-	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT. */
+                                                           (SCLK_FREQUENCY / 768) * ((1.[RATE_MANTISSA]) << [RATE_EXPONENT]) / (1 <<
+                                                         [RATE_DIVIDER_EXPONENT]) */
+	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT].
+                                                         [RATE_EXPONENT] should be used to specify data rates higher than ~10 Kbps and
+                                                         [RATE_DIVIDER_EXPONENT] should be set to zero whenever it is nonzero. */
+	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT]. */
 	uint64_t enable                       : 1;  /**< Enable. Enables CIR shaping. */
 #else
 	uint64_t enable                       : 1;
@@ -7058,9 +7064,9 @@ union cvmx_pko_l4_sqx_schedule {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_28_63               : 36;
 	uint64_t prio                         : 4;  /**< Priority. The priority used for this SQ in the (lower-level) parent's scheduling
-                                                         algorithm. When this SQ is not used, we recommend setting PRIO to zero. The legal PRIO
-                                                         values are 0-9 when the SQ is used. In addition to priority, PRIO determines whether the
-                                                         SQ is a static queue or not: If PRIO equals PKO_*_SQn_TOPOLOGY[RR_PRIO], where
+                                                         algorithm. When this SQ is not used, we recommend setting [PRIO] to zero. The legal [PRIO]
+                                                         values are 0-9 when the SQ is used. In addition to priority, [PRIO] determines whether the
+                                                         SQ is a static queue or not: If [PRIO] equals PKO_*_SQn_TOPOLOGY[RR_PRIO], where
                                                          PKO_*_TOPOLOGY[PARENT] for this SQ equals n, then this is a round-robin child queue into
                                                          the shaper at the next level. */
 	uint64_t rr_quantum                   : 24; /**< Round-robin (DWRR) quantum. The deficit-weighted round-robin quantum (24-bit unsigned
@@ -7159,13 +7165,13 @@ union cvmx_pko_l4_sqx_sw_xoff {
 	uint64_t reserved_4_63                : 60;
 	uint64_t drain_irq                    : 1;  /**< Drain IRQ. Enables an interrupt that fires when the drain operation has completed.
                                                          [DRAIN_IRQ] should be set whenever [DRAIN] is, and must not be set
-                                                         when [DRAIN] isn't set.  DRAIN_IRQ has no effect unless DRAIN and XOFF is also set. */
+                                                         when [DRAIN] isn't set. [DRAIN_IRQ] has no effect unless [DRAIN] and [XOFF] are also set. */
 	uint64_t drain_null_link              : 1;  /**< Drain null link. This setting only has effect when the L1 node is
                                                          mapped to the NULL FIFO.  Conditions the drain path to drain through
                                                          the NULL FIFO (i.e. link 14). As such, channel credits, HW_XOFF, and
                                                          shaping are disabled on the draining path until the path has drained.
                                                          [DRAIN_NULL_LINK] must not be set when [DRAIN] isn't set.
-                                                         DRAIN_NULL_LINK has no effect unless DRAIN and XOFF is also set. */
+                                                         [DRAIN_NULL_LINK] has no effect unless [DRAIN] and [XOFF] are also set. */
 	uint64_t drain                        : 1;  /**< Drain. This control activates a drain path through the PSE that starts at this node and
                                                          ends at the SQ1 level. The drain path is prioritized over other paths through PSE and can
                                                          be used in combination with [DRAIN_NULL_LINK] and [DRAIN_IRQ]. [DRAIN] need never be
@@ -7173,16 +7179,16 @@ union cvmx_pko_l4_sqx_sw_xoff {
                                                          PKO_DRAIN_IRQ[INTR] should be clear prior to initiating a [DRAIN]=1 write to this CSR.
                                                          After [DRAIN] is set for an SQ/DQ, it should not be set again, for this or any other
                                                          SQ/DQ, until after a 0->1 transition has been observed on PKO_DRAIN_IRQ[INTR]
-                                                         (and/or the PKO_INTSN_E::PKO_PSE_PQ_DRAIN CIU interrupt has occured) and
-                                                         PKO_DRAIN_IRQ[INTR] has been cleared.  DRAIN has no effect unless XOFF is also set.
-                                                         Only one DRAIN command is allowed to be active at a time. */
+                                                         (and/or the PKO_INTSN_E::PKO_PSE_PQ_DRAIN CIU interrupt has occurred) and
+                                                         PKO_DRAIN_IRQ[INTR] has been cleared. [DRAIN] has no effect unless [XOFF] is also set.
+                                                         Only one [DRAIN] command is allowed to be active at a time. */
 	uint64_t xoff                         : 1;  /**< XOFF. Stops meta flow out of the SQ/DQ. When [XOFF] is set, the corresponding
                                                          PKO_*_PICK (i.e. the meta) in the SQ/DQ cannot be transferred to the
                                                          next level. The corresponding PKO_*_PICK may become valid while [XOFF] is set,
                                                          but it cannot change from valid to invalid while [XOFF] is set.
                                                          NOTE: The associated PKO_*_TOPOLOGY[LINK/PARENT] should normally be configured before
                                                          [XOFF] is set. Setting [XOFF] before the associated PKO_*_TOPOLOGY[LINK/PARENT]
-                                                         value is configured can result in modifying the software XOFF state of the wrong SQ. */
+                                                         value is configured can result in modifying the software [XOFF] state of the wrong SQ. */
 #else
 	uint64_t xoff                         : 1;
 	uint64_t drain                        : 1;
@@ -7317,31 +7323,31 @@ union cvmx_pko_l5_sqx_cir {
 	struct cvmx_pko_l5_sqx_cir_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_41_63               : 23;
-	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
-	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
 	uint64_t reserved_17_28               : 12;
 	uint64_t rate_divider_exponent        : 4;  /**< Rate divider exponent. This 4-bit base-2 exponent is used to divide the credit rate by
                                                          specifying the number of time-wheel turns required before the accumulator is increased.
-                                                         RATE_DIVIDER_EXPONENT should be used to specify data rates lower than ~10 Kbps and
-                                                         RATE_EXPONENT should be set to zero whenever it is used.
-                                                         The rate count = (1 << RATE_DIVIDER_EXPONENT). The supported range for
-                                                         RATE_DIVIDER_EXPONENT is 0 to 12. Programmed values greater than 12 are treated as 12.
+                                                         [RATE_DIVIDER_EXPONENT] should be used to specify data rates lower than ~10 Kbps and
+                                                         [RATE_EXPONENT] should be set to zero whenever it is used.
+                                                         The rate count = (1 << [RATE_DIVIDER_EXPONENT]). The supported range for
+                                                         [RATE_DIVIDER_EXPONENT] is 0 to 12. Programmed values greater than 12 are treated as 12.
                                                          Note that for the L1-SQs, a time-wheel turn is 96 clocks (SCLK). For the other levels a
                                                          time-wheel turn is 768 clocks (SCLK).
                                                          For L1_SQ: RATE (bytes/second) =
-                                                           (SCLK_FREQUENCY / 96) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1
-                                                         <<RATE_DIVIDER_EXPONENT)
+                                                           (SCLK_FREQUENCY / 96) * ((1.[RATE_MANTISSA]) << [RATE_EXPONENT]) / (1
+                                                         <<[RATE_DIVIDER_EXPONENT])
                                                          For L[5:2]_SQ: RATE (bytes/second) =
-                                                           (SCLK_FREQUENCY / 768) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1 <<
-                                                         RATE_DIVIDER_EXPONENT) */
-	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT.
-                                                         RATE_EXPONENT should be used to specify data rates higher than ~10 Kbps and
-                                                         RATE_DIVIDER_EXPONENT should be set to zero whenever it is non-zero. */
-	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT. */
+                                                           (SCLK_FREQUENCY / 768) * ((1.[RATE_MANTISSA]) << [RATE_EXPONENT]) / (1 <<
+                                                         [RATE_DIVIDER_EXPONENT]) */
+	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT].
+                                                         [RATE_EXPONENT] should be used to specify data rates higher than ~10 Kbps and
+                                                         [RATE_DIVIDER_EXPONENT] should be set to zero whenever it is nonzero. */
+	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT]. */
 	uint64_t enable                       : 1;  /**< Enable. Enables CIR shaping. */
 #else
 	uint64_t enable                       : 1;
@@ -7477,31 +7483,31 @@ union cvmx_pko_l5_sqx_pir {
 	struct cvmx_pko_l5_sqx_pir_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_41_63               : 23;
-	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_exponent               : 4;  /**< Burst exponent. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
-	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.BURST_MANTISSA << (BURST_EXPONENT + 1).
-                                                         With BURST_EXPONENT=0xF and BURST_MANTISSA=0xFF, the burst limit is the largest
+	uint64_t burst_mantissa               : 8;  /**< Burst mantissa. The burst limit is 1.[BURST_MANTISSA] << ([BURST_EXPONENT] + 1).
+                                                         With [BURST_EXPONENT]=0xF and [BURST_MANTISSA]=0xFF, the burst limit is the largest
                                                          possible value, which is 130,816 (0x1FF00) bytes. */
 	uint64_t reserved_17_28               : 12;
 	uint64_t rate_divider_exponent        : 4;  /**< Rate divider exponent. This 4-bit base-2 exponent is used to divide the credit rate by
                                                          specifying the number of time-wheel turns required before the accumulator is increased.
-                                                         RATE_DIVIDER_EXPONENT should be used to specify data rates lower than ~10 Kbps and
-                                                         RATE_EXPONENT should be set to zero whenever it is used.
-                                                         The rate count = (1 << RATE_DIVIDER_EXPONENT). The supported range for
-                                                         RATE_DIVIDER_EXPONENT is 0 to 12. Programmed values greater than 12 are treated as 12.
+                                                         [RATE_DIVIDER_EXPONENT] should be used to specify data rates lower than ~10 Kbps and
+                                                         [RATE_EXPONENT] should be set to zero whenever it is used.
+                                                         The rate count = (1 << [RATE_DIVIDER_EXPONENT]). The supported range for
+                                                         [RATE_DIVIDER_EXPONENT] is 0 to 12. Programmed values greater than 12 are treated as 12.
                                                          Note that for the L1-SQs, a time-wheel turn is 96 clocks (SCLK). For the other levels a
                                                          time-wheel turn is 768 clocks (SCLK).
                                                          For L1_SQ: RATE (bytes/second) =
-                                                           (SCLK_FREQUENCY / 96) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1
-                                                         <<RATE_DIVIDER_EXPONENT)
+                                                           (SCLK_FREQUENCY / 96) * ((1.[RATE_MANTISSA]) << [RATE_EXPONENT]) / (1
+                                                         <<[RATE_DIVIDER_EXPONENT])
                                                          For L[5:2]_SQ: RATE (bytes/second) =
-                                                           (SCLK_FREQUENCY / 768) * ((1.RATE_MANTISSA) << RATE_EXPONENT) / (1 <<
-                                                         RATE_DIVIDER_EXPONENT) */
-	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT.
-                                                         RATE_EXPONENT should be used to specify data rates higher than ~10 Kbps and
-                                                         RATE_DIVIDER_EXPONENT should be set to zero whenever it is non-zero. */
-	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.RATE_MANTISSA << RATE_EXPONENT. */
+                                                           (SCLK_FREQUENCY / 768) * ((1.[RATE_MANTISSA]) << [RATE_EXPONENT]) / (1 <<
+                                                         [RATE_DIVIDER_EXPONENT]) */
+	uint64_t rate_exponent                : 4;  /**< Rate exponent. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT].
+                                                         [RATE_EXPONENT] should be used to specify data rates higher than ~10 Kbps and
+                                                         [RATE_DIVIDER_EXPONENT] should be set to zero whenever it is nonzero. */
+	uint64_t rate_mantissa                : 8;  /**< Rate mantissa. The rate is specified as 1.[RATE_MANTISSA] << [RATE_EXPONENT]. */
 	uint64_t enable                       : 1;  /**< Enable. Enables CIR shaping. */
 #else
 	uint64_t enable                       : 1;
@@ -7603,9 +7609,9 @@ union cvmx_pko_l5_sqx_schedule {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_28_63               : 36;
 	uint64_t prio                         : 4;  /**< Priority. The priority used for this SQ in the (lower-level) parent's scheduling
-                                                         algorithm. When this SQ is not used, we recommend setting PRIO to zero. The legal PRIO
-                                                         values are 0-9 when the SQ is used. In addition to priority, PRIO determines whether the
-                                                         SQ is a static queue or not: If PRIO equals PKO_*_SQn_TOPOLOGY[RR_PRIO], where
+                                                         algorithm. When this SQ is not used, we recommend setting [PRIO] to zero. The legal [PRIO]
+                                                         values are 0-9 when the SQ is used. In addition to priority, [PRIO] determines whether the
+                                                         SQ is a static queue or not: If [PRIO] equals PKO_*_SQn_TOPOLOGY[RR_PRIO], where
                                                          PKO_*_TOPOLOGY[PARENT] for this SQ equals n, then this is a round-robin child queue into
                                                          the shaper at the next level. */
 	uint64_t rr_quantum                   : 24; /**< Round-robin (DWRR) quantum. The deficit-weighted round-robin quantum (24-bit unsigned
@@ -7701,13 +7707,13 @@ union cvmx_pko_l5_sqx_sw_xoff {
 	uint64_t reserved_4_63                : 60;
 	uint64_t drain_irq                    : 1;  /**< Drain IRQ. Enables an interrupt that fires when the drain operation has completed.
                                                          [DRAIN_IRQ] should be set whenever [DRAIN] is, and must not be set
-                                                         when [DRAIN] isn't set.  DRAIN_IRQ has no effect unless DRAIN and XOFF is also set. */
+                                                         when [DRAIN] isn't set. [DRAIN_IRQ] has no effect unless [DRAIN] and [XOFF] are also set. */
 	uint64_t drain_null_link              : 1;  /**< Drain null link. This setting only has effect when the L1 node is
                                                          mapped to the NULL FIFO.  Conditions the drain path to drain through
                                                          the NULL FIFO (i.e. link 14). As such, channel credits, HW_XOFF, and
                                                          shaping are disabled on the draining path until the path has drained.
                                                          [DRAIN_NULL_LINK] must not be set when [DRAIN] isn't set.
-                                                         DRAIN_NULL_LINK has no effect unless DRAIN and XOFF is also set. */
+                                                         [DRAIN_NULL_LINK] has no effect unless [DRAIN] and [XOFF] are also set. */
 	uint64_t drain                        : 1;  /**< Drain. This control activates a drain path through the PSE that starts at this node and
                                                          ends at the SQ1 level. The drain path is prioritized over other paths through PSE and can
                                                          be used in combination with [DRAIN_NULL_LINK] and [DRAIN_IRQ]. [DRAIN] need never be
@@ -7715,16 +7721,16 @@ union cvmx_pko_l5_sqx_sw_xoff {
                                                          PKO_DRAIN_IRQ[INTR] should be clear prior to initiating a [DRAIN]=1 write to this CSR.
                                                          After [DRAIN] is set for an SQ/DQ, it should not be set again, for this or any other
                                                          SQ/DQ, until after a 0->1 transition has been observed on PKO_DRAIN_IRQ[INTR]
-                                                         (and/or the PKO_INTSN_E::PKO_PSE_PQ_DRAIN CIU interrupt has occured) and
-                                                         PKO_DRAIN_IRQ[INTR] has been cleared.  DRAIN has no effect unless XOFF is also set.
-                                                         Only one DRAIN command is allowed to be active at a time. */
+                                                         (and/or the PKO_INTSN_E::PKO_PSE_PQ_DRAIN CIU interrupt has occurred) and
+                                                         PKO_DRAIN_IRQ[INTR] has been cleared. [DRAIN] has no effect unless [XOFF] is also set.
+                                                         Only one [DRAIN] command is allowed to be active at a time. */
 	uint64_t xoff                         : 1;  /**< XOFF. Stops meta flow out of the SQ/DQ. When [XOFF] is set, the corresponding
                                                          PKO_*_PICK (i.e. the meta) in the SQ/DQ cannot be transferred to the
                                                          next level. The corresponding PKO_*_PICK may become valid while [XOFF] is set,
                                                          but it cannot change from valid to invalid while [XOFF] is set.
                                                          NOTE: The associated PKO_*_TOPOLOGY[LINK/PARENT] should normally be configured before
                                                          [XOFF] is set. Setting [XOFF] before the associated PKO_*_TOPOLOGY[LINK/PARENT]
-                                                         value is configured can result in modifying the software XOFF state of the wrong SQ. */
+                                                         value is configured can result in modifying the software [XOFF] state of the wrong SQ. */
 #else
 	uint64_t xoff                         : 1;
 	uint64_t drain                        : 1;
@@ -8078,14 +8084,18 @@ union cvmx_pko_macx_cfg {
 	uint64_t reserved_17_63               : 47;
 	uint64_t min_pad_ena                  : 1;  /**< Minimum padding enable. When [MIN_PAD_ENA] is set, PKO pads packets going
                                                          through the MAC/FIFO (with zeroes) to a minimum of PKO_PDM_CFG[PKO_PAD_MINLEN]
-                                                         bytes. */
-	uint64_t fcs_ena                      : 1;  /**< Enable outside FCS for this MAC/FIFO. */
+                                                         bytes. PKO pads prior to optionally generating FCS (see [FCS_ENA]).
+                                                         When DPI packet is used, [MIN_PAD_ENA] should normally be set for DPI packet,
+                                                         and PKO_PDM_CFG[PKO_PAD_MINLEN] should normally be 0x3C or larger. */
+	uint64_t fcs_ena                      : 1;  /**< Enable outside FCS generation for this MAC/FIFO. This adds four bytes to the
+                                                         packet, and occurs after minimum padding, if any (see [MIN_PAD_ENA]).
+                                                         [FCS_ENA] may normally not be set for DPI packet and LBK loopback output packets. */
 	uint64_t fcs_sop_off                  : 8;  /**< FCS start of packet offset. For this MAC, the number of bytes in the front of each packet
                                                          to exclude from FCS. */
 	uint64_t skid_max_cnt                 : 2;  /**< Maximum number of SKID credits. 0x0 = 16; 0x1 = 32; 0x2 = 64. */
 	uint64_t fifo_num                     : 5;  /**< The PEB TX FIFO number assigned to the given MAC. A value of 31 means unassigned. Unused
-                                                         MACs must have [FIFO_NUM] = 31. For each active MAC, a unique valid FIFO_NUM must
-                                                         be assigned. When all PKO_PTGF(0..3)_CFG[SIZE] are zero, legal [FIFO_NUM] values are
+                                                         MACs must have [FIFO_NUM] = 31. For each active MAC, a unique valid [FIFO_NUM] must
+                                                         be assigned. When all PKO_PTGF()_CFG[SIZE] are zero, legal [FIFO_NUM] values are
                                                          0..15 and 31. [FIFO_NUM] can never select the NULL FIFO. At most one
                                                          used MAC can be simultaneously assigned the same used [FIFO_NUM].
                                                          [FIFO_NUM] values 16-30 are illegal and must not be used. */
@@ -10439,14 +10449,14 @@ union cvmx_pko_ncb_int {
 	uint64_t reserved_2_63                : 62;
 	uint64_t tso_segment_cnt              : 1;  /**< Message segment size is too small to transmit entire packet within the
                                                          maximum allowed number of segments in TCP segmentation offload. The
-                                                         packet will be transmitted in multiple TSO segments till the maximum
+                                                         packet will be transmitted in multiple TSO segments until the maximum
                                                          number of segments is reached. At this point, the interrupt will be
                                                          raised, transmission of the packet will cease, and other available
                                                          packets will be transmitted. This interrupt shares the NCB_TX_ERROR_INFO
                                                          and NCB_TX_ERROR_WORD registers with the NCB_TX_ERROR interrupt to
                                                          record information about the erroneous send packet command. Hence,
                                                          NCB_TX_ERROR_INFO and NCB_TX_ERROR interrupts are onehot; neither
-                                                         will be set till both are cleared. The TSO engine makes no guarantees
+                                                         will be set until both are cleared. The TSO engine makes no guarantees
                                                          about the state of memory and pointers allocated for the packet if
                                                          this interrupt is raised. Throws
                                                          PKO_INTSN_E::PKO_NCB_TSO_SEGMENT_CNT. */
@@ -10614,8 +10624,14 @@ union cvmx_pko_pdm_cfg {
                                                          DQ). For diagnostic use only. */
 	uint64_t dis_flsh_cache               : 1;  /**< Set to disable the flush buffer's cache. This makes all fills require full memory latency.
                                                          For diagnostic use only. */
-	uint64_t pko_pad_minlen               : 7;  /**< Minimum frame padding min length. Padding is enabled by PKO_MAC*_CFG[MIN_PAD_ENA]. See
-                                                         also PKO_PDM_DQ*_MINPAD[MINPAD]. */
+	uint64_t pko_pad_minlen               : 7;  /**< Minimum frame padding min length. Padding is enabled by PKO_MAC()_CFG[MIN_PAD_ENA]. See
+                                                         also PKO_PDM_DQ*_MINPAD[MINPAD].
+                                                         The typical value of 0x3C ensures the pre-FCS packet is at least 60 bytes when
+                                                         PKO_MAC()_CFG[MIN_PAD_ENA]=1. After FCS addition (via PKO_MAC()_CFG[FCS_ENA]=1
+                                                         or via an interface), the packet will be at least 64 bytes when [PKO_PAD_MINLEN]=0x3C
+                                                         and PKO_MAC()_CFG[MIN_PAD_ENA]=1.
+                                                         When DPI packet is used, PKO_PDM_CFG[PKO_PAD_MINLEN] should be 0x3C or larger,
+                                                         and PKO_MAC()_CFG[MIN_PAD_ENA] should normally be set for DPI packet. */
 	uint64_t diag_mode                    : 1;  /**< Set to enable read/write to memories in PDM through CSR interface. For diagnostic use only. */
 	uint64_t alloc_lds                    : 1;  /**< Allocate LDS. This signal prevents the loads to IOBP from being allocated in on-chip cache
                                                          (LDWB vs. LDD). Two modes as follows: 0 = No allocate (LDWB); 1 = Allocate (LDD).
@@ -10649,9 +10665,9 @@ union cvmx_pko_pdm_cfg_dbg {
 	struct cvmx_pko_pdm_cfg_dbg_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t cp_stall_thrshld             : 32; /**< Program this register to the 32-bit number of cycles to test for the PDM(CP) stalled on
-                                                         inputs going into the ISRs. PKO_PDM_STS[CP_STALL_THRSHLD_HIT] indicates the threshold has
-                                                         been hit. */
+	uint64_t cp_stall_thrshld             : 32; /**< Program this register to the 32-bit number of cycles to test for the PDM(CP)
+                                                         stalled on inputs going into the ISRs. PKO_PDM_STS[CP_STALLED_THRSHLD_HIT]
+                                                         indicates the threshold has been hit. */
 #else
 	uint64_t cp_stall_thrshld             : 32;
 	uint64_t reserved_32_63               : 32;
@@ -10710,8 +10726,11 @@ union cvmx_pko_pdm_dqx_minpad {
                                                                                X
                                                          where X is the packet/segment length before pad. PKO_META_DESC_S[LENGTH]
                                                          and PKO_*_PICK[LENGTH] are Meta[LENGTH].
+                                                         In most cases, [MINPAD] should equal the corresponding PKO_MAC()_CFG[MIN_PAD_ENA].
+                                                         But when logic outside PKO pads the packet, it may be appropriate to set [MINPAD]
+                                                         when the corresponding PKO_MAC()_CFG[MIN_PAD_ENA]=0.
                                                          [MINPAD] doesn't affect whether PKO applies pad to the packet or not,
-                                                         PKO_MAC*_CFG[MIN_PAD_ENA] does. When PKO_MAC*_CFG[MIN_PAD_ENA] is set,
+                                                         PKO_MAC()_CFG[MIN_PAD_ENA] does. When PKO_MAC()_CFG[MIN_PAD_ENA] is set,
                                                          PKO pads packets through the MAC to PKO_PDM_CFG[PKO_PAD_MINLEN] bytes. */
 #else
 	uint64_t minpad                       : 1;
@@ -11061,12 +11080,12 @@ union cvmx_pko_pdm_ecc_ctl1 {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_15_63               : 49;
 	uint64_t buf_wm_ram_flip              : 2;  /**< BUF_WM_RAM flip syndrome bits on write. */
-	uint64_t buf_wm_ram_cdis              : 1;  /**< BUF_WM_RAM ECC correction disable for all four memories */
+	uint64_t buf_wm_ram_cdis              : 1;  /**< BUF_WM_RAM ECC correction disable for all four memories. */
 	uint64_t mwp_mem0_ram_flip            : 2;  /**< MWP_MEM0_RAM flip syndrome bits on write. */
 	uint64_t mwp_mem1_ram_flip            : 2;  /**< MWP_MEM1_RAM flip syndrome bits on write. */
 	uint64_t mwp_mem2_ram_flip            : 2;  /**< MWP_MEM2_RAM flip syndrome bits on write. */
 	uint64_t mwp_mem3_ram_flip            : 2;  /**< MWP_MEM3_RAM flip syndrome bits on write. */
-	uint64_t mwp_ram_cdis                 : 1;  /**< MWP_RAM ECC correction disable for all four memories */
+	uint64_t mwp_ram_cdis                 : 1;  /**< MWP_RAM ECC correction disable for all four memories. */
 	uint64_t minpad_ram_flip              : 2;  /**< MINPAD_RAM flip syndrome bits on write. */
 	uint64_t minpad_ram_cdis              : 1;  /**< MINPAD_RAM ECC correction disable. */
 #else
@@ -13006,24 +13025,24 @@ union cvmx_pko_peb_err_int {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_10_63               : 54;
 	uint64_t peb_macx_cfg_wr_err          : 1;  /**< Asserted when software writes a FIFO number to PKO_MAC()_CFG when that FIFO is
-                                                         already assigned. Throws PKO_INTSN_E::PEB_MACX_CFG_WR_ERR. */
+                                                         already assigned. Throws PKO_INTSN_E::PKO_PEB_MACX_CFG_WR_ERR. */
 	uint64_t peb_max_link_err             : 1;  /**< Asserted when 200 LINK segments have been followed. Indicates likelihood of infinite loop.
-                                                         Throws PKO_INTSN_E::PEB_MAX_LINK_ERR. */
+                                                         Throws PKO_INTSN_E::PKO_PEB_MAX_LINK_ERR. */
 	uint64_t peb_subd_size_err            : 1;  /**< Asserted when a SEND_LINK/GATHER/IMM/JUMP subD has size=0. Throws
-                                                         PKO_INTSN_E::PEB_SUBD_SIZE_ERR. */
+                                                         PKO_INTSN_E::PKO_PEB_SUBD_SIZE_ERR. */
 	uint64_t peb_subd_addr_err            : 1;  /**< Asserted when the address of a FREE/MEM/LINK/LINK segment/JUMP/GATHER subD is 0x0. Throws
-                                                         PKO_INTSN_E::PEB_SUBD_ADDR_ERR. */
-	uint64_t peb_trunc_err                : 1;  /**< Asserted when a PD has truncated data. Throws PKO_INTSN_E::PEB_TRUNC_ERR. */
+                                                         PKO_INTSN_E::PKO_PEB_SUBD_ADDR_ERR. */
+	uint64_t peb_trunc_err                : 1;  /**< Asserted when a PD has truncated data. Throws PKO_INTSN_E::PKO_PEB_TRUNC_ERR. */
 	uint64_t peb_pad_err                  : 1;  /**< Asserted when a PD has data padded to it (SEND_HDR[TOTAL] < sum(SEND_DATA[size])). Throws
-                                                         PKO_INTSN_E::PEB_PAD_ERR. */
-	uint64_t peb_pse_fifo_err             : 1;  /**< Asserted when PSE sends PD information for a nonconfigured LINK. Throws
-                                                         PKO_INTSN_E::PEB_PSE_FIFO_ERR. */
+                                                         PKO_INTSN_E::PKO_PEB_PAD_ERR. */
+	uint64_t peb_pse_fifo_err             : 1;  /**< Asserted when PSE sends PD information for a nonconfigured FIFO. Throws
+                                                         PKO_INTSN_E::PKO_PEB_PSE_FIFO_ERR. */
 	uint64_t peb_fcs_sop_err              : 1;  /**< Asserted when FCS SOP value greater than packet size detected. Throws
-                                                         PKO_INTSN_E::PEB_FCS_SOP_ERR. */
+                                                         PKO_INTSN_E::PKO_PEB_FCS_SOP_ERR. */
 	uint64_t peb_jump_def_err             : 1;  /**< Asserted when JUMP subdescriptor is not last in a PD. Throws
-                                                         PKO_INTSN_E::PEB_JUMP_DEF_ERR. */
+                                                         PKO_INTSN_E::PKO_PEB_JUMP_DEF_ERR. */
 	uint64_t peb_ext_hdr_def_err          : 1;  /**< Asserted when EXT_HDR is not the second sub-descriptor in a PD. Throws
-                                                         PKO_INTSN_E::PEB_EXT_HDR_DEF_ERR. */
+                                                         PKO_INTSN_E::PKO_PEB_EXT_HDR_DEF_ERR. */
 #else
 	uint64_t peb_ext_hdr_def_err          : 1;
 	uint64_t peb_jump_def_err             : 1;
@@ -13176,7 +13195,7 @@ union cvmx_pko_peb_ncb_cfg {
 	struct cvmx_pko_peb_ncb_cfg_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_1_63                : 63;
-	uint64_t rstp                         : 1;  /**< Convert STP operations to RSTP */
+	uint64_t rstp                         : 1;  /**< Convert STP operations to RSTP. */
 #else
 	uint64_t rstp                         : 1;
 	uint64_t reserved_1_63                : 63;
@@ -13222,7 +13241,7 @@ union cvmx_pko_peb_pse_fifo_err_info {
 	struct cvmx_pko_peb_pse_fifo_err_info_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_25_63               : 39;
-	uint64_t link                         : 5;  /**< LINK number associated with the captured PEB_PSE_FIFO_ERR. */
+	uint64_t link                         : 5;  /**< Link number associated with the captured PEB_PSE_FIFO_ERR. */
 	uint64_t val                          : 1;  /**< Asserted when PKO_PEB_ERR_INT[PEB_PSE_FIFO_ERR] is set. */
 	uint64_t fifo                         : 7;  /**< FIFO number associated with the captured PEB_PSE_FIFO_ERR. */
 	uint64_t chan                         : 12; /**< Channel number associated with the captured PEB_PSE_FIFO_ERR. */
@@ -13800,21 +13819,21 @@ union cvmx_pko_pse_pq_bist_status {
 	struct cvmx_pko_pse_pq_bist_status_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_15_63               : 49;
-	uint64_t tp_sram                      : 1;  /**< Topology parent - pko_pse_pq_srf32x5e */
+	uint64_t tp_sram                      : 1;  /**< Topology parent - pko_pse_pq_srf32x5e. */
 	uint64_t irq_fifo_sram                : 1;  /**< Reserved. */
-	uint64_t wmd_sram                     : 1;  /**< Dynamic watermark state - pko_pse_wmd_srf1024x49e */
+	uint64_t wmd_sram                     : 1;  /**< Dynamic watermark state - pko_pse_wmd_srf1024x49e. */
 	uint64_t wms_sram                     : 1;  /**< Reserved. */
-	uint64_t cxd_sram                     : 1;  /**< Dynamic channel state - pko_pse_cxd_srf32x31e */
-	uint64_t dqd_sram                     : 1;  /**< DQ dropped stats - pko_pse_stats_srf1024x88 */
-	uint64_t dqs_sram                     : 1;  /**< DQ sent stats - pko_pse_stats_srf1024x88 */
-	uint64_t pqd_sram                     : 1;  /**< PQ dropped stats - pko_pse_stats_srf32x88 */
-	uint64_t pqr_sram                     : 1;  /**< PQ read stats - pko_pse_stats_srf32x88 */
-	uint64_t pqy_sram                     : 1;  /**< PQ yellow stats - pko_pse_stats_srf32x88 */
-	uint64_t pqg_sram                     : 1;  /**< PQ green stats - pko_pse_stats_srf32x88 */
-	uint64_t std_sram                     : 1;  /**< Dynamic shaping state - pko_pse_std_srf32x105e */
-	uint64_t st_sram                      : 1;  /**< Static shaping configuration - pko_pse_sts_srf32x74e */
+	uint64_t cxd_sram                     : 1;  /**< Dynamic channel state - pko_pse_cxd_srf32x31e. */
+	uint64_t dqd_sram                     : 1;  /**< DQ dropped stats - pko_pse_stats_srf1024x88. */
+	uint64_t dqs_sram                     : 1;  /**< DQ sent stats - pko_pse_stats_srf1024x88. */
+	uint64_t pqd_sram                     : 1;  /**< PQ dropped stats - pko_pse_stats_srf32x88. */
+	uint64_t pqr_sram                     : 1;  /**< PQ read stats - pko_pse_stats_srf32x88. */
+	uint64_t pqy_sram                     : 1;  /**< PQ yellow stats - pko_pse_stats_srf32x88. */
+	uint64_t pqg_sram                     : 1;  /**< PQ green stats - pko_pse_stats_srf32x88. */
+	uint64_t std_sram                     : 1;  /**< Dynamic shaping state - pko_pse_std_srf32x105e. */
+	uint64_t st_sram                      : 1;  /**< Static shaping configuration - pko_pse_sts_srf32x74e. */
 	uint64_t reserved_1_1                 : 1;
-	uint64_t cxs_sram                     : 1;  /**< Static channel credit configuration - pko_pse_cx0_srf32x6e */
+	uint64_t cxs_sram                     : 1;  /**< Static channel credit configuration - pko_pse_cx0_srf32x6e. */
 #else
 	uint64_t cxs_sram                     : 1;
 	uint64_t reserved_1_1                 : 1;
@@ -13837,21 +13856,21 @@ union cvmx_pko_pse_pq_bist_status {
 	struct cvmx_pko_pse_pq_bist_status_cn73xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_15_63               : 49;
-	uint64_t tp_sram                      : 1;  /**< Topology parent - pko_pse_pq_srf32x5e */
+	uint64_t tp_sram                      : 1;  /**< Topology parent - pko_pse_pq_srf32x5e. */
 	uint64_t reserved_13_13               : 1;
-	uint64_t wmd_sram                     : 1;  /**< Dynamic watermark state - pko_pse_wmd_srf1024x49e */
+	uint64_t wmd_sram                     : 1;  /**< Dynamic watermark state - pko_pse_wmd_srf1024x49e. */
 	uint64_t reserved_11_11               : 1;
-	uint64_t cxd_sram                     : 1;  /**< Dynamic channel state - pko_pse_cxd_srf32x31e */
-	uint64_t dqd_sram                     : 1;  /**< DQ dropped stats - pko_pse_stats_srf1024x88 */
-	uint64_t dqs_sram                     : 1;  /**< DQ sent stats - pko_pse_stats_srf1024x88 */
-	uint64_t pqd_sram                     : 1;  /**< PQ dropped stats - pko_pse_stats_srf32x88 */
-	uint64_t pqr_sram                     : 1;  /**< PQ read stats - pko_pse_stats_srf32x88 */
-	uint64_t pqy_sram                     : 1;  /**< PQ yellow stats - pko_pse_stats_srf32x88 */
-	uint64_t pqg_sram                     : 1;  /**< PQ green stats - pko_pse_stats_srf32x88 */
-	uint64_t std_sram                     : 1;  /**< Dynamic shaping state - pko_pse_std_srf32x105e */
-	uint64_t st_sram                      : 1;  /**< Static shaping configuration - pko_pse_sts_srf32x74e */
+	uint64_t cxd_sram                     : 1;  /**< Dynamic channel state - pko_pse_cxd_srf32x31e. */
+	uint64_t dqd_sram                     : 1;  /**< DQ dropped stats - pko_pse_stats_srf1024x88. */
+	uint64_t dqs_sram                     : 1;  /**< DQ sent stats - pko_pse_stats_srf1024x88. */
+	uint64_t pqd_sram                     : 1;  /**< PQ dropped stats - pko_pse_stats_srf32x88. */
+	uint64_t pqr_sram                     : 1;  /**< PQ read stats - pko_pse_stats_srf32x88. */
+	uint64_t pqy_sram                     : 1;  /**< PQ yellow stats - pko_pse_stats_srf32x88. */
+	uint64_t pqg_sram                     : 1;  /**< PQ green stats - pko_pse_stats_srf32x88. */
+	uint64_t std_sram                     : 1;  /**< Dynamic shaping state - pko_pse_std_srf32x105e. */
+	uint64_t st_sram                      : 1;  /**< Static shaping configuration - pko_pse_sts_srf32x74e. */
 	uint64_t reserved_1_1                 : 1;
-	uint64_t cxs_sram                     : 1;  /**< Static channel credit configuration - pko_pse_cx0_srf32x6e */
+	uint64_t cxs_sram                     : 1;  /**< Static channel credit configuration - pko_pse_cx0_srf32x6e. */
 #else
 	uint64_t cxs_sram                     : 1;
 	uint64_t reserved_1_1                 : 1;
@@ -14129,27 +14148,27 @@ union cvmx_pko_pse_sq1_bist_status {
 	struct cvmx_pko_pse_sq1_bist_status_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_29_63               : 35;
-	uint64_t sc_sram                      : 1;  /**< SQ[5:1] scheduling configuration */
+	uint64_t sc_sram                      : 1;  /**< SQ[5:1] scheduling configuration. */
 	uint64_t pc_sram                      : 1;  /**< SQ[1] physical channel - pko_pse_pc_srf32x12e */
-	uint64_t xon_sram                     : 1;  /**< XON SRAM */
-	uint64_t cc_sram                      : 1;  /**< SQ[1] channel credit OK state array */
+	uint64_t xon_sram                     : 1;  /**< XON SRAM. */
+	uint64_t cc_sram                      : 1;  /**< SQ[1] channel credit OK state array. */
 	uint64_t vc1_sram                     : 1;  /**< SQ[1] virtual channel - pko_pse_sq1_vc_srf256x9e */
 	uint64_t vc0_sram                     : 1;  /**< SQ[1] virtual channel - pko_pse_sq1_vc_srf256x9e */
 	uint64_t reserved_21_22               : 2;
-	uint64_t tp1_sram                     : 1;  /**< SQ[5:1] topology parent configuration */
-	uint64_t tp0_sram                     : 1;  /**< SQ[5:1] topology parent configuration */
-	uint64_t xo_sram                      : 1;  /**< XOFF SRAM */
-	uint64_t rt_sram                      : 1;  /**< Result table */
+	uint64_t tp1_sram                     : 1;  /**< SQ[5:1] topology parent configuration. */
+	uint64_t tp0_sram                     : 1;  /**< SQ[5:1] topology parent configuration. */
+	uint64_t xo_sram                      : 1;  /**< XOFF SRAM. */
+	uint64_t rt_sram                      : 1;  /**< Result table. */
 	uint64_t reserved_9_16                : 8;
-	uint64_t tw1_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 1 command FIFO SRAM */
-	uint64_t std_sram                     : 1;  /**< Dynamic shaping state */
-	uint64_t sts_sram                     : 1;  /**< Static shaping configuration */
-	uint64_t tw0_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 0 command FIFO SRAM */
-	uint64_t cxd_sram                     : 1;  /**< SQ[1] dynamic channel credit state */
-	uint64_t cxs_sram                     : 1;  /**< SQ[1] static channel credit configuration */
-	uint64_t nt_sram                      : 1;  /**< SQ[5:1] next pointer table */
-	uint64_t pt_sram                      : 1;  /**< SQ[5:1] previous pointer table */
-	uint64_t wt_sram                      : 1;  /**< SQ[5:1] work table */
+	uint64_t tw1_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 1 command FIFO SRAM. */
+	uint64_t std_sram                     : 1;  /**< Dynamic shaping state. */
+	uint64_t sts_sram                     : 1;  /**< Static shaping configuration. */
+	uint64_t tw0_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 0 command FIFO SRAM. */
+	uint64_t cxd_sram                     : 1;  /**< SQ[1] dynamic channel credit state. */
+	uint64_t cxs_sram                     : 1;  /**< SQ[1] static channel credit configuration. */
+	uint64_t nt_sram                      : 1;  /**< SQ[5:1] next pointer table. */
+	uint64_t pt_sram                      : 1;  /**< SQ[5:1] previous pointer table. */
+	uint64_t wt_sram                      : 1;  /**< SQ[5:1] work table. */
 #else
 	uint64_t wt_sram                      : 1;
 	uint64_t pt_sram                      : 1;
@@ -14178,26 +14197,26 @@ union cvmx_pko_pse_sq1_bist_status {
 	struct cvmx_pko_pse_sq1_bist_status_cn73xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_29_63               : 35;
-	uint64_t sc_sram                      : 1;  /**< SQ[5:1] scheduling configuration */
+	uint64_t sc_sram                      : 1;  /**< SQ[5:1] scheduling configuration. */
 	uint64_t pc_sram                      : 1;  /**< SQ[1] physical channel - pko_pse_pc_srf32x12e */
-	uint64_t xon_sram                     : 1;  /**< XON SRAM */
-	uint64_t cc_sram                      : 1;  /**< SQ[1] channel credit OK state array */
+	uint64_t xon_sram                     : 1;  /**< XON SRAM. */
+	uint64_t cc_sram                      : 1;  /**< SQ[1] channel credit OK state array. */
 	uint64_t vc1_sram                     : 1;  /**< SQ[1] virtual channel - pko_pse_sq1_vc_srf256x9e */
 	uint64_t vc0_sram                     : 1;  /**< SQ[1] virtual channel - pko_pse_sq1_vc_srf256x9e */
 	uint64_t reserved_20_22               : 3;
-	uint64_t tp0_sram                     : 1;  /**< SQ[5:1] topology parent configuration */
-	uint64_t xo_sram                      : 1;  /**< XOFF SRAM */
-	uint64_t rt_sram                      : 1;  /**< Result table */
+	uint64_t tp0_sram                     : 1;  /**< SQ[5:1] topology parent configuration. */
+	uint64_t xo_sram                      : 1;  /**< XOFF SRAM. */
+	uint64_t rt_sram                      : 1;  /**< Result table. */
 	uint64_t reserved_9_16                : 8;
-	uint64_t tw1_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 1 command FIFO SRAM */
-	uint64_t std_sram                     : 1;  /**< Dynamic shaping state */
-	uint64_t sts_sram                     : 1;  /**< Static shaping configuration */
-	uint64_t tw0_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 0 command FIFO SRAM */
-	uint64_t cxd_sram                     : 1;  /**< SQ[1] dynamic channel credit state */
-	uint64_t cxs_sram                     : 1;  /**< SQ[1] static channel credit configuration */
-	uint64_t nt_sram                      : 1;  /**< SQ[5:1] next pointer table */
-	uint64_t pt_sram                      : 1;  /**< SQ[5:1] previous pointer table */
-	uint64_t wt_sram                      : 1;  /**< SQ[5:1] work table */
+	uint64_t tw1_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 1 command FIFO SRAM. */
+	uint64_t std_sram                     : 1;  /**< Dynamic shaping state. */
+	uint64_t sts_sram                     : 1;  /**< Static shaping configuration. */
+	uint64_t tw0_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 0 command FIFO SRAM. */
+	uint64_t cxd_sram                     : 1;  /**< SQ[1] dynamic channel credit state. */
+	uint64_t cxs_sram                     : 1;  /**< SQ[1] static channel credit configuration. */
+	uint64_t nt_sram                      : 1;  /**< SQ[5:1] next pointer table. */
+	uint64_t pt_sram                      : 1;  /**< SQ[5:1] previous pointer table. */
+	uint64_t wt_sram                      : 1;  /**< SQ[5:1] work table. */
 #else
 	uint64_t wt_sram                      : 1;
 	uint64_t pt_sram                      : 1;
@@ -14648,7 +14667,7 @@ union cvmx_pko_pse_sq2_bist_status {
 	uint64_t rt_sram                      : 1;  /**< Result table. */
 	uint64_t reserved_9_16                : 8;
 	uint64_t tw1_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 1 command FIFO SRAM. */
-	uint64_t std_sram                     : 1;  /**< Dynamic shaping state */
+	uint64_t std_sram                     : 1;  /**< Dynamic shaping state. */
 	uint64_t sts_sram                     : 1;  /**< Static shaping configuration. */
 	uint64_t tw0_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 0 command FIFO SRAM. */
 	uint64_t reserved_3_4                 : 2;
@@ -14683,7 +14702,7 @@ union cvmx_pko_pse_sq2_bist_status {
 	uint64_t reserved_18_18               : 1;
 	uint64_t rt_sram                      : 1;  /**< Result table. */
 	uint64_t reserved_8_16                : 9;
-	uint64_t std_sram                     : 1;  /**< Dynamic shaping state */
+	uint64_t std_sram                     : 1;  /**< Dynamic shaping state. */
 	uint64_t sts_sram                     : 1;  /**< Static shaping configuration. */
 	uint64_t tw0_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 0 command FIFO SRAM. */
 	uint64_t reserved_3_4                 : 2;
@@ -15047,27 +15066,27 @@ union cvmx_pko_pse_sq3_bist_status {
 	struct cvmx_pko_pse_sq3_bist_status_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_29_63               : 35;
-	uint64_t sc_sram                      : 1;  /**< Scheduling configuration */
+	uint64_t sc_sram                      : 1;  /**< Scheduling configuration. */
 	uint64_t reserved_23_27               : 5;
-	uint64_t tp3_sram                     : 1;  /**< SQ[5:3] topology parent configuration */
-	uint64_t tp2_sram                     : 1;  /**< SQ[5:3] topology parent configuration */
-	uint64_t tp1_sram                     : 1;  /**< SQ[5:1] topology parent configuration */
-	uint64_t tp0_sram                     : 1;  /**< SQ[5:1] topology parent configuration */
+	uint64_t tp3_sram                     : 1;  /**< SQ[5:3] topology parent configuration. */
+	uint64_t tp2_sram                     : 1;  /**< SQ[5:3] topology parent configuration. */
+	uint64_t tp1_sram                     : 1;  /**< SQ[5:1] topology parent configuration. */
+	uint64_t tp0_sram                     : 1;  /**< SQ[5:1] topology parent configuration. */
 	uint64_t reserved_18_18               : 1;
-	uint64_t rt_sram                      : 1;  /**< Result table */
+	uint64_t rt_sram                      : 1;  /**< Result table. */
 	uint64_t reserved_15_16               : 2;
-	uint64_t tw3_cmd_fifo                 : 1;  /**< SQ[5:3] time wheel 3 command FIFO SRAM */
+	uint64_t tw3_cmd_fifo                 : 1;  /**< SQ[5:3] time wheel 3 command FIFO SRAM. */
 	uint64_t reserved_12_13               : 2;
-	uint64_t tw2_cmd_fifo                 : 1;  /**< SQ[5:3] time wheel 2 command FIFO SRAM */
+	uint64_t tw2_cmd_fifo                 : 1;  /**< SQ[5:3] time wheel 2 command FIFO SRAM. */
 	uint64_t reserved_9_10                : 2;
-	uint64_t tw1_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 1 command FIFO SRAM */
-	uint64_t std_sram                     : 1;  /**< Dynamic shaping state */
-	uint64_t sts_sram                     : 1;  /**< Static shaping configuration */
-	uint64_t tw0_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 0 command FIFO SRAM */
+	uint64_t tw1_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 1 command FIFO SRAM. */
+	uint64_t std_sram                     : 1;  /**< Dynamic shaping state. */
+	uint64_t sts_sram                     : 1;  /**< Static shaping configuration. */
+	uint64_t tw0_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 0 command FIFO SRAM. */
 	uint64_t reserved_3_4                 : 2;
-	uint64_t nt_sram                      : 1;  /**< Next pointer table */
-	uint64_t pt_sram                      : 1;  /**< Previous pointer table */
-	uint64_t wt_sram                      : 1;  /**< Work table */
+	uint64_t nt_sram                      : 1;  /**< Next pointer table. */
+	uint64_t pt_sram                      : 1;  /**< Previous pointer table. */
+	uint64_t wt_sram                      : 1;  /**< Work table. */
 #else
 	uint64_t wt_sram                      : 1;
 	uint64_t pt_sram                      : 1;
@@ -15096,19 +15115,19 @@ union cvmx_pko_pse_sq3_bist_status {
 	struct cvmx_pko_pse_sq3_bist_status_cn73xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_29_63               : 35;
-	uint64_t sc_sram                      : 1;  /**< Scheduling configuration */
+	uint64_t sc_sram                      : 1;  /**< Scheduling configuration. */
 	uint64_t reserved_20_27               : 8;
-	uint64_t tp0_sram                     : 1;  /**< SQ[5:1] topology parent configuration */
+	uint64_t tp0_sram                     : 1;  /**< SQ[5:1] topology parent configuration. */
 	uint64_t reserved_18_18               : 1;
-	uint64_t rt_sram                      : 1;  /**< Result table */
+	uint64_t rt_sram                      : 1;  /**< Result table. */
 	uint64_t reserved_8_16                : 9;
-	uint64_t std_sram                     : 1;  /**< Dynamic shaping state */
-	uint64_t sts_sram                     : 1;  /**< Static shaping configuration */
-	uint64_t tw0_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 0 command FIFO SRAM */
+	uint64_t std_sram                     : 1;  /**< Dynamic shaping state. */
+	uint64_t sts_sram                     : 1;  /**< Static shaping configuration. */
+	uint64_t tw0_cmd_fifo                 : 1;  /**< SQ[5:1] time wheel 0 command FIFO SRAM. */
 	uint64_t reserved_3_4                 : 2;
-	uint64_t nt_sram                      : 1;  /**< Next pointer table */
-	uint64_t pt_sram                      : 1;  /**< Previous pointer table */
-	uint64_t wt_sram                      : 1;  /**< Work table */
+	uint64_t nt_sram                      : 1;  /**< Next pointer table. */
+	uint64_t pt_sram                      : 1;  /**< Previous pointer table. */
+	uint64_t wt_sram                      : 1;  /**< Work table. */
 #else
 	uint64_t wt_sram                      : 1;
 	uint64_t pt_sram                      : 1;
@@ -15530,16 +15549,16 @@ union cvmx_pko_pse_sq4_bist_status {
 	struct cvmx_pko_pse_sq4_bist_status_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_29_63               : 35;
-	uint64_t sc_sram                      : 1;  /**< Scheduling configuration */
+	uint64_t sc_sram                      : 1;  /**< Scheduling configuration. */
 	uint64_t reserved_23_27               : 5;
-	uint64_t tp3_sram                     : 1;  /**< SQ[5:3] topology parent configuration */
-	uint64_t tp2_sram                     : 1;  /**< SQ[5:3] topology parent configuration */
-	uint64_t tp1_sram                     : 1;  /**< SQ[5:1] topology parent configuration */
-	uint64_t tp0_sram                     : 1;  /**< SQ[5:1] topology parent configuration */
+	uint64_t tp3_sram                     : 1;  /**< SQ[5:3] topology parent configuration. */
+	uint64_t tp2_sram                     : 1;  /**< SQ[5:3] topology parent configuration. */
+	uint64_t tp1_sram                     : 1;  /**< SQ[5:1] topology parent configuration. */
+	uint64_t tp0_sram                     : 1;  /**< SQ[5:1] topology parent configuration. */
 	uint64_t reserved_18_18               : 1;
-	uint64_t rt_sram                      : 1;  /**< Result table */
+	uint64_t rt_sram                      : 1;  /**< Result table. */
 	uint64_t reserved_15_16               : 2;
-	uint64_t tw3_cmd_fifo                 : 1;  /**< SQ[5:3] time wheel 3 command FIFO SRAM */
+	uint64_t tw3_cmd_fifo                 : 1;  /**< SQ[5:3] time wheel 3 command FIFO SRAM. */
 	uint64_t reserved_12_13               : 2;
 	uint64_t tw2_cmd_fifo                 : 1;  /**< SQ[5:3] time wheel 2 command FIFO SRAM. */
 	uint64_t reserved_9_10                : 2;
@@ -16210,7 +16229,7 @@ union cvmx_pko_ptf_iobp_cfg {
 	uint64_t reserved_44_63               : 20;
 	uint64_t iobp1_ds_opt                 : 1;  /**< Optimize IOBP1 requests when data is to be dropped (NULL, RED, SEND_HDR_S[DS]=1). */
 	uint64_t iobp0_l2_allocate            : 1;  /**< Determine L2 allocation (1 = no allocation = LDT, 0 = allocation = LDD) when reading
-                                                         post-PKO_SEND_JUMP descriptors via IOBP0 requests. */
+                                                         post-PKO_SEND_JUMP_S descriptors via IOBP0 requests. */
 	uint64_t iobp1_magic_addr             : 35; /**< IOBP1 read address to be used for any dummy reads */
 	uint64_t max_read_size                : 7;  /**< Maximum number of IOBP1 read requests outstanding to be allowed by any given PEB TX FIFO. */
 #else
@@ -16253,7 +16272,7 @@ union cvmx_pko_ptgfx_cfg {
 	uint64_t reserved_7_63                : 57;
 	uint64_t reset                        : 1;  /**< This bit resets the address pointers for the FIFOs in this group. This should only be
                                                          performed when a PTGF is empty and the SIZE field is to be changed. */
-	uint64_t rate                         : 3;  /**< The rate / number of inflight packets allowed for the FIFO's in this group.
+	uint64_t rate                         : 3;  /**< The rate / number of inflight packets allowed for the FIFOs in this group.
                                                          An individual FIFO can support up to 50 Gbit/sec (i.e. up to 32 inflight packets).
                                                          The total aggregate rate across all FIFOs (including the NULL) should never exceed
                                                          125 Gbit/sec (i.e. up to 80 inflight packets). This field represents the rate for
@@ -16261,26 +16280,26 @@ union cvmx_pko_ptgfx_cfg {
                                                          of the SIZE field and whether or not the FIFO's in the group are assigned to a MAC
                                                          in PKO_MAC()_CFG.
                                                          Encoding:
-                                                         0x0 = up to   6.25 Gbit/sec (i.e. up to  4 inflight packets)
-                                                         0x1 = up to  12.5  Gbit/sec (i.e. up to  8 inflight packets)
-                                                         0x2 = up to  25    Gbit/sec (i.e. up to 16 inflight packets)
-                                                         0x3 = up to  50    Gbit/sec (i.e. up to 32 inflight packets)
+                                                         0x0 = up to   6.25 Gbit/sec (i.e. up to  4 inflight packets).
+                                                         0x1 = up to  12.5  Gbit/sec (i.e. up to  8 inflight packets).
+                                                         0x2 = up to  25    Gbit/sec (i.e. up to 16 inflight packets).
+                                                         0x3 = up to  50    Gbit/sec (i.e. up to 32 inflight packets).
                                                          [RATE] applies to all FIFO groups including the NULL. */
-	uint64_t size                         : 3;  /**< Determines the size and availability of the FIFO's in the FIFO group.
-                                                         10KB total storage is available to the FIFO group. Two or
+	uint64_t size                         : 3;  /**< Determines the size and availability of the FIFOs in the FIFO group.
+                                                         10 KB total storage is available to the FIFO group. Two or
                                                          four FIFOs can be combined to produce a larger FIFO if desired.
                                                          The supported SIZE values:
                                                          <pre>
                                                                    FIFO0   FIFO1   FIFO2   FIFO3
                                                             SIZE   Size    Size    Size    Size
                                                            --------------------------------------
-                                                             0     2.5KB   2.5KB   2.5KB   2.5KB
-                                                             1     5.0KB    N/A    2.5KB   2.5KB
-                                                             2     2.5KB   2.5KB   5.0KB    N/A
-                                                             3     5.0KB    N/A    5.0KB    N/A
-                                                             4    10.0KB    N/A     N/A     N/A
+                                                             0     2.5 KB   2.5 KB   2.5 KB   2.5 KB
+                                                             1     5.0 KB    N/A     2.5 KB   2.5 KB
+                                                             2     2.5 KB   2.5 KB   5.0 KB    N/A
+                                                             3     5.0 KB    N/A     5.0 KB    N/A
+                                                             4    10.0 KB    N/A      N/A      N/A
                                                          </pre>
-                                                         Note: 5-7 are illegal SIZE values and should not be used.
+                                                         Note: 5-7 are illegal [SIZE] values and should not be used.
                                                          A FIFO labelled N/A in the above table must not be used, and no
                                                          PKO_MAC()_CFG[FIFO_NUM] should select it. For example,
                                                          if PKO_PTGF(2)_CFG[SIZE]=4, FIFO_NUM 8 is available (with
@@ -16294,8 +16313,8 @@ union cvmx_pko_ptgfx_cfg {
                                                          PKO_PTGF(4)_CFG[SIZE] should not change from its reset value
                                                          of zero. (The NULL FIFO has no real storage, and the SIZE table
                                                          above does not apply to the NULL FIFO.)
-                                                         A FIFO of size 2.5kB cannot be configured to have a RATE>25GBs
-                                                         A FIFO of size 5.0kB cannot be configured to have a RATE>50GBs */
+                                                         A FIFO of size 2.5 KB cannot be configured to have a [RATE] > 25 GBs.
+                                                         A FIFO of size 5.0 KB cannot be configured to have a [RATE] > 50 GBs. */
 #else
 	uint64_t size                         : 3;
 	uint64_t rate                         : 3;
@@ -16309,7 +16328,7 @@ union cvmx_pko_ptgfx_cfg {
 	uint64_t reset                        : 1;  /**< This bit resets the address pointers for the FIFOs in this group. This should only be
                                                          performed when a PTGF is empty and the SIZE field is to be changed. */
 	uint64_t reserved_5_5                 : 1;
-	uint64_t rate                         : 2;  /**< The rate / number of inflight packets allowed for the FIFO's in this group.
+	uint64_t rate                         : 2;  /**< The rate / number of inflight packets allowed for the FIFOs in this group.
                                                          An individual FIFO can support up to 50 Gbit/sec (i.e. up to 32 inflight packets).
                                                          The total aggregate rate across all FIFOs (including the NULL) should never exceed
                                                          125 Gbit/sec (i.e. up to 80 inflight packets). This field represents the rate for
@@ -16317,26 +16336,26 @@ union cvmx_pko_ptgfx_cfg {
                                                          of the SIZE field and whether or not the FIFO's in the group are assigned to a MAC
                                                          in PKO_MAC()_CFG.
                                                          Encoding:
-                                                         0x0 = up to   6.25 Gbit/sec (i.e. up to  4 inflight packets)
-                                                         0x1 = up to  12.5  Gbit/sec (i.e. up to  8 inflight packets)
-                                                         0x2 = up to  25    Gbit/sec (i.e. up to 16 inflight packets)
-                                                         0x3 = up to  50    Gbit/sec (i.e. up to 32 inflight packets)
+                                                         0x0 = up to   6.25 Gbit/sec (i.e. up to  4 inflight packets).
+                                                         0x1 = up to  12.5  Gbit/sec (i.e. up to  8 inflight packets).
+                                                         0x2 = up to  25    Gbit/sec (i.e. up to 16 inflight packets).
+                                                         0x3 = up to  50    Gbit/sec (i.e. up to 32 inflight packets).
                                                          [RATE] applies to all FIFO groups including the NULL. */
-	uint64_t size                         : 3;  /**< Determines the size and availability of the FIFO's in the FIFO group.
-                                                         10KB total storage is available to the FIFO group. Two or
+	uint64_t size                         : 3;  /**< Determines the size and availability of the FIFOs in the FIFO group.
+                                                         10 KB total storage is available to the FIFO group. Two or
                                                          four FIFOs can be combined to produce a larger FIFO if desired.
                                                          The supported SIZE values:
                                                          <pre>
                                                                    FIFO0   FIFO1   FIFO2   FIFO3
                                                             SIZE   Size    Size    Size    Size
                                                            --------------------------------------
-                                                             0     2.5KB   2.5KB   2.5KB   2.5KB
-                                                             1     5.0KB    N/A    2.5KB   2.5KB
-                                                             2     2.5KB   2.5KB   5.0KB    N/A
-                                                             3     5.0KB    N/A    5.0KB    N/A
-                                                             4    10.0KB    N/A     N/A     N/A
+                                                             0     2.5 KB   2.5 KB   2.5 KB   2.5 KB
+                                                             1     5.0 KB    N/A     2.5 KB   2.5 KB
+                                                             2     2.5 KB   2.5 KB   5.0 KB    N/A
+                                                             3     5.0 KB    N/A     5.0 KB    N/A
+                                                             4    10.0 KB    N/A      N/A      N/A
                                                          </pre>
-                                                         Note: 5-7 are illegal SIZE values and should not be used.
+                                                         Note: 5-7 are illegal [SIZE] values and should not be used.
                                                          A FIFO labelled N/A in the above table must not be used, and no
                                                          PKO_MAC()_CFG[FIFO_NUM] should select it. For example,
                                                          if PKO_PTGF(2)_CFG[SIZE]=4, FIFO_NUM 8 is available (with
@@ -16350,8 +16369,8 @@ union cvmx_pko_ptgfx_cfg {
                                                          PKO_PTGF(4)_CFG[SIZE] should not change from its reset value
                                                          of zero. (The NULL FIFO has no real storage, and the SIZE table
                                                          above does not apply to the NULL FIFO.)
-                                                         A FIFO of size 2.5kB cannot be configured to have a RATE>25GBs.
-                                                         A FIFO of size 5.0kB cannot be configured to have a RATE>50GBs. */
+                                                         A FIFO of size 2.5 KB cannot be configured to have a [RATE] > 25 GBs.
+                                                         A FIFO of size 5.0 KB cannot be configured to have a [RATE] > 50 GBs. */
 #else
 	uint64_t size                         : 3;
 	uint64_t rate                         : 2;
@@ -18033,9 +18052,9 @@ union cvmx_pko_shaper_cfg {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_2_63                : 62;
 	uint64_t color_aware                  : 1;  /**< Color aware. Selects whether or not the PSE shapers take into account
-                                                         the color of the incoming packet.  0: color blind, 1: color aware */
+                                                         the color of the incoming packet.  0 = color blind, 1 = color aware. */
 	uint64_t red_send_as_yellow           : 1;  /**< RED_SEND as YELLOW. Configures the way packets colored RED_SEND are
-                                                         handled by the DQ through L2 shapers when operating in COLOR_AWARE mode.
+                                                         handled by the DQ through L2 shapers when operating in [COLOR_AWARE] mode.
                                                          Normally packets colored RED_DROP do not decrement the PIR in DQ through
                                                          L2 shapers while packets colored YELLOW do.  (Neither RED_DROP nor
                                                          YELLOW packets decrement the CIR in DQ through L2 shapers.)  Packets colored
@@ -18168,9 +18187,6 @@ typedef union cvmx_pko_status cvmx_pko_status_t;
 
 /**
  * cvmx_pko_txf#_pkt_cnt_rd
- *
- * Added in pass 2.
- *
  */
 union cvmx_pko_txfx_pkt_cnt_rd {
 	uint64_t u64;

@@ -583,21 +583,26 @@ static int cvmx_pko_setup_macs(int node)
 
 	for(interface = 0; interface < num_interfaces; interface ++) {
 		int xiface =  cvmx_helper_node_interface_to_xiface(node, interface);
+		/* Interface type for ALL interfaces */
 		mode = cvmx_helper_interface_get_mode(xiface);
 		num_ports = cvmx_helper_interface_enumerate(xiface);
 
 		if(mode == CVMX_HELPER_INTERFACE_MODE_DISABLED)
 			continue;
 		/*
+		 * Non-BGX interfaces:
 		 * Each of these interfaces has a single MAC really.
 		 */
-		if ((mode == CVMX_HELPER_INTERFACE_MODE_ILK) ||
-			(mode == CVMX_HELPER_INTERFACE_MODE_NPI) ||
-			(mode == CVMX_HELPER_INTERFACE_MODE_LOOP))
+		if (interface >= CVMX_HELPER_MAX_GMX)
 			num_ports = 1;
 
 		for (port = 0; port < num_ports; port++) {
 			int i;
+
+			/* Get the per-port mode for BGX-interfaces */
+			if (interface < CVMX_HELPER_MAX_GMX)
+			    mode = cvmx_helper_bgx_get_mode(xiface, port);
+			/* In MIXED mode, LMACs can run different protocols */
 
 			/* convert interface/port to mac number */
 			i = __cvmx_pko3_get_mac_num(xiface, port);
@@ -622,7 +627,7 @@ static int cvmx_pko_setup_macs(int node)
 				  __cvmx_helper_bgx_fifo_size(xiface, port);
 				cvmx_pko3_mac_table[i].mac_fifo_cnt = 
 				    bgx_fifo_size / (CVMX_BGX_TX_FIFO_SIZE/4);
-				cvmx_pko3_mac_table[i].pri = 2;
+				cvmx_pko3_mac_table[i].pri = 4;
 				cvmx_pko3_mac_table[i].spd = 40;
 				cvmx_pko3_mac_table[i].fifo_cnt = 4;
 			} else if (mode == CVMX_HELPER_INTERFACE_MODE_XAUI) {
@@ -630,8 +635,8 @@ static int cvmx_pko_setup_macs(int node)
 				  __cvmx_helper_bgx_fifo_size(xiface, port);
 				cvmx_pko3_mac_table[i].mac_fifo_cnt = 
 				    bgx_fifo_size / (CVMX_BGX_TX_FIFO_SIZE/4);
-				cvmx_pko3_mac_table[i].pri = 2;
-				cvmx_pko3_mac_table[i].fifo_cnt = 2;
+				cvmx_pko3_mac_table[i].pri = 3;
+				cvmx_pko3_mac_table[i].fifo_cnt = 4;
 				/* DXAUI at 20G, or XAU at 10G */
 				cvmx_pko3_mac_table[i].spd = 20;
 			} else if (mode == CVMX_HELPER_INTERFACE_MODE_XFI) {
@@ -640,16 +645,8 @@ static int cvmx_pko_setup_macs(int node)
 				cvmx_pko3_mac_table[i].mac_fifo_cnt = 
 				    bgx_fifo_size / (CVMX_BGX_TX_FIFO_SIZE/4);
 				cvmx_pko3_mac_table[i].pri = 3;
-				cvmx_pko3_mac_table[i].fifo_cnt = 2;
-				cvmx_pko3_mac_table[i].spd = 10;
-			} else if (mode == CVMX_HELPER_INTERFACE_MODE_XLAUI) {
-				unsigned bgx_fifo_size = 
-				  __cvmx_helper_bgx_fifo_size(xiface, port);
-				cvmx_pko3_mac_table[i].mac_fifo_cnt = 
-				    bgx_fifo_size / (CVMX_BGX_TX_FIFO_SIZE/4);
-				cvmx_pko3_mac_table[i].pri = 4;
 				cvmx_pko3_mac_table[i].fifo_cnt = 4;
-				cvmx_pko3_mac_table[i].spd = 40;
+				cvmx_pko3_mac_table[i].spd = 10;
 			} else if (mode == CVMX_HELPER_INTERFACE_MODE_LOOP) {
 				cvmx_pko3_mac_table[i].fifo_cnt = 1;
 				cvmx_pko3_mac_table[i].pri = 1;
@@ -670,15 +667,14 @@ static int cvmx_pko_setup_macs(int node)
 				/* SLI Tx FIFO size to be revisitted */
 				cvmx_pko3_mac_table[i].mac_fifo_cnt = 1;
 			} else {
-				/* Assuming it is a BGX interface,
- * 				   e.g. SGMII/RGMII or MIXED */
+				/* Other BGX interface modes: SGMII/RGMII */
 				unsigned bgx_fifo_size = 
 				  __cvmx_helper_bgx_fifo_size(xiface, port);
 				cvmx_pko3_mac_table[i].mac_fifo_cnt = 
 				    bgx_fifo_size / (CVMX_BGX_TX_FIFO_SIZE/4);
-				cvmx_pko3_mac_table[i].fifo_cnt = 2;
+				cvmx_pko3_mac_table[i].fifo_cnt = 1;
 				cvmx_pko3_mac_table[i].pri = 1;
-				cvmx_pko3_mac_table[i].spd = 10;
+				cvmx_pko3_mac_table[i].spd = 1;
 			}
 
 			if(debug)
@@ -698,7 +694,7 @@ static int cvmx_pko_setup_macs(int node)
 		fifo_count += cvmx_pko3_mac_table[mac_num].fifo_cnt;
 
 	if(debug)
-		cvmx_dprintf("%s: initially reqyested FIFO count %u\n",
+		cvmx_dprintf("%s: initially requested FIFO count %u\n",
 			__FUNCTION__, fifo_count);
 
 	/* Heuristically trim FIFO count to fit in available number */
@@ -987,7 +983,7 @@ void cvmx_pko3_get_legacy_port_stats(uint16_t ipd_port,
  * The typical use for `fcs_sop_off` is when the interface is configured
  * to use a header such as HighGig to precede every Ethernet packet,
  * such a header usually does not partake in the CRC32 computation stream,
- * and its size muet be set with this parameter.
+ * and its size must be set with this parameter.
  *
  * @return Returns 0 on success, -1 if interface/port is invalid.
  */
@@ -1200,7 +1196,7 @@ EXPORT_SYMBOL(cvmx_pko3_port_fifo_size);
 /**
  * @INTERNAL
  *
- * Stop an interface port transmission and wait until its FIFO is emopty.
+ * Stop an interface port transmission and wait until its FIFO is empty.
  *
  */
 int cvmx_pko3_port_xoff(unsigned int xiface, unsigned index)
@@ -1244,7 +1240,7 @@ int cvmx_pko3_port_xoff(unsigned int xiface, unsigned index)
 		"PKO3 FIFO number does not match MAC\n");
 
 	num_pq = cvmx_pko3_num_level_queues(CVMX_PKO_PORT_QUEUES);
-	/* Fint the L1/PQ connected to the MAC for this interface */
+	/* Find the L1/PQ connected to the MAC for this interface */
 	for (pq = 0; pq < num_pq; pq ++) {
 		pko_l1_topology.u64 = cvmx_read_csr_node(node,
 			CVMX_PKO_L1_SQX_TOPOLOGY(pq));
@@ -1330,7 +1326,7 @@ int cvmx_pko3_port_xon(unsigned int xiface, unsigned index)
 	if (mac_num == 0x1f)
 		return 0;
 
-	/* Fint the L1/PQ connected to the MAC for this interface */
+	/* Find the L1/PQ connected to the MAC for this interface */
 	for (pq = 0; pq < num_pq; pq ++) {
 		pko_l1_topology.u64 = cvmx_read_csr_node(node,
 			CVMX_PKO_L1_SQX_TOPOLOGY(pq));
@@ -1411,7 +1407,7 @@ void cvmx_pko3_pdesc_init(cvmx_pko3_pdesc_t *pdesc)
  * @param wqe Work Queue Entry as returned from `cvmx_get_work()'
  * @param free_bufs Automatically free data buffers when transmission complete.
  *
- * This function is the quickes way to prepare a received packet
+ * This function is the quickest way to prepare a received packet
  * represented by a WQE for transmission via any output queue to
  * an output port.
  * If the packet data is to be transmitted unmodified, call
@@ -1429,7 +1425,7 @@ int cvmx_pko3_pdesc_from_wqe(cvmx_pko3_pdesc_t *pdesc, cvmx_wqe_78xx_t *wqe,
         cvmx_pki_stylex_buf_t     style_buf_reg;
 
 
-	/* Verufy the WQE is legit */
+	/* Verify the WQE is legit */
 	if (cvmx_unlikely(wqe->word2.software || wqe->pki_wqe_translated)) {
 		cvmx_printf("%s: ERROR: invalid WQE\n", __func__);
 		return -1;
@@ -1530,7 +1526,7 @@ int cvmx_pko3_pdesc_from_wqe(cvmx_pko3_pdesc_t *pdesc, cvmx_wqe_78xx_t *wqe,
  * Add arbitrary subcommand to a packet desciptor.
  *
  * This function will also allocate a jump buffer when
- * the primary LTDMA buffer is exhausted.
+ * the primary LMTDMA buffer is exhausted.
  * The jump buffer is allocated from the internal PKO3 aura
  * on the node where this function is running.
  */
@@ -1715,7 +1711,7 @@ int cvmx_pko3_pdesc_append_free(cvmx_pko3_pdesc_t *pdesc, uint64_t addr,
  * in the order in which they should be transmitted.
  *
  * The size of the resulting packet will be equal to the
- * sum of the segments appended by thus function.
+ * sum of the segments appended by this function.
  * Every segment may be contained in a buffer that belongs
  * to a different FPA 'aura', and may be automatically
  * released back to that aura, if required.
@@ -1725,7 +1721,7 @@ int cvmx_pko3_pdesc_append_free(cvmx_pko3_pdesc_t *pdesc, uint64_t addr,
  * @param data_bytes Size of the data segment (in bytes).
  * @param gaura A global FPA 'aura' where the packet buffer was allocated from.
  *
- * The 'gaura' parameter contaisn the node number where the buffer pool
+ * The 'gaura' parameter contains the node number where the buffer pool
  * is located, and has only a meaning if the 'free_buf' argument is 'true'.
  * The buffer being added will be automatically freed upon transmission
  * along with all other buffers in this descriptor, or not, depending
@@ -1820,7 +1816,7 @@ int cvmx_pko3_pdesc_notify_wqe(cvmx_pko3_pdesc_t *pdesc, cvmx_wqe_78xx_t *wqe,
 	cvmx_pko_send_work_t work_s;
 
 	/*
-	 * There can be only one SEND_WORK_S emtry in the command
+	 * There can be only one SEND_WORK_S entry in the command
 	 * and it must be the very last subcommand
 	 */
 	if (pdesc->send_work_s != 0) {
@@ -1840,7 +1836,7 @@ int cvmx_pko3_pdesc_notify_wqe(cvmx_pko3_pdesc_t *pdesc, cvmx_wqe_78xx_t *wqe,
 	wqe->word1.tag_type = tt;
 	wqe->word1.grp = work_s.s.grp;
 
-	/* Store in descriptor for now, apply just before LTDMA-ing */
+	/* Store in descriptor for now, apply just before LMTDMA-ing */
 	pdesc->send_work_s = work_s.u64;
 
 	return 0;
@@ -1850,7 +1846,7 @@ int cvmx_pko3_pdesc_notify_wqe(cvmx_pko3_pdesc_t *pdesc, cvmx_wqe_78xx_t *wqe,
  * Request atomic memory decrement at transmission completion
  *
  * Each packet descriptor may contain several decrement notification
- * requests, but these request must only be made after all of the
+ * requests, but these requests must only be made after all of the
  * packet data segments have been added, and before packet transmission
  * commences.
  *
@@ -1865,13 +1861,13 @@ int cvmx_pko3_pdesc_notify_decrement(cvmx_pko3_pdesc_t *pdesc,
 	volatile uint64_t *p_counter)
 {
 	int rc;
-	/* 640bit decrement is the only supported operation */
+	/* 64-bit decrement is the only supported operation */
 	cvmx_pko_send_mem_t mem_s = {.s={
 		.subdc4 = CVMX_PKO_SENDSUBDC_MEM,
 		.dsz = MEMDSZ_B64, .alg = MEMALG_SUB,
 		.offset = 1,
 #ifdef	_NOT_IN_SIM_
-		/* Enforce MEM nefore SSO submission if both present */
+		/* Enforce MEM before SSO submission if both present */
 		.wmem = 1
 #endif
 		}};
@@ -2039,7 +2035,7 @@ static void memcpy_to_swap(void *dst, const void *src, unsigned bytes)
 /**
  * Prepend a data segment to the packet descriptor
  *
- * Useful for pushing additiona headers
+ * Useful for pushing additional headers
  *
  * The initial implementation is confined by the size of the
  * "headroom" in the first packet buffer attached to the descriptor.
@@ -2070,7 +2066,7 @@ int cvmx_pko3_pdesc_hdr_push(cvmx_pko3_pdesc_t *pdesc,
 
 	/* Get GATTHER_S/LINK_S subcommand location */
 	if (cvmx_likely(pdesc->jump_buf == NULL))
-		/* Without JB, first data buf is in 3rd comand word */
+		/* Without JB, first data buf is in 3rd command word */
 		gather_s = (void *)&pdesc->word[2];
 	else
 		/* With JB, its first word is the first buffer */
@@ -2130,7 +2126,7 @@ int cvmx_pko3_pdesc_hdr_push(cvmx_pko3_pdesc_t *pdesc,
  * Remove some bytes from start of packet
  *
  * Useful for popping a header from a packet.
- * It only eeds to find the first segment, and adjust its address,
+ * It only needs to find the first segment, and adjust its address,
  * as well as segment and total sizes.
  *
  * Returns new packet size, or -1 if the trimmed size exceeds the
@@ -2156,7 +2152,7 @@ int cvmx_pko3_pdesc_hdr_pop(cvmx_pko3_pdesc_t *pdesc,
 
 	/* Get GATTHER_S/LINK_S subcommand location */
 	if (cvmx_likely(pdesc->jump_buf == NULL))
-		/* Without JB, first data buf is in 3rd comand word */
+		/* Without JB, first data buf is in 3rd command word */
 		gather_s = (void *)&pdesc->word[2];
 	else
 		/* With JB, its first word is the first buffer */

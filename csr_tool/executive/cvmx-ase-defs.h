@@ -379,19 +379,20 @@ static inline uint64_t CVMX_ASE_SPARE_FUNC(void)
 /**
  * cvmx_ase_backdoor_req_ctl
  *
- * This register is used to configure and trigger backdoor requests. Backdoor requests can be
- * inserted at any time. They are inserted into the request stream from LAP. The request packet
- * needs to be written to ASE_BACKDOOR_REQ_DATA(0..15), and must be written before VALID is
- * triggered. Both CNT and VALID can be written in the same cycle. The hardware clears the VALID
- * bit when the request is sent. If another VALID=1 is written before the bit is cleared, it will
- * not trigger another SOP. Software should take care to wait for the response before issuing
- * another request. Hardware deasserts ASE_BACKDOOR_RSP_CTL[VALID] when VALID is triggered.
+ * This register is used to configure and trigger backdoor requests. Backdoor requests
+ * can be inserted at any time. They are inserted into the request stream from LAP. The
+ * request packet needs to be written to ASE_BACKDOOR_REQ_DATA(), and must be written
+ * before [VALID] is triggered. Both [CNT] and [VALID] can be written in the same
+ * cycle. The hardware clears the [VALID] bit when the request is sent. If another
+ * [VALID]=1 is written before the bit is cleared, it will not trigger another
+ * SOP. Software should take care to wait for the response before issuing another
+ * request. Hardware deasserts ASE_BACKDOOR_RSP_CTL[VALID] when [VALID] is triggered.
  */
 union cvmx_ase_backdoor_req_ctl {
 	uint64_t u64;
 	struct cvmx_ase_backdoor_req_ctl_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t valid                        : 1;  /**< Valid. Writing 1 triggers CNT beats to be sent as a packet into ASE. */
+	uint64_t valid                        : 1;  /**< Valid. Writing 1 triggers [CNT] beats to be sent as a packet into ASE. */
 	uint64_t reserved_4_62                : 59;
 	uint64_t cnt                          : 4;  /**< Number of DATA beats to send. Valid values are 0x2 - 0xB. */
 #else
@@ -429,10 +430,11 @@ typedef union cvmx_ase_backdoor_req_datax cvmx_ase_backdoor_req_datax_t;
 /**
  * cvmx_ase_backdoor_rsp_ctl
  *
- * This register is used to indicate that the backdoor response is complete. See description in
- * ASE_BACKDOOR_REQ_CTL. Hardware asserts VALID when the full response packet has been received
- * and has been posted to CNT and ASE_BACKDOOR_RSP_DATA(0..7). Hardware does not change CNT and
- * ASE_BACKDOOR_RSP_DATA(0..7) while VALID is asserted. Hardware deasserts VALID when
+ * This register is used to indicate that the backdoor response is complete. See
+ * description in ASE_BACKDOOR_REQ_CTL. Hardware asserts [VALID] when the full response
+ * packet has been received and has been posted to [CNT] and
+ * ASE_BACKDOOR_RSP_DATA(). Hardware does not change [CNT] and ASE_BACKDOOR_RSP_DATA()
+ * while [VALID] is asserted. Hardware deasserts [VALID] when
  * ASE_BACKDOOR_REQ_CTL[VALID] is triggered.
  */
 union cvmx_ase_backdoor_rsp_ctl {
@@ -498,16 +500,16 @@ union cvmx_ase_bist_status0 {
 	uint64_t lip_gdt_ndone                : 1;  /**< BIST is not complete on the LIP GDT RAM. */
 	uint64_t lip_isf_ndone                : 1;  /**< BIST is not complete on the LIP ISF RAM. */
 	uint64_t reserved_19_31               : 13;
-	uint64_t lue_rft_status               : 1;  /**< BIST status for the LUE HST RFT RAM. Only valid if LUE_RFT_NDONE == 0. */
-	uint64_t lue_tat_status               : 1;  /**< BIST status for the LUE HST TAT RAM. Only valid if LUE_TAT_NDONE == 0. */
-	uint64_t lue_kdb_status               : 1;  /**< BIST status for the LUE KRQ KDB RAM. Only valid if LUE_KDB_NDONE == 0. */
+	uint64_t lue_rft_status               : 1;  /**< BIST status for the LUE HST RFT RAM. Only valid if [LUE_RFT_NDONE] == 0. */
+	uint64_t lue_tat_status               : 1;  /**< BIST status for the LUE HST TAT RAM. Only valid if [LUE_TAT_NDONE] == 0. */
+	uint64_t lue_kdb_status               : 1;  /**< BIST status for the LUE KRQ KDB RAM. Only valid if [LUE_KDB_NDONE] == 0. */
 	uint64_t reserved_10_15               : 6;
-	uint64_t lop_txb_status               : 2;  /**< BIST status for the LOP TXBUFF RAM banks. Only valid if LOP_TXB_NDONE<> == 0. */
+	uint64_t lop_txb_status               : 2;  /**< BIST status for the LOP TXBUFF RAM banks. Only valid if [LOP_TXB_NDONE]<> == 0. */
 	uint64_t reserved_4_7                 : 4;
-	uint64_t lip_newq_status              : 1;  /**< BIST status for the LIP NEWQ RAM. Only valid if LIP_NEWQ_NDONE == 0. */
-	uint64_t lip_pht_status               : 1;  /**< BIST status for the LIP PHT RAM. Only valid if LIP_PHT_NDONE == 0. */
-	uint64_t lip_gdt_status               : 1;  /**< BIST status for the LIP GDT RAM. Only valid if LIP_GDT_NDONE == 0. */
-	uint64_t lip_isf_status               : 1;  /**< BIST status for the LIP ISF RAM. Only valid if LIP_ISF_NDONE == 0. */
+	uint64_t lip_newq_status              : 1;  /**< BIST status for the LIP NEWQ RAM. Only valid if [LIP_NEWQ_NDONE] == 0. */
+	uint64_t lip_pht_status               : 1;  /**< BIST status for the LIP PHT RAM. Only valid if [LIP_PHT_NDONE] == 0. */
+	uint64_t lip_gdt_status               : 1;  /**< BIST status for the LIP GDT RAM. Only valid if [LIP_GDT_NDONE] == 0. */
+	uint64_t lip_isf_status               : 1;  /**< BIST status for the LIP ISF RAM. Only valid if [LIP_ISF_NDONE] == 0. */
 #else
 	uint64_t lip_isf_status               : 1;
 	uint64_t lip_gdt_status               : 1;
@@ -819,7 +821,7 @@ union cvmx_ase_gen_int {
 	uint64_t lip_tbf_early_eop            : 1;  /**< The incoming TBL write command did not have enough write data beats to match the command.
                                                          The write operation is marked FATAL. */
 	uint64_t lip_obf_missing_eop          : 1;  /**< The incoming OSM command did not indicate EOP on the correct beat. The request is marked FATAL. */
-	uint64_t lip_obf_early_eop            : 1;  /**< The incoming OSM Write command did not have enough write data beats to match the command.
+	uint64_t lip_obf_early_eop            : 1;  /**< The incoming OSM write command did not have enough write data beats to match the command.
                                                          The write operation is marked FATAL. */
 	uint64_t lip_obf_drop_unkn_cmd        : 1;  /**< The incoming control word at LIP OSM bypass splitter does not decode to a valid command.
                                                          The packet is dropped since we can't trust the command to figure out what kind of response
@@ -1102,19 +1104,19 @@ union cvmx_ase_lue_dbg_ctl1 {
 	uint64_t rmc_dbg0                     : 2;  /**< Mux 0. Selects which of the four RMC modules will present signals on the debug bus when a
                                                          RMC signal group is selected for observation. */
 	uint64_t reserved_29_47               : 19;
-	uint64_t eng_id_dbg3                  : 5;  /**< Mux 3. Selects which Tree Walk Engine or Bucket Walk Engine will present signals on the
+	uint64_t eng_id_dbg3                  : 5;  /**< Mux 3. Selects which tree walk engine or bucket walk engine will present signals on the
                                                          debug bus when a TWC or BWC signal group is selected for observation. Valid values are
                                                          0-19. */
 	uint64_t reserved_21_23               : 3;
-	uint64_t eng_id_dbg2                  : 5;  /**< Mux 2. Selects which Tree Walk Engine or Bucket Walk Engine will present signals on the
+	uint64_t eng_id_dbg2                  : 5;  /**< Mux 2. Selects which tree walk engine or bucket walk engine will present signals on the
                                                          debug bus when a TWC or BWC signal group is selected for observation. Valid values are
                                                          0-19. */
 	uint64_t reserved_13_15               : 3;
-	uint64_t eng_id_dbg1                  : 5;  /**< Mux 1. Selects which Tree Walk Engine or Bucket Walk Engine will present signals on the
+	uint64_t eng_id_dbg1                  : 5;  /**< Mux 1. Selects which tree walk engine or bucket walk engine will present signals on the
                                                          debug bus when a TWC or BWC signal group is selected for observation. Valid values are
                                                          0-19. */
 	uint64_t reserved_5_7                 : 3;
-	uint64_t eng_id_dbg0                  : 5;  /**< Mux 0. Selects which Tree Walk Engine or Bucket Walk Engine will present signals on the
+	uint64_t eng_id_dbg0                  : 5;  /**< Mux 0. Selects which tree walk engine or bucket walk engine will present signals on the
                                                          debug bus when a TWC or BWC signal group is selected for observation. Valid values are
                                                          0-19. */
 #else
@@ -1162,11 +1164,12 @@ union cvmx_ase_lue_error_log {
 	struct cvmx_ase_lue_error_log_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_62_63               : 2;
-	uint64_t error_id                     : 6;  /**< Type of error logged. See ASE_LUE_ERROR_ID_E. If ERROR_ID == HR_ERR_LOG, see HR_ERR_ID for
-                                                         how to decode the DATA field. Otherwise, ERROR_ID indicates how to decode the DATA field. */
+	uint64_t error_id                     : 6;  /**< Type of error logged. See ASE_LUE_ERROR_ID_E. If [ERROR_ID] = HR_ERR_LOG, see
+                                                         [HR_ERR_ID] for how to decode [DATA]. Otherwise, [ERROR_ID] indicates how to
+                                                         decode [DATA]. */
 	uint64_t reserved_54_55               : 2;
 	uint64_t hr_err_id                    : 6;  /**< Type of host error logged. See ASE_LUE_ERROR_ID_E. Ignore HR_ERR_ID if ERROR_ID !=
-                                                         HR_ERR_LOG. Indicates how to decode the DATA field if ERROR_ID == HR_ERR_LOG. */
+                                                         HR_ERR_LOG. Indicates how to decode [DATA] if [ERROR_ID] == HR_ERR_LOG. */
 	uint64_t data                         : 48; /**< Error logging information. The information in this field takes on different meanings
                                                          depending on the type of error that is latched in the ASE_*_INT[LUE*] fields. Decode this
                                                          field based on ERROR_ID and HR_ERR_ID:
@@ -1322,16 +1325,16 @@ union cvmx_ase_lue_performance_controlx {
 	uint64_t frozen                       : 1;  /**< Indicates that the counter is frozen (i.e one shot event occurred) and remains frozen
                                                          until the clear bit written. */
 	uint64_t clear                        : 1;  /**< Writing 1 to this bit generates a hardware pulse that clears the LUE_PERFORMANCE_COUNTER
-                                                         and field FROZEN of this register. */
+                                                         and [FROZEN]. */
 	uint64_t enable                       : 1;  /**< Enable the counter. This bit is set to 1 to use the corresponding counter. */
 	uint64_t reserved_27_28               : 2;
 	uint64_t mode                         : 3;  /**< Performance counter mode.
                                                          Bit<24>:
-                                                         1 = Event counted SEL0 | SEL1 | SEL2.
-                                                         0 = Event counted SEL0 & SEL1 & SEL2.
+                                                         1 = Event counted [SEL0] | [SEL1[ | [SEL2].
+                                                         0 = Event counted [SEL0] & [SEL1] & [SEL2].
                                                          Bits<26:25>:
-                                                         0x0 = Pos Edge.
-                                                         0x1 = Neg Edge.
+                                                         0x0 = Positive edge.
+                                                         0x1 = Negative edge.
                                                          0x2 = Level.
                                                          0x3 = One shot. */
 	uint64_t sel2                         : 8;  /**< Performance counter event select, third mux. */
@@ -1375,8 +1378,8 @@ union cvmx_ase_lue_performance_control0 {
 	uint64_t reserved_27_27               : 1;
 	uint64_t mode                         : 3;  /**< Performance counter mode.
                                                          Bit<24>:
-                                                         1 = Event counted SEL0.
-                                                         0 = Event counted SEL0 & SEL1 & SEL2.
+                                                         1 = Event counted [SEL0].
+                                                         0 = Event counted [SEL0] & [SEL1] & [SEL2].
                                                          Bits<26:25>:
                                                          0x0 = Pos edge.
                                                          0x1 = Neg edge.
@@ -1422,15 +1425,15 @@ union cvmx_ase_lue_performance_control1 {
 	uint64_t enable                       : 1;  /**< Enable the counter. This bit is set to 1 to use the corresponding counter. */
 	uint64_t global_enable                : 1;  /**< Writing a 1 to this bit starts all the counters in the group of eight counters. This bit
                                                          is only implemented in the second control register of a counter group. Counters are
-                                                         enabled by the OR of the individual ENABLEs and GLOBAL_ENABLE. */
+                                                         enabled by the OR of the individual [ENABLE]s and [GLOBAL_ENABLE]. */
 	uint64_t reserved_27_27               : 1;
 	uint64_t mode                         : 3;  /**< Performance counter mode.
                                                          Bit<24>:
-                                                         1 = Event counted SEL0 | SEL1 | SEL2.
-                                                         0 = Event counted SEL0 & SEL1 & SEL2.
+                                                         1 = Event counted [SEL0] | [SEL1] | [SEL2].
+                                                         0 = Event counted [SEL0] & [SEL1] & [SEL2].
                                                          Bits<26:25>:
-                                                         0x0 = Pos Edge.
-                                                         0x1 = Neg Edge.
+                                                         0x0 = Positive edge.
+                                                         0x1 = Negative edge.
                                                          0x2 = Level.
                                                          0x3 = One shot. */
 	uint64_t sel2                         : 8;  /**< Performance counter event select, third mux. */

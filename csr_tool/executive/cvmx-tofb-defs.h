@@ -651,7 +651,7 @@ typedef union cvmx_tofb_rxx_bits_per_sample cvmx_tofb_rxx_bits_per_sample_t;
 /**
  * cvmx_tofb_rx#_ctrl_cnt
  *
- * Number of control bits per sample
+ * Number of control bits per sample.
  *
  */
 union cvmx_tofb_rxx_ctrl_cnt {
@@ -738,7 +738,7 @@ typedef union cvmx_tofb_rxx_error_cnt cvmx_tofb_rxx_error_cnt_t;
 /**
  * cvmx_tofb_rx#_fifo_level
  *
- * FIFO level
+ * FIFO level.
  *
  */
 union cvmx_tofb_rxx_fifo_level {
@@ -922,7 +922,7 @@ typedef union cvmx_tofb_rxx_ila_length cvmx_tofb_rxx_ila_length_t;
 /**
  * cvmx_tofb_rx#_ila_status
  *
- * ILA valid
+ * ILA valid.
  *
  */
 union cvmx_tofb_rxx_ila_status {
@@ -1079,7 +1079,7 @@ typedef union cvmx_tofb_rxx_octets_per_frame cvmx_tofb_rxx_octets_per_frame_t;
 /**
  * cvmx_tofb_rx#_oversampling_ratio
  *
- * Number of samples per converter per frame
+ * Number of samples per converter per frame.
  *
  */
 union cvmx_tofb_rxx_oversampling_ratio {
@@ -1140,7 +1140,7 @@ typedef union cvmx_tofb_rxx_subclass cvmx_tofb_rxx_subclass_t;
 /**
  * cvmx_tofb_rx#_sync_status
  *
- * Synchronization status
+ * Synchronization status.
  *
  */
 union cvmx_tofb_rxx_sync_status {
@@ -1171,7 +1171,7 @@ typedef union cvmx_tofb_rxx_sync_status cvmx_tofb_rxx_sync_status_t;
 /**
  * cvmx_tofb_rx#_sysref_delay
  *
- * ILA valid
+ * ILA valid.
  *
  */
 union cvmx_tofb_rxx_sysref_delay {

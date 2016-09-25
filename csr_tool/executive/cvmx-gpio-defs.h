@@ -895,12 +895,12 @@ union cvmx_gpio_intrx {
 	struct cvmx_gpio_intrx_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_2_63                : 62;
-	uint64_t intr_w1s                     : 1;  /**< GPIO signalled interrupt. If interrupts are edge sensitive, write one to set, otherwise
-                                                         will clear automatically when GPIO pin de-asserts. Read out value is INTR.
+	uint64_t intr_w1s                     : 1;  /**< GPIO signaled interrupt. If interrupts are edge sensitive, write one to set, otherwise
+                                                         will clear automatically when GPIO pin deasserts. Read out value is INTR.
                                                          GPIO_INTR(4..7)[INTR_W1S] can also introduce GPIO_MC_INTR(4..7) when multicast mode is
                                                          enabled. */
-	uint64_t intr                         : 1;  /**< GPIO signalled interrupt. If interrupts are edge sensitive, write one to clear, otherwise
-                                                         will clear automatically when GPIO pin de-asserts. Throws GPIO_INTSN_E::GPIO_INTR(). */
+	uint64_t intr                         : 1;  /**< GPIO signaled interrupt. If interrupts are edge sensitive, write one to clear, otherwise
+                                                         will clear automatically when GPIO pin deasserts. Throws GPIO_INTSN_E::GPIO_INTR(). */
 #else
 	uint64_t intr                         : 1;
 	uint64_t intr_w1s                     : 1;
@@ -911,8 +911,8 @@ union cvmx_gpio_intrx {
 	struct cvmx_gpio_intrx_cn78xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_1_63                : 63;
-	uint64_t intr                         : 1;  /**< GPIO signalled interrupt. If interrupts are edge sensitive, write one to clear, otherwise
-                                                         will clear automatically when GPIO pin de-asserts. Throws GPIO_INTSN_E::GPIO_INTR(). */
+	uint64_t intr                         : 1;  /**< GPIO signaled interrupt. If interrupts are edge sensitive, write one to clear, otherwise
+                                                         will clear automatically when GPIO pin deasserts. Throws GPIO_INTSN_E::GPIO_INTR(). */
 #else
 	uint64_t intr                         : 1;
 	uint64_t reserved_1_63                : 63;
@@ -1006,7 +1006,7 @@ union cvmx_gpio_multi_cast {
 	struct cvmx_gpio_multi_cast_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_1_63                : 63;
-	uint64_t en                           : 1;  /**< Enable GPIO interrupt multicast mode. When EN is set, GPIO<7:4> functions in multicast
+	uint64_t en                           : 1;  /**< Enable GPIO interrupt multicast mode. When [EN] is set, GPIO<7:4> functions in multicast
                                                          mode allowing these four GPIOs to interrupt multiple cores. Multicast functionality allows
                                                          the GPIO to exist as per-cnMIPS interrupts as opposed to a global interrupt. */
 #else
@@ -1274,7 +1274,7 @@ union cvmx_gpio_tx_clr {
 	struct cvmx_gpio_tx_clr_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t clr                          : 32; /**< Clear mask. Bit mask to indicate which GPIO_TX_DAT bits to set to 0. When read, CLR
+	uint64_t clr                          : 32; /**< Clear mask. Bit mask to indicate which GPIO_TX_DAT bits to set to 0. When read, [CLR]
                                                          returns the GPIO_TX_DAT storage. */
 #else
 	uint64_t clr                          : 32;

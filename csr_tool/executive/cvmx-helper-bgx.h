@@ -222,6 +222,8 @@ extern int __cvmx_helper_bgx_mixed_configure_loopback(int xipd_port,
 						     int enable_internal,
 						     int enable_external);
 
+extern cvmx_helper_interface_mode_t cvmx_helper_bgx_get_mode(int xiface, int index);
+
 /**
  * @INTERNAL
  * Configure Priority-Based Flow Control (a.k.a. PFC/CBFC)

@@ -42,7 +42,7 @@
  *
  * Support functions for managing the MII management port
  *
- * <hr>$Revision: 129228 $<hr>
+ * <hr>$Revision: 144482 $<hr>
  */
 #include "cvmx.h"
 #include "cvmx-bootmem.h"
@@ -489,7 +489,7 @@ cvmx_mgmt_port_result_t cvmx_mgmt_port_shutdown(int port)
 	cvmx_mgmt_port_disable(port);
 	state = cvmx_mgmt_port_state_ptr + port;
 
-	if (state->port >= __cvmx_mgmt_port_num_ports())
+	if (state->port == 0)
 		return CVMX_MGMT_PORT_INVALID_PARAM;
 
 	if (cvmx_sysinfo_get()->board_type != CVMX_BOARD_TYPE_SIM)

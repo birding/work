@@ -1208,7 +1208,7 @@ union cvmx_rfif_cpri_eth_dl_db {
                                                          from this register will return the current buffer level.  If a
                                                          write occurs with a value larger than the remaining space, a
                                                          doorbell error (RFIF_ETH_DB_ERR) will be flagged, and the
-                                                         ethernet behavior will be unpredictable. */
+                                                         Ethernet behavior will be unpredictable. */
 #else
 	uint64_t doorbell                     : 32;
 	uint64_t reserved_32_63               : 32;
@@ -1254,7 +1254,7 @@ union cvmx_rfif_cpri_eth_dl_sts1 {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_40_63               : 24;
 	uint64_t next_rd_ptr                  : 40; /**< Location where the next packet to be transmitted will be read by
-                                                         the RFIF ethernet hardware.  This pointer is updated as packets
+                                                         the RFIF Ethernet hardware.  This pointer is updated as packets
                                                          are sent. */
 #else
 	uint64_t next_rd_ptr                  : 40;
@@ -1283,7 +1283,7 @@ union cvmx_rfif_cpri_eth_ln_ctrl {
                                                          Ethernet block. */
 	uint64_t reserved_15_15               : 1;
 	uint64_t dl_lane_dis_mode             : 1;  /**< Controls halting of the DL Ethernet lane when a TX abort is
-                                                         signalled.
+                                                         signaled.
                                                          0 = Allow the lane to continue after a TX abort.
                                                          1 = Disable the lane on a TX abort. */
 	uint64_t dl_lane_dis                  : 6;  /**< Active high disable signals for the lane-specific logic in
@@ -1436,10 +1436,10 @@ union cvmx_rfif_cpri_eth_ul_db {
 	uint64_t doorbell                     : 32; /**< Written to indicate the number of packets from the ETH_UL
                                                          circular buffer by software.  The buffer level and read pointer
                                                          SW_RD_PTR will be updated by this amount, freeing up the space
-                                                         to be re-used.  A read from this register will return the current
+                                                         to be reused.  A read from this register will return the current
                                                          buffer level.  If a write occurs with a value larger than the
                                                          current level, a doorbell error (RFIF_ETH_DB_ERR) will be flagged,
-                                                         and the ethernet behavior will be unpredictable. */
+                                                         and the Ethernet behavior will be unpredictable. */
 #else
 	uint64_t doorbell                     : 32;
 	uint64_t reserved_32_63               : 32;
@@ -1498,7 +1498,7 @@ typedef union cvmx_rfif_cpri_eth_ul_sts1 cvmx_rfif_cpri_eth_ul_sts1_t;
  * cvmx_rfif_cpri_lane#_eth_dl_cfg0
  *
  * These registers configure the location of the per-lane downlink circular buffers.
- * internal: These registers are only used when RFIF_CPRI_ETH_CONFIG[DL_LANE_MODE] = 0.
+ *
  */
 union cvmx_rfif_cpri_lanex_eth_dl_cfg0 {
 	uint64_t u64;
@@ -1521,7 +1521,7 @@ typedef union cvmx_rfif_cpri_lanex_eth_dl_cfg0 cvmx_rfif_cpri_lanex_eth_dl_cfg0_
  * cvmx_rfif_cpri_lane#_eth_dl_cfg1
  *
  * These registers configure the size of the per-lane downlink circular buffers.
- * internal: These registers are only used when RFIF_CPRI_ETH_CONFIG[DL_LANE_MODE] = 0.
+ *
  */
 union cvmx_rfif_cpri_lanex_eth_dl_cfg1 {
 	uint64_t u64;
@@ -1557,7 +1557,7 @@ union cvmx_rfif_cpri_lanex_eth_dl_db {
                                                          from this register will return the current buffer level.  If a
                                                          write occurs with a value larger than the remaining space, a
                                                          doorbell error (RFIF_ETH_DB_ERR) will be flagged, and the
-                                                         ethernet behavior will be unpredictable. */
+                                                         Ethernet behavior will be unpredictable. */
 #else
 	uint64_t doorbell                     : 32;
 	uint64_t reserved_32_63               : 32;
@@ -1571,7 +1571,7 @@ typedef union cvmx_rfif_cpri_lanex_eth_dl_db cvmx_rfif_cpri_lanex_eth_dl_db_t;
  * cvmx_rfif_cpri_lane#_eth_dl_sts0
  *
  * These registers provide the software write pointers of the per-lane downlink circular buffers.
- * internal: These registers are only used when RFIF_CPRI_ETH_CONFIG[DL_LANE_MODE] = 0.
+ *
  */
 union cvmx_rfif_cpri_lanex_eth_dl_sts0 {
 	uint64_t u64;
@@ -1580,7 +1580,7 @@ union cvmx_rfif_cpri_lanex_eth_dl_sts0 {
 	uint64_t reserved_40_63               : 24;
 	uint64_t sw_wr_ptr                    : 40; /**< Location where the next packet should be written by software.
                                                          This pointer is updated when software writes the doorbell register
-                                                         RFIF_CPRI_ETH_DL_DB, indicating that packets have been added to
+                                                         RFIF_CPRI_LANE()_ETH_DL_DB, indicating that packets have been added to
                                                          the circular buffer to be transmitted. */
 #else
 	uint64_t sw_wr_ptr                    : 40;
@@ -1596,7 +1596,6 @@ typedef union cvmx_rfif_cpri_lanex_eth_dl_sts0 cvmx_rfif_cpri_lanex_eth_dl_sts0_
  *
  * These registers provide the next packet read pointers of the per-lane downlink circular
  * buffers.
- * internal: These registers are only used when RFIF_CPRI_ETH_CONFIG[DL_LANE_MODE] = 0.
  */
 union cvmx_rfif_cpri_lanex_eth_dl_sts1 {
 	uint64_t u64;
@@ -1623,11 +1622,11 @@ union cvmx_rfif_cpri_reset_ctrl {
 	struct cvmx_rfif_cpri_reset_ctrl_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
-	uint64_t lane5_reset                  : 8;  /**< See LANE0_RESET description. */
-	uint64_t lane4_reset                  : 8;  /**< See LANE0_RESET description. */
-	uint64_t lane3_reset                  : 8;  /**< See LANE0_RESET description. */
-	uint64_t lane2_reset                  : 8;  /**< See LANE0_RESET description. */
-	uint64_t lane1_reset                  : 8;  /**< See LANE0_RESET description. */
+	uint64_t lane5_reset                  : 8;  /**< See [LANE0_RESET] description. */
+	uint64_t lane4_reset                  : 8;  /**< See [LANE0_RESET] description. */
+	uint64_t lane3_reset                  : 8;  /**< See [LANE0_RESET] description. */
+	uint64_t lane2_reset                  : 8;  /**< See [LANE0_RESET] description. */
+	uint64_t lane1_reset                  : 8;  /**< See [LANE0_RESET] description. */
 	uint64_t lane0_reset                  : 8;  /**< CPRI internal active low resets:
                                                          Bit 0 = reset_rx_n.
                                                          Bit 1 = reset_tx_n.
@@ -1799,7 +1798,7 @@ union cvmx_rfif_dlfe_proc_lat {
 	uint64_t reserved_14_63               : 50;
 	uint64_t proc_lat                     : 14; /**< DLFE processing latency, corresponding to the time required to prepare a number of
                                                          samples, prior to the start of RFIF frame. It
-                                                         corresponds to a number of 30.72MHz clock cycles of latency. */
+                                                         corresponds to a number of 30.72 MHz clock cycles of latency. */
 #else
 	uint64_t proc_lat                     : 14;
 	uint64_t reserved_14_63               : 50;
@@ -1828,7 +1827,7 @@ typedef union cvmx_rfif_eco cvmx_rfif_eco_t;
 /**
  * cvmx_rfif_eth_abort
  *
- * Ethernet Abort register.
+ * Ethernet abort register.
  *
  */
 union cvmx_rfif_eth_abort {
@@ -1983,13 +1982,13 @@ typedef union cvmx_rfif_eth_tx_ecc_info cvmx_rfif_eth_tx_ecc_info_t;
  *
  * Available in all modes:
  *
- * _ DL_SOS_MISS
+ * _ [DL_SOS_MISS]
  *
- * _ PP2S
+ * _ [PP2S]
  *
- * _ START_SUB_FRAME
+ * _ [START_SUB_FRAME]
  *
- * _ START_RADIO_FRAME
+ * _ [START_RADIO_FRAME]
  *
  * CPRI, TOFB, and SDL, but not availble for TOSP:
  *
@@ -1999,15 +1998,15 @@ typedef union cvmx_rfif_eth_tx_ecc_info cvmx_rfif_eth_tx_ecc_info_t;
  *
  * CPRI mode only:
  *
- * _ ETH_DB_ERR
+ * _ [ETH_DB_ERR]
  *
- * _ ETH_SBE
+ * _ [ETH_SBE]
  *
- * _ ETH_DBE
+ * _ [ETH_DBE]
  *
- * _ ETH_ABORT
+ * _ [ETH_ABORT]
  *
- * _ ETH_PKT_ARR_NOTIF
+ * _ [ETH_PKT_ARR_NOTIF]
  *
  * _ CPRI_UL_OFLOW_LANE(0..5)
  *
@@ -2029,7 +2028,7 @@ typedef union cvmx_rfif_eth_tx_ecc_info cvmx_rfif_eth_tx_ecc_info_t;
  *
  * _ FIFO_FLAGS_RMAC(0..2)
  *
- * _ SPI_DONE_RMAC(0..2)
+ * _ SPI_DONE_RMAC(0..2).
  */
 union cvmx_rfif_int_sum {
 	uint64_t u64;
@@ -2054,8 +2053,8 @@ union cvmx_rfif_int_sum {
 	uint64_t spi_event2_done_rmac1        : 1;  /**< TOSP SPI transfer done for event 2. */
 	uint64_t spi_event1_done_rmac1        : 1;  /**< TOSP SPI transfer done for event 1. */
 	uint64_t spi_event0_done_rmac1        : 1;  /**< TOSP SPI transfer done for event 0. */
-	uint64_t start_tx_frame_rmac1         : 1;  /**< TOSP Start of TX frame. */
-	uint64_t start_rx_frame_rmac1         : 1;  /**< TOSP Start of RX frame status. */
+	uint64_t start_tx_frame_rmac1         : 1;  /**< TOSP start of TX frame. */
+	uint64_t start_rx_frame_rmac1         : 1;  /**< TOSP start of RX frame status. */
 	uint64_t fifo_flags_rmac1             : 1;  /**< TOSP FIFO flags status. */
 	uint64_t pps_sync_done_rmac0          : 1;  /**< TOSP synchronization to 1PPS done. */
 	uint64_t spi_event3_done_rmac0        : 1;  /**< TOSP SPI transfer done for event 3. */
@@ -2263,7 +2262,7 @@ union cvmx_rfif_loop_rfp {
 	uint64_t reserved_1_63                : 63;
 	uint64_t rfp                          : 1;  /**< Write 1 to generate the first radio frame pulse. The timer block will
                                                          then automatically generate the radio frame pulses,based on the
-                                                         30.72MHz clock. */
+                                                         30.72 MHz clock. */
 #else
 	uint64_t rfp                          : 1;
 	uint64_t reserved_1_63                : 63;
@@ -2313,52 +2312,52 @@ union cvmx_rfif_master_cfg {
 	struct cvmx_rfif_master_cfg_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t one_ms_rf                    : 1;  /**< Reserved. Must be 0. */
-	uint64_t rmac2_mode                   : 3;  /**< RMAC mode. See RMAC0_MODE for details. */
-	uint64_t rmac1_mode                   : 3;  /**< RMAC mode. See RMAC0_MODE for details. */
+	uint64_t rmac2_mode                   : 3;  /**< RMAC mode. See [RMAC0_MODE] for details. */
+	uint64_t rmac1_mode                   : 3;  /**< RMAC mode. See [RMAC0_MODE] for details. */
 	uint64_t rmac0_mode                   : 3;  /**< Select the RF interface mode for RMAC 0:
                                                          0x0 = CPRI.
                                                          0x1 = JESD 204B (TOFB).
                                                          0x2 = SerDes-Lite (SDL).
                                                          0x3 = JESD 207 (TOSP).
-                                                         Note that RMAC0_MODE, RMAC1_MODE, and RMAC2_MODE must all be set to
+                                                         Note that [RMAC0_MODE], [RMAC1_MODE], and [RMAC2_MODE] must all be set to
                                                          the same value. Mixed-mode operation is not supported. */
-	uint64_t rmac2_sw_reset_div2_n        : 1;  /**< De-assertion of this soft reset bit will enable the GSER
-                                                         tx_clk (muxed) clock divider. De-assert after DLM_RST_RDY is asserted */
-	uint64_t rmac1_sw_reset_div2_n        : 1;  /**< De-assertion of this soft reset bit will enable the GSER
-                                                         tx_clk (muxed) clock divider. De-assert after DLM_RST_RDY is asserted */
-	uint64_t rmac0_sw_reset_div2_n        : 1;  /**< De-assertion of this soft reset bit will enable the GSER
-                                                         tx_clk (muxed) clock divider. De-assert after DLM_RST_RDY is asserted */
-	uint64_t rmac2_sw_reset_n             : 1;  /**< RMAC soft reset. De-assert after RMAC2_SW_RESET_DIV2_N.  Perform soft
-                                                         BIST on GSER clock memories between RMAC2_SW_RESET_DIV2_N and this
+	uint64_t rmac2_sw_reset_div2_n        : 1;  /**< Deassertion of this soft reset bit will enable the GSER
+                                                         tx_clk (muxed) clock divider. Deassert after DLM_RST_RDY is asserted */
+	uint64_t rmac1_sw_reset_div2_n        : 1;  /**< Deassertion of this soft reset bit will enable the GSER
+                                                         tx_clk (muxed) clock divider. Deassert after DLM_RST_RDY is asserted */
+	uint64_t rmac0_sw_reset_div2_n        : 1;  /**< Deassertion of this soft reset bit will enable the GSER
+                                                         tx_clk (muxed) clock divider. Deassert after DLM_RST_RDY is asserted */
+	uint64_t rmac2_sw_reset_n             : 1;  /**< RMAC soft reset. Deassert after [RMAC2_SW_RESET_DIV2_N].  Perform soft
+                                                         BIST on GSER clock memories between [RMAC2_SW_RESET_DIV2_N] and this
                                                          soft reset. */
-	uint64_t rmac1_sw_reset_n             : 1;  /**< RMAC soft reset. De-assert after RMAC1_SW_RESET_DIV2_N.  Perform soft
-                                                         BIST on GSER clock memories between RMAC1_SW_RESET_DIV2_N and this
+	uint64_t rmac1_sw_reset_n             : 1;  /**< RMAC soft reset. Deassert after [RMAC1_SW_RESET_DIV2_N].  Perform soft
+                                                         BIST on GSER clock memories between [RMAC1_SW_RESET_DIV2_N] and this
                                                          soft reset. */
-	uint64_t rmac0_sw_reset_n             : 1;  /**< RMAC soft reset. De-assert after RMAC0_SW_RESET_DIV2_N.  Perform soft
-                                                         BIST on GSER clock memories between RMAC0_SW_RESET_DIV2_N and this
+	uint64_t rmac0_sw_reset_n             : 1;  /**< RMAC soft reset. Deassert after [RMAC0_SW_RESET_DIV2_N].  Perform soft
+                                                         BIST on GSER clock memories between [RMAC0_SW_RESET_DIV2_N] and this
                                                          soft reset. */
 	uint64_t rmac_delivers_cpri_tx_sync_rfp : 1;/**< Reserved. Must be 1. */
-	uint64_t lane5_dlm_txclk_sel          : 2;  /**< Select TX clock from DLM. See LANE0_DLM_TXCLK_SEL. */
-	uint64_t lane5_rate                   : 5;  /**< Lane rate selection. See LANE0_RATE. */
+	uint64_t lane5_dlm_txclk_sel          : 2;  /**< Select TX clock from DLM. See [LANE0_DLM_TXCLK_SEL]. */
+	uint64_t lane5_rate                   : 5;  /**< Lane rate selection. See [LANE0_RATE]. */
 	uint64_t sim_spup                     : 1;  /**< N/A */
-	uint64_t lane4_dlm_txclk_sel          : 2;  /**< Select TX clock from DLM. See LANE0_DLM_TXCLK_SEL. */
-	uint64_t lane4_rate                   : 5;  /**< Lane rate selection. See LANE0_RATE. */
+	uint64_t lane4_dlm_txclk_sel          : 2;  /**< Select TX clock from DLM. See [LANE0_DLM_TXCLK_SEL]. */
+	uint64_t lane4_rate                   : 5;  /**< Lane rate selection. See [LANE0_RATE]. */
 	uint64_t reserved_31_31               : 1;
-	uint64_t lane3_dlm_txclk_sel          : 2;  /**< Select TX clock from DLM. See LANE0_DLM_TXCLK_SEL. */
-	uint64_t lane3_rate                   : 5;  /**< Lane rate selection. See LANE0_RATE. */
+	uint64_t lane3_dlm_txclk_sel          : 2;  /**< Select TX clock from DLM. See [LANE0_DLM_TXCLK_SEL]. */
+	uint64_t lane3_rate                   : 5;  /**< Lane rate selection. See [LANE0_RATE]. */
 	uint64_t reserved_23_23               : 1;
-	uint64_t lane2_dlm_txclk_sel          : 2;  /**< Select TX clock from DLM. See LANE0_DLM_TXCLK_SEL. */
-	uint64_t lane2_rate                   : 5;  /**< Lane rate selection. See LANE0_RATE. */
+	uint64_t lane2_dlm_txclk_sel          : 2;  /**< Select TX clock from DLM. See [LANE0_DLM_TXCLK_SEL]. */
+	uint64_t lane2_rate                   : 5;  /**< Lane rate selection. See [LANE0_RATE]. */
 	uint64_t reserved_15_15               : 1;
-	uint64_t lane1_dlm_txclk_sel          : 2;  /**< Select TX clock from DLM. See LANE0_DLM_TXCLK_SEL. */
-	uint64_t lane1_rate                   : 5;  /**< Lane rate selection. See LANE0_RATE. */
+	uint64_t lane1_dlm_txclk_sel          : 2;  /**< Select TX clock from DLM. See [LANE0_DLM_TXCLK_SEL]. */
+	uint64_t lane1_rate                   : 5;  /**< Lane rate selection. See [LANE0_RATE]. */
 	uint64_t tadv_upd_dlmap_rst           : 1;  /**< Set to enable automatic DL MAP reset when the timing advance is changed. */
 	uint64_t lane0_dlm_txclk_sel          : 2;  /**< Select one of 4 TX clocks from SerDes DLM:
-                                                         0x0 = tx_clk, used when LANE0_RATE = 0xA (9.8 Gbps) or 0x10 (6.1 Gbps).
-                                                         0x1 = tx_div2_clk, used when LANE0_RATE = 0x5 (3.1 Gbps) or 0x8 (4.9
+                                                         0x0 = tx_clk, used when [LANE0_RATE] = 0xA (9.8 Gbps) or 0x10 (6.1 Gbps).
+                                                         0x1 = tx_div2_clk, used when [LANE0_RATE] = 0x5 (3.1 Gbps) or 0x8 (4.9
                                                          Gbps).
-                                                         0x2 = tx_div4_clk, used when LANE0_RATE = 0x4 (2.5 Gbps).
-                                                         0x3 = tx_div8_clk, used when LANE0_RATE = 0x2 (1.2 Gbps).
+                                                         0x2 = tx_div4_clk, used when [LANE0_RATE] = 0x4 (2.5 Gbps).
+                                                         0x3 = tx_div8_clk, used when [LANE0_RATE] = 0x2 (1.2 Gbps).
                                                          Note that LANE0_DLM_TXCLK_SEL is not used (i.e., ignored) when
                                                          [RMAC0_MODE]=0x2 (SDL). */
 	uint64_t lane0_rate                   : 5;  /**< Lane rate selection (unlisted values are reserved):
@@ -2581,14 +2580,14 @@ union cvmx_rfif_sample_width {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_14_63               : 50;
 	uint64_t dl_sample_width_sat_bypass   : 1;  /**< RFIF downlink saturation bypass.
-                                                         0 = Perform symmetric saturation to DL_SAMPLE_WIDTH.
-                                                         1 = Bypass saturation. If DL_SAMPLE_WIDTH_OPTION=0, no conversion is
-                                                         performed (as if DL_SAMPLE_WIDTH_BYPASS=1). If
-                                                         DL_SAMPLE_WIDTH_OPTION=1, the rounded value is truncated instead of
+                                                         0 = Perform symmetric saturation to [DL_SAMPLE_WIDTH].
+                                                         1 = Bypass saturation. If [DL_SAMPLE_WIDTH_OPTION]=0, no conversion is
+                                                         performed (as if [DL_SAMPLE_WIDTH_BYPASS]=1). If
+                                                         [DL_SAMPLE_WIDTH_OPTION]=1, the rounded value is truncated instead of
                                                          saturating. */
 	uint64_t dl_sample_width_bypass       : 1;  /**< RFIF downlink sample width conversion bypass.
-                                                         0 = Perform conversion specified by DL_SAMPLE_WIDTH_OPTION and
-                                                         DL_SAMPLE_WIDTH_SAT_BYPASS.
+                                                         0 = Perform conversion specified by [DL_SAMPLE_WIDTH_OPTION] and
+                                                         [DL_SAMPLE_WIDTH_SAT_BYPASS].
                                                          1 = Bypass conversion. This is equivalent to selecting the n most
                                                          significant bits, where n is determined by the RF interface. */
 	uint64_t dl_sample_width_option       : 1;  /**< RFIF downlink sample width conversion:
@@ -2599,9 +2598,9 @@ union cvmx_rfif_sample_width {
                                                           _ ROUND(X) = (X + 2^(m-1)) >> m, if X >= 0.
                                                           _ ROUND(X) = -((-X + 2^(m-1)) >> m), if X < 0.
                                                           _ where m = 16 - n, and when m=0, 2^(0-1) = 0.
-                                                          n is the sample bit width specified by DL_SAMPLE_WIDTH.
+                                                          n is the sample bit width specified by [DL_SAMPLE_WIDTH].
                                                           Note that the saturation operation can be bypassed by setting
-                                                          DL_SAMPLE_WIDTH_SAT_BYPASS=1. */
+                                                          [DL_SAMPLE_WIDTH_SAT_BYPASS]=1. */
 	uint64_t dl_sample_width              : 3;  /**< RFIF downlink sample bit width:
                                                          0x0 = 16 bits.
                                                          0x1 = 15 bits.
@@ -2611,8 +2610,8 @@ union cvmx_rfif_sample_width {
 	uint64_t reserved_7_7                 : 1;
 	uint64_t ul_sample_width_bypass       : 1;  /**< RFIF UL sample width bypass.
                                                          0 = Perform sample width conversion specified by
-                                                         UL_SAMPLE_WIDTH_OPTION.
-                                                         1 = Bypass sample width conversion. The left-justitifed value from the
+                                                         [UL_SAMPLE_WIDTH_OPTION].
+                                                         1 = Bypass sample width conversion. The left-justified value from the
                                                          RF interface is used, with no guarantee about the value of the
                                                          least-significant bits. */
 	uint64_t ul_sample_width_option       : 1;  /**< RFIF UL sample width conversion method.
@@ -2649,9 +2648,9 @@ union cvmx_rfif_sdl_reset_ctrl {
 	struct cvmx_rfif_sdl_reset_ctrl_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_22_63               : 42;
-	uint64_t lane2_reset                  : 6;  /**< SDL lane 2 (RFIF lane 4) resets.  See LANE0_RESET description. */
+	uint64_t lane2_reset                  : 6;  /**< SDL lane 2 (RFIF lane 4) resets.  See [LANE0_RESET] description. */
 	uint64_t reserved_14_15               : 2;
-	uint64_t lane1_reset                  : 6;  /**< SDL lane 1 (RFIF lane 2) resets.  See LANE0_RESET description. */
+	uint64_t lane1_reset                  : 6;  /**< SDL lane 1 (RFIF lane 2) resets.  See [LANE0_RESET] description. */
 	uint64_t reserved_6_7                 : 2;
 	uint64_t lane0_reset                  : 6;  /**< SDL active low resets:
                                                          Bit 0 = core_reset_n.
@@ -2800,7 +2799,7 @@ union cvmx_rfif_timer_cfg {
 	uint64_t reserved_29_63               : 35;
 	uint64_t gen_clk_hp                   : 4;  /**< Reserved. */
 	uint64_t clk_sel                      : 1;  /**< Reserved. Must be zero. */
-	uint64_t bfn_per                      : 16; /**< BFN period in number of 30.72MHz clock cycles. The BFN sync pulse if sampled BFN_PER/2
+	uint64_t bfn_per                      : 16; /**< BFN period in number of 30.72 MHz clock cycles. The BFN sync pulse if sampled BFN_PER/2
                                                          cycle after the RFP detection. The 12 BFN bits are then sampled with a period of BFN_PER
                                                          cycles. */
 	uint64_t reserved_3_7                 : 5;
@@ -2924,15 +2923,15 @@ union cvmx_rfif_tofb_reset_ctrl {
 	struct cvmx_rfif_tofb_reset_ctrl_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_46_63               : 18;
-	uint64_t lane5_reset                  : 6;  /**< See LANE0_RESET description. */
+	uint64_t lane5_reset                  : 6;  /**< See [LANE0_RESET] description. */
 	uint64_t reserved_38_39               : 2;
-	uint64_t lane4_reset                  : 6;  /**< See LANE0_RESET description. */
+	uint64_t lane4_reset                  : 6;  /**< See [LANE0_RESET] description. */
 	uint64_t reserved_30_31               : 2;
-	uint64_t lane3_reset                  : 6;  /**< See LANE0_RESET description. */
+	uint64_t lane3_reset                  : 6;  /**< See [LANE0_RESET] description. */
 	uint64_t reserved_22_23               : 2;
-	uint64_t lane2_reset                  : 6;  /**< See LANE0_RESET description. */
+	uint64_t lane2_reset                  : 6;  /**< See [LANE0_RESET] description. */
 	uint64_t reserved_14_15               : 2;
-	uint64_t lane1_reset                  : 6;  /**< See LANE0_RESET description. */
+	uint64_t lane1_reset                  : 6;  /**< See [LANE0_RESET] description. */
 	uint64_t reserved_6_7                 : 2;
 	uint64_t lane0_reset                  : 6;  /**< TOFB active low resets:
                                                          Bit 0 =  reset_rx_n.
@@ -3158,7 +3157,7 @@ union cvmx_rfif_ul_comb_p1_configx {
                                                          0x6 = Reserved.
                                                          0x7 = Reserved. */
 	uint64_t reserved_4_15                : 12;
-	uint64_t sat_bypass                   : 1;  /**< Bypass RX Combiner saturation:
+	uint64_t sat_bypass                   : 1;  /**< Bypass RX combiner saturation:
                                                          0 = Enable saturation.
                                                          1 = Bypass saturation and instead truncate the sum/average. */
 	uint64_t sat_val                      : 3;  /**< Reserved. */
@@ -3308,14 +3307,14 @@ union cvmx_rfif_ul_smple_adj {
                                                          range is 0 to 7. Note that the same adjustment is used for all
                                                          antennae.
                                                          The legal values depend on the BW of the lowest BW antenna as follows:
-                                                         20MHz Antennas only: 0 to 7.
-                                                         20MHz and 10MHz: 0, 2, 4, 6.
-                                                         20MHz, 10MHz and 5MHz: 0, 4.
+                                                         20 MHz Antennas only: 0 to 7.
+                                                         20 MHz and 10 MHz: 0, 2, 4, 6.
+                                                         20 MHz, 10 MHz and 5 MHz: 0, 4.
                                                          The sample selected for each antenna is scaled by the number of
                                                          samples per BF as follows:
-                                                         _ For 20MHz antennae the alignment is as programmed by ADJ.
-                                                         _ For 10MHz antennae it is ADJ>>1.
-                                                         _ For  5MHz antennae it is ADJ>>2. */
+                                                         _ For 20 MHz antennae the alignment is as programmed by ADJ.
+                                                         _ For 10 MHz antennae it is ADJ>>1.
+                                                         _ For  5 MHz antennae it is ADJ>>2. */
 #else
 	uint64_t adj                          : 3;
 	uint64_t reserved_3_63                : 61;

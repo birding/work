@@ -1805,7 +1805,7 @@ union cvmx_fpa_gen_cfg {
                                                          0x2 = 16 pools, 432 FPF entries per pool.
                                                          0x3 = Reserved. */
 	uint64_t avg_en                       : 1;  /**< QoS averaging enable. When set, RED calculations use average buffer levels. When clear,
-                                                         RED calcuations use the current values. */
+                                                         RED calculations use the current values. */
 	uint64_t clk_override                 : 1;  /**< Conditional clock override. */
 #else
 	uint64_t clk_override                 : 1;

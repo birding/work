@@ -576,9 +576,9 @@ union cvmx_rmap_error_enable0 {
 	struct cvmx_rmap_error_enable0_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_5_63                : 59;
-	uint64_t rp0_of_en                    : 1;  /**< Read Port 0 Overflow Enable */
+	uint64_t rp0_of_en                    : 1;  /**< Read port 0 overflow enable. */
 	uint64_t reserved_1_3                 : 3;
-	uint64_t rp0_uf_en                    : 1;  /**< Read Port 0 Underflow Enable */
+	uint64_t rp0_uf_en                    : 1;  /**< Read port 0 underflow enable. */
 #else
 	uint64_t rp0_uf_en                    : 1;
 	uint64_t reserved_1_3                 : 3;
@@ -617,12 +617,12 @@ union cvmx_rmap_error_enable1 {
 	uint64_t byte_order_err2_en           : 1;  /**< Enable reporting of invalid RI_BYTE_ORDER setting. */
 	uint64_t byte_order_err1_en           : 1;  /**< Enable reporting of invalid CQI_BYTE_ORDER setting. */
 	uint64_t byte_order_err0_en           : 1;  /**< Enable reporting of invalid DATA_BYTE_ORDER setting. */
-	uint64_t ack_err1_en                  : 1;  /**< Enable reporting of non-zero NUM_ACK_RE with zero ACK_ENC_CAT. */
-	uint64_t ack_err0_en                  : 1;  /**< Enable reporting of zero NUM_ACK_RE with non-zero ACK_ENC_CAT. */
-	uint64_t ri_err1_en                   : 1;  /**< Enable reporting of non-zero NUM_RI_RE with zero RI_ENC_CAT. */
-	uint64_t ri_err0_en                   : 1;  /**< Enable reporting of zero NUM_RI_RE with non-zero RI_ENC_CAT. */
-	uint64_t cqi_err1_en                  : 1;  /**< Enable reporting of non-zero NUM_CQI_RE with zero NUM_ENCODED_CQI_BITS. */
-	uint64_t cqi_err0_en                  : 1;  /**< Enable reporting of zero NUM_CQI_RE with non-zero NUM_ENCODED_CQI_BITS. */
+	uint64_t ack_err1_en                  : 1;  /**< Enable reporting of nonzero NUM_ACK_RE with zero ACK_ENC_CAT. */
+	uint64_t ack_err0_en                  : 1;  /**< Enable reporting of zero NUM_ACK_RE with nonzero ACK_ENC_CAT. */
+	uint64_t ri_err1_en                   : 1;  /**< Enable reporting of nonzero NUM_RI_RE with zero RI_ENC_CAT. */
+	uint64_t ri_err0_en                   : 1;  /**< Enable reporting of zero NUM_RI_RE with nonzero RI_ENC_CAT. */
+	uint64_t cqi_err1_en                  : 1;  /**< Enable reporting of nonzero NUM_CQI_RE with zero NUM_ENCODED_CQI_BITS. */
+	uint64_t cqi_err0_en                  : 1;  /**< Enable reporting of zero NUM_CQI_RE with nonzero NUM_ENCODED_CQI_BITS. */
 #else
 	uint64_t cqi_err0_en                  : 1;
 	uint64_t cqi_err1_en                  : 1;
@@ -805,14 +805,14 @@ union cvmx_rmap_jd0_cfg0 {
                                                          0x3 = Reserved. */
 	uint64_t reserved_42_43               : 2;
 	uint64_t num_encoded_cqi_bits         : 18; /**< The number of encoded cqi bits.
-                                                         When CQI is RM encoded,NUM_ENCODED_CQI_BITS must be 32. When
+                                                         When CQI is RM encoded, [NUM_ENCODED_CQI_BITS] must be 32. When
                                                          CQI uses convolutional coding, it may be either partially or fully
                                                          rate-matched, in which case the size should be equal to the
                                                          REENC_RM_OUT_SIZE from the VDEC job configuration that produced the
                                                          CQI bits. Valid range is 0 to 186624. */
 	uint64_t reserved_22_23               : 2;
 	uint64_t g_prime                      : 14; /**< Total number of coded symbols in the transport block.
-                                                         The total number of coded bits is G_PRIME*NUM_LAYERS*MOD_ORDER.
+                                                         The total number of coded bits is [G_PRIME]*[NUM_LAYERS]*[MOD_ORDER].
                                                          Valid range is 0 to 15552. */
 	uint64_t reserved_7_7                 : 1;
 	uint64_t mod_order                    : 3;  /**< Modulation order:
@@ -950,19 +950,19 @@ union cvmx_rmap_jd0_cfg3 {
 	struct cvmx_rmap_jd0_cfg3_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_51_63               : 13;
-	uint64_t num_rb                       : 7;  /**< Total number of RBs in a subframe.  If RES_ALLOC_TYPE = 1, this must
-                                                         equal the sum of LENGTH_RB_SET0 and LENGTH_RB_SET1. */
+	uint64_t num_rb                       : 7;  /**< Total number of RBs in a subframe.  If [RES_ALLOC_TYPE] = 1, this must
+                                                         equal the sum of [LENGTH_RB_SET0] and [LENGTH_RB_SET1]. */
 	uint64_t num_scalar_qam               : 4;  /**< The number of bits the floating point modulation values are left shifted to produce
                                                          the fixed point complex values. Valid range is [1,14]. */
 	uint64_t reserved_38_39               : 2;
 	uint64_t num_bundled_i                : 2;  /**< Index to the scrambling sequence table for ACK bundling.
-                                                         NUM_BUNDLED_I = (N_bundled - 1) mod 4. */
+                                                         [NUM_BUNDLED_I] = (N_bundled - 1) mod 4. */
 	uint64_t reserved_34_35               : 2;
 	uint64_t ndft_indx                    : 6;  /**< Index for the NDFT as defined in the list of supported NDFTs. Valid
                                                          range is 0 to 34. */
 	uint64_t reserved_25_27               : 3;
 	uint64_t rs_bits_last                 : 5;  /**< This parameter controls the output scaling at the last stage of the DFT.
-                                                         The DFT output is right shifted by RS_BITS_LAST. */
+                                                         The DFT output is right shifted by [RS_BITS_LAST]. */
 	uint64_t reserved_18_19               : 2;
 	uint64_t res_alloc_type               : 1;  /**< The resource allocation type:
                                                          0 = Type 0.
@@ -970,13 +970,13 @@ union cvmx_rmap_jd0_cfg3 {
 	uint64_t freq_hop_type                : 1;  /**< Intra-subframe frequency hopping flag:
                                                          0 = No intra-subframe frequency hopping.
                                                          1 = Intra-subframe frequency hopping.
-                                                         This value must be zero if RES_ALLOC_TYPE = 1. */
+                                                         This value must be zero if [RES_ALLOC_TYPE] = 1. */
 	uint64_t reserved_15_15               : 1;
 	uint64_t length_rb_set0               : 7;  /**< Length in terms of contiguously allocated resource blocks for set 0.
                                                          Valid range is 1 to 108. */
 	uint64_t reserved_7_7                 : 1;
 	uint64_t length_rb_set1               : 7;  /**< Length in terms of contiguously allocated resource blocks for set 1.
-                                                         Valid range is 1 to 108. The value is ignored if RES_ALLOC_TYPE = 0. */
+                                                         Valid range is 1 to 108. The value is ignored if [RES_ALLOC_TYPE] = 0. */
 #else
 	uint64_t length_rb_set1               : 7;
 	uint64_t reserved_7_7                 : 1;
@@ -1051,14 +1051,14 @@ union cvmx_rmap_jd1_cfg0 {
                                                          0x3 = Reserved. */
 	uint64_t reserved_42_43               : 2;
 	uint64_t num_encoded_cqi_bits         : 18; /**< The number of encoded cqi bits.
-                                                         When CQI is RM encoded,NUM_ENCODED_CQI_BITS must be 32. When
+                                                         When CQI is RM encoded, [NUM_ENCODED_CQI_BITS] must be 32. When
                                                          CQI uses convolutional coding, it may be either partially or fully
                                                          rate-matched, in which case the size should be equal to the
                                                          REENC_RM_OUT_SIZE from the VDEC job configuration that produced the
                                                          CQI bits. Valid range is 0 to 186624. */
 	uint64_t reserved_22_23               : 2;
 	uint64_t g_prime                      : 14; /**< Total number of coded symbols in the transport block.
-                                                         The total number of coded bits is G_PRIME*NUM_LAYERS*MOD_ORDER.
+                                                         The total number of coded bits is [G_PRIME]*[NUM_LAYERS]*[MOD_ORDER].
                                                          Valid range is 0 to 15552. */
 	uint64_t reserved_7_7                 : 1;
 	uint64_t mod_order                    : 3;  /**< Modulation order:
@@ -1196,18 +1196,18 @@ union cvmx_rmap_jd1_cfg3 {
 	struct cvmx_rmap_jd1_cfg3_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_51_63               : 13;
-	uint64_t num_rb                       : 7;  /**< Total number of RBs in a subframe.  If RES_ALLOC_TYPE = 1, this must
-                                                         equal the sum of LENGTH_RB_SET0 and LENGTH_RB_SET1. */
+	uint64_t num_rb                       : 7;  /**< Total number of RBs in a subframe.  If [RES_ALLOC_TYPE] = 1, this must
+                                                         equal the sum of [LENGTH_RB_SET0] and [LENGTH_RB_SET1]. */
 	uint64_t num_scalar_qam               : 4;  /**< Num_scalar_qam is to control the effective output bits of the modulator. [TBC] */
 	uint64_t reserved_38_39               : 2;
 	uint64_t num_bundled_i                : 2;  /**< Index to the scrambling sequence table for ACK bundling.
-                                                         NUM_BUNDLED_I = (N_bundled - 1) mod 4. */
+                                                         [NUM_BUNDLED_I] = (N_bundled - 1) mod 4. */
 	uint64_t reserved_34_35               : 2;
 	uint64_t ndft_indx                    : 6;  /**< Index for the NDFT as defined in the list of supported NDFTs. Valid
                                                          range is 0 to 34. */
 	uint64_t reserved_25_27               : 3;
 	uint64_t rs_bits_last                 : 5;  /**< This parameter controls the output scaling at the last stage of the DFT.
-                                                         The DFT output is right shifted by RS_BITS_LAST. */
+                                                         The DFT output is right shifted by [RS_BITS_LAST]. */
 	uint64_t reserved_18_19               : 2;
 	uint64_t res_alloc_type               : 1;  /**< The resource allocation type:
                                                          0 = Type 0.
@@ -1215,13 +1215,13 @@ union cvmx_rmap_jd1_cfg3 {
 	uint64_t freq_hop_type                : 1;  /**< Intra-subframe frequency hopping flag:
                                                          0 = No intra-subframe frequency hopping.
                                                          1 = Intra-subframe frequency hopping.
-                                                         This value must be zero if RES_ALLOC_TYPE = 1. */
+                                                         This value must be zero if [RES_ALLOC_TYPE] = 1. */
 	uint64_t reserved_15_15               : 1;
 	uint64_t length_rb_set0               : 7;  /**< Length in terms of contiguously allocated resource blocks for set 0.
                                                          Valid range is 1 to 108. */
 	uint64_t reserved_7_7                 : 1;
 	uint64_t length_rb_set1               : 7;  /**< Length in terms of contiguously allocated resource blocks for set 1.
-                                                         Valid range is 1 to 108. The value is ignored if RES_ALLOC_TYPE = 0. */
+                                                         Valid range is 1 to 108. The value is ignored if [RES_ALLOC_TYPE] = 0. */
 #else
 	uint64_t length_rb_set1               : 7;
 	uint64_t reserved_7_7                 : 1;
@@ -1431,12 +1431,12 @@ union cvmx_rmap_tc_error {
 	struct cvmx_rmap_tc_error_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_9_63                : 55;
-	uint64_t core_err                     : 1;  /**< invalid configuration, the block is aborted. See RMAP_TC_CONFIG_ERR_FLAGS. */
+	uint64_t core_err                     : 1;  /**< Invalid configuration, the block is aborted. See RMAP_TC_CONFIG_ERR_FLAGS. */
 	uint64_t reserved_4_7                 : 4;
-	uint64_t ign_rd_acc                   : 1;  /**< ignored read access, already one read in progress */
-	uint64_t inv_rd_acc                   : 1;  /**< invalid read access (out of range address). */
-	uint64_t inv_wr_acc                   : 1;  /**< invalid write access (out of range address). */
-	uint64_t inv_start_task               : 1;  /**< invalid start task (core is already busy processing a task). Error bits,  a bit of "1"
+	uint64_t ign_rd_acc                   : 1;  /**< Ignored read access, already one read in progress. */
+	uint64_t inv_rd_acc                   : 1;  /**< Invalid read access (out of range address). */
+	uint64_t inv_wr_acc                   : 1;  /**< Invalid write access (out of range address). */
+	uint64_t inv_start_task               : 1;  /**< Invalid start task (core is already busy processing a task). Error bits,  a bit of "1"
                                                          indicates an error, write "0" to clear. */
 #else
 	uint64_t inv_start_task               : 1;

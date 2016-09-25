@@ -466,7 +466,7 @@ union cvmx_pko_send_work {
 
 typedef union cvmx_pko_send_work cvmx_pko_send_work_t;
 
-/*** PKO_SEND_DMA_S - format of IOBDMA/LTDMA data word ***/
+/*** PKO_SEND_DMA_S - format of IOBDMA/LMTDMA data word ***/
 union cvmx_pko_lmtdma_data {
 	uint64_t u64;
 	struct {
@@ -512,7 +512,9 @@ static inline cvmx_pko3_dq_params_t *
 cvmx_pko3_dq_parameters(unsigned node, unsigned dq)
 {
 	cvmx_pko3_dq_params_t *pParam = NULL;
-	static cvmx_pko3_dq_params_t dummy = {.depth = 0, .limit = (1<<16)};
+	static cvmx_pko3_dq_params_t dummy;
+	dummy.depth = 0;
+	dummy.limit = (1<<16);
 
 	if (cvmx_likely(node < CVMX_MAX_NODES))
 		pParam = __cvmx_pko3_dq_params[node];
@@ -668,7 +670,7 @@ static inline void cvmx_lmtline_restore(const uint64_t buf[16])
 
 /*
  * @INTERNAL
- * Deliver PKO SEND commands via CVMSEG LM and LMTDMA/LMTTST.
+ * Deliver PKO SEND commands via CVMSEG LM and LMTDMA/LMTST.
  * The command should be already stored in the CVMSEG address.
  *
  * @param node is the destination node
@@ -735,7 +737,7 @@ __cvmx_pko3_lmtdma(uint8_t node, uint16_t dq, unsigned numwords, bool tag_wait)
 		/* Request one return word */
 		pko_send_dma_data.s.rtnlen = 1;
 	} else {
-		/* Do not expext a return word */
+		/* Do not expect a return word */
 		pko_send_dma_data.s.rtnlen = 0;
 	}
 
@@ -916,7 +918,7 @@ cvmx_pko3_xmit_link_buf(int dq,cvmx_buf_ptr_pki_t pki_ptr,
 	unsigned node, nwords;
 	unsigned scr_base = cvmx_pko3_lmtdma_scr_base();
 
-	/* Separa global DQ# into node and local DQ */
+	/* Separate global DQ# into node and local DQ */
 	node = dq >> 10;
 	dq &= (1 << 10)-1;
 
@@ -944,11 +946,12 @@ cvmx_pko3_xmit_link_buf(int dq,cvmx_buf_ptr_pki_t pki_ptr,
 
 	/* Conditionally setup an atomic decrement counter */
 	if (pCounter != NULL) {
-		cvmx_pko_send_mem_t mem_s = {.s={
-			.subdc4 = CVMX_PKO_SENDSUBDC_MEM,
-			.dsz = MEMDSZ_B64, .alg = MEMALG_SUB,
-			.offset = 1,
-			}};
+		cvmx_pko_send_mem_t mem_s;
+		mem_s.s.subdc4 = CVMX_PKO_SENDSUBDC_MEM;
+		mem_s.s.dsz = MEMDSZ_B64;
+		mem_s.s.alg = MEMALG_SUB;
+		mem_s.s.offset = 1;
+		mem_s.s.wmem = 0;
 		mem_s.s.addr = cvmx_ptr_to_phys(CASTPTR(void,pCounter));
 		cvmx_scratch_write64(
 			scr_base + sizeof(uint64_t) * nwords++,
@@ -1064,7 +1067,7 @@ extern void cvmx_pko3_get_legacy_port_stats(uint16_t ipd_port,
  * The typical use for `fcs_sop_off` is when the interface is configured
  * to use a header such as HighGig to precede every Ethernet packet,
  * such a header usually does not partake in the CRC32 computation stream,
- * and its size muet be set with this parameter.
+ * and its size must be set with this parameter.
  *
  * @return Returns 0 on success, -1 if interface/port is invalid.
  */

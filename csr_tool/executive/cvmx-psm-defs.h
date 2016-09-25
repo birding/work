@@ -53,6 +53,17 @@
 #define __CVMX_PSM_DEFS_H__
 
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
+#define CVMX_PSM_BCLK_DLL_STATUS CVMX_PSM_BCLK_DLL_STATUS_FUNC()
+static inline uint64_t CVMX_PSM_BCLK_DLL_STATUS_FUNC(void)
+{
+	if (!(OCTEON_IS_MODEL(OCTEON_CNF75XX)))
+		cvmx_warn("CVMX_PSM_BCLK_DLL_STATUS not supported on this chip\n");
+	return CVMX_ADD_IO_SEG(0x0001D4000000FE20ull);
+}
+#else
+#define CVMX_PSM_BCLK_DLL_STATUS (CVMX_ADD_IO_SEG(0x0001D4000000FE20ull))
+#endif
+#if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 #define CVMX_PSM_BIST_STATUS CVMX_PSM_BIST_STATUS_FUNC()
 static inline uint64_t CVMX_PSM_BIST_STATUS_FUNC(void)
 {
@@ -89,12 +100,12 @@ static inline uint64_t CVMX_PSM_DBG_BREAK_CFG_FUNC(void)
 static inline uint64_t CVMX_PSM_DJCNT_CFGX(unsigned long offset)
 {
 	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 63)))))
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset >= 1) && (offset <= 62))))))
 		cvmx_warn("CVMX_PSM_DJCNT_CFGX(%lu) is invalid on this chip\n", offset);
-	return CVMX_ADD_IO_SEG(0x0001D40000003400ull) + ((offset) & 63) * 16;
+	return CVMX_ADD_IO_SEG(0x0001D40000003410ull) + ((offset) & 63) * 16 - 16*1;
 }
 #else
-#define CVMX_PSM_DJCNT_CFGX(offset) (CVMX_ADD_IO_SEG(0x0001D40000003400ull) + ((offset) & 63) * 16)
+#define CVMX_PSM_DJCNT_CFGX(offset) (CVMX_ADD_IO_SEG(0x0001D40000003410ull) + ((offset) & 63) * 16 - 16*1)
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 #define CVMX_PSM_DJCNT_DECR CVMX_PSM_DJCNT_DECR_FUNC()
@@ -161,6 +172,17 @@ static inline uint64_t CVMX_PSM_ERRCAP_QUEUE_BADCMD_FUNC(void)
 }
 #else
 #define CVMX_PSM_ERRCAP_QUEUE_BADCMD (CVMX_ADD_IO_SEG(0x0001D40000007310ull))
+#endif
+#if CVMX_ENABLE_CSR_ADDRESS_CHECKING
+#define CVMX_PSM_GBL_DLL_STATUS CVMX_PSM_GBL_DLL_STATUS_FUNC()
+static inline uint64_t CVMX_PSM_GBL_DLL_STATUS_FUNC(void)
+{
+	if (!(OCTEON_IS_MODEL(OCTEON_CNF75XX)))
+		cvmx_warn("CVMX_PSM_GBL_DLL_STATUS not supported on this chip\n");
+	return CVMX_ADD_IO_SEG(0x0001D4000000FE00ull);
+}
+#else
+#define CVMX_PSM_GBL_DLL_STATUS (CVMX_ADD_IO_SEG(0x0001D4000000FE00ull))
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 #define CVMX_PSM_GPINT_SUM_W1C CVMX_PSM_GPINT_SUM_W1C_FUNC()
@@ -636,6 +658,17 @@ static inline uint64_t CVMX_PSM_RST_FUNC(void)
 #define CVMX_PSM_RST (CVMX_ADD_IO_SEG(0x0001D40000004010ull))
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
+#define CVMX_PSM_SCLK_DLL_STATUS CVMX_PSM_SCLK_DLL_STATUS_FUNC()
+static inline uint64_t CVMX_PSM_SCLK_DLL_STATUS_FUNC(void)
+{
+	if (!(OCTEON_IS_MODEL(OCTEON_CNF75XX)))
+		cvmx_warn("CVMX_PSM_SCLK_DLL_STATUS not supported on this chip\n");
+	return CVMX_ADD_IO_SEG(0x0001D4000000FE10ull);
+}
+#else
+#define CVMX_PSM_SCLK_DLL_STATUS (CVMX_ADD_IO_SEG(0x0001D4000000FE10ull))
+#endif
+#if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 #define CVMX_PSM_TIMER_CFG CVMX_PSM_TIMER_CFG_FUNC()
 static inline uint64_t CVMX_PSM_TIMER_CFG_FUNC(void)
 {
@@ -657,6 +690,45 @@ static inline uint64_t CVMX_PSM_TIMER_VAL_FUNC(void)
 #else
 #define CVMX_PSM_TIMER_VAL (CVMX_ADD_IO_SEG(0x0001D40000003210ull))
 #endif
+
+/**
+ * cvmx_psm_bclk_dll_status
+ *
+ * Status of the BPHY BCLK DLL.
+ *
+ */
+union cvmx_psm_bclk_dll_status {
+	uint64_t u64;
+	struct cvmx_psm_bclk_dll_status_s {
+#ifdef __BIG_ENDIAN_BITFIELD
+	uint64_t reserved_60_63               : 4;
+	uint64_t max_dll_setting              : 12; /**< Max reported DLL setting. */
+	uint64_t min_dll_setting              : 12; /**< Min reported DLL setting. */
+	uint64_t pd_pos_bclk_refclk           : 1;  /**< Synchronized pd_pos_bclk_refclk from BPHY BCLK DLL cmb0 phase detectors. */
+	uint64_t pdl_bclk_refclk              : 1;  /**< Synchronized pdl_bclk_refclk from BPHY BCLK DLL cmb0 phase detectors. */
+	uint64_t pdr_bclk_refclk              : 1;  /**< Synchronized pdr_bclk_refclk from BPHY BCLK DLL cmb0 phase detectors. */
+	uint64_t reserved_32_32               : 1;
+	uint64_t dll_dly_elem_en              : 16; /**< The BPHY BCLK delay element enable setting, from the negative edge of refclk. */
+	uint64_t dll_setting                  : 12; /**< The BPHY BCLK DLL setting, from the negative edge of refclk. */
+	uint64_t reserved_1_3                 : 3;
+	uint64_t dll_lock                     : 1;  /**< The dll_lock signal from BPHY BCLK DLL, from the positive edge of refclk. */
+#else
+	uint64_t dll_lock                     : 1;
+	uint64_t reserved_1_3                 : 3;
+	uint64_t dll_setting                  : 12;
+	uint64_t dll_dly_elem_en              : 16;
+	uint64_t reserved_32_32               : 1;
+	uint64_t pdr_bclk_refclk              : 1;
+	uint64_t pdl_bclk_refclk              : 1;
+	uint64_t pd_pos_bclk_refclk           : 1;
+	uint64_t min_dll_setting              : 12;
+	uint64_t max_dll_setting              : 12;
+	uint64_t reserved_60_63               : 4;
+#endif
+	} s;
+	struct cvmx_psm_bclk_dll_status_s     cnf75xx;
+};
+typedef union cvmx_psm_bclk_dll_status cvmx_psm_bclk_dll_status_t;
 
 /**
  * cvmx_psm_bist_status
@@ -784,9 +856,9 @@ union cvmx_psm_djcnt_cfgx {
 	uint64_t reserved_10_63               : 54;
 	uint64_t djcnt_sosf                   : 1;  /**< Enable SOS auto-decrement. When set, the DJCNT will decrement by one
                                                          when an RFIF SOS is received. */
-	uint64_t djcnt_update                 : 1;  /**< When written 1, the DJCNT will be updated with DJCNT_VAL. */
+	uint64_t djcnt_update                 : 1;  /**< When written 1, the DJCNT will be updated with [DJCNT_VAL]. */
 	uint64_t djcnt_val                    : 8;  /**< On read, returns the current value of the DJCNT. On write, the DJCNT will be
-                                                         updated with this value if DJCNT_UPDATE is set. */
+                                                         updated with this value if [DJCNT_UPDATE] is set. */
 #else
 	uint64_t djcnt_val                    : 8;
 	uint64_t djcnt_update                 : 1;
@@ -990,6 +1062,45 @@ union cvmx_psm_errcap_queue_badcmd {
 typedef union cvmx_psm_errcap_queue_badcmd cvmx_psm_errcap_queue_badcmd_t;
 
 /**
+ * cvmx_psm_gbl_dll_status
+ *
+ * Status of the global SCLK DLL.
+ *
+ */
+union cvmx_psm_gbl_dll_status {
+	uint64_t u64;
+	struct cvmx_psm_gbl_dll_status_s {
+#ifdef __BIG_ENDIAN_BITFIELD
+	uint64_t reserved_20_63               : 44;
+	uint64_t pdr_sclk_refclk              : 1;  /**< Synchronized pdr_sclk_refclk from global SCLK DLL cmb0 phase detectors. */
+	uint64_t pdl_sclk_refclk              : 1;  /**< Synchronized pdl_sclk_refclk from global SCLK DLL cmb0 phase detectors. */
+	uint64_t pd_pos_sclk_refclk           : 1;  /**< Synchronized pd_pos_sclk_refclk from global SCLK DLL cmb0 phase detectors. */
+	uint64_t dll_fsm_state_a              : 3;  /**< State for the global SCLK DLL, from the positive edge of refclk.
+                                                         0x0 = TMD_IDLE.
+                                                         0x1 = TMD_STATE1.
+                                                         0x2 = TMD_STATE2.
+                                                         0x3 = TMD_STATE3.
+                                                         0x4 = TMD_STATE4.
+                                                         0x5 = TMD_LOCKED. */
+	uint64_t dll_lock                     : 1;  /**< The dll_lock signal from global SCLK DLL, from the positive edge of refclk. */
+	uint64_t dll_clk_invert_out           : 1;  /**< The clk_invert setting from the global SCLK DLL, from the negative edge of refclk. */
+	uint64_t dll_setting                  : 12; /**< The global SCLK DLL setting, from the negative edge of refclk. */
+#else
+	uint64_t dll_setting                  : 12;
+	uint64_t dll_clk_invert_out           : 1;
+	uint64_t dll_lock                     : 1;
+	uint64_t dll_fsm_state_a              : 3;
+	uint64_t pd_pos_sclk_refclk           : 1;
+	uint64_t pdl_sclk_refclk              : 1;
+	uint64_t pdr_sclk_refclk              : 1;
+	uint64_t reserved_20_63               : 44;
+#endif
+	} s;
+	struct cvmx_psm_gbl_dll_status_s      cnf75xx;
+};
+typedef union cvmx_psm_gbl_dll_status cvmx_psm_gbl_dll_status_t;
+
+/**
  * cvmx_psm_gpint_sum_w1c
  *
  * This register reports the status of the general purpose interrupts. Writing
@@ -1038,7 +1149,7 @@ union cvmx_psm_grp_cdtx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_4_63                : 60;
 	uint64_t grp_cdt                      : 4;  /**< Maximum number of jobs for the MHAB/MDABs selected by the
-                                                         corresponding PSM_GROUP_MASK() register. */
+                                                         corresponding PSM_GROUP_MASK() register. Valid range is [0,15]. */
 #else
 	uint64_t grp_cdt                      : 4;
 	uint64_t reserved_4_63                : 60;
@@ -1295,8 +1406,8 @@ typedef union cvmx_psm_int_sum_qto_w1s cvmx_psm_int_sum_qto_w1s_t;
  * cvmx_psm_int_sum_w1c
  *
  * This register returns the interrupt status indicating which errors and
- * events have occured.  Writing a bit with 1 will clear that bit.
- * Writes of 0 are ignored
+ * events have occurred.  Writing a bit with 1 will clear that bit.
+ * Writes of 0 are ignored.
  */
 union cvmx_psm_int_sum_w1c {
 	uint64_t u64;
@@ -1542,9 +1653,7 @@ union cvmx_psm_mab_res {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
 	uint64_t mabres                       : 48; /**< This field reports the current value of the per-MegaAB reservation vector, for CONT_JOB
-                                                         commands.
-                                                         INTERNAL : In internal_access_mode, this field is writeable.  A 1 written to a bit will
-                                                         clear it. */
+                                                         commands. */
 #else
 	uint64_t mabres                       : 48;
 	uint64_t reserved_48_63               : 16;
@@ -1566,10 +1675,10 @@ union cvmx_psm_mabfifo_ctrlx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_61_63               : 3;
 	uint64_t errcap_qid                   : 5;  /**< Contains the QID for the most recent bad command encountered by the MHAB/MDAB FIFO.  Write
-                                                         any non-zero value to clear. */
+                                                         any nonzero value to clear. */
 	uint64_t reserved_53_55               : 3;
 	uint64_t errcap_opc                   : 5;  /**< Contains the opcode for the most recent bad command encountered by the MHAB/MDAB FIFO.
-                                                         Write any non-zero value to clear. */
+                                                         Write any nonzero value to clear. */
 	uint64_t reserved_35_47               : 13;
 	uint64_t req_cnt                      : 3;  /**< Contains the number of pending JCA requests made by the MHAB/MDAB that have not yet been
                                                          granted. */
@@ -1647,7 +1756,7 @@ union cvmx_psm_max_job_cdtx {
 	struct cvmx_psm_max_job_cdtx_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_4_63                : 60;
-	uint64_t max                          : 4;  /**< Maximum number of jobs for MHAB/MDAB [a]. */
+	uint64_t max                          : 4;  /**< Maximum number of jobs for MHAB/MDAB [a]. Valid range is [0,11]. */
 #else
 	uint64_t max                          : 4;
 	uint64_t reserved_4_63                : 60;
@@ -1668,14 +1777,11 @@ union cvmx_psm_nonjob_rsrcx {
 	struct cvmx_psm_nonjob_rsrcx_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_17_63               : 47;
-	uint64_t rsrc_in_use                  : 1;  /**< This bit indicates if the nonjob resource is in use.
-                                                         INTERNAL : In internal_access_mode, this bit is writeable. */
+	uint64_t rsrc_in_use                  : 1;  /**< This bit indicates if the nonjob resource is in use. */
 	uint64_t reserved_7_15                : 9;
 	uint64_t rsrc_owner_type              : 1;  /**< This bit indicates if the nonjob resource is currently owned by a MAB FIFO (1) or a
-                                                         command queue (0).
-                                                         INTERNAL : In internal_access_mode, this bit is writeable. */
-	uint64_t rsrc_owner                   : 6;  /**< This field shows the identity of nonjob resource owner.
-                                                         INTERNAL : In internal_access_mode, this field is writeable. */
+                                                         command queue (0). */
+	uint64_t rsrc_owner                   : 6;  /**< This field shows the identity of nonjob resource owner. */
 #else
 	uint64_t rsrc_owner                   : 6;
 	uint64_t rsrc_owner_type              : 1;
@@ -1726,7 +1832,7 @@ typedef union cvmx_psm_queue_busy_sts cvmx_psm_queue_busy_sts_t;
  * queue before the write will be dropped and the queue will be reset to an
  * empty state.
  *
- * Also, note that at reset, all queues are effectively un-initialized, and
+ * Also, note that at reset, all queues are effectively uninitialized, and
  * PSM_QUEUE_SPACE() will return 0. Queues must be initializd by writing to
  * PSM_QUEUE_CFG() before they can be used. This is true even in the case of
  * a single-entry queue that starts and ends at entry 0.
@@ -1887,7 +1993,7 @@ union cvmx_psm_queue_infox {
 	uint64_t cont_mab_id                  : 6;  /**< IN_CONT_SEQ is set to one, this field provides the MAB ID of the
                                                          MHAB/MDAB reserved by the CONTJOB. */
 	uint64_t reserved_29_31               : 3;
-	uint64_t badcmd_opc                   : 5;  /**< Contains the opcode for the most recent bad command.  Write any non-zero value to clear. */
+	uint64_t badcmd_opc                   : 5;  /**< Contains the opcode for the most recent bad command.  Write any nonzero value to clear. */
 	uint64_t runjob_ctr                   : 8;  /**< Contains the current count of running jobs issued by the queue. */
 	uint64_t reserved_15_15               : 1;
 	uint64_t queue_njreq                  : 3;  /**< N/A */
@@ -2080,6 +2186,45 @@ union cvmx_psm_rst {
 typedef union cvmx_psm_rst cvmx_psm_rst_t;
 
 /**
+ * cvmx_psm_sclk_dll_status
+ *
+ * Status of the ROC SCLK DLL.
+ *
+ */
+union cvmx_psm_sclk_dll_status {
+	uint64_t u64;
+	struct cvmx_psm_sclk_dll_status_s {
+#ifdef __BIG_ENDIAN_BITFIELD
+	uint64_t reserved_60_63               : 4;
+	uint64_t max_dll_setting              : 12; /**< Max reported DLL setting. */
+	uint64_t min_dll_setting              : 12; /**< Min reported DLL setting. */
+	uint64_t pd_pos_sclk_refclk           : 1;  /**< Synchronized pd_pos_sclk_refclk from ROC SCLK DLL cmb0 phase detectors. */
+	uint64_t pdl_sclk_refclk              : 1;  /**< Synchronized pdl_sclk_refclk from ROC SCLK DLL cmb0 phase detectors. */
+	uint64_t pdr_sclk_refclk              : 1;  /**< Synchronized pdr_sclk_refclk from ROC SCLK DLL cmb0 phase detectors. */
+	uint64_t reserved_32_32               : 1;
+	uint64_t dll_dly_elem_en              : 16; /**< The ROC SCLK delay element enable setting, from the negative edge of refclk. */
+	uint64_t dll_setting                  : 12; /**< The ROC SCLK DLL setting, from the negative edge of refclk. */
+	uint64_t reserved_1_3                 : 3;
+	uint64_t dll_lock                     : 1;  /**< The dll_lock signal from ROC SCLK DLL, from the positive edge of refclk. */
+#else
+	uint64_t dll_lock                     : 1;
+	uint64_t reserved_1_3                 : 3;
+	uint64_t dll_setting                  : 12;
+	uint64_t dll_dly_elem_en              : 16;
+	uint64_t reserved_32_32               : 1;
+	uint64_t pdr_sclk_refclk              : 1;
+	uint64_t pdl_sclk_refclk              : 1;
+	uint64_t pd_pos_sclk_refclk           : 1;
+	uint64_t min_dll_setting              : 12;
+	uint64_t max_dll_setting              : 12;
+	uint64_t reserved_60_63               : 4;
+#endif
+	} s;
+	struct cvmx_psm_sclk_dll_status_s     cnf75xx;
+};
+typedef union cvmx_psm_sclk_dll_status cvmx_psm_sclk_dll_status_t;
+
+/**
  * cvmx_psm_timer_cfg
  *
  * This register configures the PSM timer.
@@ -2126,7 +2271,7 @@ typedef union cvmx_psm_timer_cfg cvmx_psm_timer_cfg_t;
  * cvmx_psm_timer_val
  *
  * This register holds the frame/subframe count and timer tick within the
- * subframe. The TICK value is incremented on the divided clock (specified
+ * subframe. [TICK] is incremented on the divided clock (specified
  * by PSM_TIMER_CFG[TICK_DIV]) and reset on every SOS. Based on PSM_TIMER_CFG[FRAME_MODE], the
  * frame and subframe counts are either captured from the RFIF
  * (PSM_TIMER_CFG[FRAME_MODE] = 1), or automatically incremented on each SOS
@@ -2135,7 +2280,7 @@ typedef union cvmx_psm_timer_cfg cvmx_psm_timer_cfg_t;
  * job log entries, when writing status for WRSTS commands, and for WAIT
  * commands.
  *
- * If no SOS is received from RFIF, then TICK will continue to increment,
+ * If no SOS is received from RFIF, then [TICK] will continue to increment,
  * eventually wrapping around to zero.
  */
 union cvmx_psm_timer_val {
@@ -2143,17 +2288,17 @@ union cvmx_psm_timer_val {
 	struct cvmx_psm_timer_val_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_59_63               : 5;
-	uint64_t frame_update                 : 1;  /**< If written 1, update FRAME count.  If written 0, the FRAME
+	uint64_t frame_update                 : 1;  /**< If written 1, update [FRAME] count.  If written 0, the [FRAME]
                                                          count remains unchanged. */
-	uint64_t sf_update                    : 1;  /**< If written 1, update SUBFRAME count.  If written 0, the SUBFRAME
+	uint64_t sf_update                    : 1;  /**< If written 1, update [SUBFRAME] count.  If written 0, the [SUBFRAME]
                                                          count remains unchanged. */
-	uint64_t tick_update                  : 1;  /**< If written 1, update TICK count.  If written 0, the TICK
+	uint64_t tick_update                  : 1;  /**< If written 1, update [TICK] count.  If written 0, the [TICK]
                                                          count remains unchanged. */
 	uint64_t reserved_32_55               : 24;
 	uint64_t frame                        : 12; /**< Frame count (i.e., BFN). */
 	uint64_t subframe                     : 4;  /**< Subframe count. */
 	uint64_t tick                         : 16; /**< Current timer count. When enabled, a SOS signal from RFIF will reset
-                                                         TICK to 0.  Otherwise TICK increments by one every
+                                                         [TICK] to 0.  Otherwise [TICK] increments by one every
                                                          PSM_TIMER_CFG[TICK_DIV] cycles. */
 #else
 	uint64_t tick                         : 16;

@@ -175,12 +175,12 @@ union cvmx_mpix_cfg {
                                                          1 = BOOT_CE_N<6>/SPI_CS0_L pin is MPI/SPI pin.
                                                              SPI_CS0_L drives BOOT_CE_N<6>/SPI_CS0_L. */
 	uint64_t cslate                       : 1;  /**< SPIx_CSn_L late.
-                                                         0 = SPIx_CSn_L asserts 1/2 coprocessor-clock cycle before the transaction.
+                                                         0 = SPIx_CSn_L asserts 1/2 SPI_CK cycle before the transaction.
                                                          1 = SPIx_CSn_L asserts coincident with the transaction. */
 	uint64_t tritx                        : 1;  /**< Tristate TX. Used only when WIREOR = 1
                                                          0 = SPIx_DO port is driven when slave is not expected to be driving.
                                                          1 = SPIx_DO port is tristated when not transmitting. */
-	uint64_t idleclks                     : 2;  /**< Idle clocks. When set, guarantees idle coprocessor-clock cycles between commands. */
+	uint64_t idleclks                     : 2;  /**< Idle clocks. When set, guarantees idle SPI_CK cycles between commands. */
 	uint64_t cshi                         : 1;  /**< SPI_CSn_L high: 1 = SPI_CSn_L is asserted high, 0 = SPI_CSn_L is asserted low. */
 	uint64_t reserved_5_6                 : 2;
 	uint64_t lsbfirst                     : 1;  /**< Shift LSB first: 0 = shift MSB first, 1 = shift LSB first. */
@@ -198,7 +198,7 @@ union cvmx_mpix_cfg {
                                                          Guide options CPOL = 1, CPHA = 1.
                                                          1 = SPIx_CK idles low, first transition is low-to-high. This mode corresponds to SPI Block
                                                          Guide options CPOL = 0, CPHA = 0. */
-	uint64_t enable                       : 1;  /**< MPI/SPI core enable, this bit needs to be set before any SPI/MPI transcations.
+	uint64_t enable                       : 1;  /**< MPI/SPI core enable, this bit needs to be set before any SPI/MPI transactions.
                                                          This bit is valid for SPI/MPI 0-2. */
 #else
 	uint64_t enable                       : 1;
@@ -253,7 +253,7 @@ union cvmx_mpix_sts {
 	uint64_t reserved_2_7                 : 6;
 	uint64_t mpi_intr                     : 1;  /**< MPI interrupt on transaction done. Throws MPI_INTSN_E::MPI_STS_INTR. */
 	uint64_t busy                         : 1;  /**< Busy.
-                                                         0 = no MPI/SPI transaction in progress.
+                                                         0 = No MPI/SPI transaction in progress.
                                                          1 = MPI/SPI engine is processing a transaction. */
 #else
 	uint64_t busy                         : 1;

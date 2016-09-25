@@ -1058,10 +1058,9 @@ union cvmx_nqm_fi_fpa_aura {
                                                          is suggested to not exceed 50 us. */
 	uint64_t reserved_12_15               : 4;
 	uint64_t node                         : 2;  /**< Reserved. */
-	uint64_t laura                        : 10; /**< Local aura to use for NQM work-queue entry buffering.
-                                                         The FPA aura selected by LAURA must select an FPA pool whose
-                                                         FPA_POOL()_CFG[NAT_ALIGN]=1, and
-                                                         (FPA_POOL()_CFG[BUF_SIZE] - FPA_POOL()_CFG[BUF_OFFSET]) >= 4 KB/128. */
+	uint64_t laura                        : 10; /**< Local aura to use for NQM work-queue entry allocates.
+                                                         The FPA aura selected by LAURA must correspond to an FPA pool
+                                                         where the buffers (after any FPA_POOL()_CFG[BUF_OFFSET]) are at least 128B. */
 #else
 	uint64_t laura                        : 10;
 	uint64_t node                         : 2;
@@ -1465,7 +1464,7 @@ typedef union cvmx_nqm_scratch cvmx_nqm_scratch_t;
 /**
  * cvmx_nqm_vf#_acq
  *
- * NQM_VF(x)_ACQ is the NVMe-standard Admin Completion Queue Base Address (ACQ)
+ * NQM_VF(x)_ACQ is the NVMe-standard admin completion queue base address (ACQ)
  * CSR for function x. NQM_VF_MODE[VF_MODE] selects the functions that are actually
  * present in the hardware. See NQM_VF_MODE_E.
  *
@@ -1478,7 +1477,7 @@ union cvmx_nqm_vfx_acq {
 	struct cvmx_nqm_vfx_acq_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t acqb                         : 52; /**< Admin completion queue base.  Indicates the 64-bit physical address
-                                                         for the Admin completion queue. This address shall be memory page
+                                                         for the admin completion queue. This address shall be memory page
                                                          aligned (based upon NQM_VF()_CC[MPS]). All completion queue entries
                                                          for the commands submitted to the admin submission queue shall be
                                                          posted to this completion queue. This queue is always associated with
@@ -1540,7 +1539,7 @@ typedef union cvmx_nqm_vfx_acq_cc cvmx_nqm_vfx_acq_cc_t;
 /**
  * cvmx_nqm_vf#_aqa
  *
- * NQM_VF(x)_AQA is the NVMe-standard Admin Queue Attributes (AQA)
+ * NQM_VF(x)_AQA is the NVMe-standard admin queue attributes (AQA)
  * CSR for function x. NQM_VF_MODE[VF_MODE] selects the functions that
  * are actually present in the hardware. See NQM_VF_MODE_E.
  *
@@ -1580,7 +1579,7 @@ typedef union cvmx_nqm_vfx_aqa cvmx_nqm_vfx_aqa_t;
 /**
  * cvmx_nqm_vf#_asq
  *
- * NQM_VF(x)_ASQ is the NVMe-standard Admin Submission Queue Base Address (ASQ)
+ * NQM_VF(x)_ASQ is the NVMe-standard admin submission queue base address (ASQ)
  * CSR for function x. NQM_VF_MODE[VF_MODE] selects the functions that are actually
  * present in the hardware. See NQM_VF_MODE_E.
  *
@@ -1611,7 +1610,7 @@ typedef union cvmx_nqm_vfx_asq cvmx_nqm_vfx_asq_t;
 /**
  * cvmx_nqm_vf#_cap
  *
- * NQM_VF(x)_CAP is the NVMe-standard Controller Capabilities (CAP) CSR for
+ * NQM_VF(x)_CAP is the NVMe-standard controller capabilities (CAP) CSR for
  * function x. NQM_VF_MODE[VF_MODE] selects the functions that are actually
  * present in the hardware. See NQM_VF_MODE_E.
  */
@@ -1675,7 +1674,7 @@ typedef union cvmx_nqm_vfx_cap cvmx_nqm_vfx_cap_t;
 /**
  * cvmx_nqm_vf#_cc
  *
- * NQM_VF(x)_CC is the NVMe-standard Controller Configuration (CC) CSR for
+ * NQM_VF(x)_CC is the NVMe-standard controller configuration (CC) CSR for
  * function x. NQM_VF_MODE[VF_MODE] selects the functions that are actually
  * present in the hardware. See NQM_VF_MODE_E.
  */
@@ -1780,7 +1779,7 @@ typedef union cvmx_nqm_vfx_cc cvmx_nqm_vfx_cc_t;
  * cvmx_nqm_vf#_cpl#_base_addr_n_sz
  *
  * NQM_VF(x)_CPL(0..16)_BASE_ADDR_N_SZ are the CPL queue base addresses
- * for function x. Includes both Admin and IO queues. NQM_VF_MODE[VF_MODE]
+ * for function x. Includes both admin and IO queues. NQM_VF_MODE[VF_MODE]
  * selects the queues and functions that are actually present in the
  * hardware. See NQM_VF_MODE_E.
  *
@@ -1814,7 +1813,7 @@ typedef union cvmx_nqm_vfx_cplx_base_addr_n_sz cvmx_nqm_vfx_cplx_base_addr_n_sz_
  * cvmx_nqm_vf#_cpl#_h
  *
  * NQM_VF(x)_CPL(0..16)_H are the CPL queue heads for function x.
- * Includes both Admin and IO queues. NQM_VF_MODE[VF_MODE] selects
+ * Includes both admin and IO queues. NQM_VF_MODE[VF_MODE] selects
  * the queues and functions that are actually present in the hardware.
  * See NQM_VF_MODE_E.
  *
@@ -1830,7 +1829,7 @@ union cvmx_nqm_vfx_cplx_h {
 	uint64_t head                         : 14; /**< CPL queue head pointer. Managed by hardware during normal operation.
                                                          To create a new or clear a CPL queue, [HEAD] should be written to zero
                                                          prior to initially enabling the CPL/CQ.
-                                                         For Debug and migration. */
+                                                         For debug and migration. */
 #else
 	uint64_t head                         : 14;
 	uint64_t reserved_14_63               : 50;
@@ -1844,7 +1843,7 @@ typedef union cvmx_nqm_vfx_cplx_h cvmx_nqm_vfx_cplx_h_t;
  * cvmx_nqm_vf#_cpl#_ifc
  *
  * NQM_VF(x)_CPL(0..16)_IFC are the CPL queue in flight counters for function x.
- * Includes both Admin and IO queues. NQM_VF_MODE[VF_MODE] selects the queues
+ * Includes both admin and IO queues. NQM_VF_MODE[VF_MODE] selects the queues
  * and functions that are actually present in the hardware. See NQM_VF_MODE_E.
  *
  * The corresponding NQM_VF()_CQ()_ENA[ENABLE] is an enable for this CPL/CQ.
@@ -1870,7 +1869,7 @@ typedef union cvmx_nqm_vfx_cplx_ifc cvmx_nqm_vfx_cplx_ifc_t;
  * cvmx_nqm_vf#_cpl#_tdb
  *
  * NQM_VF(x)_CPL(0..16)_TDB contains the CPL queue tails for function x.
- * Includes both Admin and IO queues. NQM_VF_MODE[VF_MODE] selects the
+ * Includes both admin and IO queues. NQM_VF_MODE[VF_MODE] selects the
  * queues and functions that are actually present in the hardware.
  * See NQM_VF_MODE_E.
  *
@@ -1923,10 +1922,10 @@ union cvmx_nqm_vfx_cqx_base {
 	uint64_t pba                          : 52; /**< Page base address.  If NQM_VF()_CQ()_CC[PC]=1 (i.e. physically-contiguous)
                                                          then [PBA] is a 64-bit memory page aligned pointer (NQM_VF()_CC[MPS]
                                                          selects the page size) to the base of the physically contiguous
-                                                         queue. Software should derive [PBA] from the PRP Entry 1 (PRP1)
-                                                         field (in CDW6+CDW7) of the create I/O Completion Queue
-                                                         command in this case. (If CDW11.PC=0 in the create I/O Completion
-                                                         Queue command, but NQM_VF()_CQ()_CC[PC]=1 due to small
+                                                         queue. Software should derive [PBA] from the PRP entry 1 (PRP1)
+                                                         field (in CDW6+CDW7) of the create I/O completion queue
+                                                         command in this case. (If CDW11.PC=0 in the create I/O completion
+                                                         queue command, but NQM_VF()_CQ()_CC[PC]=1 due to small
                                                          NQM_VF()_CQ()_CC[QSIZE], then software must read the first
                                                          PRP Entry in the PRP List from host memory, and write it into [PBA].)
                                                          If NQM_VF()_CQ()_CC[PC]=0 (i.e. not physically-contiguous)
@@ -2014,7 +2013,7 @@ union cvmx_nqm_vfx_cqx_cc {
                                                          both. */
 	uint64_t ien                          : 1;  /**< Interrupt enable. Interrupts are enabled when asserted.
                                                          Software should derive [IV] from the interrupt enabled field
-                                                         (CDW11.IEN) of the create I/O Completion Queue command. */
+                                                         (CDW11.IEN) of the create I/O completion queue command. */
 	uint64_t pc                           : 1;  /**< Physically contiguous. When set, indicates that the queue is
                                                          located in physically contiguous host memory pages. When clear,
                                                          indicates that the queue locations are identified by a PRP list.
@@ -2022,7 +2021,7 @@ union cvmx_nqm_vfx_cqx_cc {
                                                          fit within a single page (NQM_VF()_CC[MPS] selects the page size).
                                                          Software should derive [PC] from the physically contiguous field
                                                          (CDW11.PC) and queue size field (CDW10.QSIZE) of the create I/O
-                                                         Completion Queue command. [PC] should be set when CDW11.PC is set.
+                                                         completion queue command. [PC] should be set when CDW11.PC is set.
                                                          [PC] should also be set when CDW11.PC is clear, selecting a
                                                          non-contiguous queue, but [QSIZE] is small enough that all
                                                          entries fit within a single page. */
@@ -2045,7 +2044,7 @@ typedef union cvmx_nqm_vfx_cqx_cc cvmx_nqm_vfx_cqx_cc_t;
  * cvmx_nqm_vf#_cq#_ena
  *
  * NQM_VF(x)_CQ(0..16)_ENA are the completion queue enable CSRs for function x.
- * Includes both Admin and IO queues. NQM_VF_MODE[VF_MODE] selects the queues
+ * Includes both admin and IO queues. NQM_VF_MODE[VF_MODE] selects the queues
  * and functions that are actually present in the hardware. See NQM_VF_MODE_E.
  */
 union cvmx_nqm_vfx_cqx_ena {
@@ -2122,8 +2121,8 @@ typedef union cvmx_nqm_vfx_cqx_ena cvmx_nqm_vfx_cqx_ena_t;
 /**
  * cvmx_nqm_vf#_cq#_hdbl
  *
- * NQM_VF(x)_CQ(y)_HDBL is the NVMe-standard Completion Queue y Head
- * Doorbell (CQyHDBL) for function x. Includes both Admin and IO queues.
+ * NQM_VF(x)_CQ(y)_HDBL is the NVMe-standard completion queue y head
+ * doorbell (CQyHDBL) for function x. Includes both admin and IO queues.
  * NQM_VF_MODE[VF_MODE] selects the queues and functions that are actually
  * present in the hardware. See NQM_VF_MODE_E.
  *
@@ -2177,8 +2176,8 @@ union cvmx_nqm_vfx_cqx_prp {
                                                          then [PRP] is a 64-bit memory page aligned pointer (NQM_VF()_CC[MPS]
                                                          selects the page size) to the base of the (physically contiguous)
                                                          PRP list that constitutes the non-physically-contiguous queue.
-                                                         Software should derive [PRP] from the PRP Entry 1 (PRP1)
-                                                         field (in CDW6+CDW7 of the create I/O Completion Queue
+                                                         Software should derive [PRP] from the PRP entry 1 (PRP1)
+                                                         field (in CDW6+CDW7 of the create I/O completion queue
                                                          command) in this case.
                                                          If NQM_VF()_CQ()_CC[PC]=1 (i.e. physically-contiguous,
                                                          CDW11.PC=1) then [PRP] is not used by hardware. */
@@ -2196,7 +2195,7 @@ typedef union cvmx_nqm_vfx_cqx_prp cvmx_nqm_vfx_cqx_prp_t;
  * cvmx_nqm_vf#_cq#_tail
  *
  * NQM_VF(x)_CQ(0..16)_TAIL are the CQ tails for function x.
- * Includes both Admin and IO queues. NQM_VF_MODE[VF_MODE] selects the
+ * Includes both admin and IO queues. NQM_VF_MODE[VF_MODE] selects the
  * queues and functions that are actually present in the hardware. See
  * NQM_VF_MODE_E.
  *
@@ -2254,7 +2253,7 @@ typedef union cvmx_nqm_vfx_cqsm_dbg cvmx_nqm_vfx_cqsm_dbg_t;
 /**
  * cvmx_nqm_vf#_csts
  *
- * NQM_VF(x)_CSTS is the NVMe-standard Controller Status (CSTS) CSR for
+ * NQM_VF(x)_CSTS is the NVMe-standard controller status (CSTS) CSR for
  * function x. NQM_VF_MODE[VF_MODE] selects the functions that are actually
  * present in the hardware. See NQM_VF_MODE_E.
  */
@@ -2263,7 +2262,7 @@ union cvmx_nqm_vfx_csts {
 	struct cvmx_nqm_vfx_csts_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_6_31                : 26;
-	uint32_t pp                           : 1;  /**< Processing Paused: Not supported. (First appeared in NVMe 1.2 specs.)
+	uint32_t pp                           : 1;  /**< Processing paused: Not supported. (First appeared in NVMe 1.2 specs.)
                                                          [PP] indicates whether the controller is processing commands.  If
                                                          [PP] is cleared to 0, then the controller is processing commands
                                                          normally. If [PP] is set to 1, then the controller has temporarily
@@ -2284,7 +2283,7 @@ union cvmx_nqm_vfx_csts {
                                                          the behavior is undefined.
                                                          This field is read-only from PCIe (SWI). */
 	uint32_t cfs                          : 1;  /**< Controller fatal status. Set when a fatal controller error occurred
-                                                         that could not be communicated in the appropriate Completion Queue.
+                                                         that could not be communicated in the appropriate completion queue.
                                                          Cleared when a fatal controller error has not occurred. The reset
                                                          value of this field is 1 when a fatal controller error is detected
                                                          during controller initialization.
@@ -2362,8 +2361,8 @@ union cvmx_nqm_vfx_ic_time {
                                                          coalescing.  A value of 0x0 corresponds to no delay (i.e., disabling
                                                          this capability). The controller applies this time across all
                                                          interrupt vectors.
-                                                         [CTIME] should be derived from the Aggregation Time (CDW11.TIME)
-                                                         in a Interrupt Coalescing (Feature Identifier 0x08) Set Features
+                                                         [CTIME] should be derived from the aggregation time (CDW11.TIME)
+                                                         in a interrupt coalescing (feature identifier 0x08) set features
                                                          admin command. */
 #else
 	uint64_t ctime                        : 8;
@@ -2397,8 +2396,8 @@ union cvmx_nqm_vfx_int {
                                                          be set generates a completion status, DPI_CS_E::ERRRSP is the completion
                                                          status for the DPI DMA instruction.
                                                          When an FLR was not the [SLI_ERR] assertion cause, [SLI_ERR] assertion
-                                                         should typically coincide with one or more completions with a Data Transfer
-                                                         Error (value 4) Status Code. When an FLR was the cause, NQM hardware
+                                                         should typically coincide with one or more completions with a data transfer
+                                                         error (value 4) status code. When an FLR was the cause, NQM hardware
                                                          will have recently sent [FLR]. */
 	uint64_t sq_fe                        : 1;  /**< Submission queue fatal error. NQM asserts [SQ_FE] when a PRP list entry
                                                          read from a SQ in the function completes with an error status.
@@ -2409,7 +2408,7 @@ union cvmx_nqm_vfx_int {
                                                          and NQM clears their NQM_VF()_SQ()_BASE[PRIP,BV]=0,0, and
                                                          NQM_VF()_SQ()_ENA[ENABLE]=0 when the error occurs.
                                                          When an FLR was not the [SQ_FE] assertion cause, [SQ_FE] assertion
-                                                         should result in a Controller Fatal Error reported back to the host
+                                                         should result in a controller fatal error reported back to the host
                                                          via NQM_VF()_CSTS[CFS]. When an FLR was the cause, NQM will have
                                                          set [FLR]. */
 	uint64_t cq_fe                        : 1;  /**< Completion queue fatal error. NQM asserts [CQ_FE] when a PRP list entry
@@ -2421,50 +2420,50 @@ union cvmx_nqm_vfx_int {
                                                          and NQM clears their NQM_VF()_CQ()_BASE[PRIP,BV]=0,0, and
                                                          NQM_VF()_CQ()_ENA[ENABLE]=0 when the error occurs.
                                                          When an FLR was not the [CQ_FE] assertion cause, [CQ_FE] assertion
-                                                         should result in a Controller Fatal Error reported back to the host
+                                                         should result in a controller fatal error reported back to the host
                                                          via NQM_VF()_CSTS[CFS]. When an FLR was the cause, NQM will have
                                                          set [FLR]. */
 	uint64_t asq_cfg                      : 1;  /**< Administration submission queue configuration. Asserted when the host
                                                          changes the configuration of the admin SQ while it is enabled.
                                                          NQM_VF()_SQ()_ENA[ENABLE] describes admin SQ enable conditions.
-                                                         This error should typically result in a Controller Fatal Error
+                                                         This error should typically result in a controller fatal error
                                                          reported back to the host via NQM_VF()_CSTS[CFS]. */
 	uint64_t acq_cfg                      : 1;  /**< Administration completion queue configuration. Asserted when the host
                                                          changes the configuration of the admin CQ while it is enabled.
                                                          NQM_VF()_CQ()_ENA[ENABLE] describes admin CPL/CQ enable conditions.
-                                                         This error should typically result in a Controller Fatal Error
+                                                         This error should typically result in a controller fatal error
                                                          reported back to the host via NQM_VF()_CSTS[CFS]. */
 	uint64_t cq_db_val                    : 1;  /**< Completion queue doorbell value: Asserted when host software writes a
                                                          doorbell value via PCIe that exceeds the size of the CQ, or is the
                                                          same as the previous written value or attempts to remove from an
                                                          empty CQ (underflow) while enabled. NQM_VF()_CQ()_ENA[ENABLE]
                                                          describes CPL/CQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Write Value (Value 1) error status asynchronous event to the
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell write value (value 1) error status asynchronous event to the
                                                          host. */
 	uint64_t cq_db                        : 1;  /**< Completion queue doorbell. Asserted when host software writes the
                                                          doorbell of a CQ that is disabled. NQM_VF()_CQ()_ENA[ENABLE]
                                                          describes CPL/CQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Register (Value 0) error status asynchronous event to the host. */
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell register (value 0) error status asynchronous event to the host. */
 	uint64_t sq_db_val                    : 1;  /**< Submission queue doorbell value: Asserted when host software writes a
                                                          doorbell value via PCIe that exceeds the size of the SQ, or is the
                                                          same as the previous written value or attempts to add to a full SQ
                                                          (overflow) while enabled. NQM_VF()_SQ()_ENA[ENABLE] describes
                                                          SQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Write Value (Value 1) error status asynchronous event to the
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell write value (value 1) error status asynchronous event to the
                                                          host. */
 	uint64_t sq_db                        : 1;  /**< Submission queue doorbell. Asserted when host software writes the
                                                          doorbell of a SQ that is disabled. NQM_VF()_SQ()_ENA[ENABLE] describes
                                                          SQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Register (Value 0) error status asynchronous event to the host. */
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell register (value 0) error status asynchronous event to the host. */
 	uint64_t flr                          : 1;  /**< Function-level reset interrupt.  This bit is asserted when a PCIe
                                                          function-level reset to the function has been initiated. */
 	uint64_t ccw                          : 1;  /**< Controller configuration write interrupt.  This bit is asserted anytime
                                                          the NQM_VF()_CC register is written via PCIe.  This can be used to
-                                                         notify Octeon software that the shutdown notification (SHN) and/or
+                                                         notify OCTEON software that the shutdown notification (SHN) and/or
                                                          the enable (EN) fields have changed. */
 #else
 	uint64_t ccw                          : 1;
@@ -2504,8 +2503,8 @@ union cvmx_nqm_vfx_int_ena_w1c {
                                                          be set generates a completion status, DPI_CS_E::ERRRSP is the completion
                                                          status for the DPI DMA instruction.
                                                          When an FLR was not the [SLI_ERR] assertion cause, [SLI_ERR] assertion
-                                                         should typically coincide with one or more completions with a Data Transfer
-                                                         Error (value 4) Status Code. When an FLR was the cause, NQM hardware
+                                                         should typically coincide with one or more completions with a data transfer
+                                                         error (value 4) status code. When an FLR was the cause, NQM hardware
                                                          will have recently sent [FLR]. */
 	uint64_t sq_fe                        : 1;  /**< Submission queue fatal error. NQM asserts [SQ_FE] when a PRP list entry
                                                          read from a SQ in the function completes with an error status.
@@ -2516,7 +2515,7 @@ union cvmx_nqm_vfx_int_ena_w1c {
                                                          and NQM clears their NQM_VF()_SQ()_BASE[PRIP,BV]=0,0, and
                                                          NQM_VF()_SQ()_ENA[ENABLE]=0 when the error occurs.
                                                          When an FLR was not the [SQ_FE] assertion cause, [SQ_FE] assertion
-                                                         should result in a Controller Fatal Error reported back to the host
+                                                         should result in a controller fatal error reported back to the host
                                                          via NQM_VF()_CSTS[CFS]. When an FLR was the cause, NQM will have
                                                          set [FLR]. */
 	uint64_t cq_fe                        : 1;  /**< Completion queue fatal error. NQM asserts [CQ_FE] when a PRP list entry
@@ -2528,50 +2527,50 @@ union cvmx_nqm_vfx_int_ena_w1c {
                                                          and NQM clears their NQM_VF()_CQ()_BASE[PRIP,BV]=0,0, and
                                                          NQM_VF()_CQ()_ENA[ENABLE]=0 when the error occurs.
                                                          When an FLR was not the [CQ_FE] assertion cause, [CQ_FE] assertion
-                                                         should result in a Controller Fatal Error reported back to the host
+                                                         should result in a controller fatal error reported back to the host
                                                          via NQM_VF()_CSTS[CFS]. When an FLR was the cause, NQM will have
                                                          set [FLR]. */
 	uint64_t asq_cfg                      : 1;  /**< Administration submission queue configuration. Asserted when the host
                                                          changes the configuration of the admin SQ while it is enabled.
                                                          NQM_VF()_SQ()_ENA[ENABLE] describes admin SQ enable conditions.
-                                                         This error should typically result in a Controller Fatal Error
+                                                         This error should typically result in a controller fatal error
                                                          reported back to the host via NQM_VF()_CSTS[CFS]. */
 	uint64_t acq_cfg                      : 1;  /**< Administration completion queue configuration. Asserted when the host
                                                          changes the configuration of the admin CQ while it is enabled.
                                                          NQM_VF()_CQ()_ENA[ENABLE] describes admin CPL/CQ enable conditions.
-                                                         This error should typically result in a Controller Fatal Error
+                                                         This error should typically result in a controller fatal error
                                                          reported back to the host via NQM_VF()_CSTS[CFS]. */
 	uint64_t cq_db_val                    : 1;  /**< Completion queue doorbell value: Asserted when host software writes a
                                                          doorbell value via PCIe that exceeds the size of the CQ, or is the
                                                          same as the previous written value or attempts to remove from an
                                                          empty CQ (underflow) while enabled. NQM_VF()_CQ()_ENA[ENABLE]
                                                          describes CPL/CQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Write Value (Value 1) error status asynchronous event to the
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell write value (value 1) error status asynchronous event to the
                                                          host. */
 	uint64_t cq_db                        : 1;  /**< Completion queue doorbell. Asserted when host software writes the
                                                          doorbell of a CQ that is disabled. NQM_VF()_CQ()_ENA[ENABLE]
                                                          describes CPL/CQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Register (Value 0) error status asynchronous event to the host. */
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell register (value 0) error status asynchronous event to the host. */
 	uint64_t sq_db_val                    : 1;  /**< Submission queue doorbell value: Asserted when host software writes a
                                                          doorbell value via PCIe that exceeds the size of the SQ, or is the
                                                          same as the previous written value or attempts to add to a full SQ
                                                          (overflow) while enabled. NQM_VF()_SQ()_ENA[ENABLE] describes
                                                          SQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Write Value (Value 1) error status asynchronous event to the
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell write value (value 1) error status asynchronous event to the
                                                          host. */
 	uint64_t sq_db                        : 1;  /**< Submission queue doorbell. Asserted when host software writes the
                                                          doorbell of a SQ that is disabled. NQM_VF()_SQ()_ENA[ENABLE] describes
                                                          SQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Register (Value 0) error status asynchronous event to the host. */
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell register (value 0) error status asynchronous event to the host. */
 	uint64_t flr                          : 1;  /**< Function-level reset interrupt.  This bit is asserted when a PCIe
                                                          function-level reset to the function has been initiated. */
 	uint64_t ccw                          : 1;  /**< Controller configuration write interrupt.  This bit is asserted anytime
                                                          the NQM_VF()_CC register is written via PCIe.  This can be used to
-                                                         notify Octeon software that the shutdown notification (SHN) and/or
+                                                         notify OCTEON software that the shutdown notification (SHN) and/or
                                                          the enable (EN) fields have changed. */
 #else
 	uint64_t ccw                          : 1;
@@ -2611,8 +2610,8 @@ union cvmx_nqm_vfx_int_ena_w1s {
                                                          be set generates a completion status, DPI_CS_E::ERRRSP is the completion
                                                          status for the DPI DMA instruction.
                                                          When an FLR was not the [SLI_ERR] assertion cause, [SLI_ERR] assertion
-                                                         should typically coincide with one or more completions with a Data Transfer
-                                                         Error (value 4) Status Code. When an FLR was the cause, NQM hardware
+                                                         should typically coincide with one or more completions with a data transfer
+                                                         error (value 4) status code. When an FLR was the cause, NQM hardware
                                                          will have recently sent [FLR]. */
 	uint64_t sq_fe                        : 1;  /**< Submission queue fatal error. NQM asserts [SQ_FE] when a PRP list entry
                                                          read from a SQ in the function completes with an error status.
@@ -2623,7 +2622,7 @@ union cvmx_nqm_vfx_int_ena_w1s {
                                                          and NQM clears their NQM_VF()_SQ()_BASE[PRIP,BV]=0,0, and
                                                          NQM_VF()_SQ()_ENA[ENABLE]=0 when the error occurs.
                                                          When an FLR was not the [SQ_FE] assertion cause, [SQ_FE] assertion
-                                                         should result in a Controller Fatal Error reported back to the host
+                                                         should result in a controller fatal error reported back to the host
                                                          via NQM_VF()_CSTS[CFS]. When an FLR was the cause, NQM will have
                                                          set [FLR]. */
 	uint64_t cq_fe                        : 1;  /**< Completion queue fatal error. NQM asserts [CQ_FE] when a PRP list entry
@@ -2635,50 +2634,50 @@ union cvmx_nqm_vfx_int_ena_w1s {
                                                          and NQM clears their NQM_VF()_CQ()_BASE[PRIP,BV]=0,0, and
                                                          NQM_VF()_CQ()_ENA[ENABLE]=0 when the error occurs.
                                                          When an FLR was not the [CQ_FE] assertion cause, [CQ_FE] assertion
-                                                         should result in a Controller Fatal Error reported back to the host
+                                                         should result in a controller fatal error reported back to the host
                                                          via NQM_VF()_CSTS[CFS]. When an FLR was the cause, NQM will have
                                                          set [FLR]. */
 	uint64_t asq_cfg                      : 1;  /**< Administration submission queue configuration. Asserted when the host
                                                          changes the configuration of the admin SQ while it is enabled.
                                                          NQM_VF()_SQ()_ENA[ENABLE] describes admin SQ enable conditions.
-                                                         This error should typically result in a Controller Fatal Error
+                                                         This error should typically result in a controller fatal error
                                                          reported back to the host via NQM_VF()_CSTS[CFS]. */
 	uint64_t acq_cfg                      : 1;  /**< Administration completion queue configuration. Asserted when the host
                                                          changes the configuration of the admin CQ while it is enabled.
                                                          NQM_VF()_CQ()_ENA[ENABLE] describes admin CPL/CQ enable conditions.
-                                                         This error should typically result in a Controller Fatal Error
+                                                         This error should typically result in a controller fatal error
                                                          reported back to the host via NQM_VF()_CSTS[CFS]. */
 	uint64_t cq_db_val                    : 1;  /**< Completion queue doorbell value: Asserted when host software writes a
                                                          doorbell value via PCIe that exceeds the size of the CQ, or is the
                                                          same as the previous written value or attempts to remove from an
                                                          empty CQ (underflow) while enabled. NQM_VF()_CQ()_ENA[ENABLE]
                                                          describes CPL/CQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Write Value (Value 1) error status asynchronous event to the
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell write value (value 1) error status asynchronous event to the
                                                          host. */
 	uint64_t cq_db                        : 1;  /**< Completion queue doorbell. Asserted when host software writes the
                                                          doorbell of a CQ that is disabled. NQM_VF()_CQ()_ENA[ENABLE]
                                                          describes CPL/CQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Register (Value 0) error status asynchronous event to the host. */
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell register (value 0) error status asynchronous event to the host. */
 	uint64_t sq_db_val                    : 1;  /**< Submission queue doorbell value: Asserted when host software writes a
                                                          doorbell value via PCIe that exceeds the size of the SQ, or is the
                                                          same as the previous written value or attempts to add to a full SQ
                                                          (overflow) while enabled. NQM_VF()_SQ()_ENA[ENABLE] describes
                                                          SQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Write Value (Value 1) error status asynchronous event to the
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell write value (value 1) error status asynchronous event to the
                                                          host. */
 	uint64_t sq_db                        : 1;  /**< Submission queue doorbell. Asserted when host software writes the
                                                          doorbell of a SQ that is disabled. NQM_VF()_SQ()_ENA[ENABLE] describes
                                                          SQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Register (Value 0) error status asynchronous event to the host. */
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell register (value 0) error status asynchronous event to the host. */
 	uint64_t flr                          : 1;  /**< Function-level reset interrupt.  This bit is asserted when a PCIe
                                                          function-level reset to the function has been initiated. */
 	uint64_t ccw                          : 1;  /**< Controller configuration write interrupt.  This bit is asserted anytime
                                                          the NQM_VF()_CC register is written via PCIe.  This can be used to
-                                                         notify Octeon software that the shutdown notification (SHN) and/or
+                                                         notify OCTEON software that the shutdown notification (SHN) and/or
                                                          the enable (EN) fields have changed. */
 #else
 	uint64_t ccw                          : 1;
@@ -2718,8 +2717,8 @@ union cvmx_nqm_vfx_int_w1s {
                                                          be set generates a completion status, DPI_CS_E::ERRRSP is the completion
                                                          status for the DPI DMA instruction.
                                                          When an FLR was not the [SLI_ERR] assertion cause, [SLI_ERR] assertion
-                                                         should typically coincide with one or more completions with a Data Transfer
-                                                         Error (value 4) Status Code. When an FLR was the cause, NQM hardware
+                                                         should typically coincide with one or more completions with a data transfer
+                                                         error (value 4) status code. When an FLR was the cause, NQM hardware
                                                          will have recently sent [FLR]. */
 	uint64_t sq_fe                        : 1;  /**< Submission queue fatal error. NQM asserts [SQ_FE] when a PRP list entry
                                                          read from a SQ in the function completes with an error status.
@@ -2730,7 +2729,7 @@ union cvmx_nqm_vfx_int_w1s {
                                                          and NQM clears their NQM_VF()_SQ()_BASE[PRIP,BV]=0,0, and
                                                          NQM_VF()_SQ()_ENA[ENABLE]=0 when the error occurs.
                                                          When an FLR was not the [SQ_FE] assertion cause, [SQ_FE] assertion
-                                                         should result in a Controller Fatal Error reported back to the host
+                                                         should result in a controller fatal error reported back to the host
                                                          via NQM_VF()_CSTS[CFS]. When an FLR was the cause, NQM will have
                                                          set [FLR]. */
 	uint64_t cq_fe                        : 1;  /**< Completion queue fatal error. NQM asserts [CQ_FE] when a PRP list entry
@@ -2742,50 +2741,50 @@ union cvmx_nqm_vfx_int_w1s {
                                                          and NQM clears their NQM_VF()_CQ()_BASE[PRIP,BV]=0,0, and
                                                          NQM_VF()_CQ()_ENA[ENABLE]=0 when the error occurs.
                                                          When an FLR was not the [CQ_FE] assertion cause, [CQ_FE] assertion
-                                                         should result in a Controller Fatal Error reported back to the host
+                                                         should result in a controller fatal error reported back to the host
                                                          via NQM_VF()_CSTS[CFS]. When an FLR was the cause, NQM will have
                                                          set [FLR]. */
 	uint64_t asq_cfg                      : 1;  /**< Administration submission queue configuration. Asserted when the host
                                                          changes the configuration of the admin SQ while it is enabled.
                                                          NQM_VF()_SQ()_ENA[ENABLE] describes admin SQ enable conditions.
-                                                         This error should typically result in a Controller Fatal Error
+                                                         This error should typically result in a controller fatal error
                                                          reported back to the host via NQM_VF()_CSTS[CFS]. */
 	uint64_t acq_cfg                      : 1;  /**< Administration completion queue configuration. Asserted when the host
                                                          changes the configuration of the admin CQ while it is enabled.
                                                          NQM_VF()_CQ()_ENA[ENABLE] describes admin CPL/CQ enable conditions.
-                                                         This error should typically result in a Controller Fatal Error
+                                                         This error should typically result in a controller fatal error
                                                          reported back to the host via NQM_VF()_CSTS[CFS]. */
 	uint64_t cq_db_val                    : 1;  /**< Completion queue doorbell value: Asserted when host software writes a
                                                          doorbell value via PCIe that exceeds the size of the CQ, or is the
                                                          same as the previous written value or attempts to remove from an
                                                          empty CQ (underflow) while enabled. NQM_VF()_CQ()_ENA[ENABLE]
                                                          describes CPL/CQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Write Value (Value 1) error status asynchronous event to the
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell write value (value 1) error status asynchronous event to the
                                                          host. */
 	uint64_t cq_db                        : 1;  /**< Completion queue doorbell. Asserted when host software writes the
                                                          doorbell of a CQ that is disabled. NQM_VF()_CQ()_ENA[ENABLE]
                                                          describes CPL/CQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Register (Value 0) error status asynchronous event to the host. */
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell register (value 0) error status asynchronous event to the host. */
 	uint64_t sq_db_val                    : 1;  /**< Submission queue doorbell value: Asserted when host software writes a
                                                          doorbell value via PCIe that exceeds the size of the SQ, or is the
                                                          same as the previous written value or attempts to add to a full SQ
                                                          (overflow) while enabled. NQM_VF()_SQ()_ENA[ENABLE] describes
                                                          SQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Write Value (Value 1) error status asynchronous event to the
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell write value (value 1) error status asynchronous event to the
                                                          host. */
 	uint64_t sq_db                        : 1;  /**< Submission queue doorbell. Asserted when host software writes the
                                                          doorbell of a SQ that is disabled. NQM_VF()_SQ()_ENA[ENABLE] describes
                                                          SQ enable conditions.
-                                                         This error should typically result in software posting an Invalid
-                                                         Doorbell Register (Value 0) error status asynchronous event to the host. */
+                                                         This error should typically result in software posting an invalid
+                                                         doorbell register (value 0) error status asynchronous event to the host. */
 	uint64_t flr                          : 1;  /**< Function-level reset interrupt.  This bit is asserted when a PCIe
                                                          function-level reset to the function has been initiated. */
 	uint64_t ccw                          : 1;  /**< Controller configuration write interrupt.  This bit is asserted anytime
                                                          the NQM_VF()_CC register is written via PCIe.  This can be used to
-                                                         notify Octeon software that the shutdown notification (SHN) and/or
+                                                         notify OCTEON software that the shutdown notification (SHN) and/or
                                                          the enable (EN) fields have changed. */
 #else
 	uint64_t ccw                          : 1;
@@ -2809,7 +2808,7 @@ typedef union cvmx_nqm_vfx_int_w1s cvmx_nqm_vfx_int_w1s_t;
 /**
  * cvmx_nqm_vf#_intmc
  *
- * NQM_VF(x)_INTMC is the NVMe-standard Interrupt Mask Clear (INTMC) CSR for
+ * NQM_VF(x)_INTMC is the NVMe-standard interrupt mask clear (INTMC) CSR for
  * function x. NQM_VF_MODE[VF_MODE] selects the functions that are actually
  * present in the hardware. See NQM_VF_MODE_E.
  */
@@ -2830,7 +2829,7 @@ typedef union cvmx_nqm_vfx_intmc cvmx_nqm_vfx_intmc_t;
 /**
  * cvmx_nqm_vf#_intms
  *
- * NQM_VF(x)_INTMS is the NVMe-standard Interrupt Mask Set (INTMS) CSR for
+ * NQM_VF(x)_INTMS is the NVMe-standard interrupt mask set (INTMS) CSR for
  * function x. NQM_VF_MODE[VF_MODE] selects the functions that are actually
  * present in the hardware. See NQM_VF_MODE_E.
  */
@@ -3003,7 +3002,7 @@ typedef union cvmx_nqm_vfx_msix_pba cvmx_nqm_vfx_msix_pba_t;
 /**
  * cvmx_nqm_vf#_nssr
  *
- * NQM_VF(x)_NSSR is the NVMe-standard NVM Subsystem Reset (NSSR) CSR for
+ * NQM_VF(x)_NSSR is the NVMe-standard NVM subsystem reset (NSSR) CSR for
  * function x. NQM_VF_MODE[VF_MODE] selects the functions that are actually
  * present in the hardware. See NQM_VF_MODE_E.
  */
@@ -3047,10 +3046,10 @@ union cvmx_nqm_vfx_sqx_base {
 	uint64_t pba                          : 52; /**< Page base address.  If NQM_VF()_SQ()_CC[PC]=1 (i.e. physically-contiguous)
                                                          then [PBA] is a 64-bit memory page aligned pointer (NQM_VF()_CC[MPS]
                                                          selects the page size) to the base of the physically contiguous
-                                                         queue. Software should derive [PBA] from the PRP Entry 1 (PRP1)
-                                                         field (in CDW6+CDW7) of the create I/O Submission Queue
-                                                         command in this case. (If CDW11.PC=0 in the create I/O Submission
-                                                         Queue command, but NQM_VF()_SQ()_CC[PC]=1 due to small
+                                                         queue. Software should derive [PBA] from the PRP entry 1 (PRP1)
+                                                         field (in CDW6+CDW7) of the create I/O submission queue
+                                                         command in this case. (If CDW11.PC=0 in the create I/O submission
+                                                         queue command, but NQM_VF()_SQ()_CC[PC]=1 due to small
                                                          NQM_VF()_SQ()_CC[QSIZE], then software must read the first
                                                          PRP Entry in the PRP List from host memory, and write it into [PBA].)
                                                          If NQM_VF()_SQ()_CC[PC]=0 (i.e. not physically-contiguous)
@@ -3111,8 +3110,8 @@ union cvmx_nqm_vfx_sqx_cc {
                                                          queue in entries. The minimum legal size of 2 entries is configured
                                                          when QSIZE is set to 1.  The maximum size of 4096 entries is
                                                          configured when QSIZE is set to 0xFFF.
-                                                         Software should derive [QSIZE] from the Queue Size field
-                                                         (CDW10.QSIZE) of the Create I/O Submission Queue command. */
+                                                         Software should derive [QSIZE] from the queue size field
+                                                         (CDW10.QSIZE) of the create I/O submission queue command. */
 	uint64_t reserved_1_15                : 15;
 	uint64_t pc                           : 1;  /**< Physically contiguous. When set, indicates that the queue is
                                                          located in physically contiguous host memory pages. When clear,
@@ -3120,8 +3119,8 @@ union cvmx_nqm_vfx_sqx_cc {
                                                          [PC] must be set for an enabled queue when all queue entries
                                                          fit within a single page (NQM_VF()_CC[MPS] selects the page size).
                                                          Software should derive [PC] from the physically contiguous field
-                                                         (CDW11.PC) and the queue size field (CDW10.QSIZE) of the Create
-                                                         I/O Submission Queue command. [PC] should be set when CDW11.PC
+                                                         (CDW11.PC) and the queue size field (CDW10.QSIZE) of the create
+                                                         I/O submission queue command. [PC] should be set when CDW11.PC
                                                          is set. [PC] should also be set when CDW11.PC is clear, selecting
                                                          a non-contiguous queue, but [QSIZE] is small enough that all
                                                          entries fit within a single page. */
@@ -3140,7 +3139,7 @@ typedef union cvmx_nqm_vfx_sqx_cc cvmx_nqm_vfx_sqx_cc_t;
  * cvmx_nqm_vf#_sq#_credit
  *
  * NQM_VF(x)_SQ(0..16)_CREDIT are the submission queue credits for function x.
- * Includes both Admin and IO queues. NQM_VF_MODE[VF_MODE] selects the queues
+ * Includes both admin and IO queues. NQM_VF_MODE[VF_MODE] selects the queues
  * and functions that are actually present in the hardware. See NQM_VF_MODE_E.
  *
  * This CSR should only be written and only be migrated when both the corresponding
@@ -3157,7 +3156,7 @@ union cvmx_nqm_vfx_sqx_credit {
 	struct cvmx_nqm_vfx_sqx_credit_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_12_63               : 52;
-	uint64_t cred                         : 12; /**< WQE Credit. Flow control credit counter that limits the number
+	uint64_t cred                         : 12; /**< WQE credit. Flow control credit counter that limits the number
                                                          of commands and completion in-flight to the NVMe controller
                                                          software executing on the CNXXXX CPUs. [CRED] programming
                                                          limits NQM_WQE_S and NQM_CPL_ENTRY_S storage requirements
@@ -3177,9 +3176,9 @@ union cvmx_nqm_vfx_sqx_credit {
                                                          Note that with an admin SQ/CPL/CQ, asynchronous event requests
                                                          will normally remain outstanding for long time periods and
                                                          will consume [CRED]'s while they do. The initially-configured
-                                                         admin SQ [CRED] must exceed the Asynchronous Event Request Limit
-                                                         (AERL) specified in the Identify Controller data structure provided
-                                                         in response to the Identify Admin command. */
+                                                         admin SQ [CRED] must exceed the asynchronous event request limit
+                                                         (AERL) specified in the identify controller data structure provided
+                                                         in response to the identify admin command. */
 #else
 	uint64_t cred                         : 12;
 	uint64_t reserved_12_63               : 52;
@@ -3193,7 +3192,7 @@ typedef union cvmx_nqm_vfx_sqx_credit cvmx_nqm_vfx_sqx_credit_t;
  * cvmx_nqm_vf#_sq#_ena
  *
  * NQM_VF(x)_SQ(0..16)_ENA are the submission queue enable CSRs for function x.
- * Includes both Admin and IO queues. NQM_VF_MODE[VF_MODE] selects the queues
+ * Includes both admin and IO queues. NQM_VF_MODE[VF_MODE] selects the queues
  * and functions that are actually present in the hardware. See NQM_VF_MODE_E.
  */
 union cvmx_nqm_vfx_sqx_ena {
@@ -3247,7 +3246,7 @@ typedef union cvmx_nqm_vfx_sqx_ena cvmx_nqm_vfx_sqx_ena_t;
  * cvmx_nqm_vf#_sq#_head
  *
  * NQM_VF(x)_SQ(0..16)_HEAD are the submission queue head pointers (and associated
- * wrap counters) for function x. Includes both Admin and IO queues.
+ * wrap counters) for function x. Includes both admin and IO queues.
  * NQM_VF_MODE[VF_MODE] selects the queues and functions that are actually
  * present in the hardware. See NQM_VF_MODE_E.
  *
@@ -3286,7 +3285,7 @@ typedef union cvmx_nqm_vfx_sqx_head cvmx_nqm_vfx_sqx_head_t;
  * cvmx_nqm_vf#_sq#_ifc
  *
  * NQM_VF(x)_SQ(0..16)_IFC are the submission queue inflight counts
- * for function x. Includes both Admin and IO queues. NQM_VF_MODE[VF_MODE]
+ * for function x. Includes both admin and IO queues. NQM_VF_MODE[VF_MODE]
  * selects the queues and functions that are actually present in the
  * hardware. See NQM_VF_MODE_E.
  */
@@ -3332,8 +3331,8 @@ union cvmx_nqm_vfx_sqx_prp {
                                                          then [PRP] is a 64-bit memory page aligned pointer (NQM_VF()_CC[MPS]
                                                          selects the page size) to the base of the (physically contiguous)
                                                          PRP list that constitutes the non-physically-contiguous queue.
-                                                         Software should derive [PRP] from the PRP Entry 1 (PRP1)
-                                                         field (in CDW6+CDW7 of the create I/O Submission Queue
+                                                         Software should derive [PRP] from the PRP entry 1 (PRP1)
+                                                         field (in CDW6+CDW7 of the create I/O submission queue
                                                          command) in this case.
                                                          If NQM_VF()_SQ()_CC[PC]=1 (i.e. physically-contiguous)
                                                          then [PRP] is not used by hardware. */
@@ -3351,7 +3350,7 @@ typedef union cvmx_nqm_vfx_sqx_prp cvmx_nqm_vfx_sqx_prp_t;
  * cvmx_nqm_vf#_sq#_sso_setup
  *
  * NQM_VF(x)_SQ(0..16)_CC are the submission queue control registers
- * for function x. Includes both Admin and IO queues. NQM_VF_MODE[VF_MODE]
+ * for function x. Includes both admin and IO queues. NQM_VF_MODE[VF_MODE]
  * selects the queues and functions that are actually present in the hardware.
  * See NQM_VF_MODE_E.
  *
@@ -3383,8 +3382,8 @@ typedef union cvmx_nqm_vfx_sqx_sso_setup cvmx_nqm_vfx_sqx_sso_setup_t;
 /**
  * cvmx_nqm_vf#_sq#_tdbl
  *
- * NQM_VF(x)_SQ(y)_TDBL is the NVMe-standard Submission Queue y Tail
- * Doorbell (SQyTDBL) for function x. Includes both Admin and IO queues.
+ * NQM_VF(x)_SQ(y)_TDBL is the NVMe-standard submission queue y tail
+ * doorbell (SQyTDBL) for function x. Includes both admin and IO queues.
  * NQM_VF_MODE[VF_MODE] selects the queues and functions that are actually
  * present in the hardware. See NQM_VF_MODE_E.
  *
@@ -3474,9 +3473,9 @@ union cvmx_nqm_vfx_vecx_msix_cd {
 	uint64_t reserved_1_63                : 63;
 	uint64_t cd                           : 1;  /**< Coalescing disable. When set, disables all interrupt aggregation
                                                          for this MSI-X interrupt vector.
-                                                         [CD] should be derived from the Coalescing Disable (CDW11.CD)
-                                                         in a Interrupt Vector Configuration (Feature Identifier 0x09)
-                                                         Set Features admin command.
+                                                         [CD] should be derived from the coalescing disable (CDW11.CD)
+                                                         in a interrupt vector Configuration (feature identifier 0x09)
+                                                         Set features admin command.
                                                          See also NQM_CPL_ENTRY_S[CD]. */
 #else
 	uint64_t cd                           : 1;
@@ -3561,7 +3560,7 @@ union cvmx_nqm_vfx_vecx_msix_int_st {
 	struct cvmx_nqm_vfx_vecx_msix_int_st_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_28_63               : 36;
-	uint64_t intcnt                       : 8;  /**< Interrupt count field. When non-zero, there is a pending PBA bit assertion
+	uint64_t intcnt                       : 8;  /**< Interrupt count field. When nonzero, there is a pending PBA bit assertion
                                                          (i.e. NQM is actively coalescing interrupts) for the vector.
                                                          Unless there is one or more enabled and non-empty CQ that is (1) enabled
                                                          for interrupts and (2) mapped to the MSI-X table entry, [INTCNT] is zero.
@@ -3582,7 +3581,7 @@ typedef union cvmx_nqm_vfx_vecx_msix_int_st cvmx_nqm_vfx_vecx_msix_int_st_t;
 /**
  * cvmx_nqm_vf#_vs
  *
- * NQM_VF(x)_VS is the NVMe-standard Version (VS) CSR for
+ * NQM_VF(x)_VS is the NVMe-standard version (VS) CSR for
  * function x. NQM_VF_MODE[VF_MODE] selects the functions that are actually
  * present in the hardware. See NQM_VF_MODE_E.
  */

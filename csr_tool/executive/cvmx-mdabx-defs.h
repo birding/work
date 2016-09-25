@@ -629,14 +629,14 @@ union cvmx_mdabx_cfg_addr {
                                                          configuration to local DSP memory.
                                                          When ADDR[30]=1(IMEM):
                                                             For MBP32 (256KB IMEM): Valid 128b-aligned address range = (0x4000.0000 >> 4) -
-                                                         (0x4003.FFFF >> 4)
+                                                         (0x4003.FFFF >> 4).
                                                             For SSP16 (64KB IMEM):  Valid 128b-aligned address range = (0x4000.0000 >> 4) -
-                                                         (0x4000.FFFF >> 4)
+                                                         (0x4000.FFFF >> 4).
                                                          When ADDR[30]=0(DMEM):
                                                             For MBP32 (128KB DMEM): Valid 128b-aligned address range = (0x3FFE.0000 >> 4) -
-                                                         (0x3FFF.FFFF >> 4)
+                                                         (0x3FFF.FFFF >> 4).
                                                             For SSP16 (256KB DMEM): Valid 128b-aligned address range = (0x3FFC.0000 >> 4) -
-                                                         (0x3FFF.FFFF >> 4)
+                                                         (0x3FFF.FFFF >> 4).
                                                          NOTE: In the I/D MEM address decoding scheme, ADDR[30] determines WHICH DSP Memory space
                                                          (0:DMEM/1:IMEM) */
 	uint64_t reserved_0_3                 : 4;
@@ -653,7 +653,7 @@ typedef union cvmx_mdabx_cfg_addr cvmx_mdabx_cfg_addr_t;
 /**
  * cvmx_mdab#_cfg_length
  *
- * The actual 128bit length of the most recent CFG-DMA engine job configuration transfer.
+ * The actual 128-bit length of the most recent CFG-DMA engine job configuration transfer.
  *
  */
 union cvmx_mdabx_cfg_length {
@@ -661,11 +661,11 @@ union cvmx_mdabx_cfg_length {
 	struct cvmx_mdabx_cfg_length_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_19_63               : 45;
-	uint64_t length                       : 15; /**< The actual 128bit length of the most recent CFG-DMA engine job configuration transfer.
+	uint64_t length                       : 15; /**< The actual 128-bit length of the most recent CFG-DMA engine job configuration transfer.
                                                          NOTE: This field will be updated when the CFG-DMA has been actually write committed to
                                                          local DSP memory,
-                                                         which allows SW to read(poll) the length field during the CFG-DMA transfer to know HOW
-                                                         MANY 128bit chunks are
+                                                         which allows software to read (poll) the length field during the CFG-DMA transfer to know
+                                                         how many 128-bit chunks are
                                                          now currently available to be read and used. */
 	uint64_t reserved_0_3                 : 4;
 #else
@@ -681,8 +681,8 @@ typedef union cvmx_mdabx_cfg_length cvmx_mdabx_cfg_length_t;
 /**
  * cvmx_mdab#_cfg_limit
  *
- * The maximum number of 128bit sized chunks that the CFG-DMA engine may write starting from the
- * 128bit-aligned MDAB_CFG_ADDR.
+ * The maximum number of 128-bit sized chunks that the CFG-DMA engine may write starting from the
+ * 128-bit-aligned MDAB_CFG_ADDR.
  */
 union cvmx_mdabx_cfg_limit {
 	uint64_t u64;
@@ -690,19 +690,21 @@ union cvmx_mdabx_cfg_limit {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
 	uint64_t last                         : 1;  /**< Indicates the last CFG-DMA slice which may be written to address MDAB_CFG_ADDR.
-                                                         DSP SW may choose to segment the JD.CFG-DMA data into multiple non-contiguous CFG-DMA
-                                                         transfers to DSP local memory.
-                                                         Eventually, DSP SW will indicate the LAST segment (or slice), to indicate this is
+                                                         DSP software may choose to segment the JD.CFG-DMA data into multiple non-contiguous CFG-
+                                                         DMA transfers to DSP local memory.
+                                                         Eventually, DSP software will indicate the LAST segment (or slice), to indicate this is
                                                          the final CFG-DMA sub-blk transfer.
                                                          Each CFG-DMA operation's LAST will indicate when the last segment (or slice) CFG-DMA
-                                                         operation has been setup, to complete the JD.CFG-DMA data transfer.
-                                                         SW_NOTE: For every new CFG-DMA slice operation, DSP SW *MUST* signal LAST to indicate
-                                                         the final JD.CFG-DMA data slice transfer. */
+                                                         operation has been set up to complete the JD.CFG-DMA data transfer.
+                                                         SW_NOTE: For every new CFG-DMA slice operation, DSP software *MUST* signal LAST to
+                                                         indicate the final JD.CFG-DMA data slice transfer. */
 	uint64_t reserved_19_30               : 12;
-	uint64_t limit                        : 15; /**< "The maximum number of 128bit chunks that the CFG-DMA engine may write at address
+	uint64_t limit                        : 15; /**< "The maximum number of 128-bit chunks that the CFG-DMA engine may write at address
                                                          MDAB_CFG_ADDR.
-                                                         Typically, DSP SW will allocate LIMIT buffer space(max) to be larger than the JD.JCFG
-                                                         data. DSP SW is at liberty to break the total CFG-DMA transfer into multiples segments (or
+                                                         Typically, DSP software will allocate LIMIT buffer space(max) to be larger than the
+                                                         JD.JCFG
+                                                         data. DSP software is at liberty to break the total CFG-DMA transfer into multiples
+                                                         segments (or
                                                          DMA slices) using the LIMIT register. When either LIMIT has been reached (or if the last
                                                          JD.JCFG data is detected), the CFG-DMA is done.
                                                          For MBP DSP:
@@ -711,9 +713,10 @@ union cvmx_mdabx_cfg_limit {
                                                          For SSP DSP:
                                                             IMEM: 0x4000.0000 - 0x4000.FFFF
                                                             DMEM: 0x3FFC.0000 - 0x3FFF.FFFF
-                                                         SW RESTRICTION \#1: SW should NEVER program LIMIT=0. INDETERMINATE results can/will OCCUR.
-                                                         SW RESTRICTION \#2: SW should ensure that ADDR+LIMIT SIZES fall within the I+D MEM space,
-                                                         otherwise DMA_ERROR and INDETERMINATE results can/will OCCUR." */
+                                                         Software restriction \#1: software should never program LIMIT < 2. Indeterminate results
+                                                         can/will occur.
+                                                         Software restriction \#2: software should ensure that ADDR+LIMIT SIZES fall within the I+D
+                                                         MEM space, otherwise DMA_ERROR and indeterminate results can/will occur." */
 	uint64_t reserved_0_3                 : 4;
 #else
 	uint64_t reserved_0_3                 : 4;
@@ -739,11 +742,11 @@ union cvmx_mdabx_cfg_status {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
 	uint64_t job_tag                      : 16; /**< The JOB_TAG field from the PSM command for the last completed CFG-DMA operation.
-                                                         When DSP SW writes START_BUSY=0->1, the CFG-DMA engine will wait until the next
-                                                         available Job has been enqueued, at which point the JOB_TAG will be latched in. */
+                                                         When DSP software writes [START_BUSY]=0->1, the CFG-DMA engine will wait until the next
+                                                         available Job has been enqueued, at which point the [JOB_TAG] will be latched in. */
 	uint64_t reserved_10_15               : 6;
-	uint64_t pending_slot                 : 1;  /**< The job slot for the pending CFG-DMA operation. Valid only when START_BUSY == 0 and
-                                                         DMA_PENDING == 1. */
+	uint64_t pending_slot                 : 1;  /**< The job slot for the pending CFG-DMA operation. Valid only when [START_BUSY] == 0 and
+                                                         [DMA_PENDING] == 1. */
 	uint64_t job_slot                     : 1;  /**< The job slot for the most recent CFG-DMA operation. */
 	uint64_t reserved_7_7                 : 1;
 	uint64_t dma_uflow                    : 1;  /**< Set when the last CFG-DMA operation encountered an underflow */
@@ -755,11 +758,12 @@ union cvmx_mdabx_cfg_status {
                                                          be programmed. */
 	uint64_t post_reset                   : 1;  /**< Set to one on MDAB reset and remains one until the CFG-DMA engine starts its first
                                                          CFG-DMA transfer.
-                                                         SWNOTE: DSP SW can use this bit to qualify the JOB_TAG, JOB_SLOT, DMA_ERROR, LAST_DMA_DONE
-                                                         bits in this CSR. [see: these status bits remain SET and POST_RESET is used by SW to know
-                                                         when they are truly valid].
-                                                         SET(HW): MDAB reset
-                                                         CLR(SW): DSP writes START_BUSY=0->1. */
+                                                         SWNOTE: DSP software can use this bit to qualify the [JOB_TAG], [JOB_SLOT], [DMA_ERROR],
+                                                         [LAST_DMA_DONE]
+                                                         bits in this CSR. [see: these status bits remain set and [POST_RESET] is used by software
+                                                         to know when they are truly valid].
+                                                         SET(hardware): MDAB reset.
+                                                         CLR(software): DSP writes [START_BUSY]=0->1. */
 	uint64_t start_busy                   : 1;  /**< When software writes a one to this register, hardware will write the job configuration
                                                          section(JD.JCFG) for the next available job into the local memory starting at
                                                          MDAB_CFG_ADDR, up to
@@ -794,7 +798,7 @@ typedef union cvmx_mdabx_cfg_status cvmx_mdabx_cfg_status_t;
 /**
  * cvmx_mdab#_dac_bist_status
  *
- * This register contains the dsp bist status
+ * This register contains the dsp bist status.
  *
  */
 union cvmx_mdabx_dac_bist_status {
@@ -802,10 +806,10 @@ union cvmx_mdabx_dac_bist_status {
 	struct cvmx_mdabx_dac_bist_status_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_4_63                : 60;
-	uint64_t dmempar_bist                 : 1;  /**< DSP data memory parity bist status */
-	uint64_t tmem_bist                    : 1;  /**< DSP tmem bist status */
-	uint64_t dmt_bist                     : 1;  /**< DSP DMT bist status */
-	uint64_t imt_bist                     : 1;  /**< DSP IMT bist status */
+	uint64_t dmempar_bist                 : 1;  /**< DSP data memory parity bist status. */
+	uint64_t tmem_bist                    : 1;  /**< DSP tmem bist status. */
+	uint64_t dmt_bist                     : 1;  /**< DSP DMT bist status. */
+	uint64_t imt_bist                     : 1;  /**< DSP IMT bist status. */
 #else
 	uint64_t imt_bist                     : 1;
 	uint64_t dmt_bist                     : 1;
@@ -839,17 +843,17 @@ typedef union cvmx_mdabx_dac_eco cvmx_mdabx_dac_eco_t;
 /**
  * cvmx_mdab#_dac_membase
  *
- * This register provides a 1MB aligned base address that is added to dac-gaa requests before
- * the address in system memory space is issued on the dac->gaa r/w request bus.
+ * This register provides a 1 MB aligned base address that is added to dac-gaa requests before
+ * the address in system memory space is issued on the dac->gaa R/W request bus.
  */
 union cvmx_mdabx_dac_membase {
 	uint64_t u64;
 	struct cvmx_mdabx_dac_membase_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_20_63               : 44;
-	uint64_t dac_membase                  : 20; /**< When the dsp issues a read or write request to system memory space on the dac->gaa i/f,
+	uint64_t dac_membase                  : 20; /**< When the DSP issues a read or write request to system memory space on the dac->gaa i/f,
                                                          this
-                                                         1MB-aligned offset addr[39:20] is added to the dsp address to provide access to any
+                                                         1 MB-aligned offset addr[39:20] is added to the DSP address to provide access to any
                                                          physical
                                                          address in the system memory space. */
 #else
@@ -864,7 +868,7 @@ typedef union cvmx_mdabx_dac_membase cvmx_mdabx_dac_membase_t;
 /**
  * cvmx_mdab#_dac_timer
  *
- * This register contains a local timer that is incremented every tick_div cycles
+ * This register contains a local timer that is incremented every tick_div cycles.
  *
  */
 union cvmx_mdabx_dac_timer {
@@ -874,7 +878,7 @@ union cvmx_mdabx_dac_timer {
 	uint64_t reserved_32_63               : 32;
 	uint64_t tick_div                     : 8;  /**< Timer divider value.  TICK_DIV == 0 results in a divider value of 256. */
 	uint64_t reserved_16_23               : 8;
-	uint64_t tick                         : 16; /**< Local timer register.  Increments every tick_div+1 cycles */
+	uint64_t tick                         : 16; /**< Local timer register.  Increments every tick_div+1 cycles. */
 #else
 	uint64_t tick                         : 16;
 	uint64_t reserved_16_23               : 8;
@@ -890,26 +894,33 @@ typedef union cvmx_mdabx_dac_timer cvmx_mdabx_dac_timer_t;
  * cvmx_mdab#_dmem_array#
  *
  * This address range provides cnMIPS cores access to any MDAB data memory array. Intended for
- * debug
- * purposes only since RSL accesses are slow.
- * SW RESTRICTIONS: When generating RSL addresses please use the following equation:
+ * debug purposes only since RSL accesses are slow.
+ *
+ * When generating RSL addresses software should use the following equation:
  *   rsl_byte_address = 0x11800_B400_0000 + (MDAB-ID[4:0] << 19) + (MEMTYP << 18) +
  * (8B_OFFSET[14:0] << 3)
- *   where:
- *     MEMTYP = [0:IMEM/1:DMEM]
- *     MDAB-IDs:
- *       MBP[0:15]:  [0..13,15..16]
- *       SSP[0:1]:   [14,17]
  *
- *     SW must also be sure to restrict the 8B_OFFSET (based on DSPTYPE/RAMTYPE) as follows:
- *     "
- *       DSPTYPE    RAMTYPE   8B_OFFSET (range)
+ * where
+ *
+ * MEMTYP:
+ * _  0 = IMEM
+ * _  1 = DMEM
+ *
+ * MDAB-ID:
+ * _ [0..13, 15..16] = cnMBP2[0..15]
+ * _ [14, 17] = cnSBP2[0,1]
+ *
+ *     Software must also be sure to restrict the 8B_OFFSET (based on DSPTYPE/RAMTYPE) as
+ * follows:
+ *     <pre>
+ *       DSPTYPE    RAMTYPE   8B_OFFSET[14:0] (range)
  *     ------------------------------------------
- *       cnMBP2       DMEM     [0..(16K-1)]
+ *       cnMBP2       DMEM     [16K..(32K-1)]
  *       cnMBP2       IMEM     [0..(32K-1)]
- *       cnMBP2       DMEM     [0..(32K-1)]
- *       cnMBP2       IMEM     [0..(8K-1)]
- *     "
+ *       cnSBP2       DMEM     [0..(32K-1)]
+ *       cnSBP2       IMEM     [0..(8K-1)]
+ *
+ *     </pre>
  */
 union cvmx_mdabx_dmem_arrayx {
 	uint64_t u64;
@@ -992,7 +1003,7 @@ typedef union cvmx_mdabx_error_status cvmx_mdabx_error_status_t;
 /**
  * cvmx_mdab#_gp0
  *
- * General purpose scratch register
+ * General purpose scratch register.
  *
  */
 union cvmx_mdabx_gp0 {
@@ -1000,7 +1011,7 @@ union cvmx_mdabx_gp0 {
 	struct cvmx_mdabx_gp0_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t gp0                          : 32; /**< Scratch register 0 */
+	uint64_t gp0                          : 32; /**< Scratch register 0. */
 #else
 	uint64_t gp0                          : 32;
 	uint64_t reserved_32_63               : 32;
@@ -1013,7 +1024,7 @@ typedef union cvmx_mdabx_gp0 cvmx_mdabx_gp0_t;
 /**
  * cvmx_mdab#_gp1
  *
- * General purpose scratch register
+ * General purpose scratch register.
  *
  */
 union cvmx_mdabx_gp1 {
@@ -1021,7 +1032,7 @@ union cvmx_mdabx_gp1 {
 	struct cvmx_mdabx_gp1_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t gp1                          : 32; /**< Scratch register 1 */
+	uint64_t gp1                          : 32; /**< Scratch register 1. */
 #else
 	uint64_t gp1                          : 32;
 	uint64_t reserved_32_63               : 32;
@@ -1034,7 +1045,7 @@ typedef union cvmx_mdabx_gp1 cvmx_mdabx_gp1_t;
 /**
  * cvmx_mdab#_gp2
  *
- * General purpose scratch register
+ * General purpose scratch register.
  *
  */
 union cvmx_mdabx_gp2 {
@@ -1042,7 +1053,7 @@ union cvmx_mdabx_gp2 {
 	struct cvmx_mdabx_gp2_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t gp2                          : 32; /**< Scratch register 2 */
+	uint64_t gp2                          : 32; /**< Scratch register 2. */
 #else
 	uint64_t gp2                          : 32;
 	uint64_t reserved_32_63               : 32;
@@ -1055,7 +1066,7 @@ typedef union cvmx_mdabx_gp2 cvmx_mdabx_gp2_t;
 /**
  * cvmx_mdab#_gp3
  *
- * General purpose scratch register
+ * General purpose scratch register.
  *
  */
 union cvmx_mdabx_gp3 {
@@ -1063,7 +1074,7 @@ union cvmx_mdabx_gp3 {
 	struct cvmx_mdabx_gp3_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t gp3                          : 32; /**< Scratch register 3 */
+	uint64_t gp3                          : 32; /**< Scratch register 3. */
 #else
 	uint64_t gp3                          : 32;
 	uint64_t reserved_32_63               : 32;
@@ -1076,7 +1087,7 @@ typedef union cvmx_mdabx_gp3 cvmx_mdabx_gp3_t;
 /**
  * cvmx_mdab#_gp4
  *
- * General purpose scratch register
+ * General purpose scratch register.
  *
  */
 union cvmx_mdabx_gp4 {
@@ -1084,7 +1095,7 @@ union cvmx_mdabx_gp4 {
 	struct cvmx_mdabx_gp4_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t gp4                          : 32; /**< Scratch register 4 */
+	uint64_t gp4                          : 32; /**< Scratch register 4. */
 #else
 	uint64_t gp4                          : 32;
 	uint64_t reserved_32_63               : 32;
@@ -1097,7 +1108,7 @@ typedef union cvmx_mdabx_gp4 cvmx_mdabx_gp4_t;
 /**
  * cvmx_mdab#_gp5
  *
- * General purpose scratch register
+ * General purpose scratch register.
  *
  */
 union cvmx_mdabx_gp5 {
@@ -1105,7 +1116,7 @@ union cvmx_mdabx_gp5 {
 	struct cvmx_mdabx_gp5_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t gp5                          : 32; /**< Scratch register 5 */
+	uint64_t gp5                          : 32; /**< Scratch register 5. */
 #else
 	uint64_t gp5                          : 32;
 	uint64_t reserved_32_63               : 32;
@@ -1118,7 +1129,7 @@ typedef union cvmx_mdabx_gp5 cvmx_mdabx_gp5_t;
 /**
  * cvmx_mdab#_gp6
  *
- * General purpose scratch register
+ * General purpose scratch register.
  *
  */
 union cvmx_mdabx_gp6 {
@@ -1126,7 +1137,7 @@ union cvmx_mdabx_gp6 {
 	struct cvmx_mdabx_gp6_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t gp6                          : 32; /**< Scratch register 6 */
+	uint64_t gp6                          : 32; /**< Scratch register 6. */
 #else
 	uint64_t gp6                          : 32;
 	uint64_t reserved_32_63               : 32;
@@ -1139,7 +1150,7 @@ typedef union cvmx_mdabx_gp6 cvmx_mdabx_gp6_t;
 /**
  * cvmx_mdab#_gp7
  *
- * General purpose scratch register
+ * General purpose scratch register.
  *
  */
 union cvmx_mdabx_gp7 {
@@ -1147,7 +1158,7 @@ union cvmx_mdabx_gp7 {
 	struct cvmx_mdabx_gp7_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t gp7                          : 32; /**< Scratch register 7 */
+	uint64_t gp7                          : 32; /**< Scratch register 7. */
 #else
 	uint64_t gp7                          : 32;
 	uint64_t reserved_32_63               : 32;
@@ -1160,7 +1171,7 @@ typedef union cvmx_mdabx_gp7 cvmx_mdabx_gp7_t;
 /**
  * cvmx_mdab#_gpio_in
  *
- * DSP GPIO input register, allows DSP to read data from other hosts
+ * DSP GPIO input register, allows DSP to read data from other hosts.
  *
  */
 union cvmx_mdabx_gpio_in {
@@ -1168,7 +1179,7 @@ union cvmx_mdabx_gpio_in {
 	struct cvmx_mdabx_gpio_in_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t gpio_in                      : 32; /**< DSP GPIO input register, allows DSP to read data from other hosts */
+	uint64_t gpio_in                      : 32; /**< DSP GPIO input register, allows DSP to read data from other hosts. */
 #else
 	uint64_t gpio_in                      : 32;
 	uint64_t reserved_32_63               : 32;
@@ -1181,7 +1192,7 @@ typedef union cvmx_mdabx_gpio_in cvmx_mdabx_gpio_in_t;
 /**
  * cvmx_mdab#_gpio_out
  *
- * DSP GPIO output register, allows DSP to output data for other hosts
+ * DSP GPIO output register, allows DSP to output data for other hosts.
  *
  */
 union cvmx_mdabx_gpio_out {
@@ -1189,7 +1200,7 @@ union cvmx_mdabx_gpio_out {
 	struct cvmx_mdabx_gpio_out_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t gpio_out                     : 32; /**< DSP GPIO output register, allows DSP to output data for other hosts */
+	uint64_t gpio_out                     : 32; /**< DSP GPIO output register, allows DSP to output data for other hosts. */
 #else
 	uint64_t gpio_out                     : 32;
 	uint64_t reserved_32_63               : 32;
@@ -1202,7 +1213,7 @@ typedef union cvmx_mdabx_gpio_out cvmx_mdabx_gpio_out_t;
 /**
  * cvmx_mdab#_id
  *
- * MDAB ID Register
+ * MDAB ID Register.
  *
  */
 union cvmx_mdabx_id {
@@ -1224,26 +1235,34 @@ typedef union cvmx_mdabx_id cvmx_mdabx_id_t;
  * cvmx_mdab#_imem_array#
  *
  * This address range provides cnMIPS cores access to any MDAB instruction memory array. Intended
- * for
- * debug purposes only since RSL accesses are slow.
- * SW RESTRICTIONS: When generating RSL addresses please use the following equation:
+ * for debug purposes only since RSL accesses are slow.
+ *
+ * When generating RSL addresses software should use the following equation:
  *   rsl_byte_address = 0x11800_B400_0000 + (MDAB-ID[4:0] << 19) + (MEMTYP << 18) +
  * (8B_OFFSET[14:0] << 3)
- *   where:
- *     MEMTYP = [0:IMEM/1:DMEM]
- *     MDAB-IDs:
- *       MBP[0:15]:  [0..13,15..16]
- *       SSP[0:1]:   [14,17]
  *
- *     SW must also be sure to restrict the 8B_OFFSET (based on DSPTYPE/RAMTYPE) as follows:
- *     "
- *       DSPTYPE    RAMTYPE   8B_OFFSET (range)
+ * where
+ *
+ * MEMTYP:
+ * _ 0 = IMEM
+ * _ 1 = DMEM
+ *
+ * MDAB-ID:
+ *
+ * _ [0..13, 15..16] = cnMBP2[0..15]
+ * _ [14, 17] = cnSBP2[0,1]
+ *
+ * Software must also be sure to restrict the 8B_OFFSET (based on DSPTYPE/RAMTYPE) as
+ * follows:
+ *     <pre>
+ *       DSPTYPE    RAMTYPE   8B_OFFSET[14:0] (range)
  *     ------------------------------------------
  *       cnMBP2       DMEM     [16K..(32K-1)]
  *       cnMBP2       IMEM     [0..(32K-1)]
  *       cnSBP2       DMEM     [0..(32K-1)]
  *       cnSBP2       IMEM     [0..(8K-1)]
- *     "
+ *
+ *     </pre>
  */
 union cvmx_mdabx_imem_arrayx {
 	uint64_t u64;
@@ -1319,17 +1338,17 @@ union cvmx_mdabx_int_ena_w1s {
 	uint64_t wr_dma_uflow                 : 1;  /**< Reads or sets enables for the MDABx_INT_SUM[WR_DMA_UFLOW]. */
 	uint64_t wr_dma_oflow                 : 1;  /**< Reads or sets enables for the MDABx_INT_SUM[WR_DMA_OFLOW]. */
 	uint64_t wr_dma_last_done             : 1;  /**< Reads or sets enables for the MDABx_INT_SUM[WR_DMA_LAST_DONE]. Note that this interrupt
-                                                         bit will NOT get
+                                                         bit will not get
                                                          set at the end of a store local operation. */
 	uint64_t wr_dma_slice_done            : 1;  /**< Reads or sets enables for the MDABx_INT_SUM[WR_DMA_SLICE_DONE]. Note that this interrupt
-                                                         bit will NOT get
+                                                         bit will not get
                                                          set at the end of a store local operation. */
 	uint64_t wr_dma_pending               : 1;  /**< Reads or sets enables for the MDABx_INT_SUM[WR_DMA_PENDING]. */
 	uint64_t rd_dma_last_done             : 1;  /**< Reads or sets enables for the MDABx_INT_SUM[RD_DMA_LAST_DONE].  Note that this interrupt
-                                                         bit will NOT get
+                                                         bit will not get
                                                          set at the end of a load local operation. */
 	uint64_t rd_dma_slice_done            : 1;  /**< Reads or sets enables for the MDABx_INT_SUM[RD_DMA_SLICE_DONE].  Note that this interrupt
-                                                         bit will NOT get
+                                                         bit will not get
                                                          set at the end of a load local operation. */
 	uint64_t rd_dma_pending               : 1;  /**< Reads or sets enables for the MDABx_INT_SUM[RD_DMA_PENDING]. */
 	uint64_t cfg_dma_last_done            : 1;  /**< Reads or sets enables for the MDABx_INT_SUM[CFG_DMA_LAST_DONE]. */
@@ -1371,20 +1390,20 @@ union cvmx_mdabx_int_sel {
                                                          edge triggered:
                                                          0 = Level-sensitive.
                                                          1 = Edge-triggered.
-                                                         NOTE: To ensure correct generation of outstanding interrupts, this bit MUST be programmed
+                                                         NOTE: To ensure correct generation of outstanding interrupts, this bit must be programmed
                                                          prior
                                                          to initial configuration of the interrupt enable register. */
 	uint64_t dma_int_trig_style           : 1;  /**< Determines whether interrupts reported via MDAB()_INT_SUM are level or
                                                          edge triggered:
                                                          0 = Level-sensitive.
                                                          1 = Edge-triggered.
-                                                         NOTE: To ensure correct generation of outstanding interrupts, this bit MUST be programmed
+                                                         NOTE: To ensure correct generation of outstanding interrupts, this bit must be programmed
                                                          prior
                                                          to initial configuration of the interrupt enable register. */
 	uint64_t int_level_sel                : 1;  /**< Selects interrupt priority for MDAB()_INT_SUM interrupts.
                                                          0 = Level 1 interrupts.
                                                          1 = Level 2 interrupts.
-                                                         NOTE: To ensure correct generation of outstanding interrupts, this bit MUST be programmed
+                                                         NOTE: To ensure correct generation of outstanding interrupts, this bit must be programmed
                                                          prior
                                                          to initial configuration of the interrupt enable register. */
 #else
@@ -1409,7 +1428,7 @@ union cvmx_mdabx_int_src {
 	struct cvmx_mdabx_int_src_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_1_63                : 63;
-	uint64_t sw_intr                      : 1;  /**< Generates a s/w interrupt */
+	uint64_t sw_intr                      : 1;  /**< Generates a software interrupt */
 #else
 	uint64_t sw_intr                      : 1;
 	uint64_t reserved_1_63                : 63;
@@ -1455,12 +1474,12 @@ union cvmx_mdabx_int_sum_w1c {
                                                          transferring all of the input data for the job. */
 	uint64_t rd_dma_pending               : 1;  /**< RD-DMA pending. When set, software needs to program the RD-DMA engine
                                                          to transfer the input data for a new job. */
-	uint64_t cfg_dma_last_done            : 1;  /**< CFG-DMA LAST Done detected: When set indicates that the CFG-DMA
+	uint64_t cfg_dma_last_done            : 1;  /**< CFG-DMA last done detected: When set indicates that the CFG-DMA
                                                          engine detected the last data transfer for the entire job
                                                          configuration data (JD.JCFG) for a job. */
 	uint64_t cfg_dma_slice_done           : 1;  /**< CFG-DMA slice done. When set, indicates that the CFG-DMA engine
                                                          completed a job configuration data slice transfer and reached the
-                                                         MDAB_CFG_LIMIT before transferring the LAST data from job configuration
+                                                         MDAB_CFG_LIMIT before transferring the last data from job configuration
                                                          data for the job (JD.JCFG). */
 	uint64_t cfg_dma_pending              : 1;  /**< CFG-DMA pending. When set, software needs to program the CFG-DMA
                                                          engine to transfer the job configuration data for a new job. */
@@ -1489,8 +1508,8 @@ typedef union cvmx_mdabx_int_sum_w1c cvmx_mdabx_int_sum_w1c_t;
  * cvmx_mdab#_int_sum_w1s
  *
  * This register is used to artificially set MDAB interrupts described in
- * MDAB_INT_SUM (for SW Debug/Test), and also provides the h/w input to allow
- * the dma controllers to set the appropriate interrupt bit.
+ * MDAB_INT_SUM (for software debug/test), and also provides the hardware input to allow
+ * the DMA controllers to set the appropriate interrupt bit.
  */
 union cvmx_mdabx_int_sum_w1s {
 	uint64_t u64;
@@ -1534,7 +1553,7 @@ typedef union cvmx_mdabx_int_sum_w1s cvmx_mdabx_int_sum_w1s_t;
 /**
  * cvmx_mdab#_interrupt_active
  *
- * This register indicates what interrupts are enabled and active
+ * This register indicates what interrupts are enabled and active.
  *
  */
 union cvmx_mdabx_interrupt_active {
@@ -1542,19 +1561,19 @@ union cvmx_mdabx_interrupt_active {
 	struct cvmx_mdabx_interrupt_active_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_13_63               : 51;
-	uint64_t job_rdy1                     : 1;  /**< Indicates the JOB_RDY1 interrupt is active */
-	uint64_t job_rdy0                     : 1;  /**< Indicates the JOB_RDY0 interrupt is active */
-	uint64_t wr_dma_uflow                 : 1;  /**< Indicates the WR_DMA_UFLOW interrupt is active */
-	uint64_t wr_dma_oflow                 : 1;  /**< Indicates the WR_DMA_OFLOW interrupt is active */
-	uint64_t wr_dma_last_done             : 1;  /**< Indicates the WR_DMA_LAST_DONE interrupt is active */
-	uint64_t wr_dma_slice_done            : 1;  /**< Indicates the WR_DMA_SLICE_DONE interrupt is active */
-	uint64_t wr_dma_pending               : 1;  /**< Indicates the WR_DMA_PENDING interrupt is active */
-	uint64_t rd_dma_last_done             : 1;  /**< Indicates the RD_DMA_LAST_DONE interrupt is active */
-	uint64_t rd_dma_slice_done            : 1;  /**< Indicates the RD_DMA_SLICE_DONE interrupt is active */
-	uint64_t rd_dma_pending               : 1;  /**< Indicates the RD_DMA_PENDING interrupt is active */
-	uint64_t cfg_dma_last_done            : 1;  /**< Indicates the CFG_DMA_LAST_DONE interrupt is active */
-	uint64_t cfg_dma_slice_done           : 1;  /**< Indicates the CFG_DMA_SLICE_DONE interrupt is active */
-	uint64_t cfg_dma_pending              : 1;  /**< Indicates the CFG_DMA_PENDING interrupt is active */
+	uint64_t job_rdy1                     : 1;  /**< Indicates the JOB_RDY1 interrupt is active. */
+	uint64_t job_rdy0                     : 1;  /**< Indicates the JOB_RDY0 interrupt is active. */
+	uint64_t wr_dma_uflow                 : 1;  /**< Indicates the WR_DMA_UFLOW interrupt is active. */
+	uint64_t wr_dma_oflow                 : 1;  /**< Indicates the WR_DMA_OFLOW interrupt is active. */
+	uint64_t wr_dma_last_done             : 1;  /**< Indicates the WR_DMA_LAST_DONE interrupt is active. */
+	uint64_t wr_dma_slice_done            : 1;  /**< Indicates the WR_DMA_SLICE_DONE interrupt is active. */
+	uint64_t wr_dma_pending               : 1;  /**< Indicates the WR_DMA_PENDING interrupt is active. */
+	uint64_t rd_dma_last_done             : 1;  /**< Indicates the RD_DMA_LAST_DONE interrupt is active. */
+	uint64_t rd_dma_slice_done            : 1;  /**< Indicates the RD_DMA_SLICE_DONE interrupt is active. */
+	uint64_t rd_dma_pending               : 1;  /**< Indicates the RD_DMA_PENDING interrupt is active. */
+	uint64_t cfg_dma_last_done            : 1;  /**< Indicates the CFG_DMA_LAST_DONE interrupt is active. */
+	uint64_t cfg_dma_slice_done           : 1;  /**< Indicates the CFG_DMA_SLICE_DONE interrupt is active. */
+	uint64_t cfg_dma_pending              : 1;  /**< Indicates the CFG_DMA_PENDING interrupt is active. */
 #else
 	uint64_t cfg_dma_pending              : 1;
 	uint64_t cfg_dma_slice_done           : 1;
@@ -1596,13 +1615,13 @@ union cvmx_mdabx_job_statusx {
                                                          Since MDAB hardware updates this register, its contents are unpredictable in software. */
 	uint64_t reserved_6_13                : 8;
 	uint64_t wr_dma_done                  : 1;  /**< Set when hardware completes all WR-DMA transfers and all writes have been committed to
-                                                         SMEM or L2C/DDR Memory.
+                                                         SMEM or L2C/DDR memory.
                                                          Since MDAB hardware updates this register, its contents are unpredictable in software. */
 	uint64_t rd_dma_done                  : 1;  /**< Set when hardware completes all RD-DMA transfers and the data has been committed to local
-                                                         DSP I/D Memory.
+                                                         DSP I/D memory.
                                                          Since MDAB hardware updates this register, its contents are unpredictable in software. */
 	uint64_t cfg_dma_done                 : 1;  /**< Set when hardware completes all CFG-DMA transfers for the job configuration and the
-                                                         configuration has been committed to local DSP I/D Memory. */
+                                                         configuration has been committed to local DSP I/D memory. */
 	uint64_t sw_done                      : 1;  /**< Software must set this bit to signal when it has finished all processing for a job. */
 	uint64_t sw_started                   : 1;  /**< Software can set this bit to record when it began processing the job. The time when this
                                                          bit is set will be used by the job watchdog timer and will be used to determine the job
@@ -1631,7 +1650,7 @@ typedef union cvmx_mdabx_job_statusx cvmx_mdabx_job_statusx_t;
 /**
  * cvmx_mdab#_job_status1#
  *
- * Additional job status information for s/w.
+ * Additional job status information for software.
  *
  */
 union cvmx_mdabx_job_status1x {
@@ -1652,7 +1671,7 @@ typedef union cvmx_mdabx_job_status1x cvmx_mdabx_job_status1x_t;
 /**
  * cvmx_mdab#_ld_int_ena_w1c
  *
- * This is the INT_ENA clear register for the load local start and done interrupts
+ * This is the INT_ENA clear register for the load local start and done interrupts.
  *
  */
 union cvmx_mdabx_ld_int_ena_w1c {
@@ -1660,8 +1679,8 @@ union cvmx_mdabx_ld_int_ena_w1c {
 	struct cvmx_mdabx_ld_int_ena_w1c_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_2_63                : 62;
-	uint64_t ld_lcl_done_int              : 1;  /**< Writing a 1 to this bit disables the load local done interrupt */
-	uint64_t ld_lcl_start_int             : 1;  /**< Writing a 1 to this bit disables the load local start interrupt */
+	uint64_t ld_lcl_done_int              : 1;  /**< Writing a 1 to this bit disables the load local done interrupt. */
+	uint64_t ld_lcl_start_int             : 1;  /**< Writing a 1 to this bit disables the load local start interrupt. */
 #else
 	uint64_t ld_lcl_start_int             : 1;
 	uint64_t ld_lcl_done_int              : 1;
@@ -1675,7 +1694,7 @@ typedef union cvmx_mdabx_ld_int_ena_w1c cvmx_mdabx_ld_int_ena_w1c_t;
 /**
  * cvmx_mdab#_ld_int_ena_w1s
  *
- * This is the INT_ENA set register for the load local start and done interrupts
+ * This is the INT_ENA set register for the load local start and done interrupts.
  *
  */
 union cvmx_mdabx_ld_int_ena_w1s {
@@ -1683,8 +1702,8 @@ union cvmx_mdabx_ld_int_ena_w1s {
 	struct cvmx_mdabx_ld_int_ena_w1s_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_2_63                : 62;
-	uint64_t ld_lcl_done_int              : 1;  /**< Writing a 1 to this bit enables the load local done interrupt */
-	uint64_t ld_lcl_start_int             : 1;  /**< Writing a 1 to this bit enables the load local start interrupt */
+	uint64_t ld_lcl_done_int              : 1;  /**< Writing a 1 to this bit enables the load local done interrupt. */
+	uint64_t ld_lcl_start_int             : 1;  /**< Writing a 1 to this bit enables the load local start interrupt. */
 #else
 	uint64_t ld_lcl_start_int             : 1;
 	uint64_t ld_lcl_done_int              : 1;
@@ -1698,7 +1717,7 @@ typedef union cvmx_mdabx_ld_int_ena_w1s cvmx_mdabx_ld_int_ena_w1s_t;
 /**
  * cvmx_mdab#_ld_int_sum_w1c
  *
- * This is the INT_SUM clear register for the load local start and done interrupts
+ * This is the INT_SUM clear register for the load local start and done interrupts.
  *
  */
 union cvmx_mdabx_ld_int_sum_w1c {
@@ -1706,8 +1725,8 @@ union cvmx_mdabx_ld_int_sum_w1c {
 	struct cvmx_mdabx_ld_int_sum_w1c_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_2_63                : 62;
-	uint64_t ld_lcl_done_int              : 1;  /**< Writing a 1 to this bit clears the INT_SUM bit for the load local done interrupt */
-	uint64_t ld_lcl_start_int             : 1;  /**< Writing a 1 to this bit clears the INT_SUM bit for the load local start interrupt */
+	uint64_t ld_lcl_done_int              : 1;  /**< Writing a 1 to this bit clears the INT_SUM bit for the load local done interrupt. */
+	uint64_t ld_lcl_start_int             : 1;  /**< Writing a 1 to this bit clears the INT_SUM bit for the load local start interrupt. */
 #else
 	uint64_t ld_lcl_start_int             : 1;
 	uint64_t ld_lcl_done_int              : 1;
@@ -1721,7 +1740,7 @@ typedef union cvmx_mdabx_ld_int_sum_w1c cvmx_mdabx_ld_int_sum_w1c_t;
 /**
  * cvmx_mdab#_ld_int_sum_w1s
  *
- * This is the INT_SUM set register for the load local start and done interrupts
+ * This is the INT_SUM set register for the load local start and done interrupts.
  *
  */
 union cvmx_mdabx_ld_int_sum_w1s {
@@ -1759,28 +1778,28 @@ union cvmx_mdabx_pfio_ctl {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_10_63               : 54;
 	uint64_t pfo_rd_dswap                 : 3;  /**< Determines the swap data field on pfo read requests to system memory (not SMEM).
-                                                         - 0: no swapping
-                                                         - 1: byte swapping (0x0123456789abcdef -> 0xefcdab8967452301)
-                                                         - 2: 16-bit swapping (0x0123456789abcdef -> 0xcdef89ab45670123)
-                                                         - 3: 32-bit swapping (0x0123456789abcdef -> 0x89abcdef01234567)
-                                                         - 4-7: Reserved */
+                                                         0 = no swapping.
+                                                         1 = byte swapping (0x0123456789abcdef -> 0xefcdab8967452301).
+                                                         2 = 16-bit swapping (0x0123456789abcdef -> 0xcdef89ab45670123).
+                                                         3 = 32-bit swapping (0x0123456789abcdef -> 0x89abcdef01234567).
+                                                         4-7 = Reserved. */
 	uint64_t pfo_wr_dswap                 : 3;  /**< Determines the swap data field on pfo write requests to system memory (not SMEM).
-                                                         - 0: no swapping
-                                                         - 1: byte swapping (0x0123456789abcdef -> 0xefcdab8967452301)
-                                                         - 2: 16-bit swapping (0x0123456789abcdef -> 0xcdef89ab45670123)
-                                                         - 3: 32-bit swapping (0x0123456789abcdef -> 0x89abcdef01234567)
-                                                         - 4-7: Reserved */
+                                                         0 = no swapping/
+                                                         1 = byte swapping (0x0123456789abcdef -> 0xefcdab8967452301)/
+                                                         2 = 16-bit swapping (0x0123456789abcdef -> 0xcdef89ab45670123)/
+                                                         3 = 32-bit swapping (0x0123456789abcdef -> 0x89abcdef01234567)/
+                                                         4-7 = Reserved */
 	uint64_t pfo_rsp_arbmode              : 1;  /**< Determines the PFO-RSP arbitration policy for the several
                                                          different RSP types which can be serviced/returned to the DSP core ?out of order?.
                                                          When set to one, the PFO-RSP arbitration will be round robin amongst the several
                                                          pending PFO-RSP types = [WR-RSP, RD-RSP, ILL-RSP].  When set to zero, the PFO-RSP
-                                                         arbitration uses a two stage arbitration where The first stage uses round robin
-                                                         amongst the pending WR-RSPs and RD-RSPs.  The 2nd stage uses fixed priority, with
+                                                         arbitration uses a two stage arbitration where the first stage uses round robin
+                                                         amongst the pending WR-RSPs and RD-RSPs.  The second stage uses fixed priority, with
                                                          ILL-RSPs(illegal responses) having higher Priority over the RD|WR-RSPs.
                                                          NOTE: ILL-RSP = ?Illegal responses? and include:
-                                                         1)      For non-existent memory (NXM): DSP will receive RSP=AErrL
-                                                         2)      For Illegal Command (ILL-CMD): DSP will receive RSP=ADErrL */
-	uint64_t req_priority                 : 2;  /**< Programmable control of the PFI-REQ Priority field for incoming requests */
+                                                         1)      For non-existent memory (NXM): DSP will receive RSP=AErrL.
+                                                         2)      For illegal Command (ILL-CMD): DSP will receive RSP=ADErrL. */
+	uint64_t req_priority                 : 2;  /**< Programmable control of the PFI-REQ Priority field for incoming requests. */
 	uint64_t pfi_req_arbmode              : 1;  /**< Determines the PFI-REQ arbitration policy for the several different inbound PIF request
                                                          types which are serviced/returned by the DSP in strict order.
                                                          When set to one, the PFO-REQ arbitration will be round robin amongst the several
@@ -1813,21 +1832,21 @@ union cvmx_mdabx_proc_ctl {
 	uint64_t reserved_8_63                : 56;
 	uint64_t cya_ld_lcl_rst_rs_clr        : 1;  /**< N/A */
 	uint64_t stlcl_stall                  : 1;  /**< Local stall bit.  During a ST_LCL transaction, if this
-                                                         bit is SET, the DAC HW will assert the DSP RunStall input. If the bit
-                                                         is CLEAR, the DAC HW will NOT assert the DSP RunStall input. */
+                                                         bit is set, the DAC hardware will assert the DSP RunStall input. If the bit
+                                                         is CLEAR, the DAC hardware will not assert the DSP RunStall input. */
 	uint64_t ldlcl_stall                  : 1;  /**< Local stall bit.  During a LD_LCL (without reset) transaction, if this
-                                                         bit is SET, the DAC HW will assert the DSP RunStall input. If the bit
-                                                         is CLEAR, the DAC HW will NOT assert the DSP RunStall input.
+                                                         bit is set, the DAC hardware will assert the DSP RunStall input. If the bit
+                                                         is CLEAR, the DAC hardware will not assert the DSP RunStall input.
                                                          NOTE: */
-	uint64_t breset                       : 1;  /**< When s/w sets this bit the entire dsp will be forced in the reset state. When the
-                                                         s/w clears this bit, the dsp will come out of reset and start execution at the reset
+	uint64_t breset                       : 1;  /**< When software sets this bit the entire dsp will be forced in the reset state. When the
+                                                         software clears this bit, the dsp will come out of reset and start execution at the reset
                                                          interrupt vector (if run_stall is not asserted).  This bit is cleared at the start of
                                                          a load local with reset operation so that the dsp reset input can be correctly controlled
                                                          by the load local with reset logic. */
 	uint64_t ocd_halt_on_reset            : 1;  /**< Force the DSP to enter OCDHaltMode after reset. */
 	uint64_t dreset                       : 1;  /**< Setting this bit asserts reset to the DSP debug logic. */
 	uint64_t stat_vector_sel              : 1;  /**< Setting this bit selects the alternative stationary vector base address. */
-	uint64_t run_stall                    : 1;  /**< When this bit is SET the DSP's RUN_STALL input will be asserted, forcing the DSP to
+	uint64_t run_stall                    : 1;  /**< When this bit is set the DSP's RUN_STALL input will be asserted, forcing the DSP to
                                                          "stall" until the bit is cleared.  This bit is cleared at the start of a load local
                                                          with reset operation to enable the load local logic to control the dsp RunStall input.
                                                          At the end of the load local with reset operation when the last block of instruction/
@@ -1852,7 +1871,7 @@ typedef union cvmx_mdabx_proc_ctl cvmx_mdabx_proc_ctl_t;
 /**
  * cvmx_mdab#_proc_debug
  *
- * This register contains iram data store and dram conditional store status bits
+ * This register contains iram data store and dram conditional store status bits.
  *
  */
 union cvmx_mdabx_proc_debug {
@@ -1860,12 +1879,12 @@ union cvmx_mdabx_proc_debug {
 	struct cvmx_mdabx_proc_debug_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_6_63                : 58;
-	uint64_t iram1loadstore               : 1;  /**< Data load/store to iram 1 */
-	uint64_t iram0loadstore               : 1;  /**< Data load/store to iram 0 */
-	uint64_t dram1lockb1                  : 1;  /**< Conditional store has caused dram1 bank1 to be locked */
-	uint64_t dram1lockb0                  : 1;  /**< Conditional store has caused dram1 bank0 to be locked */
-	uint64_t dram0lockb1                  : 1;  /**< Conditional store has caused dram0 bank1 to be locked */
-	uint64_t dram0lockb0                  : 1;  /**< Conditional store has caused dram0 bank0 to be locked */
+	uint64_t iram1loadstore               : 1;  /**< Data load/store to iram 1. */
+	uint64_t iram0loadstore               : 1;  /**< Data load/store to iram 0. */
+	uint64_t dram1lockb1                  : 1;  /**< Conditional store has caused dram1 bank1 to be locked. */
+	uint64_t dram1lockb0                  : 1;  /**< Conditional store has caused dram1 bank0 to be locked. */
+	uint64_t dram0lockb1                  : 1;  /**< Conditional store has caused dram0 bank1 to be locked. */
+	uint64_t dram0lockb0                  : 1;  /**< Conditional store has caused dram0 bank0 to be locked. */
 #else
 	uint64_t dram0lockb0                  : 1;
 	uint64_t dram0lockb1                  : 1;
@@ -1907,24 +1926,27 @@ typedef union cvmx_mdabx_proc_status cvmx_mdabx_proc_status_t;
 /**
  * cvmx_mdab#_psm_cmd#
  *
- * These four 32b registers comprise a full 128b job command which allows DSP SW to spawn new
- * 128bit job command to the PHY
- * Scheduler Module(PSM) by:
- *    1) Writes to the 4x PSM_CMD(0..3) registers: (where the 128bit Job Command =
- * MDABx_PSM_CMD[3:0])
+ * These four 32b registers comprise a full 128b job command which allows DSP software to spawn
+ * new
+ * 128-bit job command to the PHY
+ * scheduler module(PSM) by:
+ *    1) Writes to the 4x PSM_CMD(0..3) registers: (where the 128-bit job command =
+ * MDABx_PSM_CMD[3:0]).
  *    2) Write to the MDAB_PSM_CMD_PUSH[PUSH_BUSY]=1 which will send a 128b job command to the
- * PSM
- *    3) Wait(poll) until HW clears the DAB_PSM_CMD_PUSH[PUSH_BUSY]=0 to ensure the job command
+ * PSM.
+ *    3) Wait(poll) until hardware clears the DAB_PSM_CMD_PUSH[PUSH_BUSY]=0 to ensure the job
+ * command
  * has been
- *       fully transferred to the PSM before the DSP SW can re-use the PSM_CMD[3:0] registers.
+ *       fully transferred to the PSM before the DSP software can re-use the PSM_CMD[3:0]
+ * registers.
  */
 union cvmx_mdabx_psm_cmdx {
 	uint64_t u64;
 	struct cvmx_mdabx_psm_cmdx_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t word                         : 32; /**< The full 128bit job command is comprised of the WORD[3:0] from EACH 1(of 4) 32b CSRs =
-                                                         [MDABx_PSM_CMD[3:0]] */
+	uint64_t word                         : 32; /**< The full 128-bit job command is comprised of the WORD[3:0] from EACH 1(of 4) 32b CSRs =
+                                                         [MDABx_PSM_CMD[3:0]]. */
 #else
 	uint64_t word                         : 32;
 	uint64_t reserved_32_63               : 32;
@@ -1947,8 +1969,8 @@ union cvmx_mdabx_psm_cmd_push {
 	uint64_t reserved_2_63                : 62;
 	uint64_t psm_idle                     : 1;  /**< When high, indicates that there are no outstanding psm commands in the jcmd logic. */
 	uint64_t push_busy                    : 1;  /**< When software writes a one, hardware will start sending the PSM command stored in
-                                                         MDABx_PSM_CMD(0..3) to the PSM.  HW will clear this bit when the 128b job command has
-                                                         been sent to the PSM, thus allowing SW to re-use the MDABx_PSM_CMD(0..3) for the next
+                                                         MDABx_PSM_CMD(0..3) to the PSM. Hardware will clear this bit when the 128b job command has
+                                                         been sent to the PSM, thus allowing software to reuse the MDABx_PSM_CMD(0..3) for the next
                                                          job command (if required). */
 #else
 	uint64_t push_busy                    : 1;
@@ -1963,7 +1985,7 @@ typedef union cvmx_mdabx_psm_cmd_push cvmx_mdabx_psm_cmd_push_t;
 /**
  * cvmx_mdab#_psm_timer
  *
- * This register contains the latest value of the PSM timer
+ * This register contains the latest value of the PSM timer.
  *
  */
 union cvmx_mdabx_psm_timer {
@@ -1971,8 +1993,8 @@ union cvmx_mdabx_psm_timer {
 	struct cvmx_mdabx_psm_timer_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_16_63               : 48;
-	uint64_t frame                        : 12; /**< PSM timer frame field */
-	uint64_t sub_frame                    : 4;  /**< PSM timer sub_frame field */
+	uint64_t frame                        : 12; /**< PSM timer frame field. */
+	uint64_t sub_frame                    : 4;  /**< PSM timer sub_frame field. */
 #else
 	uint64_t sub_frame                    : 4;
 	uint64_t frame                        : 12;
@@ -1987,7 +2009,7 @@ typedef union cvmx_mdabx_psm_timer cvmx_mdabx_psm_timer_t;
  * cvmx_mdab#_rd_addr
  *
  * The starting address used by the RD-DMA engine when writing RD-DMA data to local DSP memory.
- * During Job_Type = LD_LCL commands, HW loads the RD_ADDR/RD_LIMIT registers directly.
+ * During Job_Type = LD_LCL commands, hardware loads the RD_ADDR/RD_LIMIT registers directly.
  */
 union cvmx_mdabx_rd_addr {
 	uint64_t u64;
@@ -1998,14 +2020,14 @@ union cvmx_mdabx_rd_addr {
                                                          local DSP memory.
                                                          When ADDR[30]=1(IMEM):
                                                             For MBP32 (256KB IMEM): Valid 128b-aligned address range = (0x4000.0000 >> 4) -
-                                                         (0x4003.FFFF >> 4)
+                                                         (0x4003.FFFF >> 4).
                                                             For SSP16 (64KB IMEM):  Valid 128b-aligned address range = (0x4000.0000 >> 4) -
-                                                         (0x4000.FFFF >> 4)
+                                                         (0x4000.FFFF >> 4).
                                                          When ADDR[30]=0(DMEM):
                                                             For MBP32 (128KB DMEM): Valid 128b-aligned address range = (0x3FFE.0000 >> 4) -
-                                                         (0x3FFF.FFFF >> 4)
+                                                         (0x3FFF.FFFF >> 4).
                                                             For SSP16 (256KB DMEM): Valid 128b-aligned address range = (0x3FFC.0000 >> 4) -
-                                                         (0x3FFF.FFFF >> 4)
+                                                         (0x3FFF.FFFF >> 4).
                                                          NOTE: In the I/D MEM address decoding scheme, ADDR[30] determines WHICH DSP Memory space
                                                          (0:DMEM/1:IMEM) */
 	uint64_t reserved_0_3                 : 4;
@@ -2022,7 +2044,7 @@ typedef union cvmx_mdabx_rd_addr cvmx_mdabx_rd_addr_t;
 /**
  * cvmx_mdab#_rd_length
  *
- * The actual 128bit length of the most recent RD-DMA engine job configuration transfer.
+ * The actual 128-bit length of the most recent RD-DMA engine job configuration transfer.
  *
  */
 union cvmx_mdabx_rd_length {
@@ -2030,11 +2052,11 @@ union cvmx_mdabx_rd_length {
 	struct cvmx_mdabx_rd_length_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_19_63               : 45;
-	uint64_t length                       : 15; /**< The actual 128bit length of the most recent RD-DMA engine read dma transfer.
+	uint64_t length                       : 15; /**< The actual 128-bit length of the most recent RD-DMA engine read DMA transfer.
                                                          This field will be updated when the RD-DMA has been actually write committed to local DSP
                                                          memory,
-                                                         which allows SW to read(poll) the length field during the RD-DMA transfer to know HOW MANY
-                                                         128bit chunks are now currently available to be read and used. */
+                                                         which allows software to read(poll) the length field during the RD-DMA transfer to know
+                                                         how many 128-bit chunks are now currently available to be read and used. */
 	uint64_t reserved_0_3                 : 4;
 #else
 	uint64_t reserved_0_3                 : 4;
@@ -2049,8 +2071,9 @@ typedef union cvmx_mdabx_rd_length cvmx_mdabx_rd_length_t;
 /**
  * cvmx_mdab#_rd_limit
  *
- * The maximum number of 128bit sized chunks that the RD-DMA engine may write starting from the
- * 128bit-aligned MDAB_RD_ADDR. During Job_Type = LD_LCL* commands, HW loads the RD_ADDR/RD_LIMIT
+ * The maximum number of 128-bit sized chunks that the RD-DMA engine may write starting from the
+ * 128-bit-aligned MDAB_RD_ADDR. During Job_Type = LD_LCL* commands, hardware loads the
+ * RD_ADDR/RD_LIMIT
  * registers directly from the Job Descriptor's DMA section(s).
  */
 union cvmx_mdabx_rd_limit {
@@ -2059,19 +2082,20 @@ union cvmx_mdabx_rd_limit {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
 	uint64_t last                         : 1;  /**< Indicates the last RD-DMA slice which may be written to address MDAB_RD_ADDR.
-                                                         DSP SW may choose to segment the JD.RD-DMA data into multiple non-contiguous RD-DMA
+                                                         DSP software may choose to segment the JD.RD-DMA data into multiple non-contiguous RD-DMA
                                                          transfers to DSP local memory.
-                                                         Eventually, DSP SW will indicate the LAST segment (or slice), to indicate this is
+                                                         Eventually, DSP software will indicate the LAST segment (or slice), to indicate this is
                                                          the final RD-DMA sub-blk transfer.
                                                          Each RD-DMA operation's LAST will indicate when the last segment (or slice) RD-DMA
                                                          operation has been setup, to complete the JD.RD-DMA data transfer.
-                                                         SW_NOTE: For every new RD-DMA slice operation, DSP SW *MUST* signal LAST to indicate
+                                                         SW_NOTE: For every new RD-DMA slice operation, DSP software *MUST* signal LAST to indicate
                                                          the final JD.RD-DMA data slice transfer. */
 	uint64_t reserved_19_30               : 12;
-	uint64_t limit                        : 15; /**< "The maximum number of 128bit chunks that the RD-DMA engine may write at address
+	uint64_t limit                        : 15; /**< "The maximum number of 128-bit chunks that the RD-DMA engine may write at address
                                                          MDAB_RD_ADDR.
-                                                         The JD.JCFG data typically will contain the total RD-DMA Length for each new job. The
-                                                         DSP SW is at liberty to break the total RD-DMA transfer into multiples RD-DMA segments (or
+                                                         The JD.JCFG data typically will contain the total RD-DMA length for each new job. The
+                                                         DSP software is at liberty to break the total RD-DMA transfer into multiples RD-DMA
+                                                         segments (or
                                                          slices) using the LIMIT register. When either LIMIT has been reached (or if the last
                                                          JD.RD-DMA data is detected), the RD-DMA is done.
                                                          For MBP DSP:
@@ -2080,9 +2104,10 @@ union cvmx_mdabx_rd_limit {
                                                          For SSP DSP:
                                                             IMEM: 0x4000.0000 - 0x4000.FFFF
                                                             DMEM: 0x3FFC.0000 - 0x3FFF.FFFF
-                                                         SW RESTRICTION \#1: SW should NEVER program LIMIT=0. INDETERMINATE results can/will OCCUR.
-                                                         SW RESTRICTION \#2: SW should ensure that ADDR+LIMIT SIZES fall within the I+D MEM space,
-                                                         otherwise DMA_ERROR and INDETERMINATE results can/will OCCUR." */
+                                                         Software restriction \#1: Software should never program LIMIT < 2. Indeterminate results
+                                                         can/will occur.
+                                                         Software restriction \#2: Software should ensure that ADDR+LIMIT SIZES fall within the I+D
+                                                         MEM space, otherwise DMA_ERROR and indeterminate results can/will occur." */
 	uint64_t reserved_0_3                 : 4;
 #else
 	uint64_t reserved_0_3                 : 4;
@@ -2108,14 +2133,14 @@ union cvmx_mdabx_rd_status {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
 	uint64_t job_tag                      : 16; /**< The JOB_TAG field from the PSM command for the last completed RD-DMA operation.
-                                                         When DSP SW writes START_BUSY=0->1, the RD-DMA engine will wait until the next
-                                                         available Job has been enqueued, at which point the JOB_TAG will be latched in. */
+                                                         When DSP software writes [START_BUSY]=0->1, the RD-DMA engine will wait until the next
+                                                         available job has been enqueued, at which point the [JOB_TAG] will be latched in. */
 	uint64_t reserved_12_15               : 4;
-	uint64_t post_ld_lcl                  : 1;  /**< Set when a Load-Local job has completed(last LD-LCL micro-op completes).
-                                                         Cleared when a Normal job has completed. */
-	uint64_t ld_lcl_busy                  : 1;  /**< Set when a Load-Local operation is active. */
-	uint64_t pending_slot                 : 1;  /**< The job slot for the pending RD-DMA operation. Valid only when START_BUSY == 0 and
-                                                         DMA_PENDING == 1. */
+	uint64_t post_ld_lcl                  : 1;  /**< Set when a load-local job has completed(last LD-LCL micro-op completes).
+                                                         Cleared when a normal job has completed. */
+	uint64_t ld_lcl_busy                  : 1;  /**< Set when a load-local operation is active. */
+	uint64_t pending_slot                 : 1;  /**< The job slot for the pending RD-DMA operation. Valid only when [START_BUSY] == 0 and
+                                                         [DMA_PENDING] == 1. */
 	uint64_t job_slot                     : 1;  /**< The job slot for the most recent RD-DMA operation. */
 	uint64_t reserved_7_7                 : 1;
 	uint64_t dma_uflow                    : 1;  /**< Set when the last RD-DMA operation encountered an underflow */
@@ -2127,14 +2152,15 @@ union cvmx_mdabx_rd_status {
                                                          be programmed. */
 	uint64_t post_reset                   : 1;  /**< Set to one on MDAB reset and remains one until the RD-DMA engine starts its first
                                                          RD-DMA transfer.
-                                                         SWNOTE: DSP SW can use this bit to qualify the JOB_TAG, JOB_SLOT, DMA_ERROR, LAST_DMA_DONE
-                                                         bits in this CSR. [see: these status bits remain SET and POST_RESET is used
-                                                         by SW to know when they are truly valid].
-                                                         SET(HW): MDAB reset
-                                                         CLR(SW): DSP writes START_BUSY=0->1 */
+                                                         SWNOTE: DSP software can use this bit to qualify the [JOB_TAG], [JOB_SLOT], [DMA_ERROR],
+                                                         [LAST_DMA_DONE]
+                                                         bits in this CSR. [see: these status bits remain set and [POST_RESET] is used
+                                                         by software to know when they are truly valid].
+                                                         SET(hardware): MDAB reset
+                                                         CLR(software): DSP writes START_BUSY=0->1 */
 	uint64_t start_busy                   : 1;  /**< When software writes a one to this register, hardware will write the job descriptor's read
                                                          dma section (JD.RD-DMA) for the next available job into the local memory starting at
-                                                         MDAB_RD_ADDR, up to MDAB_RD_ADDR+MDAB_RD_LIMIT or when the last 128bit word of the JD.RD-
+                                                         MDAB_RD_ADDR, up to MDAB_RD_ADDR+MDAB_RD_LIMIT or when the last 128-bit word of the JD.RD-
                                                          DMA section is
                                                          transferred (whichever comes first).
                                                          If the RD-DMA engine has already transferred part but not all of the JD.RD-DMA section for
@@ -2170,7 +2196,7 @@ typedef union cvmx_mdabx_rd_status cvmx_mdabx_rd_status_t;
  * cvmx_mdab#_wr_addr
  *
  * The starting address used by the WR-DMA engine when reading WR-DMA data from local DSP memory.
- * During Job_Type = ST_LCL* commands, HW loads the WR_ADDR/WR_LIMIT registers directly.
+ * During Job_Type = ST_LCL* commands, hardware loads the WR_ADDR/WR_LIMIT registers directly.
  */
 union cvmx_mdabx_wr_addr {
 	uint64_t u64;
@@ -2181,14 +2207,14 @@ union cvmx_mdabx_wr_addr {
                                                          local DSP memory.
                                                          When ADDR[30]=1(IMEM):
                                                             For MBP32 (256KB IMEM): Valid 128b-aligned address range = (0x4000.0000 >> 4) -
-                                                         (0x4003.FFFF >> 4)
+                                                         (0x4003.FFFF >> 4).
                                                             For SSP16 (64KB IMEM):  Valid 128b-aligned address range = (0x4000.0000 >> 4) -
-                                                         (0x4000.FFFF >> 4)
+                                                         (0x4000.FFFF >> 4).
                                                          When ADDR[30]=0(DMEM):
                                                             For MBP32 (128KB DMEM): Valid 128b-aligned address range = (0x3FFE.0000 >> 4) -
-                                                         (0x3FFF.FFFF >> 4)
+                                                         (0x3FFF.FFFF >> 4).
                                                             For SSP16 (256KB DMEM): Valid 128b-aligned address range = (0x3FFC.0000 >> 4) -
-                                                         (0x3FFF.FFFF >> 4)
+                                                         (0x3FFF.FFFF >> 4).
                                                          NOTE: In the I/D MEM address decoding scheme, ADDR[30] determines WHICH DSP Memory space
                                                          (0:DMEM/1:IMEM) */
 	uint64_t reserved_0_3                 : 4;
@@ -2205,7 +2231,7 @@ typedef union cvmx_mdabx_wr_addr cvmx_mdabx_wr_addr_t;
 /**
  * cvmx_mdab#_wr_length
  *
- * The actual 128bit length of the most recent WR-DMA engine job configuration transfer.
+ * The actual 128-bit length of the most recent WR-DMA engine job configuration transfer.
  *
  */
 union cvmx_mdabx_wr_length {
@@ -2213,12 +2239,13 @@ union cvmx_mdabx_wr_length {
 	struct cvmx_mdabx_wr_length_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_19_63               : 45;
-	uint64_t length                       : 15; /**< The actual 128bit length of the most recent WR-DMA engine write dma transfer.
+	uint64_t length                       : 15; /**< The actual 128-bit length of the most recent WR-DMA engine write dma transfer.
                                                          NOTE: This field will be updated when the WR-DMA has been actually write-committed to SMEM
                                                          or L2C/DDR Memory,
-                                                         which allows SW to read(poll) the length field during the WR-DMA transfer to know HOW MANY
-                                                         128bit chunks are
-                                                         now currently available at their intended memory destinations before use by SW or other HW
+                                                         which allows software to read(poll) the length field during the WR-DMA transfer to know
+                                                         how many 128-bit chunks are
+                                                         now currently available at their intended memory destinations before use by software or
+                                                         other hardware
                                                          blocks. */
 	uint64_t reserved_0_3                 : 4;
 #else
@@ -2234,8 +2261,8 @@ typedef union cvmx_mdabx_wr_length cvmx_mdabx_wr_length_t;
 /**
  * cvmx_mdab#_wr_limit
  *
- * The maximum number of 128bit sized chunks that the WR-DMA engine may read starting from the
- * 128bit-aligned MDAB_WR_ADDR. NOTE: During Job_Type = ST_LCL* commands, HW loads the
+ * The maximum number of 128-bit sized chunks that the WR-DMA engine may read starting from the
+ * 128-bit-aligned MDAB_WR_ADDR. NOTE: During Job_Type = ST_LCL* commands, hardware loads the
  * WR_ADDR/WR_LIMIT registers
  * directly.
  */
@@ -2245,21 +2272,22 @@ union cvmx_mdabx_wr_limit {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
 	uint64_t last                         : 1;  /**< Indicates the last WR-DMA slice which may be read from address MDAB_WR_ADDR.
-                                                         DSP SW may choose to segment the JD.WR-DMA data into multiple non-contiguous WR-DMA
+                                                         DSP software may choose to segment the JD.WR-DMA data into multiple non-contiguous WR-DMA
                                                          transfers from DSP local memory.
-                                                         Eventually, DSP SW will indicate the LAST segment (or slice), to indicate this is
+                                                         Eventually, DSP software will indicate the LAST segment (or slice), to indicate this is
                                                          the final WR-DMA sub-blk transfer.
                                                          Each WR-DMA operation's LAST will indicate when the last segment (or slice) WR-DMA
                                                          operation has been setup, to complete the JD.WR-DMA data transfer.
-                                                         SW_NOTE: For every new WR-DMA slice operation, DSP SW *MUST* signal LAST to indicate
+                                                         SW_NOTE: For every new WR-DMA slice operation, DSP software *MUST* signal LAST to indicate
                                                          the final JD.WR-DMA data slice transfer. */
 	uint64_t reserved_19_30               : 12;
-	uint64_t limit                        : 15; /**< "The maximum number of 128bit chunks that the WR-DMA engine may read from address
+	uint64_t limit                        : 15; /**< "The maximum number of 128-bit chunks that the WR-DMA engine may read from address
                                                          MDAB_WR_ADDR.
                                                          The JD.JCFG data typically will contain the total WR-DMA Length for each new job. The
-                                                         DSP SW is at liberty to break the total WR-DMA transfer into multiple WR-DMA segments (or
+                                                         DSP software is at liberty to break the total WR-DMA transfer into multiple WR-DMA
+                                                         segments (or
                                                          slices) using the LIMIT register.
-                                                         DSP SW will set the LAST flag and a LIMIT for the final WR-DMA slice.
+                                                         DSP software will set the LAST flag and a LIMIT for the final WR-DMA slice.
                                                          When LIMIT has been reached during the LAST WR-DMA slice (or if the last JD.WR-DMA's write
                                                          commit is detected), the WR-DMA is done.
                                                          For MBP DSP:
@@ -2268,9 +2296,10 @@ union cvmx_mdabx_wr_limit {
                                                          For SSP DSP:
                                                             IMEM: 0x4000.0000 - 0x4000.FFFF
                                                             DMEM: 0x3FFC.0000 - 0x3FFF.FFFF
-                                                         SW RESTRICTION \#1: SW should NEVER program LIMIT=0. INDETERMINATE results can/will OCCUR.
-                                                         SW RESTRICTION \#2: SW should ensure that ADDR+LIMIT SIZES fall within the I+D MEM space,
-                                                         otherwise DMA_ERROR and INDETERMINATE results can/will OCCUR." */
+                                                         Software restriction \#1: software should never program LIMIT < 2. Indeterminate results
+                                                         can/will occur.
+                                                         Software restriction \#2: software should ensure that ADDR+LIMIT SIZES fall within the I+D
+                                                         MEM space, otherwise DMA_ERROR and indeterminate results can/will occur." */
 	uint64_t reserved_0_3                 : 4;
 #else
 	uint64_t reserved_0_3                 : 4;
@@ -2296,18 +2325,18 @@ union cvmx_mdabx_wr_status {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
 	uint64_t job_tag                      : 16; /**< The JOB_TAG field from the PSM command for the last completed WR-DMA operation.
-                                                         When DSP SW writes START_BUSY=0->1, the WR-DMA engine will wait until the next
-                                                         available Job has been enqueued, at which point the JOB_TAG will be latched in. */
+                                                         When DSP software writes START_BUSY=0->1, the WR-DMA engine will wait until the next
+                                                         available job has been enqueued, at which point the JOB_TAG will be latched in. */
 	uint64_t reserved_12_15               : 4;
-	uint64_t post_st_lcl                  : 1;  /**< Set when a Store-Local job has completed(last ST-LCL micro-op completes).
-                                                         Cleared when a Normal job has completed. */
-	uint64_t st_lcl_busy                  : 1;  /**< Set when a Store-Local operation is active. */
-	uint64_t pending_slot                 : 1;  /**< The job slot for the pending WR-DMA operation. Valid only when START_BUSY == 0 and
-                                                         DMA_PENDING == 1. */
+	uint64_t post_st_lcl                  : 1;  /**< Set when a store-local job has completed(last ST-LCL micro-op completes).
+                                                         Cleared when a normal job has completed. */
+	uint64_t st_lcl_busy                  : 1;  /**< Set when a store-local operation is active. */
+	uint64_t pending_slot                 : 1;  /**< The job slot for the pending WR-DMA operation. Valid only when [START_BUSY] == 0 and
+                                                         [DMA_PENDING] == 1. */
 	uint64_t job_slot                     : 1;  /**< The job slot for the most recent WR-DMA operation. */
 	uint64_t reserved_7_7                 : 1;
-	uint64_t dma_uflow                    : 1;  /**< Set when the last WR-DMA operation encountered an underflow */
-	uint64_t dma_oflow                    : 1;  /**< Set when the last WR-DMA operation encountered an overflow */
+	uint64_t dma_uflow                    : 1;  /**< Set when the last WR-DMA operation encountered an underflow. */
+	uint64_t dma_oflow                    : 1;  /**< Set when the last WR-DMA operation encountered an overflow. */
 	uint64_t dma_error                    : 1;  /**< Set when the last WR-DMA operation encountered an error. */
 	uint64_t last_dma_done                : 1;  /**< Set when the last WR-DMA operation received the last write-commit for the WR-DMA data from
                                                          the job descriptor (JD.WR-DMA). WR-DMAs are issued to either SMEM or L2C/DDR, and the WR-
@@ -2317,22 +2346,23 @@ union cvmx_mdabx_wr_status {
                                                          be programmed. */
 	uint64_t post_reset                   : 1;  /**< Set to one on MDAB reset and remains one until the WR-DMA engine starts its first
                                                          WR-DMA transfer.
-                                                         SWNOTE: DSP SW can use this bit to qualify the JOB_TAG, JOB_SLOT, DMA_ERROR, LAST_DMA_DONE
-                                                         bits in this CSR. [see: these status bits remain SET and POST_RESET is used
-                                                         by SW to know when they are truly valid].
-                                                         SET(HW): MDAB reset
-                                                         CLR(SW): DSP writes START_BUSY=0->1 */
+                                                         SWNOTE: DSP software can use this bit to qualify the [JOB_TAG], [JOB_SLOT], [DMA_ERROR],
+                                                         [LAST_DMA_DONE]
+                                                         bits in this CSR. [see: these status bits remain set and POST_RESET is used
+                                                         by software to know when they are truly valid].
+                                                         SET(hardware): MDAB reset
+                                                         CLR(software): DSP writes [START_BUSY]=0->1 */
 	uint64_t start_busy                   : 1;  /**< When software writes a one to this register, hardware will copy the data for the completed
                                                          job from the local memory starting at MDAB_WD_ADDR to the mdbw, up to
                                                          MDAB_WR_ADDR+MDAB_WR_LIMIT
-                                                         or when the last 128bit word of the JD.WR-DMA section is transferred (whichever comes
+                                                         or when the last 128-bit word of the JD.WR-DMA section is transferred (whichever comes
                                                          first).
                                                          If the WR-DMA engine has already transferred part but not all of the JD.WR-DMA section for
                                                          a job, then it will continue transferring data until it reaches the end of the JD.WR-DMA
                                                          section,
                                                          or until it writes MDAB_CFG_LIMIT for the LAST WR-DMA slice, whichever comes first.
                                                          This bit is reset to zero when the WR-DMA engine has completed the transfer and is ready
-                                                         to be re-initialized for another transfer. */
+                                                         to be reinitialized for another transfer. */
 #else
 	uint64_t start_busy                   : 1;
 	uint64_t post_reset                   : 1;

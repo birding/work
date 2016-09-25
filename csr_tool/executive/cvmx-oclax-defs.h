@@ -644,7 +644,7 @@ union cvmx_oclax_dat_pop {
 	uint64_t trig                         : 1;  /**< Internal trigger set. Equivalent to OCLA()_STATE_INT[TRIG]. */
 	uint64_t wmark                        : 1;  /**< Internal buffer watermark reached. Equivalent to OCLA()_STATE_INT[WMARK]. */
 	uint64_t reserved_38_60               : 23;
-	uint64_t entry                        : 38; /**< Captured entry. If VALID is set, has read side effect of unloading data by decrementing
+	uint64_t entry                        : 38; /**< Captured entry. If [VALID] is set, has read side effect of unloading data by decrementing
                                                          OCLA()_FIFO_DEPTH[DEPTH]. Data is in the format described by OCLA_CAP_DAT_S or
                                                          OCLA_CAP_CTL_S.
                                                          Note that unloading data will cause that data not to be sent to memory, therefore
@@ -725,7 +725,7 @@ union cvmx_oclax_fifo_limit {
                                                          OCLA()_CONST[DAT_SIZE] minus 26 when using DDR capture to insure that overflow can be
                                                          detected. */
 	uint64_t ddr                          : 16; /**< DDR level. When OCLA()_FIFO_DEPTH > [DDR], FIFO entries will be removed, packed into a
-                                                         cache line, and overflowed to DDR/L2. All-ones disables overflow to DDR/L2. If non-zero
+                                                         cache line, and overflowed to DDR/L2. All-ones disables overflow to DDR/L2. If nonzero
                                                          must be at least 52. */
 	uint64_t bp                           : 16; /**< Backpressure level. When OCLA()_FIFO_DEPTH > [BP], OCLA will signal backpressure to
                                                          coprocessors. All-ones disables indicating backpressure. */
@@ -947,11 +947,11 @@ union cvmx_oclax_gen_ctl {
 	uint64_t mcdtrig                      : 3;  /**< Enable MCD triggering. For each bit corresponding to the three MCDs:
                                                          0 = MCD does not cause trigger.
                                                          1 = When the corresponding MCD is received it will cause
-                                                         triggerring and set OCLA()_STATE_SET[TRIG]. */
+                                                         triggering and set OCLA()_STATE_SET[TRIG]. */
 	uint64_t exten                        : 1;  /**< Enable external triggering.
                                                          0 = External triggering ignored.
                                                          1 = When the external trigger pin selected with GPIO_OCLA_EXTEN_TRIG is high it will cause
-                                                         triggerring and set OCLA()_STATE_SET[TRIG]. The external device must de-assert the
+                                                         triggering and set OCLA()_STATE_SET[TRIG]. The external device must de-assert the
                                                          signal (it is not edge sensitive.) */
 	uint64_t den                          : 1;  /**< Enable data bus and counter clocking. When set, the OCLA inbound data bus may be used and
                                                          counters may increment. When clear, the bus is always zero and internal flops may be clock
@@ -1041,10 +1041,9 @@ union cvmx_oclax_matx_maskx {
 	uint64_t mask                         : 36; /**< Bitmask of which bits in OCLA()_MAT()_VALUE() are to be compared.
                                                          Each bit of OCLA()_MAT()_VALUE() and OCLA()_MAT()_MASK() are combined as
                                                          follows:
-                                                         _ If MASK = 1 and VALUE = 0, matches when data = "0".
-                                                         _ If MASK = 1 and VALUE = 1, matches when data = "1".
-                                                         _ If MASK = 0 and VALUE = 0, matches any data.
-                                                         _ If MASK = 0 and VALUE = 1, matches any data. */
+                                                         _ If MASK = 1 and VALUE = 0, matches when corresponding bit of data = "0".
+                                                         _ If MASK = 1 and VALUE = 1, matches when corresponding bit of data = "1".
+                                                         _ If MASK = 0, matches regardless of corresponding bit of data. */
 #else
 	uint64_t mask                         : 36;
 	uint64_t reserved_36_63               : 28;
@@ -1138,7 +1137,9 @@ union cvmx_oclax_sft_rst {
 	struct cvmx_oclax_sft_rst_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_1_63                : 63;
-	uint64_t reset                        : 1;  /**< Reset. When set, causes a block reset, except RSL. */
+	uint64_t reset                        : 1;  /**< Reset. When written with one, reset OCLA excluding the RSL interface. Software
+                                                         must wait at least 1024 coprocessor-clocks after resetting before sending any
+                                                         other CSR read/write operations into OCLA. */
 #else
 	uint64_t reset                        : 1;
 	uint64_t reserved_1_63                : 63;

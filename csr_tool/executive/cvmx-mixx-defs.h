@@ -453,20 +453,20 @@ union cvmx_mixx_ctl {
                                                          * L2/DRAM write operations in-flight.
                                                          After EN = 0, the MIX eventually completes any 'in-flight' transactions, at which point
                                                          the BUSY deasserts. */
-	uint64_t en                           : 1;  /**< MIX enable bit. When EN = 0, MIX no longer arbitrates for any new L2/DRAM read/write
+	uint64_t en                           : 1;  /**< MIX enable bit. When [EN] = 0, MIX no longer arbitrates for any new L2/DRAM read/write
                                                          requests on the IOI. MIX completes any requests that are currently pending for the IOI. */
 	uint64_t reset                        : 1;  /**< MIX soft reset. When software writes a 1 to this field, the MIX logic executes a soft
                                                          reset.
                                                          During a soft reset, CSR accesses are not affected. However, the values of the fields are
                                                          affected by soft reset (except MIX(0..1)_CTL[RESET] itself).
-                                                         After power-on, the MIX-BGX are held in reset until RESET is written to 0. Software must
+                                                         After power-on, the MIX-BGX are held in reset until [RESET] is written to 0. Software must
                                                          also perform a MIX(0..1)_CTL CSR read after this write to ensure the soft reset
                                                          deassertion has had sufficient time to propagate to all MIO-MIX internal logic before
                                                          any subsequent MIX CSR accesses are issued.
                                                          The intended 'soft reset' sequence is:
-                                                         * Write EN = 0 (to prevent any NEW transactions from being started).
-                                                         * Wait for BUSY = 0 (to indicate that all in-flight transactions have completed).
-                                                         * Write RESET = 1, followed by a MIX(0..1)_CTL register read and wait for the result.
+                                                         * Write [EN] = 0 (to prevent any NEW transactions from being started).
+                                                         * Wait for [BUSY] = 0 (to indicate that all in-flight transactions have completed).
+                                                         * Write [RESET] = 1, followed by a MIX(0..1)_CTL register read and wait for the result.
                                                          * Re-initialize the MIX just as would be done for a hard reset.
                                                          Once the MIX has been soft-reset, please refer to MIX Bring-up Sequence, MIX Bring-up
                                                          Sequence to complete the MIX re-initialization sequence. */
@@ -1009,7 +1009,7 @@ union cvmx_mixx_isr {
                                                          the remaining number of I-Ring buffer entries (MIX(0..1)_REMCNT[IREMCNT]), then the
                                                          following occurs:
                                                          * The MIX(0..1)_IRING2[IDBELL] write is IGNORED.
-                                                         * IDBLOVF is set and the interrupt is generated.
+                                                         * [IDBLOVF] is set and the interrupt is generated.
                                                          Software should keep track of the number of I-Ring entries in use (i.e. the cumulative
                                                          number
                                                          of IDBELL write operations), and ensure that future IDBELL write operations don't exceed
@@ -1019,20 +1019,20 @@ union cvmx_mixx_isr {
                                                          The MIX(0..1)_IRCNT[IRCNT] register represents the total number of packets (not I-Ring
                                                          entries) and software must further keep track of the number of I-Ring entries associated
                                                          with each packet as they are processed.
-                                                         If an IDBLOVF occurs, it is an indication that software has overwritten the I-Ring buffer,
-                                                         and the only recourse for recovery is a hardware reset. */
+                                                         If an [IDBLOVF] occurs, it is an indication that software has overwritten the
+                                                         I-Ring buffer, and the only recourse for recovery is a hardware reset. */
 	uint64_t odblovf                      : 1;  /**< Outbound doorbell (ODBELL) overflow detected. Throws MIX_INTSN_E::MIX(0..1)_INT_ODBLOVF.
                                                          If software attempts to write to MIX(0..1)_ORING2[ODBELL] with a value greater than the
                                                          remaining number of O-Ring buffer entries (MIX(0..1)_REMCNT[OREMCNT]), then the following
                                                          occurs:
                                                          * The MIX(0..1)_IRING2[ODBELL] write operation is IGNORED.
-                                                         * ODBLOVF is set and the interrupt is generated.
+                                                         * [ODBLOVF] is set and the interrupt is generated.
                                                          Software should keep track of the number of I-Ring entries in use (i.e. the cumulative
                                                          number of ODBELL write operations), and ensure that future ODBELL write operations don't
                                                          exceed the size of the O-Ring buffer (MIX(0..1)_ORING2[OSIZE]). Software must reclaim
                                                          O-Ring entries by writing to MIX(0..1)_ORCNT[ORCNT].
-                                                         If an ODBLOVF occurs, it is an indication that software has overwritten the O-Ring buffer,
-                                                         and the only recourse for recovery is a hardware reset. */
+                                                         If an [ODBLOVF] occurs, it is an indication that software has overwritten the
+                                                         O-Ring buffer, and the only recourse for recovery is a hardware reset. */
 #else
 	uint64_t odblovf                      : 1;
 	uint64_t idblovf                      : 1;
@@ -1205,7 +1205,7 @@ union cvmx_mixx_isr_w1s {
                                                          the remaining number of I-Ring buffer entries (MIX(0..1)_REMCNT[IREMCNT]), then the
                                                          following occurs:
                                                          * The MIX(0..1)_IRING2[IDBELL] write is IGNORED.
-                                                         * IDBLOVF is set and the interrupt is generated.
+                                                         * [IDBLOVF] is set and the interrupt is generated.
                                                          Software should keep track of the number of I-Ring entries in use (i.e. the cumulative
                                                          number
                                                          of IDBELL write operations), and ensure that future IDBELL write operations don't exceed
@@ -1215,20 +1215,20 @@ union cvmx_mixx_isr_w1s {
                                                          The MIX(0..1)_IRCNT[IRCNT] register represents the total number of packets (not I-Ring
                                                          entries) and software must further keep track of the number of I-Ring entries associated
                                                          with each packet as they are processed.
-                                                         If an IDBLOVF occurs, it is an indication that software has overwritten the I-Ring buffer,
-                                                         and the only recourse for recovery is a hardware reset. */
+                                                         If an [IDBLOVF] occurs, it is an indication that software has overwritten the
+                                                         I-Ring buffer, and the only recourse for recovery is a hardware reset. */
 	uint64_t odblovf                      : 1;  /**< Outbound doorbell (ODBELL) overflow detected. Throws MIX_INTSN_E::MIX(0..1)_INT_ODBLOVF.
                                                          If software attempts to write to MIX(0..1)_ORING2[ODBELL] with a value greater than the
                                                          remaining number of O-Ring buffer entries (MIX(0..1)_REMCNT[OREMCNT]), then the following
                                                          occurs:
                                                          * The MIX(0..1)_IRING2[ODBELL] write operation is IGNORED.
-                                                         * ODBLOVF is set and the interrupt is generated.
+                                                         * [ODBLOVF] is set and the interrupt is generated.
                                                          Software should keep track of the number of I-Ring entries in use (i.e. the cumulative
                                                          number of ODBELL write operations), and ensure that future ODBELL write operations don't
                                                          exceed the size of the O-Ring buffer (MIX(0..1)_ORING2[OSIZE]). Software must reclaim
                                                          O-Ring entries by writing to MIX(0..1)_ORCNT[ORCNT].
-                                                         If an ODBLOVF occurs, it is an indication that software has overwritten the O-Ring buffer,
-                                                         and the only recourse for recovery is a hardware reset. */
+                                                         If an [ODBLOVF] occurs, it is an indication that software has overwritten the
+                                                         O-Ring buffer, and the only recourse for recovery is a hardware reset. */
 #else
 	uint64_t odblovf                      : 1;
 	uint64_t idblovf                      : 1;
@@ -1269,7 +1269,7 @@ union cvmx_mixx_orcnt {
                                                          This register is used to generate interrupts to alert software of pending outbound MIX
                                                          packets that have been removed from system memory. (See MIX(0..1)_ISR[ORTHRESH]
                                                          description for more details.)
-                                                         For outbound packets, the number of O-Ring Packets is equal to the number of O-Ring
+                                                         For outbound packets, the number of O-Ring packets is equal to the number of O-Ring
                                                          Entries. */
 #else
 	uint64_t orcnt                        : 20;
@@ -1443,7 +1443,7 @@ union cvmx_mixx_oring2 {
 	uint64_t reserved_20_31               : 12;
 	uint64_t odbell                       : 20; /**< Represents the cumulative total of pending outbound ring (O-Ring) buffer entries. Each
                                                          O-Ring buffer entry contains an L2/DRAM byte pointer and a byte length.
-                                                         After software inserts new entries into the O-Ring Buffer, it 'rings the doorbell with the
+                                                         After software inserts new entries into the O-Ring buffer, it 'rings the doorbell with the
                                                          count of the newly inserted entries.' When the MIX hardware receives the doorbell ring, it
                                                          increments the current doorbell count by the CSR write value.
                                                          Software must never cause the doorbell count for the O-Ring to exceed the size of
@@ -1486,20 +1486,20 @@ union cvmx_mixx_remcnt {
 	uint64_t iremcnt                      : 20; /**< Remaining I-Ring buffer count. Reflects the number of unused/remaining I-Ring entries that
                                                          hardware currently detects in the I-Ring buffer. Hardware uses this value to detect I-Ring
                                                          doorbell overflows. (See MIX(0..1)_ISR[IDBLOVF].)
-                                                         When software writes the MIX(0..1)_IRING1[ISIZE], IREMCNT is loaded with the
+                                                         When software writes the MIX(0..1)_IRING1[ISIZE], [IREMCNT] is loaded with the
                                                          MIX(0..1)_IRING2[ISIZE] value. (Note: ISIZE should only be written at power-on, when it is
                                                          known that there are no I-Ring entries currently in use by hardware.) When software writes
-                                                         to the IDBELL register, the IREMCNT is decremented by the CSR write value. When hardware
+                                                         to the IDBELL register, the [IREMCNT] is decremented by the CSR write value. When hardware
                                                          issues an I-Ring write request (onto the IOI), REMCNT is incremented by 1. */
 	uint64_t reserved_20_31               : 12;
 	uint64_t oremcnt                      : 20; /**< Remaining O-Ring buffer count. Reflects the number of unused/remaining O-Ring entries that
                                                          hardware currently detects in the O-Ring buffer. Hardware uses this value to detect O-Ring
                                                          doorbell overflows. (See MIX(0..1)_ISR[ODBLOVF].)
-                                                         When software writes the MIX(0..1)_ORING1[OSIZE], OREMCNT is loaded with the
+                                                         When software writes the MIX(0..1)_ORING1[OSIZE], [OREMCNT] is loaded with the
                                                          MIX(0..1)_ORING2[OSIZE] value. (Note: [OSIZE] should only be written at power-on, when it
                                                          is known that no O-Ring entries are currently in use by hardware.) When software writes to
                                                          the ODBELL register, OREMCNT is decremented by the CSR write value. When software writes
-                                                         to OREMCNT, it is decremented by the CSR write value. */
+                                                         to [OREMCNT], it is decremented by the CSR write value. */
 #else
 	uint64_t oremcnt                      : 20;
 	uint64_t reserved_20_31               : 12;
@@ -1550,15 +1550,15 @@ union cvmx_mixx_tsctl {
 	struct cvmx_mixx_tsctl_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_21_63               : 43;
-	uint64_t tsavl                        : 5;  /**< Number of MIX timestamp entries available for use. TSAVL MAX = 4 (implementation depth of
-                                                         timestamp FIFO).
-                                                         TSAVL = [IMPLEMENTATION_DEPTH = 4(MAX) - TSCNT]. */
+	uint64_t tsavl                        : 5;  /**< Number of MIX timestamp entries available for use. [TSAVL] MAX = 4
+                                                         (implementation depth of timestamp FIFO).
+                                                         [TSAVL] = (IMPLEMENTATION_DEPTH = 4(MAX) - TSCNT). */
 	uint64_t reserved_13_15               : 3;
-	uint64_t tstot                        : 5;  /**< Number of pending MIX timestamp requests in flight. TSTOT must never exceed MAX = 4
+	uint64_t tstot                        : 5;  /**< Number of pending MIX timestamp requests in flight. [TSTOT] must never exceed MAX = 4
                                                          (implementation depth of timestamp FIFO). */
 	uint64_t reserved_5_7                 : 3;
-	uint64_t tscnt                        : 5;  /**< Number of pending MIX timestamp interrupts. TSCNT must never exceed MAX=4 (implementation
-                                                         depth of timestamp FIFO). */
+	uint64_t tscnt                        : 5;  /**< Number of pending MIX timestamp interrupts. [TSCNT] must never exceed MAX=4
+                                                         (implementation depth of timestamp FIFO). */
 #else
 	uint64_t tscnt                        : 5;
 	uint64_t reserved_5_7                 : 3;
@@ -1613,8 +1613,8 @@ union cvmx_mixx_tstamp {
                                                          MIX(0..1)_TSCTL[TSCNT] = 0 will result in a return value of all zeroes. Software should
                                                          only read this register when
                                                          MIX(0..1)_ISR[TS] = 1 (or when MIX(0..1)_TSCTL[TSCNT] != 0) to retrieve the timestamp
-                                                         value recorded by hardware. If software reads the TSTAMP when hardware has not recorded a
-                                                         valid timestamp, then an all zeroes value is returned. */
+                                                         value recorded by hardware. If software reads the [TSTAMP] when hardware has not
+                                                         recorded a valid timestamp, then an all zeroes value is returned. */
 #else
 	uint64_t tstamp                       : 64;
 #endif

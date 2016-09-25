@@ -42,7 +42,7 @@
  *
  * Interface to PCIe as a host(RC) or target(EP)
  *
- * <hr>$Revision: 135591 $<hr>
+ * <hr>$Revision: 142033 $<hr>
  */
 #ifdef CVMX_BUILD_FOR_LINUX_KERNEL
 #include <asm/octeon/cvmx.h>
@@ -630,21 +630,29 @@ static void __cvmx_pcie_rc_initialize_config_space(int node, int pcie_port)
 		cfg554.s.p23td = 1;
 		CVMX_PCIE_CFGX_WRITE(pcie_port, CVMX_PCIERCX_CFG554(pcie_port), cfg554.u32);
 
-		/* Errata PEM-21178 - Change the CFG[089-092] LxUTP defaults. */
+		/* Errata PEM-21178 - Change the CFG[089-092] LxUTP & LxDTP defaults. */
 		cfg089.u32 = CVMX_PCIE_CFGX_READ(pcie_port, CVMX_PCIERCX_CFG089(pcie_port));
+		cfg089.s.l1ddtp = 7;
 		cfg089.s.l1utp = 7;
+		cfg089.s.l0dtp = 7;
 		cfg089.s.l0utp = 7;
 		CVMX_PCIE_CFGX_WRITE(pcie_port, CVMX_PCIERCX_CFG089(pcie_port), cfg089.u32);
 		cfg090.u32 = CVMX_PCIE_CFGX_READ(pcie_port, CVMX_PCIERCX_CFG090(pcie_port));
+		cfg090.s.l3dtp = 7;
 		cfg090.s.l3utp = 7;
+		cfg090.s.l2dtp = 7;
 		cfg090.s.l2utp = 7;
 		CVMX_PCIE_CFGX_WRITE(pcie_port, CVMX_PCIERCX_CFG090(pcie_port), cfg090.u32);
 		cfg091.u32 = CVMX_PCIE_CFGX_READ(pcie_port, CVMX_PCIERCX_CFG091(pcie_port));
+		cfg091.s.l5dtp = 7;
 		cfg091.s.l5utp = 7;
+		cfg091.s.l4dtp = 7;
 		cfg091.s.l4utp = 7;
 		CVMX_PCIE_CFGX_WRITE(pcie_port, CVMX_PCIERCX_CFG091(pcie_port), cfg091.u32);
 		cfg092.u32 = CVMX_PCIE_CFGX_READ(pcie_port, CVMX_PCIERCX_CFG092(pcie_port));
+		cfg092.s.l7dtp = 7;
 		cfg092.s.l7utp = 7;
+		cfg092.s.l6dtp = 7;
 		cfg092.s.l6utp = 7;
 		CVMX_PCIE_CFGX_WRITE(pcie_port, CVMX_PCIERCX_CFG092(pcie_port), cfg092.u32);
 		if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_0)) {

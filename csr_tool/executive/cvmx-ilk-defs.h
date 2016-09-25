@@ -1748,7 +1748,7 @@ union cvmx_ilk_lne_dbg {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_60_63               : 4;
 	uint64_t tx_bad_crc32                 : 1;  /**< Send one diagnostic word with bad CRC32 to the selected lane. Note that it injects just once. */
-	uint64_t tx_bad_6467_cnt              : 5;  /**< Specifies the number of bad 64B/67B code words on the selected lane. */
+	uint64_t tx_bad_6467_cnt              : 5;  /**< Specifies the number of bad 64/67 bit code words on the selected lane. */
 	uint64_t tx_bad_sync_cnt              : 3;  /**< Specifies the number of bad sync words on the selected lane. */
 	uint64_t tx_bad_scram_cnt             : 3;  /**< Specifies the number of bad scrambler state on the selected lane. */
 	uint64_t tx_bad_lane_sel              : 16; /**< Select the lane to apply the error-injection counts. */
@@ -1862,17 +1862,17 @@ union cvmx_ilk_rid_cfg {
 	uint64_t reserved_39_63               : 25;
 	uint64_t max_cnt                      : 7;  /**< Maximum number of reassembly IDs (RIDs) allowed for both links. If
                                                          an SOP arrives and the total number of RIDs already allocated to
-                                                         both links is at least MAX_CNT, the packet is dropped.
+                                                         both links is at least [MAX_CNT], the packet is dropped.
                                                          An SOP allocates a RID; an EOP frees a RID. ILK_RX()_RID can be used to further
                                                          restrict each link individually. */
 	uint64_t reserved_7_31                : 25;
 	uint64_t base                         : 7;  /**< The base RID for ILK. There is a shared pool of 96 RIDs for all MACs.
                                                          See PKI_REASM_E. ILK can allocate any RID in the range of
-                                                         _ BASE -> (BASE+(MAX_CNT-1)).
+                                                         _ [BASE] -> ([BASE]+([MAX_CNT]-1)).
                                                          BASE and MAX_CNT must be constrained such that:
-                                                         _ 1) BASE >= 2.
-                                                         _ 2) BASE + MAX_CNT <= 96.
-                                                         _ 3) BASE..(BASE+(MAX_CNT-1)) does not overlap with any other MAC programming.
+                                                         _ 1) [BASE] >= 2.
+                                                         _ 2) [BASE] + [MAX_CNT] <= 96.
+                                                         _ 3) [BASE]..([BASE]+([MAX_CNT]-1)) does not overlap with any other MAC programming.
                                                          The reset value for this CSR has been chosen such that all these conditions are satisfied.
                                                          The reset value supports up to a total of 64 outstanding incomplete packets between ILK0
                                                          and ILK1.
@@ -1920,7 +1920,7 @@ union cvmx_ilk_rxx_cal_entryx {
 	uint64_t reserved_34_63               : 30;
 	uint64_t ctl                          : 2;  /**< Select source of XON/XOFF for entry (IDX * 8) + 0.
                                                          0 = PKO backpressure channel.
-                                                         1 = link.
+                                                         1 = Link.
                                                          2 = XOFF.
                                                          3 = XON.
                                                          This field applies to one of bits <55>, <47>, or <31> in the Interlaken control word. */
@@ -1963,9 +1963,9 @@ union cvmx_ilk_rxx_cfg0 {
                                                          diagnostic word, zero or more skip words, and the data payload. Must be large than
                                                          _ ILK_TX()_CFG1[SKIP_CNT] + 32.
                                                          Supported range:
-                                                         _ ILK_TX()_CFG1[SKIP_CNT] + 32 < MFRM_LEN <= 4096 */
+                                                         _ ILK_TX()_CFG1[SKIP_CNT] + 32 < [MFRM_LEN] <= 4096 */
 	uint64_t brst_shrt                    : 7;  /**< Minimum interval between burst control words, as a multiple of eight bytes. Supported
-                                                         range from 8 to 512 bytes (i.e. 4 <= BRST_SHRT <= 64).
+                                                         range from 8 to 512 bytes (i.e. 4 <= [BRST_SHRT] <= 64).
                                                          This field affects the ILK_RX()_STAT4[BRST_SHRT_ERR_CNT] counter. It does not affect
                                                          correct operation of the link. */
 	uint64_t lane_rev                     : 1;  /**< Lane reversal. When enabled, lane destriping is performed from most-significant lane
@@ -1973,15 +1973,15 @@ union cvmx_ilk_rxx_cfg0 {
                                                          [LANE_REV]. */
 	uint64_t brst_max                     : 5;  /**< Maximum size of a data burst, as a multiple of 64-byte blocks. Supported range is from 64
                                                          to 1024 bytes
-                                                         (i.e. 0 < BRST_MAX <= 16).
+                                                         (i.e. 0 < [BRST_MAX] <= 16).
                                                          This field affects the ILK_RX()_STAT2[BRST_NOT_FULL_CNT] and
                                                          ILK_RX()_STAT3[BRST_MAX_ERR_CNT] counters. It does not affect correct operation of the
                                                          link. */
 	uint64_t reserved_25_25               : 1;
 	uint64_t cal_depth                    : 9;  /**< Indicates the number of valid entries in the calendar.   Supported range from 1 to 288. */
 	uint64_t lane_ena                     : 16; /**< Lane-enable mask. The link is enabled if any lane is enabled. The same lane should not be
-                                                         enabled in multiple ILK_RXn_CFG0. Each bit of LANE_ENA maps to an RX lane (RLE) and a QLM
-                                                         lane. Note that [LANE_REV] has no effect on this mapping.
+                                                         enabled in multiple ILK_RXn_CFG0. Each bit of [LANE_ENA] maps to an RX lane (RLE) and a
+                                                         QLM lane. Note that [LANE_REV] has no effect on this mapping.
                                                          _ [LANE_ENA<0>]  = RLE0  = QLM4 lane 0.
                                                          _ [LANE_ENA<1>]  = RLE1  = QLM4 lane 1.
                                                          _ [LANE_ENA<2>]  = RLE2  = QLM4 lane 2.
@@ -2189,18 +2189,18 @@ union cvmx_ilk_rxx_cfg1 {
                                                          status from XON to XOFF. LSB must be zero. A typical single-link configuration should set
                                                          this to 2048. A typical multi-link configuration should set this to NL*128 where NL is the
                                                          number of lanes enabled for a given link.
-                                                         _ XON = RX_FIFO_CNT < RX_FIFO_HWM
-                                                         _ XOFF = RX_FIFO_CNT >= RX_FIFO_HWM. */
+                                                         _ XON = [RX_FIFO_CNT] < [RX_FIFO_HWM]
+                                                         _ XOFF = [RX_FIFO_CNT] >= ]RX_FIFO_HWM]. */
 	uint64_t reserved_35_35               : 1;
 	uint64_t rx_fifo_max                  : 13; /**< Specifies the maximum number of 64-bit words consumed by this link in the RX FIFO. The sum
                                                          of all links should be equal to 4096 (32KB). LSB must be zero. Typically set to
-                                                         RX_FIFO_HWM * 2. */
+                                                         [RX_FIFO_HWM] * 2. */
 	uint64_t pkt_flush                    : 1;  /**< Packet receive flush. Setting this bit causes all open packets to be error-out, just as
                                                          though the link went down. */
 	uint64_t pkt_ena                      : 1;  /**< Packet receive enable. When set to 0, any received SOP causes the entire packet to be dropped. */
 	uint64_t la_mode                      : 1;  /**< Reserved. */
-	uint64_t tx_link_fc                   : 1;  /**< Link flow-control status transmitted by the TX-link XON (=1) when RX_FIFO_CNT <=
-                                                         RX_FIFO_HWM and lane alignment is done. */
+	uint64_t tx_link_fc                   : 1;  /**< Link flow-control status transmitted by the TX-link XON (=1) when [RX_FIFO_CNT] <=
+                                                         [RX_FIFO_HWM] and lane alignment is done. */
 	uint64_t rx_link_fc                   : 1;  /**< Link flow-control status received in burst/idle control words. XOFF (=0) causes TX-link to
                                                          stop transmitting on all channels. */
 	uint64_t rx_align_ena                 : 1;  /**< Enable the lane alignment. This should only be done after all enabled lanes have achieved
@@ -2492,7 +2492,7 @@ union cvmx_ilk_rxx_int {
                                                          ILK_RX()_CFG1[PKT_ENA]=0. Throws ILK_INTSN_E::ILK_RX()_PKT_DROP_RID. */
 	uint64_t pkt_drop_rxf                 : 1;  /**< Some/all of a packet dropped due to RX_FIFO_CNT == RX_FIFO_MAX. Throws
                                                          ILK_INTSN_E::ILK_RX()_PKT_DROP_RXF. */
-	uint64_t lane_bad_word                : 1;  /**< A lane encountered either a bad 64B/67B codeword or an unknown control word type. Throws
+	uint64_t lane_bad_word                : 1;  /**< A lane encountered either a bad 64/67 bit codeword or an unknown control word type. Throws
                                                          ILK_INTSN_E::ILK_RX()_LANE_BAD_WORD. */
 	uint64_t stat_cnt_ovfl                : 1;  /**< Statistics counter overflow. Throws ILK_INTSN_E::ILK_RX()_STAT_CNT_OVFL. */
 	uint64_t lane_align_done              : 1;  /**< Lane alignment successful. Throws ILK_INTSN_E::ILK_RX()_LANE_ALIGN_DONE. */
@@ -2500,7 +2500,7 @@ union cvmx_ilk_rxx_int {
                                                          alignment may now be enabled. Throws ILK_INTSN_E::ILK_RX()_WORD_SYNC_DONE. */
 	uint64_t crc24_err                    : 1;  /**< Burst CRC24 error. All open packets receive an error. Throws
                                                          ILK_INTSN_E::ILK_RX()_CRC24_ERR. */
-	uint64_t lane_align_fail              : 1;  /**< Lane Alignment fails (4 tries). Hardware repeats lane alignment until is succeeds or until
+	uint64_t lane_align_fail              : 1;  /**< Lane alignment fails (4 tries). Hardware repeats lane alignment until is succeeds or until
                                                          ILK_RX()_CFG1[RX_ALIGN_ENA] is cleared. Throws
                                                          ILK_INTSN_E::ILK_RX()_LANE_ALIGN_FAIL. */
 #else
@@ -3341,7 +3341,7 @@ union cvmx_ilk_rxx_stat7 {
 	struct cvmx_ilk_rxx_stat7_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_18_63               : 46;
-	uint64_t bad_64b67b_cnt               : 18; /**< Indicates the number of bad 64B/67B code words.Wraps on overflow if
+	uint64_t bad_64b67b_cnt               : 18; /**< Indicates the number of bad 64/67 bit code words.Wraps on overflow if
                                                          ILK_RX()_CFG0[LNK_STATS_WRAP]=1. Otherwise, saturates. On overflow/saturate, sets
                                                          ILK_RX()_INT[STAT_CNT_OVFL]. */
 #else
@@ -3520,7 +3520,7 @@ union cvmx_ilk_rx_lnex_int {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_10_63               : 54;
 	uint64_t disp_err                     : 1;  /**< RX disparity error encountered. Throws ILK_INTSN_E::ILK_RXLNE()_DISP_ERR. */
-	uint64_t bad_64b67b                   : 1;  /**< Bad 64B/67B code word encountered. Once the bad word reaches the burst control unit (as
+	uint64_t bad_64b67b                   : 1;  /**< Bad 64/67 bit code word encountered. Once the bad word reaches the burst control unit (as
                                                          denoted by ILK_RX()_INT[LANE_BAD_WORD]) it is discarded and all open packets receive
                                                          an error. Throws ILK_INTSN_E::ILK_RXLNE()_BAD_64B67B. */
 	uint64_t stat_cnt_ovfl                : 1;  /**< Rx lane statistic counter overflow. Throws ILK_INTSN_E::ILK_RXLNE()_STAT_CNT_OVFL. */
@@ -3733,7 +3733,7 @@ union cvmx_ilk_rx_lnex_stat3 {
 	struct cvmx_ilk_rx_lnex_stat3_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_18_63               : 46;
-	uint64_t bad_64b67b_cnt               : 18; /**< Indicates the number of bad 64B/67B words, meaning bit <65> or bit <64> has been
+	uint64_t bad_64b67b_cnt               : 18; /**< Indicates the number of bad 64/67 bit words, meaning bit <65> or bit <64> has been
                                                          corrupted. On overflow, saturates and sets ILK_RX_LNE()_INT[STAT_CNT_OVFL]. */
 #else
 	uint64_t bad_64b67b_cnt               : 18;
@@ -4142,21 +4142,21 @@ union cvmx_ilk_txx_cfg0 {
                                                          word, zero or more skip words, and the data payload. Must be large than
                                                          _ ILK_TX()_CFG1[SKIP_CNT] + 32.
                                                          Supported range:
-                                                         _ ILK_TX()_CFG1[SKIP_CNT] + 32 < MFRM_LEN <= 4096 */
+                                                         _ ILK_TX()_CFG1[SKIP_CNT] + 32 < [MFRM_LEN] <= 4096 */
 	uint64_t brst_shrt                    : 7;  /**< Minimum interval between burst control words, as a multiple of eight bytes. Supported
-                                                         range from eight to 512 bytes (i.e. 0 < BRST_SHRT <= 64). */
+                                                         range from eight to 512 bytes (i.e. 0 < [BRST_SHRT] <= 64). */
 	uint64_t lane_rev                     : 1;  /**< Lane reversal. When enabled, lane striping is performed from most significant lane enabled
                                                          to least significant lane enabled. [LANE_ENA] must be zero before changing [LANE_REV]. */
 	uint64_t brst_max                     : 5;  /**< Maximum size of a data burst, as a multiple of 64-byte blocks. Supported range is from 64
-                                                         to 1024 bytes (i.e. 0 < BRST_MAX <= 16). */
+                                                         to 1024 bytes (i.e. 0 < [BRST_MAX] <= 16). */
 	uint64_t reserved_25_25               : 1;
-	uint64_t cal_depth                    : 9;  /**< Number of valid entries in the calendar. CAL_DEPTH[2:0] must be zero. Supported range is
+	uint64_t cal_depth                    : 9;  /**< Number of valid entries in the calendar. [CAL_DEPTH][2:0] must be zero. Supported range is
                                                          from 0 to 288.
-                                                         If CAL_DEPTH = 0x0, the calendar is completely disabled and all transmit flow control
+                                                         If [CAL_DEPTH] = 0x0, the calendar is completely disabled and all transmit flow control
                                                          status is XOFF. */
 	uint64_t lane_ena                     : 16; /**< Lane enable mask. Link is enabled if any lane is enabled. The same lane should not be
                                                          enabled in multiple
-                                                         ILK_TX0/1_CFG0. Each bit of LANE_ENA maps to a TX lane (TLE) and a QLM lane. Note that
+                                                         ILK_TX0/1_CFG0. Each bit of [LANE_ENA] maps to a TX lane (TLE) and a QLM lane. Note that
                                                          [LANE_REV] has no effect on this mapping.
                                                          _ [LANE_ENA<0>]  = TLE0   =  QLM4 lane 0.
                                                          _ [LANE_ENA<1>]  = TLE1   =  QLM4 lane 1.
@@ -4298,25 +4298,26 @@ union cvmx_ilk_txx_cfg1 {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t ser_low                      : 4;  /**< Reduce latency by limiting the amount of data in flight for each SerDes.  Writting to 0
                                                          causes
-                                                         hardware to determine a typically optimal value.   Added in pass 2. */
+                                                         hardware to determine a typically optimal value. */
 	uint64_t reserved_53_59               : 7;
 	uint64_t brst_min                     : 5;  /**< Minimum size of a data burst, as a multiple of 32-byte blocks. 0 disables the scheduling
-                                                         enhancement. When non-zero, must satisfy:
+                                                         enhancement. When nonzero, must satisfy:
                                                          _ (BRST_SHRT*8) <= (BRST_MIN*32) <= (BRST_MAX*64)/2. */
 	uint64_t reserved_43_47               : 5;
 	uint64_t ser_limit                    : 10; /**< Reserved. */
-	uint64_t pkt_busy                     : 1;  /**< Packet busy. When set to 1, indicates the TX-link is transmitting data. */
+	uint64_t pkt_busy                     : 1;  /**< Packet busy. When [PKT_ENA]=0, [PKT_BUSY]=1 indicates the TX-link is
+                                                         transmitting data. When [PKT_ENA]=1, [PKT_BUSY] is undefined. */
 	uint64_t pipe_crd_dis                 : 1;  /**< Disable channel credits. Should be set to 1 when PKO is configured to ignore channel credits. */
 	uint64_t ptp_delay                    : 5;  /**< Reserved. */
 	uint64_t skip_cnt                     : 4;  /**< Number of skip words to insert after the scrambler state. */
 	uint64_t pkt_flush                    : 1;  /**< Packet transmit flush. When asserted, the TxFIFO continuously drains; all data is dropped.
-                                                         Software should first write PKT_ENA = 0 and wait for PKT_BUSY = 0. */
+                                                         Software should first write [PKT_ENA] = 0 and wait for [PKT_BUSY] = 0. */
 	uint64_t pkt_ena                      : 1;  /**< Packet transmit enable. When asserted, the TX-link stops transmitting packets, as per
-                                                         RX_LINK_FC_PKT. */
+                                                         [RX_LINK_FC_PKT]. */
 	uint64_t la_mode                      : 1;  /**< Reserved. */
 	uint64_t tx_link_fc                   : 1;  /**< Link flow-control status transmitted by the TX-link. XON (=1) when RX_FIFO_CNT <=
                                                          RX_FIFO_HWM and lane alignment is done */
-	uint64_t rx_link_fc                   : 1;  /**< Link flow-control status received in burst/idle control words. When RX_LINK_FC_IGN = 0,
+	uint64_t rx_link_fc                   : 1;  /**< Link flow-control status received in burst/idle control words. When [RX_LINK_FC_IGN] = 0,
                                                          XOFF (=0) causes TX-link to stop transmitting on all channels. */
 	uint64_t reserved_12_16               : 5;
 	uint64_t tx_link_fc_jam               : 1;  /**< All flow-control transmitted in burst/idle control words are XOFF whenever TX_LINK_FC = 0
@@ -4491,11 +4492,9 @@ union cvmx_ilk_txx_dbg {
 	uint64_t data_rate                    : 13; /**< The number of coprocessor-clocks to transmit 32 words, where each word is 67 bits.  HW
                                                          will automatically calculate a conservative value for this field.  SW can override the
                                                          calculation by writing
-                                                                _ DAT_RATE = roundup((67*SCLK / GBAUD)*32).
-                                                         Added in pass 2. */
+                                                                _ DAT_RATE = roundup((67*SCLK / GBAUD)*32). */
 	uint64_t low_delay                    : 6;  /**< The delay before reacting to a lane low data indication, as a multiple of 64
-                                                         coprocessor-clocks.
-                                                         Added in pass 2. */
+                                                         coprocessor-clocks. */
 	uint64_t reserved_3_9                 : 7;
 	uint64_t tx_bad_crc24                 : 1;  /**< Send a control word with bad CRC24. Hardware clears this field once the injection is performed. */
 	uint64_t tx_bad_ctlw2                 : 1;  /**< Send a control word without the control bit set. */

@@ -1307,7 +1307,7 @@ union cvmx_pnbx_ghab_pull_bushog_max {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_8_63                : 56;
 	uint64_t bushog_max                   : 8;  /**< The maximum number of consecutive high priority requests that can win
-                                                         arbitration over a waiting low-priority requests. If set to zero, no
+                                                         arbitration over a waiting low-priority request. If set to zero, no
                                                          limit is enforced and low priority requests might be starved. */
 #else
 	uint64_t bushog_max                   : 8;
@@ -1997,7 +1997,9 @@ union cvmx_pnbx_ppcmd_ff_dbe_info {
 	struct cvmx_pnbx_ppcmd_ff_dbe_info_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_33_63               : 31;
-	uint64_t ppcmd_dbe_cmdtype            : 1;  /**< Command type. 1 = Read, 0 = Write. */
+	uint64_t ppcmd_dbe_cmdtype            : 1;  /**< Command type:
+                                                         1 = Read.
+                                                         0 = Write. */
 	uint64_t ppcmd_dbe_cmdsrcid           : 12; /**< PP source ID. */
 	uint64_t ppcmd_dbe_cmdaddr            : 20; /**< SMEM address (bits <23:4> of the byte address). */
 #else
@@ -2023,7 +2025,9 @@ union cvmx_pnbx_ppcmd_ff_sbe_info {
 	struct cvmx_pnbx_ppcmd_ff_sbe_info_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_33_63               : 31;
-	uint64_t ppcmd_sbe_cmdtype            : 1;  /**< PP command type; 1=read, 0=write. */
+	uint64_t ppcmd_sbe_cmdtype            : 1;  /**< PP command type:
+                                                         1 = Read.
+                                                         0 = Write. */
 	uint64_t ppcmd_sbe_cmdsrcid           : 12; /**< PP source ID. */
 	uint64_t ppcmd_sbe_cmdaddr            : 20; /**< SMEM address in 64b. */
 #else

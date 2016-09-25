@@ -38,7 +38,7 @@ int string_to_upper(char * p)
 	 }
 	return len;
 }
-
+extern const char * get_csr_tool_version(void);
 int generate_code(char * inputfile, int cpuid, char *pattern)
 {
 	FILE *infile = NULL;
@@ -63,7 +63,7 @@ int generate_code(char * inputfile, int cpuid, char *pattern)
 	infile = fopen(inputfile, "r");
 	if (!infile)
 	{
-		printf("input error\n"); 
+		printf("input open failed\n"); 
 		return -1;
 	}
 	
@@ -71,6 +71,14 @@ int generate_code(char * inputfile, int cpuid, char *pattern)
 	sprintf(outbuf, "void %s_registers_dump(void)\n{\n", pattern);
 	fwrite (outbuf , strlen(outbuf), 1 , outfile);
 
+	memset(outbuf, 0, MAX_LINE);
+	sprintf(outbuf, "\tcvmx_dprintf(\"###CSRTOOL%s\\n\");\n", get_csr_tool_version());
+	fwrite (outbuf , strlen(outbuf), 1 , outfile);
+
+	memset(outbuf, 0, MAX_LINE);
+	sprintf(outbuf, "\tcvmx_dprintf(\"###check#cpuid:0x%x==0x%%x\\n\",cvmx_get_proc_id());\n", cpuid);
+	fwrite (outbuf , strlen(outbuf), 1 , outfile);
+	
 	memset(outbuf, 0, MAX_LINE);
 	memset(buf, 0, MAX_LINE);
 	while(fgets(buf,MAX_LINE,infile) != NULL)

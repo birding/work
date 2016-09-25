@@ -822,12 +822,12 @@ static inline uint64_t CVMX_SRIOX_WR_DONE_COUNTS(unsigned long offset)
 /**
  * cvmx_srio#_acc_ctrl
  *
- * This register controls write access to the BAR registers via SRIO Maintenance Operations.
- * At powerup the BAR registers can be accessed via RSL and Maintenance Operations.  If the
- * DENY_BAR* bits or DENY_ADR* bits are set then Maintenance Writes to the corresponding BAR
+ * This register controls write access to the BAR registers via SRIO maintenance operations.
+ * At powerup the BAR registers can be accessed via RSL and maintenance operations.  If the
+ * DENY_BAR* bits or DENY_ADR* bits are set then maintenance writes to the corresponding BAR
  * fields are ignored.  This register does not effect read operations.  Reset values for
  * DENY_BAR[2:0] are typically clear but they are set if the chip is operating in Authentik
- * Mode.
+ * mode.
  *
  * This register is reset by the h-clock reset.
  */
@@ -1042,11 +1042,11 @@ typedef union cvmx_sriox_bell_resp_ctrl cvmx_sriox_bell_resp_ctrl_t;
  * and index has a 6-bit selector to pick a bit out of the incoming
  * doorbell using the following:
  *
- *   35-34  Doorbell Priority [1:0]
- *   33       Secondary ID (1=Packet Matched Enabled Secondary ID8 or ID16)
- *   32       ID8/ID16 bit (1=Packet used 16-bit Device IDs)
- *   31-16  Source ID [15:0]
- *   15-0   Doorbell Payload [15:0]
+ *   35-34  Doorbell Priority [1:0].
+ *   33       Secondary ID (1=Packet Matched Enabled Secondary ID8 or ID16).
+ *   32       ID8/ID16 bit (1=Packet used 16-bit Device IDs).
+ *   31-16  Source ID [15:0].
+ *   15-0   Doorbell Payload [15:0].
  *
  * This register is reset by the h-clock reset.
  */
@@ -1276,10 +1276,10 @@ union cvmx_sriox_ecc_ctrl {
 	uint64_t u64;
 	struct cvmx_sriox_ecc_ctrl_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t ecc_dis                      : 1;  /**< Disable ECC Checking on all SRIO internal memories.
+	uint64_t ecc_dis                      : 1;  /**< Disable ECC checking on all SRIO internal memories.
                                                          Typically set to zero. */
 	uint64_t reserved_44_62               : 19;
-	uint64_t flip                         : 44; /**< Error Insertion Bits for ECC syndromes.  Two per RAM.  Typically set to zero. */
+	uint64_t flip                         : 44; /**< Error insertion bits for ECC syndromes.  Two per RAM.  Typically set to zero. */
 #else
 	uint64_t flip                         : 44;
 	uint64_t reserved_44_62               : 19;
@@ -1301,9 +1301,9 @@ union cvmx_sriox_ecc_status {
 	struct cvmx_sriox_ecc_status_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_54_63               : 10;
-	uint64_t dbe                          : 22; /**< Double Bit Error detected.  Set bit indicates failure. */
+	uint64_t dbe                          : 22; /**< Double bit error detected.  Set bit indicates failure. */
 	uint64_t reserved_22_31               : 10;
-	uint64_t sbe                          : 22; /**< Single Bit Error detected.  Set bit indicates failure. */
+	uint64_t sbe                          : 22; /**< Single bit error detected.  Set bit indicates failure. */
 #else
 	uint64_t sbe                          : 22;
 	uint64_t reserved_22_31               : 10;
@@ -1374,29 +1374,29 @@ union cvmx_sriox_imsg_ctrl {
                                                          0x3 = Size-based (SP to port 0, MP to port 1).
                                                          0x4 = ID-based (pri ID to port 0, sec ID to port 1). */
 	uint64_t lttr                         : 4;  /**< Port/controller selection letter table.
-                                                         Type 11 Traffic Supports 4 Letters (A-D).
-                                                         0000 = All Letters to port 0.
-                                                         0001 = Letter A to port 1, others to port 0.
+                                                         Type 11 traffic supports 4 letters (A-D).
+                                                         0x0 = All letters to port 0.
+                                                         0x1 = Letter A to port 1, others to port 0.
                                                          - ....
-                                                         0101 = Letter A,C to port 1, others to port 0.
+                                                         0x5 = Letter A,C to port 1, others to port 0.
                                                          - ....
-                                                         1111 = All Letters to port 1. */
+                                                         0xF = All letters to port 1. */
 	uint64_t prio                         : 4;  /**< Port/controller selection priority table.
-                                                         SRIO Supports 4 Priorities (0-3).
-                                                         0000 = All Priorities to port 0.
-                                                         0001 = Priority 0 to port 1, others to port 0.
+                                                         SRIO supports 4 priorities (0-3).
+                                                         0x0 = All priorities to port 0.
+                                                         0x1 = Priority 0 to port 1, others to port 0.
                                                          - ....
-                                                         1001 = Priority 0,3 to port 1, others to port 0.
+                                                         0x9 = Priority 0,3 to port 1, others to port 0.
                                                          - ....
-                                                         1111 = All Priorities to port 1. */
+                                                         0xF = All priorities to port 1. */
 	uint64_t mbox                         : 4;  /**< Port/controller selection mailbox table.
-                                                         TYpe 11 Traffic Supports 4 Mailboxes (0-3).
-                                                         0000 = All Mailboxes to port 0.
-                                                         0001 = Mailbox 0 to port 1, others to port 0.
+                                                         Type 11 traffic supports 4 mailboxes (0-3).
+                                                         0x0 = All mailboxes to port 0.
+                                                         0x1 = Mailbox 0 to port 1, others to port 0.
                                                          - ....
-                                                         0110 = Mailboxes 1,2 to port 1, others to port 0.
+                                                         0x6 = Mailboxes 1,2 to port 1, others to port 0.
                                                          - ....
-                                                         1111 = All Mailboxes to port 1. */
+                                                         0xF = All mailboxes to port 1. */
 #else
 	uint64_t mbox                         : 4;
 	uint64_t prio                         : 4;
@@ -1481,7 +1481,7 @@ union cvmx_sriox_imsg_inst_hdrx {
 	struct cvmx_sriox_imsg_inst_hdrx_cn63xx cn66xx;
 	struct cvmx_sriox_imsg_inst_hdrx_cnf75xx {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t hdr                          : 64; /**< PKI Instruction Header word */
+	uint64_t hdr                          : 64; /**< PKI instruction header word. */
 #else
 	uint64_t hdr                          : 64;
 #endif
@@ -1684,9 +1684,9 @@ typedef union cvmx_sriox_imsg_statusx cvmx_sriox_imsg_statusx_t;
  *
  * This register allocates the virtual ports (vports) between the two
  * inbound message ports used by each SRIO MAC.  These channels are also
- * know as Reassembly IDs (RIDs) on some of the other devices.  Care must
+ * known as reassembly IDs (RIDs) on some of the other devices.  Care must
  * be taken to avoid using the same vport on more than one device.  The
- * 75xx default settings do create a conflict that force reprograming this
+ * 75xx default settings create a conflict that forces reprogramming this
  * register before message traffic can be enabled.  The typical 75xx vport
  * IDs allocations allow the SRIO MACS to use vports 6 thru 95.  The default
  * csr values allocate the following:
@@ -1704,7 +1704,7 @@ typedef union cvmx_sriox_imsg_statusx cvmx_sriox_imsg_statusx_t;
  *   2.  Switching the SRIO0 BASE to 6 and the SRIO1 BASE to 51 allows
  *       vports 6 thru 95 to be allocated.
  *   3.  If a single SRIO handles inbound message traffic then setting
- *       SRIOn BASE = 8, MAX_TOT = 47, SP_EN = 1
+ *       SRIOn BASE = 8, MAX_TOT = 47, SP_EN = 1.
  *   4.  If Single Packet message are uncommon then setting SP_EN = 0
  *       on both SRIOs.
  *
@@ -1730,9 +1730,9 @@ union cvmx_sriox_imsg_vport_thr {
                                                          MAX_TOT value must be greater than or equal to the value in BUF_THR to
                                                          effectively limit the number of vports used. */
 	uint64_t reserved_46_47               : 2;
-	uint64_t max_s1                       : 6;  /**< Diagnostic Use only.  Must be written to 0x30 for normal operation. */
+	uint64_t max_s1                       : 6;  /**< Diagnostic use only.  Must be written to 0x30 for normal operation. */
 	uint64_t reserved_38_39               : 2;
-	uint64_t max_s0                       : 6;  /**< Diagnostic Use only.  Must be written to 0x30 for normal operation. */
+	uint64_t max_s0                       : 6;  /**< Diagnostic use only.  Must be written to 0x30 for normal operation. */
 	uint64_t sp_vport                     : 1;  /**< Single-segment vport pre-allocation.
                                                          When set, single-segment messages use pre-allocated
                                                          vport slots and a single port is removed from the
@@ -2093,15 +2093,15 @@ typedef union cvmx_sriox_int_enable cvmx_sriox_int_enable_t;
  * detected.  Once the interrupt is cleared then additional information can be captured.
  * Common errors include:
  *
- *   1.  Load/Stores with Length over 32.
+ *   1.  Load/stores with length over 32.
  *
- *   2.  Load/Stores that translate to Maintenance Ops with a length over 8.
+ *   2.  Load/stores that translate to maintenance ops with a length over 8.
  *
- *   3.  Load Ops that translate to Atomic Ops with other than 1, 2 and 4 byte accesses.
+ *   3.  Load ops that translate to atomic ops with other than 1, 2 and 4 byte accesses.
  *
- *   4.  Load/Store Ops with a Length 0.
+ *   4.  Load/store ops with a length 0.
  *
- *   5.  Unexpected Responses.
+ *   5.  Unexpected responses.
  *
  * This register is reset by the h-clock reset.
  */
@@ -2115,7 +2115,7 @@ union cvmx_sriox_int_info0 {
                                                          0x8 = Response, outgoing read response.
                                                          _ All others are reserved and generate errors. */
 	uint64_t reserved_56_59               : 4;
-	uint64_t tag                          : 8;  /**< Internal Transaction Number */
+	uint64_t tag                          : 8;  /**< Internal transaction number */
 	uint64_t reserved_42_47               : 6;
 	uint64_t length                       : 10; /**< Data length in 64-bit words (load/store only). */
 	uint64_t status                       : 3;  /**< Response status.
@@ -2181,7 +2181,7 @@ union cvmx_sriox_int_info0 {
 	uint64_t typ                          : 4;  /**< Command type.
                                                          Load/store SRIO_S2M_TYPE used.
                                                          Response (Reserved). */
-	uint64_t tag                          : 8;  /**< Internal Transaction Number */
+	uint64_t tag                          : 8;  /**< Internal transaction number */
 	uint64_t reserved_47_42               : 6;
 	uint64_t length                       : 10; /**< Data length in 64-bit words (load/store only). */
 	uint64_t status                       : 3;  /**< Response status.
@@ -2399,7 +2399,7 @@ typedef union cvmx_sriox_int_info3 cvmx_sriox_int_info3_t;
  * this register can be accessed even when SRIO is in reset.
  * Any set bits written to this register clear the
  * corresponding interrupt.  The RXBELL interrupt is cleared by reading all the entries in the
- * incoming Doorbell FIFO.  OMSG_ERR is set when
+ * incoming doorbell FIFO.  OMSG_ERR is set when
  * an invalid SRIO_OMSG_HDR_S is received.  The SRIO_OMSG_HDR_S is deemed to be invalid if
  * the SSIZE field is set to a reserved value, the SSIZE field combined with the packet length
  * would result in more than 16 message segments, or the packet only contains a SRIO_OMSG_HDR_S
@@ -2684,7 +2684,7 @@ union cvmx_sriox_int_reg {
                                                          When one or more of the segments in an outgoing
                                                          message have a RTRY_ERR, SRIO will not set
                                                          OMSG* after the message "transfer". */
-	uint64_t pko_rst_err                  : 1;  /**< PKO Reset Error - Message Received from PKO while MAC in reset. */
+	uint64_t pko_rst_err                  : 1;  /**< PKO reset error - message received from PKO while MAC in reset. */
 	uint64_t omsg_err                     : 1;  /**< Outbound message invalid SRIO_OMSG_HDR_S error.
                                                          See SRIO()_INT_INFO2. */
 	uint64_t omsg1                        : 1;  /**< Controller 1 outbound message complete.
@@ -2840,7 +2840,7 @@ typedef union cvmx_sriox_int_w1s cvmx_sriox_int_w1s_t;
  * cvmx_srio#_ip_feature
  *
  * This register is used to override powerup values used by the
- * SRIOMAINT Registers and QLM configuration.  The register is
+ * SRIOMAINT registers and QLM configuration.  The register is
  * only reset during COLD boot.  It should only be modified only
  * while SRIO()_STATUS_REG[ACCESS] is zero.
  *
@@ -2859,17 +2859,17 @@ union cvmx_sriox_ip_feature {
                                                          alignment.
                                                          1 = Wait only for 127 comma characters before
                                                          starting alignment. (SRIO V1.3 Compatable). */
-	uint64_t a66                          : 1;  /**< 66-bit Address Support.  Value for bit 2 of the
+	uint64_t a66                          : 1;  /**< 66-bit address support.  Value for bit 2 of the
                                                          EX_ADDR field in the SRIOMAINT()_PE_FEAT register. */
-	uint64_t a50                          : 1;  /**< 50-bit Address Support.  Value for bit 1 of the
+	uint64_t a50                          : 1;  /**< 50-bit address support.  Value for bit 1 of the
                                                          EX_ADDR field in the SRIOMAINT()_PE_FEAT register. */
 	uint64_t reserved_11_11               : 1;
 	uint64_t tx_flow                      : 1;  /**< Reset value for SRIOMAINT()_IR_BUFFER_CONFIG[TX_FLOW]. */
 	uint64_t pt_width                     : 2;  /**< Reset value for SRIOMAINT()_PORT_0_CTL[PT_WIDTH]. */
-	uint64_t tx_pol                       : 4;  /**< TX Serdes polarity lanes 3-0.
+	uint64_t tx_pol                       : 4;  /**< TX SerDes polarity lanes 3-0.
                                                          0 = Normal operation.
                                                          1 = Invert, Swap +/- Tx SERDES pins. */
-	uint64_t rx_pol                       : 4;  /**< RX Serdes polarity lanes 3-0.
+	uint64_t rx_pol                       : 4;  /**< RX SerDes polarity lanes 3-0.
                                                          0 = Normal operation.
                                                          1 = Invert, Swap +/- Rx SERDES pins. */
 #else
@@ -2943,29 +2943,29 @@ union cvmx_sriox_mac_buffers {
 	struct cvmx_sriox_mac_buffers_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_56_63               : 8;
-	uint64_t tx_enb                       : 8;  /**< TX Buffer Enable.  Each bit enables a specific TX
-                                                         Buffer.  At least 2 of these bits must be set for
+	uint64_t tx_enb                       : 8;  /**< TX buffer enable.  Each bit enables a specific TX
+                                                         buffer.  At least 2 of these bits must be set for
                                                          proper operation.  These bits must be cleared to
-                                                         and then set again to reuese the buffer after an
+                                                         and then set again to reuse the buffer after an
                                                          error occurs. */
 	uint64_t reserved_44_47               : 4;
 	uint64_t tx_inuse                     : 4;  /**< Number of TX buffers containing packets waiting
                                                          to be transmitted or to be acknowledged. */
-	uint64_t tx_stat                      : 8;  /**< Errors detected in main SRIO Transmit Buffers.
+	uint64_t tx_stat                      : 8;  /**< Errors detected in main SRIO transmit buffers.
                                                          CRC error detected in buffer sets the corresponding bit
                                                          until the corresponding TX_ENB is disabled.  Each
                                                          bit set causes the SRIO()_INT_REG[MAC_BUF]
                                                          interrupt. */
 	uint64_t reserved_24_31               : 8;
-	uint64_t rx_enb                       : 8;  /**< RX Buffer Enable.  Each bit enables a specific RX
+	uint64_t rx_enb                       : 8;  /**< RX buffer enable.  Each bit enables a specific RX
                                                          Buffer.  At least 2 of these bits must be set for
                                                          proper operation.  These bits must be cleared to
-                                                         and then set again to reuese the buffer after an
+                                                         and then set again to reuse the buffer after an
                                                          error occurs. */
 	uint64_t reserved_12_15               : 4;
 	uint64_t rx_inuse                     : 4;  /**< Number of RX buffers containing valid packets
                                                          waiting to be processed by the logical layer. */
-	uint64_t rx_stat                      : 8;  /**< Errors detected in main SRIO Receive Buffers.  CRC
+	uint64_t rx_stat                      : 8;  /**< Errors detected in main SRIO receive buffers.  CRC
                                                          error detected in buffer sets the corresponding bit
                                                          until the corresponding RX_ENB is disabled.  Each
                                                          bit set causes the SRIO()_INT_REG[MAC_BUF]
@@ -3064,8 +3064,8 @@ typedef union cvmx_sriox_maint_rd_data cvmx_sriox_maint_rd_data_t;
 /**
  * cvmx_srio#_mce_tx_ctl
  *
- * Writes to this register cause the SRIO device to generate a Multicast Event.
- * Setting the MCE bit requests the logic to generate the Multicast Event Symbol.
+ * Writes to this register cause the SRIO device to generate a multicast event.
+ * Setting the MCE bit requests the logic to generate the multicast event symbol.
  * Reading the bit shows the status of the transmit event.  The hardware will
  * clear the bit when the event has been transmitted and set the MCE_TX Interrupt.
  *
@@ -3143,7 +3143,7 @@ typedef union cvmx_sriox_mem_op_ctrl cvmx_sriox_mem_op_ctrl_t;
  *
  * 1) If IDM_TT, IDM_SIS, and IDM_DID are all clear, then the "ID match" will always be false.
  *
- * 2) LTTR_SP and LTTR_MP must be non-zero at all times, otherwise the message output queue can
+ * 2) LTTR_SP and LTTR_MP must be nonzero at all times, otherwise the message output queue can
  * get blocked.
  *
  * 3) TESTMODE has no function on controller 1.
@@ -3220,7 +3220,7 @@ typedef union cvmx_sriox_omsg_ctrlx cvmx_sriox_omsg_ctrlx_t;
 /**
  * cvmx_srio#_omsg_done_counts#
  *
- * This register shows the number of successful and unsuccessful Outgoing Messages issued
+ * This register shows the number of successful and unsuccessful outgoing messages issued
  * through this controller.  The only messages considered are the ones with
  * SRIO_OMSG_HDR_S[INTR] set.  This register is typically not written while Outbound
  * SRIO Memory traffic is enabled.  The sum of the GOOD and BAD counts should equal the
@@ -3594,7 +3594,7 @@ union cvmx_sriox_omsg_silo_thr {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_5_63                : 59;
 	uint64_t tot_silo                     : 5;  /**< Sets max number segments in flight for all
-                                                         controllers.  Valid range is 0x01 .. 0x10 but
+                                                         controllers.  Valid range is 0x01..0x10 but
                                                          lower values reduce bandwidth. */
 #else
 	uint64_t tot_silo                     : 5;
@@ -3765,7 +3765,7 @@ typedef union cvmx_sriox_omsg_sp_mrx cvmx_sriox_omsg_sp_mrx_t;
  * cvmx_srio#_prio#_in_use
  *
  * These registers provide status information on the number of
- * read/write requests pending in the S2M Priority FIFOs.
+ * read/write requests pending in the S2M priority FIFOs.
  * The information can be used to help determine when an S2M_TYPE
  * register can be reallocated.  For example, if an S2M_TYPE
  * is used N times in a DMA write operation and the DMA has
@@ -3800,10 +3800,10 @@ typedef union cvmx_sriox_priox_in_use cvmx_sriox_priox_in_use_t;
 /**
  * cvmx_srio#_rx_bell
  *
- * This register contains the SRIO Information, Device ID, Transaction Type
- * and Priority of the incoming Doorbell Transaction as well as the number
+ * This register contains the SRIO information, device ID, transaction type
+ * and priority of the incoming doorbell transaction as well as the number
  * of transactions waiting to be read.  Reading this register causes a
- * Doorbell to be removed from the RX Bell FIFO and the COUNT to be decremented.
+ * doorbell to be removed from the RX Bell FIFO and the COUNT to be decremented.
  * If the COUNT is zero then the FIFO is empty and the other fields should be
  * considered invalid.  When the FIFO is full an ERROR is automatically issued.
  * The RXBELL Interrupt can be used to detect posts to this FIFO.
@@ -3816,7 +3816,7 @@ union cvmx_sriox_rx_bell {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
 	uint64_t data                         : 16; /**< Information field from received doorbell. */
-	uint64_t src_id                       : 16; /**< Doorbell Source Device ID[15:0]. */
+	uint64_t src_id                       : 16; /**< Doorbell source device ID[15:0]. */
 	uint64_t count                        : 8;  /**< RX bell FIFO count.
                                                          Count must be > 0x0 for entry to be valid. */
 	uint64_t reserved_5_7                 : 3;
@@ -3864,7 +3864,7 @@ union cvmx_sriox_rx_bell {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
 	uint64_t data                         : 16; /**< Information field from received doorbell. */
-	uint64_t src_id                       : 16; /**< Doorbell Source Device ID[15:0]. */
+	uint64_t src_id                       : 16; /**< Doorbell source device ID[15:0]. */
 	uint64_t count                        : 8;  /**< RX bell FIFO count.
                                                          Count must be > 0x0 for entry to be valid. */
 	uint64_t reserved_5_7                 : 3;
@@ -3890,7 +3890,7 @@ typedef union cvmx_sriox_rx_bell cvmx_sriox_rx_bell_t;
 /**
  * cvmx_srio#_rx_bell_ctrl
  *
- * This register is used to control the number and size of RX Doorbell FIFOs.
+ * This register is used to control the number and size of RX doorbell FIFOs.
  * The NUM_FIFO field should only be changed when SRIOMAINT()_CORE_ENABLES[DOORBELL]
  * is disabled and the FIFOs are empty or doorbells may be lost.
  *
@@ -3926,7 +3926,7 @@ typedef union cvmx_sriox_rx_bell_ctrl cvmx_sriox_rx_bell_ctrl_t;
  * cvmx_srio#_rx_bell_seq
  *
  * This register contains the value of the sequence counter when the doorbell
- * was received and a shadow copy of the Bell FIFO Count that can be read without
+ * was received and a shadow copy of the bell FIFO count that can be read without
  * emptying the FIFO.  This register must be read prior to SRIO()_RX_BELL to
  * guarantee that the information corresponds to the correct doorbell.
  *
@@ -3956,7 +3956,7 @@ typedef union cvmx_sriox_rx_bell_seq cvmx_sriox_rx_bell_seq_t;
 /**
  * cvmx_srio#_rx_status
  *
- * Debug Register specifying the number of credits/responses
+ * Debug register specifying the number of credits/responses
  * currently in use for inbound traffic.  The maximum value
  * for COMP, N_POST and POST is set in SRIO()_TLP_CREDITS.
  * When all inbound traffic has stopped the values should
@@ -4040,9 +4040,9 @@ union cvmx_sriox_s2m_typex {
 	struct cvmx_sriox_s2m_typex_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_19_63               : 45;
-	uint64_t wr_op                        : 3;  /**< Write Operation.  See SRIO_WR_OP_E for details. */
+	uint64_t wr_op                        : 3;  /**< Write operation.  See SRIO_WR_OP_E for details. */
 	uint64_t reserved_15_15               : 1;
-	uint64_t rd_op                        : 3;  /**< Read Operation.  see SRIO_RD_OP_E for details. */
+	uint64_t rd_op                        : 3;  /**< Read operation.  see SRIO_RD_OP_E for details. */
 	uint64_t wr_prior                     : 2;  /**< Transaction priority 0-3 used for writes. */
 	uint64_t rd_prior                     : 2;  /**< Transaction priority 0-3 used for reads/ATOMICs */
 	uint64_t reserved_6_7                 : 2;
@@ -4120,7 +4120,7 @@ union cvmx_sriox_status_reg {
 	struct cvmx_sriox_status_reg_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_9_63                : 55;
-	uint64_t host                         : 1;  /**< SRIO Host Setting.  This field is initialized on a cold reset based on the
+	uint64_t host                         : 1;  /**< SRIO host setting.  This field is initialized on a cold reset based on the
                                                          value of the corresponding SRIOx_SPD pins. If the pins are set to 15 then
                                                          the port is disabled and HOST is set otherwise it is initialized as an endpoint
                                                          (HOST is cleared).  The values in this field are used to determine
@@ -4129,7 +4129,7 @@ union cvmx_sriox_status_reg {
                                                          enabled.
                                                           0 = SRIO port is endpoint (EP).
                                                           1 = SRIO port is host. */
-	uint64_t spd                          : 4;  /**< SRIO Speed Setting.  This field is initialized on a cold reset based on the
+	uint64_t spd                          : 4;  /**< SRIO speed setting.  This field is initialized on a cold reset based on the
                                                          value of the corresponding SRIOx_SPD pins. The values in this field are
                                                          used to determine the setting in the SRIOMAINT()_PORT_0_CTL2 register and to
                                                          the QLM PLL setting.  The value is not modified during a warm or soft reset
@@ -4152,7 +4152,7 @@ union cvmx_sriox_status_reg {
                                                           0xE = 3.125G  156.25 MHz reference.
                                                           0xF =         Interface disabled.
                                                          </pre> */
-	uint64_t run_type                     : 2;  /**< SRIO Run Type.  This field is initialized on a cold reset based on the
+	uint64_t run_type                     : 2;  /**< SRIO run type.  This field is initialized on a cold reset based on the
                                                          value of the corresponding SRIOx_TYPE pin.  The values in this field are
                                                          used to determine tx/rx type settings in the SRIOMAINT()_LANE_()_STATUS_0
                                                          registers.  The value is not modified during a warm or soft reset and should
@@ -4211,7 +4211,7 @@ union cvmx_sriox_tag_ctrl {
 	struct cvmx_sriox_tag_ctrl_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_17_63               : 47;
-	uint64_t o_clr                        : 1;  /**< Manual OTAG Clear.  This bit manually resets the
+	uint64_t o_clr                        : 1;  /**< Manual OTAG clear.  This bit manually resets the
                                                          number of OTAGs back to 16 and loses track of any
                                                          outgoing packets.  This function is automatically
                                                          performed when the SRIO MAC is reset but it may be
@@ -4312,9 +4312,9 @@ typedef union cvmx_sriox_tlp_credits cvmx_sriox_tlp_credits_t;
  * priority of the outgoing doorbell transaction.  Writes to this register
  * cause the doorbell to be issued using these bits.  The write also causes the
  * PENDING bit to be set. The hardware automatically clears bit when the
- * Doorbell operation has been acknowledged.  A write to this register while
+ * doorbell operation has been acknowledged.  A write to this register while
  * the PENDING bit is set should be avoided as it will stall the RSL until
- * the first Doorbell has completed.
+ * the first doorbell has completed.
  *
  * This register is reset by the h-clock reset.
  */
@@ -4328,8 +4328,8 @@ union cvmx_sriox_tx_bell {
 	uint64_t reserved_9_15                : 7;
 	uint64_t pending                      : 1;  /**< Doorbell transmit in progress. */
 	uint64_t reserved_5_7                 : 3;
-	uint64_t src_id                       : 1;  /**< Source device ID 0=primary, 1=secondary. */
-	uint64_t id16                         : 1;  /**< Transaction type, 0=use ID[7:0], 1=use ID[15:0]. */
+	uint64_t src_id                       : 1;  /**< Source device ID. 0=primary, 1=secondary. */
+	uint64_t id16                         : 1;  /**< Transaction type: 0=use ID[7:0], 1=use ID[15:0]. */
 	uint64_t reserved_0_2                 : 3;
 #else
 	uint64_t reserved_0_2                 : 3;
@@ -4378,8 +4378,8 @@ union cvmx_sriox_tx_bell {
 	uint64_t reserved_9_15                : 7;
 	uint64_t pending                      : 1;  /**< Doorbell transmit in progress. */
 	uint64_t reserved_5_7                 : 3;
-	uint64_t src_id                       : 1;  /**< Source device ID 0=primary, 1=secondary. */
-	uint64_t id16                         : 1;  /**< Transaction type, 0=use ID[7:0], 1=use ID[15:0]. */
+	uint64_t src_id                       : 1;  /**< Source device ID. 0=primary, 1=secondary. */
+	uint64_t id16                         : 1;  /**< Transaction type: 0=use ID[7:0], 1=use ID[15:0]. */
 	uint64_t reserved_2_2                 : 1;
 	uint64_t prior                        : 2;  /**< Doorbell priority. */
 #else
@@ -4402,8 +4402,8 @@ typedef union cvmx_sriox_tx_bell cvmx_sriox_tx_bell_t;
  * cvmx_srio#_tx_bell_info
  *
  * This register is only updated if the BELL_ERR bit is clear in SRIO()_INT_REG.
- * This register displays SRIO Information, Device ID, Transaction Type and
- * Priority of the Doorbell Transaction that generated the BELL_ERR Interrupt.
+ * This register displays SRIO information, device ID, transaction type and
+ * priority of the doorbell transaction that generated the BELL_ERR interrupt.
  * The register includes either a RETRY, ERROR or TIMEOUT Status.
  *
  * This register is reset by the h-clock reset.
@@ -4419,8 +4419,8 @@ union cvmx_sriox_tx_bell_info {
 	uint64_t timeout                      : 1;  /**< Transmit doorbell failed with timeout. */
 	uint64_t error                        : 1;  /**< Transmit doorbell destination returned error. */
 	uint64_t retry                        : 1;  /**< Transmit doorbell requests a retransmission. */
-	uint64_t src_id                       : 1;  /**< Source device id 0=primary, 1=secondary. */
-	uint64_t id16                         : 1;  /**< Transaction type, 0=use ID[7:0], 1=use ID[15:0]. */
+	uint64_t src_id                       : 1;  /**< Source device ID. 0=primary, 1=secondary. */
+	uint64_t id16                         : 1;  /**< Transaction type: 0=use ID[7:0], 1=use ID[15:0]. */
 	uint64_t reserved_0_2                 : 3;
 #else
 	uint64_t reserved_0_2                 : 3;
@@ -4473,8 +4473,8 @@ union cvmx_sriox_tx_bell_info {
 	uint64_t timeout                      : 1;  /**< Transmit doorbell failed with timeout. */
 	uint64_t error                        : 1;  /**< Transmit doorbell destination returned error. */
 	uint64_t retry                        : 1;  /**< Transmit doorbell requests a retransmission. */
-	uint64_t src_id                       : 1;  /**< Source device id 0=primary, 1=secondary. */
-	uint64_t id16                         : 1;  /**< Transaction type, 0=use ID[7:0], 1=use ID[15:0]. */
+	uint64_t src_id                       : 1;  /**< Source device ID. 0=primary, 1=secondary. */
+	uint64_t id16                         : 1;  /**< Transaction type: 0=use ID[7:0], 1=use ID[15:0]. */
 	uint64_t reserved_2_2                 : 1;
 	uint64_t prior                        : 2;  /**< Doorbell priority. */
 #else
@@ -4497,12 +4497,12 @@ typedef union cvmx_sriox_tx_bell_info cvmx_sriox_tx_bell_info_t;
 /**
  * cvmx_srio#_tx_ctrl
  *
- * This register is used to control SRIO Outgoing Packet Allocation.
+ * This register is used to control SRIO outgoing packet allocation.
  * TAG_TH[2:0] set the thresholds to allow priority traffic requiring
  * responses to be queued based on the number of outgoing tags (TIDs)
  * available.  16 Tags are available.  If a priority is blocked for
  * lack of tags then all lower priority packets are also blocked
- * irregardless of whether they require tags.
+ * regardless of whether they require tags.
  *
  * This register is reset by the h-clock reset.
  */
@@ -4591,7 +4591,7 @@ typedef union cvmx_sriox_tx_emphasis cvmx_sriox_tx_emphasis_t;
 /**
  * cvmx_srio#_tx_status
  *
- * Debug Register specifying the number of credits/ops currently
+ * Debug register specifying the number of credits/ops currently
  * in use for Outbound Traffic.  When all outbound traffic has
  * stopped the values should eventually return to the reset values.
  *
@@ -4626,13 +4626,13 @@ typedef union cvmx_sriox_tx_status cvmx_sriox_tx_status_t;
  *
  * This register shows the number of successful and unsuccessful
  * NwriteRs issued through this MAC.  These count only considers
- * the last NwriteR generated by each Store Instruction.  If any
+ * the last NwriteR generated by each store instruction.  If any
  * NwriteR in the series receives an ERROR Status then it is reported
  * in SRIOMAINT()_ERB_LT_ERR_DET[IO_ERR].  If any NwriteR does not
  * receive a response within the timeout period then it is reported in
  * SRIOMAINT()_ERB_LT_ERR_DET[PKT_TOUT].  Only errors on the last NwriteR's
  * are counted as BAD.  This register is typically not written while
- * Outbound SRIO Memory traffic is enabled.
+ * outbound SRIO Memory traffic is enabled.
  *
  * This register is reset by the h-clock reset.
  */

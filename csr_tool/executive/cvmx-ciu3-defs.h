@@ -375,6 +375,8 @@ typedef union cvmx_ciu3_ctl cvmx_ciu3_ctl_t;
  *
  * This register contains reduced interrupt source numbers for delivery to software, indexed by
  * I/O bridge number. Fields are identical to CIU3_DEST()_PP_INT.
+ *
+ * None of CIU3_DEST(CIU_DEST_IO_E::SRIO(*))_IO_INT should be used.
  */
 union cvmx_ciu3_destx_io_int {
 	uint64_t u64;
@@ -511,7 +513,8 @@ union cvmx_ciu3_idtx_io {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_5_63                : 59;
 	uint64_t io                           : 5;  /**< Bitmask of which IO bridges or MCD to receive interrupts via this IDT.
-                                                         Enumerated by CIU_DEST_IO_E. */
+                                                         Enumerated by CIU_DEST_IO_E.
+                                                         All of bits [IO<CIU_DEST_IO_E::SRIO(*)>] must be clear. */
 #else
 	uint64_t io                           : 5;
 	uint64_t reserved_5_63                : 59;
@@ -682,7 +685,7 @@ union cvmx_ciu3_iscx_ctl {
 	struct cvmx_ciu3_iscx_ctl_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_24_63               : 40;
-	uint64_t idt                          : 8;  /**< Interrupt Delivery Table entry number. Zero indicates IDT delivery is disabled. This field
+	uint64_t idt                          : 8;  /**< Interrupt delivery table entry number. Zero indicates IDT delivery is disabled. This field
                                                          may only be changed when EN was previously clear, though it may be changed with the same
                                                          write that sets EN. Thus if EN is set, to change IDT two register writes are required, the
                                                          first to clear EN (perhaps by a store to CIU3_ISC()_W1C), and the second to make

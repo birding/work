@@ -536,12 +536,12 @@ union cvmx_spemx_bar_ctl {
 	uint64_t reserved_7_63                : 57;
 	uint64_t bar1_siz                     : 3;  /**< PCIe Port 0 Bar1 Size. Must be 0x1 in EP mode.
                                                          0x0 = Reserved.
-                                                         0x1 = 64 MB.
-                                                         0x2 = 128 MB.
-                                                         0x3 = 256 MB.
-                                                         0x4 = 512 MB.
-                                                         0x5 = 1024 MB.
-                                                         0x6 = 2048 MB.
+                                                         0x1 = 64 MB; 2^26.
+                                                         0x2 = 128 MB; 2^27.
+                                                         0x3 = 256 MB; 2^28.
+                                                         0x4 = 512 MB; 2^29.
+                                                         0x5 = 1024 MB; 2^30.
+                                                         0x6 = 2048 MB; 2^31.
                                                          0x7 = Reserved. */
 	uint64_t bar2_enb                     : 1;  /**< When set to 1, BAR2 is enabled and will respond; when clear, BAR2 access will cause UR responses. */
 	uint64_t bar2_esx                     : 2;  /**< Value is XORed with PCIe address [43:42] to determine the endian swap mode.
@@ -574,10 +574,10 @@ union cvmx_spemx_bist_status {
 	uint64_t m2nqm                        : 1;  /**< BIST status for m2nqm_fifo. */
 	uint64_t retryc                       : 1;  /**< Retry buffer memory C. */
 	uint64_t sot                          : 1;  /**< Start of transfer memory. */
-	uint64_t rqhdrb0                      : 1;  /**< Rx queue header memory buffer 0. */
-	uint64_t rqhdrb1                      : 1;  /**< Rx queue header memory buffer 1. */
-	uint64_t rqdatab0                     : 1;  /**< Rx queue data buffer 0. */
-	uint64_t rqdatab1                     : 1;  /**< Rx queue data buffer 1. */
+	uint64_t rqhdrb0                      : 1;  /**< RX queue header memory buffer 0. */
+	uint64_t rqhdrb1                      : 1;  /**< RX queue header memory buffer 1. */
+	uint64_t rqdatab0                     : 1;  /**< RX queue data buffer 0. */
+	uint64_t rqdatab1                     : 1;  /**< RX queue data buffer 1. */
 	uint64_t tlpn_d0                      : 1;  /**< BIST status for SLI & NQM tlp_n_fifo_data0. */
 	uint64_t tlpn_d1                      : 1;  /**< BIST status for SLI & NQM tlp_n_fifo_data1. */
 	uint64_t tlpn_ctl                     : 1;  /**< BIST status for SLI & NQM tlp_n_fifo_ctl. */
@@ -806,8 +806,8 @@ union cvmx_spemx_ctl_status {
                                                          does not carry a retry status. Until such time that the timeout occurs and retry status is
                                                          received for a configuration read, the read will be resent. A value of 0 disables retries
                                                          and treats a CPL Retry as a CPL UR.
-                                                         To use, it is recommended CFG_RTRY be set value corresponding to 200ms or less, although
-                                                         the PCI Express Base Specification allows up to 900ms for a device to send a successful
+                                                         To use, it is recommended CFG_RTRY be set value corresponding to 200 ms or less, although
+                                                         the PCI Express Base Specification allows up to 900 ms for a device to send a successful
                                                          completion.  When enabled, only one CFG RD may be issued until either successful
                                                          completion or CPL UR. */
 	uint64_t reserved_14_15               : 2;
@@ -983,7 +983,7 @@ union cvmx_spemx_dbg_info {
                                                          Throws corresponding SPEM_INTSN_E::SPEM()_ERROR_RQO. */
 	uint64_t fcuv                         : 1;  /**< Flow control update violation.
                                                          Throws corresponding SPEM_INTSN_E::SPEM()_ERROR_FCUV. */
-	uint64_t rpe                          : 1;  /**< PHY reported an 8B/10B decode error (RxStatus = 0x4) or disparity error (RxStatus =
+	uint64_t rpe                          : 1;  /**< PHY reported an 8 B/10 B decode error (RxStatus = 0x4) or disparity error (RxStatus =
                                                          0x7).
                                                          Throws corresponding SPEM_INTSN_E::SPEM()_ERROR_RPE. */
 	uint64_t fcpvwt                       : 1;  /**< Flow control protocol violation (watchdog timer).
@@ -1108,21 +1108,21 @@ union cvmx_spemx_diag_status {
 	struct cvmx_spemx_diag_status_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_30_63               : 34;
-	uint64_t pf2_pm_dst                   : 3;  /**< PF2 Current power management DSTATE. */
-	uint64_t pf2_pm_stat                  : 1;  /**< PF2 Power management status. */
-	uint64_t pf2_pm_en                    : 1;  /**< PF2 Power management event enable. */
-	uint64_t pf2_aux_en                   : 1;  /**< PF2 Auxiliary power enable. */
+	uint64_t pf2_pm_dst                   : 3;  /**< PF2 current power management DSTATE. */
+	uint64_t pf2_pm_stat                  : 1;  /**< PF2 power management status. */
+	uint64_t pf2_pm_en                    : 1;  /**< PF2 power management event enable. */
+	uint64_t pf2_aux_en                   : 1;  /**< PF2 auxiliary power enable. */
 	uint64_t reserved_22_23               : 2;
-	uint64_t pf1_pm_dst                   : 3;  /**< PF1 Current power management DSTATE. */
-	uint64_t pf1_pm_stat                  : 1;  /**< PF1 Power management status. */
-	uint64_t pf1_pm_en                    : 1;  /**< PF1 Power management event enable. */
-	uint64_t pf1_aux_en                   : 1;  /**< PF1 Auxiliary power enable. */
+	uint64_t pf1_pm_dst                   : 3;  /**< PF1 current power management DSTATE. */
+	uint64_t pf1_pm_stat                  : 1;  /**< PF1 power management status. */
+	uint64_t pf1_pm_en                    : 1;  /**< PF1 power management event enable. */
+	uint64_t pf1_aux_en                   : 1;  /**< PF1 auxiliary power enable. */
 	uint64_t reserved_9_15                : 7;
-	uint64_t pwrdwn                       : 3;  /**< PF0 Current mac_phy_powerdown state. */
-	uint64_t pm_dst                       : 3;  /**< PF0 Current power management DSTATE. */
-	uint64_t pm_stat                      : 1;  /**< PF0 Power management status. */
-	uint64_t pm_en                        : 1;  /**< PF0 Power management event enable. */
-	uint64_t aux_en                       : 1;  /**< PF0 Auxiliary power enable. */
+	uint64_t pwrdwn                       : 3;  /**< PF0 current mac_phy_powerdown state. */
+	uint64_t pm_dst                       : 3;  /**< PF0 current power management DSTATE. */
+	uint64_t pm_stat                      : 1;  /**< PF0 power management status. */
+	uint64_t pm_en                        : 1;  /**< PF0 power management event enable. */
+	uint64_t aux_en                       : 1;  /**< PF0 auxiliary power enable. */
 #else
 	uint64_t aux_en                       : 1;
 	uint64_t pm_en                        : 1;
@@ -1265,7 +1265,7 @@ typedef union cvmx_spemx_eco cvmx_spemx_eco_t;
 /**
  * cvmx_spem#_flr_glblcnt_ctl
  *
- * Function Level Reset Global Counter Control.
+ * Function level reset global counter control.
  *
  */
 union cvmx_spemx_flr_glblcnt_ctl {
@@ -1274,11 +1274,11 @@ union cvmx_spemx_flr_glblcnt_ctl {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_4_63                : 60;
 	uint64_t chge                         : 1;  /**< When set, the default 25ms expiration of the Function Level Reset
-                                                         Global Counter can be changed. */
+                                                         global counter can be changed. */
 	uint64_t inc                          : 1;  /**< When CHGE is set, this bit determines if the 25ms expiration of the Function
-                                                         Level Reset Global Counter will be increased (set) or decreased (not set). */
+                                                         Level Reset global counter will be increased (set) or decreased (not set). */
 	uint64_t delta                        : 2;  /**< When CHGE is set, this field determines the delta time to increase/decrease
-                                                         the 25ms expiration of the Function Level Reset Global Counter.
+                                                         the 25ms expiration of the Function Level Reset global counter.
                                                          0x0 = 1ms.
                                                          0x1 = 2ms.
                                                          0x2 = 4ms.
@@ -1297,9 +1297,9 @@ typedef union cvmx_spemx_flr_glblcnt_ctl cvmx_spemx_flr_glblcnt_ctl_t;
 /**
  * cvmx_spem#_flr_pf0_vf_stopreq
  *
- * PF0 Virtual Function Level Reset Stop Outbound Requests Register.
+ * PF0 virtual function level reset stop outbound requests register.
  * Hardware automatically sets the STOPREQ bit for the VF when it enters a
- * Function Level Reset (FLR).  Software is responsible for clearing the STOPREQ
+ * function level reset (FLR).  Software is responsible for clearing the STOPREQ
  * bit but must not do so prior to hardware taking down the FLR, which could be
  * as long as 100ms.  It may be appropriate for software to wait longer before clearing
  * STOPREQ, software may need to drain deep DPI queues for example.
@@ -1330,9 +1330,9 @@ typedef union cvmx_spemx_flr_pf0_vf_stopreq cvmx_spemx_flr_pf0_vf_stopreq_t;
 /**
  * cvmx_spem#_flr_pf1_vf_stopreq
  *
- * PF1 Virtual Function Level Reset Stop Outbound Requests Register.
+ * PF1 virtual function level reset stop outbound requests register.
  * Hardware automatically sets the STOPREQ bit for the VF when it enters a
- * Function Level Reset (FLR).  Software is responsible for clearing the STOPREQ
+ * function level reset (FLR).  Software is responsible for clearing the STOPREQ
  * bit but must not do so prior to hardware taking down the FLR, which could be
  * as long as 100ms.  It may be appropriate for software to wait longer before clearing
  * STOPREQ, software may need to drain deep DPI queues for example.
@@ -1363,9 +1363,9 @@ typedef union cvmx_spemx_flr_pf1_vf_stopreq cvmx_spemx_flr_pf1_vf_stopreq_t;
 /**
  * cvmx_spem#_flr_pf2_vf#_stopreq
  *
- * PF2 Virtual Function Level Reset Stop Outbound Requests Register.
+ * PF2 virtual function level reset stop outbound requests register.
  * Hardware automatically sets the STOPREQ bit for the VF when it enters a
- * Function Level Reset (FLR).  Software is responsible for clearing the STOPREQ
+ * function level reset (FLR).  Software is responsible for clearing the STOPREQ
  * bit but must not do so prior to hardware taking down the FLR, which could be
  * as long as 100ms.  It may be appropriate for software to wait longer before clearing
  * STOPREQ, software may need to drain deep DPI queues for example.
@@ -1396,9 +1396,9 @@ typedef union cvmx_spemx_flr_pf2_vfx_stopreq cvmx_spemx_flr_pf2_vfx_stopreq_t;
 /**
  * cvmx_spem#_flr_pf_stopreq
  *
- * PF Function Level Reset Stop Outbound Requests Register.
+ * PF function level reset stop outbound requests register.
  * Hardware automatically sets the STOPREQ bit for the PF when it enters a
- * Function Level Reset (FLR).  Software is responsible for clearing the STOPREQ
+ * function level reset (FLR).  Software is responsible for clearing the STOPREQ
  * bit but must not do so prior to hardware taking down the FLR, which could be
  * as long as 100ms.  It may be appropriate for software to wait longer before clearing
  * STOPREQ, software may need to drain deep DPI queues for example.
@@ -1441,7 +1441,7 @@ typedef union cvmx_spemx_flr_pf_stopreq cvmx_spemx_flr_pf_stopreq_t;
 /**
  * cvmx_spem#_flr_zombie_ctl
  *
- * Function Level Reset Global Zombie Counter Control Register
+ * Function level reset global zombie counter control register
  *
  */
 union cvmx_spemx_flr_zombie_ctl {
@@ -1451,9 +1451,9 @@ union cvmx_spemx_flr_zombie_ctl {
 	uint64_t reserved_10_63               : 54;
 	uint64_t exp                          : 10; /**< The expiration value for the inbound shared global zombie counter.  The global zombie
                                                          counter
-                                                         continously counts the number of cycles where the PCIe Core was allowed to send
+                                                         continuously counts the number of cycles where the PCIe Core was allowed to send
                                                          either a Posted request or a Completion to the PEM.  When the global zombie counter
-                                                         reaches expiration (EXP), it resets to zero and all the non-zero per PCIe tag zombie
+                                                         reaches expiration (EXP), it resets to zero and all the nonzero per PCIe tag zombie
                                                          counters are decremented.  When a per PCIe tag zombie counter decrements to zero, a
                                                          SWI_RSP_ERROR is
                                                          sent to the M2S bus and its associated PCIe tag is returned to the pool.
@@ -1577,7 +1577,7 @@ union cvmx_spemx_nqm_bar0_start {
 	uint64_t u64;
 	struct cvmx_spemx_nqm_bar0_start_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t addr                         : 47; /**< The starting address of the 128KB NQM BAR0 address space. */
+	uint64_t addr                         : 47; /**< The starting address of the 128 KB NQM BAR0 address space. */
 	uint64_t reserved_0_16                : 17;
 #else
 	uint64_t reserved_0_16                : 17;
@@ -1601,9 +1601,9 @@ union cvmx_spemx_nqm_tlp_credits {
 	struct cvmx_spemx_nqm_tlp_credits_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_24_63               : 40;
-	uint64_t nqm_cpl                      : 8;  /**< TLP 8B credits for completion TLPs in the NQM. Legal values are 0x24 to 0xFF. */
-	uint64_t nqm_np                       : 8;  /**< TLP 8B credits for nonposted TLPs in the NQM. Legal values are 0x4 to 0x10. */
-	uint64_t nqm_p                        : 8;  /**< TLP 8B credits for Posted TLPs in the NQM. Legal values are 0x24 to 0x3F. */
+	uint64_t nqm_cpl                      : 8;  /**< TLP 8 B credits for completion TLPs in the NQM. Legal values are 0x24 to 0xFF. */
+	uint64_t nqm_np                       : 8;  /**< TLP 8 B credits for nonposted TLPs in the NQM. Legal values are 0x4 to 0x10. */
+	uint64_t nqm_p                        : 8;  /**< TLP 8 B credits for Posted TLPs in the NQM. Legal values are 0x24 to 0x3F. */
 #else
 	uint64_t nqm_p                        : 8;
 	uint64_t nqm_np                       : 8;
@@ -1650,7 +1650,7 @@ union cvmx_spemx_p2n_bar0_start {
 	uint64_t u64;
 	struct cvmx_spemx_p2n_bar0_start_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t addr                         : 41; /**< The starting address of the 8MB BAR0 address space. */
+	uint64_t addr                         : 41; /**< The starting address of the 8 MB BAR0 address space. */
 	uint64_t reserved_0_22                : 23;
 #else
 	uint64_t reserved_0_22                : 23;
@@ -1671,7 +1671,7 @@ union cvmx_spemx_p2n_bar1_start {
 	uint64_t u64;
 	struct cvmx_spemx_p2n_bar1_start_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t addr                         : 38; /**< The starting address of the 64MB BAR1 address space. */
+	uint64_t addr                         : 38; /**< The starting address of the 64 MB BAR1 address space. */
 	uint64_t reserved_0_25                : 26;
 #else
 	uint64_t reserved_0_25                : 26;
@@ -1714,7 +1714,7 @@ union cvmx_spemx_p2p_barx_end {
 	struct cvmx_spemx_p2p_barx_end_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t addr                         : 52; /**< The ending address of the address window created by this field and the
-                                                         PEM_P2P_BAR0_START[63:12] field. The full 64-bits of the address are created by:
+                                                         PEM_P2P_BAR0_START[63:12] field. The full 64 bits of the address are created by:
                                                          [ADDR[63:12], 12'b0]. */
 	uint64_t reserved_0_11                : 12;
 #else
@@ -1890,7 +1890,7 @@ union cvmx_spemx_spi_ctl {
                                                          0x4 = WRDI: clear the write-enable latch (i.e. write protect the device).
                                                          0x5 = RDSR: Read status register. A single-byte read access from
                                                                the register with result in corresponding PEM()_SPI_DATA[DATA<7:0>].
-                                                         0x6 = WREN: set the write-enable latch (i.e. allow writes to occur)
+                                                         0x6 = WREN: set the write-enable latch (i.e. allow writes to occur).
                                                          0x7 = Reserved. */
 	uint64_t adr                          : 9;  /**< EEPROM read/write address. the byte address offset for the serial EEPROM access.
                                                          Since accesses are eight-byte aligned entries, <2:0> must be zero. */
@@ -1954,18 +1954,18 @@ union cvmx_spemx_strap {
 	struct cvmx_spemx_strap_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_5_63                : 59;
-	uint64_t miopem2dlm5sel               : 1;  /**< The value of the BOOT_AD[13] pin via MIO, which is captured on chip cold reset. It is not
+	uint64_t miopem2dlm5sel               : 1;  /**< The value of the BOOT_AD<13> pin via MIO, which is captured on chip cold reset. It is not
                                                          affected by any other reset.  Only used for PEM2 and PEM3.  When set, PEM2/PEM3 are
                                                          configured to
-                                                         DLM5/DLM6 and PEM()_QLM[PEMDLMSEL] will be set, the Mac will be confifgured for 2 lanes.
+                                                         DLM5/DLM6 and PEM()_QLM[PEMDLMSEL] will be set, the MAC will be configured for 2 lanes.
                                                          When clear, PEM2 is configured to QLM2. */
-	uint64_t pilaneswap                   : 1;  /**< The value of the pi_select_laneswap pin, which is captured on chip cold reset. It is not
+	uint64_t pilaneswap                   : 1;  /**< The value of PCIE_REV_LANES, which is captured on chip cold reset. It is not
                                                          affected by any other reset.  When set, lane swapping is performed to/from the
                                                          SerDes. When clear, no lane swapping is performed. */
-	uint64_t pilanes8                     : 1;  /**< The value of the pi_select_8lanes pin, which is captured on chip cold reset. It is not
+	uint64_t pilanes8                     : 1;  /**< The value of PCIE*_SZ, which is captured on chip cold reset. It is not
                                                          affected by any other reset.  When set, the PEM0/PEM2 are configured for a maximum of
                                                          8-lanes, When clear, the PEM0/PEM2 are configured for a maximum of 4-lanes. */
-	uint64_t pimode                       : 2;  /**< The value of the pi_select_mode[1:0] pins, which are captured on chip cold reset. They are
+	uint64_t pimode                       : 2;  /**< The value of PCIE_MODE<1:0>, which are captured on chip cold reset. They are
                                                          not affected by any other reset.
                                                          0x0 = EP mode, Gen1 speed.
                                                          0x1 = EP mode, Gen2 speed.

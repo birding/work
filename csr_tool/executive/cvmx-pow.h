@@ -2350,7 +2350,7 @@ static inline void cvmx_pow_tag_sw_null_nocheck(void)
 		tag_req.s_cn78xx_other.op = CVMX_POW_TAG_OP_SWTAG;
 		tag_req.s_cn78xx_other.type = CVMX_POW_TAG_TYPE_NULL;
 	}
-	if (octeon_has_feature(OCTEON_FEATURE_CN68XX_WQE)) {
+	else if (octeon_has_feature(OCTEON_FEATURE_CN68XX_WQE)) {
 		tag_req.s_cn68xx_other.op = CVMX_POW_TAG_OP_SWTAG;
 		tag_req.s_cn68xx_other.type = CVMX_POW_TAG_TYPE_NULL;
 	} else {

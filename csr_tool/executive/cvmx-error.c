@@ -238,8 +238,8 @@ int cvmx_error_initialize(cvmx_error_flags_t flags)
 		for (node = 0; node < CVMX_MAX_NODES; node++) {
 			if (!cvmx_coremask_get64_node(&sysinfo->core_mask, node))
 				continue;
-			//if (cvmx_error_initialize_cn78xx(node))
-			//return -1;
+			if (cvmx_error_initialize_cn78xx(node))
+			return -1;
 		}
 	} else if (OCTEON_IS_MODEL(OCTEON_CN70XX_PASS1_X)) {
 		extern int cvmx_error_initialize_cn70xxp1(void);

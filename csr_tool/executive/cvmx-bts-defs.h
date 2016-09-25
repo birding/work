@@ -443,11 +443,11 @@ union cvmx_bts_cg_cfg {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_44_63               : 20;
 	uint64_t cnt_max_125us                : 12; /**< Maximum value for the 125 us counter used to time the BFN data signal.
-                                                         Set to the number of cycles per 125 us minus 1. Default is 0xeff
+                                                         Set to the number of cycles per 125 us minus 1. Default is 0xEFF
                                                          (3839) for a 30.72 MHz clock. */
 	uint64_t reserved_19_31               : 13;
 	uint64_t cnt_max_10ms                 : 19; /**< Maximum value for the 10 ms counter used for the RFP signal. Set to
-                                                         the number of cycles per 10 ms minus 1. Default is 0x4afff (307199)
+                                                         the number of cycles per 10 ms minus 1. Default is 0x4AFFFF (307199)
                                                          for a 30.72 MHz clock. */
 #else
 	uint64_t cnt_max_10ms                 : 19;
@@ -537,7 +537,7 @@ union cvmx_bts_ext_ref0_div_cfg0 {
                                                          0 = one cycle pulse (i.e., one cycle of external reference clock).
                                                          1 = 50/50 duty-cycle. */
 	uint64_t divider_en                   : 1;  /**< Set to 1 to enable the clock divider. The divider counter is reset to 0 when
-                                                         DIVIDER_EN is set to 0 and the clock output is disabled. */
+                                                         [DIVIDER_EN] is set to 0 and the clock output is disabled. */
 #else
 	uint64_t divider_en                   : 1;
 	uint64_t clkout_5050_duty             : 1;
@@ -561,11 +561,11 @@ union cvmx_bts_ext_ref0_div_cfg1 {
 	struct cvmx_bts_ext_ref0_div_cfg1_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t divider_start_pos            : 32; /**< Divider start position. When a new value is written to
-                                                         DIVIDER_START_POS, the counter will reset to 0 the next time the
-                                                         counter value is equal to DIVIDER_START_POS. Subsequently, the counter
-                                                         will reset to 0 when the counter is equal to DIVIDER_TC.
-                                                         Writing DIVIDER_START_POS effectively applies a positive phase shift
-                                                         of DIVIDER_START_POS+1 cycles to the 1PPS signal.
+                                                         [DIVIDER_START_POS], the counter will reset to 0 the next time the
+                                                         counter value is equal to [DIVIDER_START_POS]. Subsequently, the counter
+                                                         will reset to 0 when the counter is equal to [DIVIDER_TC].
+                                                         Writing [DIVIDER_START_POS] effectively applies a positive phase shift
+                                                         of [DIVIDER_START_POS]+1 cycles to the 1PPS signal.
                                                          Note that a phase shift is only applied when this value changes, thus
                                                          it might be necessary to write this field to zero before applying a
                                                          new phase shift. */
@@ -600,7 +600,7 @@ union cvmx_bts_ext_ref1_div_cfg0 {
                                                          0 = one cycle pulse (i.e., one cycle of external reference clock).
                                                          1 = 50/50 duty-cycle. */
 	uint64_t divider_en                   : 1;  /**< Set to 1 to enable the clock divider. The divider counter is reset to 0 when
-                                                         DIVIDER_EN is set to 0 and the clock output is disabled. */
+                                                         [DIVIDER_EN] is set to 0 and the clock output is disabled. */
 #else
 	uint64_t divider_en                   : 1;
 	uint64_t clkout_5050_duty             : 1;
@@ -624,11 +624,11 @@ union cvmx_bts_ext_ref1_div_cfg1 {
 	struct cvmx_bts_ext_ref1_div_cfg1_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t divider_start_pos            : 32; /**< Divider start position. When a new value is written to
-                                                         DIVIDER_START_POS, the counter will reset to 0 the next time the
-                                                         counter value is equal to DIVIDER_START_POS. Subsequently, the counter
-                                                         will reset to 0 when the counter is equal to DIVIDER_TC.
-                                                         Writing DIVIDER_START_POS effectively applies a positive phase shift
-                                                         of DIVIDER_START_POS+1 cycles to the 1PPS signal.
+                                                         [DIVIDER_START_POS], the counter will reset to 0 the next time the
+                                                         counter value is equal to [DIVIDER_START_POS]. Subsequently, the counter
+                                                         will reset to 0 when the counter is equal to [DIVIDER_TC].
+                                                         Writing [DIVIDER_START_POS] effectively applies a positive phase shift
+                                                         of [DIVIDER_START_POS]+1 cycles to the 1PPS signal.
                                                          Note that a phase shift is only applied when this value changes, thus
                                                          it might be necessary to write this field to zero before applying a
                                                          new phase shift. */
@@ -654,14 +654,14 @@ union cvmx_bts_global_ctl {
 	struct cvmx_bts_global_ctl_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_6_63                : 58;
-	uint64_t mon_6144_clk_en              : 1;  /**< Set to 1 to enable 61.44MHz clock divider and its output (491MHz/8).
+	uint64_t mon_6144_clk_en              : 1;  /**< Set to 1 to enable 61.44 MHz clock divider and its output (491MHz/8).
                                                          The 61.44 MHz can be output to BPHY_TP2 by setting
                                                          BTS_TP_MUX_SEL[TP2_SEL] = 0x6. */
-	uint64_t ptp_1pps_out_en              : 1;  /**< Set to 1 to enable PTP 1pps output to the PTP_1PPS_OUT external pin. */
-	uint64_t gnss_1pps_out_en             : 1;  /**< Set to 1 to enable GNSS 1pps output to the GNSS_1PPS_OUT external pin. */
+	uint64_t ptp_1pps_out_en              : 1;  /**< Set to 1 to enable PTP 1 pps output to the PTP_1PPS_OUT external pin. */
+	uint64_t gnss_1pps_out_en             : 1;  /**< Set to 1 to enable GNSS 1 pps output to the GNSS_1PPS_OUT external pin. */
 	uint64_t dac_clk_en                   : 1;  /**< Set to 1 to enable DAC_CLK external pin output of the (30.72 MHz/14) clock
                                                          divider. */
-	uint64_t grfe_en                      : 1;  /**< Set to 1 to enable GRFE. The GNSS_CLK must be stable before settig
+	uint64_t grfe_en                      : 1;  /**< Set to 1 to enable GRFE. The GNSS_CLK must be stable before setting
                                                          this bit. */
 	uint64_t gnss_en                      : 1;  /**< External GNSS receiver enable. This bit controls the value output on the
                                                          GNSS_EN signal. */
@@ -750,17 +750,17 @@ union cvmx_bts_grfe_1pps_en {
 	struct cvmx_bts_grfe_1pps_en_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t en                           : 1;  /**< Set to 1 to enable 1PPS. The first 1PPS pulse will be generated 2
-                                                         GNSS_CLK cycles after receiving sample START_SMPL_NUM in frame
-                                                         START_FRM_NUM. This bit must be cleared before writing the other
+                                                         GNSS_CLK cycles after receiving sample [START_SMPL_NUM] in frame
+                                                         [START_FRM_NUM]. This bit must be cleared before writing the other
                                                          fields in this register. */
 	uint64_t reserved_40_62               : 23;
 	uint64_t start_frm_num                : 24; /**< Start frame number for 1PPS generation. The first pulse will be
-                                                         generated 2 GNSS clock cycles after START_FRM_NUM,START_SMPL_NUM, and
-                                                         in some cases this might require setting START_FRM_NUM to one less
+                                                         generated 2 GNSS clock cycles after [START_FRM_NUM],[START_SMPL_NUM], and
+                                                         in some cases this might require setting [START_FRM_NUM] to one less
                                                          than the actual frame number where the first 1PPS pulse will occur. */
 	uint64_t start_smpl_num               : 16; /**< Start sample number for 1PPS generation. Note that the first 1PPS
                                                          pulse will actually be generated two GNSS clock cycles later (i.e.,
-                                                         at START_SMPL_NUM+2). */
+                                                         at [START_SMPL_NUM]+2). */
 #else
 	uint64_t start_smpl_num               : 16;
 	uint64_t start_frm_num                : 24;
@@ -853,10 +853,10 @@ typedef union cvmx_bts_grfe_cfg1 cvmx_bts_grfe_cfg1_t;
  * samples.
  *
  * Frames are written to the circular buffer at increasing addresses starting
- * at BASE_ADDR. The number of frames that can be written in the buffer
- * before wrapping around to BASE_ADDR is specified via SIZE_IN_FRM.
+ * at [BASE_ADDR]. The number of frames that can be written in the buffer
+ * before wrapping around to [BASE_ADDR] is specified via [SIZE_IN_FRM].
  *
- * Note that the size of each frame depends on IQ_PACK_MODE and
+ * Note that the size of each frame depends on [IQ_PACK_MODE] and
  * BTS_GRFE_CFG0[DS_FACTOR], as follows:
  *
  * _ For 8-bit samples, each frame is 32768/(2^DS_FACTOR) bytes.
@@ -904,8 +904,9 @@ union cvmx_bts_grfe_cntr {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t en                           : 1;  /**< Set to 1 to enable the frame and sample counters. */
 	uint64_t reserved_48_62               : 15;
-	uint64_t smpl_cntr_max                : 16; /**< The sample counter runs from 0 to SMPL_CNTR_MAX every 1 ms. Typically this value
-                                                         should be set to the number of cycles per millisecond minus 1. (SMPL_CNTR_MAX + 1) must be
+	uint64_t smpl_cntr_max                : 16; /**< The sample counter runs from 0 to [SMPL_CNTR_MAX] every 1 ms. Typically this value
+                                                         should be set to the number of cycles per millisecond minus 1. ([SMPL_CNTR_MAX] + 1) must
+                                                         be
                                                          multiple of 8 to support GRFE down-sampling. Default value is 0x3FEF
                                                          (16367) for 16.386 MHz clock. */
 	uint64_t reserved_24_31               : 8;
@@ -934,17 +935,18 @@ union cvmx_bts_grfe_sta {
                                                          cleared.
                                                          If BTS_GRFE_CFG2[SIZE_IN_FRM] is a power of two, then the address of
                                                          the last valid frame can be calculated as:
-                                                         BASE_ADDR + FRM_SIZE_IN_BYTES*((FRAMES_STORED-1)%SIZE_IN_FRM)
+                                                         BASE_ADDR + FRM_SIZE_IN_BYTES*(([FRAMES_STORED]-1)%SIZE_IN_FRM)
                                                          If BTS_GRFE_CFG2[SIZE_IN_FRM] is NOT a power of two, then software
-                                                         must count how many times FRAMES_STORED has rolled-over to zero. Then
+                                                         must count how many times [FRAMES_STORED] has rolled-over to zero. Then
                                                          software can calculate the address of the last valid frame as:
-                                                         BASE_ADDR+FRM_SIZE_IN_BYTES*((FRAMES_STORED-1+ROLL_OVERS*((2^24)%SIZE_IN_FRM)%SIZE_IN_FRM)
-                                                         Note that under continuous operation, FRAMES_STORED will roll-over
+                                                         BASE_ADDR+FRM_SIZE_IN_BYTES*(([FRAMES_STORED]-1+ROLL_OVERS*((2^24)%SIZE_IN_FRM)%SIZE_IN_FR
+                                                         M)
+                                                         Note that under continuous operation, [FRAMES_STORED] will roll-over
                                                          approximately every 4.66 hours. */
 	uint64_t target_addr                  : 33; /**< Bits [39:7] of the address where the next GNSS frame will be written.
                                                          This value may be updated before the data from previous frames is
                                                          available in memory, so software should rely on the value in
-                                                         FRAMES_STORED to ensure that it does not read memory before the writes
+                                                         [FRAMES_STORED] to ensure that it does not read memory before the writes
                                                          complete. This address resets to BTS_GRFE_CFG2[BASE_ADDR] when
                                                          BTS_GRFE_CFG0[ON] is toggled. */
 	uint64_t reserved_0_6                 : 7;
@@ -1015,19 +1017,19 @@ typedef union cvmx_bts_ncb_cfg cvmx_bts_ncb_cfg_t;
 /**
  * cvmx_bts_pd1pps_div_cfg0
  *
- * This register configures the clock divder used to generate the PD_1PPS
+ * This register configures the clock divider used to generate the PD_1PPS
  * signal derived from the 30.72 MHz clock (BPHY_BFN_CLK). This signal is
  * used by the clock generation block to control RFP timing.
  *
  * This register configures the clock divder used to generate the
  * PD_3072M_1PPS signal derived from the 30.72 MHz clock (BPHY_BFN_CLK).
  *
- * When FREE_RUN=1, the initial alignment depends on when DIVIDER_EN is written
+ * When [FREE_RUN]=1, the initial alignment depends on when [DIVIDER_EN] is written
  * to 1, and the value in BTS_PD1PPS_DIV_CFG1[DIVIDER_START_POS].
  *
- * When FREE_RUN=0, the initial alignment will be
+ * When [FREE_RUN]=0, the initial alignment will be
  * BTS_PD1PPS_DIV_CFG1[DIVIDER_START_POS]+4 cycles after the reference clock
- * selected by REF_IN_SEL (where cycles are counted in the 30.72 MHz clock).
+ * selected by [REF_IN_SEL] (where cycles are counted in the 30.72 MHz clock).
  *
  * In both cases, after the initial pulse, subsequent 1PPS pulses are
  * generated at a constant period.
@@ -1053,7 +1055,7 @@ union cvmx_bts_pd1pps_div_cfg0 {
                                                          0 = one cycle pulse (i.e., one 30.72 MHz cycle).
                                                          1 = 50/50 duty-cycle. */
 	uint64_t divider_en                   : 1;  /**< Set to 1 to enable the clock divider. The divider counter is reset to 0 when
-                                                         DIVIDER_EN is set to 0. */
+                                                         [DIVIDER_EN] is set to 0. */
 #else
 	uint64_t divider_en                   : 1;
 	uint64_t clkout_5050_duty             : 1;
@@ -1070,25 +1072,25 @@ typedef union cvmx_bts_pd1pps_div_cfg0 cvmx_bts_pd1pps_div_cfg0_t;
 /**
  * cvmx_bts_pd1pps_div_cfg1
  *
- * This register configures the clock divder used to generate the PD_1PPS
+ * This register configures the clock divider used to generate the PD_1PPS
  * signal derived from the 30.72 MHz clock (BPHY_BFN_CLK). This signal is
  * used by the clock generation block to control RFP timing.
  *
- * When enabled, the divider counts from 0 to DIVIDER_TC, and then resets
+ * When enabled, the divider counts from 0 to [DIVIDER_TC], and then resets
  * to 0. When it resets to zero, it either generates a single cycle pulse, or
  * flips the polarity of the output, depending on the setting of
- * BTS_PD1PPS_DIV_DFG0[CLKOUT_5050_DUTY].
+ * BTS_PD1PPS_DIV_CFG0[CLKOUT_5050_DUTY].
  */
 union cvmx_bts_pd1pps_div_cfg1 {
 	uint64_t u64;
 	struct cvmx_bts_pd1pps_div_cfg1_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t divider_start_pos            : 32; /**< Divider start position. When a new value is written to
-                                                         DIVIDER_START_POS, the counter will reset to 0 the next time the
-                                                         counter value is equal to DIVIDER_START_POS. Subsequently, the counter
-                                                         will reset to 0 when the counter is equal to DIVIDER_TC.
-                                                         Writing DIVIDER_START_POS effectively applies a positive phase shift
-                                                         of DIVIDER_START_POS+1 cycles to the 1PPS signal.
+                                                         [DIVIDER_START_POS], the counter will reset to 0 the next time the
+                                                         counter value is equal to [DIVIDER_START_POS]. Subsequently, the counter
+                                                         will reset to 0 when the counter is equal to [DIVIDER_TC].
+                                                         Writing [DIVIDER_START_POS] effectively applies a positive phase shift
+                                                         of [DIVIDER_START_POS]+1 cycles to the 1PPS signal.
                                                          Note that a phase shift is only applied when this value changes, thus
                                                          it might be necessary to write this field to zero before applying a
                                                          new phase shift. */
@@ -1111,15 +1113,15 @@ typedef union cvmx_bts_pd1pps_div_cfg1 cvmx_bts_pd1pps_div_cfg1_t;
 /**
  * cvmx_bts_pd3072m_div_cfg0
  *
- * This register configures the clock divder used to generate the
+ * This register configures the clock divider used to generate the
  * PD_3072M_1PPS signal derived from the 30.72 MHz clock (BPHY_BFN_CLK).
  *
- * When FREE_RUN=1, the initial alignment depends on when DIVIDER_EN is written
+ * When [FREE_RUN]=1, the initial alignment depends on when [DIVIDER_EN] is written
  * to 1, and the value in BTS_PD3072M_DIV_CFG1[DIVIDER_START_POS].
  *
- * When FREE_RUN=0, the initial alignment will be
+ * When [FREE_RUN]=0, the initial alignment will be
  * BTS_PD3072M_DIV_CFG1[DIVIDER_START_POS]+4 cycles after the reference clock
- * selected by REF_IN_SEL (where cycles are counted in the 30.72 MHz clock).
+ * selected by [REF_IN_SEL] (where cycles are counted in the 30.72 MHz clock).
  *
  * In both cases, after the initial pulse, subsequent 1PPS pulses are
  * generated at a constant period.
@@ -1140,14 +1142,14 @@ union cvmx_bts_pd3072m_div_cfg0 {
 	uint64_t free_run                     : 1;  /**< Set to 1 to enable free running mode. In free running mode, all input
                                                          1PPS references are ignored. The initial start position is set by
                                                          BTS_PD3072M_DIV_CFG1[DIVIDER_START_POS] and the timing of the write to
-                                                         set DIVIDER_EN=1. */
+                                                         set [DIVIDER_EN]=1. */
 	uint64_t clkout_inv                   : 1;  /**< Set to 1 to inverse the output polarity for the PD3072_1PPS
                                                          signal. */
 	uint64_t clkout_5050_duty             : 1;  /**< Clock divider duty cycle:
                                                          0 = one cycle pulse (i.e., one 30.72 MHz cycle).
                                                          1 = 50/50 duty-cycle. */
 	uint64_t divider_en                   : 1;  /**< Set to 1 to enable the clock divider. The divider counter is reset to 0 when
-                                                         DIVIDER_EN is set to 0 and the clock output is disabled. */
+                                                         [DIVIDER_EN] is set to 0 and the clock output is disabled. */
 #else
 	uint64_t divider_en                   : 1;
 	uint64_t clkout_5050_duty             : 1;
@@ -1167,21 +1169,21 @@ typedef union cvmx_bts_pd3072m_div_cfg0 cvmx_bts_pd3072m_div_cfg0_t;
  * This register configures the clock divder used to generate the PD3072_1PPS
  * signal derived from the 30.72 MHz clock (BPHY_BFN_CLK).
  *
- * When enabled, the divider counts from 0 to DIVIDER_TC, and then resets
+ * When enabled, the divider counts from 0 to [DIVIDER_TC], and then resets
  * to 0. When it resets to zero, it either generates a single cycle pulse, or
  * flips the polarity of the output, depending on the setting of
- * BTS_PD3072M_DIV_DFG0[CLKOUT_5050_DUTY].
+ * BTS_PD3072M_DIV_CFG0[CLKOUT_5050_DUTY].
  */
 union cvmx_bts_pd3072m_div_cfg1 {
 	uint64_t u64;
 	struct cvmx_bts_pd3072m_div_cfg1_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t divider_start_pos            : 32; /**< Divider start position. When a new value is written to
-                                                         DIVIDER_START_POS, the counter will reset to 0 the next time the
-                                                         counter value is equal to DIVIDER_START_POS. Subsequently, the counter
-                                                         will reset to 0 when the counter is equal to DIVIDER_TC.
-                                                         Writing DIVIDER_START_POS effectively applies a positive phase shift
-                                                         of DIVIDER_START_POS+1 cycles to the 1PPS signal.
+                                                         [DIVIDER_START_POS], the counter will reset to 0 the next time the
+                                                         counter value is equal to [DIVIDER_START_POS]. Subsequently, the counter
+                                                         will reset to 0 when the counter is equal to [DIVIDER_TC].
+                                                         Writing [DIVIDER_START_POS] effectively applies a positive phase shift
+                                                         of [DIVIDER_START_POS]+1 cycles to the 1PPS signal.
                                                          Note that a phase shift is only applied when this value changes, thus
                                                          it might be necessary to write this field to zero before applying a
                                                          new phase shift. */
@@ -1393,10 +1395,10 @@ union cvmx_bts_pwmx_ctl {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_56_63               : 8;
 	uint64_t fall_pos                     : 20; /**< Pulse low duration minus one, measured in ticks, as determined by
-                                                         TICK_SEL. */
+                                                         [TICK_SEL]. */
 	uint64_t reserved_28_35               : 8;
 	uint64_t rise_pos                     : 20; /**< Pulse high duration minus one, measured in ticks, as determined by
-                                                         TICK_SEL. */
+                                                         [TICK_SEL]. */
 	uint64_t reserved_3_7                 : 5;
 	uint64_t tick_sel                     : 2;  /**< PWM tick clock select:
                                                          0x0 = SCLK / 4.
@@ -1434,7 +1436,7 @@ union cvmx_bts_synce_25m_div_cfg0 {
                                                          0 = one cycle pulse (i.e., one cycle of 25 MHz clock).
                                                          1 = 50/50 duty-cycle. */
 	uint64_t divider_en                   : 1;  /**< Set to 1 to enable the clock divider. The divider counter is reset to 0 when
-                                                         DIVIDER_EN is set to 0 and the clock output is disabled. */
+                                                         [DIVIDER_EN] is set to 0 and the clock output is disabled. */
 #else
 	uint64_t divider_en                   : 1;
 	uint64_t clkout_5050_duty             : 1;
@@ -1454,11 +1456,11 @@ union cvmx_bts_synce_25m_div_cfg1 {
 	struct cvmx_bts_synce_25m_div_cfg1_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t divider_start_pos            : 32; /**< Divider start position. When a new value is written to
-                                                         DIVIDER_START_POS, the counter will reset to 0 the next time the
-                                                         counter value is equal to DIVIDER_START_POS. Subsequently, the counter
-                                                         will reset to 0 when the counter is equal to DIVIDER_TC.
-                                                         Writing DIVIDER_START_POS effectively applies a positive phase shift
-                                                         of DIVIDER_START_POS+1 cycles to the 1PPS signal.
+                                                         [DIVIDER_START_POS], the counter will reset to 0 the next time the
+                                                         counter value is equal to [DIVIDER_START_POS]. Subsequently, the counter
+                                                         will reset to 0 when the counter is equal to [DIVIDER_TC].
+                                                         Writing [DIVIDER_START_POS] effectively applies a positive phase shift
+                                                         of [DIVIDER_START_POS]+1 cycles to the 1PPS signal.
                                                          Note that a phase shift is only applied when this value changes, thus
                                                          it might be necessary to write this field to zero before applying a
                                                          new phase shift. */
@@ -1497,11 +1499,11 @@ union cvmx_bts_tp_mux_sel {
                                                          0x7 = Reserved.
                                                          0x8 = PD bank 0 PD negative clear.
                                                          0x9 = PD bank 1 PD negative clear.
-                                                         0xa = PD bank 2 PD negative clear.
-                                                         0xb = PD bank 3 PD negative clear.
-                                                         0xc = PD bank 4 PD negative clear.
-                                                         0xd = PD bank 5 PD negative clear.
-                                                         0xe-0xf = Reserved. */
+                                                         0xA = PD bank 2 PD negative clear.
+                                                         0xB = PD bank 3 PD negative clear.
+                                                         0xC = PD bank 4 PD negative clear.
+                                                         0xD = PD bank 5 PD negative clear.
+                                                         0xE-0xF = Reserved. */
 	uint64_t tp3_sel                      : 4;  /**< Select the source for the BPHY_TP3 output signal:
                                                          0x0 = PD bank 0 PD positive clear.
                                                          0x1 = PD bank 1 PD positive clear.
@@ -1513,11 +1515,11 @@ union cvmx_bts_tp_mux_sel {
                                                          0x7 = Reserved.
                                                          0x8 = PD bank 0 PD negative done.
                                                          0x9 = PD bank 1 PD negative done.
-                                                         0xa = PD bank 2 PD negative done.
-                                                         0xb = PD bank 3 PD negative done.
-                                                         0xc = PD bank 4 PD negative done.
-                                                         0xd = PD bank 5 PD negative done
-                                                         0xe-0xf = Reserved. */
+                                                         0xA = PD bank 2 PD negative done.
+                                                         0xB = PD bank 3 PD negative done.
+                                                         0xC = PD bank 4 PD negative done.
+                                                         0xD = PD bank 5 PD negative done.
+                                                         0xE-0xF = Reserved. */
 	uint64_t tp2_sel                      : 4;  /**< Select the source for the BPHY_TP2 output signal:
                                                          0x0 = PD bank 0 LOOP_1pps.
                                                          0x1 = PD bank 1 LOOP_1pps.

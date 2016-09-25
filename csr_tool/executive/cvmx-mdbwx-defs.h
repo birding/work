@@ -703,7 +703,7 @@ typedef union cvmx_mdbwx_ab_sltx_cderr_uflow_jtag cvmx_mdbwx_ab_sltx_cderr_uflow
 /**
  * cvmx_mdbw#_ab_slt#_cp_fat_jtag
  *
- * This register set, specifies the control Path (JMGR, AB) fatal error event logging of the job
+ * This register set, specifies the control path (JMGR, AB) fatal error event logging of the job
  * tag, corresponding to the interrupt message per MDBW per job slot.
  */
 union cvmx_mdbwx_ab_sltx_cp_fat_jtag {
@@ -711,10 +711,10 @@ union cvmx_mdbwx_ab_sltx_cp_fat_jtag {
 	struct cvmx_mdbwx_ab_sltx_cp_fat_jtag_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
-	uint64_t ab                           : 16; /**< This set of bits, specifies the AB (DAC) Error job tag. */
+	uint64_t ab                           : 16; /**< This set of bits, specifies the AB (DAC) error job tag. */
 	uint64_t jd_fetch                     : 16; /**< This set of bits, specifies the job descriptor fetch, had a GHB response with a fatal
                                                          error. */
-	uint64_t job_sd_fetch                 : 16; /**< This set of bits, the job sub-descriptor fetch, had a GHB response with a fatal error. */
+	uint64_t job_sd_fetch                 : 16; /**< This set of bits, the job subdescriptor fetch, had a GHB response with a fatal error. */
 #else
 	uint64_t job_sd_fetch                 : 16;
 	uint64_t jd_fetch                     : 16;
@@ -737,10 +737,10 @@ union cvmx_mdbwx_ab_sltx_cp_nfat_jtag {
 	struct cvmx_mdbwx_ab_sltx_cp_nfat_jtag_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_48_63               : 16;
-	uint64_t ab                           : 16; /**< This set of bits, specifies the AB (DAC) Error job tag. */
+	uint64_t ab                           : 16; /**< This set of bits, specifies the AB (DAC) error job tag. */
 	uint64_t jd_fetch                     : 16; /**< This set of bits, specifies the job descriptor fetch, had a GHB response with a fatal
                                                          error. */
-	uint64_t job_sd_fetch                 : 16; /**< This set of bits, the job sub-descriptor fetch, had a GHB response with a fatal error. */
+	uint64_t job_sd_fetch                 : 16; /**< This set of bits, the job subdescriptor fetch, had a GHB response with a fatal error. */
 #else
 	uint64_t job_sd_fetch                 : 16;
 	uint64_t jd_fetch                     : 16;
@@ -858,7 +858,7 @@ typedef union cvmx_mdbwx_ab_sltx_derr_ena_w1s cvmx_mdbwx_ab_sltx_derr_ena_w1s_t;
  * cvmx_mdbw#_ab_slt#_derr_int
  *
  * This register set, specifies the DMA overflow/underflow error interrupt vector per MDBW per
- * job slot. These generate dma error interrupts to the PSM, which drives this signal to the CIU.
+ * job slot. These generate DMA error interrupts to the PSM, which drives this signal to the CIU.
  */
 union cvmx_mdbwx_ab_sltx_derr_int {
 	uint64_t u64;
@@ -939,7 +939,7 @@ union cvmx_mdbwx_ab_sltx_fat_err_ena_w1c {
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< This bit specifies that the AB (DAC) had a fatal error. */
 	uint64_t jd_fetch                     : 1;  /**< This bit specifies the job descriptor fetch, had a GHB response with a fatal error. */
-	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job sub-descriptor fetch, had a GHB response with a fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job subdescriptor fetch, had a GHB response with a fatal error. */
 	uint64_t reserved_9_15                : 7;
 	uint64_t wr_dma_port0                 : 1;  /**< This bit specifies the write DMA port 0 has a fatal error. */
 	uint64_t reserved_1_7                 : 7;
@@ -969,7 +969,7 @@ union cvmx_mdbwx_ab_sltx_fat_err_ena_w1s {
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< This bit specifies that the AB (DAC) had a fatal error. */
 	uint64_t jd_fetch                     : 1;  /**< This bit specifies the job descriptor fetch, had a GHB response with a fatal error. */
-	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job sub-descriptor fetch, had a GHB response with a fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job subdescriptor fetch, had a GHB response with a fatal error. */
 	uint64_t reserved_9_15                : 7;
 	uint64_t wr_dma_port0                 : 1;  /**< This bit specifies the write DMA port 0 has a fatal error. */
 	uint64_t reserved_1_7                 : 7;
@@ -1002,7 +1002,7 @@ union cvmx_mdbwx_ab_sltx_fat_err_int {
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< This bit specifies that the AB (DAC) had a fatal error. */
 	uint64_t jd_fetch                     : 1;  /**< This bit specifies the job descriptor fetch, had a GHB response with a fatal error. */
-	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job sub-descriptor fetch, had a GHB response with a fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job subdescriptor fetch, had a GHB response with a fatal error. */
 	uint64_t reserved_9_15                : 7;
 	uint64_t wr_dma_port0                 : 1;  /**< This bit specifies the write DMA port 0 has a fatal error. */
 	uint64_t reserved_1_7                 : 7;
@@ -1032,7 +1032,7 @@ union cvmx_mdbwx_ab_sltx_fat_err_int_w1s {
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< This bit specifies that the AB (DAC) had a fatal error. */
 	uint64_t jd_fetch                     : 1;  /**< This bit specifies the job descriptor fetch, had a GHB response with a fatal error. */
-	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job sub-descriptor fetch, had a GHB response with a fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job subdescriptor fetch, had a GHB response with a fatal error. */
 	uint64_t reserved_9_15                : 7;
 	uint64_t wr_dma_port0                 : 1;  /**< This bit specifies the write DMA port 0 has a fatal error. */
 	uint64_t reserved_1_7                 : 7;
@@ -1062,7 +1062,7 @@ union cvmx_mdbwx_ab_sltx_nfat_err_ena_w1c {
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< This bit specifies the AB (DAC) had a non-fatal error. */
 	uint64_t jd_fetch                     : 1;  /**< This bit specifies the job descriptor fetch, had a GHB response with a fatal error. */
-	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job sub-descriptor fetch, had a GHB response with a fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job subdescriptor fetch, had a GHB response with a fatal error. */
 	uint64_t reserved_9_15                : 7;
 	uint64_t wr_dma_port0                 : 1;  /**< This bit specifies that the write DMA port 0 has a non-fatal Error . */
 	uint64_t reserved_1_7                 : 7;
@@ -1092,7 +1092,7 @@ union cvmx_mdbwx_ab_sltx_nfat_err_ena_w1s {
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< This bit specifies the AB (DAC) had a non-fatal error. */
 	uint64_t jd_fetch                     : 1;  /**< This bit specifies the job descriptor fetch, had a GHB response with a fatal error. */
-	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job sub-descriptor fetch, had a GHB response with a fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job subdescriptor fetch, had a GHB response with a fatal error. */
 	uint64_t reserved_9_15                : 7;
 	uint64_t wr_dma_port0                 : 1;  /**< This bit specifies that the write DMA port 0 has a non-fatal Error . */
 	uint64_t reserved_1_7                 : 7;
@@ -1125,7 +1125,7 @@ union cvmx_mdbwx_ab_sltx_nfat_err_int {
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< This bit specifies the AB (DAC) had a non-fatal error. */
 	uint64_t jd_fetch                     : 1;  /**< This bit specifies the job descriptor fetch, had a GHB response with a fatal error. */
-	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job sub-descriptor fetch, had a GHB response with a fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job subdescriptor fetch, had a GHB response with a fatal error. */
 	uint64_t reserved_9_15                : 7;
 	uint64_t wr_dma_port0                 : 1;  /**< This bit specifies that the write DMA port 0 has a non-fatal Error . */
 	uint64_t reserved_1_7                 : 7;
@@ -1155,7 +1155,7 @@ union cvmx_mdbwx_ab_sltx_nfat_err_int_w1s {
 	uint64_t reserved_19_63               : 45;
 	uint64_t ab                           : 1;  /**< This bit specifies the AB (DAC) had a non-fatal error. */
 	uint64_t jd_fetch                     : 1;  /**< This bit specifies the job descriptor fetch, had a GHB response with a fatal error. */
-	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job sub-descriptor fetch, had a GHB response with a fatal error. */
+	uint64_t job_sd_fetch                 : 1;  /**< This bit specifies the job subdescriptor fetch, had a GHB response with a fatal error. */
 	uint64_t reserved_9_15                : 7;
 	uint64_t wr_dma_port0                 : 1;  /**< This bit specifies that the write DMA port 0 has a non-fatal Error . */
 	uint64_t reserved_1_7                 : 7;
@@ -1357,17 +1357,17 @@ union cvmx_mdbwx_cfg {
 	uint64_t reserved_51_63               : 13;
 	uint64_t mdbw_done                    : 1;  /**< This bit is set, after this register's [ENA] bit = 0, and indicates the MDBW has completed
                                                          clearing internal states corresponding to PSM Jobs. This bit must be set, before software
-                                                         re-enables the MDBW by setting [ENA] = 1. */
+                                                         reenables the MDBW by setting [ENA] = 1. */
 	uint64_t ab_done                      : 1;  /**< This bit is used to indicate the MDBW has completed clearing internal states corresponding
                                                          to
-                                                         an AB. This bit is reset by hardware after a MDBW is re-enabled. */
+                                                         an AB. This bit is reset by hardware after a MDBW is reenabled. */
 	uint64_t reserved_29_48               : 20;
 	uint64_t mdbw_stopped                 : 1;  /**< This bit is set, after this register's [ENA] bit = 0, and indicates the MDBW is busy
                                                          clearing internal states corresponding to PSM Jobs. This bit must be equal to 0, before
-                                                         software re-enables the MDBW by setting [ENA] = 1. */
+                                                         software reenables the MDBW by setting [ENA] = 1. */
 	uint64_t reserved_25_27               : 3;
 	uint64_t ab_stopped                   : 1;  /**< This bit is set indicates the MDBW is busy clearing internal states corresponding to an
-                                                         AB. This bit must be equal to 0, before software re-enables the AB by setting [AB_ENA] =
+                                                         AB. This bit must be equal to 0, before software reenables the AB by setting [AB_ENA] =
                                                          1. */
 	uint64_t reserved_21_23               : 3;
 	uint64_t ab_busy                      : 1;  /**< This bit is set indicates the AB is busy processing a job. */
@@ -1668,15 +1668,15 @@ union cvmx_mdbwx_jd_cfg {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_38_63               : 26;
 	uint64_t ghb_rd_wrr_val               : 6;  /**< This set of bits, specifies the MDBW weight used for weighted round-robin arbitration of
-                                                         read requests. Theweighted round- robin quantum is a 6-bit unsigned value. A value of zero
+                                                         read requests. The weighted round-robin quantum is a 6-bit unsigned value. A value of zero
                                                          will only allow requests from the given MDBW when there are no requests from other
                                                          competing MDBWs in the GHB, or when all
                                                          competing MDBWs have consumed all of their weight in the current quantum. */
 	uint64_t reserved_30_31               : 2;
 	uint64_t ghb_wr_wrr_val               : 6;  /**< This set of bits, specifies the MDBW weight used for weighted round-robin arbitration of
                                                          write requests. The
-                                                         weighted round-
-                                                         robin quantum is a 6-bit unsigned value. A value of zero will only allow requests from the
+                                                         weighted round-robin
+                                                         quantum is a 6-bit unsigned value. A value of zero will only allow requests from the
                                                          given MDBW when there are no requests from other competing MDBWs in the GHB, or when all
                                                          competing MDBWs have consumed all of their weight in the current quantum. */
 	uint64_t reserved_17_23               : 7;
@@ -1697,7 +1697,7 @@ union cvmx_mdbwx_jd_cfg {
                                                          timeout is an aggregate sum of all the internal system latencies. */
 	uint64_t reserved_2_2                 : 1;
 	uint64_t jd_fetch_cmd_type            : 2;  /**< This set of bits, specifies the command type to use for all the job descriptor,
-                                                         sub-descriptor fetches made by the MDBW as enumerated in MDBW_PNB_RD_CMD_E.
+                                                         subdescriptor fetches made by the MDBW as enumerated in MDBW_PNB_RD_CMD_E.
                                                           * If the MHBW_PNB_RD_CMD_E=LDWB, then the MHBW will issue an LDT for all non full
                                                          cacheline requests. */
 #else

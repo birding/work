@@ -1774,7 +1774,9 @@ union cvmx_sso_bist_status0 {
 	struct cvmx_sso_bist_status0_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_10_63               : 54;
-	uint64_t bist                         : 10; /**< Memory BIST status. 0 = pass, 1 = fail. */
+	uint64_t bist                         : 10; /**< Memory BIST status.
+                                                         0 = Pass.
+                                                         1 = Fail. */
 #else
 	uint64_t bist                         : 10;
 	uint64_t reserved_10_63               : 54;
@@ -1798,7 +1800,9 @@ union cvmx_sso_bist_status1 {
 	struct cvmx_sso_bist_status1_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_7_63                : 57;
-	uint64_t bist                         : 7;  /**< Memory BIST status. 0 = pass, 1 = fail. */
+	uint64_t bist                         : 7;  /**< Memory BIST status.
+                                                         0 = Pass.
+                                                         1 = Fail. */
 #else
 	uint64_t bist                         : 7;
 	uint64_t reserved_7_63                : 57;
@@ -1822,7 +1826,9 @@ union cvmx_sso_bist_status2 {
 	struct cvmx_sso_bist_status2_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_9_63                : 55;
-	uint64_t bist                         : 9;  /**< Memory BIST status. 0 = pass, 1 = fail. */
+	uint64_t bist                         : 9;  /**< Memory BIST status.
+                                                         0 = Pass.
+                                                         1 = Fail. */
 #else
 	uint64_t bist                         : 9;
 	uint64_t reserved_9_63                : 55;
@@ -2615,8 +2621,8 @@ union cvmx_sso_grpx_iaq_thr {
 	uint64_t grp_cnt                      : 13; /**< Group's entry count. Number of internal entries allocated to IAQ, conflicted work, or CQ
                                                          in this group. */
 	uint64_t reserved_45_47               : 3;
-	uint64_t max_thr                      : 13; /**< Max threshold for this internal admission queue. If non-zero, must be >= [RSVD_THR] + 4.
-                                                         To insure full streaming performance to all cores, should be at least 208. Must not be
+	uint64_t max_thr                      : 13; /**< Max threshold for this internal admission queue. If nonzero, must be >= [RSVD_THR] + 4.
+                                                         To ensure full streaming performance to all cores, should be at least 208. Must not be
                                                          changed after traffic is sent to this group. */
 	uint64_t reserved_13_31               : 19;
 	uint64_t rsvd_thr                     : 13; /**< Reserved threshold for this internal group queue. Should be at least 1 for any groups that
@@ -2698,13 +2704,13 @@ union cvmx_sso_grpx_int_cnt {
 	uint64_t reserved_61_63               : 3;
 	uint64_t tc_cnt                       : 13; /**< Time counter current value for this group. Hardware sets this field to the value of
                                                          SSO_GRP()_INT_THR[TC_THR] whenever:
-                                                         * Corresponding SSO_GRP()_INT_CNT[IAQ_CNT, DS_CNT and CQ_CNT] are all equal to 0.
+                                                         * Corresponding SSO_GRP()_INT_CNT[IAQ_CNT, DS_CNT and CQ_CNT] are all equal to 0x0.
                                                          * Corresponding SSO_GRP()_INT[EXE_INT] is written with a one to clear by software.
                                                          * Corresponding SSO_GRP()_INT[EXE_DIS] is written with a one to set by software.
                                                          * Corresponding SSO_GRP()_INT_THR is written by software.
-                                                         * TC_CNT is equal to 1 and periodic counter SSO_WQ_INT_PC[PC] is equal to 0.
+                                                         * TC_CNT is equal to 1 and periodic counter SSO_WQ_INT_PC[PC] is equal to 0x0.
                                                          Otherwise, hardware decrements this field whenever the periodic counter SSO_WQ_INT_PC[PC]
-                                                         is equal to 0. This field is 0 whenever SSO_GRP()_INT_THR[TC_THR] is equal to 0. */
+                                                         is equal to 0x0. This field is 0x0 whenever SSO_GRP()_INT_THR[TC_THR] is equal to 0x0. */
 	uint64_t reserved_45_47               : 3;
 	uint64_t cq_cnt                       : 13; /**< Conflicted queue executable count for this group. */
 	uint64_t reserved_29_31               : 3;
@@ -2739,22 +2745,22 @@ union cvmx_sso_grpx_int_thr {
 	uint64_t u64;
 	struct cvmx_sso_grpx_int_thr_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t tc_en                        : 1;  /**< Time counter interrupt enable for this group. This field must be zero when [TC_THR] is 0. */
+	uint64_t tc_en                        : 1;  /**< Time counter interrupt enable for this group. This field must be zero when [TC_THR] is 0x0. */
 	uint64_t reserved_61_62               : 2;
 	uint64_t tc_thr                       : 13; /**< Time counter interrupt threshold for this group. Compared against
-                                                         SSO_GRP()_INT_CNT[TC_CNT]. When this field is equal to 0,
+                                                         SSO_GRP()_INT_CNT[TC_CNT]. When this field is equal to 0x0,
                                                          SSO_GRP()_INT_CNT[TC_CNT] is zero. */
 	uint64_t reserved_45_47               : 3;
 	uint64_t cq_thr                       : 13; /**< Conflicted queue count threshold for this group. Compared against
-                                                         SSO_GRP()_INT_CNT[CQ_CNT]. When this field is 0, the threshold interrupt is
+                                                         SSO_GRP()_INT_CNT[CQ_CNT]. When this field is 0x0, the threshold interrupt is
                                                          disabled. */
 	uint64_t reserved_29_31               : 3;
 	uint64_t ds_thr                       : 13; /**< Deschedule count threshold for this group. Compared against
-                                                         SSO_GRP()_INT_CNT[DS_CNT]. When this field is 0, the threshold interrupt is
+                                                         SSO_GRP()_INT_CNT[DS_CNT]. When this field is 0x0, the threshold interrupt is
                                                          disabled. */
 	uint64_t reserved_13_15               : 3;
 	uint64_t iaq_thr                      : 13; /**< In-unit admission queue threshold for this group. Compared against
-                                                         SSO_GRP()_INT_CNT[IAQ_CNT]. When this field is 0, the threshold interrupt is
+                                                         SSO_GRP()_INT_CNT[IAQ_CNT]. When this field is 0x0, the threshold interrupt is
                                                          disabled. */
 #else
 	uint64_t iaq_thr                      : 13;
@@ -2791,7 +2797,7 @@ union cvmx_sso_grpx_pri {
 	uint64_t weight                       : 6;  /**< Cross-group arbitration weight to apply to this group. Must be >= 0x2. */
 	uint64_t reserved_12_15               : 4;
 	uint64_t affinity                     : 4;  /**< Processor affinity arbitration weight to apply to this group. If zero, affinity
-                                                         is disabled. A change to AFFINITY will not take effect until the old AFFINITY's
+                                                         is disabled. A change to [AFFINITY] will not take effect until the old [AFFINITY]'s
                                                          value loaded into SSO_PP()_ARB[AFF_LEFT] has drained to zero. */
 	uint64_t reserved_3_7                 : 5;
 	uint64_t pri                          : 3;  /**< Priority for this group relative to other groups. To prevent a core from receiving work on
@@ -2832,7 +2838,7 @@ union cvmx_sso_grpx_taq_thr {
 	uint64_t grp_cnt                      : 11; /**< Group's entry count. Number of transitory admission buffers allocated to this group. */
 	uint64_t reserved_43_47               : 5;
 	uint64_t max_thr                      : 11; /**< Max threshold for this transitory admission queue, in buffers of 13 entries. Must be >= 3,
-                                                         must be >= [RSVD_THR], and to insure full streaming performance on this group, should be
+                                                         must be >= [RSVD_THR], and to ensure full streaming performance on this group, should be
                                                          at least 16 buffers. SSO may exceed this count using unreserved free buffers if and only
                                                          if persistently backpressured by IOBI. Must not be changed after traffic is sent to this
                                                          group. */
@@ -3249,7 +3255,7 @@ union cvmx_sso_ientx_tag {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_39_63               : 25;
 	uint64_t tailc                        : 1;  /**< The SSO entry is the tail of tag chain that is conflicted. No conflicted chain exists if
-                                                         TAIL is also set on the same entry. */
+                                                         [TAIL] is also set on the same entry. */
 	uint64_t tail                         : 1;  /**< The SSO entry is the tail of tag chain that is descheduled. */
 	uint64_t reserved_34_36               : 3;
 	uint64_t tt                           : 2;  /**< The tag type of the SSO entry. Enumerated by SSO_TT_E. */
@@ -3977,7 +3983,7 @@ union cvmx_sso_ppx_sx_grpmskx {
                                                          A value of 0x0 in GRPMSK for a given core prevents the core from receiving new
                                                          work. Cores that will never receive work should use GRPMSK=0x0; while this setting
                                                          is not special in SSO, for backward and forward compatibility this may enable reallocation
-                                                         of internal resources to the remaining (non-zero-mask) cores. */
+                                                         of internal resources to the remaining (nonzero-mask) cores. */
 #else
 	uint64_t grp_msk                      : 64;
 #endif
@@ -4737,7 +4743,7 @@ union cvmx_sso_taq_cnt {
 	struct cvmx_sso_taq_cnt_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_27_63               : 37;
-	uint64_t rsvd_free                    : 11; /**< Number of free reserved buffers. Used to insure each group may get a specific number of
+	uint64_t rsvd_free                    : 11; /**< Number of free reserved buffers. Used to ensure each group may get a specific number of
                                                          buffers. Must always be greater than or equal to the sum across all
                                                          SSO_GRP()_TAQ_THR[RSVD_THR], and will generally be equal to that sum unless changes
                                                          to RSVD_THR are going to be made. To prevent races, software should not change this
@@ -4771,7 +4777,7 @@ union cvmx_sso_tiaqx_status {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t wae_head                     : 4;  /**< Head's WAE number within current cache line, 0-12. This provides the second index into
                                                          SSO_TAQ()_WAE()_TAG and SSO_TAQ()_WAE()_WQP. */
-	uint64_t wae_tail                     : 4;  /**< When [WAE_USED] is non-zero, this provides the next free WAE number in the cache
+	uint64_t wae_tail                     : 4;  /**< When [WAE_USED] is nonzero, this provides the next free WAE number in the cache
                                                          line of the tail entry. If 0x0, the next entry will be placed at the beginning of
                                                          a new cache line. This provides the second index into SSO_TAQ()_WAE()_TAG and
                                                          SSO_TAQ()_WAE()_WQP. */
@@ -4814,10 +4820,10 @@ union cvmx_sso_toaqx_status {
 	uint64_t reserved_62_63               : 2;
 	uint64_t ext_vld                      : 1;  /**< External queuing is in use on this group. */
 	uint64_t partial                      : 1;  /**< Partial cache line is allocated to tail of queue. */
-	uint64_t wae_tail                     : 4;  /**< If PARTIAL is set, this provides the next free WAE number in the cache line of the tail
-                                                         entry. If PARTIAL is clear, the next entry will be placed at the beginning of a new cache
-                                                         line. This provides the
-                                                         second index into SSO_TAQ()_WAE()_TAG and SSO_TAQ()_WAE()_WQP. */
+	uint64_t wae_tail                     : 4;  /**< If [PARTIAL] is set, this provides the next free WAE number in the cache line of
+                                                         the tail entry. If [PARTIAL] is clear, the next entry will be placed at the
+                                                         beginning of a new cache line. This provides the second index into
+                                                         SSO_TAQ()_WAE()_TAG and SSO_TAQ()_WAE()_WQP. */
 	uint64_t reserved_43_55               : 13;
 	uint64_t cl_used                      : 11; /**< Number of cache lines in use. */
 	uint64_t reserved_23_31               : 9;
@@ -5019,7 +5025,7 @@ union cvmx_sso_wq_int_pc {
 	uint64_t pc                           : 28; /**< Work-executable interrupt periodic counter. */
 	uint64_t reserved_28_31               : 4;
 	uint64_t pc_thr                       : 20; /**< Work-executable interrupt periodic counter threshold. Zero disables the counter.
-                                                         If non-zero, the value must be >= 3. */
+                                                         If nonzero, the value must be >= 3. */
 	uint64_t reserved_0_7                 : 8;
 #else
 	uint64_t reserved_0_7                 : 8;
@@ -5345,7 +5351,7 @@ union cvmx_sso_xaq_aura {
 	uint64_t reserved_12_63               : 52;
 	uint64_t node                         : 2;  /**< Reserved. */
 	uint64_t laura                        : 10; /**< FPA local-node aura to use for SSO XAQ allocations and frees. The FPA aura
-                                                         selected by LAURA must correspond to a pool where the buffers (after any
+                                                         selected by [LAURA] must correspond to a pool where the buffers (after any
                                                          FPA_POOL()_CFG[BUF_OFFSET]) are at least 4 KB. */
 #else
 	uint64_t laura                        : 10;

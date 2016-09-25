@@ -135,12 +135,18 @@ int __cvmx_helper_bgx_enumerate(int xiface)
 /**
  * @INTERNAL
  *
- * Returns mode of each port in a BDK
- * @param xiface Which xiface
- * @param index port in a BDK
- * @returns mode of each port in a BDK
+ * Returns mode of each BGX LMAC (port).
+ * This is different than 'cvmx_helper_interface_get_mode()' which
+ * provides mode of an entire interface, but when BGX is in "mixed"
+ * mode this function should be called instead to get the protocol
+ * for each port (BGX LMAC) individually.
+ * Both function return the same enumerated mode.
+ *
+ * @param xiface is the global interface identifier
+ * @param index is the interface port index
+ * @returns mode of the individual port
  */
-static cvmx_helper_interface_mode_t cvmx_helper_bgx_get_mode(int xiface, int index)
+cvmx_helper_interface_mode_t cvmx_helper_bgx_get_mode(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
 	cvmx_bgxx_cmrx_config_t cmr_config;
@@ -1674,6 +1680,17 @@ static int __cvmx_helper_bgx_xaui_link_init(int index, int xiface)
 					  cvmx_bgxx_spux_br_status1_t, blk_lock, ==, 1, 10000)) {
 #ifdef DEBUG_BGX
 				cvmx_dprintf("ERROR: %d:BGX%d:%d: BASE-R PCS block not locked\n", node, xi.interface, index);
+
+				if (mode == CVMX_HELPER_INTERFACE_MODE_XLAUI
+				    || mode == CVMX_HELPER_INTERFACE_MODE_40G_KR4) {
+					cvmx_bgxx_spux_br_algn_status_t bstatus;
+					bstatus.u64 = cvmx_read_csr_node(node,
+						CVMX_BGXX_SPUX_BR_ALGN_STATUS(index, xi.interface));
+					cvmx_dprintf("ERROR: %d:BGX%d:%d: LANE BLOCK_LOCK:%x LANE MARKER_LOCK:%x\n",
+						node, xi.interface, index,
+						bstatus.s.block_lock,
+						bstatus.s.marker_lock);
+				}
 #endif
                 		return -1;
 			}
@@ -1875,6 +1892,9 @@ cvmx_helper_link_info_t __cvmx_helper_bgx_xaui_link_get(int xipd_port)
 			lanes = 1;
 			break;
 		case 4:  // XLAUI
+			/* Adjust the speed when XLAUI is configured at 6.250Gbps */
+			if (speed == 6250)
+				speed = 6445;
 			speed = (speed * 64 + 33) / 66;
 			lanes = 4;
 			break;
@@ -2266,7 +2286,7 @@ void cvmx_helper_bgx_set_mac(int xipd_port, int bcst, int mcst, uint64_t mac)
 	cvmx_bgxx_cmr_rx_adrx_cam_t adr_cam;
 	cvmx_bgxx_cmrx_rx_adr_ctl_t adr_ctl;
 	cvmx_bgxx_cmrx_config_t cmr_config;
-	int saved_state;
+	int saved_state_tx, saved_state_rx;
 
 	index = cvmx_helper_get_interface_index_num(xipd_port);
 
@@ -2278,7 +2298,8 @@ void cvmx_helper_bgx_set_mac(int xipd_port, int bcst, int mcst, uint64_t mac)
 		__func__, xi.node, xi.interface, index);
 
 	cmr_config.u64 = cvmx_read_csr_node(node, CVMX_BGXX_CMRX_CONFIG(index, xi.interface));
-	saved_state = cmr_config.s.data_pkt_tx_en;
+	saved_state_tx = cmr_config.s.data_pkt_tx_en;
+	saved_state_rx = cmr_config.s.data_pkt_rx_en;
 	cmr_config.s.data_pkt_tx_en = 0;
 	cmr_config.s.data_pkt_rx_en = 0;
 	cvmx_write_csr_node(node, CVMX_BGXX_CMRX_CONFIG(index, xi.interface), cmr_config.u64);
@@ -2306,8 +2327,8 @@ void cvmx_helper_bgx_set_mac(int xipd_port, int bcst, int mcst, uint64_t mac)
 	cvmx_write_csr_node(node, CVMX_BGXX_GMP_GMI_SMACX(index, xi.interface), mac);
 
 	/* Restore back the interface state */
-	cmr_config.s.data_pkt_tx_en = saved_state;
-	cmr_config.s.data_pkt_rx_en = 1;
+	cmr_config.s.data_pkt_tx_en = saved_state_tx;
+	cmr_config.s.data_pkt_rx_en = saved_state_rx;
 	cvmx_write_csr_node(node, CVMX_BGXX_CMRX_CONFIG(index, xi.interface), cmr_config.u64);
 
 	/* Wait 100ms after bringing up the link to give the PHY some time */

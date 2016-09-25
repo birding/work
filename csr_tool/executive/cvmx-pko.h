@@ -50,7 +50,7 @@ extern "C" {
 /**
  * @INTERNAL
  *
- * Bacjward compatibility for packet transmission using legacy PKO command.
+ * Backward compatibility for packet transmission using legacy PKO command.
  *
  */
 extern cvmx_pko_return_value_t cvmx_pko3_legacy_xmit(unsigned dq,

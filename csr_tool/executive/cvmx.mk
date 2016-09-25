@@ -1,5 +1,5 @@
 #/***********************license start***************
-# Copyright (c) 2003-2007 Cavium Inc. (support@cavium.com). All rights
+# Copyright (c) 2003-2016 Cavium Inc. (support@cavium.com). All rights
 # reserved.
 #
 #
@@ -213,7 +213,9 @@ EXEC_OBJS_$(d)  +=  \
 	$(EXEC_OBJ_DIR)/cvmx-otrace.o \
 	$(EXEC_OBJ_DIR)/cvmx-tlb.o \
 	$(EXEC_OBJ_DIR)/cvmx-uart.o \
-	$(EXEC_OBJ_DIR)/cvmx-coredump.o
+	$(EXEC_OBJ_DIR)/cvmx-coredump.o \
+	$(EXEC_OBJ_DIR)/cvmx-eye-diagram.o \
+	$(EXEC_OBJ_DIR)/cvmx-prbs.o
 endif
 
 #Always enable lto for the library.

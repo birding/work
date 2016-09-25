@@ -448,9 +448,6 @@ typedef union cvmx_osm_ecc_ctrl cvmx_osm_ecc_ctrl_t;
 
 /**
  * cvmx_osm_eco
- *
- * Added in pass 2.
- *
  */
 union cvmx_osm_eco {
 	uint64_t u64;

@@ -651,11 +651,10 @@ void cvmx_wqe_free(cvmx_wqe_t *work)
 
 /**
  * Free the packet buffers contained in a work queue entry.
- * The work queue entry is not freed.
- * Note that this function will not free the work queue entry
- * even if it contains a non-redundant data packet, and hence
- * it is not really comparable to how the PKO would free a packet
- * buffers if requested.
+ * The work queue entry is also freed if it contains packet data.
+ * If however the packet starts outside the WQE, the WQE will
+ * not be freed. The application should call cvmx_wqe_free()
+ * to free the WQE buffer that contains no packet data.
  *
  * @param work   Work queue entry with packet to free
  */
@@ -664,10 +663,12 @@ void cvmx_helper_free_packet_data(cvmx_wqe_t *work)
 	uint64_t number_buffers;
 	uint64_t start_of_buffer;
 	uint64_t next_buffer_ptr;
+	cvmx_fpa3_gaura_t aura;
 	unsigned ncl;
 	cvmx_buf_ptr_t buffer_ptr;
 	cvmx_buf_ptr_pki_t bptr;
 	cvmx_wqe_78xx_t *wqe = (void *) work;
+	int o3_pki_wqe = 0;
 
 	number_buffers = cvmx_wqe_get_bufs(work);
 
@@ -682,10 +683,11 @@ void cvmx_helper_free_packet_data(cvmx_wqe_t *work)
 	/* Interpret PKI-style bufptr unless it has been translated */
 	if (octeon_has_feature(OCTEON_FEATURE_CN78XX_WQE) &&
 	    !wqe->pki_wqe_translated) {
+		o3_pki_wqe = 1;
 		cvmx_wqe_pki_errata_20776(work);
-		bptr.u64 = buffer_ptr.u64;
-		next_buffer_ptr = *(uint64_t *)
-			cvmx_phys_to_ptr(bptr.addr - 8);
+		aura = __cvmx_fpa3_gaura(
+			wqe->word0.aura >> 10,
+			wqe->word0.aura & 0x3ff);
 	} else {
 		start_of_buffer =
 			((buffer_ptr.s.addr >> 7) - buffer_ptr.s.back) << 7;
@@ -702,13 +704,7 @@ void cvmx_helper_free_packet_data(cvmx_wqe_t *work)
 		}
 	}
 	while (number_buffers--) {
-		if (octeon_has_feature(OCTEON_FEATURE_CN78XX_WQE) &&
-		    !wqe->pki_wqe_translated) {
-			cvmx_fpa3_gaura_t aura =
-				__cvmx_fpa3_gaura(
-					wqe->word0.aura >> 10,
-					wqe->word0.aura & 0x3ff);
-
+		if (o3_pki_wqe) {
 			bptr.u64 = buffer_ptr.u64;
 
 			ncl = (bptr.size + CVMX_CACHE_LINE_SIZE-1)/
@@ -737,8 +733,7 @@ void cvmx_helper_free_packet_data(cvmx_wqe_t *work)
 				cvmx_phys_to_ptr(buffer_ptr.s.addr - 8);
 			/* FPA pool comes from buf_ptr itself */
 			if (octeon_has_feature(OCTEON_FEATURE_CN78XX_WQE)) {
-				cvmx_fpa3_gaura_t aura =
-					cvmx_fpa1_pool_to_fpa3_aura(buffer_ptr.s.pool);
+				aura = cvmx_fpa1_pool_to_fpa3_aura(buffer_ptr.s.pool);
 				cvmx_fpa3_free(cvmx_phys_to_ptr(start_of_buffer), aura, ncl);
 			} else
 				cvmx_fpa1_free(

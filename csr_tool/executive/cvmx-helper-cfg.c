@@ -79,35 +79,9 @@
 #endif
 
 int cvmx_npi_max_pknds;
+static bool port_cfg_data_initialized = false;
 
-CVMX_SHARED struct cvmx_cfg_port_param cvmx_cfg_port[CVMX_MAX_NODES][CVMX_HELPER_MAX_IFACE][CVMX_HELPER_CFG_MAX_PORT_PER_IFACE] =
-	{[0 ... CVMX_MAX_NODES - 1][0 ... CVMX_HELPER_MAX_IFACE - 1] =
-		{[0 ... CVMX_HELPER_CFG_MAX_PORT_PER_IFACE - 1] =
-			{
-#ifndef CVMX_BUILD_FOR_LINUX_KERNEL
-				.port_fdt_node = CVMX_HELPER_CFG_INVALID_VALUE,
-				.phy_fdt_node = CVMX_HELPER_CFG_INVALID_VALUE,
-#endif
-				.phy_info = NULL,
-				.ccpp_pknd = CVMX_HELPER_CFG_INVALID_VALUE,
-				.ccpp_bpid =  CVMX_HELPER_CFG_INVALID_VALUE,
-				.ccpp_pko_port_base = CVMX_HELPER_CFG_INVALID_VALUE,
-				.ccpp_pko_num_ports = CVMX_HELPER_CFG_INVALID_VALUE,
-				.agl_rx_clk_skew = 0,
-				.valid = true,
-				.sgmii_phy_mode = false,
-				.sgmii_1000x_mode = false,
-				.agl_rx_clk_delay_bypass = false,
-				.force_link_up = false,
-				.disable_an = false,
-				.link_down_pwr_dn = false,
-				.phy_present = false,
-				.tx_clk_delay_bypass = false,
-				.rgmii_tx_clk_delay = 0,
-			}
-		}
-	};
-
+CVMX_SHARED struct cvmx_cfg_port_param cvmx_cfg_port[CVMX_MAX_NODES][CVMX_HELPER_MAX_IFACE][CVMX_HELPER_CFG_MAX_PORT_PER_IFACE];
 /*
  * Indexed by the pko_port number
  */
@@ -158,12 +132,16 @@ static CVMX_SHARED uint64_t cvmx_cfg_opts[CVMX_HELPER_CFG_OPT_MAX] = {[0 ... CVM
 static CVMX_SHARED int cvmx_cfg_max_pko_engines;	/* # of PKO DMA engines
 							   allocated */
 static int cvmx_pko_queue_alloc(uint64_t port, int count);
+static void cvmx_init_port_cfg(void);
 static const int dbg = 0;
 
 int __cvmx_helper_cfg_pknd(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
 	int pkind;
+
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 
 	pkind = cvmx_cfg_port[xi.node][xi.interface][index].ccpp_pknd;
 	return pkind;
@@ -172,18 +150,30 @@ int __cvmx_helper_cfg_pknd(int xiface, int index)
 int __cvmx_helper_cfg_bpid(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
+
 	return cvmx_cfg_port[xi.node][xi.interface][index].ccpp_bpid;
 }
 
 int __cvmx_helper_cfg_pko_port_base(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
+
 	return cvmx_cfg_port[xi.node][xi.interface][index].ccpp_pko_port_base;
 }
 
 int __cvmx_helper_cfg_pko_port_num(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
+
 	return cvmx_cfg_port[xi.node][xi.interface][index].ccpp_pko_num_ports;
 }
 
@@ -487,6 +477,8 @@ void cvmx_helper_cfg_init_pko_port_map(void)
 	int pko_port_base, pko_port_max;
 	cvmx_helper_interface_mode_t mode;
 
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	/*
 	 * one pko_eid is allocated to each port except for ILK, NPI, and
 	 * LOOP. Each of the three has one eid.
@@ -779,6 +771,9 @@ static int cvmx_helper_cfg_init_pko_iports_and_queues_using_static_config(void)
 	int i, j, n, k;
 	int rv = 0;
 
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
+
 	/* When not using config file, each port is assigned one internal pko port*/
 	for (i = 0; i < cvmx_helper_get_number_of_interfaces(); i++) {
 		n = cvmx_helper_interface_enumerate(i);
@@ -823,6 +818,8 @@ static int cvmx_helper_cfg_init_pko_iports_and_queues_using_static_config(void)
 int cvmx_helper_is_port_valid(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	return  cvmx_cfg_port[xi.node][xi.interface][index].valid;
 }
 EXPORT_SYMBOL(cvmx_helper_is_port_valid);
@@ -830,6 +827,8 @@ EXPORT_SYMBOL(cvmx_helper_is_port_valid);
 void cvmx_helper_set_port_valid(int xiface, int index, bool valid)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	cvmx_cfg_port[xi.node][xi.interface][index].valid = valid;
 }
 EXPORT_SYMBOL(cvmx_helper_set_port_valid);
@@ -837,6 +836,8 @@ EXPORT_SYMBOL(cvmx_helper_set_port_valid);
 void cvmx_helper_set_mac_phy_mode(int xiface, int index, bool valid)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	cvmx_cfg_port[xi.node][xi.interface][index].sgmii_phy_mode = valid;
 }
 EXPORT_SYMBOL(cvmx_helper_set_mac_phy_mode);
@@ -844,6 +845,8 @@ EXPORT_SYMBOL(cvmx_helper_set_mac_phy_mode);
 bool cvmx_helper_get_mac_phy_mode(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	return cvmx_cfg_port[xi.node][xi.interface][index].sgmii_phy_mode;
 }
 EXPORT_SYMBOL(cvmx_helper_get_mac_phy_mode);
@@ -851,6 +854,8 @@ EXPORT_SYMBOL(cvmx_helper_get_mac_phy_mode);
 void cvmx_helper_set_1000x_mode(int xiface, int index, bool valid)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	cvmx_cfg_port[xi.node][xi.interface][index].sgmii_1000x_mode = valid;
 }
 EXPORT_SYMBOL(cvmx_helper_set_1000x_mode);
@@ -858,6 +863,8 @@ EXPORT_SYMBOL(cvmx_helper_set_1000x_mode);
 bool cvmx_helper_get_1000x_mode(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	return cvmx_cfg_port[xi.node][xi.interface][index].sgmii_1000x_mode;
 }
 EXPORT_SYMBOL(cvmx_helper_get_1000x_mode);
@@ -866,6 +873,8 @@ void cvmx_helper_set_agl_rx_clock_delay_bypass(int xiface, int index,
 					       bool valid)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	cvmx_cfg_port[xi.node][xi.interface][index].agl_rx_clk_delay_bypass = valid;
 }
 EXPORT_SYMBOL(cvmx_helper_set_agl_rx_clock_delay_bypass);
@@ -873,6 +882,8 @@ EXPORT_SYMBOL(cvmx_helper_set_agl_rx_clock_delay_bypass);
 bool cvmx_helper_get_agl_rx_clock_delay_bypass(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	return cvmx_cfg_port[xi.node][xi.interface][index].agl_rx_clk_delay_bypass;
 }
 EXPORT_SYMBOL(cvmx_helper_get_agl_rx_clock_delay_bypass);
@@ -880,6 +891,8 @@ EXPORT_SYMBOL(cvmx_helper_get_agl_rx_clock_delay_bypass);
 void cvmx_helper_set_agl_rx_clock_skew(int xiface, int index, uint8_t value)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	cvmx_cfg_port[xi.node][xi.interface][index].agl_rx_clk_skew = value;
 }
 EXPORT_SYMBOL(cvmx_helper_set_agl_rx_clock_skew);
@@ -887,6 +900,8 @@ EXPORT_SYMBOL(cvmx_helper_set_agl_rx_clock_skew);
 uint8_t cvmx_helper_get_agl_rx_clock_skew(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	return cvmx_cfg_port[xi.node][xi.interface][index].agl_rx_clk_skew;
 }
 EXPORT_SYMBOL(cvmx_helper_get_agl_rx_clock_skew);
@@ -894,6 +909,8 @@ EXPORT_SYMBOL(cvmx_helper_get_agl_rx_clock_skew);
 void cvmx_helper_set_port_force_link_up(int xiface, int index, bool value)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	cvmx_cfg_port[xi.node][xi.interface][index].force_link_up = value;
 }
 EXPORT_SYMBOL(cvmx_helper_set_port_force_link_up);
@@ -901,6 +918,8 @@ EXPORT_SYMBOL(cvmx_helper_set_port_force_link_up);
 bool cvmx_helper_get_port_force_link_up(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	return cvmx_cfg_port[xi.node][xi.interface][index].force_link_up;
 }
 EXPORT_SYMBOL(cvmx_helper_get_port_force_link_up);
@@ -908,6 +927,8 @@ EXPORT_SYMBOL(cvmx_helper_get_port_force_link_up);
 void cvmx_helper_set_port_phy_present(int xiface, int index, bool value)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	cvmx_cfg_port[xi.node][xi.interface][index].phy_present = value;
 }
 EXPORT_SYMBOL(cvmx_helper_set_port_phy_present);
@@ -915,6 +936,8 @@ EXPORT_SYMBOL(cvmx_helper_set_port_phy_present);
 bool cvmx_helper_get_port_phy_present(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	return cvmx_cfg_port[xi.node][xi.interface][index].phy_present;
 }
 EXPORT_SYMBOL(cvmx_helper_get_port_phy_present);
@@ -930,6 +953,8 @@ int __cvmx_helper_init_port_valid(void)
 	if (fdt_addr == 0)
 		fdt_addr = __cvmx_phys_addr_to_ptr(cvmx_sysinfo_get()->fdt_addr,
 						   (128*1024));
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	if (octeon_has_feature(OCTEON_FEATURE_BGX)) {
 		rc = __cvmx_helper_parse_bgx_dt(fdt_addr);
 		if (!rc && octeon_has_feature(OCTEON_FEATURE_BGX_XCV))
@@ -985,8 +1010,10 @@ int __cvmx_helper_init_port_config_data_local(void)
 	int rv = 0;
 	int dbg = 0;
 
-	if (octeon_has_feature(OCTEON_FEATURE_PKND))
-	{
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
+
+	if (octeon_has_feature(OCTEON_FEATURE_PKND)) {
 		if (cvmx_import_app_config) {
 			rv = (*cvmx_import_app_config)();
 			if (rv != 0) {
@@ -1026,6 +1053,8 @@ int cvmx_pko_alloc_iport_and_queues(int interface, int port, int port_cnt, int q
 		cvmx_dprintf("%s: intf %d/%d pcnt %d qcnt %d\n",
 			__func__, interface, port, port_cnt, queue_cnt);
 
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	if (octeon_has_feature(OCTEON_FEATURE_PKND)) {
 		rv = cvmx_pko_internal_ports_alloc(interface, port, port_cnt);
 		if (rv < 0)  {
@@ -1055,6 +1084,47 @@ int cvmx_pko_alloc_iport_and_queues(int interface, int port, int port_cnt, int q
 }
 EXPORT_SYMBOL(cvmx_pko_alloc_iport_and_queues);
 
+static void cvmx_init_port_cfg(void)
+{
+	int node, i, j;
+
+	if (port_cfg_data_initialized)
+		return;
+
+	for (node = 0; node < CVMX_MAX_NODES; node++) {
+		for (i = 0; i < CVMX_HELPER_MAX_IFACE; i++) {
+			for (j = 0; j < CVMX_HELPER_CFG_MAX_PORT_PER_IFACE; j++) {
+				struct cvmx_cfg_port_param *pcfg;
+
+				pcfg = &cvmx_cfg_port[node][i][j];
+				memset(pcfg, 0, sizeof(*pcfg));
+
+#ifndef CVMX_BUILD_FOR_LINUX_KERNEL
+				pcfg->port_fdt_node = CVMX_HELPER_CFG_INVALID_VALUE;
+				pcfg->phy_fdt_node = CVMX_HELPER_CFG_INVALID_VALUE;
+#endif
+				pcfg->phy_info = NULL;
+				pcfg->ccpp_pknd = CVMX_HELPER_CFG_INVALID_VALUE;
+				pcfg->ccpp_bpid = CVMX_HELPER_CFG_INVALID_VALUE;
+				pcfg->ccpp_pko_port_base = CVMX_HELPER_CFG_INVALID_VALUE;
+				pcfg->ccpp_pko_num_ports = CVMX_HELPER_CFG_INVALID_VALUE;
+				pcfg->agl_rx_clk_skew = 0;
+				pcfg->valid = true;
+				pcfg->sgmii_phy_mode = false;
+				pcfg->sgmii_1000x_mode = false;
+				pcfg->agl_rx_clk_delay_bypass = false;
+				pcfg->force_link_up = false;
+				pcfg->disable_an = false;
+				pcfg->link_down_pwr_dn = false;
+				pcfg->phy_present = false;
+				pcfg->tx_clk_delay_bypass = false;
+				pcfg->rgmii_tx_clk_delay = 0;
+			}
+		}
+	}
+	port_cfg_data_initialized = true;
+}
+
 int __cvmx_helper_init_port_config_data(int node)
 {
 	int rv = 0;
@@ -1069,6 +1139,9 @@ int __cvmx_helper_init_port_config_data(int node)
 
 	if (dbg)
 		cvmx_printf("%s:\n",__func__);
+
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 
 	if (octeon_has_feature(OCTEON_FEATURE_CN78XX_WQE)) {
 		/* PKO3: only needs BPID, PKND to be setup,
@@ -1087,8 +1160,10 @@ int __cvmx_helper_init_port_config_data(int node)
 			}
  			if (cvmx_helper_interface_get_mode(xiface) != CVMX_HELPER_INTERFACE_MODE_NPI) {
 				for (j = 0; j < n; j++) {
-					cvmx_cfg_port[node][i][j].ccpp_pknd = pknd++;
-					cvmx_cfg_port[node][i][j].ccpp_bpid = bpid++;
+					struct cvmx_cfg_port_param *pcfg;
+					pcfg = &cvmx_cfg_port[node][i][j];
+					pcfg->ccpp_pknd = pknd++;
+					pcfg->ccpp_bpid = bpid++;
 				}
 			} else {
 				for (j = 0; j < n; j++) {
@@ -1172,7 +1247,6 @@ int __cvmx_helper_init_port_config_data(int node)
 	}
 	return rv;
 }
-EXPORT_SYMBOL(__cvmx_helper_init_port_config_data);
 
 #ifndef CVMX_BUILD_FOR_LINUX_KERNEL
 /**
@@ -1187,6 +1261,8 @@ void cvmx_helper_set_port_fdt_node_offset(int xiface, int index,
 					  int node_offset)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	cvmx_cfg_port[xi.node][xi.interface][index].port_fdt_node = node_offset;
 }
 
@@ -1201,6 +1277,8 @@ void cvmx_helper_set_port_fdt_node_offset(int xiface, int index,
 int cvmx_helper_get_port_fdt_node_offset(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	return cvmx_cfg_port[xi.node][xi.interface][index].port_fdt_node;
 }
 
@@ -1215,6 +1293,8 @@ int cvmx_helper_get_port_fdt_node_offset(int xiface, int index)
 void cvmx_helper_set_phy_fdt_node_offset(int xiface, int index, int node_offset)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	cvmx_cfg_port[xi.node][xi.interface][index].phy_fdt_node = node_offset;
 }
 
@@ -1229,6 +1309,8 @@ void cvmx_helper_set_phy_fdt_node_offset(int xiface, int index, int node_offset)
 int cvmx_helper_get_phy_fdt_node_offset(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	return cvmx_cfg_port[xi.node][xi.interface][index].phy_fdt_node;
 }
 
@@ -1244,6 +1326,8 @@ int cvmx_helper_get_phy_fdt_node_offset(int xiface, int index)
 void cvmx_helper_set_port_autonegotiation(int xiface, int index, bool enable)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	cvmx_cfg_port[xi.node][xi.interface][index].disable_an = !enable;
 }
 #endif /* !CVMX_BUILD_FOR_LINUX_KERNEL */
@@ -1260,6 +1344,8 @@ void cvmx_helper_set_port_autonegotiation(int xiface, int index, bool enable)
 bool cvmx_helper_get_port_autonegotiation(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	return !cvmx_cfg_port[xi.node][xi.interface][index].disable_an;
 }
 
@@ -1275,6 +1361,8 @@ void cvmx_helper_set_port_phy_info(int xiface, int index,
 				   struct cvmx_phy_info *phy_info)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	cvmx_cfg_port[xi.node][xi.interface][index].phy_info = phy_info;
 }
 
@@ -1291,6 +1379,8 @@ struct cvmx_phy_info *
 cvmx_helper_get_port_phy_info(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	return cvmx_cfg_port[xi.node][xi.interface][index].phy_info;
 }
 
@@ -1307,6 +1397,8 @@ cvmx_helper_get_port_phy_info(int xiface, int index)
 struct cvmx_phy_gpio_leds *cvmx_helper_get_port_phy_leds(int xiface, int index)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	return cvmx_cfg_port[xi.node][xi.interface][index].gpio_leds;
 }
 
@@ -1322,6 +1414,8 @@ void cvmx_helper_set_port_phy_leds(int xiface, int index,
 				   struct cvmx_phy_gpio_leds *leds)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	cvmx_cfg_port[xi.node][xi.interface][index].gpio_leds = leds;
 }
 
@@ -1340,6 +1434,8 @@ void cvmx_helper_cfg_set_rgmii_tx_clk_delay(int xiface, int index,
 					    bool bypass, int clk_delay)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	cvmx_cfg_port[xi.node][xi.interface][index].tx_clk_delay_bypass =
 									bypass;
 	cvmx_cfg_port[xi.node][xi.interface][index].rgmii_tx_clk_delay =
@@ -1362,6 +1458,8 @@ void cvmx_helper_cfg_get_rgmii_tx_clk_delay(int xiface, int index,
 					    int *clk_delay)
 {
 	struct cvmx_xiface xi = cvmx_helper_xiface_to_node_interface(xiface);
+	if (!port_cfg_data_initialized)
+		cvmx_init_port_cfg();
 	*bypass =
 		cvmx_cfg_port[xi.node][xi.interface][index].tx_clk_delay_bypass;
 

@@ -331,12 +331,12 @@ static inline uint64_t CVMX_DENCX_TC_STATIC_EPDCCH_REGX(unsigned long offset, un
 static inline uint64_t CVMX_DENCX_TC_STATIC_PDCCH_REGX(unsigned long offset, unsigned long block_id)
 {
 	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 31)) && ((block_id <= 1))))))
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 8)) && ((block_id <= 1))))))
 		cvmx_warn("CVMX_DENCX_TC_STATIC_PDCCH_REGX(%lu,%lu) is invalid on this chip\n", offset, block_id);
-	return CVMX_ADD_IO_SEG(0x00011800B3481800ull) + (((offset) & 31) + ((block_id) & 1) * 0x1000ull) * 8;
+	return CVMX_ADD_IO_SEG(0x00011800B3481800ull) + (((offset) & 15) + ((block_id) & 1) * 0x1000ull) * 8;
 }
 #else
-#define CVMX_DENCX_TC_STATIC_PDCCH_REGX(offset, block_id) (CVMX_ADD_IO_SEG(0x00011800B3481800ull) + (((offset) & 31) + ((block_id) & 1) * 0x1000ull) * 8)
+#define CVMX_DENCX_TC_STATIC_PDCCH_REGX(offset, block_id) (CVMX_ADD_IO_SEG(0x00011800B3481800ull) + (((offset) & 15) + ((block_id) & 1) * 0x1000ull) * 8)
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_DENCX_TC_STATUS0_REG(unsigned long offset)
@@ -1111,7 +1111,7 @@ union cvmx_dencx_tc_control_reg {
 	uint64_t single_task_phy_en           : 1;  /**< When set to 1, the core will wait until idle before accepting a new job with a different PHY_MODE. */
 	uint64_t single_task_en               : 1;  /**< When set to 1, the core will always wait until idle before
                                                          starting the next task. */
-	uint64_t cfg_chk_dis                  : 1;  /**< When set to 1, disables config checks. Tasks with
+	uint64_t cfg_chk_dis                  : 1;  /**< When set to 1, disables configuration checks. Tasks with
                                                          invalid configurations will still be processed. */
 	uint64_t clk_gate_dis                 : 1;  /**< When set to 1, disables clock gating. */
 #else

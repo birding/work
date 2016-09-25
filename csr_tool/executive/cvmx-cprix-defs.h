@@ -1056,14 +1056,14 @@ union cvmx_cprix_cm_status {
                                                          that slow C&M channel is not supported and recevied data will be
                                                          discarded. */
 	uint64_t rx_slow_cm_rate              : 3;  /**< Accepted receive slow C&M rate.
-                                                         0x0: No HDLC.
-                                                         0x1: 240 Kbit/s.
-                                                         0x2: 480 Kbit/s.
-                                                         0x3: 960 Kbit/s.
-                                                         0x4: 1920 Kbit/s.
-                                                         0x5: 2400 Kbit/s.
-                                                         0x6: Highest possible rate when line rate is greater than 3072 Mbps.
-                                                         0x7: Reserved. */
+                                                         0x0 = No HDLC.
+                                                         0x1 = 240 Kbit/s.
+                                                         0x2 = 480 Kbit/s.
+                                                         0x3 = 960 Kbit/s.
+                                                         0x4 = 1920 Kbit/s.
+                                                         0x5 = 2400 Kbit/s.
+                                                         0x6 = Highest possible rate when line rate is greater than 3072 Mbps.
+                                                         0x7 = Reserved. */
 	uint64_t reserved_7_7                 : 1;
 	uint64_t rx_fast_cm_ptr_valid         : 1;  /**< When set, indicates that a valid fast C&M pointer has been accepted. */
 	uint64_t rx_fast_cm_ptr               : 6;  /**< Accepted receive fast C&M pointer. */
@@ -1089,31 +1089,31 @@ union cvmx_cprix_config {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_16_63               : 48;
 	uint64_t ori_spec                     : 1;  /**< ORI specification version used for RTWP mapping.
-                                                         - 0: ORI spec version 1.1.1.
-                                                         - 1: ORI spec version 4.1.1. */
+                                                         0 = ORI spec version 1.1.1.
+                                                         1 = ORI spec version 4.1.1. */
 	uint64_t set_10_acks                  : 1;  /**< N/A */
 	uint64_t rtwp_enable_rx               : 1;  /**< When set, enables extraction of RTWP. */
 	uint64_t rtwp_enable_tx               : 1;  /**< N/A */
 	uint64_t cnt_6_reset                  : 1;  /**< N/A */
 	uint64_t sync_pulse_in_re_mode        : 1;  /**< N/A */
-	uint64_t rx_enable_buffer             : 1;  /**< 0: Disable CPRI receiver.
-                                                         - 1: Enable CPRI receiver. */
+	uint64_t rx_enable_buffer             : 1;  /**< 0 = Disable CPRI receiver.
+                                                         1 = Enable CPRI receiver. */
 	uint64_t ethernet_idle_select         : 1;  /**< Select whether to transmit zeros or ones on Ethernet channel when
                                                           idle. This only applies when [ETHERNET_MODE] = 1.
-                                                         - 0: Transmit zeros when idle.
-                                                         - 1: Transmit ones when idle. */
+                                                         0 = Transmit zeros when idle.
+                                                         1 = Transmit ones when idle. */
 	uint64_t rx_cm_select                 : 1;  /**< Receiver control and management (C & M) channel configuration.
-                                                         - 0: Use accepted values.
-                                                         - 1: Use TX configuration. */
+                                                         0 = Use accepted values.
+                                                         1 = Use TX configuration. */
 	uint64_t ethernet_mode                : 1;  /**< Select mapping of Fast C&M Ethernet channel.
-                                                         - 0: Standard CPRI v.4.2 mode.
-                                                         - 1: Alternative IR mapping mode. */
-	uint64_t tx_enable                    : 1;  /**< 0: Disable transmit operations.
-                                                         - 1: Enable transmit operations. */
+                                                         0 = Standard CPRI v.4.2 mode.
+                                                         1 = Alternative IR mapping mode. */
+	uint64_t tx_enable                    : 1;  /**< 0 = Disable transmit operations.
+                                                         1 = Enable transmit operations. */
 	uint64_t loop_mode                    : 3;  /**< N/A */
 	uint64_t sync_mode                    : 1;  /**< N/A */
 	uint64_t tx_ctrl_insert_en            : 1;  /**< Global enable on CPRI control word insertion. This bit overrides the
-                                                         insertion enables configured using the CPRI()_TX_CTRL regsiter. When
+                                                         insertion enables configured using the CPRI()_TX_CTRL register. When
                                                          [TX_CTRL_INSER_EN] is set to one, individual bytes must also be enabled
                                                          using CPRI()_TX_CTRL regiser. When cleared, none of the control words
                                                          specified by CPRI()_TX_CTRL are inserted in the transmitted frames. */
@@ -1271,8 +1271,8 @@ union cvmx_cprix_eth_config_1 {
 	uint64_t crc_strip_en                 : 1;  /**< When set, the CRC is stripped from incoming packets. */
 	uint64_t mac_fail_pass_en             : 1;  /**< Accept incoming packets that fail the unicast, multicast and broadcast
                                                           MAC checks.
-                                                         - 0: When [MAC_CHECK]=1, packets not passing any filter are discarded.
-                                                         - 1: When [MAC_CHECK]=1, packets that do not pass any filters are
+                                                         0 = When [MAC_CHECK]=1, packets not passing any filter are discarded.
+                                                         1 = When [MAC_CHECK]=1, packets that do not pass any filters are
                                                           accepted, and the failure is recorded by setting
                                                           RFIF_ETH_RX_WQE_S[DMAC_MISMATCH]=1 and
                                                           RFIF_ETH_RX_WQE_S[MAC_RES]=0x7. */
@@ -1305,8 +1305,8 @@ union cvmx_cprix_eth_config_1 {
 	uint64_t mac_reset                    : 1;  /**< Ethernet MAC reset. */
 	uint64_t reserved_2_2                 : 1;
 	uint64_t little_endian_en             : 1;  /**< Select the endianness for Ethernet receive and transmit data:
-                                                         - 0: Big-endian.
-                                                         - 1: Little-endian. */
+                                                         0 = Big-endian.
+                                                         1 = Little-endian. */
 	uint64_t reserved_0_0                 : 1;
 #else
 	uint64_t reserved_0_0                 : 1;
@@ -1375,9 +1375,9 @@ union cvmx_cprix_eth_config_3 {
                                                          fail the check are discarded). When cleared, no validation is
                                                          performed and all packets are accepted. */
 	uint64_t tx_st_fwd                    : 1;  /**< Select between store-and-forward and cut-through mode.
-                                                         - 0: Cut-through mode. Transmission stars when the buffer fill-level
+                                                         0 =  Cut-through mode. Transmission stars when the buffer fill-level
                                                           exceeds [TX_START_THR].
-                                                         - 1: Store-and-forward mode. Store a full packet before start of
+                                                         1 = Store-and-forward mode. Store a full packet before start of
                                                           transmission. Packets longer than transmit buffer (256 bytes) will be aborted. */
 #else
 	uint64_t tx_st_fwd                    : 1;
@@ -1432,7 +1432,8 @@ union cvmx_cprix_eth_rx_control {
 	struct cvmx_cprix_eth_rx_control_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_1_63                : 63;
-	uint64_t rx_discard                   : 1;  /**< 1 : Discard current Ethernet RX frame.0: Discard not enabled. */
+	uint64_t rx_discard                   : 1;  /**< 1 = Discard current Ethernet RX frame.
+                                                         0 = Discard not enabled. */
 #else
 	uint64_t rx_discard                   : 1;
 	uint64_t reserved_1_63                : 63;
@@ -1496,15 +1497,15 @@ union cvmx_cprix_eth_rx_ex_status {
 	struct cvmx_cprix_eth_rx_ex_status_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_11_63               : 53;
-	uint64_t mii_protocol_error           : 1;  /**< 1: Protocol error. 4B/5B decoding violation */
-	uint64_t small_packet                 : 1;  /**< 1: Frame too short. Aborted. */
-	uint64_t rx_ex_overflow               : 1;  /**< 1: RX buffer overflow */
-	uint64_t dmac_mismatch                : 1;  /**< 1: DMAC mismatch */
-	uint64_t crc_error                    : 1;  /**< 1: CRC error */
+	uint64_t mii_protocol_error           : 1;  /**< 1 = Protocol error. 4B/5B decoding violation */
+	uint64_t small_packet                 : 1;  /**< 1 = Frame too short. Aborted. */
+	uint64_t rx_ex_overflow               : 1;  /**< 1 = RX buffer overflow */
+	uint64_t dmac_mismatch                : 1;  /**< 1 = DMAC mismatch */
+	uint64_t crc_error                    : 1;  /**< 1 = CRC error */
 	uint64_t reserved_5_5                 : 1;
-	uint64_t rx_error                     : 1;  /**< 1: Abort from CPRI Layer */
-	uint64_t long_frame                   : 1;  /**< 1: Long frame detected */
-	uint64_t short_frame                  : 1;  /**< 1: Short frame detected */
+	uint64_t rx_error                     : 1;  /**< 1 = Abort from CPRI Layer */
+	uint64_t long_frame                   : 1;  /**< 1 = Long frame detected */
+	uint64_t short_frame                  : 1;  /**< 1 = Short frame detected */
 	uint64_t reserved_0_1                 : 2;
 #else
 	uint64_t reserved_0_1                 : 2;
@@ -1534,17 +1535,20 @@ union cvmx_cprix_eth_rx_status {
 	uint64_t reserved_15_63               : 49;
 	uint64_t mac_status                   : 2;  /**< '"00" : Packet passed Unicast filter"01" : Packet passed Multicast filter"10"
                                                          : Packet passed Broadcast filter"11" : Forwarded packet did not pass filter.' */
-	uint64_t rx_crc_error                 : 1;  /**< 1: Frame aborted due to CRC error. */
-	uint64_t rx_empty                     : 1;  /**< 1: Read from empty buffer. */
-	uint64_t rx_mii_error                 : 1;  /**< 1: Frame aborted due to mii protocol error. */
-	uint64_t rx_small_packet              : 1;  /**< 1: Frame too short. Aborted. */
-	uint64_t rx_overflow                  : 1;  /**< 1: Frame aborted due to Rx buffer overflow. */
-	uint64_t rx_dmac_mismatch             : 1;  /**< 1: Frame aborted due to DMAC mismatch. */
+	uint64_t rx_crc_error                 : 1;  /**< 1 = Frame aborted due to CRC error. */
+	uint64_t rx_empty                     : 1;  /**< 1 = Read from empty buffer. */
+	uint64_t rx_mii_error                 : 1;  /**< 1 = Frame aborted due to mii protocol error. */
+	uint64_t rx_small_packet              : 1;  /**< 1 = Frame too short. Aborted. */
+	uint64_t rx_overflow                  : 1;  /**< 1 = Frame aborted due to Rx buffer overflow. */
+	uint64_t rx_dmac_mismatch             : 1;  /**< 1 = Frame aborted due to DMAC mismatch. */
 	uint64_t rx_ready_block               : 1;  /**< 1 : Guaranteed 2^WIDTH_ETH_BLOCK wordsEthernet RX data ready.0 : Not
                                                          ready. */
 	uint64_t rx_ready_end                 : 1;  /**< 1 : EOP ready in RX buffer.0 : EOP not ready in RX buffer. */
-	uint64_t rx_length                    : 2;  /**< Length of last word in the packet."00" means 1 valid byte."01" means 2 valid
-                                                         bytes."10" means 3 valid bytes."11" means 4 valid bytes. */
+	uint64_t rx_length                    : 2;  /**< Length of last word in the packet.
+                                                         0x0 means 1 valid byte.
+                                                         0x1 means 2 valid bytes.
+                                                         0x2 means 3 valid bytes.
+                                                         0x3 means 4 valid bytes. */
 	uint64_t rx_abort                     : 1;  /**< 1 : Ethernet RX packet aborted.0 : Ethernet RX packet not aborted. */
 	uint64_t rx_eof                       : 1;  /**< 1 : Ethernet RX end of packet detected. Next word read will contain end
                                                          of packet.0 : Ethernet RX end of packet not detected. */
@@ -1581,12 +1585,18 @@ union cvmx_cprix_eth_tx_control {
 	struct cvmx_cprix_eth_tx_control_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_4_63                : 60;
-	uint64_t tx_length                    : 2;  /**< Length of last word in the packet."00" means 1 valid bytes."01" means 2 valid
-                                                         bytes."10" means 3 valid bytes."11" means 4 valid bytes.This field shall be
+	uint64_t tx_length                    : 2;  /**< Length of last word in the packet.
+                                                         0x0 = means 1 valid bytes.
+                                                         0x1 = means 2 valid
+                                                         bytes.
+                                                         0x2 = means 3 valid bytes.
+                                                         0x3 = means 4 valid bytes.This field shall be
                                                          set when the tx_eof bit is asserted. */
-	uint64_t tx_discard                   : 1;  /**< 1 : Discard TX packet.0: Do not discard TX packet */
-	uint64_t tx_eop                       : 1;  /**< 1 : Indicate that next write to TX_DATA or TX_DATA_WAIT registers will be
-                                                         last word of the TX packet. Will hereafter be cleared.0: Not last word */
+	uint64_t tx_discard                   : 1;  /**< 1 = Discard TX packet.
+                                                         0 = Do not discard TX packet */
+	uint64_t tx_eop                       : 1;  /**< 1 = Indicate that next write to TX_DATA or TX_DATA_WAIT registers will be
+                                                         last word of the TX packet. Will hereafter be cleared.
+                                                         0 = Not last word */
 #else
 	uint64_t tx_eop                       : 1;
 	uint64_t tx_discard                   : 1;
@@ -1738,7 +1748,7 @@ typedef union cvmx_cprix_gsm_axc_config_sel cvmx_cprix_gsm_axc_config_sel_t;
 /**
  * cvmx_cpri#_gsm_cnt_axc_config
  *
- * Map AxCs to counter
+ * Map AxCs to counter.
  *
  */
 union cvmx_cprix_gsm_cnt_axc_config {
@@ -1773,16 +1783,16 @@ union cvmx_cprix_gsm_config {
                                                          containing zeros. The number of bits actually stuffed depends on the
                                                          number of bits configured for mapping in the map table. */
 	uint64_t gsm_max_k                    : 3;  /**< Maximum K value for the GSM counter as specified by table 5D of CPRI v5.0:
-                                                         0x0: 0x4.
-                                                         0x1: 0x180.
-                                                         0x2: 0x300.
-                                                         0x3: 0x1200.
-                                                         0x4-0x7: Reserved */
+                                                         0x0 = 0x4.
+                                                         0x1 = 0x180.
+                                                         0x2 = 0x300.
+                                                         0x3 = 0x1200.
+                                                         0x4-0x7 = Reserved */
 	uint64_t gsm_config                   : 2;  /**< GSM counter mapping method:
-                                                         0x0: No GSM mapping. Map table works in normal mode.
-                                                         0x1: GSM mapping method 1.
-                                                         0x2: GSM mapping method 3.
-                                                         0x3: Reserved. */
+                                                         0x0 = No GSM mapping. Map table works in normal mode.
+                                                         0x1 = GSM mapping method 1.
+                                                         0x2 = GSM mapping method 3.
+                                                         0x3 = Reserved. */
 #else
 	uint64_t gsm_config                   : 2;
 	uint64_t gsm_max_k                    : 3;
@@ -1946,22 +1956,34 @@ union cvmx_cprix_hdlc_config {
 	struct cvmx_cprix_hdlc_config_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_20_63               : 44;
-	uint64_t intr_tx_ready_block_en       : 1;  /**< 1 : Enable interrupt for TX ready block.0 : Not enabled. */
-	uint64_t intr_tx_abort_en             : 1;  /**< 1 : Enable interrupt for TX abort.0 : Not enabled. */
-	uint64_t intr_tx_ready_en             : 1;  /**< 1 : Enable interrupt for TX ready.0 : Not enabled. */
-	uint64_t intr_rx_ready_block_en       : 1;  /**< 1 : Enable interrupt for RX ready block.0 : Not enabled. */
-	uint64_t intr_rx_ready_end_en         : 1;  /**< 1 : Enable interrupt for RX ready end.0 : Not enabled. */
-	uint64_t intr_rx_abort_en             : 1;  /**< 1 : Enable interrupt for RX abort.0 : Not enabled. */
-	uint64_t intr_rx_ready_en             : 1;  /**< 1 : Enable interrupt for RX ready.0 : Not enabled. */
-	uint64_t intr_tx_en                   : 1;  /**< 1 HDLC TX interrupt enable.0 : Not enabled. */
-	uint64_t intr_rx_en                   : 1;  /**< 1 : HDLC RX interrupt enable.0 : Not enabled. */
-	uint64_t intr_en                      : 1;  /**< 1 : HDLC global interrupt enable.0 : Not enabled. */
+	uint64_t intr_tx_ready_block_en       : 1;  /**< 1 = Enable interrupt for TX ready block.
+                                                         0 = Not enabled. */
+	uint64_t intr_tx_abort_en             : 1;  /**< 1 = Enable interrupt for TX abort.
+                                                         0 = Not enabled. */
+	uint64_t intr_tx_ready_en             : 1;  /**< 1 = Enable interrupt for TX ready.
+                                                         0 = Not enabled. */
+	uint64_t intr_rx_ready_block_en       : 1;  /**< 1 = Enable interrupt for RX ready block.
+                                                         0 = Not enabled. */
+	uint64_t intr_rx_ready_end_en         : 1;  /**< 1 = Enable interrupt for RX ready end.
+                                                         0 = Not enabled. */
+	uint64_t intr_rx_abort_en             : 1;  /**< 1 = Enable interrupt for RX abort.
+                                                         0 = Not enabled. */
+	uint64_t intr_rx_ready_en             : 1;  /**< 1 = Enable interrupt for RX ready.
+                                                         0 = Not enabled. */
+	uint64_t intr_tx_en                   : 1;  /**< 1 = HDLC TX interrupt enable.
+                                                         0 = Not enabled. */
+	uint64_t intr_rx_en                   : 1;  /**< 1 : HDLC RX interrupt enable.
+                                                         0 = Not enabled. */
+	uint64_t intr_en                      : 1;  /**< 1 = HDLC global interrupt enable.
+                                                         0 = Not enabled. */
 	uint64_t reserved_5_9                 : 5;
-	uint64_t length_check                 : 1;  /**< 1 : Enable discard of RX packet fragments (packets with length less than
-                                                         64 bytes).0 : Not enabled. */
+	uint64_t length_check                 : 1;  /**< 1 = Enable discard of RX packet fragments (packets with length less than
+                                                         64 bytes).
+                                                         0 = Not enabled. */
 	uint64_t reserved_2_3                 : 2;
-	uint64_t little_endian_en             : 1;  /**< 1 : Use little endian byte data representation for HDLC receive and transmit
-                                                         data.0 : Use big endian byte data representation for HDLC receive and transmit
+	uint64_t little_endian_en             : 1;  /**< 1 = Use little endian byte data representation for HDLC receive and transmit
+                                                         data.
+                                                         0 = Use big endian byte data representation for HDLC receive and transmit
                                                          data. */
 	uint64_t reserved_0_0                 : 1;
 #else
@@ -1998,8 +2020,9 @@ union cvmx_cprix_hdlc_config_2 {
 	struct cvmx_cprix_hdlc_config_2_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_1_63                : 63;
-	uint64_t crc_enable                   : 1;  /**< '"1 : Enable insertion of HDLC CRC at the end of the frame. If the bit is
-                                                         not set, the CRC must be included in the injected frame. "0 : not enabled.' */
+	uint64_t crc_enable                   : 1;  /**< '"1 = Enable insertion of HDLC CRC at the end of the frame. If the bit is
+                                                         not set, the CRC must be included in the injected frame. "
+                                                         0 = not enabled.' */
 #else
 	uint64_t crc_enable                   : 1;
 	uint64_t reserved_1_63                : 63;
@@ -2025,11 +2048,12 @@ union cvmx_cprix_hdlc_config_3 {
                                                          transmit buffer.X is equal to generic WIDTH_HDLC_BUFFor our use, WIDTH_HDLC_BUF       :
                                                          in integer := 2; */
 	uint64_t reserved_2_7                 : 6;
-	uint64_t rx_crc_en                    : 1;  /**< '"1: Enable FCS validation of received packets. If check fails, packet will
-                                                         be discarded. "0: No FCS validation. All packets are accepted.' */
-	uint64_t tx_st_fwd                    : 1;  /**< 1 :Transmit store-and-forward mode. Store a full packet before start of
-                                                         transmission. Packets longer than transmit buffer will be aborted.0 :Cut-through
-                                                         mode. Transmission will start when buffer fill level exceeds tx_start_thr. */
+	uint64_t rx_crc_en                    : 1;  /**< '"1 = Enable FCS validation of received packets. If check fails, packet will
+                                                         be discarded. "
+                                                         0 = No FCS validation. All packets are accepted.' */
+	uint64_t tx_st_fwd                    : 1;  /**< 1 = Transmit store-and-forward mode. Store a full packet before start of
+                                                         transmission. Packets longer than transmit buffer will be aborted.
+                                                         0 = Cut-through mode. Transmission will start when buffer fill level exceeds tx_start_thr. */
 #else
 	uint64_t tx_st_fwd                    : 1;
 	uint64_t rx_crc_en                    : 1;
@@ -2053,7 +2077,8 @@ union cvmx_cprix_hdlc_rx_control {
 	struct cvmx_cprix_hdlc_rx_control_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_1_63                : 63;
-	uint64_t rx_discard                   : 1;  /**< 1 : Discard current HDLC RX frame.0 : Do not discard. */
+	uint64_t rx_discard                   : 1;  /**< 1 = Discard current HDLC RX frame.
+                                                         0 = Do not discard. */
 #else
 	uint64_t rx_discard                   : 1;
 	uint64_t reserved_1_63                : 63;
@@ -2117,13 +2142,13 @@ union cvmx_cprix_hdlc_rx_ex_status {
 	struct cvmx_cprix_hdlc_rx_ex_status_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_11_63               : 53;
-	uint64_t mii_protocol_error           : 1;  /**< 1: Protocol error. */
+	uint64_t mii_protocol_error           : 1;  /**< 1 = Protocol error. */
 	uint64_t reserved_9_9                 : 1;
-	uint64_t rx_ex_overflow               : 1;  /**< 1: Rx buffer overflow. */
+	uint64_t rx_ex_overflow               : 1;  /**< 1 = RX buffer overflow. */
 	uint64_t reserved_7_7                 : 1;
-	uint64_t crc_error                    : 1;  /**< 1: CRC error. */
+	uint64_t crc_error                    : 1;  /**< 1 = CRC error. */
 	uint64_t reserved_5_5                 : 1;
-	uint64_t rx_error                     : 1;  /**< 1: Abort from CPRI Layer. */
+	uint64_t rx_error                     : 1;  /**< 1 = Abort from CPRI Layer. */
 	uint64_t reserved_0_3                 : 4;
 #else
 	uint64_t reserved_0_3                 : 4;
@@ -2152,19 +2177,27 @@ union cvmx_cprix_hdlc_rx_status {
 	struct cvmx_cprix_hdlc_rx_status_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_13_63               : 51;
-	uint64_t rx_crc_error                 : 1;  /**< 1: Frame aborted due to CRC error. */
-	uint64_t rx_empty                     : 1;  /**< 1: Read from empty buffer. */
-	uint64_t rx_mii_error                 : 1;  /**< 1: Frame aborted due to mii protocol error. */
+	uint64_t rx_crc_error                 : 1;  /**< 1 = Frame aborted due to CRC error. */
+	uint64_t rx_empty                     : 1;  /**< 1 = Read from empty buffer. */
+	uint64_t rx_mii_error                 : 1;  /**< 1 = Frame aborted due to mii protocol error. */
 	uint64_t reserved_9_9                 : 1;
-	uint64_t rx_overflow                  : 1;  /**< 1: Frame aborted due to Rx buffer overflow. */
+	uint64_t rx_overflow                  : 1;  /**< 1 = Frame aborted due to Rx buffer overflow. */
 	uint64_t reserved_7_7                 : 1;
-	uint64_t rx_ready_block               : 1;  /**< 1 : Guaranteed 2^WIDTH_HDLC_BLOCK words HDLC RX data ready.0: Not ready. */
-	uint64_t rx_ready_end                 : 1;  /**< 1 : EOP ready in RX buffer.0: Not ready. */
-	uint64_t rx_length                    : 2;  /**< Length of last word in the packet."00" means 1 valid byte."01" means 2 valid
-                                                         bytes."10" means 3 valid bytes."11" means 4 valid bytes. */
-	uint64_t rx_abort                     : 1;  /**< 1 : HDLC RX packet aborted.0: Not aborted. */
-	uint64_t rx_eof                       : 1;  /**< 1 : HDLC RX end of packet.0: Not EOP. */
-	uint64_t rx_ready                     : 1;  /**< 1 : HDLC RX data ready.0 : Not ready . */
+	uint64_t rx_ready_block               : 1;  /**< 1 = Guaranteed 2^WIDTH_HDLC_BLOCK words HDLC RX data ready.
+                                                         0 = Not ready. */
+	uint64_t rx_ready_end                 : 1;  /**< 1 = EOP ready in RX buffer.
+                                                         0 = Not ready. */
+	uint64_t rx_length                    : 2;  /**< Length of last word in the packet.
+                                                         0x0 means 1 valid byte.
+                                                         0x1 means 2 valid bytes.
+                                                         0x2 means 3 valid bytes.
+                                                         0x3 means 4 valid bytes. */
+	uint64_t rx_abort                     : 1;  /**< 1 = HDLC RX packet aborted.
+                                                         0 = Not aborted. */
+	uint64_t rx_eof                       : 1;  /**< 1 = HDLC RX end of packet.
+                                                         0 = Not EOP. */
+	uint64_t rx_ready                     : 1;  /**< 1 = HDLC RX data ready.
+                                                         0 = Not ready . */
 #else
 	uint64_t rx_ready                     : 1;
 	uint64_t rx_eof                       : 1;
@@ -2196,12 +2229,18 @@ union cvmx_cprix_hdlc_tx_control {
 	struct cvmx_cprix_hdlc_tx_control_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_4_63                : 60;
-	uint64_t tx_length                    : 2;  /**< Length of last word in the packet."00" means 1 valid bytes."01" means 2 valid
-                                                         bytes."10" means 3 valid bytes."11" means 4 valid bytes.This field shall be
+	uint64_t tx_length                    : 2;  /**< Length of last word in the packet.
+                                                         0x0 = means 1 valid bytes.
+                                                         0x1 = means 2 valid
+                                                         bytes.
+                                                         0x2 = means 3 valid bytes.
+                                                         0x3 = means 4 valid bytes.This field shall be
                                                          set when the tx_eof bit is asserted. */
-	uint64_t tx_discard                   : 1;  /**< 1 : Discard TX packet.0 : Do not discard. */
-	uint64_t tx_eop                       : 1;  /**< 1 : Indicate that next write to TX_DATA or TX_DATA_WAIT registers will be
-                                                         last word of the TX packet. Will hereafter be cleared.0 : not last word. */
+	uint64_t tx_discard                   : 1;  /**< 1 = Discard TX packet.
+                                                         0 = Do not discard. */
+	uint64_t tx_eop                       : 1;  /**< 1 = Indicate that next write to TX_DATA or TX_DATA_WAIT registers will be
+                                                         last word of the TX packet. Will hereafter be cleared.
+                                                         0 = not last word. */
 #else
 	uint64_t tx_eop                       : 1;
 	uint64_t tx_discard                   : 1;
@@ -2248,7 +2287,7 @@ union cvmx_cprix_hdlc_tx_data_wait {
 	uint64_t reserved_32_63               : 32;
 	uint64_t tx_data                      : 32; /**< HDLC TX frame data.Wait states will be inserted until transmitter is ready to
                                                          get data (or the CPU time-out the operation)."When writing the last word of
-                                                         the frame, data must be aligned to bit 31 in big endian  mode and bit 0 in little
+                                                         the frame, data must be aligned to bit 31 in big-endian  mode and bit 0 in little-
                                                          endian. " */
 #else
 	uint64_t tx_data                      : 32;
@@ -2270,10 +2309,12 @@ union cvmx_cprix_hdlc_tx_status {
 	struct cvmx_cprix_hdlc_tx_status_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_3_63                : 61;
-	uint64_t tx_ready_block               : 1;  /**< 1 : Guaranteed to get 2^WIDTH_HDLC_BLOCK words of HDLC TX data.0: Not
-                                                         ready. */
-	uint64_t tx_abort                     : 1;  /**< HDLC TX packet aborted.0: Not aborted. */
-	uint64_t tx_ready                     : 1;  /**< 1: Ready to get HDLC TX data.0: Not ready. */
+	uint64_t tx_ready_block               : 1;  /**< 1 = Guaranteed to get 2^WIDTH_HDLC_BLOCK words of HDLC TX data.
+                                                         0 = Not ready. */
+	uint64_t tx_abort                     : 1;  /**< HDLC TX packet aborted.
+                                                         0 = Not aborted. */
+	uint64_t tx_ready                     : 1;  /**< 1 = Ready to get HDLC TX data.
+                                                         0 = Not ready. */
 #else
 	uint64_t tx_ready                     : 1;
 	uint64_t tx_abort                     : 1;
@@ -2323,8 +2364,8 @@ union cvmx_cprix_hw_reset {
                                                          1 : Reset request completed since last read. The request completes
                                                          when the acknowledgement has been received. */
 	uint64_t reset_gen_done               : 1;  /**< Indicates that transmitter has finished the reset request.
-                                                         - 0: Reset request not done.
-                                                         - 1: Reset request completed.
+                                                         0 = Reset request not done.
+                                                         1 = Reset request completed.
                                                           Note that the reset request completes when the reset acknowledgement
                                                           has been received. This bit will remain asserted until bit 0 of
                                                           Z.130.0 is cleared for three of the last five received hyperframes.
@@ -2335,13 +2376,13 @@ union cvmx_cprix_hw_reset {
 	uint64_t reserved_3_3                 : 1;
 	uint64_t reset_out_en                 : 1;  /**< N/A */
 	uint64_t reset_gen_force              : 1;  /**< Force generation of a reset request on the CPRI transmitter.
-                                                         - 0: Disable reset request.
-                                                         - 1: Force reset request. */
+                                                         0 = Disable reset request.
+                                                         1 = Force reset request. */
 	uint64_t reset_gen_en                 : 1;  /**< Enable generation of reset requests on the CPRI transmitter using
                                                           dedicated control word Z.130.0. When enabled, [RESET_GEN_FORCE] can be
                                                           used to generate reset requests.
-                                                         - 0: Disable reset request.
-                                                         - 1: Enable reset request. */
+                                                         0 = Disable reset request.
+                                                         1 = Enable reset request. */
 #else
 	uint64_t reset_gen_en                 : 1;
 	uint64_t reset_gen_force              : 1;
@@ -2443,7 +2484,7 @@ typedef union cvmx_cprix_iq_tx_buf_statusx cvmx_cprix_iq_tx_buf_statusx_t;
 /**
  * cvmx_cpri#_iq_tx_buf_sync_status#
  *
- * TX MAP Transmitter FIFO Sync Buffering Status
+ * TX MAP transmitter FIFO sync buffering status.
  *
  */
 union cvmx_cprix_iq_tx_buf_sync_statusx {
@@ -2494,9 +2535,9 @@ union cvmx_cprix_map_config {
 	uint64_t reserved_8_63                : 56;
 	uint64_t cpri_map_tx_tr_mode          : 1;  /**< N/A */
 	uint64_t cpri_map_rx_tr_mode          : 1;  /**< N/A */
-	uint64_t map_interleave_mode          : 1;  /**< 0: I/Q data is bit-interleaved on the map interface. CPRI block does
+	uint64_t map_interleave_mode          : 1;  /**< 0 = I/Q data is bit-interleaved on the map interface. CPRI block does
                                                           not perform interleaving.
-                                                         - 1: I and Q data are separated on the map interface, and CPRI block
+                                                         1 = I and Q data are separated on the map interface, and CPRI block
                                                           performs interleaving.
                                                           Must be set to 1 for correct operation, the RFIF RMAC does not perform
                                                           interleaving. */
@@ -2534,8 +2575,8 @@ union cvmx_cprix_map_k_select_rxx {
 	uint64_t reserved_32_63               : 32;
 	uint64_t map_k_select_rx              : 32; /**< Each bit i selects the K value use for the AxC(s) mapped in mapping table segment
                                                           i+b*[32].
-                                                         - 0: Use CPRI()_MAP_TBL_CONFIG[K0].
-                                                         - 1: Use CPRI()_MAP_TBL_CONFIG[K1]. */
+                                                         0 = Use CPRI()_MAP_TBL_CONFIG[K0].
+                                                         1 = Use CPRI()_MAP_TBL_CONFIG[K1]. */
 #else
 	uint64_t map_k_select_rx              : 32;
 	uint64_t reserved_32_63               : 32;
@@ -2562,8 +2603,8 @@ union cvmx_cprix_map_k_select_txx {
 	uint64_t reserved_32_63               : 32;
 	uint64_t map_k_select_tx              : 32; /**< Each bit i selects the K value use for the AxC(s) mapped in mapping table segment
                                                           i+b*[32].
-                                                         - 0: Use CPRI()_MAP_TBL_CONFIG[K0].
-                                                         - 1: Use CPRI()_MAP_TBL_CONFIG[K1]. */
+                                                         0 = Use CPRI()_MAP_TBL_CONFIG[K0].
+                                                         1 = Use CPRI()_MAP_TBL_CONFIG[K1]. */
 #else
 	uint64_t map_k_select_tx              : 32;
 	uint64_t reserved_32_63               : 32;
@@ -2629,7 +2670,7 @@ typedef union cvmx_cprix_map_offset_tx cvmx_cprix_map_offset_tx_t;
 /**
  * cvmx_cpri#_map_smpl_cfg_rx
  *
- * This regsiter configures AxC sample with used for the reciever AxC
+ * This register configures AxC sample with used for the reciever AxC
  * mapping.
  *
  * To read the current sample width for an AxC, first write this register
@@ -2662,7 +2703,7 @@ typedef union cvmx_cprix_map_smpl_cfg_rx cvmx_cprix_map_smpl_cfg_rx_t;
 /**
  * cvmx_cpri#_map_smpl_cfg_tx
  *
- * This regsiter configures AxC sample with used for the transmit AxC
+ * This register configures AxC sample with used for the transmit AxC
  * mapping.
  *
  * To read the current sample width for an AxC, first write this register
@@ -2724,8 +2765,8 @@ typedef union cvmx_cprix_map_tbl_config cvmx_cprix_map_tbl_config_t;
 /**
  * cvmx_cpri#_map_tbl_index
  *
- * This regsiter specifies which mapping table segment will be read/written by
- * accesses to any of the regsiters:
+ * This register specifies which mapping table segment will be read/written by
+ * accesses to any of the registers:
  * * CPRI()_MAP_TBL_RX0
  * * CPRI()_MAP_TBL_RX1
  * * CPRI()_MAP_TBL_TX0
@@ -3188,7 +3229,7 @@ typedef union cvmx_cprix_serdes_config cvmx_cprix_serdes_config_t;
  *
  * This register controls when the received CPRI samples are sent to the RFIF
  * RMAC. Receive timing alignment should be controlled using the RFIF_RETARD
- * register, and this regsiter should be left at its default value.
+ * register, and this register should be left at its default value.
  */
 union cvmx_cprix_start_offset_rx {
 	uint64_t u64;
@@ -3278,21 +3319,21 @@ union cvmx_cprix_status {
                                                          1 = LOS has occured since last read of CPRI()_STATUS. */
 	uint64_t reserved_4_7                 : 4;
 	uint64_t rx_bfn_state                 : 1;  /**< Radio frame alignment state:
-                                                         - 0: BFN alignment not detected.
-                                                         - 1: BFN alignment detected. */
+                                                         0 = BFN alignment not detected.
+                                                         1 = BFN alignment detected. */
 	uint64_t rx_hfn_state                 : 1;  /**< Hyper-frame number alignment state:
-                                                         - 0: HFN alignment not detected.
-                                                         - 1: HFN alignment detected. */
+                                                         0 = HFN alignment not detected.
+                                                         1 = HFN alignment detected. */
 	uint64_t rx_state                     : 1;  /**< Overal receive synchronization state. When set, indicates that the
                                                           receive state, HFN state, and BFN state are all okay. This bit is
                                                           updated continuously, and any loss of synchronization is latched in
                                                           [RX_STATE_HOLD].
-                                                         - 0: No global receive SYNC.
-                                                         - 1: Global receive state is SYNC. */
+                                                         0 = No global receive SYNC.
+                                                         1 = Global receive state is SYNC. */
 	uint64_t rx_los                       : 1;  /**< Receive LOS (loss of signal) indication. Indicates either excessive 8B/10B violations
                                                           (>15) or external indication of loss of signal from optical module
-                                                         - 0: LOS not detected.
-                                                         - 1: LOS detected. */
+                                                         0 = LOS not detected.
+                                                         1 = LOS detected. */
 #else
 	uint64_t rx_los                       : 1;
 	uint64_t rx_state                     : 1;
@@ -3321,11 +3362,11 @@ union cvmx_cprix_tx_control {
 	uint64_t tx_rfp_tolerance             : 2;  /**< Set tolerance for the transmit RFP pulse. If the synchronization pulse
                                                          does not coincide with the internal frame counters within the allowed
                                                          tolerance, then the internal frame counters are updated automatically.
-                                                         0x0: No tolerance. Syncrhonization pulse must coincide with internal
+                                                         0x0 = No tolerance. Syncrhonization pulse must coincide with internal
                                                          counters.
-                                                         0x1: Tolerance of +/- 1 cycle.
-                                                         0x2: Tolerance of +/- 2 cycle.
-                                                         0x3: Tolerance of +/- 3 cycle. */
+                                                         0x1 = Tolerance of +/- 1 cycle.
+                                                         0x2 = Tolerance of +/- 2 cycle.
+                                                         0x3 = Tolerance of +/- 3 cycle. */
 	uint64_t tx_reset_bfn                 : 1;  /**< Set CPRI TX BFN (radio frame number) value to 0 starting at the next radio frame boundary.
                                                          This bit will clear after each write. */
 #else
@@ -3352,8 +3393,8 @@ union cvmx_cprix_tx_ctrl {
 	uint64_t tx_control_insert            : 1;  /**< Enable insertion of this control byte in subsequent transmissions.
                                                           Note that CPRI()_CONFIG[TX_CTRL_INSERT_EN] must also be set to 1
                                                           before this control word will be transmitted.
-                                                         - 0: Disable control word transmission.
-                                                         - 1: Enable control word transmission. */
+                                                         0 = Disable control word transmission.
+                                                         1 = Enable control word transmission. */
 	uint64_t tx_control_data              : 8;  /**< Specifies the CPRI control byte to by transmitted at byte y in CPRI
                                                          hyper frame position Z.x.0, where x is specified by
                                                          CPRI()_CTRL_INDEX[CPRI_CTRL_INDEX], and y is specified by

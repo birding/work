@@ -374,7 +374,7 @@ typedef union cvmx_dlfe_config1x cvmx_dlfe_config1x_t;
 /**
  * cvmx_dlfe_control
  *
- * This register is used to start DLFE HAB processing
+ * This register is used to start DLFE HAB processing.
  *
  */
 union cvmx_dlfe_control {
@@ -458,22 +458,22 @@ union cvmx_dlfe_ecc_ctrl {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_36_63               : 28;
 	uint64_t cdis                         : 4;  /**< Correction disable. Each bit represents a different RAM as follows:
-                                                         32 = Job configuration.
-                                                         33 = IFFT pass FIFO.
-                                                         34 = RFIF state.
-                                                         35 = RFIF control. */
+                                                         <32> = Job configuration.
+                                                         <33> = IFFT pass FIFO.
+                                                         <34> = RFIF state.
+                                                         <35> = RFIF control. */
 	uint64_t reserved_20_31               : 12;
 	uint64_t flip1                        : 4;  /**< Flip second ECC bit. Each bit represents a different RAM as follows:
-                                                         0 = Job configuration.
-                                                         1 = IFFT pass FIFO.
-                                                         2 = RFIF state.
-                                                         3 = RFIF control. */
+                                                         <0> = Job configuration.
+                                                         <1> = IFFT pass FIFO.
+                                                         <2> = RFIF state.
+                                                         <3> = RFIF control. */
 	uint64_t reserved_4_15                : 12;
 	uint64_t flip0                        : 4;  /**< Flip first ECC bit. Each bit represents a different RAM as follows:
-                                                         0 = Job configuration.
-                                                         1 = IFFT pass FIFO.
-                                                         2 = RFIF state.
-                                                         3 = RFIF control. */
+                                                         <0> = Job configuration.
+                                                         <1> = IFFT pass FIFO.
+                                                         <2> = RFIF state.
+                                                         <3> = RFIF control. */
 #else
 	uint64_t flip0                        : 4;
 	uint64_t reserved_4_15                : 12;
@@ -499,16 +499,16 @@ union cvmx_dlfe_ecc_enable {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_20_63               : 44;
 	uint64_t dbe                          : 4;  /**< Double bit error. Each bit represents a different RAM as follows:
-                                                         16 = Job configuration.
-                                                         17 = IFFT pass FIFO.
-                                                         18 = RFIF state.
-                                                         19 = RFIF control. */
+                                                         <16> = Job configuration.
+                                                         <17> = IFFT pass FIFO.
+                                                         <18> = RFIF state.
+                                                         <19> = RFIF control. */
 	uint64_t reserved_4_15                : 12;
 	uint64_t sbe                          : 4;  /**< Single bit error. Each bit represents a different RAM as follows:
-                                                         0 = Job configuration.
-                                                         1 = IFFT pass FIFO.
-                                                         2 = RFIF state.
-                                                         3 = RFIF control. */
+                                                         <0> = Job configuration.
+                                                         <1> = IFFT pass FIFO.
+                                                         <2> = RFIF state.
+                                                         <3> = RFIF control. */
 #else
 	uint64_t sbe                          : 4;
 	uint64_t reserved_4_15                : 12;
@@ -532,16 +532,16 @@ union cvmx_dlfe_ecc_status {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_20_63               : 44;
 	uint64_t dbe                          : 4;  /**< Double bit error. Each bit represents a different RAM as follows:
-                                                         16 = Job configuration.
-                                                         17 = IFFT pass FIFO.
-                                                         18 = RFIF state.
-                                                         19 = RFIF control. */
+                                                         <16> = Job configuration.
+                                                         <17> = IFFT pass FIFO.
+                                                         <18> = RFIF state.
+                                                         <19> = RFIF control. */
 	uint64_t reserved_4_15                : 12;
 	uint64_t sbe                          : 4;  /**< Single bit error. Each bit represents a different RAM as follows:
-                                                         0 = Job configuration.
-                                                         1 = IFFT pass FIFO.
-                                                         2 = RFIF state.
-                                                         3 = RFIF control. */
+                                                         <0> = Job configuration.
+                                                         <1> = IFFT pass FIFO.
+                                                         <2> = RFIF state.
+                                                         <3> = RFIF control. */
 #else
 	uint64_t sbe                          : 4;
 	uint64_t reserved_4_15                : 12;
@@ -791,13 +791,13 @@ union cvmx_dlfe_ssp_addr {
                                                          0x4 = Windowing coefficients.
                                                          0x5 = CDD.
                                                          0x6 = Antenna gain.
-                                                         0x7 = Sector-Antenna map. */
+                                                         0x7 = Sector-antenna map. */
 	uint64_t antenna                      : 6;  /**< When readinging or writing the calibration coefficients, this field
                                                          selects the antenna. Otherwise this field is ignored. */
 	uint64_t index                        : 10; /**< The index into the semi-static parameter data structure. Data is
                                                          organized as 32-bit words stored in little-endian format.  Except for
                                                          the sector-antenna map, all data structures match the descriptions
-                                                         provided in the HRM. Sector-Antenna map uses a packed data structure
+                                                         provided in the HRM. Sector-antenna map uses a packed data structure
                                                          with only 4 bits per sector instead of the sparse data structure used
                                                          when programming the SSPUPs. */
 	uint64_t reserved_0_1                 : 2;

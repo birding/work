@@ -2383,7 +2383,7 @@ typedef union cvmx_sriomaintx_asmbly_info cvmx_sriomaintx_asmbly_info_t;
  * cvmx_sriomaint#_bar1_idx#
  *
  * Contains address index and control bits for access to memory ranges of BAR1.
- * This register specifies the Octeon address, endian swap and cache status associated with each
+ * This register specifies the OCTEON address, endian swap and cache status associated with each
  * of the 16 BAR1 entries.  The local address bits used are based on the BARSIZE field located in
  * SRIOMAINT()_M2S_BAR1_START0.  This register is only writeable over SRIO if
  * SRIO()_ACC_CTRL[DENY_BAR1] is zero.
@@ -2551,7 +2551,7 @@ typedef union cvmx_sriomaintx_comp_tag cvmx_sriomaintx_comp_tag_t;
 /**
  * cvmx_sriomaint#_core_enables
  *
- * This register displays the reset state of the Octeon Core Logic while the SRIO Link is
+ * This register displays the reset state of the OCTEON core logic while the SRIO link is
  * running.
  * The bit should be set after the software has initialized the chip to allow memory operations.
  */
@@ -2582,7 +2582,7 @@ union cvmx_sriomaintx_core_enables {
                                                          1 = SRIO doorbell OPs allowed. */
 	uint32_t memory                       : 1;  /**< Allow inbound/outbound memory operations.
                                                          Note: This bit is cleared when the CNXXXX is reset.
-                                                         0 = SRIO Incoming nwrites and swrites are
+                                                         0 = SRIO incoming nwrites and swrites are
                                                          dropped.  Incoming nreads, atomics and
                                                          nwriters return responses with ERROR status.
                                                          SRIO incoming maintenance BAR memory accesses
@@ -2592,7 +2592,7 @@ union cvmx_sriomaintx_core_enables {
                                                          return all 1's with an ERROR status.
                                                          In flight operations started while the bit is
                                                          set in both directions will complete normally.
-                                                         1 = SRIO Memory Read/Write OPs Allowed */
+                                                         1 = SRIO memory read/write OPs allowed */
 #else
 	uint32_t memory                       : 1;
 	uint32_t doorbell                     : 1;
@@ -2667,25 +2667,25 @@ union cvmx_sriomaintx_dst_ops {
 	uint32_t u32;
 	struct cvmx_sriomaintx_dst_ops_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t gsm_read                     : 1;  /**< PE does not support Read Home operations.
+	uint32_t gsm_read                     : 1;  /**< PE does not support read home operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<31>. */
-	uint32_t i_read                       : 1;  /**< PE does not support Instruction Read.
+	uint32_t i_read                       : 1;  /**< PE does not support instruction read.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<30>. */
-	uint32_t rd_own                       : 1;  /**< PE does not support Read for Ownership.
+	uint32_t rd_own                       : 1;  /**< PE does not support read for ownership.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<29>. */
-	uint32_t d_invald                     : 1;  /**< PE does not support Data Cache Invalidate.
+	uint32_t d_invald                     : 1;  /**< PE does not support data cache invalidate.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<28>. */
-	uint32_t castout                      : 1;  /**< PE does not support Castout Operations.
+	uint32_t castout                      : 1;  /**< PE does not support castout operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<27>. */
-	uint32_t d_flush                      : 1;  /**< PE does not support Data Cache Flush.
+	uint32_t d_flush                      : 1;  /**< PE does not support data cache flush.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<26>. */
-	uint32_t io_read                      : 1;  /**< PE does not support IO Read.
+	uint32_t io_read                      : 1;  /**< PE does not support IO read.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<25>. */
-	uint32_t i_invald                     : 1;  /**< PE does not support Instruction Cache Invalidate.
+	uint32_t i_invald                     : 1;  /**< PE does not support instruction cache invalidate.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<24>. */
-	uint32_t tlb_inv                      : 1;  /**< PE does not support TLB Entry Invalidate.
+	uint32_t tlb_inv                      : 1;  /**< PE does not support TLB entry invalidate.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<23>. */
-	uint32_t tlb_invs                     : 1;  /**< PE does not support TLB Entry Invalidate Sync.
+	uint32_t tlb_invs                     : 1;  /**< PE does not support TLB entry invalidate sync.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<22>. */
 	uint32_t reserved_16_21               : 6;
 	uint32_t read                         : 1;  /**< PE can support Nread operations.
@@ -2694,27 +2694,27 @@ union cvmx_sriomaintx_dst_ops {
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<14>. */
 	uint32_t swrite                       : 1;  /**< PE can support Swrite operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<13>. */
-	uint32_t write_r                      : 1;  /**< PE can support Write with Response operations.
+	uint32_t write_r                      : 1;  /**< PE can support write with response operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<12>. */
-	uint32_t msg                          : 1;  /**< PE can support Data Message operations.
+	uint32_t msg                          : 1;  /**< PE can support data message operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<11>. */
-	uint32_t doorbell                     : 1;  /**< PE can support Doorbell operations.
+	uint32_t doorbell                     : 1;  /**< PE can support doorbell operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<10>. */
-	uint32_t compswap                     : 1;  /**< PE does not support Atomic Compare and Swap.
+	uint32_t compswap                     : 1;  /**< PE does not support atomic compare and swap.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<9>. */
-	uint32_t testswap                     : 1;  /**< PE does not support Atomic Test and Swap.
+	uint32_t testswap                     : 1;  /**< PE does not support atomic test and swap.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<8>. */
-	uint32_t atom_inc                     : 1;  /**< PE can support Atomic increment operations.
+	uint32_t atom_inc                     : 1;  /**< PE can support atomic increment operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<7>. */
-	uint32_t atom_dec                     : 1;  /**< PE can support Atomic decrement operations.
+	uint32_t atom_dec                     : 1;  /**< PE can support atomic decrement operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<6>. */
-	uint32_t atom_set                     : 1;  /**< PE can support Atomic set operations.
+	uint32_t atom_set                     : 1;  /**< PE can support atomic set operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<5>. */
-	uint32_t atom_clr                     : 1;  /**< PE can support Atomic clear operations.
+	uint32_t atom_clr                     : 1;  /**< PE can support atomic clear operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<4>. */
-	uint32_t atom_swp                     : 1;  /**< PE does not support Atomic Swap.
+	uint32_t atom_swp                     : 1;  /**< PE does not support atomic swap.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<3>. */
-	uint32_t port_wr                      : 1;  /**< PE can Port Write operations.
+	uint32_t port_wr                      : 1;  /**< PE can port write operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<2>. */
 	uint32_t reserved_0_1                 : 2;
 #else
@@ -2757,15 +2757,15 @@ typedef union cvmx_sriomaintx_dst_ops cvmx_sriomaintx_dst_ops_t;
  * cvmx_sriomaint#_erb_attr_capt
  *
  * This register contains the information captured during the error.
- * The HW will not update this register (i.e. this register is locked) while
+ * The hardware will not update this register (i.e. this register is locked) while
  * VALID is set in this CSR.
- * The HW sets SRIO_INT_REG[PHY_ERB] every time it sets VALID in this CSR.
+ * The hardware sets SRIO_INT_REG[PHY_ERB] every time it sets VALID in this CSR.
  * To handle the interrupt, the following procedure may be best:
  *
  * (1) read this CSR, corresponding SRIOMAINT()_ERB_ERR_DET, SRIOMAINT()_ERB_PACK_SYM_CAPT,
- * SRIOMAINT()_ERB_PACK_CAPT_1, SRIOMAINT()_ERB_PACK_CAPT_2, and SRIOMAINT()_ERB_PACK_CAPT_3
+ * SRIOMAINT()_ERB_PACK_CAPT_1, SRIOMAINT()_ERB_PACK_CAPT_2, and SRIOMAINT()_ERB_PACK_CAPT_3.
  * (2) Write VALID in this CSR to 0.
- * (3) clear SRIO_INT_REG[PHY_ERB],
+ * (3) clear SRIO_INT_REG[PHY_ERB].
  */
 union cvmx_sriomaintx_erb_attr_capt {
 	uint32_t u32;
@@ -2874,7 +2874,7 @@ typedef union cvmx_sriomaintx_erb_attr_capt cvmx_sriomaintx_erb_attr_capt_t;
  * cvmx_sriomaint#_erb_err_det
  *
  * The Error Detect Register indicates physical layer transmission errors detected by the
- * hardware. The HW will not update this register (i.e. this register is locked) while
+ * hardware. The hardware will not update this register (i.e. this register is locked) while
  * SRIOMAINT()_ERB_ATTR_CAPT[VALID] is set.
  */
 union cvmx_sriomaintx_erb_err_det {
@@ -2910,7 +2910,7 @@ union cvmx_sriomaintx_erb_err_det {
                                                          Partial symbol in SRIOMAINT()_ERB_PACK_SYM_CAPT. */
 	uint32_t proterr                      : 1;  /**< An unexpected packet or control symbol was
                                                          received.
-                                                         Partial Symbol in SRIOMAINT()_ERB_PACK_SYM_CAPT */
+                                                         Partial symbol in SRIOMAINT()_ERB_PACK_SYM_CAPT. */
 	uint32_t f_toggle                     : 1;  /**< Reserved. */
 	uint32_t del_err                      : 1;  /**< Received illegal or undefined codegroup
                                                          (either INV_DATA or INV_CHAR).
@@ -3001,7 +3001,7 @@ typedef union cvmx_sriomaintx_erb_err_det cvmx_sriomaintx_erb_err_det_t;
 /**
  * cvmx_sriomaint#_erb_err_rate
  *
- * This register is used with the Error Rate Threshold register to monitor and control
+ * This register is used with the error rate threshold register to monitor and control
  * the reporting of transmission errors.
  */
 union cvmx_sriomaintx_erb_err_rate {
@@ -3230,7 +3230,7 @@ typedef union cvmx_sriomaintx_erb_hdr cvmx_sriomaintx_erb_hdr_t;
 /**
  * cvmx_sriomaint#_erb_lt_addr_capt_h
  *
- * This register contains error information. It is locked when a Logical/Transport error is
+ * This register contains error information. It is locked when a logical/transport error is
  * detected and unlocked when the SRIOMAINT()_ERB_LT_ERR_DET is written to zero. This
  * register should be written only when error detection is disabled.  This register is only
  * required for end point transactions of 50 or 66 bits.
@@ -3256,7 +3256,7 @@ typedef union cvmx_sriomaintx_erb_lt_addr_capt_h cvmx_sriomaintx_erb_lt_addr_cap
 /**
  * cvmx_sriomaint#_erb_lt_addr_capt_l
  *
- * This register contains error information. It is locked when a Logical/Transport error is
+ * This register contains error information. It is locked when a logical/transport error is
  * detected and unlocked when the SRIOMAINT()_ERB_LT_ERR_DET is written to zero.
  * This register should be written only when error detection is disabled.
  */
@@ -3289,7 +3289,7 @@ typedef union cvmx_sriomaintx_erb_lt_addr_capt_l cvmx_sriomaintx_erb_lt_addr_cap
 /**
  * cvmx_sriomaint#_erb_lt_ctrl_capt
  *
- * This register contains error information. It is locked when a Logical/Transport error is
+ * This register contains error information. It is locked when a logical/transport error is
  * detected and unlocked when the SRIOMAINT()_ERB_LT_ERR_DET is written to zero.
  * This register should be written only when error detection is disabled.
  */
@@ -3310,14 +3310,14 @@ union cvmx_sriomaintx_erb_lt_ctrl_capt {
                                                          <19:16> = Response request TTYPE.
                                                          For all other types:
                                                          _ Reserved. */
-	uint32_t status                       : 4;  /**< Response Status.
+	uint32_t status                       : 4;  /**< Response status.
                                                          (For all other requests)
                                                          Reserved. */
 	uint32_t size                         : 4;  /**< Size associated with the transaction. */
 	uint32_t tt                           : 1;  /**< Transfer Type 0=ID8, 1=ID16. */
-	uint32_t wdptr                        : 1;  /**< Word Pointer associated with the error. */
+	uint32_t wdptr                        : 1;  /**< Word pointer associated with the error. */
 	uint32_t reserved_5_5                 : 1;
-	uint32_t capt_idx                     : 5;  /**< Capture Index. 31 - Bit set in SRIOMAINT()_ERB_LT_ERR_DET. */
+	uint32_t capt_idx                     : 5;  /**< Capture index. 31 - Bit set in SRIOMAINT()_ERB_LT_ERR_DET. */
 #else
 	uint32_t capt_idx                     : 5;
 	uint32_t reserved_5_5                 : 1;
@@ -3371,7 +3371,7 @@ typedef union cvmx_sriomaintx_erb_lt_dev_id cvmx_sriomaintx_erb_lt_dev_id_t;
 /**
  * cvmx_sriomaint#_erb_lt_dev_id_capt
  *
- * This register contains error information. It is locked when a Logical/Transport error is
+ * This register contains error information. It is locked when a logical/transport error is
  * detected and unlocked when the SRIOMAINT()_ERB_LT_ERR_DET is written to zero.  This
  * register should be written only when error detection is disabled.
  */
@@ -3406,9 +3406,10 @@ typedef union cvmx_sriomaintx_erb_lt_dev_id_capt cvmx_sriomaintx_erb_lt_dev_id_c
 /**
  * cvmx_sriomaint#_erb_lt_err_det
  *
- * This register indicates the error that was detected by the Logical or Transport logic layer.
- * Once a bit is set in this CSR, HW will lock the register until SW writes a zero to clear all
- * the fields.  The HW sets SRIO_INT_REG[LOG_ERB] every time it sets one of the bits.
+ * This register indicates the error that was detected by the logical or transport logic layer.
+ * Once a bit is set in this CSR, hardware will lock the register until software writes a zero to
+ * clear all
+ * the fields.  The hardware sets SRIO_INT_REG[LOG_ERB] every time it sets one of the bits.
  * To handle the interrupt, the following procedure may be best:
  *
  * (1) read this CSR, corresponding SRIOMAINT()_ERB_LT_ADDR_CAPT_H,
@@ -3441,8 +3442,8 @@ union cvmx_sriomaintx_erb_lt_err_det {
                                                          Request.  SRIO hardware never sets this bit. GSM
                                                          operations are not supported (outside of the Soft
                                                          Packet FIFO). */
-	uint32_t msg_fmt                      : 1;  /**< Received an incoming Message Segment with a
-                                                         formating error.  A MSG_FMT error occurs when SRIO
+	uint32_t msg_fmt                      : 1;  /**< Received an incoming message segment with a
+                                                         formatting error.  A MSG_FMT error occurs when SRIO
                                                          receives a message segment with a reserved SSIZE,
                                                          or a illegal data payload size, or a MSGSEG greater
                                                          than MSGLEN, or a MSGSEG that is the duplicate of
@@ -3499,7 +3500,7 @@ union cvmx_sriomaintx_erb_lt_err_det {
                                                          destined for the RX soft packet FIFO.  When this
                                                          condition is detected, the packet is dropped. */
 	uint32_t uns_tran                     : 1;  /**< A transaction is received that is not supported.
-                                                         SRIO HW will never set this bit - SRIO routes all
+                                                         SRIO hardware will never set this bit - SRIO routes all
                                                          unsupported transactions to the RX soft packet
                                                          FIFO. */
 	uint32_t reserved_1_21                : 21;
@@ -3544,7 +3545,7 @@ union cvmx_sriomaintx_erb_lt_err_en {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t io_err                       : 1;  /**< Enable reporting of an IO error response. Save and lock original request
                                                          transaction information in all logical/transport layer capture CSRs. */
-	uint32_t msg_err                      : 1;  /**< Enable reporting of a Message error response. Save and lock original request
+	uint32_t msg_err                      : 1;  /**< Enable reporting of a message error response. Save and lock original request
                                                          transaction information in all logical/transport layer capture CSRs. */
 	uint32_t gsm_err                      : 1;  /**< Enable reporting of a GSM error response. Save and lock original request
                                                          transaction capture information in all logical/transport layer capture CSRs. */
@@ -3597,7 +3598,7 @@ typedef union cvmx_sriomaintx_erb_lt_err_en cvmx_sriomaintx_erb_lt_err_en_t;
  * cvmx_sriomaint#_erb_pack_capt_1
  *
  * This register contains either long symbol capture information or bytes 4
- * through 7 of the packet header. The HW will not update this register (i.e. this
+ * through 7 of the packet header. The hardware will not update this register (i.e. this
  * register is locked) while SRIOMAINT()_ERB_ATTR_CAPT[VALID] is set. This register
  * should only be read while this bit is set.
  */
@@ -3620,7 +3621,7 @@ typedef union cvmx_sriomaintx_erb_pack_capt_1 cvmx_sriomaintx_erb_pack_capt_1_t;
 /**
  * cvmx_sriomaint#_erb_pack_capt_2
  *
- * This register contains bytes 8 through 11 of the packet header. The HW
+ * This register contains bytes 8 through 11 of the packet header. The hardware
  * will not update this register (i.e. this register is locked) while
  * SRIOMAINT()_ERB_ATTR_CAPT[VALID] is set. This register should only be read while
  * this bit is set.
@@ -3645,7 +3646,7 @@ typedef union cvmx_sriomaintx_erb_pack_capt_2 cvmx_sriomaintx_erb_pack_capt_2_t;
  * cvmx_sriomaint#_erb_pack_capt_3
  *
  * This register contains bytes 12 through 15 of the packet header.
- * The HW will not update this register (i.e. this register is locked) while
+ * The hardware will not update this register (i.e. this register is locked) while
  * SRIOMAINT()_ERB_ATTR_CAPT[VALID] is set.  This register should only be read while this bit is
  * set.
  */
@@ -3669,8 +3670,9 @@ typedef union cvmx_sriomaintx_erb_pack_capt_3 cvmx_sriomaintx_erb_pack_capt_3_t;
  * cvmx_sriomaint#_erb_pack_sym_capt
  *
  * This register contains either captured control symbol information or the first 4 bytes of
- * captured packet information.  The Errors that generate Partial Control Symbols can be found in
- * SRIOMAINT()_ERB_ERR_DET.  The HW will not update this register (i.e. this register is locked)
+ * captured packet information.  The errors that generate partial control symbols can be found in
+ * SRIOMAINT()_ERB_ERR_DET.  The hardware will not update this register (i.e. this register is
+ * locked)
  * while SRIOMAINT()_ERB_ATTR_CAPT[VALID] is set.  This register should only be read while this
  * bit is set.
  */
@@ -3788,7 +3790,7 @@ typedef union cvmx_sriomaintx_ir_buffer_config cvmx_sriomaintx_ir_buffer_config_
 /**
  * cvmx_sriomaint#_ir_buffer_config2
  *
- * This register controls the RX and TX Buffer availablility by priority.  The typical values
+ * This register controls the RX and TX buffer availability by priority.  The typical values
  * are optimized for normal operation.  Care must be taken when changing these values to avoid
  * values which can result in deadlocks.  Disabling a priority is not recommended and can result
  * in system level failures.
@@ -3943,9 +3945,9 @@ union cvmx_sriomaintx_ir_pi_phy_ctrl {
                                                          control vector on the transceiver interface.  The
                                                          loopback modes are enumerated as follows:
                                                          0x0 - No loopback.
-                                                         0x1 = Near end PCS loopback.
+                                                         0x1 = Reserved.
                                                          0x2 = Far end PCS loopback.
-                                                         0x3 = Both near and far end PCS loopback. */
+                                                         0x3 = Reserved. */
 	uint32_t reserved_0_26                : 27;
 #else
 	uint32_t reserved_0_26                : 27;
@@ -4055,13 +4057,13 @@ typedef union cvmx_sriomaintx_ir_sp_rx_ctrl cvmx_sriomaintx_ir_sp_rx_ctrl_t;
 /**
  * cvmx_sriomaint#_ir_sp_rx_data
  *
- * This register is used to read data from the soft packet FIFO.  The Soft Packet FIFO contains
+ * This register is used to read data from the soft packet FIFO.  The soft packet FIFO contains
  * the majority of the packet data received from the SRIO link.  The packet does not include the
- * Control Symbols or the initial byte containing AckId, 2 Reserved Bits and the CRF.  In the
- * case of packets with less than 80 bytes (including AckId byte) both the trailing CRC and Pad
- * (if present) are included in the FIFO and Octet Count.  In the case of a packet with exactly
- * 80 bytes (including the AckId byte) the CRC is removed and the Pad is maintained so the Octet
- * Count will read 81 bytes instead of the expected 83.  In cases over 80 bytes the CRC at 80
+ * control symbols or the initial byte containing AckId, 2 reserved bits and the CRF.  In the
+ * case of packets with less than 80 bytes (including AckId byte) both the trailing CRC and pad
+ * (if present) are included in the FIFO and octet count.  In the case of a packet with exactly
+ * 80 bytes (including the AckId byte) the CRC is removed and the pad is maintained so the octet
+ * count will read 81 bytes instead of the expected 83.  In cases over 80 bytes the CRC at 80
  * bytes
  * is removed but the trailing CRC and Pad (if necessary) are present.
  */
@@ -4085,7 +4087,8 @@ typedef union cvmx_sriomaintx_ir_sp_rx_data cvmx_sriomaintx_ir_sp_rx_data_t;
  * cvmx_sriomaint#_ir_sp_rx_stat
  *
  * This register is used to monitor the reception of packets using the soft packet FIFO.
- * The HW sets SRIO_INT_REG[SOFT_RX] every time a packet arrives in the soft packet FIFO. To read
+ * The hardware sets SRIO_INT_REG[SOFT_RX] every time a packet arrives in the soft packet FIFO.
+ * To read
  * out (one or more) packets, the following procedure may be best:
  *
  * (1) clear SRIO_INT_REG[SOFT_RX],
@@ -4095,7 +4098,7 @@ typedef union cvmx_sriomaintx_ir_sp_rx_data cvmx_sriomaintx_ir_sp_rx_data_t;
  * (3) read the packets out (via SRIOMAINT()_IR_SP_RX_DATA).
  *
  * This procedure could lead to situations where SOFT_RX will be set even though there are
- * currently no packets the SW interrupt handler would need to properly handle this case
+ * currently no packets the software interrupt handler would need to properly handle this case
  */
 union cvmx_sriomaintx_ir_sp_rx_stat {
 	uint32_t u32;
@@ -4165,7 +4168,7 @@ union cvmx_sriomaintx_ir_sp_tx_ctrl {
 	uint32_t u32;
 	struct cvmx_sriomaintx_ir_sp_tx_ctrl_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t octets                       : 16; /**< Writing a non-zero value (N) to this field arms
+	uint32_t octets                       : 16; /**< Writing a nonzero value (N) to this field arms
                                                          the packet FIFO for packet transmission. The FIFO
                                                          control logic will transmit the next N bytes
                                                          written 4-bytes at a time to
@@ -4199,7 +4202,7 @@ union cvmx_sriomaintx_ir_sp_tx_data {
 	struct cvmx_sriomaintx_ir_sp_tx_data_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t pkt_data                     : 32; /**< This register is used to write packet data to the
-                                                         Tx FIFO. Reads of this register will return zero. */
+                                                         TX FIFO. Reads of this register will return zero. */
 #else
 	uint32_t pkt_data                     : 32;
 #endif
@@ -4224,7 +4227,7 @@ union cvmx_sriomaintx_ir_sp_tx_stat {
 	uint32_t octets                       : 16; /**< This field shows how many octets are still to be
                                                          loaded in the current packet. */
 	uint32_t buffers                      : 4;  /**< This field indicates how many complete packets are
-                                                         stored in the Tx FIFO.  The field always reads
+                                                         stored in the TX FIFO.  The field always reads
                                                          zero in the current hardware. */
 	uint32_t reserved_5_11                : 7;
 	uint32_t full                         : 1;  /**< This bit is set when the value of buffers filled
@@ -4264,7 +4267,7 @@ union cvmx_sriomaintx_lane_x_status_0 {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t port                         : 8;  /**< The number of the port within the device to which
                                                          the lane is assigned. */
-	uint32_t lane                         : 4;  /**< Lane Number within the port. */
+	uint32_t lane                         : 4;  /**< Lane number within the port. */
 	uint32_t tx_type                      : 1;  /**< Transmitter type:
                                                          0 = Short run.
                                                          1 = Long run. */
@@ -4288,12 +4291,12 @@ union cvmx_sriomaintx_lane_x_status_0 {
 	uint32_t rx_sync                      : 1;  /**< Receiver lane synced. */
 	uint32_t rx_train                     : 1;  /**< Receiver lane trained. */
 	uint32_t dec_err                      : 4;  /**< 8Bit/10Bit decoding errors.
-                                                         0    = No Errors since last read.
-                                                         1-14 = Number of Errors since last read.
-                                                         15   = Fifteen or more Errors since last read. */
+                                                         0    = No errors since last read.
+                                                         1-14 = Number of errors since last read.
+                                                         15   = Fifteen or more errors since last read. */
 	uint32_t xsync                        : 1;  /**< Receiver lane sync change.
-                                                         0 = Lane Sync has not changed since last read.
-                                                         1 = Lane Sync has changed since last read. */
+                                                         0 = Lane sync has not changed since last read.
+                                                         1 = Lane sync has changed since last read. */
 	uint32_t xtrain                       : 1;  /**< Receiver training change.
                                                          0 = Training has not changed since last read.
                                                          1 = Training has changed since last read. */
@@ -4328,12 +4331,12 @@ typedef union cvmx_sriomaintx_lane_x_status_0 cvmx_sriomaintx_lane_x_status_0_t;
 /**
  * cvmx_sriomaint#_lcs_ba0
  *
- * MSBs of SRIO Address Space mapped to Maintenance BAR.
- * The double word aligned SRIO address window mapped to the SRIO Maintenance BAR.  This window
+ * MSBs of SRIO address space mapped to maintenance BAR.
+ * The double word aligned SRIO address window mapped to the SRIO maintenance BAR.  This window
  * has the highest priority and eclipses matches to the BAR0, BAR1 and BAR2 windows.
  * Note:  Address bits not supplied in the transfer are considered zero.  For example, SRIO
- * Address 65:35 must be set to zero to match in a 34-bit access.  SRIO Address 65:50 must be
- * set to zero to match in a 50-bit access.  This coding allows the Maintenance Bar window to
+ * address 65:35 must be set to zero to match in a 34-bit access.  SRIO address 65:50 must be
+ * set to zero to match in a 50-bit access.  This coding allows the maintenance bar window to
  * appear in specific address spaces. The remaining bits are located in SRIOMAINT()_LCS_BA1.
  * This SRIO maintenance BAR is effectively disabled when LCSBA[30] is set with 34 or 50-bit
  * addressing.
@@ -4359,12 +4362,12 @@ typedef union cvmx_sriomaintx_lcs_ba0 cvmx_sriomaintx_lcs_ba0_t;
 /**
  * cvmx_sriomaint#_lcs_ba1
  *
- * LSBs of SRIO Address Space mapped to Maintenance BAR.
- * The double word aligned SRIO address window mapped to the SRIO Maintenance BAR.  This window
+ * LSBs of SRIO address space mapped to maintenance BAR.
+ * The double word aligned SRIO address window mapped to the SRIO maintenance BAR.  This window
  * has the highest priority and eclipses matches to the BAR0, BAR1 and BAR2 windows. Address
- * bits not supplied in the transfer are considered zero.  For example, SRIO Address 65:35 must
- * be set to zero to match in a 34-bit access and SRIO Address 65:50 must be set to zero to match
- * in a 50-bit access. This coding allows the Maintenance Bar window to appear in specific
+ * bits not supplied in the transfer are considered zero.  For example, SRIO address 65:35 must
+ * be set to zero to match in a 34-bit access and SRIO address 65:50 must be set to zero to match
+ * in a 50-bit access. This coding allows the maintenance bar window to appear in specific
  * address
  * spaces. Accesses through this BAR are limited to single word (32-bit) aligned transfers of one
  * to four bytes. Accesses which violate this rule will return an error response if possible and
@@ -4399,8 +4402,8 @@ typedef union cvmx_sriomaintx_lcs_ba1 cvmx_sriomaintx_lcs_ba1_t;
 /**
  * cvmx_sriomaint#_m2s_bar0_start0
  *
- * The starting SRIO address to forwarded to the NPEI Configuration Space.
- * This register specifies the 50-bit and 66-bit SRIO Address mapped to the BAR0 Space.  See
+ * The starting SRIO address to forwarded to the NPEI configuration space.
+ * This register specifies the 50-bit and 66-bit SRIO address mapped to the BAR0 space.  See
  * SRIOMAINT()_M2S_BAR0_START1 for more details. This register is only writeable over SRIO if
  * the SRIO()_ACC_CTRL[DENY_BAR0] bit is zero.
  */
@@ -4425,17 +4428,17 @@ typedef union cvmx_sriomaintx_m2s_bar0_start0 cvmx_sriomaintx_m2s_bar0_start0_t;
 /**
  * cvmx_sriomaint#_m2s_bar0_start1
  *
- * The starting SRIO address to forwarded to the NPEI Configuration Space.
- * This register specifies the SRIO Address mapped to the BAR0 RSL Space.  If the transaction
- * has not already been mapped to SRIO Maintenance Space through the SRIOMAINT_LCS_BA[1:0]
- * registers, if ENABLE is set and the address bits match then the SRIO Memory transactions
- * will map to Octeon SLI Registers.  34-bit address transactions require a match in SRIO
- * Address 33:24 and require all the other bits in ADDR48, ADDR64 and ADDR66 fields to be zero.
+ * The starting SRIO address to forwarded to the NPEI configuration space.
+ * This register specifies the SRIO address mapped to the BAR0 RSL space.  If the transaction
+ * has not already been mapped to SRIO maintenance space through the SRIOMAINT_LCS_BA[1:0]
+ * registers, if ENABLE is set and the address bits match then the SRIO memory transactions
+ * will map to OCTEON SLI registers.  34-bit address transactions require a match in SRIO
+ * address 33:24 and require all the other bits in ADDR48, ADDR64 and ADDR66 fields to be zero.
  * 50-bit address transactions a match of SRIO Address 49:24 and require all the other bits of
  * ADDR64 and ADDR66 to be zero.  66-bit address transactions require matches of all valid
  * address
- * field bits.  Reads and  Writes through Bar0 have a size limit of 8 bytes and cannot cross
- * a 64-bit boundry.  All accesses with sizes greater than this limit will be ignored and return
+ * field bits.  Reads and writes through Bar0 have a size limit of 8 bytes and cannot cross
+ * a 64-bit boundary.  All accesses with sizes greater than this limit will be ignored and return
  * an error on any SRIO responses.  Note: ADDR48 and ADDR64 fields are located in
  * SRIOMAINT()_M2S_BAR0_START0.  The ADDR32/66 fields of this register
  * are writeable over SRIO if the SRIO()_ACC_CTRL[DENY_ADR0] bit is zero.  The ENABLE field is
@@ -4488,8 +4491,8 @@ typedef union cvmx_sriomaintx_m2s_bar0_start1 cvmx_sriomaintx_m2s_bar0_start1_t;
 /**
  * cvmx_sriomaint#_m2s_bar1_start0
  *
- * The starting SRIO address to forwarded to the BAR1 Memory Space.
- * This register specifies the 50-bit and 66-bit SRIO Address mapped to the BAR1 Space.  See
+ * The starting SRIO address to forwarded to the BAR1 memory space.
+ * This register specifies the 50-bit and 66-bit SRIO address mapped to the BAR1 space.  See
  * SRIOMAINT()_M2S_BAR1_START1 for more details.  This register is only writeable over SRIO
  * if the SRIO()_ACC_CTRL[DENY_ADR1] bit is zero.
  */
@@ -4518,12 +4521,12 @@ typedef union cvmx_sriomaintx_m2s_bar1_start0 cvmx_sriomaintx_m2s_bar1_start0_t;
 /**
  * cvmx_sriomaint#_m2s_bar1_start1
  *
- * The starting SRIO address to forwarded to the BAR1 Memory Space.
- * This register specifies the SRIO Address mapped to the BAR1 Space.  If the
- * transaction has not already been mapped to SRIO Maintenance Space through the
+ * The starting SRIO address to forwarded to the BAR1 memory space.
+ * This register specifies the SRIO address mapped to the BAR1 space.  If the
+ * transaction has not already been mapped to SRIO maintenance space through the
  * SRIOMAINT_LCS_BA[1:0] registers and the address bits do not match enabled BAR0
  * addresses and if ENABLE is set and the addresses match the BAR1 addresses then
- * SRIO Memory transactions will map to Octeon Memory Space specified by
+ * SRIO memory transactions will map to OCTEON memory space specified by
  * SRIOMAINT()_BAR1_IDX[31:0] registers.  The BARSIZE field determines the size of
  * BAR1, the entry select bits, and the size of each entry.
  *
@@ -4552,7 +4555,7 @@ union cvmx_sriomaintx_m2s_bar1_start1 {
                                                          bits of this field are used, and the lower BARSIZE
                                                          bits of this field are unused by the SRIO hardware. */
 	uint32_t reserved_7_19                : 13;
-	uint32_t barsize                      : 4;  /**< Bar Size.
+	uint32_t barsize                      : 4;  /**< Bar size.
                                                          <pre>
                                                                            SRIO_Address*
                                                                             ---------------------
@@ -4641,13 +4644,13 @@ typedef union cvmx_sriomaintx_m2s_bar1_start1 cvmx_sriomaintx_m2s_bar1_start1_t;
 /**
  * cvmx_sriomaint#_m2s_bar2_start
  *
- * The starting SRIO address to forwarded to the BAR2 Memory Space.
- * This register specifies the SRIO Address mapped to the BAR2 Space.  If ENABLE is set
+ * The starting SRIO address to forwarded to the BAR2 memory space.
+ * This register specifies the SRIO address mapped to the BAR2 space.  If ENABLE is set
  * and the address bits do not match the other enabled BAR address and match the BAR2
- * addresses then the SRIO Memory transactions will map to Octeon BAR2 Memory Space.
+ * addresses then the SRIO memory transactions will map to OCTEON BAR2 memory space.
  * 34-bit address transactions require ADDR66, ADDR64 and ADDR48 fields set to zero
  * and supply zeros for unused local addresses 41:34.  50-bit address transactions a
- * match of SRIO Address 49:42 and require all the other bits of ADDR64 and ADDR66 to
+ * match of SRIO address 49:42 and require all the other bits of ADDR64 and ADDR66 to
  * be zero.  66-bit address transactions require matches of all valid address field
  * bits.  The ADDR32/48/64/66 fields of this register are writeable over SRIO if
  * SRIO()_ACC_CTRL[DENY_ADR2] is zero.  The remaining fields are writeable over SRIO
@@ -4660,15 +4663,15 @@ union cvmx_sriomaintx_m2s_bar2_start {
 	uint32_t addr64                       : 16; /**< SRIO address 63:48. */
 	uint32_t reserved_6_15                : 10;
 	uint32_t esx                          : 2;  /**< Endian swap mode used for SRIO 34-bit access.
-                                                         For 50/66-bit assesses Endian Swap is determine
+                                                         For 50/66-bit assesses endian swap is determine
                                                          by ESX XOR'd with SRIO address 43:42.
                                                          0x0 = No swap.
                                                          0x1 = 64-bit swap bytes [ABCD_EFGH] -> [HGFE_DCBA].
                                                          0x2 = 32-bit swap words [ABCD_EFGH] -> [DCBA_HGFE].
                                                          0x3 = 32-bit word exch  [ABCD_EFGH] -> [EFGH_ABCD]. */
-	uint32_t cax                          : 1;  /**< Cacheable Access Mode.  When set transfer is
+	uint32_t cax                          : 1;  /**< Cacheable access mode.  When set transfer is
                                                          cached.  This bit is used for SRIO 34-bit access.
-                                                         For 50/66-bit accessas NCA is determine by CAX
+                                                         For 50/66-bit accesses NCA is determine by CAX
                                                          XOR'd with SRIO address 44. */
 	uint32_t addr66                       : 2;  /**< SRIO address 65:64. */
 	uint32_t enable                       : 1;  /**< Enable BAR2 access. */
@@ -4717,15 +4720,15 @@ union cvmx_sriomaintx_m2s_bar2_start {
 	uint32_t addr48                       : 3;  /**< SRIO address 47:45. */
 	uint32_t reserved_6_12                : 7;
 	uint32_t esx                          : 2;  /**< Endian swap mode used for SRIO 34-bit access.
-                                                         For 50/66-bit assesses Endian Swap is determine
+                                                         For 50/66-bit assesses endian swap is determine
                                                          by ESX XOR'd with SRIO address 43:42.
                                                          0x0 = No swap.
                                                          0x1 = 64-bit swap bytes [ABCD_EFGH] -> [HGFE_DCBA].
                                                          0x2 = 32-bit swap words [ABCD_EFGH] -> [DCBA_HGFE].
                                                          0x3 = 32-bit word exch  [ABCD_EFGH] -> [EFGH_ABCD]. */
-	uint32_t cax                          : 1;  /**< Cacheable Access Mode.  When set transfer is
+	uint32_t cax                          : 1;  /**< Cacheable access mode.  When set transfer is
                                                          cached.  This bit is used for SRIO 34-bit access.
-                                                         For 50/66-bit accessas NCA is determine by CAX
+                                                         For 50/66-bit accesses NCA is determine by CAX
                                                          XOR'd with SRIO address 44. */
 	uint32_t addr66                       : 2;  /**< SRIO address 65:64. */
 	uint32_t enable                       : 1;  /**< Enable BAR2 access. */
@@ -4824,12 +4827,12 @@ union cvmx_sriomaintx_pe_feat {
 	uint32_t bridge                       : 1;  /**< Bridge functions not supported. */
 	uint32_t memory                       : 1;  /**< PE contains addressable memory. */
 	uint32_t proc                         : 1;  /**< PE contains a local processor. */
-	uint32_t switchf                      : 1;  /**< Switch Functions not supported. */
-	uint32_t mult_prt                     : 1;  /**< Multiport Functions not supported. */
+	uint32_t switchf                      : 1;  /**< Switch functions not supported. */
+	uint32_t mult_prt                     : 1;  /**< Multiport functions not supported. */
 	uint32_t reserved_7_26                : 20;
-	uint32_t suppress                     : 1;  /**< Error Recovery Suppression not supported. */
-	uint32_t crf                          : 1;  /**< Critical Request Flow not supported. */
-	uint32_t lg_tran                      : 1;  /**< Large Transport (16-bit Device IDs) supported. */
+	uint32_t suppress                     : 1;  /**< Error recovery suppression not supported. */
+	uint32_t crf                          : 1;  /**< Critical request flow not supported. */
+	uint32_t lg_tran                      : 1;  /**< Large transport (16-bit device IDs) supported. */
 	uint32_t ex_feat                      : 1;  /**< Extended feature pointer is valid. */
 	uint32_t ex_addr                      : 3;  /**< PE supports 66, 50 and 34-bit addresses.
                                                          [2:1] are a RO copy of SRIO()_IP_FEATURE[A66,A50]. */
@@ -4928,7 +4931,7 @@ union cvmx_sriomaintx_port_0_ctl {
 	uint32_t dis_err                      : 1;  /**< Disable error checking.  For diagnostic use only. */
 	uint32_t mcast                        : 1;  /**< Reserved. */
 	uint32_t reserved_18_18               : 1;
-	uint32_t enumb                        : 1;  /**< Enumeration boundry. SW can use this bit to determine port enumeration. */
+	uint32_t enumb                        : 1;  /**< Enumeration boundry. Software can use this bit to determine port enumeration. */
 	uint32_t reserved_16_16               : 1;
 	uint32_t ex_width                     : 2;  /**< Extended port width not supported. */
 	uint32_t ex_stat                      : 2;  /**< Extended port width status. 0x0 = not supported. */
@@ -5090,8 +5093,8 @@ union cvmx_sriomaintx_port_0_ctl {
                                                          0x5 = Enable two-lane, disable four-lane.
                                                          0x6 = Enable four-lane, disable two-lane.
                                                          0x7 = All lanes sizes enabled. */
-	uint32_t port_disable                 : 1;  /**< Port disable. Setting this bit should disable SERDES drivers and receivers. On
-                                                         this chip it disables SERDES receivers only. */
+	uint32_t port_disable                 : 1;  /**< Port disable. Setting this bit should disable SerDes drivers and receivers. On
+                                                         this chip it disables SerDes receivers only. */
 	uint32_t o_enable                     : 1;  /**< Port output enable. When cleared, port will generate control symbols and respond
                                                          to maintenance transactions only. When set, all transactions are allowed. */
 	uint32_t i_enable                     : 1;  /**< Port input enable. When cleared, port will generate control symbols and respond
@@ -5099,7 +5102,7 @@ union cvmx_sriomaintx_port_0_ctl {
 	uint32_t dis_err                      : 1;  /**< Disable error checking.  For diagnostic use only. */
 	uint32_t mcast                        : 1;  /**< Reserved. */
 	uint32_t reserved_18_18               : 1;
-	uint32_t enumb                        : 1;  /**< Enumeration boundry. SW can use this bit to determine port enumeration. */
+	uint32_t enumb                        : 1;  /**< Enumeration boundry. Software can use this bit to determine port enumeration. */
 	uint32_t reserved_16_16               : 1;
 	uint32_t ex_width                     : 2;  /**< Extended port width not supported. */
 	uint32_t ex_stat                      : 2;  /**< Extended port width status. 0x0 = not supported. */
@@ -5148,8 +5151,8 @@ typedef union cvmx_sriomaintx_port_0_ctl cvmx_sriomaintx_port_0_ctl_t;
  * cvmx_sriomaint#_port_0_ctl2
  *
  * These registers are accessed when a local processor or an external
- * device wishes to examine the port baudrate information.  The Automatic
- * Baud Rate Feature is not available on this device. The SUP_* and ENB_*
+ * device wishes to examine the port baudrate information.  The automatic
+ * baud rate feature is not available on this device. The SUP_* and ENB_*
  * fields are set directly by the SRIO()_STATUS_REG[SPD] bits as a
  * reference but otherwise have no effect.
  *
@@ -5159,8 +5162,8 @@ union cvmx_sriomaintx_port_0_ctl2 {
 	uint32_t u32;
 	struct cvmx_sriomaintx_port_0_ctl2_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t sel_baud                     : 4;  /**< Indicates the speed of the interface SERDES lanes.
-                                                         Link Baud Rate Selected:
+	uint32_t sel_baud                     : 4;  /**< Indicates the speed of the interface SerDes lanes.
+                                                         Link baud rate selected:
                                                          0x0 = No rate selected.
                                                          0x1 = 1.25 GBaud.
                                                          0x2 = 2.5 GBaud.
@@ -5170,32 +5173,32 @@ union cvmx_sriomaintx_port_0_ctl2 {
                                                          0x6-0xF = Reserved. */
 	uint32_t baud_sup                     : 1;  /**< Automatic baud rate discovery not supported. */
 	uint32_t baud_enb                     : 1;  /**< Auto baud rate discovery enable. */
-	uint32_t sup_125g                     : 1;  /**< 1.25GB Rate Operation supported.
-                                                         Set when the interface SERDES lanes are operating
+	uint32_t sup_125g                     : 1;  /**< 1.25 GB rate operation supported.
+                                                         Set when the interface SerDes lanes are operating
                                                          at 1.25 Gbaud (as selected by SRIO()_STATUS_REG[SPD]). */
-	uint32_t enb_125g                     : 1;  /**< 1.25GB Rate Operation enable.
-                                                         Set when the interface SERDES lanes are operating
+	uint32_t enb_125g                     : 1;  /**< 1.25 GB rate operation enable.
+                                                         Set when the interface SerDes lanes are operating
                                                          at 1.25 Gbaud (as selected by SRIO()_STATUS_REG[SPD]). */
-	uint32_t sup_250g                     : 1;  /**< 2.50GB Rate Operation supported.
-                                                         Set when the interface SERDES lanes are operating
+	uint32_t sup_250g                     : 1;  /**< 2.50 GB rate operation supported.
+                                                         Set when the interface SerDes lanes are operating
                                                          at 2.5 Gbaud (as selected by SRIO()_STATUS_REG[SPD]). */
-	uint32_t enb_250g                     : 1;  /**< 2.50GB Rate Operation enable.
-                                                         Set when the interface SERDES lanes are operating
+	uint32_t enb_250g                     : 1;  /**< 2.50 GB rate operation enable.
+                                                         Set when the interface SerDes lanes are operating
                                                          at 2.5 Gbaud (as selected by SRIO()_STATUS_REG[SPD]). */
-	uint32_t sup_312g                     : 1;  /**< 3.125GB Rate Operation supported.
-                                                         Set when the interface SERDES lanes are operating
+	uint32_t sup_312g                     : 1;  /**< 3.125 GB rate operation supported.
+                                                         Set when the interface SerDes lanes are operating
                                                          at 3.125 Gbaud (as selected by SRIO()_STATUS_REG[SPD]). */
-	uint32_t enb_312g                     : 1;  /**< 3.125GB Rate Operation enable.
-                                                         Set when the interface SERDES lanes are operating
+	uint32_t enb_312g                     : 1;  /**< 3.125 GB rate operation enable.
+                                                         Set when the interface SerDes lanes are operating
                                                          at 3.125 Gbaud (as selected by SRIO()_STATUS_REG[SPD]). */
-	uint32_t sub_500g                     : 1;  /**< 5.0GB Rate Operation supported.
-                                                         Set when the interface SERDES lanes are operating
+	uint32_t sub_500g                     : 1;  /**< 5.0 GB rate operation supported.
+                                                         Set when the interface SerDes lanes are operating
                                                          at 5.0 Gbaud (as selected by SRIO()_STATUS_REG[SPD]). */
-	uint32_t enb_500g                     : 1;  /**< 5.0GB Rate Operation enable.
-                                                         Set when the interface SERDES lanes are operating
+	uint32_t enb_500g                     : 1;  /**< 5.0 GB rate operation enable.
+                                                         Set when the interface SerDes lanes are operating
                                                          at 5.0 Gbaud (as selected by SRIO()_STATUS_REG[SPD]). */
-	uint32_t sup_625g                     : 1;  /**< 6.25GB Rate Operation (not supported). */
-	uint32_t enb_625g                     : 1;  /**< 6.25GB Rate Operation enable. */
+	uint32_t sup_625g                     : 1;  /**< 6.25 GB rate operation (not supported). */
+	uint32_t enb_625g                     : 1;  /**< 6.25 GB rate operation enable. */
 	uint32_t reserved_2_15                : 14;
 	uint32_t tx_emph                      : 1;  /**< Indicates whether is port is able to transmit
                                                          commands to control the transmit emphasis in the
@@ -5328,7 +5331,7 @@ union cvmx_sriomaintx_port_0_link_req {
 	uint32_t cmd                          : 3;  /**< Link request command.
                                                          0x3 = Reset device.
                                                          0x4 = Link request.
-                                                         All other values reserved. */
+                                                         _ All other values reserved. */
 #else
 	uint32_t cmd                          : 3;
 	uint32_t reserved_3_31                : 29;
@@ -5388,13 +5391,13 @@ union cvmx_sriomaintx_port_0_local_ackid {
 	struct cvmx_sriomaintx_port_0_local_ackid_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_30_31               : 2;
-	uint32_t i_ackid                      : 6;  /**< Next Expected Inbound AckID.
+	uint32_t i_ackid                      : 6;  /**< Next expected inbound AckID.
                                                          Bit 29 is used for IDLE2 and should be zero. */
 	uint32_t reserved_14_23               : 10;
-	uint32_t e_ackid                      : 6;  /**< Next Expected Unacknowledged AckID.
+	uint32_t e_ackid                      : 6;  /**< Next expected unacknowledged AckID.
                                                          Bit 13 is used for IDLE2 and should be zero. */
 	uint32_t reserved_6_7                 : 2;
-	uint32_t o_ackid                      : 6;  /**< Next Outgoing Packet AckID.
+	uint32_t o_ackid                      : 6;  /**< Next outgoing packet AckID.
                                                          Bit 5 is used for IDLE2 and should be zero. */
 #else
 	uint32_t o_ackid                      : 6;
@@ -5421,10 +5424,10 @@ union cvmx_sriomaintx_port_gen_ctl {
 	uint32_t u32;
 	struct cvmx_sriomaintx_port_gen_ctl_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t host                         : 1;  /**< Host Device.
+	uint32_t host                         : 1;  /**< Host device.
                                                          The HOST value is based on corresponding
                                                          SRIO()_STATUS_REG[HOST] bit but may be overwritten by software. */
-	uint32_t menable                      : 1;  /**< Master Enable.  Must be set for device to issue
+	uint32_t menable                      : 1;  /**< Master enable.  Must be set for device to issue
                                                          read, write, doorbell, message requests. */
 	uint32_t discover                     : 1;  /**< Discovered. The device has been discovered by the
                                                          host responsible for initialization. */
@@ -5448,8 +5451,8 @@ typedef union cvmx_sriomaintx_port_gen_ctl cvmx_sriomaintx_port_gen_ctl_t;
  *
  * This register controls the timeout for link layer transactions.  It is used as the timeout
  * between sending a packet (of any type) or link request to receiving the corresponding link
- * acknowledge or link-response.  Each count represents 200ns.  The minimum timeout period is
- * the TIMEOUT x200nS and the maximum is twice that number.  A value less than 32 may not
+ * acknowledge or link-response.  Each count represents 200 ns.  The minimum timeout period is
+ * the TIMEOUT x200 ns and the maximum is twice that number.  A value less than 32 may not
  * guarantee that all timeout errors will be reported correctly.  When the timeout period expires
  * the packet or link request is dropped and the error is logged in the LNK_TOUT field of the
  * SRIOMAINT()_ERB_ERR_DET register. A value of 0 in this register will allow the packet or
@@ -5516,7 +5519,7 @@ typedef union cvmx_sriomaintx_port_mbh0 cvmx_sriomaintx_port_mbh0_t;
  * message segments of the same message. If a message segment is received then the
  * MSG_TOUT field of the SRIOMAINT()_ERB_LT_ERR_DET register is set if the next segment
  * has not been received before the time expires. In both cases, each count represents
- * 200ns. The minimum timeout period is the TIMEOUT x 200nS and the maximum is twice
+ * 200 ns. The minimum timeout period is the TIMEOUT x 200 ns and the maximum is twice
  * that number. A value less than 32 may not guarantee that all timeout errors will be
  * reported correctly. A value of 0 disables the logical layer timeouts and is not
  * recommended for normal operation.
@@ -5544,7 +5547,7 @@ typedef union cvmx_sriomaintx_port_rt_ctl cvmx_sriomaintx_port_rt_ctl_t;
  *
  * This register controls the timeout for outgoing packets. It is primilarly
  * used to make sure packets are being transmitted and acknowledged within a
- * reasonable period of time. The timeout value corresponds to TIMEOUT x 200ns
+ * reasonable period of time. The timeout value corresponds to TIMEOUT x 200 ns
  * and a value of 0 disables the timer. The actual value should be greater
  * than the physical layer timeout specified in SRIOMAINT()_PORT_LT_CTL and
  * is typically a less than the response timeout specified in
@@ -5669,7 +5672,7 @@ typedef union cvmx_sriomaintx_sec_dev_id cvmx_sriomaintx_sec_dev_id_t;
  * cvmx_sriomaint#_serial_lane_hdr
  *
  * The error management extensions block header register contains the EF_PTR to the next EF_BLK
- * and the EF_ID that identifies this as the Serial Lane Status Block.
+ * and the EF_ID that identifies this as the serial lane status block.
  */
 union cvmx_sriomaintx_serial_lane_hdr {
 	uint32_t u32;
@@ -5700,25 +5703,25 @@ union cvmx_sriomaintx_src_ops {
 	uint32_t u32;
 	struct cvmx_sriomaintx_src_ops_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t gsm_read                     : 1;  /**< PE does not support Read Home operations.
+	uint32_t gsm_read                     : 1;  /**< PE does not support read home operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<31>. */
-	uint32_t i_read                       : 1;  /**< PE does not support Instruction Read.
+	uint32_t i_read                       : 1;  /**< PE does not support instruction read.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<30>. */
-	uint32_t rd_own                       : 1;  /**< PE does not support Read for Ownership.
+	uint32_t rd_own                       : 1;  /**< PE does not support read for ownership.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<29>. */
-	uint32_t d_invald                     : 1;  /**< PE does not support Data Cache Invalidate.
+	uint32_t d_invald                     : 1;  /**< PE does not support data cache invalidate.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<28>. */
-	uint32_t castout                      : 1;  /**< PE does not support Castout Operations.
+	uint32_t castout                      : 1;  /**< PE does not support castout operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<27>. */
-	uint32_t d_flush                      : 1;  /**< PE does not support Data Cache Flush.
+	uint32_t d_flush                      : 1;  /**< PE does not support data cache flush.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<26>. */
-	uint32_t io_read                      : 1;  /**< PE does not support IO Read.
+	uint32_t io_read                      : 1;  /**< PE does not support IO read.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<25>. */
-	uint32_t i_invald                     : 1;  /**< PE does not support Instruction Cache Invalidate.
+	uint32_t i_invald                     : 1;  /**< PE does not support instruction cache invalidate.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<24>. */
-	uint32_t tlb_inv                      : 1;  /**< PE does not support TLB Entry Invalidate.
+	uint32_t tlb_inv                      : 1;  /**< PE does not support TLB entry invalidate.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<23>. */
-	uint32_t tlb_invs                     : 1;  /**< PE does not support TLB Entry Invalidate Sync.
+	uint32_t tlb_invs                     : 1;  /**< PE does not support TLB entry invalidate sync.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<22>. */
 	uint32_t reserved_16_21               : 6;
 	uint32_t read                         : 1;  /**< PE can support Nread operations.
@@ -5727,27 +5730,27 @@ union cvmx_sriomaintx_src_ops {
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<14>. */
 	uint32_t swrite                       : 1;  /**< PE can support Swrite operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<13>. */
-	uint32_t write_r                      : 1;  /**< PE can support Write with Response operations.
+	uint32_t write_r                      : 1;  /**< PE can support write with response operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<12>. */
-	uint32_t msg                          : 1;  /**< PE can support Data Message operations.
+	uint32_t msg                          : 1;  /**< PE can support data message operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<11>. */
-	uint32_t doorbell                     : 1;  /**< PE can support Doorbell operations.
+	uint32_t doorbell                     : 1;  /**< PE can support doorbell operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<10>. */
-	uint32_t compswap                     : 1;  /**< PE does not support Atomic Compare and Swap.
+	uint32_t compswap                     : 1;  /**< PE does not support atomic compare and swap.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<9>. */
-	uint32_t testswap                     : 1;  /**< PE does not support Atomic Test and Swap.
+	uint32_t testswap                     : 1;  /**< PE does not support atomic test and swap.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<8>. */
-	uint32_t atom_inc                     : 1;  /**< PE can support Atomic increment operations.
+	uint32_t atom_inc                     : 1;  /**< PE can support atomic increment operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<7>. */
-	uint32_t atom_dec                     : 1;  /**< PE can support Atomic decrement operations.
+	uint32_t atom_dec                     : 1;  /**< PE can support atomic decrement operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<6>. */
-	uint32_t atom_set                     : 1;  /**< PE can support Atomic set operations.
+	uint32_t atom_set                     : 1;  /**< PE can support atomic set operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<5>. */
-	uint32_t atom_clr                     : 1;  /**< PE can support Atomic clear operations.
+	uint32_t atom_clr                     : 1;  /**< PE can support atomic clear operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<4>. */
-	uint32_t atom_swp                     : 1;  /**< PE does not support Atomic Swap.
+	uint32_t atom_swp                     : 1;  /**< PE does not support atomic swap.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<3>. */
-	uint32_t port_wr                      : 1;  /**< PE can Port Write operations.
+	uint32_t port_wr                      : 1;  /**< PE can port write operations.
                                                          This is a RO copy of SRIO()_IP_FEATURE[OPS]<2>. */
 	uint32_t reserved_0_1                 : 2;
 #else

@@ -5086,6 +5086,20 @@ static inline uint64_t CVMX_PCIERCX_CFG558(unsigned long offset)
 #else
 #define CVMX_PCIERCX_CFG558(offset) (0x00000200000008B8ull + ((offset) & 3) * 0x100000000ull)
 #endif
+#if CVMX_ENABLE_CSR_ADDRESS_CHECKING
+static inline uint64_t CVMX_PCIERCX_CFG559(unsigned long offset)
+{
+	if (!(
+	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 3))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
+		cvmx_warn("CVMX_PCIERCX_CFG559(%lu) is invalid on this chip\n", offset);
+	return 0x00000200000008BCull + ((offset) & 3) * 0x100000000ull;
+}
+#else
+#define CVMX_PCIERCX_CFG559(offset) (0x00000200000008BCull + ((offset) & 3) * 0x100000000ull)
+#endif
 
 /**
  * cvmx_pcierc#_cfg000
@@ -5556,12 +5570,12 @@ union cvmx_pciercx_cfg009 {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t lmem_limit                   : 12; /**< Upper 12 bits of 32-bit prefetchable memory end address. */
 	uint32_t reserved_17_19               : 3;
-	uint32_t mem64b                       : 1;  /**< 64-Bit memory addressing:
+	uint32_t mem64b                       : 1;  /**< 64-bit memory addressing:
                                                          0 = 32-bit memory addressing.
                                                          1 = 64-bit memory addressing. */
 	uint32_t lmem_base                    : 12; /**< Upper 12 bits of 32-bit prefetchable memory start address. */
 	uint32_t reserved_1_3                 : 3;
-	uint32_t mem64a                       : 1;  /**< 64-Bit memory addressing:
+	uint32_t mem64a                       : 1;  /**< 64-bit memory addressing:
                                                          0 = 32-bit memory addressing.
                                                          1 = 64-bit memory addressing.
                                                          This bit is writable through PEM()_CFG_WR. When the application writes to this bit
@@ -5819,7 +5833,7 @@ union cvmx_pciercx_cfg015 {
 	uint32_t pdt                          : 1;  /**< Primary discard timer. Not applicable to PCI Express, hardwired to 0. */
 	uint32_t fbbe                         : 1;  /**< Fast back-to-back transactions enable. Not applicable to PCI Express, hardwired to 0. */
 	uint32_t sbrst                        : 1;  /**< Secondary bus reset. Hot reset. Causes TS1s with the hot reset bit to be sent to the link
-                                                         partner. When set, software should wait 2ms before clearing. The link partner normally
+                                                         partner. When set, software should wait 2 ms before clearing. The link partner normally
                                                          responds by sending TS1s with the hot reset bit set, which will cause a link down event.
                                                          Refer to 'PCIe Link-Down Reset in RC Mode' section. */
 	uint32_t mam                          : 1;  /**< Master abort mode. Not applicable to PCI Express, hardwired to 0. */
@@ -6333,7 +6347,8 @@ union cvmx_pciercx_cfg029 {
 	uint32_t u32;
 	struct cvmx_pciercx_cfg029_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t reserved_28_31               : 4;
+	uint32_t reserved_29_31               : 3;
+	uint32_t flr_cap                      : 1;  /**< Function level reset capability. This bit applies to endpoints only. */
 	uint32_t cspls                        : 2;  /**< Captured slot power limit scale. Not applicable for RC port, upstream port only */
 	uint32_t csplv                        : 8;  /**< Captured slot power limit value. Not applicable for RC port, upstream port only. */
 	uint32_t reserved_16_17               : 2;
@@ -6362,25 +6377,65 @@ union cvmx_pciercx_cfg029 {
 	uint32_t reserved_16_17               : 2;
 	uint32_t csplv                        : 8;
 	uint32_t cspls                        : 2;
-	uint32_t reserved_28_31               : 4;
+	uint32_t flr_cap                      : 1;
+	uint32_t reserved_29_31               : 3;
 #endif
 	} s;
-	struct cvmx_pciercx_cfg029_s          cn52xx;
-	struct cvmx_pciercx_cfg029_s          cn52xxp1;
-	struct cvmx_pciercx_cfg029_s          cn56xx;
-	struct cvmx_pciercx_cfg029_s          cn56xxp1;
-	struct cvmx_pciercx_cfg029_s          cn61xx;
-	struct cvmx_pciercx_cfg029_s          cn63xx;
-	struct cvmx_pciercx_cfg029_s          cn63xxp1;
-	struct cvmx_pciercx_cfg029_s          cn66xx;
-	struct cvmx_pciercx_cfg029_s          cn68xx;
-	struct cvmx_pciercx_cfg029_s          cn68xxp1;
-	struct cvmx_pciercx_cfg029_s          cn70xx;
-	struct cvmx_pciercx_cfg029_s          cn70xxp1;
+	struct cvmx_pciercx_cfg029_cn52xx {
+#ifdef __BIG_ENDIAN_BITFIELD
+	uint32_t reserved_28_31               : 4;
+	uint32_t cspls                        : 2;  /**< Captured Slot Power Limit Scale
+                                                         Not applicable for RC port, upstream port only. */
+	uint32_t csplv                        : 8;  /**< Captured Slot Power Limit Value
+                                                         Not applicable for RC port, upstream port only. */
+	uint32_t reserved_16_17               : 2;
+	uint32_t rber                         : 1;  /**< Role-Based Error Reporting, writable through PESC(0..1)_CFG_WR
+                                                         However, the application must not change this field. */
+	uint32_t reserved_12_14               : 3;
+	uint32_t el1al                        : 3;  /**< Endpoint L1 Acceptable Latency, writable through PESC(0..1)_CFG_WR
+                                                         Must be 0x0 for non-endpoint devices. */
+	uint32_t el0al                        : 3;  /**< Endpoint L0s Acceptable Latency, writable through PESC(0..1)_CFG_WR
+                                                         Must be 0x0 for non-endpoint devices. */
+	uint32_t etfs                         : 1;  /**< Extended Tag Field Supported
+                                                         This bit is writable through PESC(0..1)_CFG_WR.
+                                                         However, the application
+                                                         must not write a 1 to this bit. */
+	uint32_t pfs                          : 2;  /**< Phantom Function Supported
+                                                         This field is writable through PESC(0..1)_CFG_WR.
+                                                         However, Phantom
+                                                         Function is not supported. Therefore, the application must not
+                                                         write any value other than 0x0 to this field. */
+	uint32_t mpss                         : 3;  /**< Max_Payload_Size Supported, writable through PESC(0..1)_CFG_WR
+                                                         However, the application must not change this field. */
+#else
+	uint32_t mpss                         : 3;
+	uint32_t pfs                          : 2;
+	uint32_t etfs                         : 1;
+	uint32_t el0al                        : 3;
+	uint32_t el1al                        : 3;
+	uint32_t reserved_12_14               : 3;
+	uint32_t rber                         : 1;
+	uint32_t reserved_16_17               : 2;
+	uint32_t csplv                        : 8;
+	uint32_t cspls                        : 2;
+	uint32_t reserved_28_31               : 4;
+#endif
+	} cn52xx;
+	struct cvmx_pciercx_cfg029_cn52xx     cn52xxp1;
+	struct cvmx_pciercx_cfg029_cn52xx     cn56xx;
+	struct cvmx_pciercx_cfg029_cn52xx     cn56xxp1;
+	struct cvmx_pciercx_cfg029_cn52xx     cn61xx;
+	struct cvmx_pciercx_cfg029_cn52xx     cn63xx;
+	struct cvmx_pciercx_cfg029_cn52xx     cn63xxp1;
+	struct cvmx_pciercx_cfg029_cn52xx     cn66xx;
+	struct cvmx_pciercx_cfg029_cn52xx     cn68xx;
+	struct cvmx_pciercx_cfg029_cn52xx     cn68xxp1;
+	struct cvmx_pciercx_cfg029_cn52xx     cn70xx;
+	struct cvmx_pciercx_cfg029_cn52xx     cn70xxp1;
 	struct cvmx_pciercx_cfg029_s          cn73xx;
 	struct cvmx_pciercx_cfg029_s          cn78xx;
 	struct cvmx_pciercx_cfg029_s          cn78xxp2;
-	struct cvmx_pciercx_cfg029_s          cnf71xx;
+	struct cvmx_pciercx_cfg029_cn52xx     cnf71xx;
 	struct cvmx_pciercx_cfg029_s          cnf75xx;
 };
 typedef union cvmx_pciercx_cfg029 cvmx_pciercx_cfg029_t;
@@ -6397,7 +6452,7 @@ union cvmx_pciercx_cfg030 {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_22_31               : 10;
 	uint32_t tp                           : 1;  /**< Transaction pending. Hard-wired to 0. */
-	uint32_t ap_d                         : 1;  /**< Aux power detected. Set to 1 if Aux power detected. */
+	uint32_t ap_d                         : 1;  /**< AUX power detected. Set to 1 if AUX power detected. */
 	uint32_t ur_d                         : 1;  /**< Unsupported request detected. Errors are logged in this register regardless of whether or
                                                          not error reporting is enabled in the device control register. UR_D occurs when we receive
                                                          something unsupported. Unsupported requests are nonfatal errors, so UR_D should cause
@@ -6412,7 +6467,7 @@ union cvmx_pciercx_cfg030 {
                                                          meet Advisory Nonfatal criteria, which most poisoned TLPs should. */
 	uint32_t ce_d                         : 1;  /**< Correctable error detected. Errors are logged in this register regardless of whether or
                                                          not error reporting is enabled in the device control register. This field is set if we
-                                                         receive any of the errors in PCIERC()_CFG068, for example, a Replay Timer Timeout.
+                                                         receive any of the errors in PCIERC()_CFG068, for example, a replay timer timeout.
                                                          Also, it can be set if we get any of the errors in PCIERC()_CFG066 that has a severity
                                                          set to nonfatal and meets the advisory nonfatal criteria, which most ECRC errors should. */
 	uint32_t reserved_15_15               : 1;
@@ -6521,8 +6576,8 @@ union cvmx_pciercx_cfg031 {
                                                          PEM()_CFG[MD].
                                                          _ MD is 0x0, reset to 0x1: 2.5 GHz supported.
                                                          _ MD is 0x1, reset to 0x2: 5.0 GHz and 2.5 GHz supported.
-                                                         _ MD is 0x2, reset to 0x3: 8.0 Ghz, 5.0 GHz and 2.5 GHz supported.
-                                                         _ MD is 0x3, reset to 0x3: 8.0 Ghz, 5.0 GHz and 2.5 GHz supported (RC Mode).
+                                                         _ MD is 0x2, reset to 0x3: 8.0 GHz, 5.0 GHz and 2.5 GHz supported.
+                                                         _ MD is 0x3, reset to 0x3: 8.0 GHz, 5.0 GHz and 2.5 GHz supported (RC Mode).
                                                          This field is writable through PEM()_CFG_WR. However, the application must not change
                                                          this field. */
 #else
@@ -6625,7 +6680,7 @@ union cvmx_pciercx_cfg032 {
                                                          status, for reasons other than to attempt to correct unreliable link operation. */
 	uint32_t lbm                          : 1;  /**< Link bandwidth management status. This bit is set to indicate either of the following has
                                                          occurred without the port transitioning through DL_DOWN status:
-                                                         * A link retraining has completed following a write of 1b to the retrain link bit
+                                                         * A link retraining has completed following a write of 1b to the retrain link bit.
                                                          * Hardware has changed the Link speed or width to attempt to correct unreliable link
                                                          operation, either through a LTSSM timeout of higher level process. This bit must be set if
                                                          the physical layer reports a speed or width change was initiated by the downstream
@@ -6723,9 +6778,9 @@ union cvmx_pciercx_cfg033 {
                                                          application must not change this field. */
 	uint32_t sp_ls                        : 2;  /**< Slot power limit scale, writable through PEM()_CFG_WR. */
 	uint32_t sp_lv                        : 8;  /**< Slot power limit value, writable through PEM()_CFG_WR. */
-	uint32_t hp_c                         : 1;  /**< Hot-plug capable, writable through PEM()_CFG_WR. However, the application must not
+	uint32_t hp_c                         : 1;  /**< Hot plug capable, writable through PEM()_CFG_WR. However, the application must not
                                                          change this field. */
-	uint32_t hp_s                         : 1;  /**< Hot-plug surprise, writable through PEM()_CFG_WR. However, the application must not
+	uint32_t hp_s                         : 1;  /**< Hot plug surprise, writable through PEM()_CFG_WR. However, the application must not
                                                          change this field. */
 	uint32_t pip                          : 1;  /**< Power indicator present, writable through PEM()_CFG_WR. However, the application must
                                                          not change this field. */
@@ -7347,17 +7402,17 @@ union cvmx_pciercx_cfg039 {
 	uint32_t reserved_9_31                : 23;
 	uint32_t cls                          : 1;  /**< Crosslink supported. */
 	uint32_t slsv                         : 7;  /**< Supported link speeds vector. Indicates the supported link speeds of the associated port.
-                                                         For each bit, a value of 1b indicates that the corresponding link speed is supported;
+                                                         For each bit, a value of 1 b indicates that the corresponding link speed is supported;
                                                          otherwise, the link speed is not supported. Bit definitions are:
                                                          _ Bit <1> = 2.5 GT/s.
                                                          _ Bit <2> = 5.0 GT/s.
-                                                         _ Bit <3> = 8.0 GT/s (not supported).
+                                                         _ Bit <3> = 8.0 GT/s.
                                                          _ Bits <7:4> are reserved.
                                                          The reset value of this field is controlled by the value read from PEM()_CFG[MD].
                                                          _ MD is 0x0, reset to 0x1: 2.5 GHz supported.
                                                          _ MD is 0x1, reset to 0x3: 5.0 GHz and 2.5 GHz supported.
-                                                         _ MD is 0x2, reset to 0x7: 8.0 Ghz, 5.0 GHz and 2.5 GHz supported.
-                                                         _ MD is 0x3, reset to 0x7: 8.0 Ghz, 5.0 GHz and 2.5 GHz supported (RC Mode). */
+                                                         _ MD is 0x2, reset to 0x7: 8.0 GHz, 5.0 GHz and 2.5 GHz supported.
+                                                         _ MD is 0x3, reset to 0x7: 8.0 GHz, 5.0 GHz and 2.5 GHz supported (RC Mode). */
 	uint32_t reserved_0_0                 : 1;
 #else
 	uint32_t reserved_0_0                 : 1;
@@ -7410,13 +7465,13 @@ union cvmx_pciercx_cfg040 {
 	uint32_t eqc                          : 1;  /**< Equalization complete */
 	uint32_t cdl                          : 1;  /**< Current deemphasis level. When the link is operating at 5 GT/s speed, this bit reflects
                                                           the level of deemphasis. Encodings:
-                                                         - 1: -3.5 dB.
-                                                         - 0: -6 dB.
+                                                         1 = -3.5 dB.
+                                                         0 = -6 dB.
                                                           The value in this bit is undefined when the link is operating at 2.5 GT/s speed. */
 	uint32_t cde                          : 4;  /**< Compliance deemphasis. This bit sets the deemphasis level in Polling.Compliance state if
-                                                         the entry occurred due to the Tx compliance receive bit being 1. Encodings:
-                                                         0x1: -3.5 dB.
-                                                         0x0: -6 dB.
+                                                         the entry occurred due to the TX compliance receive bit being 1. Encodings:
+                                                         0x1 = -3.5 dB.
+                                                         0x0 = -6 dB.
                                                          When the Link is operating at 2.5 GT/s, the setting of this bit has no effect. */
 	uint32_t csos                         : 1;  /**< Compliance SOS. When set to 1, the LTSSM is required to send SKP ordered sets periodically
                                                          in between the (modified) compliance patterns.
@@ -7425,18 +7480,19 @@ union cvmx_pciercx_cfg040 {
                                                          compliance pattern if the LTSSM enters Polling.Compliance state. */
 	uint32_t tm                           : 3;  /**< Transmit margin. This field controls the value of the non-deemphasized voltage level at
                                                          the transmitter signals:
-                                                         0x0:  800-1200 mV for full swing 400-600 mV for half-swing
-                                                         0x1-0x2: Values must be monotonic with a nonzero slope
-                                                         0x3: 200-400 mV for full-swing and 100-200 mV for half-swing
-                                                         0x4-0x7: Reserved
+                                                         0x0 =  800-1200 mV for full swing 400-600 mV for half-swing.
+                                                         0x1-0x2 = Values must be monotonic with a nonzero slope.
+                                                         0x3 = 200-400 mV for full-swing and 100-200 mV for half-swing.
+                                                         0x4-0x7 = Reserved.
                                                          This field is reset to 0x0 on entry to the LTSSM Polling.Compliance substate. When
                                                          operating in 5.0 GT/s mode with full swing, the deemphasis ratio must be maintained within
                                                          +/- 1 dB from the specification-defined operational value either -3.5 or -6 dB. */
 	uint32_t sde                          : 1;  /**< Selectable deemphasis. When the link is operating at 5.0 GT/s speed, selects the level of
-                                                          deemphasis:
-                                                         - 1: -3.5 dB.
-                                                         - 0: -6 dB.
-                                                          When the link is operating at 2.5 GT/s speed, the setting of this bit has no effect. */
+                                                         deemphasis on the downstream device.  Must be set prior to link training.
+                                                         1 = -3.5 dB.
+                                                         0 = -6 dB.
+                                                         When the link is operating at 2.5 GT/s speed, the setting of this bit has no effect.
+                                                         PCIERC()_CFG515[S_D_E] can be used to change the deemphasis on the upstream ports. */
 	uint32_t hasd                         : 1;  /**< Hardware autonomous speed disable. When asserted, the application must disable hardware
                                                          from changing the link speed for device-specific reasons other than attempting to correct
                                                          unreliable link operation by reducing link speed. Initial transition to the highest
@@ -7449,7 +7505,7 @@ union cvmx_pciercx_cfg040 {
                                                          training sequences:
                                                          0x1 = 2.5 Gb/s target link speed.
                                                          0x2 = 5 Gb/s target link speed.
-                                                         0x4 = 8 Gb/s target link speed (not supported).
+                                                         0x3 = 8 Gb/s target link speed.
                                                          All other encodings are reserved.
                                                          If a value is written to this field that does not correspond to a speed included in the
                                                          supported link speeds field, the result is undefined. For both upstream and downstream
@@ -7458,8 +7514,8 @@ union cvmx_pciercx_cfg040 {
                                                          The reset value of this field is controlled by the value read from PEM()_CFG[MD].
                                                          _ MD is 0x0, reset to 0x1: 2.5 GHz supported.
                                                          _ MD is 0x1, reset to 0x2: 5.0 GHz and 2.5 GHz supported.
-                                                         _ MD is 0x2, reset to 0x3: 8.0 Ghz, 5.0 GHz and 2.5 GHz supported.
-                                                         _ MD is 0x3, reset to 0x3: 8.0 Ghz, 5.0 GHz and 2.5 GHz supported (RC Mode). */
+                                                         _ MD is 0x2, reset to 0x3: 8.0 GHz, 5.0 GHz and 2.5 GHz supported.
+                                                         _ MD is 0x3, reset to 0x3: 8.0 GHz, 5.0 GHz and 2.5 GHz supported (RC Mode). */
 #else
 	uint32_t tls                          : 4;
 	uint32_t ec                           : 1;
@@ -7714,7 +7770,7 @@ union cvmx_pciercx_cfg045 {
 	uint32_t u32;
 	struct cvmx_pciercx_cfg045_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t msixtoffs                    : 29; /**< MSI-X table offset register. Base address of the MSI-X Table, as an offset from the base
+	uint32_t msixtoffs                    : 29; /**< MSI-X table offset register. Base address of the MSI-X table, as an offset from the base
                                                          address of the BAR indicated by the table BIR bits. Writable through PEM()_CFG_WR.
                                                          However, the application must not change this field. */
 	uint32_t msixtbir                     : 3;  /**< "MSI-X table BAR indicator register (BIR). Indicates which BAR is used to map the MSI-X
@@ -7770,9 +7826,12 @@ union cvmx_pciercx_cfg064 {
 	uint32_t u32;
 	struct cvmx_pciercx_cfg064_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t nco                          : 12; /**< Next capability offset. Points to the secondary PCI Express capabilities by default. */
-	uint32_t cv                           : 4;  /**< Capability version. */
-	uint32_t pcieec                       : 16; /**< PCI Express extended capability. */
+	uint32_t nco                          : 12; /**< Next capability offset. Points to the secondary PCI Express capabilities by default.
+                                                         Writable through PEM()_CFG_WR. However, the application must not change this field. */
+	uint32_t cv                           : 4;  /**< Capability version.
+                                                         Writable through PEM()_CFG_WR. However, the application must not change this field. */
+	uint32_t pcieec                       : 16; /**< PCI Express extended capability.
+                                                         Writable through PEM()_CFG_WR. However, the application must not change this field. */
 #else
 	uint32_t pcieec                       : 16;
 	uint32_t cv                           : 4;
@@ -8865,9 +8924,12 @@ union cvmx_pciercx_cfg086 {
 	uint32_t u32;
 	struct cvmx_pciercx_cfg086_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t nco                          : 12; /**< Next capability offset. */
-	uint32_t cv                           : 4;  /**< Capability version. */
-	uint32_t pcieec                       : 16; /**< PCIE Express extended capability. */
+	uint32_t nco                          : 12; /**< Next capability offset.
+                                                         Writable through PEM()_CFG_WR. However, the application must not change this field. */
+	uint32_t cv                           : 4;  /**< Capability version.
+                                                         Writable through PEM()_CFG_WR. However, the application must not change this field. */
+	uint32_t pcieec                       : 16; /**< PCIE Express extended capability.
+                                                         Writable through PEM()_CFG_WR. However, the application must not change this field. */
 #else
 	uint32_t pcieec                       : 16;
 	uint32_t cv                           : 4;
@@ -9276,42 +9338,32 @@ union cvmx_pciercx_cfg450 {
                                                          0x1D = LPBK_EXIT_TIMEOUT.
                                                          0x1E = HOT_RESET_ENTRY.
                                                          0x1F = HOT_RESET. */
-	uint32_t force_link                   : 1;  /**< Force link. Forces the link to the state specified by the LINK_STATE field. The force link
+	uint32_t force_link                   : 1;  /**< Force link. Forces the link to the state specified by [LINK_STATE]. The force link
                                                          pulse triggers link renegotiation.
                                                          As the force link is a pulse, writing a 1 to it does trigger the forced link state event,
                                                          even though reading it always returns a 0. */
-	uint32_t reserved_12_14               : 3;
-	uint32_t link_cmd                     : 4;  /**< Link Command
-                                                         The Link command that the PCI Express Core will be forced to
-                                                         transmit when bit 15 (Force Link) is set.
-                                                         Command encoding:
-                                                         o PEM_SEND_IDLE              1h
-                                                         o PEM_SEND_EIDLE             2h
-                                                         o PEM_XMT_IN_EIDLE           3h
-                                                         o PEM_MOD_COMPL_PATTERN      4h
-                                                         o PEM_SEND_RCVR_DETECT_SEQ   5h
-                                                         o PEM_SEND_TS1               6h
-                                                         o PEM_SEND_TS2               7h
-                                                         o PEM_COMPLIANCE_PATTERN     8h
-                                                         o PEM_SEND_SDS               9h
-                                                         o PEM_SEND_BEACON            ah
-                                                         o PEM_SEND_N_FTS             bh
-                                                         o PEM_NORM                   ch
-                                                         o PEM_SEND_SKP               dh
-                                                         o PEM_SEND_EIES              eh
-                                                         o PEM_SEND_EIES_SYM          fh */
+	uint32_t reserved_8_14                : 7;
 	uint32_t link_num                     : 8;  /**< Link number. */
 #else
 	uint32_t link_num                     : 8;
-	uint32_t link_cmd                     : 4;
-	uint32_t reserved_12_14               : 3;
+	uint32_t reserved_8_14                : 7;
 	uint32_t force_link                   : 1;
 	uint32_t link_state                   : 6;
 	uint32_t reserved_22_23               : 2;
 	uint32_t lpec                         : 8;
 #endif
 	} s;
-	struct cvmx_pciercx_cfg450_cn52xx {
+	struct cvmx_pciercx_cfg450_s          cn52xx;
+	struct cvmx_pciercx_cfg450_s          cn52xxp1;
+	struct cvmx_pciercx_cfg450_s          cn56xx;
+	struct cvmx_pciercx_cfg450_s          cn56xxp1;
+	struct cvmx_pciercx_cfg450_s          cn61xx;
+	struct cvmx_pciercx_cfg450_s          cn63xx;
+	struct cvmx_pciercx_cfg450_s          cn63xxp1;
+	struct cvmx_pciercx_cfg450_s          cn66xx;
+	struct cvmx_pciercx_cfg450_s          cn68xx;
+	struct cvmx_pciercx_cfg450_s          cn68xxp1;
+	struct cvmx_pciercx_cfg450_cn70xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t lpec                         : 8;  /**< Low Power Entrance Count
                                                          The Power Management state will wait for this many clock cycles
@@ -9363,33 +9415,102 @@ union cvmx_pciercx_cfg450 {
                                                          * As the The Force Link is a pulse, writing a 1 to it does
                                                            trigger the forced link state event, even thought reading it
                                                            always returns a 0. */
-	uint32_t reserved_8_14                : 7;
+	uint32_t reserved_12_14               : 3;
+	uint32_t link_cmd                     : 4;  /**< Link Command
+                                                         The Link command that the PCI Express Core will be forced to
+                                                         transmit when bit 15 (Force Link) is set.
+                                                         Command encoding:
+                                                         o PEM_SEND_IDLE              1h
+                                                         o PEM_SEND_EIDLE             2h
+                                                         o PEM_XMT_IN_EIDLE           3h
+                                                         o PEM_MOD_COMPL_PATTERN      4h
+                                                         o PEM_SEND_RCVR_DETECT_SEQ   5h
+                                                         o PEM_SEND_TS1               6h
+                                                         o PEM_SEND_TS2               7h
+                                                         o PEM_COMPLIANCE_PATTERN     8h
+                                                         o PEM_SEND_SDS               9h
+                                                         o PEM_SEND_BEACON            ah
+                                                         o PEM_SEND_N_FTS             bh
+                                                         o PEM_NORM                   ch
+                                                         o PEM_SEND_SKP               dh
+                                                         o PEM_SEND_EIES              eh
+                                                         o PEM_SEND_EIES_SYM          fh */
 	uint32_t link_num                     : 8;  /**< Link Number */
 #else
 	uint32_t link_num                     : 8;
-	uint32_t reserved_8_14                : 7;
+	uint32_t link_cmd                     : 4;
+	uint32_t reserved_12_14               : 3;
 	uint32_t force_link                   : 1;
 	uint32_t link_state                   : 6;
 	uint32_t reserved_22_23               : 2;
 	uint32_t lpec                         : 8;
 #endif
-	} cn52xx;
-	struct cvmx_pciercx_cfg450_cn52xx     cn52xxp1;
-	struct cvmx_pciercx_cfg450_cn52xx     cn56xx;
-	struct cvmx_pciercx_cfg450_cn52xx     cn56xxp1;
-	struct cvmx_pciercx_cfg450_cn52xx     cn61xx;
-	struct cvmx_pciercx_cfg450_cn52xx     cn63xx;
-	struct cvmx_pciercx_cfg450_cn52xx     cn63xxp1;
-	struct cvmx_pciercx_cfg450_cn52xx     cn66xx;
-	struct cvmx_pciercx_cfg450_cn52xx     cn68xx;
-	struct cvmx_pciercx_cfg450_cn52xx     cn68xxp1;
-	struct cvmx_pciercx_cfg450_s          cn70xx;
-	struct cvmx_pciercx_cfg450_s          cn70xxp1;
-	struct cvmx_pciercx_cfg450_cn52xx     cn73xx;
-	struct cvmx_pciercx_cfg450_cn52xx     cn78xx;
-	struct cvmx_pciercx_cfg450_cn52xx     cn78xxp2;
-	struct cvmx_pciercx_cfg450_cn52xx     cnf71xx;
-	struct cvmx_pciercx_cfg450_cn52xx     cnf75xx;
+	} cn70xx;
+	struct cvmx_pciercx_cfg450_cn70xx     cn70xxp1;
+	struct cvmx_pciercx_cfg450_cn73xx {
+#ifdef __BIG_ENDIAN_BITFIELD
+	uint32_t lpec                         : 8;  /**< Low power entrance count. The power management state waits this many clock cycles for the
+                                                         associated completion of a CfgWr to PCIEEP()_CFG017 register, power state (PS) field
+                                                         register
+                                                         to go low-power. This register is intended for applications that do not let the PCI
+                                                         Express bus handle a completion for configuration request to the power management control
+                                                         and status (PCIEP()_CFG017) register. */
+	uint32_t reserved_22_23               : 2;
+	uint32_t link_state                   : 6;  /**< Link state. The link state that the PCI Express bus is forced to when bit 15 (force link)
+                                                         is set. State encoding:
+                                                         0x0 = DETECT_QUIET.
+                                                         0x1 = DETECT_ACT.
+                                                         0x2 = POLL_ACTIVE.
+                                                         0x3 = POLL_COMPLIANCE.
+                                                         0x4 = POLL_CONFIG.
+                                                         0x5 = PRE_DETECT_QUIET.
+                                                         0x6 = DETECT_WAIT.
+                                                         0x7 = CFG_LINKWD_START.
+                                                         0x8 = CFG_LINKWD_ACEPT.
+                                                         0x9 = CFG_LANENUM_WAIT.
+                                                         0xA = CFG_LANENUM_ACEPT.
+                                                         0xB = CFG_COMPLETE.
+                                                         0xC = CFG_IDLE.
+                                                         0xD = RCVRY_LOCK.
+                                                         0xE = RCVRY_SPEED.
+                                                         0xF = RCVRY_RCVRCFG.
+                                                         0x10 = RCVRY_IDLE.
+                                                         0x11 = L0.
+                                                         0x12 = L0S.
+                                                         0x13 = L123_SEND_EIDLE.
+                                                         0x14 = L1_IDLE.
+                                                         0x15 = L2_IDLE.
+                                                         0x16 = L2_WAKE.
+                                                         0x17 = DISABLED_ENTRY.
+                                                         0x18 = DISABLED_IDLE.
+                                                         0x19 = DISABLED.
+                                                         0x1A = LPBK_ENTRY.
+                                                         0x1B = LPBK_ACTIVE.
+                                                         0x1C = LPBK_EXIT.
+                                                         0x1D = LPBK_EXIT_TIMEOUT.
+                                                         0x1E = HOT_RESET_ENTRY.
+                                                         0x1F = HOT_RESET. */
+	uint32_t force_link                   : 1;  /**< Force link. Forces the link to the state specified by [LINK_STATE]. The force link
+                                                         pulse triggers link renegotiation.
+                                                         As the force link is a pulse, writing a 1 to it does trigger the forced link state event,
+                                                         even though reading it always returns a 0. */
+	uint32_t reserved_12_14               : 3;
+	uint32_t forced_ltssm                 : 4;  /**< Forced link command. */
+	uint32_t link_num                     : 8;  /**< Link number. */
+#else
+	uint32_t link_num                     : 8;
+	uint32_t forced_ltssm                 : 4;
+	uint32_t reserved_12_14               : 3;
+	uint32_t force_link                   : 1;
+	uint32_t link_state                   : 6;
+	uint32_t reserved_22_23               : 2;
+	uint32_t lpec                         : 8;
+#endif
+	} cn73xx;
+	struct cvmx_pciercx_cfg450_cn73xx     cn78xx;
+	struct cvmx_pciercx_cfg450_cn73xx     cn78xxp2;
+	struct cvmx_pciercx_cfg450_s          cnf71xx;
+	struct cvmx_pciercx_cfg450_cn73xx     cnf75xx;
 };
 typedef union cvmx_pciercx_cfg450 cvmx_pciercx_cfg450_t;
 
@@ -10172,7 +10293,7 @@ union cvmx_pciercx_cfg460 {
 	struct cvmx_pciercx_cfg460_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_20_31               : 12;
-	uint32_t tphfcc                       : 8;  /**< Transmit posted header FC Credits. The posted header credits advertised by the receiver at
+	uint32_t tphfcc                       : 8;  /**< Transmit posted header FC credits. The posted header credits advertised by the receiver at
                                                          the other end of the link, updated with each UpdateFC DLLP. */
 	uint32_t tpdfcc                       : 12; /**< Transmit posted data FC credits. The posted data credits advertised by the receiver at the
                                                          other end of the link, updated with each UpdateFC DLLP. */
@@ -10756,12 +10877,15 @@ union cvmx_pciercx_cfg515 {
 	struct cvmx_pciercx_cfg515_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_21_31               : 11;
-	uint32_t s_d_e                        : 1;  /**< SEL_DE_EMPHASIS. Used to set the deemphasis level for upstream ports. */
-	uint32_t ctcrb                        : 1;  /**< Config Tx compliance receive bit. When set to 1, signals LTSSM to transmit TS ordered sets
+	uint32_t s_d_e                        : 1;  /**< SEL_DE_EMPHASIS. Used to set the deemphasis level for upstream ports.
+                                                         1 = -3.5 dB.
+                                                         0 = -6 dB. */
+	uint32_t ctcrb                        : 1;  /**< Config TX compliance receive bit. When set to 1, signals LTSSM to transmit TS ordered sets
                                                          with the compliance receive bit assert (equal to 1). */
-	uint32_t cpyts                        : 1;  /**< Config PHY Tx swing. Indicates the voltage level that the PHY should drive. When set to 1,
+	uint32_t cpyts                        : 1;  /**< Config PHY TX swing. Indicates the voltage level that the PHY should drive. When set to 1,
                                                          indicates full swing. When set to 0, indicates low swing. */
-	uint32_t dsc                          : 1;  /**< Directed speed change. A write of 1 initiates a speed change; always reads as zero. */
+	uint32_t dsc                          : 1;  /**< Directed speed change. A write of 1 initiates a speed change.
+                                                         When the speed change occurs, the controller will clear the contents of this field. */
 	uint32_t le                           : 9;  /**< Lane enable. Indicates the number of lanes to check for exit from electrical idle in
                                                          Polling.Active and Polling.Compliance. 0x1 = x1, 0x2 = x2, etc. Used to limit the maximum
                                                          link width to ignore broken lanes that detect a receiver, but will not exit electrical
@@ -10769,7 +10893,8 @@ union cvmx_pciercx_cfg515 {
 	uint32_t n_fts                        : 8;  /**< N_FTS. Sets the number of fast training sequences (N_FTS) that the core advertises as its
                                                          N_FTS during GEN2 Link training. This value is used to inform the link partner about the
                                                          PHY's ability to recover synchronization after a low power state.
-                                                         Do not set N_FTS to zero; doing so can cause the LTSSM to go into the recovery state when
+                                                         Do not set [N_FTS] to zero; doing so can cause the LTSSM to go into the recovery state
+                                                         when
                                                          exiting from L0s. */
 #else
 	uint32_t n_fts                        : 8;
@@ -10877,11 +11002,16 @@ union cvmx_pciercx_cfg548 {
 	uint32_t u32;
 	struct cvmx_pciercx_cfg548_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t reserved_19_31               : 13;
+	uint32_t reserved_26_31               : 6;
+	uint32_t rss                          : 2;  /**< Data rate for shadow register.  Hard-wired for Gen3. */
+	uint32_t eiedd                        : 1;  /**< Eq InvalidRequest and RxEqEval Different Time Assertion Disable.  Disable the assertion of
+                                                         Eq InvalidRequest and RxEqEval at different time. */
+	uint32_t reserved_19_22               : 4;
 	uint32_t dcbd                         : 1;  /**< Disable balance disable. Disable DC balance feature. */
 	uint32_t dtdd                         : 1;  /**< DLLP transmission delay disable. Disable delay transmission of DLLPs before equalization. */
 	uint32_t ed                           : 1;  /**< Equalization disable. Disable equalization feature. */
-	uint32_t reserved_12_15               : 4;
+	uint32_t reserved_13_15               : 3;
+	uint32_t rxeq_ph01_en                 : 1;  /**< Rx Equalization Phase 0/Phase 1 Hold Enable. */
 	uint32_t erd                          : 1;  /**< Equalization redo disable. Disable requesting reset of EIEOS count during equalization. */
 	uint32_t ecrd                         : 1;  /**< Equalization EIEOS count reset disable. Disable requesting reset of EIEOS count during
                                                          equalization. */
@@ -10898,11 +11028,15 @@ union cvmx_pciercx_cfg548 {
 	uint32_t ep2p3d                       : 1;
 	uint32_t ecrd                         : 1;
 	uint32_t erd                          : 1;
-	uint32_t reserved_12_15               : 4;
+	uint32_t rxeq_ph01_en                 : 1;
+	uint32_t reserved_13_15               : 3;
 	uint32_t ed                           : 1;
 	uint32_t dtdd                         : 1;
 	uint32_t dcbd                         : 1;
-	uint32_t reserved_19_31               : 13;
+	uint32_t reserved_19_22               : 4;
+	uint32_t eiedd                        : 1;
+	uint32_t rss                          : 2;
+	uint32_t reserved_26_31               : 6;
 #endif
 	} s;
 	struct cvmx_pciercx_cfg548_s          cn73xx;
@@ -10922,9 +11056,12 @@ union cvmx_pciercx_cfg554 {
 	uint32_t u32;
 	struct cvmx_pciercx_cfg554_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t reserved_25_31               : 7;
+	uint32_t reserved_27_31               : 5;
+	uint32_t scefpm                       : 1;  /**< Request core to send back-to-back EIEOS in Recovery.RcvrLock state until
+                                                         presets to coefficient mapping is complete. */
+	uint32_t reserved_25_25               : 1;
 	uint32_t iif                          : 1;  /**< Include initial FOM. Include, or not, the FOM feedback from the initial preset evaluation
-                                                         performed in the EQ Master, when finding the highest FOM among all preset evaluations. */
+                                                         performed in the EQ master, when finding the highest FOM among all preset evaluations. */
 	uint32_t prv                          : 16; /**< Preset request vector. Requesting of presets during the initial part of the EQ master
                                                          phase. Encoding scheme as follows:
                                                          Bit [15:0] = 0x0: No preset is requested and evaluated in the EQ master phase.
@@ -10957,8 +11094,8 @@ union cvmx_pciercx_cfg554 {
                                                          0 = Recovery.Speed.
                                                          1 = Recovry.Equalization.RcrLock.
                                                          When optimal settings are not found:
-                                                         * Equalization phase 3 successful status bit is not set in the Link Status Register
-                                                         * Equalization phase 3 complete status bit is set in the Link Status Register */
+                                                         * Equalization phase 3 successful status bit is not set in the link status register.
+                                                         * Equalization phase 3 complete status bit is set in the link status register. */
 	uint32_t fm                           : 4;  /**< Feedback mode.
                                                          0 = Direction of change (not supported).
                                                          1 = Figure of merit.
@@ -10970,7 +11107,9 @@ union cvmx_pciercx_cfg554 {
 	uint32_t reserved_6_7                 : 2;
 	uint32_t prv                          : 16;
 	uint32_t iif                          : 1;
-	uint32_t reserved_25_31               : 7;
+	uint32_t reserved_25_25               : 1;
+	uint32_t scefpm                       : 1;
+	uint32_t reserved_27_31               : 5;
 #endif
 	} s;
 	struct cvmx_pciercx_cfg554_s          cn73xx;
@@ -11003,5 +11142,30 @@ union cvmx_pciercx_cfg558 {
 	struct cvmx_pciercx_cfg558_s          cnf75xx;
 };
 typedef union cvmx_pciercx_cfg558 cvmx_pciercx_cfg558_t;
+
+/**
+ * cvmx_pcierc#_cfg559
+ *
+ * This register contains the five hundred sixtieth 32-bits of PCIe type 0 configuration space.
+ *
+ */
+union cvmx_pciercx_cfg559 {
+	uint32_t u32;
+	struct cvmx_pciercx_cfg559_s {
+#ifdef __BIG_ENDIAN_BITFIELD
+	uint32_t reserved_1_31                : 31;
+	uint32_t dbi_ro_wr_en                 : 1;  /**< Write to RO registers using DBI.  When you set this bit, then some
+                                                         RO bits are writeable from the DBI. */
+#else
+	uint32_t dbi_ro_wr_en                 : 1;
+	uint32_t reserved_1_31                : 31;
+#endif
+	} s;
+	struct cvmx_pciercx_cfg559_s          cn73xx;
+	struct cvmx_pciercx_cfg559_s          cn78xx;
+	struct cvmx_pciercx_cfg559_s          cn78xxp2;
+	struct cvmx_pciercx_cfg559_s          cnf75xx;
+};
+typedef union cvmx_pciercx_cfg559 cvmx_pciercx_cfg559_t;
 
 #endif

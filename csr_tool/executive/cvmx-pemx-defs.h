@@ -1216,12 +1216,12 @@ union cvmx_pemx_bar_ctl {
 	uint64_t reserved_7_63                : 57;
 	uint64_t bar1_siz                     : 3;  /**< PCIe Port 0 Bar1 Size. Must be 0x1 in EP mode.
                                                          0x0 = Reserved.
-                                                         0x1 = 64 MB.
-                                                         0x2 = 128 MB.
-                                                         0x3 = 256 MB.
-                                                         0x4 = 512 MB.
-                                                         0x5 = 1024 MB.
-                                                         0x6 = 2048 MB.
+                                                         0x1 = 64 MB; 2^26.
+                                                         0x2 = 128 MB; 2^27.
+                                                         0x3 = 256 MB; 2^28.
+                                                         0x4 = 512 MB; 2^29.
+                                                         0x5 = 1024 MB; 2^30.
+                                                         0x6 = 2048 MB; 2^31.
                                                          0x7 = Reserved. */
 	uint64_t bar2_enb                     : 1;  /**< When set to 1, BAR2 is enabled and will respond; when clear, BAR2 access will cause UR responses. */
 	uint64_t bar2_esx                     : 2;  /**< Value is XORed with PCIe address [43:42] to determine the endian swap mode.
@@ -1265,10 +1265,10 @@ union cvmx_pemx_bist_status {
 	uint64_t reserved_16_63               : 48;
 	uint64_t retryc                       : 1;  /**< Retry buffer memory C. */
 	uint64_t reserved_14_14               : 1;
-	uint64_t rqhdrb0                      : 1;  /**< Rx queue header memory buffer 0. */
-	uint64_t rqhdrb1                      : 1;  /**< Rx queue header memory buffer 1. */
-	uint64_t rqdatab0                     : 1;  /**< Rx queue data buffer 0. */
-	uint64_t rqdatab1                     : 1;  /**< Rx queue data buffer 1. */
+	uint64_t rqhdrb0                      : 1;  /**< RX queue header memory buffer 0. */
+	uint64_t rqhdrb1                      : 1;  /**< RX queue header memory buffer 1. */
+	uint64_t rqdatab0                     : 1;  /**< RX queue data buffer 0. */
+	uint64_t rqdatab1                     : 1;  /**< RX queue data buffer 1. */
 	uint64_t tlpn_d0                      : 1;  /**< BIST status for tlp_n_fifo_data0. */
 	uint64_t tlpn_d1                      : 1;  /**< BIST status for tlp_n_fifo_data1. */
 	uint64_t reserved_0_7                 : 8;
@@ -1338,10 +1338,10 @@ union cvmx_pemx_bist_status {
 	uint64_t reserved_16_63               : 48;
 	uint64_t retryc                       : 1;  /**< Retry buffer memory C. */
 	uint64_t sot                          : 1;  /**< Start of transfer memory. */
-	uint64_t rqhdrb0                      : 1;  /**< Rx queue header memory buffer 0. */
-	uint64_t rqhdrb1                      : 1;  /**< Rx queue header memory buffer 1. */
-	uint64_t rqdatab0                     : 1;  /**< Rx queue data buffer 0. */
-	uint64_t rqdatab1                     : 1;  /**< Rx queue data buffer 1. */
+	uint64_t rqhdrb0                      : 1;  /**< RX queue header memory buffer 0. */
+	uint64_t rqhdrb1                      : 1;  /**< RX queue header memory buffer 1. */
+	uint64_t rqdatab0                     : 1;  /**< RX queue data buffer 0. */
+	uint64_t rqdatab1                     : 1;  /**< RX queue data buffer 1. */
 	uint64_t tlpn_d0                      : 1;  /**< BIST status for tlp_n_fifo_data0. */
 	uint64_t tlpn_d1                      : 1;  /**< BIST status for tlp_n_fifo_data1. */
 	uint64_t tlpn_ctl                     : 1;  /**< BIST status for tlp_n_fifo_ctl. */
@@ -1776,8 +1776,8 @@ union cvmx_pemx_ctl_status {
                                                          read that does not carry a retry status. Until such time that the timeout occurs
                                                          and retry status is received for a configuration read, the read will be
                                                          resent. A value of 0 disables retries and treats a CPL Retry as a CPL UR.
-                                                         To use, it is recommended CFG_RTRY be set value corresponding to 200ms or less, although
-                                                         the PCI Express Base Specification allows up to 900ms for a device to send a successful
+                                                         To use, it is recommended CFG_RTRY be set value corresponding to 200 ms or less, although
+                                                         the PCI Express Base Specification allows up to 900 ms for a device to send a successful
                                                          completion.  When enabled, only one CFG RD may be issued until either successful
                                                          completion or CPL UR. */
 	uint64_t reserved_12_15               : 4;
@@ -1897,8 +1897,8 @@ union cvmx_pemx_ctl_status {
                                                          read that does not carry a retry status. Until such time that the timeout occurs
                                                          and retry status is received for a configuration read, the read will be
                                                          resent. A value of 0 disables retries and treats a CPL Retry as a CPL UR.
-                                                         To use, it is recommended CFG_RTRY be set value corresponding to 200ms or less, although
-                                                         the PCI Express Base Specification allows up to 900ms for a device to send a successful
+                                                         To use, it is recommended CFG_RTRY be set value corresponding to 200 ms or less, although
+                                                         the PCI Express Base Specification allows up to 900 ms for a device to send a successful
                                                          completion.  When enabled, only one CFG RD may be issued until either successful
                                                          completion or CPL UR. */
 	uint64_t reserved_12_15               : 4;
@@ -2041,7 +2041,7 @@ union cvmx_pemx_dbg_info {
                                                          Throws PEM_INTSN_E::PEM()_ERROR_RQO. */
 	uint64_t fcuv                         : 1;  /**< Flow control update violation.
                                                          Throws PEM_INTSN_E::PEM()_ERROR_FCUV. */
-	uint64_t rpe                          : 1;  /**< PHY reported an 8B/10B decode error (RxStatus = 0x4) or disparity error (RxStatus =
+	uint64_t rpe                          : 1;  /**< PHY reported an 8 B/10 B decode error (RxStatus = 0x4) or disparity error (RxStatus =
                                                          0x7).
                                                          Throws PEM_INTSN_E::PEM()_ERROR_RPE. */
 	uint64_t fcpvwt                       : 1;  /**< Flow control protocol violation (watchdog timer).
@@ -2081,7 +2081,7 @@ union cvmx_pemx_dbg_info {
 	uint64_t rtlplle                      : 1;  /**< Received TLP has link layer error.
                                                          Throws PEM_INTSN_E::PEM()_ERROR_RTLPLLE. */
 	uint64_t rtlpmal                      : 1;  /**< Received TLP is malformed or a message. If the core receives a MSG (or Vendor Message) or
-                                                         if a received AtomicOp viloates address/length rules, this bit is set as well.
+                                                         if a received AtomicOp violates address/length rules, this bit is set as well.
                                                          Throws PEM_INTSN_E::PEM()_ERROR_RTLPMAL. */
 	uint64_t spoison                      : 1;  /**< Poisoned TLP sent.
                                                          Throws PEM_INTSN_E::PEM()_ERROR_SPOISON. */
@@ -2465,7 +2465,7 @@ union cvmx_pemx_dbg_info {
                                                          Throws PEM_INTSN_E::PEM()_ERROR_DATQ_PE. */
 	uint64_t bmd_e                        : 1;  /**< A NP or P TLP was seen in the outbound path, but it was not allowed to master the bus.
                                                          If a PF TLP and the PCIEEP()_CFG001[ME] is not set.
-                                                         For VF TLP, either the the PCIEEP()_CFG001[ME]/PCIEEPVF()_CFG001[ME] are not set.
+                                                         For VF TLP, either the PCIEEP()_CFG001[ME]/PCIEEPVF()_CFG001[ME] are not set.
                                                          Throws PEM_INTSN_E::PEM()_ERROR_BMD_E. */
 	uint64_t lofp                         : 1;  /**< Lack of forward progress at TLP FIFOs timeout occurred.
                                                          Throws PEM_INTSN_E::PEM()_ERROR_LOFP. */
@@ -2492,7 +2492,7 @@ union cvmx_pemx_dbg_info {
                                                          Throws PEM_INTSN_E::PEM()_ERROR_RQO. */
 	uint64_t fcuv                         : 1;  /**< Flow control update violation.
                                                          Throws PEM_INTSN_E::PEM()_ERROR_FCUV. */
-	uint64_t rpe                          : 1;  /**< PHY reported an 8B/10B decode error (RxStatus = 0x4) or disparity error (RxStatus =
+	uint64_t rpe                          : 1;  /**< PHY reported an 8 B/10 B decode error (RxStatus = 0x4) or disparity error (RxStatus =
                                                          0x7).
                                                          Throws PEM_INTSN_E::PEM()_ERROR_RPE. */
 	uint64_t fcpvwt                       : 1;  /**< Flow control protocol violation (watchdog timer).
@@ -2532,7 +2532,7 @@ union cvmx_pemx_dbg_info {
 	uint64_t rtlplle                      : 1;  /**< Received TLP has link layer error.
                                                          Throws PEM_INTSN_E::PEM()_ERROR_RTLPLLE. */
 	uint64_t rtlpmal                      : 1;  /**< Received TLP is malformed or a message. If the core receives a MSG (or Vendor Message) or
-                                                         if a received AtomicOp viloates address/length rules, this bit is set as well.
+                                                         if a received AtomicOp violates address/length rules, this bit is set as well.
                                                          Throws PEM_INTSN_E::PEM()_ERROR_RTLPMAL. */
 	uint64_t spoison                      : 1;  /**< Poisoned TLP sent.
                                                          Throws PEM_INTSN_E::PEM()_ERROR_SPOISON. */
@@ -2681,7 +2681,7 @@ union cvmx_pemx_dbg_info {
                                                          Throws PEM_INTSN_E::PEM()_ERROR_RQO. */
 	uint64_t fcuv                         : 1;  /**< Flow control update violation.
                                                          Throws PEM_INTSN_E::PEM()_ERROR_FCUV. */
-	uint64_t rpe                          : 1;  /**< PHY reported an 8B/10B decode error (RxStatus = 0x4) or disparity error (RxStatus =
+	uint64_t rpe                          : 1;  /**< PHY reported an 8 B/10 B decode error (RxStatus = 0x4) or disparity error (RxStatus =
                                                          0x7).
                                                          Throws PEM_INTSN_E::PEM()_ERROR_RPE. */
 	uint64_t fcpvwt                       : 1;  /**< Flow control protocol violation (watchdog timer).
@@ -2721,7 +2721,7 @@ union cvmx_pemx_dbg_info {
 	uint64_t rtlplle                      : 1;  /**< Received TLP has link layer error.
                                                          Throws PEM_INTSN_E::PEM()_ERROR_RTLPLLE. */
 	uint64_t rtlpmal                      : 1;  /**< Received TLP is malformed or a message. If the core receives a MSG (or Vendor Message) or
-                                                         if a received AtomicOp viloates address/length rules, this bit is set as well.
+                                                         if a received AtomicOp violates address/length rules, this bit is set as well.
                                                          Throws PEM_INTSN_E::PEM()_ERROR_RTLPMAL. */
 	uint64_t spoison                      : 1;  /**< Poisoned TLP sent.
                                                          Throws PEM_INTSN_E::PEM()_ERROR_SPOISON. */
@@ -3347,9 +3347,6 @@ typedef union cvmx_pemx_eco cvmx_pemx_eco_t;
 
 /**
  * cvmx_pem#_flr_glblcnt_ctl
- *
- * Function Level Reset Global Counter Control.
- *
  */
 union cvmx_pemx_flr_glblcnt_ctl {
 	uint64_t u64;
@@ -3357,11 +3354,11 @@ union cvmx_pemx_flr_glblcnt_ctl {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_4_63                : 60;
 	uint64_t chge                         : 1;  /**< When set, the default 25ms expiration of the Function Level Reset
-                                                         Global Counter can be changed. */
+                                                         global counter can be changed. */
 	uint64_t inc                          : 1;  /**< When CHGE is set, this bit determines if the 25ms expiration of the Function
-                                                         Level Reset Global Counter will be increased (set) or decreased (not set). */
+                                                         Level Reset global counter will be increased (set) or decreased (not set). */
 	uint64_t delta                        : 2;  /**< When CHGE is set, this field determines the delta time to increase/decrease
-                                                         the 25ms expiration of the Function Level Reset Global Counter.
+                                                         the 25ms expiration of the Function Level Reset global counter.
                                                          0x0 = 1ms.
                                                          0x1 = 2ms.
                                                          0x2 = 4ms.
@@ -3382,7 +3379,6 @@ typedef union cvmx_pemx_flr_glblcnt_ctl cvmx_pemx_flr_glblcnt_ctl_t;
 /**
  * cvmx_pem#_flr_pf0_vf_stopreq
  *
- * PF0 Virtual Function Level Reset Stop Outbound Requests Register.
  * Hardware automatically sets the STOPREQ bit for the VF when it enters a
  * Function Level Reset (FLR).  Software is responsible for clearing the STOPREQ
  * bit but must not do so prior to hardware taking down the FLR, which could be
@@ -3417,7 +3413,6 @@ typedef union cvmx_pemx_flr_pf0_vf_stopreq cvmx_pemx_flr_pf0_vf_stopreq_t;
 /**
  * cvmx_pem#_flr_pf_stopreq
  *
- * PF Function Level Reset Stop Outbound Requests Register.
  * Hardware automatically sets the STOPREQ bit for the PF when it enters a
  * Function Level Reset (FLR).  Software is responsible for clearing the STOPREQ
  * bit but must not do so prior to hardware taking down the FLR, which could be
@@ -3457,23 +3452,20 @@ typedef union cvmx_pemx_flr_pf_stopreq cvmx_pemx_flr_pf_stopreq_t;
 
 /**
  * cvmx_pem#_flr_stopreq_ctl
- *
- * Function Level Reset STOPREQ Control Register
- *
  */
 union cvmx_pemx_flr_stopreq_ctl {
 	uint64_t u64;
 	struct cvmx_pemx_flr_stopreq_ctl_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_1_63                : 63;
-	uint64_t stopreqclr                   : 1;  /**< When STOPREQCLR is clear, only software (and reset) can clear
-                                                         PEM(0)_FLR_PF_STOPREQ[STOPREQ] and PEM(0)_FLR_PF0_VF_STOPREQ[STOPREQ]
-                                                         bits. When STOPREQCLR is set, PEM hardware
+	uint64_t stopreqclr                   : 1;  /**< When [STOPREQCLR] is clear, only software (and reset) can clear
+                                                         PEM(0)_FLR_PF_STOPREQ[STOPREQ] and PEM(0)_FLR_PF0_VF_STOPREQ[STOPREQ].
+                                                         When STOPREQCLR is set, PEM hardware
                                                          also clears the STOPREQ bit when PEM completes an FLR to the PCIe core. In the
                                                          case of a VF, only one STOPREQ bit gets cleared upon each FLR ack when
                                                          STOPREQCLR mode bit is set. The srst will assert upon a PF
                                                          FLR, and srst could be used to reset all STOPREQ bits regardless of
-                                                         STOPREQCLR. Otherwise (e.g. OCTEON), where a PF FLR does not
+                                                         STOPREQCLR. Otherwise (e.g. [ProductLine]), where a PF FLR does not
                                                          assert srst. */
 #else
 	uint64_t stopreqclr                   : 1;
@@ -3487,9 +3479,6 @@ typedef union cvmx_pemx_flr_stopreq_ctl cvmx_pemx_flr_stopreq_ctl_t;
 
 /**
  * cvmx_pem#_flr_zombie_ctl
- *
- * Function Level Reset Global Zombie Counter Control Register
- *
  */
 union cvmx_pemx_flr_zombie_ctl {
 	uint64_t u64;
@@ -3498,9 +3487,9 @@ union cvmx_pemx_flr_zombie_ctl {
 	uint64_t reserved_10_63               : 54;
 	uint64_t exp                          : 10; /**< The expiration value for the inbound shared global zombie counter.  The global zombie
                                                          counter
-                                                         continously counts the number of cycles where the PCIe Core was allowed to send
+                                                         continuously counts the number of cycles where the PCIe Core was allowed to send
                                                          either a Posted request or a Completion to the PEM.  When the global zombie counter
-                                                         reaches expiration (EXP), it resets to zero and all the non-zero per PCIe tag zombie
+                                                         reaches expiration (EXP), it resets to zero and all the nonzero per PCIe tag zombie
                                                          counters are decremented.  When a per PCIe tag zombie counter decrements to zero, a
                                                          SWI_RSP_ERROR is
                                                          sent to the M2S bus and its associated PCIe tag is returned to the pool.
@@ -3955,7 +3944,7 @@ union cvmx_pemx_p2n_bar0_start {
 	struct cvmx_pemx_p2n_bar0_start_cn61xx cn70xxp1;
 	struct cvmx_pemx_p2n_bar0_start_cn73xx {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t addr                         : 41; /**< The starting address of the 8MB BAR0 address space. */
+	uint64_t addr                         : 41; /**< The starting address of the 8 MB BAR0 address space. */
 	uint64_t reserved_0_22                : 23;
 #else
 	uint64_t reserved_0_22                : 23;
@@ -3987,7 +3976,7 @@ union cvmx_pemx_p2n_bar1_start {
 	uint64_t u64;
 	struct cvmx_pemx_p2n_bar1_start_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t addr                         : 38; /**< The starting address of the 64MB BAR1 address space. */
+	uint64_t addr                         : 38; /**< The starting address of the 64 MB BAR1 address space. */
 	uint64_t reserved_0_25                : 26;
 #else
 	uint64_t reserved_0_25                : 26;
@@ -4069,7 +4058,7 @@ union cvmx_pemx_p2p_barx_end {
 	struct cvmx_pemx_p2p_barx_end_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t addr                         : 52; /**< The ending address of the address window created by this field and the
-                                                         PEM_P2P_BAR0_START[63:12] field. The full 64-bits of the address are created by:
+                                                         PEM_P2P_BAR0_START[63:12] field. The full 64 bits of the address are created by:
                                                          [ADDR[63:12], 12'b0]. */
 	uint64_t reserved_0_11                : 12;
 #else
@@ -4210,7 +4199,7 @@ union cvmx_pemx_spi_ctl {
                                                          0x4 = WRDI: clear the write-enable latch (i.e. write protect the device).
                                                          0x5 = RDSR: Read status register. A single-byte read access from
                                                                the register with result in corresponding PEM()_SPI_DATA[DATA<7:0>].
-                                                         0x6 = WREN: set the write-enable latch (i.e. allow writes to occur)
+                                                         0x6 = WREN: set the write-enable latch (i.e. allow writes to occur).
                                                          0x7 = Reserved. */
 	uint64_t adr                          : 9;  /**< EEPROM read/write address. the byte address offset for the serial EEPROM access.
                                                          Since accesses are eight-byte aligned entries, <2:0> must be zero. */
@@ -4235,9 +4224,9 @@ typedef union cvmx_pemx_spi_ctl cvmx_pemx_spi_ctl_t;
  * cvmx_pem#_spi_data
  *
  * This register contains the most recently read or written SPI data and is unpredictable upon
- * power-up. Is valid after a PEM()_SPI_CTL[CMD]=READ/RDSR when HW clears
+ * power-up. Is valid after a PEM()_SPI_CTL[CMD]=READ/RDSR when hardware clears
  * PEM()_SPI_CTL[START_BUSY]. Is written after a PEM()_SPI_CTL[CMD]=WRITE/WRSR
- * when HW clears PEM()_SPI_CTL[START_BUSY].
+ * when hardware clears PEM()_SPI_CTL[START_BUSY].
  */
 union cvmx_pemx_spi_data {
 	uint64_t u64;
@@ -4291,7 +4280,7 @@ union cvmx_pemx_strap {
 	uint64_t reserved_5_63                : 59;
 	uint64_t miopem2dlm5sel               : 1;  /**< The value of the BOOT_AD[13] pin via MIO, which is captured on chip cold reset. It is not
                                                          affected by any other reset.  This bit is not used in CN75XX. */
-	uint64_t pilaneswap                   : 1;  /**< The value of the pi_select_laneswap pin, which is captured on chip cold reset. It is not
+	uint64_t pilaneswap                   : 1;  /**< The value of PCIE_REV_LANES, which is captured on chip cold reset. It is not
                                                          affected by any other reset.  When set, lane swapping is performed to/from the
                                                          SerDes. When clear, no lane swapping is performed. */
 	uint64_t reserved_0_2                 : 3;
@@ -4317,18 +4306,18 @@ union cvmx_pemx_strap {
 	struct cvmx_pemx_strap_cn73xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_5_63                : 59;
-	uint64_t miopem2dlm5sel               : 1;  /**< The value of the BOOT_AD[13] pin via MIO, which is captured on chip cold reset. It is not
+	uint64_t miopem2dlm5sel               : 1;  /**< The value of the BOOT_AD<13> pin via MIO, which is captured on chip cold reset. It is not
                                                          affected by any other reset.  Only used for PEM2 and PEM3.  When set, PEM2/PEM3 are
                                                          configured to
-                                                         DLM5/DLM6 and PEM()_QLM[PEMDLMSEL] will be set, the Mac will be confifgured for 2 lanes.
+                                                         DLM5/DLM6 and PEM()_QLM[PEMDLMSEL] will be set, the MAC will be configured for 2 lanes.
                                                          When clear, PEM2 is configured to QLM2. */
-	uint64_t pilaneswap                   : 1;  /**< The value of the pi_select_laneswap pin, which is captured on chip cold reset. It is not
+	uint64_t pilaneswap                   : 1;  /**< The value of PCIE_REV_LANES, which is captured on chip cold reset. It is not
                                                          affected by any other reset.  When set, lane swapping is performed to/from the
                                                          SerDes. When clear, no lane swapping is performed. */
-	uint64_t pilanes8                     : 1;  /**< The value of the pi_select_8lanes pin, which is captured on chip cold reset. It is not
+	uint64_t pilanes8                     : 1;  /**< The value of PCIE*_SZ, which is captured on chip cold reset. It is not
                                                          affected by any other reset.  When set, the PEM0/PEM2 are configured for a maximum of
                                                          8-lanes, When clear, the PEM0/PEM2 are configured for a maximum of 4-lanes. */
-	uint64_t pimode                       : 2;  /**< The value of the pi_select_mode[1:0] pins, which are captured on chip cold reset. They are
+	uint64_t pimode                       : 2;  /**< The value of PCIE_MODE<1:0>, which are captured on chip cold reset. They are
                                                          not affected by any other reset.
                                                          0x0 = EP mode, Gen1 speed.
                                                          0x1 = EP mode, Gen2 speed.
@@ -4345,13 +4334,13 @@ union cvmx_pemx_strap {
 	struct cvmx_pemx_strap_cn78xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_4_63                : 60;
-	uint64_t pilaneswap                   : 1;  /**< The value of the pi_select_laneswap pin, which is captured on chip cold reset. It is not
+	uint64_t pilaneswap                   : 1;  /**< The value of PCIE_REV_LANES, which is captured on chip cold reset. It is not
                                                          affected by any other reset.  When set, lane swapping is performed to/from the
                                                          SerDes. When clear, no lane swapping is performed. */
-	uint64_t pilanes8                     : 1;  /**< The value of the pi_select_8lanes pin, which is captured on chip cold reset. It is not
+	uint64_t pilanes8                     : 1;  /**< The value of PCIE*_SZ, which is captured on chip cold reset. It is not
                                                          affected by any other reset.  When set, the PEM is configured for a maximum of
                                                          8-lanes, When clear, the PEM is configured for a maximum of 4-lanes. */
-	uint64_t pimode                       : 2;  /**< The value of the pi_select_mode[1:0] pins, which are captured on chip cold reset. They are
+	uint64_t pimode                       : 2;  /**< The value of PCIE_MODE<1:0>, which are captured on chip cold reset. They are
                                                          not affected by any other reset.
                                                          0x0 = EP mode, Gen1 speed.
                                                          0x1 = EP mode, Gen2 speed.
@@ -4370,13 +4359,13 @@ union cvmx_pemx_strap {
 	uint64_t reserved_5_63                : 59;
 	uint64_t miopem2dlm5sel               : 1;  /**< The value of the BOOT_AD[13] pin via MIO, which is captured on chip cold reset. It is not
                                                          affected by any other reset.  This bit is not used in CN75XX. */
-	uint64_t pilaneswap                   : 1;  /**< The value of the pi_select_laneswap pin, which is captured on chip cold reset. It is not
+	uint64_t pilaneswap                   : 1;  /**< The value of PCIE_REV_LANES, which is captured on chip cold reset. It is not
                                                          affected by any other reset.  When set, lane swapping is performed to/from the
                                                          SerDes. When clear, no lane swapping is performed. */
 	uint64_t pilanes4                     : 1;  /**< The value of the pi_select_4lanes pin, which is captured on chip cold reset. It is not
                                                          affected by any other reset.  When set, the PEM is configured for a maximum of
                                                          4-lanes, When clear, the PEM is configured for a maximum of 2-lanes. */
-	uint64_t pimode                       : 2;  /**< The value of the pi_select_mode[1:0] pins, which are captured on chip cold reset. They are
+	uint64_t pimode                       : 2;  /**< The value of PCIE_MODE<1:0>, which are captured on chip cold reset. They are
                                                          not affected by any other reset.
                                                          0x0 = EP mode, Gen1 speed.
                                                          0x1 = EP mode, Gen2 speed.
@@ -4413,69 +4402,57 @@ union cvmx_pemx_tlp_credits {
 	uint64_t pem_np                       : 8;  /**< TLP 16B credits for nonposted TLPs in the peer. Legal values are 0x4 to 0x8. */
 	uint64_t pem_p                        : 8;  /**< TLP 16B credits for posted TLPs in the peer. Legal values are 0x12 to 0x40. */
 	uint64_t sli_cpl                      : 8;  /**< TLP 8B credits for completion TLPs in the SLI. Legal values are 0x24 to
-                                                         0xFF. Pairs of PEMs share a single SLI interface. SPEM(0) and PEM(1) share one
-                                                         SLI interface, while PEM(2) and PEM(3) share the other. When both PEMs of a pair
+                                                         0xFF. Pairs of PEMs share a single SLI interface. When both PEM(0) and PEM(1)
                                                          are configured, the sum of both PEMs' SLI_CPL fields must not exceed 0x100. The
-                                                         reset value for this register assumes the minimum (e.g. 4-lane)
-                                                         configuration. This ensures that for configurations where the total number of
-                                                         lanes for a pair of PEMs exceeds 8, the total allocated credits does not
+                                                         reset value for this register assumes the minimum (e.g. 2-lane)
+                                                         configuration. This ensures the total allocated credits does not
                                                          oversubscribe the SLI.
-                                                         For configurations other than two 4-lane PEMs connected to a single SLI port,
+                                                         For configurations other than two 2-lane PEMs connected to a single SLI port,
                                                          software may safely reprogram this register (i.e. increase the value) to achieve
                                                          optimal performance.  See the following table of example configurations of PEM
                                                          pairs for recommended credit values.
                                                          <pre>
                                                             Configuration  PEM  Lanes  Typical [SLI_CPL]
                                                             --------------------------------------------
-                                                            1 8-ln PEM     n    8             0xFF
-                                                            2 4-ln PEMs    n    4             0x80
-                                                                          n+1   4             0x80
                                                             1 4-ln PEM     n    4             0xFF
-                                                            1 8-ln PEM,    n    8             0xAA
-                                                            1 4-ln PEM    n+1   4             0x55
+                                                            2 2-ln PEM,   n     2             0x80
+                                                            2 2-ln PEM,   n+1   2             0x80
+                                                            1 2-ln PEM    n     2             0xFF
                                                          </pre> */
 	uint64_t sli_np                       : 8;  /**< TLP 8B credits for nonposted TLPs in the SLI. Legal values are 0x4 to
-                                                         0x20. Pairs of PEMs share a single SLI interface. SPEM(0) and PEM(1) share one
-                                                         SLI interface, while PEM(2) and PEM(3) share the other. When both PEMs of a pair
+                                                         0x20. Pairs of PEMs share a single SLI interface.  When both PEM0 and PEM1
                                                          are configured, the sum of both PEMs' SLI_NP fields must not exceed 0x20. The
-                                                         reset value for this register assumes the minimum (e.g. 4-lane)
-                                                         configuration. This ensures that for configurations where the total number of
-                                                         lanes for a pair of PEMs exceeds 8, the total allocated credits does not
+                                                         reset value for this register assumes the minimum (e.g. 2-lane)
+                                                         configuration. This ensures that the total allocated credits does not
                                                          oversubscribe the SLI.
-                                                         For configurations other than two 4-lane PEMs connected to a single SLI port,
+                                                         For configurations other than two 2-lane PEMs connected to a single SLI port,
                                                          software may safely reprogram this register (i.e. increase the value) to achieve
                                                          optimal performance.  See the following table of example configurations of PEM
                                                          pairs for recommended credit values.
                                                          <pre>
                                                             Configuration  PEM  Lanes  Typical [SLI_CPL]
                                                             --------------------------------------------
-                                                            1 8-ln PEM     n    8             0x20
-                                                            2 4-ln PEMs    n    4             0x10
-                                                                          n+1   4             0x10
                                                             1 4-ln PEM     n    4             0x20
-                                                            1 8-ln PEM,    n    8             0x15
-                                                            1 4-ln PEM    n+1   4             0x0B
+                                                            2 2-ln PEMs    n    2             0x10
+                                                                          n+1   2             0x10
+                                                            1 2-ln PEM     n    2             0x20
                                                          </pre> */
 	uint64_t sli_p                        : 8;  /**< TLP 8B credits for Posted TLPs in the SLI. Legal values are 0x24 to 0xFF. Pairs
-                                                         of PEMs share a single SLI interface. SPEM(0) and PEM(1) share one SLI interface,
-                                                         while PEM(2) and PEM(3) share the other. When both PEMs of a pair are
-                                                         configured, the sum of both PEMs' SLI_P fields must not exceed 0x100. The reset
-                                                         value for this register assumes the minimum (e.g. 4-lane) configuration. This
-                                                         ensures that for configurations where the total number of lanes for a pair of
-                                                         PEMs exceeds 8, the total allocated credits does not oversubscribe the SLI.
-                                                         For configurations other than two 4-lane PEMs connected to a single SLI port,
+                                                         of PEMs share a single SLI interface. Wnen both PEM(0) and PEM(1)
+                                                         are configured, the sum of both PEMs' SLI_P fields must not exceed 0x100. The reset
+                                                         value for this register assumes the minimum (e.g. 2-lane) configuration.
+                                                         This ensures the total allocated credits does not oversubscribe the SLI.
+                                                         For configurations other than two 2-lane PEMs connected to a single SLI port,
                                                          software may safely reprogram this register (i.e. increase the value) to achieve
                                                          optimal performance.  See the following table of example configurations of PEM
                                                          pairs for recommended credit values.
                                                          <pre>
                                                             Configuration  PEM  Lanes  Typical [SLI_CPL]
                                                             --------------------------------------------
-                                                            1 8-ln PEM     n    8             0xFF
-                                                            2 4-ln PEMs    n    4             0x80
-                                                                          n+1   4             0x80
                                                             1 4-ln PEM     n    4             0xFF
-                                                            1 8-ln PEM,    n    8             0xAA
-                                                            1 4-ln PEM    n+1   4             0x55
+                                                            2 2-ln PEMs    n    2             0x80
+                                                                          n+1   2             0x80
+                                                            1 2-ln PEM     n    2             0xFF
                                                          </pre> */
 #else
 	uint64_t sli_p                        : 8;

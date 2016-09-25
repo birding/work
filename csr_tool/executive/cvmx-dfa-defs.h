@@ -1447,13 +1447,13 @@ union cvmx_dfa_config {
 	struct cvmx_dfa_config_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_11_63               : 53;
-	uint64_t dlcclear_bist                : 1;  /**< When DLCSTART_BIST is written 0->1, if DLCCLEAR_BIST=1, all previous DLC BIST state is
+	uint64_t dlcclear_bist                : 1;  /**< When [DLCSTART_BIST] is written 0->1, if [DLCCLEAR_BIST]=1, all previous DLC BIST state is
                                                          cleared. Note the following:
-                                                         DLCCLEAR_BIST must be written to 1 before DLCSTART_BIST is written to 1 using a separate
-                                                         CSR write operation.
-                                                         DLCCLEAR_BIST must not be changed after writing DLCSTART_BIST 0->1 until the BIST
-                                                         operation completes. */
-	uint64_t dlcstart_bist                : 1;  /**< When software writes DLCSTART_BIST=0->1, a BIST is executed for the DLC sub-block RAMs
+                                                         * [DLCCLEAR_BIST] must be written to 1 before [DLCSTART_BIST] is written to 1
+                                                         using a separate CSR write operation.
+                                                         * [DLCCLEAR_BIST] must not be changed after writing [DLCSTART_BIST] 0->1 until
+                                                         the BIST operation completes. */
+	uint64_t dlcstart_bist                : 1;  /**< When software writes [DLCSTART_BIST]=0->1, a BIST is executed for the DLC sub-block RAMs
                                                          which contains DCLK domain asynchronous RAMs. Note the following:
                                                          This bit should only be written after DCLK has been enabled by software and is stable.
                                                          (See LMC initialization routine for details on how to enable the DDR3/4 memory
@@ -1657,13 +1657,13 @@ union cvmx_dfa_config {
 	struct cvmx_dfa_config_cn73xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_11_63               : 53;
-	uint64_t dlcclear_bist                : 1;  /**< When DLCSTART_BIST is written 0->1, if DLCCLEAR_BIST=1, all previous DLC BIST state is
+	uint64_t dlcclear_bist                : 1;  /**< When [DLCSTART_BIST] is written 0->1, if [DLCCLEAR_BIST]=1, all previous DLC BIST state is
                                                          cleared. Note the following:
-                                                         DLCCLEAR_BIST must be written to 1 before DLCSTART_BIST is written to 1 using a separate
-                                                         CSR write operation.
-                                                         DLCCLEAR_BIST must not be changed after writing DLCSTART_BIST 0->1 until the BIST
-                                                         operation completes. */
-	uint64_t dlcstart_bist                : 1;  /**< When software writes DLCSTART_BIST=0->1, a BIST is executed for the DLC sub-block RAMs
+                                                         * [DLCCLEAR_BIST] must be written to 1 before [DLCSTART_BIST] is written to 1
+                                                         using a separate CSR write operation.
+                                                         * [DLCCLEAR_BIST] must not be changed after writing [DLCSTART_BIST] 0->1 until
+                                                         the BIST operation completes. */
+	uint64_t dlcstart_bist                : 1;  /**< When software writes [DLCSTART_BIST]=0->1, a BIST is executed for the DLC sub-block RAMs
                                                          which contains DCLK domain asynchronous RAMs. Note the following:
                                                          This bit should only be written after DCLK has been enabled by software and is stable.
                                                          (See LMC initialization routine for details on how to enable the DDR3/4 memory
@@ -2996,8 +2996,8 @@ union cvmx_dfa_difrdptr {
 	uint64_t rdptr                        : 36; /**< Represents the 64-byte-aligned address of the current instruction in the HFA Instruction
                                                          FIFO in main memory. The RDPTR must be seeded by software at boot time, and is then
                                                          maintained thereafter by HFA hardware. During the seed write operation (by software),
-                                                         RDPTR<6:5> = 0, since HFA instruction chunks must be 128-byte-aligned. During a read
-                                                         operation (by software), the most-recent contents of the RDPTR register are returned at
+                                                         [RDPTR]<6:5> = 0, since HFA instruction chunks must be 128-byte-aligned. During a read
+                                                         operation (by software), the most-recent contents of the [RDPTR] register are returned at
                                                          the time the IOI-INB bus is driven.
                                                          Since HFA hardware updates this register, its contents are unpredictable in software
                                                          (unless it is guaranteed that no new doorbell register write operations have occurred and
@@ -3364,12 +3364,12 @@ union cvmx_dfa_error {
 	uint64_t replerr                      : 1;  /**< HFA illegal replication factor error. HFA only supports 1*, 2*, and 4* port replication.
                                                          Legal configurations for memory are to support 2 port or 4 port configurations.
                                                          The REPLERR interrupt is set in the following illegal configuration cases:
-                                                         An 8* replication factor is detected for any memory reference.
-                                                         A 4* replication factor is detected for any memory reference when only 2 memory ports are
-                                                         enabled.
-                                                         If REPLERR is set during a HFA graph walk operation, the walk prematurely terminates with
-                                                         RWORD0[REA]=ERR. If REPLERR is set during a IOI-direct CSR read access to HFA memory
-                                                         region, the CSR read response data is unpredictable. */
+                                                         * An 8* replication factor is detected for any memory reference.
+                                                         * A 4* replication factor is detected for any memory reference when only 2
+                                                         memory ports are enabled.
+                                                         * If [REPLERR] is set during a HFA graph walk operation, the walk prematurely
+                                                         terminates with RWORD0[REA]=ERR. If [REPLERR] is set during a IOI-direct CSR
+                                                         read access to HFA memory region, the CSR read response data is unpredictable. */
 	uint64_t dfanxm                       : 1;  /**< HFA nonexistent memory access. HTEs (and backdoor CSR HFA memory region read
                                                          operations) have access to the following 40-bit L2/DRAM address space, which
                                                          maps to a 38-bit physical DDR3/4 SDRAM address space.
@@ -3383,8 +3383,8 @@ union cvmx_dfa_error {
                                                          Software Note:
                                                          Both the 1) software HFA graph compiler and the 2) software IOI-direct CSR accesses to HFA
                                                          memory region must avoid making references to these nonexistent memory regions.
-                                                         If DFANXM is set during a HFA graph walk operation, the walk is prematurely terminated
-                                                         with RWORD0[REA]=ERR. If DFANXM is set during a IOI-direct CSR read access to HFA memory
+                                                         If [DFANXM] is set during a HFA graph walk operation, the walk is prematurely terminated
+                                                         with RWORD0[REA]=ERR. If [DFANXM] is set during a IOI-direct CSR read access to HFA memory
                                                          region, the CSR read response data is forced to
                                                          128'hBADE_FEED_DEAD_BEEF_FACE_CAFE_BEAD_C0DE. (The 64-bit doubleword being accessed,
                                                          either the upper or lower doubleword will be returned). */
@@ -5477,18 +5477,18 @@ union cvmx_dfa_pfc_gctl {
                                                          counters.
                                                          1 = Events are selected on a per-graph basis (VGID = virtual graph ID).
                                                          Only EVSEL = [0...31] can be used in conjunction with
-                                                         PMODE = 1. DFA_PFC_GCTL[VGID] specifies the virtual graph ID used across all four
+                                                         [PMODE] = 1. DFA_PFC_GCTL[VGID] specifies the virtual graph ID used across all four
                                                          performance counters. */
 	uint64_t ednode                       : 2;  /**< Ending DNODE Selector.
-                                                         When ENODE=0/1(*DNODE), this field is used to further specify the Ending DNODE transition
-                                                         sub-type:
+                                                         When [ENODE]=0/1(*DNODE), this field is used to further specify the ending DNODE
+                                                         transition  sub-type:
                                                          0x0 = ALL DNODE sub-types.
                                                          0x1 = ->D2e (explicit DNODE transition node-arc alone transitions to DNODE).
                                                          0x2 = ->D2i (implicit DNODE transition:arc-present triggers transition).
                                                          0x3 = ->D1r (rescan DNODE transition). */
 	uint64_t enode                        : 4;  /**< Ending node selector.
-                                                         When DFA_PFCx_CTL[EVSEL]=Node Transition(31), the ENODE field is used to select Ending
-                                                         Node, and the SNODE field is used to select the Starting Node.
+                                                         When DFA_PFCx_CTL[EVSEL]=Node Transition(31), [ENODE] is used to select ending
+                                                         node, and the SNODE field is used to select the starting node.
                                                          0x0 = LDNODE.
                                                          0x1 = SDNODE.
                                                          0x2 = LCNODE.
@@ -5500,8 +5500,8 @@ union cvmx_dfa_pfc_gctl {
                                                          0x8 = LONODE.
                                                          0x9 = SONODE. */
 	uint64_t snode                        : 4;  /**< Starting node selector.
-                                                         When DFA_PFCx_CTL[EVSEL]=Node Transition(31), the SNODE field is used to select Starting
-                                                         Node, and the ENODE field is used to select the Ending Node.
+                                                         When DFA_PFCx_CTL[EVSEL]=Node Transition(31), [SNODE] is used to select starting
+                                                         node, and the ENODE field is used to select the ending node.
                                                          0x0 = LDNODE.
                                                          0x1 = SDNODE.
                                                          0x2 = LCNODE.

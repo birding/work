@@ -449,7 +449,7 @@ union cvmx_smix_clk {
 	uint64_t reserved_14_14               : 1;
 	uint64_t clk_idle                     : 1;  /**< SMIn_MDC toggle. When set, this bit causes SMIn_MDC not to toggle on idle cycles. */
 	uint64_t preamble                     : 1;  /**< Preamble. When this bit is set, the 32-bit preamble is sent first on SMI transactions.
-                                                         This field must be set to 1 when MODE = 1 in order for the receiving PHY to correctly
+                                                         This field must be set to 1 when [MODE] = 1 in order for the receiving PHY to correctly
                                                          frame the transaction. */
 	uint64_t sample                       : 4;  /**< Sample read data. Specifies the number of coprocessor clock cycles after the rising edge
                                                          of SMIn_MDC to wait before sampling read data.
@@ -546,8 +546,8 @@ union cvmx_smix_cmd {
 	uint64_t reserved_18_63               : 46;
 	uint64_t phy_op                       : 2;  /**< PHY opcode, depending on SMI_()_CLK[MODE] setting.
                                                          * If SMI_()_CLK[MODE] = 0 (<=1Gbs / Clause 22):
-                                                         0 = write operation, encoded in the frame as 01.
-                                                         1 = read operation, encoded in the frame as 10.
+                                                         0 = Write operation, encoded in the frame as 01.
+                                                         1 = Read operation, encoded in the frame as 10.
                                                          * If SMI_()_CLK[MODE] = 1 (>1Gbs / Clause 45):
                                                          0x0 = Address.
                                                          0x1 = Write.
@@ -669,7 +669,7 @@ union cvmx_smix_rd_dat {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_18_63               : 46;
 	uint64_t pending                      : 1;  /**< Read transaction pending. Indicates that an SMI read transaction is in flight. */
-	uint64_t val                          : 1;  /**< Read data valid. Asserts when the read transaction completes. A read to this register clears VAL. */
+	uint64_t val                          : 1;  /**< Read data valid. Asserts when the read transaction completes. A read to this register clears [VAL]. */
 	uint64_t dat                          : 16; /**< Read data. */
 #else
 	uint64_t dat                          : 16;
@@ -717,7 +717,8 @@ union cvmx_smix_wr_dat {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_18_63               : 46;
 	uint64_t pending                      : 1;  /**< Write transaction pending. Indicates that an SMI write transaction is in flight. */
-	uint64_t val                          : 1;  /**< Write data valid. Asserts when the write transaction completes. A read to this register clears VAL. */
+	uint64_t val                          : 1;  /**< Write data valid. Asserts when the write transaction completes. A read to this
+                                                         register clears [VAL]. */
 	uint64_t dat                          : 16; /**< Write data. */
 #else
 	uint64_t dat                          : 16;

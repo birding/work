@@ -182,6 +182,8 @@ typedef enum {
 				/**< Octeon has tcp segmentation offload */
 	OCTEON_FEATURE_TDM,
 				/**< Octeon has PCM/TDM support */
+	OCTEON_FEATURE_PTP,
+				/**< Octeon has PTP support */
 	OCTEON_MAX_FEATURE
 } octeon_feature_t;
 
@@ -540,6 +542,15 @@ static inline int octeon_has_feature_OCTEON_FEATURE_TDM(void)
 		|| OCTEON_IS_MODEL(OCTEON_CN61XX)
 		|| OCTEON_IS_MODEL(OCTEON_CNF71XX)
 		|| OCTEON_IS_MODEL(OCTEON_CN70XX);
+}
+
+static inline int octeon_has_feature_OCTEON_FEATURE_PTP(void)
+{
+	return OCTEON_IS_MODEL(OCTEON_CN6XXX)
+		|| OCTEON_IS_MODEL(OCTEON_CNF7XXX)
+		|| OCTEON_IS_MODEL(OCTEON_CN73XX)
+		|| OCTEON_IS_MODEL(OCTEON_CNF75XX)
+		|| OCTEON_IS_MODEL(OCTEON_CN78XX_PASS2_X);
 }
 
 /*

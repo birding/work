@@ -689,7 +689,7 @@ union cvmx_uctlx_ctl {
                                                          spread-spectrum to be compliant with the USB specification.
                                                          The high-speed PLL cannot support a spread-spectrum input, so REF_CLK_SEL = 0x0 must
                                                          enable this feature.
-                                                         This value may only be changed during UPHY_RST. */
+                                                         This value may only be changed during [UPHY_RST]. */
 	uint64_t ssc_range                    : 3;  /**< Spread-spectrum clock range. Selects the range of spread-spectrum modulation when SSC_EN
                                                          is asserted and the PHY is spreading the SuperSpeed transmit clocks.
                                                          Applies a fixed offset to the phase accumulator.
@@ -698,7 +698,8 @@ union cvmx_uctlx_ctl {
                                                          0x2 = -4003 ppm.
                                                          0x3-0x7 = reserved.
                                                          All of these settings are within the USB 3.0 specification. The amount of EMI emission
-                                                         reduction might decrease as the SSC_RANGE increases; therefore, the SSC_RANGE settings can
+                                                         reduction might decrease as the [SSC_RANGE] increases; therefore, the [SSC_RANGE] settings
+                                                         can
                                                          be registered to enable the amount of spreading to be adjusted on a per-application basis.
                                                          This value can be changed only during UPHY_RST. */
 	uint64_t ssc_ref_clk_sel              : 9;  /**< Enables non-standard oscillator frequencies to generate targeted MPLL output rates. Input
@@ -706,7 +707,7 @@ union cvmx_uctlx_ctl {
                                                          [55:53]: modulus - 1,
                                                          [52:47]: 2's complement push amount
                                                          Must leave at reset value of 0x0.
-                                                         This value may only be changed during UPHY_RST. */
+                                                         This value may only be changed during [UPHY_RST]. */
 	uint64_t mpll_multiplier              : 7;  /**< Multiplies the reference clock to a frequency suitable for intended operating speed. Must
                                                          leave at reset value of 0x0. This value may only be changed during UPHY_RST.
                                                          This value is superseded by the REF_CLK_FSEL<5:3> selection. */
@@ -715,7 +716,7 @@ union cvmx_uctlx_ctl {
                                                          low-power states.
                                                          This value can be changed only during UPHY_RST or during low-power states.
                                                          The reference clock must be running and stable before UPHY_RST is deasserted and before
-                                                         REF_SSP_EN is asserted. */
+                                                         [REF_SSP_EN] is asserted. */
 	uint64_t ref_clk_div2                 : 1;  /**< Divides the reference clock by 2 before feeding it into the REF_CLK_FSEL divider. Must
                                                          leave at reset value of 0x0.
                                                          This value can be changed only during UPHY_RST. */
@@ -723,7 +724,7 @@ union cvmx_uctlx_ctl {
                                                          legal values are as follows:
                                                          0x27 = External reference clock 100 MHz.
                                                          All other values are reserved.
-                                                         This value may only be changed during UPHY_RST. */
+                                                         This value may only be changed during [UPHY_RST]. */
 	uint64_t reserved_31_31               : 1;
 	uint64_t h_clk_en                     : 1;  /**< Controller-clock enable. When set to 1, the controller clock is generated. This also
                                                          enables access to UCTL registers 0x30-0xF8. */
@@ -735,12 +736,12 @@ union cvmx_uctlx_ctl {
                                                          unless H_CLK_EN is disabled.
                                                          The bypass clock can be selected and running even if the controller-clock dividers are not
                                                          running. */
-	uint64_t h_clkdiv_rst                 : 1;  /**< Controller-clock divider reset. Divided clocks are not generated while the divider is
+	uint64_t h_clkdiv_rst                 : 1;  /**< Controller clock divider reset. Divided clocks are not generated while the divider is
                                                          being reset.
                                                          This also resets the suspend-clock divider. */
 	uint64_t reserved_27_27               : 1;
 	uint64_t h_clkdiv_sel                 : 3;  /**< Controller clock-frequency-divider select. The controller-clock frequency is the
-                                                         coprocessor-clock frequency divided by H_CLKDIV_SEL and must be at or below 300 MHz.
+                                                         coprocessor-clock frequency divided by [H_CLKDIV_SEL] and must be at or below 300 MHz.
                                                          The divider values are the following:
                                                          0x0 = divide by 1.
                                                          0x1 = divide by 2.
@@ -761,31 +762,31 @@ union cvmx_uctlx_ctl {
                                                          This field can be changed only when H_CLKDIV_RST = 1. */
 	uint64_t reserved_22_23               : 2;
 	uint64_t usb3_port_perm_attach        : 1;  /**< Indicates this port is permanently attached. This is a strap signal; it should be modified
-                                                         only when UPHY_RST is asserted. */
+                                                         only when [UPHY_RST] is asserted. */
 	uint64_t usb2_port_perm_attach        : 1;  /**< Indicates this port is permanently attached. This is a strap signal; it should be modified
-                                                         only when UPHY_RST is asserted. */
+                                                         only when [UPHY_RST] is asserted. */
 	uint64_t reserved_19_19               : 1;
 	uint64_t usb3_port_disable            : 1;  /**< Disables the USB3 (SuperSpeed) portion of this PHY. When set to 1, this signal stops
                                                          reporting connect/disconnect events on the port and keeps the port in disabled state. This
                                                          could be used for security reasons where hardware can disable a port regardless of whether
                                                          xHCI driver enables a port or not.
                                                          UAHC()_HCSPARAMS1[MAXPORTS] is not affected by this signal.
-                                                         This is a strap signal; it should be modified only when UPHY_RST is asserted. */
+                                                         This is a strap signal; it should be modified only when [UPHY_RST] is asserted. */
 	uint64_t reserved_17_17               : 1;
 	uint64_t usb2_port_disable            : 1;  /**< Disables USB2 (high-speed/full-speed/low-speed) portion of this PHY. When set to 1, this
                                                          signal stops reporting connect/disconnect events on the port and keeps the port in
                                                          disabled state. This could be used for security reasons where hardware can disable a port
                                                          regardless of whether xHCI driver enables a port or not.
                                                          UAHC()_HCSPARAMS1[MAXPORTS] is not affected by this signal.
-                                                         This is a strap signal; it should only be modified when UPHY_RST is asserted.
+                                                         This is a strap signal; it should only be modified when [UPHY_RST] is asserted.
                                                          If Port0 is required to be disabled, ensure that the utmi_clk[0] is running at the normal
                                                          speed. Also, all the enabled USB2.0 ports should have the same clock frequency as Port0. */
 	uint64_t reserved_15_15               : 1;
 	uint64_t ss_power_en                  : 1;  /**< PHY SuperSpeed block power enable.
-                                                         This is a strap signal; it should only be modified when UPHY_RST is asserted. */
+                                                         This is a strap signal; it should only be modified when [UPHY_RST] is asserted. */
 	uint64_t reserved_13_13               : 1;
 	uint64_t hs_power_en                  : 1;  /**< PHY high-speed block power enable.
-                                                         This is a strap signal; it should only be modified when UPHY_RST is asserted. */
+                                                         This is a strap signal; it should only be modified when [UPHY_RST] is asserted. */
 	uint64_t reserved_5_11                : 7;
 	uint64_t csclk_en                     : 1;  /**< Turns on the USB UCTL interface clock (coprocessor clock). This enables access to UAHC
                                                          registers via the IOI, as well as UCTL registers starting from 0x30 via the RSL bus. */
@@ -796,7 +797,7 @@ union cvmx_uctlx_ctl {
                                                          Resets UAHC DMA and register shims. Resets UCTL RSL registers 0x30-0xF8.
                                                          Does not reset UCTL RSL registers 0x0-0x28.
                                                          UCTL RSL registers starting from 0x30 can be accessed only after the controller clock is
-                                                         active and UCTL_RST is deasserted. */
+                                                         active and [UCTL_RST] is deasserted. */
 #else
 	uint64_t uctl_rst                     : 1;
 	uint64_t uahc_rst                     : 1;
@@ -852,7 +853,7 @@ typedef union cvmx_uctlx_ctl cvmx_uctlx_ctl_t;
  * * The *ECC_FLIP_SYND fields flip the syndrome<1:0> bits to generate single-bit/double-bit
  * error for testing.
  *
- * 0x0 = normal operation.
+ * 0x0 = Normal operation.
  * 0x1 = SBE on bit[0].
  * 0x2 = SBE on bit[1].
  * 0x3 = DBE on bit[1:0].
@@ -1445,7 +1446,7 @@ union cvmx_uctlx_portx_cfg_hs {
                                                          0x1 = -15 mV.
                                                          0x2 = +15 mV.
                                                          0x3 = default setting. */
-	uint64_t tx_preemp_amp_tune           : 2;  /**< High-speed transmitter pre-emphasis current control. Controls the amount of current
+	uint64_t tx_preemp_amp_tune           : 2;  /**< High-speed transmitter preemphasis current control. Controls the amount of current
                                                          sourced to DP0 and DM0 after a J-to-K or K-to-J transition. The high-speed transmitter
                                                          preemphasis current is defined in terms of unit amounts. One unit amount is approximately
                                                          600 A and is defined as 1* preemphasis current.
@@ -1485,9 +1486,9 @@ union cvmx_uctlx_portx_cfg_hs {
                                                          DC level of approximately 400mV. */
 	uint64_t reserved_4_31                : 28;
 	uint64_t vatest_enable                : 2;  /**< Analog test-pin select. Enables analog test voltages to be placed on the ID0 pin.
-                                                         0x0 = test functionality disabled.
-                                                         0x1 = test functionality enabled.
-                                                         0x2, 0x3 = reserved, invalid settings.
+                                                         0x0 = Test functionality disabled.
+                                                         0x1 = Test functionality enabled.
+                                                         0x2, 0x3 = Reserved, invalid settings.
                                                          See also the PHY databook for details on how to select which analog test voltage. */
 	uint64_t loopback_enable              : 1;  /**< Places the high-speed PHY in loopback mode, which concurrently enables high-speed receive
                                                          and transmit logic. */
@@ -1594,38 +1595,41 @@ union cvmx_uctlx_portx_cfg_ss {
                                                          Setting this bus to 0x0 disables masking. The value should be defined when the PHY is in
                                                          reset. Changing this value during operation might disrupt normal operation of the link. */
 	uint64_t pcs_tx_deemph_3p5db          : 6;  /**< Fine-tune transmitter driver deemphasis when set to 3.5db.
-                                                         This static value sets the TX driver deemphasis value when pipeP_tx_deemph[1:0] is set to
+                                                         This static value sets the TX driver deemphasis value when
+                                                         UAHC()_GUSB3PIPECTL()[TXDEEMPHASIS] is set to
                                                          0x1 (according to the PIPE3 specification). The values for transmit deemphasis are derived
                                                          from the following equation:
                                                          _ TX de-emphasis (db) = 20 * log_base_10((128 - 2 * pcs_tx_deemph)/128)
                                                          In general, the parameter controls are static signals to be set prior to taking the PHY
                                                          out of reset. However, you can dynamically change these values on-the-fly for test
                                                          purposes. In this case, changes to the transmitter to reflect the current value occur only
-                                                         after the pipeP_tx_deemph[1:0] input changes. */
-	uint64_t pcs_tx_deemph_6db            : 6;  /**< Fine-tune transmitter driver deemphasis when set to 6db.
-                                                         This static value sets the TX driver deemphasis value when pipeP_tx_deemph[1:0] is set to
+                                                         after the UAHC()_GUSB3PIPECTL()[TXDEEMPHASIS] changes. */
+	uint64_t pcs_tx_deemph_6db            : 6;  /**< Fine-tune transmitter driver deemphasis when set to 6 db.
+                                                         This static value sets the TX driver deemphasis value when
+                                                         UAHC()_GUSB3PIPECTL()[TXDEEMPHASIS] is set to
                                                          0x2 (according to the PIPE3 specification). This bus is provided for completeness and as a
                                                          second potential launch amplitude. The values for transmit deemphasis are derived from the
                                                          following equation:
-                                                         _ TX de-emphasis (db) = 20 * log_base_10((128 - 2 * pcs_tx_deemph)/128)
+                                                         _ TX deemphasis (db) = 20 * log_base_10((128 - 2 * pcs_tx_deemph)/128)
                                                          In general, the parameter controls are static signals to be set prior to taking the PHY
                                                          out of reset. However, you can dynamically change these values on-the-fly for test
                                                          purposes. In this case, changes to the transmitter to reflect the current value occur only
-                                                         after the pipeP_tx_deemph[1:0] input changes. */
+                                                         after the UAHC()_GUSB3PIPECTL()[TXDEEMPHASIS] changes. */
 	uint64_t pcs_tx_swing_full            : 7;  /**< Launch amplitude of the transmitter. Sets the launch amplitude of the transmitter. The
                                                          values for transmit amplitude are derived from the following equation:
                                                          TX amplitude (V) = vptx * ((pcs_tx_swing_full + 1)/128)
                                                          In general, the parameter controls are static signals to be set prior to taking the PHY
                                                          out of reset. However, you can dynamically change these values on-the-fly for test
                                                          purposes. In this case, changes to the transmitter to reflect the current value occur only
-                                                         after the pipeP_tx_deemph[1:0] input changes. */
+                                                         after the UAHC()_GUSB3PIPECTL()[TXDEEMPHASIS] changes. */
 	uint64_t lane0_tx_term_offset         : 5;  /**< Transmitter termination offset. Reserved, set to 0x0. */
 	uint64_t reserved_6_7                 : 2;
 	uint64_t res_tune_ack                 : 1;  /**< Resistor tune acknowledge. While asserted, indicates a resistor tune is in progress. */
 	uint64_t res_tune_req                 : 1;  /**< Resistor tune request. The rising edge triggers a resistor tune request (if one is not
-                                                         already in progress). When asserted, RES_TUNE_ACK is asserted high until calibration of
+                                                         already in progress). When asserted, [RES_TUNE_ACK] is asserted high until calibration of
                                                          the termination impedance is complete.
-                                                         Tuning disrupts the normal flow of data; therefore, assert RES_TUNE_REQ only when the PHY
+                                                         Tuning disrupts the normal flow of data; therefore, assert [RES_TUNE_REQ] only when the
+                                                         PHY
                                                          is inactive. The PHY automatically performs a tune when coming out of PRST. */
 	uint64_t reserved_0_3                 : 4;
 #else
@@ -1667,8 +1671,8 @@ union cvmx_uctlx_portx_cr_dbg_cfg {
 	uint64_t reserved_48_63               : 16;
 	uint64_t data_in                      : 16; /**< Address or data to be written to the CR interface. */
 	uint64_t reserved_4_31                : 28;
-	uint64_t cap_addr                     : 1;  /**< Rising edge triggers the DATA_IN field to be captured as the address. */
-	uint64_t cap_data                     : 1;  /**< Rising edge triggers the DATA_IN field to be captured as the write data. */
+	uint64_t cap_addr                     : 1;  /**< Rising edge triggers the [DATA_IN] field to be captured as the address. */
+	uint64_t cap_data                     : 1;  /**< Rising edge triggers the [DATA_IN] field to be captured as the write data. */
 	uint64_t read                         : 1;  /**< Rising edge triggers a register read operation of the captured address. */
 	uint64_t write                        : 1;  /**< Rising edge triggers a register write operation of the captured address with the captured data. */
 #else

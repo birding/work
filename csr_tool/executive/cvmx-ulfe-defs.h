@@ -308,7 +308,7 @@ union cvmx_ulfe_ant_status {
 	uint64_t reserved_48_63               : 16;
 	uint64_t ant_enable                   : 48; /**< Indicates the enable status for each antenna.
                                                          0 = ULFE drops any data for this antenna.
-                                                         1 = the antenna is enabled in teh sector-antenna map, and any data
+                                                         1 = The antenna is enabled in the sector-antenna map, and any data
                                                          received for this antenna is written into an input buffer for
                                                          processing. */
 #else
@@ -338,7 +338,7 @@ union cvmx_ulfe_bist_status0 {
 	uint64_t wdma_status                  : 1;  /**< WDMA buffer memory BIST status. */
 	uint64_t xcor_status                  : 1;  /**< Cross-correlation buffer memory BIST status. */
 	uint64_t bfib_status                  : 1;  /**< Beam-former input buffer memory BIST status. */
-	uint64_t frb_status                   : 1;  /**< FFt re-order buffer memory BIST status. */
+	uint64_t frb_status                   : 1;  /**< FFt reorder buffer memory BIST status. */
 	uint64_t inpb_status                  : 1;  /**< Input buffer memory BIST status. */
 	uint64_t cfg_status                   : 1;  /**< Configuration memory BIST status. */
 	uint64_t gcp_status                   : 1;  /**< General control and parameter memory Bist Status */
@@ -612,9 +612,9 @@ typedef union cvmx_ulfe_error_enable1 cvmx_ulfe_error_enable1_t;
  * This register contains error source information.
  * Any write to this register will clear all contents.
  *
- * Fields named X_NFAT indicate non-fatal errors, and those name X_FAT
+ * Fields named X_NFAT indicate nonfatal errors, and those name X_FAT
  * indicate fatal errors. Software must reset ULFE after a fatal error. After
- * a non-fatal error, ULFE can continue to operate correctly, and software
+ * a nonfatal error, ULFE can continue to operate correctly, and software
  * should simply record the error and clear the error state.
  */
 union cvmx_ulfe_error_source1 {

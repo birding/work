@@ -57,16 +57,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG000(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000000ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000000ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000000ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000000ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -76,6 +72,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG000(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000000ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000000ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -92,17 +92,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG000(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG000 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000000ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000000ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG000(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000000ull + (offset) * 0x100000000ull;
+			return 0x0000030000000000ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000000ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000000ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -110,6 +108,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG000(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000000ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000000ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -120,7 +120,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG000(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000000ull;
 	}
-	return 0x0000030000000000ull + (offset) * 0x100000000ull;
+	return 0x0000030000000000ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -128,16 +128,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG001(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000004ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000004ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000004ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000004ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -147,6 +143,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG001(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000004ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000004ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -163,17 +163,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG001(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG001 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000004ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000004ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG001(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000004ull + (offset) * 0x100000000ull;
+			return 0x0000030000000004ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000004ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000004ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -181,6 +179,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG001(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000004ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000004ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -191,7 +191,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG001(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000004ull;
 	}
-	return 0x0000030000000004ull + (offset) * 0x100000000ull;
+	return 0x0000030000000004ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -199,16 +199,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG002(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000008ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000008ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000008ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000008ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -218,6 +214,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG002(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000008ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000008ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -234,17 +234,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG002(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG002 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000008ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000008ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG002(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000008ull + (offset) * 0x100000000ull;
+			return 0x0000030000000008ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000008ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000008ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -252,6 +250,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG002(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000008ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000008ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -262,7 +262,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG002(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000008ull;
 	}
-	return 0x0000030000000008ull + (offset) * 0x100000000ull;
+	return 0x0000030000000008ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -270,16 +270,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG003(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000000Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003000000000Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003000000000Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000000Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -289,6 +285,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG003(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000000Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000000Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -305,17 +305,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG003(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG003 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000000Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000000Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG003(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000000Cull + (offset) * 0x100000000ull;
+			return 0x000003000000000Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000000Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000000Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -323,6 +321,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG003(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000000Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000000Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -333,7 +333,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG003(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000000Cull;
 	}
-	return 0x000003000000000Cull + (offset) * 0x100000000ull;
+	return 0x000003000000000Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -341,16 +341,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG004(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000010ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000010ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000010ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000010ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -360,6 +356,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG004(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000010ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000010ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -376,17 +376,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG004(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG004 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000010ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000010ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG004(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000010ull + (offset) * 0x100000000ull;
+			return 0x0000030000000010ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000010ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000010ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -394,6 +392,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG004(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000010ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000010ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -404,7 +404,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG004(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000010ull;
 	}
-	return 0x0000030000000010ull + (offset) * 0x100000000ull;
+	return 0x0000030000000010ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -412,16 +412,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG004_MASK(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030080000010ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030080000010ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030080000010ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030080000010ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -431,6 +427,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG004_MASK(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030080000010ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030080000010ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -447,17 +447,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG004_MASK(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG004_MASK (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030080000010ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030080000010ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG004_MASK(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030080000010ull + (offset) * 0x100000000ull;
+			return 0x0000030080000010ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030080000010ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030080000010ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -465,6 +463,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG004_MASK(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030080000010ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030080000010ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -475,7 +475,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG004_MASK(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000080000010ull;
 	}
-	return 0x0000030080000010ull + (offset) * 0x100000000ull;
+	return 0x0000030080000010ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -483,16 +483,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG005(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000014ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000014ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000014ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000014ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -502,6 +498,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG005(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000014ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000014ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -518,17 +518,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG005(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG005 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000014ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000014ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG005(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000014ull + (offset) * 0x100000000ull;
+			return 0x0000030000000014ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000014ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000014ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -536,6 +534,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG005(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000014ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000014ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -546,7 +546,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG005(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000014ull;
 	}
-	return 0x0000030000000014ull + (offset) * 0x100000000ull;
+	return 0x0000030000000014ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -554,16 +554,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG005_MASK(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030080000014ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030080000014ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030080000014ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030080000014ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -573,6 +569,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG005_MASK(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030080000014ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030080000014ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -589,17 +589,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG005_MASK(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG005_MASK (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030080000014ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030080000014ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG005_MASK(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030080000014ull + (offset) * 0x100000000ull;
+			return 0x0000030080000014ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030080000014ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030080000014ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -607,6 +605,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG005_MASK(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030080000014ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030080000014ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -617,7 +617,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG005_MASK(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000080000014ull;
 	}
-	return 0x0000030080000014ull + (offset) * 0x100000000ull;
+	return 0x0000030080000014ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -625,16 +625,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG006(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000018ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000018ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000018ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000018ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -644,6 +640,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG006(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000018ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000018ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -660,17 +660,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG006(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG006 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000018ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000018ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG006(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000018ull + (offset) * 0x100000000ull;
+			return 0x0000030000000018ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000018ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000018ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -678,6 +676,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG006(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000018ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000018ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -688,7 +688,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG006(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000018ull;
 	}
-	return 0x0000030000000018ull + (offset) * 0x100000000ull;
+	return 0x0000030000000018ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -696,16 +696,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG006_MASK(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030080000018ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030080000018ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030080000018ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030080000018ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -715,6 +711,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG006_MASK(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030080000018ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030080000018ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -731,17 +731,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG006_MASK(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG006_MASK (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030080000018ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030080000018ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG006_MASK(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030080000018ull + (offset) * 0x100000000ull;
+			return 0x0000030080000018ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030080000018ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030080000018ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -749,6 +747,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG006_MASK(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030080000018ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030080000018ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -759,7 +759,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG006_MASK(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000080000018ull;
 	}
-	return 0x0000030080000018ull + (offset) * 0x100000000ull;
+	return 0x0000030080000018ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -767,16 +767,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG007(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000001Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003000000001Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003000000001Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000001Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -786,6 +782,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG007(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000001Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000001Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -802,17 +802,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG007(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG007 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000001Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000001Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG007(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000001Cull + (offset) * 0x100000000ull;
+			return 0x000003000000001Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000001Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000001Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -820,6 +818,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG007(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000001Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000001Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -830,7 +830,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG007(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000001Cull;
 	}
-	return 0x000003000000001Cull + (offset) * 0x100000000ull;
+	return 0x000003000000001Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -838,16 +838,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG007_MASK(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003008000001Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003008000001Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003008000001Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003008000001Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -857,6 +853,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG007_MASK(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003008000001Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003008000001Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -873,17 +873,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG007_MASK(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG007_MASK (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003008000001Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003008000001Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG007_MASK(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003008000001Cull + (offset) * 0x100000000ull;
+			return 0x000003008000001Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003008000001Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003008000001Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -891,6 +889,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG007_MASK(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003008000001Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003008000001Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -901,7 +901,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG007_MASK(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000008000001Cull;
 	}
-	return 0x000003008000001Cull + (offset) * 0x100000000ull;
+	return 0x000003008000001Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -909,16 +909,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG008(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000020ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000020ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000020ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000020ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -928,6 +924,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG008(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000020ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000020ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -944,17 +944,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG008(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG008 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000020ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000020ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG008(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000020ull + (offset) * 0x100000000ull;
+			return 0x0000030000000020ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000020ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000020ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -962,6 +960,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG008(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000020ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000020ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -972,7 +972,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG008(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000020ull;
 	}
-	return 0x0000030000000020ull + (offset) * 0x100000000ull;
+	return 0x0000030000000020ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -980,16 +980,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG008_MASK(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030080000020ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030080000020ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030080000020ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030080000020ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -999,6 +995,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG008_MASK(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030080000020ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030080000020ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -1015,17 +1015,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG008_MASK(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG008_MASK (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030080000020ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030080000020ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG008_MASK(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030080000020ull + (offset) * 0x100000000ull;
+			return 0x0000030080000020ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030080000020ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030080000020ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1033,6 +1031,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG008_MASK(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030080000020ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030080000020ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -1043,7 +1043,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG008_MASK(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000080000020ull;
 	}
-	return 0x0000030080000020ull + (offset) * 0x100000000ull;
+	return 0x0000030080000020ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -1051,16 +1051,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG009(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000024ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000024ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000024ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000024ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1070,6 +1066,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG009(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000024ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000024ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -1086,17 +1086,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG009(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG009 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000024ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000024ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG009(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000024ull + (offset) * 0x100000000ull;
+			return 0x0000030000000024ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000024ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000024ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1104,6 +1102,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG009(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000024ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000024ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -1114,7 +1114,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG009(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000024ull;
 	}
-	return 0x0000030000000024ull + (offset) * 0x100000000ull;
+	return 0x0000030000000024ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -1122,16 +1122,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG009_MASK(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030080000024ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030080000024ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030080000024ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030080000024ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1141,6 +1137,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG009_MASK(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030080000024ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030080000024ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -1157,17 +1157,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG009_MASK(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG009_MASK (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030080000024ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030080000024ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG009_MASK(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030080000024ull + (offset) * 0x100000000ull;
+			return 0x0000030080000024ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030080000024ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030080000024ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1175,6 +1173,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG009_MASK(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030080000024ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030080000024ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -1185,7 +1185,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG009_MASK(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000080000024ull;
 	}
-	return 0x0000030080000024ull + (offset) * 0x100000000ull;
+	return 0x0000030080000024ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -1193,16 +1193,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG010(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000028ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000028ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000028ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000028ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1212,6 +1208,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG010(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000028ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000028ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -1228,17 +1228,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG010(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG010 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000028ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000028ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG010(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000028ull + (offset) * 0x100000000ull;
+			return 0x0000030000000028ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000028ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000028ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1246,6 +1244,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG010(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000028ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000028ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -1256,7 +1256,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG010(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000028ull;
 	}
-	return 0x0000030000000028ull + (offset) * 0x100000000ull;
+	return 0x0000030000000028ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -1264,16 +1264,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG011(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000002Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003000000002Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003000000002Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000002Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1283,6 +1279,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG011(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000002Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000002Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -1299,17 +1299,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG011(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG011 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000002Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000002Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG011(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000002Cull + (offset) * 0x100000000ull;
+			return 0x000003000000002Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000002Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000002Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1317,6 +1315,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG011(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000002Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000002Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -1327,7 +1327,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG011(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000002Cull;
 	}
-	return 0x000003000000002Cull + (offset) * 0x100000000ull;
+	return 0x000003000000002Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -1335,16 +1335,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG012(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000030ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000030ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000030ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000030ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1354,6 +1350,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG012(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000030ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000030ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -1370,17 +1370,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG012(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG012 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000030ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000030ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG012(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000030ull + (offset) * 0x100000000ull;
+			return 0x0000030000000030ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000030ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000030ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1388,6 +1386,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG012(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000030ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000030ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -1398,7 +1398,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG012(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000030ull;
 	}
-	return 0x0000030000000030ull + (offset) * 0x100000000ull;
+	return 0x0000030000000030ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -1406,16 +1406,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG012_MASK(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030080000030ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030080000030ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030080000030ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030080000030ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1425,6 +1421,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG012_MASK(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030080000030ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030080000030ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -1441,17 +1441,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG012_MASK(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG012_MASK (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030080000030ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030080000030ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG012_MASK(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030080000030ull + (offset) * 0x100000000ull;
+			return 0x0000030080000030ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030080000030ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030080000030ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1459,6 +1457,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG012_MASK(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030080000030ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030080000030ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -1469,7 +1469,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG012_MASK(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000080000030ull;
 	}
-	return 0x0000030080000030ull + (offset) * 0x100000000ull;
+	return 0x0000030080000030ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -1477,16 +1477,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG013(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000034ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000034ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000034ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000034ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1496,6 +1492,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG013(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000034ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000034ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -1512,17 +1512,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG013(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG013 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000034ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000034ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG013(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000034ull + (offset) * 0x100000000ull;
+			return 0x0000030000000034ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000034ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000034ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1530,6 +1528,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG013(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000034ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000034ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -1540,7 +1540,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG013(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000034ull;
 	}
-	return 0x0000030000000034ull + (offset) * 0x100000000ull;
+	return 0x0000030000000034ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -1548,16 +1548,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG015(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000003Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003000000003Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003000000003Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000003Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1567,6 +1563,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG015(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000003Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000003Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -1583,17 +1583,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG015(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG015 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000003Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000003Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG015(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000003Cull + (offset) * 0x100000000ull;
+			return 0x000003000000003Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000003Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000003Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1601,6 +1599,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG015(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000003Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000003Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -1611,7 +1611,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG015(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000003Cull;
 	}
-	return 0x000003000000003Cull + (offset) * 0x100000000ull;
+	return 0x000003000000003Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -1619,16 +1619,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG016(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000040ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000040ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000040ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000040ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1638,6 +1634,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG016(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000040ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000040ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -1654,17 +1654,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG016(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG016 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000040ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000040ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG016(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000040ull + (offset) * 0x100000000ull;
+			return 0x0000030000000040ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000040ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000040ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1672,6 +1670,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG016(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000040ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000040ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -1682,7 +1682,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG016(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000040ull;
 	}
-	return 0x0000030000000040ull + (offset) * 0x100000000ull;
+	return 0x0000030000000040ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -1690,16 +1690,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG017(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000044ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000044ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000044ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000044ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1709,6 +1705,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG017(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000044ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000044ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -1725,17 +1725,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG017(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG017 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000044ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000044ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG017(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000044ull + (offset) * 0x100000000ull;
+			return 0x0000030000000044ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000044ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000044ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1743,6 +1741,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG017(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000044ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000044ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -1753,7 +1753,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG017(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000044ull;
 	}
-	return 0x0000030000000044ull + (offset) * 0x100000000ull;
+	return 0x0000030000000044ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -1761,16 +1761,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG020(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000050ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000050ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000050ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000050ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1780,6 +1776,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG020(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000050ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000050ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -1796,17 +1796,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG020(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG020 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000050ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000050ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG020(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000050ull + (offset) * 0x100000000ull;
+			return 0x0000030000000050ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000050ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000050ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1814,6 +1812,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG020(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000050ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000050ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -1824,7 +1824,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG020(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000050ull;
 	}
-	return 0x0000030000000050ull + (offset) * 0x100000000ull;
+	return 0x0000030000000050ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -1832,16 +1832,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG021(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000054ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000054ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000054ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000054ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1851,6 +1847,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG021(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000054ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000054ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -1867,17 +1867,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG021(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG021 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000054ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000054ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG021(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000054ull + (offset) * 0x100000000ull;
+			return 0x0000030000000054ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000054ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000054ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1885,6 +1883,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG021(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000054ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000054ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -1895,7 +1895,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG021(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000054ull;
 	}
-	return 0x0000030000000054ull + (offset) * 0x100000000ull;
+	return 0x0000030000000054ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -1903,16 +1903,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG022(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000058ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000058ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000058ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000058ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1922,6 +1918,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG022(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000058ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000058ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -1938,17 +1938,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG022(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG022 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000058ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000058ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG022(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000058ull + (offset) * 0x100000000ull;
+			return 0x0000030000000058ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000058ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000058ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1956,6 +1954,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG022(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000058ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000058ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -1966,7 +1966,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG022(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000058ull;
 	}
-	return 0x0000030000000058ull + (offset) * 0x100000000ull;
+	return 0x0000030000000058ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -1974,16 +1974,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG023(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000005Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003000000005Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003000000005Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000005Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -1993,6 +1989,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG023(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000005Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000005Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -2009,17 +2009,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG023(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG023 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000005Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000005Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG023(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000005Cull + (offset) * 0x100000000ull;
+			return 0x000003000000005Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000005Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000005Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2027,6 +2025,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG023(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000005Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000005Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -2037,54 +2037,118 @@ static inline uint64_t CVMX_PCIEEPX_CFG023(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000005Cull;
 	}
-	return 0x000003000000005Cull + (offset) * 0x100000000ull;
+	return 0x000003000000005Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG024(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN70XX) && ((offset <= 2))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG024(%lu) is invalid on this chip\n", offset);
-	return 0x0000030000000060ull + ((offset) & 7) * 0x100000000ull;
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000060ull;
+			break;
+		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 2))
+				return 0x0000030000000060ull + ((offset) & 3) * 0x100000000ull;
+			break;
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000060ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000060ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000060ull + ((offset) & 7) * 0x100000000ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG024 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000060ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG024(offset) (0x0000030000000060ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG024(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000060ull;
+		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000060ull + (offset) * 0x100000000ull;
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000060ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000060ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000060ull + (offset) * 0x100000000ull;
+	}
+	return 0x0000030000000060ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG025(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN70XX) && ((offset <= 2))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG025(%lu) is invalid on this chip\n", offset);
-	return 0x0000030000000064ull + ((offset) & 7) * 0x100000000ull;
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000064ull;
+			break;
+		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 2))
+				return 0x0000030000000064ull + ((offset) & 3) * 0x100000000ull;
+			break;
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000064ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000064ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000064ull + ((offset) & 7) * 0x100000000ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG025 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000064ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG025(offset) (0x0000030000000064ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG025(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000064ull;
+		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000064ull + (offset) * 0x100000000ull;
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000064ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000064ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000064ull + (offset) * 0x100000000ull;
+	}
+	return 0x0000030000000064ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG028(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000070ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000070ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000070ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000070ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2094,6 +2158,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG028(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000070ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000070ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -2110,17 +2178,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG028(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG028 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000070ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000070ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG028(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000070ull + (offset) * 0x100000000ull;
+			return 0x0000030000000070ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000070ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000070ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2128,6 +2194,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG028(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000070ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000070ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -2138,7 +2206,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG028(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000070ull;
 	}
-	return 0x0000030000000070ull + (offset) * 0x100000000ull;
+	return 0x0000030000000070ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -2146,16 +2214,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG029(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000074ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000074ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000074ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000074ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2165,6 +2229,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG029(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000074ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000074ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -2181,17 +2249,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG029(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG029 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000074ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000074ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG029(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000074ull + (offset) * 0x100000000ull;
+			return 0x0000030000000074ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000074ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000074ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2199,6 +2265,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG029(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000074ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000074ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -2209,7 +2277,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG029(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000074ull;
 	}
-	return 0x0000030000000074ull + (offset) * 0x100000000ull;
+	return 0x0000030000000074ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -2217,16 +2285,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG030(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000078ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000078ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000078ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000078ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2236,6 +2300,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG030(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000078ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000078ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -2252,17 +2320,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG030(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG030 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000078ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000078ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG030(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000078ull + (offset) * 0x100000000ull;
+			return 0x0000030000000078ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000078ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000078ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2270,6 +2336,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG030(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000078ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000078ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -2280,7 +2348,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG030(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000078ull;
 	}
-	return 0x0000030000000078ull + (offset) * 0x100000000ull;
+	return 0x0000030000000078ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -2288,16 +2356,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG031(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000007Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003000000007Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003000000007Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000007Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2307,6 +2371,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG031(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000007Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000007Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -2323,17 +2391,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG031(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG031 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000007Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000007Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG031(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000007Cull + (offset) * 0x100000000ull;
+			return 0x000003000000007Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000007Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000007Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2341,6 +2407,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG031(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000007Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000007Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -2351,7 +2419,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG031(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000007Cull;
 	}
-	return 0x000003000000007Cull + (offset) * 0x100000000ull;
+	return 0x000003000000007Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -2359,16 +2427,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG032(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000080ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000080ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000080ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000080ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2378,6 +2442,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG032(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000080ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000080ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -2394,17 +2462,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG032(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG032 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000080ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000080ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG032(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000080ull + (offset) * 0x100000000ull;
+			return 0x0000030000000080ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000080ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000080ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2412,6 +2478,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG032(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000080ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000080ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -2422,7 +2490,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG032(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000080ull;
 	}
-	return 0x0000030000000080ull + (offset) * 0x100000000ull;
+	return 0x0000030000000080ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -2456,16 +2524,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG037(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000094ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000094ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000094ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000094ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2475,6 +2539,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG037(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000094ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000094ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -2491,17 +2559,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG037(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG037 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000094ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000094ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG037(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000094ull + (offset) * 0x100000000ull;
+			return 0x0000030000000094ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000094ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000094ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2509,6 +2575,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG037(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000094ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000094ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -2519,7 +2587,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG037(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000094ull;
 	}
-	return 0x0000030000000094ull + (offset) * 0x100000000ull;
+	return 0x0000030000000094ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -2527,16 +2595,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG038(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000098ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000098ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000098ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000098ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2546,6 +2610,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG038(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000098ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000098ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -2562,17 +2630,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG038(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG038 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000098ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000098ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG038(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000098ull + (offset) * 0x100000000ull;
+			return 0x0000030000000098ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000098ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000098ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2580,6 +2646,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG038(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000098ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000098ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -2590,7 +2658,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG038(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000098ull;
 	}
-	return 0x0000030000000098ull + (offset) * 0x100000000ull;
+	return 0x0000030000000098ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -2598,16 +2666,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG039(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000009Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003000000009Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003000000009Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000009Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2617,6 +2681,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG039(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000009Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000009Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -2633,17 +2701,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG039(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG039 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000009Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000009Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG039(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000009Cull + (offset) * 0x100000000ull;
+			return 0x000003000000009Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000009Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000009Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2651,6 +2717,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG039(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000009Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000009Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -2661,7 +2729,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG039(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000009Cull;
 	}
-	return 0x000003000000009Cull + (offset) * 0x100000000ull;
+	return 0x000003000000009Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -2669,16 +2737,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG040(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x00000300000000A0ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x00000300000000A0ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x00000300000000A0ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x00000300000000A0ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2688,6 +2752,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG040(unsigned long offset)
 				if ((offset <= 3))
 					return 0x00000300000000A0ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x00000300000000A0ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -2704,17 +2772,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG040(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG040 (offset = %lu) not supported on this chip\n", offset);
-	return 0x00000300000000A0ull + ((offset) & 1) * 0x100000000ull;
+	return 0x00000300000000A0ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG040(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x00000300000000A0ull + (offset) * 0x100000000ull;
+			return 0x00000300000000A0ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x00000300000000A0ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x00000300000000A0ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2722,6 +2788,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG040(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x00000300000000A0ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000000A0ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -2732,7 +2800,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG040(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x00000000000000A0ull;
 	}
-	return 0x00000300000000A0ull + (offset) * 0x100000000ull;
+	return 0x00000300000000A0ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -2764,60 +2832,143 @@ static inline uint64_t CVMX_PCIEEPX_CFG042(unsigned long offset)
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG044(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG044(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000000B0ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000000B0ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x00000300000000B0ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000000B0ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG044 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000000B0ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG044(offset) (0x00000300000000B0ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG044(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000000B0ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000000B0ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000000B0ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000000B0ull;
+	}
+	return 0x00000300000000B0ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG045(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG045(%lu) is invalid on this chip\n", offset);
-	return 0x00000300000000B4ull + ((offset) & 7) * 0x100000000ull;
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000000B4ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000000B4ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x00000300000000B4ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000000B4ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG045 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000000B4ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG045(offset) (0x00000300000000B4ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG045(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000000B4ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000000B4ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000000B4ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000000B4ull;
+	}
+	return 0x00000300000000B4ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG046(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG046(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000000B8ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000000B8ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x00000300000000B8ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000000B8ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG046 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000000B8ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG046(offset) (0x00000300000000B8ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG046(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000000B8ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000000B8ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000000B8ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000000B8ull;
+	}
+	return 0x00000300000000B8ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG064(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000100ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000100ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000100ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000100ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2827,6 +2978,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG064(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000100ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000100ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -2843,17 +2998,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG064(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG064 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000100ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000100ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG064(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000100ull + (offset) * 0x100000000ull;
+			return 0x0000030000000100ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000100ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000100ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2861,6 +3014,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG064(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000100ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000100ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -2871,7 +3026,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG064(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000100ull;
 	}
-	return 0x0000030000000100ull + (offset) * 0x100000000ull;
+	return 0x0000030000000100ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -2879,16 +3034,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG065(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000104ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000104ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000104ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000104ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2898,6 +3049,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG065(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000104ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000104ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -2914,17 +3069,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG065(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG065 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000104ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000104ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG065(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000104ull + (offset) * 0x100000000ull;
+			return 0x0000030000000104ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000104ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000104ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2932,6 +3085,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG065(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000104ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000104ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -2942,7 +3097,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG065(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000104ull;
 	}
-	return 0x0000030000000104ull + (offset) * 0x100000000ull;
+	return 0x0000030000000104ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -2950,16 +3105,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG066(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000108ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000108ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000108ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000108ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -2969,6 +3120,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG066(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000108ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000108ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -2985,17 +3140,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG066(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG066 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000108ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000108ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG066(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000108ull + (offset) * 0x100000000ull;
+			return 0x0000030000000108ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000108ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000108ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3003,6 +3156,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG066(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000108ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000108ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -3013,7 +3168,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG066(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000108ull;
 	}
-	return 0x0000030000000108ull + (offset) * 0x100000000ull;
+	return 0x0000030000000108ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -3021,16 +3176,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG067(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000010Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003000000010Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003000000010Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000010Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3040,6 +3191,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG067(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000010Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000010Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -3056,17 +3211,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG067(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG067 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000010Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000010Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG067(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000010Cull + (offset) * 0x100000000ull;
+			return 0x000003000000010Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000010Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000010Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3074,6 +3227,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG067(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000010Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000010Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -3084,7 +3239,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG067(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000010Cull;
 	}
-	return 0x000003000000010Cull + (offset) * 0x100000000ull;
+	return 0x000003000000010Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -3092,16 +3247,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG068(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000110ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000110ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000110ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000110ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3111,6 +3262,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG068(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000110ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000110ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -3127,17 +3282,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG068(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG068 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000110ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000110ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG068(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000110ull + (offset) * 0x100000000ull;
+			return 0x0000030000000110ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000110ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000110ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3145,6 +3298,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG068(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000110ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000110ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -3155,7 +3310,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG068(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000110ull;
 	}
-	return 0x0000030000000110ull + (offset) * 0x100000000ull;
+	return 0x0000030000000110ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -3163,16 +3318,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG069(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000114ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000114ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000114ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000114ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3182,6 +3333,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG069(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000114ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000114ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -3198,17 +3353,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG069(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG069 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000114ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000114ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG069(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000114ull + (offset) * 0x100000000ull;
+			return 0x0000030000000114ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000114ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000114ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3216,6 +3369,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG069(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000114ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000114ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -3226,7 +3381,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG069(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000114ull;
 	}
-	return 0x0000030000000114ull + (offset) * 0x100000000ull;
+	return 0x0000030000000114ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -3234,16 +3389,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG070(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000118ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000118ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000118ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000118ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3253,6 +3404,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG070(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000118ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000118ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -3269,17 +3424,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG070(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG070 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000118ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000118ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG070(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000118ull + (offset) * 0x100000000ull;
+			return 0x0000030000000118ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000118ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000118ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3287,6 +3440,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG070(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000118ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000118ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -3297,7 +3452,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG070(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000118ull;
 	}
-	return 0x0000030000000118ull + (offset) * 0x100000000ull;
+	return 0x0000030000000118ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -3305,16 +3460,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG071(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000011Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003000000011Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003000000011Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000011Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3324,6 +3475,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG071(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000011Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000011Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -3340,17 +3495,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG071(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG071 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000011Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000011Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG071(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000011Cull + (offset) * 0x100000000ull;
+			return 0x000003000000011Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000011Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000011Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3358,6 +3511,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG071(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000011Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000011Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -3368,7 +3523,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG071(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000011Cull;
 	}
-	return 0x000003000000011Cull + (offset) * 0x100000000ull;
+	return 0x000003000000011Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -3376,16 +3531,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG072(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000120ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000120ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000120ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000120ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3395,6 +3546,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG072(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000120ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000120ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -3411,17 +3566,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG072(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG072 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000120ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000120ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG072(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000120ull + (offset) * 0x100000000ull;
+			return 0x0000030000000120ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000120ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000120ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3429,6 +3582,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG072(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000120ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000120ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -3439,7 +3594,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG072(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000120ull;
 	}
-	return 0x0000030000000120ull + (offset) * 0x100000000ull;
+	return 0x0000030000000120ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -3447,16 +3602,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG073(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000124ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000124ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000124ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000124ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3466,6 +3617,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG073(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000124ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000124ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -3482,17 +3637,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG073(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG073 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000124ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000124ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG073(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000124ull + (offset) * 0x100000000ull;
+			return 0x0000030000000124ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000124ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000124ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3500,6 +3653,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG073(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000124ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000124ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -3510,7 +3665,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG073(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000124ull;
 	}
-	return 0x0000030000000124ull + (offset) * 0x100000000ull;
+	return 0x0000030000000124ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -3518,16 +3673,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG074(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000128ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000128ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000128ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000128ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3537,6 +3688,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG074(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000128ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000128ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -3553,17 +3708,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG074(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG074 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000128ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000128ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG074(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000128ull + (offset) * 0x100000000ull;
+			return 0x0000030000000128ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000128ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000128ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -3571,6 +3724,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG074(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000128ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000128ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -3581,52 +3736,149 @@ static inline uint64_t CVMX_PCIEEPX_CFG074(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000128ull;
 	}
-	return 0x0000030000000128ull + (offset) * 0x100000000ull;
+	return 0x0000030000000128ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG078(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG078(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000138ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000138ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x0000030000000138ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000138ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG078 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000138ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG078(offset) (0x0000030000000138ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG078(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000138ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000138ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000138ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000138ull;
+	}
+	return 0x0000030000000138ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG082(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN70XX) && ((offset <= 2))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG082(%lu) is invalid on this chip\n", offset);
-	return 0x0000030000000148ull + ((offset) & 7) * 0x100000000ull;
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000148ull;
+			break;
+		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 2))
+				return 0x0000030000000148ull + ((offset) & 3) * 0x100000000ull;
+			break;
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000148ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000148ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000148ull + ((offset) & 7) * 0x100000000ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG082 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000148ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG082(offset) (0x0000030000000148ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG082(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000148ull;
+		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000148ull + (offset) * 0x100000000ull;
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000148ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000148ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000148ull + (offset) * 0x100000000ull;
+	}
+	return 0x0000030000000148ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG083(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN70XX) && ((offset <= 2))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG083(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x000003000000014Cull;
+			break;
+		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 2))
+				return 0x000003000000014Cull + ((offset) & 3) * 0x100000000ull;
+			break;
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x000003000000014Cull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x000003000000014Cull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x000003000000014Cull + ((offset) & 7) * 0x100000000ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG083 (offset = %lu) not supported on this chip\n", offset);
+	return 0x000003000000014Cull;
 }
 #else
-#define CVMX_PCIEEPX_CFG083(offset) (0x000003000000014Cull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG083(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000014Cull;
+		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000014Cull + (offset) * 0x100000000ull;
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x000003000000014Cull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x000003000000014Cull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000014Cull + (offset) * 0x100000000ull;
+	}
+	return 0x000003000000014Cull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG084(unsigned long offset)
@@ -3642,382 +3894,1132 @@ static inline uint64_t CVMX_PCIEEPX_CFG084(unsigned long offset)
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG086(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG086(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000158ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000158ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x0000030000000158ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000158ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG086 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000158ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG086(offset) (0x0000030000000158ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG086(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000158ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000158ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000158ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000158ull;
+	}
+	return 0x0000030000000158ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG087(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG087(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x000003000000015Cull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x000003000000015Cull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x000003000000015Cull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x000003000000015Cull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG087 (offset = %lu) not supported on this chip\n", offset);
+	return 0x000003000000015Cull;
 }
 #else
-#define CVMX_PCIEEPX_CFG087(offset) (0x000003000000015Cull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG087(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x000003000000015Cull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x000003000000015Cull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000015Cull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000015Cull;
+	}
+	return 0x000003000000015Cull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG088(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG088(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000160ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000160ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x0000030000000160ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000160ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG088 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000160ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG088(offset) (0x0000030000000160ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG088(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000160ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000160ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000160ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000160ull;
+	}
+	return 0x0000030000000160ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG089(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG089(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000164ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000164ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x0000030000000164ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000164ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG089 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000164ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG089(offset) (0x0000030000000164ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG089(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000164ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000164ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000164ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000164ull;
+	}
+	return 0x0000030000000164ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG090(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG090(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000168ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000168ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x0000030000000168ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000168ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG090 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000168ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG090(offset) (0x0000030000000168ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG090(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000168ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000168ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000168ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000168ull;
+	}
+	return 0x0000030000000168ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG091(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG091(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x000003000000016Cull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x000003000000016Cull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x000003000000016Cull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x000003000000016Cull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG091 (offset = %lu) not supported on this chip\n", offset);
+	return 0x000003000000016Cull;
 }
 #else
-#define CVMX_PCIEEPX_CFG091(offset) (0x000003000000016Cull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG091(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x000003000000016Cull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x000003000000016Cull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000016Cull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000016Cull;
+	}
+	return 0x000003000000016Cull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG092(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG092(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000170ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000170ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x0000030000000170ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000170ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG092 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000170ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG092(offset) (0x0000030000000170ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG092(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000170ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000170ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000170ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000170ull;
+	}
+	return 0x0000030000000170ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG094(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG094(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000178ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000178ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x0000030000000178ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000178ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG094 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000178ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG094(offset) (0x0000030000000178ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG094(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000178ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000178ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000178ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000178ull;
+	}
+	return 0x0000030000000178ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG095(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG095(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x000003000000017Cull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x000003000000017Cull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x000003000000017Cull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x000003000000017Cull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG095 (offset = %lu) not supported on this chip\n", offset);
+	return 0x000003000000017Cull;
 }
 #else
-#define CVMX_PCIEEPX_CFG095(offset) (0x000003000000017Cull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG095(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x000003000000017Cull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x000003000000017Cull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000017Cull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000017Cull;
+	}
+	return 0x000003000000017Cull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG096(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG096(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000180ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000180ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x0000030000000180ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000180ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG096 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000180ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG096(offset) (0x0000030000000180ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG096(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000180ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000180ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000180ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000180ull;
+	}
+	return 0x0000030000000180ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG097(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG097(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000184ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000184ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x0000030000000184ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000184ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG097 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000184ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG097(offset) (0x0000030000000184ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG097(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000184ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000184ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000184ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000184ull;
+	}
+	return 0x0000030000000184ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG098(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG098(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000188ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000188ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x0000030000000188ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000188ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG098 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000188ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG098(offset) (0x0000030000000188ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG098(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000188ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000188ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000188ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000188ull;
+	}
+	return 0x0000030000000188ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG099(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG099(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x000003000000018Cull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x000003000000018Cull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x000003000000018Cull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x000003000000018Cull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG099 (offset = %lu) not supported on this chip\n", offset);
+	return 0x000003000000018Cull;
 }
 #else
-#define CVMX_PCIEEPX_CFG099(offset) (0x000003000000018Cull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG099(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x000003000000018Cull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x000003000000018Cull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000018Cull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000018Cull;
+	}
+	return 0x000003000000018Cull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG100(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG100(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000190ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000190ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x0000030000000190ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000190ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG100 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000190ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG100(offset) (0x0000030000000190ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG100(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000190ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000190ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000190ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000190ull;
+	}
+	return 0x0000030000000190ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG101(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG101(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000194ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000194ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x0000030000000194ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000194ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG101 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000194ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG101(offset) (0x0000030000000194ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG101(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000194ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000194ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000194ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000194ull;
+	}
+	return 0x0000030000000194ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG102(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG102(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000198ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000198ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x0000030000000198ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000198ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG102 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000198ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG102(offset) (0x0000030000000198ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG102(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000198ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000198ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000198ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000198ull;
+	}
+	return 0x0000030000000198ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG103(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG103(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x000003000000019Cull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x000003000000019Cull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x000003000000019Cull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x000003000000019Cull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG103 (offset = %lu) not supported on this chip\n", offset);
+	return 0x000003000000019Cull;
 }
 #else
-#define CVMX_PCIEEPX_CFG103(offset) (0x000003000000019Cull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG103(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x000003000000019Cull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x000003000000019Cull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000019Cull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000019Cull;
+	}
+	return 0x000003000000019Cull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG104(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG104(%lu) is invalid on this chip\n", offset);
-	return 0x00000300000001A0ull + ((offset) & 7) * 0x100000000ull;
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000001A0ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000001A0ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x00000300000001A0ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000001A0ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG104 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000001A0ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG104(offset) (0x00000300000001A0ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG104(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000001A0ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000001A0ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001A0ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001A0ull;
+	}
+	return 0x00000300000001A0ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG105(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG105(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000001A4ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000001A4ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x00000300000001A4ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000001A4ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG105 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000001A4ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG105(offset) (0x00000300000001A4ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG105(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000001A4ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000001A4ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001A4ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001A4ull;
+	}
+	return 0x00000300000001A4ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG106(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG106(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000001A8ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000001A8ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x00000300000001A8ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000001A8ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG106 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000001A8ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG106(offset) (0x00000300000001A8ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG106(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000001A8ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000001A8ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001A8ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001A8ull;
+	}
+	return 0x00000300000001A8ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG107(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG107(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000001ACull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000001ACull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x00000300000001ACull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000001ACull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG107 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000001ACull;
 }
 #else
-#define CVMX_PCIEEPX_CFG107(offset) (0x00000300000001ACull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG107(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000001ACull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000001ACull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001ACull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001ACull;
+	}
+	return 0x00000300000001ACull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG108(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG108(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000001B0ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000001B0ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x00000300000001B0ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000001B0ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG108 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000001B0ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG108(offset) (0x00000300000001B0ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG108(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000001B0ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000001B0ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001B0ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001B0ull;
+	}
+	return 0x00000300000001B0ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG109(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG109(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000001B4ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000001B4ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x00000300000001B4ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000001B4ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG109 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000001B4ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG109(offset) (0x00000300000001B4ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG109(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000001B4ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000001B4ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001B4ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001B4ull;
+	}
+	return 0x00000300000001B4ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG110(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG110(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000001B8ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000001B8ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x00000300000001B8ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000001B8ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG110 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000001B8ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG110(offset) (0x00000300000001B8ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG110(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000001B8ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000001B8ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001B8ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001B8ull;
+	}
+	return 0x00000300000001B8ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG111(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG111(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000001BCull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000001BCull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x00000300000001BCull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000001BCull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG111 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000001BCull;
 }
 #else
-#define CVMX_PCIEEPX_CFG111(offset) (0x00000300000001BCull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG111(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000001BCull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000001BCull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001BCull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001BCull;
+	}
+	return 0x00000300000001BCull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG112(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG112(%lu) is invalid on this chip\n", offset);
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000001C0ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000001C0ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
 	return 0x00000300000001C0ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000001C0ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG112 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000001C0ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG112(offset) (0x00000300000001C0ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG112(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000001C0ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000001C0ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001C0ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000001C0ull;
+	}
+	return 0x00000300000001C0ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG448(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000700ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000700ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000700ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000700ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4027,6 +5029,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG448(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000700ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000700ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -4043,17 +5049,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG448(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG448 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000700ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000700ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG448(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000700ull + (offset) * 0x100000000ull;
+			return 0x0000030000000700ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000700ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000700ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4061,6 +5065,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG448(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000700ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000700ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -4071,7 +5077,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG448(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000700ull;
 	}
-	return 0x0000030000000700ull + (offset) * 0x100000000ull;
+	return 0x0000030000000700ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -4079,16 +5085,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG449(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000704ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000704ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000704ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000704ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4098,6 +5100,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG449(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000704ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000704ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -4114,17 +5120,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG449(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG449 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000704ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000704ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG449(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000704ull + (offset) * 0x100000000ull;
+			return 0x0000030000000704ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000704ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000704ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4132,6 +5136,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG449(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000704ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000704ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -4142,7 +5148,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG449(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000704ull;
 	}
-	return 0x0000030000000704ull + (offset) * 0x100000000ull;
+	return 0x0000030000000704ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -4150,16 +5156,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG450(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000708ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000708ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000708ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000708ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4169,6 +5171,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG450(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000708ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000708ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -4185,17 +5191,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG450(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG450 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000708ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000708ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG450(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000708ull + (offset) * 0x100000000ull;
+			return 0x0000030000000708ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000708ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000708ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4203,6 +5207,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG450(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000708ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000708ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -4213,7 +5219,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG450(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000708ull;
 	}
-	return 0x0000030000000708ull + (offset) * 0x100000000ull;
+	return 0x0000030000000708ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -4221,16 +5227,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG451(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000070Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003000000070Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003000000070Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000070Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4240,6 +5242,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG451(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000070Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000070Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -4256,17 +5262,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG451(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG451 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000070Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000070Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG451(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000070Cull + (offset) * 0x100000000ull;
+			return 0x000003000000070Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000070Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000070Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4274,6 +5278,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG451(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000070Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000070Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -4284,7 +5290,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG451(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000070Cull;
 	}
-	return 0x000003000000070Cull + (offset) * 0x100000000ull;
+	return 0x000003000000070Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -4292,16 +5298,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG452(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000710ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000710ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000710ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000710ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4311,6 +5313,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG452(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000710ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000710ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -4327,17 +5333,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG452(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG452 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000710ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000710ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG452(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000710ull + (offset) * 0x100000000ull;
+			return 0x0000030000000710ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000710ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000710ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4345,6 +5349,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG452(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000710ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000710ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -4355,7 +5361,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG452(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000710ull;
 	}
-	return 0x0000030000000710ull + (offset) * 0x100000000ull;
+	return 0x0000030000000710ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -4363,16 +5369,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG453(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000714ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000714ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000714ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000714ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4382,6 +5384,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG453(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000714ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000714ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -4398,17 +5404,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG453(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG453 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000714ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000714ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG453(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000714ull + (offset) * 0x100000000ull;
+			return 0x0000030000000714ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000714ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000714ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4416,6 +5420,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG453(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000714ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000714ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -4426,7 +5432,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG453(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000714ull;
 	}
-	return 0x0000030000000714ull + (offset) * 0x100000000ull;
+	return 0x0000030000000714ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -4434,16 +5440,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG454(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000718ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000718ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000718ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000718ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4453,6 +5455,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG454(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000718ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000718ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -4469,17 +5475,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG454(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG454 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000718ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000718ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG454(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000718ull + (offset) * 0x100000000ull;
+			return 0x0000030000000718ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000718ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000718ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4487,6 +5491,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG454(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000718ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000718ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -4497,7 +5503,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG454(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000718ull;
 	}
-	return 0x0000030000000718ull + (offset) * 0x100000000ull;
+	return 0x0000030000000718ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -4505,16 +5511,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG455(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000071Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003000000071Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003000000071Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000071Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4524,6 +5526,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG455(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000071Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000071Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -4540,17 +5546,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG455(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG455 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000071Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000071Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG455(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000071Cull + (offset) * 0x100000000ull;
+			return 0x000003000000071Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000071Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000071Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4558,6 +5562,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG455(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000071Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000071Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -4568,7 +5574,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG455(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000071Cull;
 	}
-	return 0x000003000000071Cull + (offset) * 0x100000000ull;
+	return 0x000003000000071Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -4576,16 +5582,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG456(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000720ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000720ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000720ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000720ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4595,6 +5597,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG456(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000720ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000720ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -4611,17 +5617,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG456(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG456 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000720ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000720ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG456(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000720ull + (offset) * 0x100000000ull;
+			return 0x0000030000000720ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000720ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000720ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4629,6 +5633,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG456(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000720ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000720ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -4639,7 +5645,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG456(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000720ull;
 	}
-	return 0x0000030000000720ull + (offset) * 0x100000000ull;
+	return 0x0000030000000720ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -4647,16 +5653,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG458(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000728ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000728ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000728ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000728ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4666,6 +5668,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG458(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000728ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000728ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -4682,17 +5688,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG458(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG458 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000728ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000728ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG458(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000728ull + (offset) * 0x100000000ull;
+			return 0x0000030000000728ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000728ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000728ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4700,6 +5704,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG458(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000728ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000728ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -4710,7 +5716,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG458(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000728ull;
 	}
-	return 0x0000030000000728ull + (offset) * 0x100000000ull;
+	return 0x0000030000000728ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -4718,16 +5724,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG459(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000072Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003000000072Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003000000072Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000072Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4737,6 +5739,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG459(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000072Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000072Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -4753,17 +5759,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG459(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG459 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000072Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000072Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG459(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000072Cull + (offset) * 0x100000000ull;
+			return 0x000003000000072Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000072Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000072Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4771,6 +5775,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG459(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000072Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000072Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -4781,7 +5787,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG459(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000072Cull;
 	}
-	return 0x000003000000072Cull + (offset) * 0x100000000ull;
+	return 0x000003000000072Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -4789,16 +5795,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG460(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000730ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000730ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000730ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000730ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4808,6 +5810,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG460(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000730ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000730ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -4824,17 +5830,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG460(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG460 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000730ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000730ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG460(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000730ull + (offset) * 0x100000000ull;
+			return 0x0000030000000730ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000730ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000730ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4842,6 +5846,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG460(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000730ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000730ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -4852,7 +5858,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG460(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000730ull;
 	}
-	return 0x0000030000000730ull + (offset) * 0x100000000ull;
+	return 0x0000030000000730ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -4860,16 +5866,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG461(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000734ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000734ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000734ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000734ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4879,6 +5881,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG461(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000734ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000734ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -4895,17 +5901,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG461(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG461 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000734ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000734ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG461(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000734ull + (offset) * 0x100000000ull;
+			return 0x0000030000000734ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000734ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000734ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4913,6 +5917,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG461(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000734ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000734ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -4923,7 +5929,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG461(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000734ull;
 	}
-	return 0x0000030000000734ull + (offset) * 0x100000000ull;
+	return 0x0000030000000734ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -4931,16 +5937,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG462(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000738ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000738ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000738ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000738ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4950,6 +5952,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG462(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000738ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000738ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -4966,17 +5972,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG462(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG462 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000738ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000738ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG462(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000738ull + (offset) * 0x100000000ull;
+			return 0x0000030000000738ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000738ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000738ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -4984,6 +5988,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG462(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000738ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000738ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -4994,7 +6000,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG462(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000738ull;
 	}
-	return 0x0000030000000738ull + (offset) * 0x100000000ull;
+	return 0x0000030000000738ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -5002,16 +6008,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG463(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000073Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003000000073Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003000000073Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000073Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5021,6 +6023,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG463(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000073Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000073Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -5037,17 +6043,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG463(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG463 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000073Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000073Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG463(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000073Cull + (offset) * 0x100000000ull;
+			return 0x000003000000073Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000073Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000073Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5055,6 +6059,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG463(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000073Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000073Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -5065,7 +6071,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG463(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000073Cull;
 	}
-	return 0x000003000000073Cull + (offset) * 0x100000000ull;
+	return 0x000003000000073Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -5073,16 +6079,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG464(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000740ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000740ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000740ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000740ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5092,6 +6094,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG464(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000740ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000740ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -5108,17 +6114,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG464(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG464 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000740ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000740ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG464(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000740ull + (offset) * 0x100000000ull;
+			return 0x0000030000000740ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000740ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000740ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5126,6 +6130,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG464(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000740ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000740ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -5136,7 +6142,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG464(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000740ull;
 	}
-	return 0x0000030000000740ull + (offset) * 0x100000000ull;
+	return 0x0000030000000740ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -5144,16 +6150,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG465(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000744ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000744ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000744ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000744ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5163,6 +6165,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG465(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000744ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000744ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -5179,17 +6185,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG465(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG465 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000744ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000744ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG465(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000744ull + (offset) * 0x100000000ull;
+			return 0x0000030000000744ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000744ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000744ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5197,6 +6201,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG465(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000744ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000744ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -5207,7 +6213,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG465(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000744ull;
 	}
-	return 0x0000030000000744ull + (offset) * 0x100000000ull;
+	return 0x0000030000000744ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -5215,16 +6221,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG466(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000748ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000748ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000748ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000748ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5234,6 +6236,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG466(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000748ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000748ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -5250,17 +6256,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG466(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG466 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000748ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000748ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG466(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000748ull + (offset) * 0x100000000ull;
+			return 0x0000030000000748ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000748ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000748ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5268,6 +6272,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG466(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000748ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000748ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -5278,7 +6284,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG466(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000748ull;
 	}
-	return 0x0000030000000748ull + (offset) * 0x100000000ull;
+	return 0x0000030000000748ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -5286,16 +6292,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG467(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000074Cull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x000003000000074Cull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x000003000000074Cull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000074Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5305,6 +6307,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG467(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000074Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000074Cull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -5321,17 +6327,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG467(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG467 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000074Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000074Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG467(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000074Cull + (offset) * 0x100000000ull;
+			return 0x000003000000074Cull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000074Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000074Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5339,6 +6343,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG467(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000074Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000074Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -5349,7 +6355,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG467(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000074Cull;
 	}
-	return 0x000003000000074Cull + (offset) * 0x100000000ull;
+	return 0x000003000000074Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -5357,16 +6363,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG468(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000750ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000750ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000750ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000750ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5376,6 +6378,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG468(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000750ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000750ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -5392,17 +6398,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG468(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG468 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000750ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000750ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG468(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000750ull + (offset) * 0x100000000ull;
+			return 0x0000030000000750ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000750ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000750ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5410,6 +6414,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG468(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000750ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000750ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -5420,7 +6426,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG468(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000750ull;
 	}
-	return 0x0000030000000750ull + (offset) * 0x100000000ull;
+	return 0x0000030000000750ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -5563,14 +6569,6 @@ static inline uint64_t CVMX_PCIEEPX_CFG515(unsigned long offset)
 			if ((offset <= 2))
 				return 0x000003000000080Cull + ((offset) & 3) * 0x100000000ull;
 			break;
-		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x000003000000080Cull + ((offset) & 1) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x000003000000080Cull + ((offset) & 7) * 0x100000000ull;
-			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
 				if ((offset <= 3))
@@ -5579,6 +6577,14 @@ static inline uint64_t CVMX_PCIEEPX_CFG515(unsigned long offset)
 				if ((offset <= 3))
 					return 0x000003000000080Cull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x000003000000080Cull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x000003000000080Cull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -5590,7 +6596,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG515(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG515 (offset = %lu) not supported on this chip\n", offset);
-	return 0x000003000000080Cull + ((offset) & 1) * 0x100000000ull;
+	return 0x000003000000080Cull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG515(unsigned long offset)
@@ -5598,16 +6604,16 @@ static inline uint64_t CVMX_PCIEEPX_CFG515(unsigned long offset)
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			return 0x000003000000080Cull + (offset) * 0x100000000ull;
-		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000080Cull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			return 0x000003000000080Cull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
 				return 0x000003000000080Cull + (offset) * 0x100000000ull;
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x000003000000080Cull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000080Cull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x000003000000080Cull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN61XX & OCTEON_FAMILY_MASK:
@@ -5615,7 +6621,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG515(unsigned long offset)
 		case OCTEON_CN68XX & OCTEON_FAMILY_MASK:
 			return 0x000000000000080Cull;
 	}
-	return 0x000003000000080Cull + (offset) * 0x100000000ull;
+	return 0x000003000000080Cull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -5623,16 +6629,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG516(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000810ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000810ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000810ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000810ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5642,6 +6644,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG516(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000810ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000810ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -5658,17 +6664,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG516(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG516 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000810ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000810ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG516(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000810ull + (offset) * 0x100000000ull;
+			return 0x0000030000000810ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000810ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000810ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5676,6 +6680,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG516(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000810ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000810ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -5686,7 +6692,7 @@ static inline uint64_t CVMX_PCIEEPX_CFG516(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000810ull;
 	}
-	return 0x0000030000000810ull + (offset) * 0x100000000ull;
+	return 0x0000030000000810ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
@@ -5694,16 +6700,12 @@ static inline uint64_t CVMX_PCIEEPX_CFG517(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 1))
-				return 0x0000030000000814ull + ((offset) & 1) * 0x100000000ull;
+			if ((offset == 0))
+				return 0x0000030000000814ull;
 			break;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
 			if ((offset <= 2))
 				return 0x0000030000000814ull + ((offset) & 3) * 0x100000000ull;
-			break;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
-			if ((offset <= 5))
-				return 0x0000030000000814ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5713,6 +6715,10 @@ static inline uint64_t CVMX_PCIEEPX_CFG517(unsigned long offset)
 				if ((offset <= 3))
 					return 0x0000030000000814ull + ((offset) & 3) * 0x100000000ull;
 
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000814ull + ((offset) & 7) * 0x100000000ull;
 			break;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
@@ -5729,17 +6735,15 @@ static inline uint64_t CVMX_PCIEEPX_CFG517(unsigned long offset)
 			break;
 	}
 	cvmx_warn("CVMX_PCIEEPX_CFG517 (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000030000000814ull + ((offset) & 1) * 0x100000000ull;
+	return 0x0000030000000814ull;
 }
 #else
 static inline uint64_t CVMX_PCIEEPX_CFG517(unsigned long offset)
 {
 	switch(cvmx_get_octeon_family()) {
 		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000814ull + (offset) * 0x100000000ull;
+			return 0x0000030000000814ull;
 		case OCTEON_CN70XX & OCTEON_FAMILY_MASK:
-			return 0x0000030000000814ull + (offset) * 0x100000000ull;
-		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
 			return 0x0000030000000814ull + (offset) * 0x100000000ull;
 		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
@@ -5747,6 +6751,8 @@ static inline uint64_t CVMX_PCIEEPX_CFG517(unsigned long offset)
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
 				return 0x0000030000000814ull + (offset) * 0x100000000ull;
 
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000814ull + (offset) * 0x100000000ull;
 		case OCTEON_CN66XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CNF71XX & OCTEON_FAMILY_MASK:
 		case OCTEON_CN63XX & OCTEON_FAMILY_MASK:
@@ -5757,50 +6763,180 @@ static inline uint64_t CVMX_PCIEEPX_CFG517(unsigned long offset)
 		case OCTEON_CN52XX & OCTEON_FAMILY_MASK:
 			return 0x0000000000000814ull;
 	}
-	return 0x0000030000000814ull + (offset) * 0x100000000ull;
+	return 0x0000030000000814ull;
 }
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG548(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG548(%lu) is invalid on this chip\n", offset);
-	return 0x0000030000000890ull + ((offset) & 7) * 0x100000000ull;
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x0000030000000890ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x0000030000000890ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x0000030000000890ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x0000030000000890ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG548 (offset = %lu) not supported on this chip\n", offset);
+	return 0x0000030000000890ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG548(offset) (0x0000030000000890ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG548(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x0000030000000890ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x0000030000000890ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000890ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x0000030000000890ull;
+	}
+	return 0x0000030000000890ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG554(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG554(%lu) is invalid on this chip\n", offset);
-	return 0x00000300000008A8ull + ((offset) & 7) * 0x100000000ull;
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000008A8ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000008A8ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x00000300000008A8ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000008A8ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG554 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000008A8ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG554(offset) (0x00000300000008A8ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG554(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000008A8ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000008A8ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000008A8ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000008A8ull;
+	}
+	return 0x00000300000008A8ull;
+}
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_PCIEEPX_CFG558(unsigned long offset)
 {
-	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 5))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 3))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 1)))))
-		cvmx_warn("CVMX_PCIEEPX_CFG558(%lu) is invalid on this chip\n", offset);
-	return 0x00000300000008B8ull + ((offset) & 7) * 0x100000000ull;
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000008B8ull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000008B8ull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x00000300000008B8ull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000008B8ull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG558 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000008B8ull;
 }
 #else
-#define CVMX_PCIEEPX_CFG558(offset) (0x00000300000008B8ull + ((offset) & 7) * 0x100000000ull)
+static inline uint64_t CVMX_PCIEEPX_CFG558(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000008B8ull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000008B8ull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000008B8ull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000008B8ull;
+	}
+	return 0x00000300000008B8ull;
+}
+#endif
+#if CVMX_ENABLE_CSR_ADDRESS_CHECKING
+static inline uint64_t CVMX_PCIEEPX_CFG559(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				if ((offset <= 3))
+					return 0x00000300000008BCull + ((offset) & 3) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				if ((offset <= 3))
+					return 0x00000300000008BCull + ((offset) & 3) * 0x100000000ull;
+
+			break;
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			if ((offset <= 5))
+				return 0x00000300000008BCull + ((offset) & 7) * 0x100000000ull;
+			break;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			if ((offset == 0))
+				return 0x00000300000008BCull;
+			break;
+	}
+	cvmx_warn("CVMX_PCIEEPX_CFG559 (offset = %lu) not supported on this chip\n", offset);
+	return 0x00000300000008BCull;
+}
+#else
+static inline uint64_t CVMX_PCIEEPX_CFG559(unsigned long offset)
+{
+	switch(cvmx_get_octeon_family()) {
+		case OCTEON_CN78XX & OCTEON_FAMILY_MASK:
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X))
+				return 0x00000300000008BCull + (offset) * 0x100000000ull;
+			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
+				return 0x00000300000008BCull + (offset) * 0x100000000ull;
+
+		case OCTEON_CN73XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000008BCull + (offset) * 0x100000000ull;
+		case OCTEON_CNF75XX & OCTEON_FAMILY_MASK:
+			return 0x00000300000008BCull;
+	}
+	return 0x00000300000008BCull;
+}
 #endif
 
 /**
@@ -5813,10 +6949,10 @@ union cvmx_pcieepx_cfg000 {
 	uint32_t u32;
 	struct cvmx_pcieepx_cfg000_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t devid                        : 16; /**< Device ID for CNF75XX, writable through PEM()_CFG_WR. However, the application must not
-                                                         change this field. For EEPROM loads, also see VENDID of this register. */
-	uint32_t vendid                       : 16; /**< Cavium's vendor ID, writable through PEM()_CFG_WR. However, the application must not
-                                                         change this field. During an EPROM Load, if a value of 0xFFFF is loaded to this field and
+	uint32_t devid                        : 16; /**< Device ID for CNF75XX, writable through PEM()_CFG_WR.
+                                                         For EEPROM loads, also see VENDID of this register. */
+	uint32_t vendid                       : 16; /**< Cavium's vendor ID, writable through PEM()_CFG_WR.
+                                                         During an EPROM Load, if a value of 0xFFFF is loaded to this field and
                                                          a value of 0xFFFF is loaded to the DEVID field of this register, the value will not be
                                                          loaded, EEPROM load will stop, and the FastLinkEnable bit will be set in the
                                                          PCIEEP()_CFG452 register. */
@@ -5878,11 +7014,11 @@ union cvmx_pcieepx_cfg001 {
 	uint32_t scse                         : 1;  /**< Special cycle enable. Not applicable for PCI Express. Must be hardwired to 0. */
 	uint32_t me                           : 1;  /**< Bus master enable.  If the PF or any of its VF's try to master the bus when this bit is
                                                          not set,
-                                                         the request is discarded. A interrupt will be generated setting the
-                                                         SPEM()_PF()_DBG_INFO[P()_BMD_E bit.
+                                                         the request is discarded. A interrupt will be generated setting
+                                                         PEM()_DBG_INFO[BMD_E].
                                                          Transactions are dropped in the Client.  Non-posted transactions returns a SWI_RSP_ERROR
                                                          to SLI/DPI soon thereafter.
-                                                         Bus master enable mimics the behavor of SPEM()_FLR_PF()_STOPREQ. */
+                                                         Bus master enable mimics the behavior of PEM()_FLR_PF_STOPREQ. */
 	uint32_t msae                         : 1;  /**< Memory space access enable. */
 	uint32_t isae                         : 1;  /**< I/O space access enable. */
 #else
@@ -5943,11 +7079,11 @@ union cvmx_pcieepx_cfg002 {
 	struct cvmx_pcieepx_cfg002_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t bcc                          : 8;  /**< Base class code,
-                                                         Writable through PEM()_CFG_WR. However, the application must not change this field. */
+                                                         Writable through PEM()_CFG_WR. */
 	uint32_t sc                           : 8;  /**< Subclass code,
-                                                         Writable through PEM()_CFG_WR. However, the application must not change this field. */
+                                                         Writable through PEM()_CFG_WR. */
 	uint32_t pi                           : 8;  /**< Programming interface.
-                                                         Writable through PEM()_CFG_WR. However, the application must not change this field. */
+                                                         Writable through PEM()_CFG_WR. */
 	uint32_t rid                          : 8;  /**< Revision ID, writable through PEM()_CFG_WR. However, the application must not change
                                                          this field. Possible values:
                                                          0x0 = Pass 1.0. */
@@ -6151,8 +7287,8 @@ typedef union cvmx_pcieepx_cfg004 cvmx_pcieepx_cfg004_t;
 /**
  * cvmx_pcieep#_cfg004_mask
  *
- * The BAR 0 Mask register is invisible to host software and not readable from the application.
- * The BAR 0 Mask register is only writable through PEM()_CFG_WR.
+ * The BAR 0 mask register is invisible to host software and not readable from the application.
+ * The BAR 0 mask register is only writable through PEM()_CFG_WR.
  */
 union cvmx_pcieepx_cfg004_mask {
 	uint32_t u32;
@@ -6226,8 +7362,8 @@ typedef union cvmx_pcieepx_cfg005 cvmx_pcieepx_cfg005_t;
 /**
  * cvmx_pcieep#_cfg005_mask
  *
- * The BAR 0 Mask register is invisible to host software and not readable from the application.
- * The BAR 0 Mask register is only writable through PEM()_CFG_WR.
+ * The BAR 0 mask register is invisible to host software and not readable from the application.
+ * The BAR 0 mask register is only writable through PEM()_CFG_WR.
  */
 union cvmx_pcieepx_cfg005_mask {
 	uint32_t u32;
@@ -6313,8 +7449,8 @@ typedef union cvmx_pcieepx_cfg006 cvmx_pcieepx_cfg006_t;
 /**
  * cvmx_pcieep#_cfg006_mask
  *
- * The BAR 1 Mask register is invisible to host software and not readable from the application.
- * The BAR 1 Mask register is only writable through PEM()_CFG_WR.
+ * The BAR 1 mask register is invisible to host software and not readable from the application.
+ * The BAR 1 mask register is only writable through PEM()_CFG_WR.
  */
 union cvmx_pcieepx_cfg006_mask {
 	uint32_t u32;
@@ -6388,8 +7524,8 @@ typedef union cvmx_pcieepx_cfg007 cvmx_pcieepx_cfg007_t;
 /**
  * cvmx_pcieep#_cfg007_mask
  *
- * The BAR 1 Mask register is invisible to host software and not readable from the application.
- * The BAR 1 Mask register is only writable through PEM()_CFG_WR.
+ * The BAR 1 mask register is invisible to host software and not readable from the application.
+ * The BAR 1 mask register is only writable through PEM()_CFG_WR.
  */
 union cvmx_pcieepx_cfg007_mask {
 	uint32_t u32;
@@ -6497,8 +7633,8 @@ typedef union cvmx_pcieepx_cfg008 cvmx_pcieepx_cfg008_t;
 /**
  * cvmx_pcieep#_cfg008_mask
  *
- * The BAR 2 Mask register is invisible to host software and not readable from the application.
- * The BAR 2 Mask register is only writable through PEM()_CFG_WR.
+ * The BAR 2 mask register is invisible to host software and not readable from the application.
+ * The BAR 2 mask register is only writable through PEM()_CFG_WR.
  */
 union cvmx_pcieepx_cfg008_mask {
 	uint32_t u32;
@@ -6594,8 +7730,8 @@ typedef union cvmx_pcieepx_cfg009 cvmx_pcieepx_cfg009_t;
 /**
  * cvmx_pcieep#_cfg009_mask
  *
- * The BAR 2 Mask register is invisible to host software and not readable from the application.
- * The BAR 2 Mask register is only writable through PEM()_CFG_WR.
+ * The BAR 2 mask register is invisible to host software and not readable from the application.
+ * The BAR 2 mask register is only writable through PEM()_CFG_WR.
  */
 union cvmx_pcieepx_cfg009_mask {
 	uint32_t u32;
@@ -6672,11 +7808,9 @@ union cvmx_pcieepx_cfg011 {
 	struct cvmx_pcieepx_cfg011_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t ssid                         : 16; /**< Subsystem ID.
-                                                         Assigned by PCI-SIG, writable through PEM()_CFG_WR. However, the application must not
-                                                         change this field. */
+                                                         Assigned by PCI-SIG, writable through PEM()_CFG_WR. */
 	uint32_t ssvid                        : 16; /**< Subsystem vendor ID.
-                                                         Assigned by PCI-SIG, writable through PEM()_CFG_WR. However, the application must not
-                                                         change this field. */
+                                                         Assigned by PCI-SIG, writable through PEM()_CFG_WR. */
 #else
 	uint32_t ssvid                        : 16;
 	uint32_t ssid                         : 16;
@@ -6744,8 +7878,8 @@ typedef union cvmx_pcieepx_cfg012 cvmx_pcieepx_cfg012_t;
 /**
  * cvmx_pcieep#_cfg012_mask
  *
- * The ROM Mask register is invisible to host software and not readable from the application. The
- * ROM Mask register is only writable through PEM()_CFG_WR.
+ * The ROM mask register is invisible to host software and not readable from the application. The
+ * ROM mask register is only writable through PEM()_CFG_WR.
  */
 union cvmx_pcieepx_cfg012_mask {
 	uint32_t u32;
@@ -6946,8 +8080,7 @@ union cvmx_pcieepx_cfg017 {
 	uint32_t pmds                         : 4;  /**< Data select (not supported). */
 	uint32_t pmeens                       : 1;  /**< PME enable. A value of 1 indicates that the device is enabled to generate PME. */
 	uint32_t reserved_4_7                 : 4;
-	uint32_t nsr                          : 1;  /**< No soft reset, writable through PEM()_CFG_WR. However, the application must not change
-                                                         this field. */
+	uint32_t nsr                          : 1;  /**< No soft reset, writable through PEM()_CFG_WR. */
 	uint32_t reserved_2_2                 : 1;
 	uint32_t ps                           : 2;  /**< Power state. Controls the device power state:
                                                          0x0 = D0.
@@ -7300,12 +8433,10 @@ union cvmx_pcieepx_cfg029 {
 	uint32_t rber                         : 1;  /**< Role-based error reporting, writable through PEM()_CFG_WR. However, the application
                                                          must not change this field. */
 	uint32_t reserved_12_14               : 3;
-	uint32_t el1al                        : 3;  /**< Endpoint L1 acceptable latency, writable through PEM()_CFG_WR. However, the
-                                                         application must not change this field. */
-	uint32_t el0al                        : 3;  /**< Endpoint L0s acceptable latency, writable through PEM()_CFG_WR. However, the
-                                                         application must not change this field. */
+	uint32_t el1al                        : 3;  /**< Endpoint L1 acceptable latency, writable through PEM()_CFG_WR. */
+	uint32_t el0al                        : 3;  /**< Endpoint L0s acceptable latency, writable through PEM()_CFG_WR. */
 	uint32_t etfs                         : 1;  /**< Extended tag field supported. This bit is writable through
-                                                         PEM()_CFG_WR. However, the application must not write a 1 to this bit. */
+                                                         PEM()_CFG_WR. */
 	uint32_t pfs                          : 2;  /**< Phantom function supported. This field is writable through
                                                          PEM()_CFG_WR. However, phantom function is not supported. Therefore, the application
                                                          must not write any value other than 0x0 to this field. */
@@ -7442,7 +8573,7 @@ union cvmx_pcieepx_cfg030 {
 	uint32_t reserved_22_31               : 10;
 	uint32_t tp                           : 1;  /**< Transaction pending. Set to 1 when nonposted requests are not yet completed and set to 0
                                                          when they are completed. */
-	uint32_t ap_d                         : 1;  /**< Aux power detected. Set to 1 if Aux power detected. */
+	uint32_t ap_d                         : 1;  /**< AUX power detected. Set to 1 if AUX power detected. */
 	uint32_t ur_d                         : 1;  /**< Unsupported request detected. Errors are logged in this register regardless of whether or
                                                          not error reporting is enabled in the device control register. UR_D occurs when we receive
                                                          something unsupported. Unsupported requests are nonfatal errors, so UR_D should cause
@@ -7474,7 +8605,7 @@ union cvmx_pcieepx_cfg030 {
                                                          SLI_S2M_PORT()_CTL[MRRS] and DPI_SLI_PRT()_CFG[MRRS] must not exceed the desired
                                                          max read request size. */
 	uint32_t ns_en                        : 1;  /**< Enable no snoop. */
-	uint32_t ap_en                        : 1;  /**< AUX power PM enable (not suppported). */
+	uint32_t ap_en                        : 1;  /**< AUX power PM enable (not supported). */
 	uint32_t pf_en                        : 1;  /**< Phantom function enable. This bit should never be set; PEM requests never use phantom functions. */
 	uint32_t etf_en                       : 1;  /**< Extended tag field enable. */
 	uint32_t mps                          : 3;  /**< Max payload size. Legal values: 0x0 = 128 B, 0x1 = 256 B.
@@ -7627,8 +8758,7 @@ union cvmx_pcieepx_cfg031 {
 	uint32_t u32;
 	struct cvmx_pcieepx_cfg031_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t pnum                         : 8;  /**< Port number, writable through PEM()_CFG_WR. However, the application must not change
-                                                         this field. */
+	uint32_t pnum                         : 8;  /**< Port number, writable through PEM()_CFG_WR. */
 	uint32_t reserved_23_23               : 1;
 	uint32_t aspm                         : 1;  /**< ASPM optionality compliance. */
 	uint32_t lbnc                         : 1;  /**< Link bandwidth notification capability. Set to 0 for endpoint devices. */
@@ -7638,11 +8768,9 @@ union cvmx_pcieepx_cfg031 {
                                                          hardware configuration, writable through PEM()_CFG_WR. However, the application must not
                                                          change this field. */
 	uint32_t l1el                         : 3;  /**< L1 exit latency. The default value is the value that software specifies during hardware
-                                                         configuration, writable through PEM()_CFG_WR. However, the application must not change
-                                                         this field. */
+                                                         configuration, writable through PEM()_CFG_WR. */
 	uint32_t l0el                         : 3;  /**< L0s exit latency. The default value is the value that software specifies during hardware
-                                                         configuration, writable through PEM()_CFG_WR. However, the application must not change
-                                                         this field. */
+                                                         configuration, writable through PEM()_CFG_WR. */
 	uint32_t aslpms                       : 2;  /**< Active state link PM support. The default value is the value that software specifies
                                                          during hardware configuration, writable through PEM()_CFG_WR. However, the application
                                                          must not change this field. */
@@ -7653,19 +8781,19 @@ union cvmx_pcieepx_cfg031 {
                                                          Zeroing both [MLW] and [MLS] out of reset, using the EEPROM, will prevent the
                                                          link state machine from advancing past CONFIG.  This can be useful to allow
                                                          software to locally boot and perform preconfiguration and bug fixes.  Setting
-                                                         [MLW] and [MLS] to non-zero values will then allow the lttsm to advance and the
+                                                         [MLW] and [MLS] to nonzero values will then allow the lttsm to advance and the
                                                          link to come up. */
 	uint32_t mls                          : 4;  /**< Maximum link speed. The reset value of this field is controlled by the value read from
                                                          PEM()_CFG[MD].
                                                          _ MD is 0x0, reset to 0x1: 2.5 GHz supported.
                                                          _ MD is 0x1, reset to 0x2: 5.0 GHz and 2.5 GHz supported.
-                                                         _ MD is 0x2, reset to 0x3: 8.0 Ghz, 5.0 GHz and 2.5 GHz supported.
-                                                         _ MD is 0x3, reset to 0x3: 8.0 Ghz, 5.0 GHz and 2.5 GHz supported (RC Mode).
+                                                         _ MD is 0x2, reset to 0x3: 8.0 GHz, 5.0 GHz and 2.5 GHz supported.
+                                                         _ MD is 0x3, reset to 0x3: 8.0 GHz, 5.0 GHz and 2.5 GHz supported (RC Mode).
                                                          This field is writable through PEM()_CFG_WR.
                                                          Zeroing both [MLW] and [MLS] out of reset, using the EEPROM, will prevent the
                                                          link state machine from advancing past CONFIG.  This can be useful to allow
                                                          software to locally boot and perform preconfiguration and bug fixes.  Setting
-                                                         [MLW] and [MLS] to non-zero values will then allow the lttsm to advance and the
+                                                         [MLW] and [MLS] to nonzero values will then allow the lttsm to advance and the
                                                          link to come up. */
 #else
 	uint32_t mls                          : 4;
@@ -8441,7 +9569,7 @@ union cvmx_pcieepx_cfg039 {
 	uint32_t reserved_9_31                : 23;
 	uint32_t cls                          : 1;  /**< Crosslink supported. */
 	uint32_t slsv                         : 7;  /**< Supported link speeds vector. Indicates the supported link speeds of the associated port.
-                                                         For each bit, a value of 1b indicates that the corresponding link speed is supported;
+                                                         For each bit, a value of 1 b indicates that the corresponding link speed is supported;
                                                          otherwise, the link speed is not supported. Bit definitions are:
                                                          _ Bit <1> =  2.5 GT/s.
                                                          _ Bit <2> = 5.0 GT/s.
@@ -8450,8 +9578,8 @@ union cvmx_pcieepx_cfg039 {
                                                          The reset value of this field is controlled by the value read from PEM()_CFG[MD].
                                                          _ MD is 0x0, reset to 0x1: 2.5 GHz supported.
                                                          _ MD is 0x1, reset to 0x3: 5.0 GHz and 2.5 GHz supported.
-                                                         _ MD is 0x2, reset to 0x7: 8.0 Ghz, 5.0 GHz and 2.5 GHz supported.
-                                                         _ MD is 0x3, reset to 0x7: 8.0 Ghz, 5.0 GHz and 2.5 GHz supported (RC Mode). */
+                                                         _ MD is 0x2, reset to 0x7: 8.0 GHz, 5.0 GHz and 2.5 GHz supported.
+                                                         _ MD is 0x3, reset to 0x7: 8.0 GHz, 5.0 GHz and 2.5 GHz supported (RC Mode). */
 	uint32_t reserved_0_0                 : 1;
 #else
 	uint32_t reserved_0_0                 : 1;
@@ -8508,7 +9636,7 @@ union cvmx_pcieepx_cfg040 {
                                                          0 = -6 dB.
                                                          The value in this bit is undefined when the link is operating at 2.5 GT/s speed. */
 	uint32_t cde                          : 4;  /**< Compliance deemphasis. This bit sets the deemphasis level in polling. Compliance state if
-                                                         the entry occurred due to the Tx compliance receive bit being 1. Encodings:
+                                                         the entry occurred due to the TX compliance receive bit being 1. Encodings:
                                                          1 = -3.5 dB.
                                                          0 = -6 dB.
                                                          When the link is operating at 2.5 GT/s, the setting of this bit has no effect. */
@@ -8539,7 +9667,7 @@ union cvmx_pcieepx_cfg040 {
                                                          training sequences:
                                                          0x1 = 2.5 Gb/s target link speed.
                                                          0x2 = 5 Gb/s target link speed.
-                                                         0x4 = 8 Gb/s target link speed (not supported).
+                                                         0x3 = 8 Gb/s target link speed.
                                                          All other encodings are reserved.
                                                          If a value is written to this field that does not correspond to a speed included in the
                                                          supported link speeds field, the result is undefined. For both upstream and downstream
@@ -8548,8 +9676,8 @@ union cvmx_pcieepx_cfg040 {
                                                          The reset value of this field is controlled by the value read from PEM()_CFG[MD].
                                                          _ MD is 0x0, reset to 0x1: 2.5 GHz supported.
                                                          _ MD is 0x1, reset to 0x2: 5.0 GHz and 2.5 GHz supported.
-                                                         _ MD is 0x2, reset to 0x3: 8.0 Ghz, 5.0 GHz and 2.5 GHz supported.
-                                                         _ MD is 0x3, reset to 0x3: 8.0 Ghz, 5.0 GHz and 2.5 GHz supported (RC Mode). */
+                                                         _ MD is 0x2, reset to 0x3: 8.0 GHz, 5.0 GHz and 2.5 GHz supported.
+                                                         _ MD is 0x3, reset to 0x3: 8.0 GHz, 5.0 GHz and 2.5 GHz supported (RC Mode). */
 #else
 	uint32_t tls                          : 4;
 	uint32_t ec                           : 1;
@@ -8749,10 +9877,10 @@ union cvmx_pcieepx_cfg044 {
                                                          per-vector mask bits. */
 	uint32_t reserved_27_29               : 3;
 	uint32_t msixts                       : 11; /**< MSI-X table size encoded as (table size - 1). Writable through PEM()_CFG_WR.
-                                                         This field is writable by issueing a PEM()_CFG_WR to PCIEEP(0)_CFG044
+                                                         This field is writable by issuing a PEM()_CFG_WR to PCIEEP(0)_CFG044
                                                          when PEM()_CFG_WR[ADDR[31]] is set. */
 	uint32_t ncp                          : 8;  /**< Next capability pointer */
-	uint32_t msixcid                      : 8;  /**< MSI-X Capability ID */
+	uint32_t msixcid                      : 8;  /**< MSI-X capability ID */
 #else
 	uint32_t msixcid                      : 8;
 	uint32_t ncp                          : 8;
@@ -8779,7 +9907,7 @@ union cvmx_pcieepx_cfg045 {
 	uint32_t u32;
 	struct cvmx_pcieepx_cfg045_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t msixtoffs                    : 29; /**< MSI-X table offset register. Base address of the MSI-X Table, as an offset from the base
+	uint32_t msixtoffs                    : 29; /**< MSI-X table offset register. Base address of the MSI-X table, as an offset from the base
                                                          address of the BAR indicated by the Table BIR bits.
                                                          Writable through PEM()_CFG_WR. However, the application must not change this field. */
 	uint32_t msixtbir                     : 3;  /**< MSI-X table BAR indicator register (BIR). Indicates which BAR is used to map the MSI-X
@@ -10165,9 +11293,12 @@ union cvmx_pcieepx_cfg086 {
 	uint32_t u32;
 	struct cvmx_pcieepx_cfg086_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t nco                          : 12; /**< Next capability offset. Points to the PCI Express SR-IOV capability header by default. */
-	uint32_t cv                           : 4;  /**< Capability version */
-	uint32_t pcieec                       : 16; /**< PCIE Express extended capability */
+	uint32_t nco                          : 12; /**< Next capability offset. Points to the PCI Express SR-IOV capability header by default.
+                                                         Writable through PEM()_CFG_WR. However, the application must not change this field. */
+	uint32_t cv                           : 4;  /**< Capability version
+                                                         Writable through PEM()_CFG_WR. However, the application must not change this field. */
+	uint32_t pcieec                       : 16; /**< PCIE Express extended capability
+                                                         Writable through PEM()_CFG_WR. However, the application must not change this field. */
 #else
 	uint32_t pcieec                       : 16;
 	uint32_t cv                           : 4;
@@ -10191,13 +11322,9 @@ union cvmx_pcieepx_cfg087 {
 	uint32_t u32;
 	struct cvmx_pcieepx_cfg087_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t reserved_2_31                : 30;
-	uint32_t ler                          : 1;  /**< Link equalization request interrupt enable. */
-	uint32_t pe                           : 1;  /**< Perform equalization. */
+	uint32_t reserved_0_31                : 32;
 #else
-	uint32_t pe                           : 1;
-	uint32_t ler                          : 1;
-	uint32_t reserved_2_31                : 30;
+	uint32_t reserved_0_31                : 32;
 #endif
 	} s;
 	struct cvmx_pcieepx_cfg087_s          cn73xx;
@@ -10242,15 +11369,11 @@ union cvmx_pcieepx_cfg089 {
 	struct cvmx_pcieepx_cfg089_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_31_31               : 1;
-	uint32_t l1dph                        : 3;  /**< Lane 1 downstream component receiver preset hint. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
-	uint32_t l1dtp                        : 4;  /**< Lane 1 downstream component transmitter preset. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
+	uint32_t l1dph                        : 3;  /**< Lane 1 downstream component receiver preset hint. Writable through PEM()_CFG_WR. */
+	uint32_t l1dtp                        : 4;  /**< Lane 1 downstream component transmitter preset. Writable through PEM()_CFG_WR. */
 	uint32_t reserved_15_23               : 9;
-	uint32_t l0dph                        : 3;  /**< Lane 0 downstream component receiver preset hint. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
-	uint32_t l0dtp                        : 4;  /**< Lane 0 downstream component transmitter preset. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
+	uint32_t l0dph                        : 3;  /**< Lane 0 downstream component receiver preset hint. Writable through PEM()_CFG_WR. */
+	uint32_t l0dtp                        : 4;  /**< Lane 0 downstream component transmitter preset. Writable through PEM()_CFG_WR. */
 	uint32_t reserved_0_7                 : 8;
 #else
 	uint32_t reserved_0_7                 : 8;
@@ -10280,15 +11403,11 @@ union cvmx_pcieepx_cfg090 {
 	struct cvmx_pcieepx_cfg090_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_31_31               : 1;
-	uint32_t l3dph                        : 3;  /**< Lane 3 downstream component receiver preset hint. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
-	uint32_t l3dtp                        : 4;  /**< Lane 3 downstream component transmitter preset. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
+	uint32_t l3dph                        : 3;  /**< Lane 3 downstream component receiver preset hint. Writable through PEM()_CFG_WR. */
+	uint32_t l3dtp                        : 4;  /**< Lane 3 downstream component transmitter preset. Writable through PEM()_CFG_WR. */
 	uint32_t reserved_15_23               : 9;
-	uint32_t l2dph                        : 3;  /**< Lane 2 downstream component receiver preset hint. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
-	uint32_t l2dtp                        : 4;  /**< Lane 2 downstream component transmitter preset. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
+	uint32_t l2dph                        : 3;  /**< Lane 2 downstream component receiver preset hint. Writable through PEM()_CFG_WR. */
+	uint32_t l2dtp                        : 4;  /**< Lane 2 downstream component transmitter preset. Writable through PEM()_CFG_WR. */
 	uint32_t reserved_0_7                 : 8;
 #else
 	uint32_t reserved_0_7                 : 8;
@@ -10318,15 +11437,11 @@ union cvmx_pcieepx_cfg091 {
 	struct cvmx_pcieepx_cfg091_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_31_31               : 1;
-	uint32_t l5dph                        : 3;  /**< Lane 5 downstream component receiver preset hint. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
-	uint32_t l5dtp                        : 4;  /**< Lane 5 downstream component transmitter preset. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
+	uint32_t l5dph                        : 3;  /**< Lane 5 downstream component receiver preset hint. Writable through PEM()_CFG_WR. */
+	uint32_t l5dtp                        : 4;  /**< Lane 5 downstream component transmitter preset. Writable through PEM()_CFG_WR. */
 	uint32_t reserved_15_23               : 9;
-	uint32_t l4dph                        : 3;  /**< Lane 4 downstream component receiver preset hint. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
-	uint32_t l4dtp                        : 4;  /**< Lane 4 downstream component transmitter preset. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
+	uint32_t l4dph                        : 3;  /**< Lane 4 downstream component receiver preset hint. Writable through PEM()_CFG_WR. */
+	uint32_t l4dtp                        : 4;  /**< Lane 4 downstream component transmitter preset. Writable through PEM()_CFG_WR. */
 	uint32_t reserved_0_7                 : 8;
 #else
 	uint32_t reserved_0_7                 : 8;
@@ -10356,15 +11471,11 @@ union cvmx_pcieepx_cfg092 {
 	struct cvmx_pcieepx_cfg092_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_31_31               : 1;
-	uint32_t l7dph                        : 3;  /**< Lane 7 downstream component receiver preset hint. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
-	uint32_t l7dtp                        : 4;  /**< Lane 7 downstream component transmitter preset. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
+	uint32_t l7dph                        : 3;  /**< Lane 7 downstream component receiver preset hint. Writable through PEM()_CFG_WR. */
+	uint32_t l7dtp                        : 4;  /**< Lane 7 downstream component transmitter preset. Writable through PEM()_CFG_WR. */
 	uint32_t reserved_15_23               : 9;
-	uint32_t l6dph                        : 3;  /**< Lane 6 downstream component receiver preset hint. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
-	uint32_t l6dtp                        : 4;  /**< Lane 6 downstream component transmitter preset. Writable through PEM()_CFG_WR.
-                                                         However, the application must not change this field. */
+	uint32_t l6dph                        : 3;  /**< Lane 6 downstream component receiver preset hint. Writable through PEM()_CFG_WR. */
+	uint32_t l6dtp                        : 4;  /**< Lane 6 downstream component transmitter preset. Writable through PEM()_CFG_WR. */
 	uint32_t reserved_0_7                 : 8;
 #else
 	uint32_t reserved_0_7                 : 8;
@@ -10487,15 +11598,18 @@ union cvmx_pcieepx_cfg097 {
 	uint32_t u32;
 	struct cvmx_pcieepx_cfg097_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t tvf                          : 16; /**< Total VFs.  Read-only copy of PCIEP()_CFG097[IVF]. */
+	uint32_t tvf                          : 16; /**< Total VFs.  Read-only copy of PCIEEP()_CFG097[IVF]. */
 	uint32_t ivf                          : 16; /**< Initial VFs.
+                                                         Reset values:
+                                                         _ ARI:          0x40.
+                                                         _ non-ARI:      0x40.
                                                          There are two InitialVFs registers; one for each ARI Capable
-                                                         and non-ARI Capable Hierarchies.  The PCIEP()_CFG096[ARI] determines which one is
+                                                         and non-ARI capable hierarchies.  The PCIEEP()_CFG096[ARI] determines which one is
                                                          being used for SR-IOV, and which one is accessed by a read request.
                                                          This field is writable through PEM()_CFG_WR, PEM()_CFG_WR[ADDR[31]] determines
                                                          which IVF register is updated.
-                                                         0 = accesses non-ARI Capable Hieracrhy copy of IVF.
-                                                         1 = accesses ARI Capable Hieracrhy copy of IVF. */
+                                                         0 = accesses non-ARI Capable Hierarchy copy of IVF.
+                                                         1 = accesses ARI Capable Hierarchy copy of IVF. */
 #else
 	uint32_t ivf                          : 16;
 	uint32_t tvf                          : 16;
@@ -10545,23 +11659,27 @@ union cvmx_pcieepx_cfg099 {
 	struct cvmx_pcieepx_cfg099_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t vfs                          : 16; /**< VF stride.
+                                                         Reset values:
+                                                         _ ARI:          0x1.
+                                                         _ non-ARI:      0x1.
                                                          There are two VF Stride registers per PF; one for each ARI Capable
-                                                         and non-ARI Capable Hierarchies.  The PCIEP()_CFG096[ACH] determines which one is
+                                                         and non-ARI capable hierarchies.  The PCIEEP()_CFG096[ACH] determines which one is
                                                          being used for SR-IOV, and which one is accessed by a read request.
                                                          This field is writable through PEM()_CFG_WR, PEM()_CFG_WR[ADDR[31]] determines
                                                          which VFS register is updated.
-                                                         0 = accesses non-ARI Capable Hieracrhy copy of VFS.
-                                                         1 = accesses ARI Capable Hieracrhy copy of VFS. */
+                                                         0 = accesses non-ARI capable hierarchy copy of VFS.
+                                                         1 = accesses ARI capable hierarchy copy of VFS. */
 	uint32_t fo                           : 16; /**< First VF offset.
-                                                         There are two First VF Offset registers;  one for each ARI Capable
-                                                         and non-ARI Capable Hierarchies.  The PCIEP()_CFG096[ARI] determines which one is
+                                                         Reset values:
+                                                         _ ARI:          0x1.
+                                                         _ non-ARI:      0x1.
+                                                         There are two first VF offset registers;  one for each ARI capable
+                                                         and non-ARI capable hierarchies.  The PCIEEP()_CFG096[ARI] determines which one is
                                                          being used for SR-IOV, and which one is accessed by a read request.
                                                          This field is writable through PEM()_CFG_WR, PEM()_CFG_WR[ADDR[31]] determines
                                                          which FO register is updated.
-                                                         0 = accesses non-ARI Capable Hieracrhy copy of FO.
-                                                         1 = accesses ARI Capable Hieracrhy copy of FO.
-                                                         SPEM_CFG_WR[ADDR[25:24] determines the physical function accessed by the write.
-                                                         0..2 are legal values in EP mode. */
+                                                         0 = accesses non-ARI capable hierarchy copy of FO.
+                                                         1 = accesses ARI capable hierarchy copy of FO. */
 #else
 	uint32_t fo                           : 16;
 	uint32_t vfs                          : 16;
@@ -11031,7 +12149,7 @@ union cvmx_pcieepx_cfg450 {
                                                          register
                                                          to go low-power. This register is intended for applications that do not let the PCI
                                                          Express bus handle a completion for configuration request to the power management control
-                                                         and status (PCIEP()_CFG017) register. */
+                                                         and status (PCIEEP()_CFG017) register. */
 	uint32_t reserved_22_23               : 2;
 	uint32_t link_state                   : 6;  /**< Link state. The link state that the PCI Express bus is forced to when bit 15 (force link)
                                                          is set. State encoding:
@@ -11067,42 +12185,32 @@ union cvmx_pcieepx_cfg450 {
                                                          0x1D = LPBK_EXIT_TIMEOUT.
                                                          0x1E = HOT_RESET_ENTRY.
                                                          0x1F = HOT_RESET. */
-	uint32_t force_link                   : 1;  /**< Force link. Forces the link to the state specified by the LINK_STATE field. The force link
+	uint32_t force_link                   : 1;  /**< Force link. Forces the link to the state specified by [LINK_STATE]. The force link
                                                          pulse triggers link renegotiation.
                                                          As the force link is a pulse, writing a 1 to it does trigger the forced link state event,
                                                          even though reading it always returns a 0. */
-	uint32_t reserved_12_14               : 3;
-	uint32_t link_cmd                     : 4;  /**< Link Command
-                                                         The Link command that the PCI Express Core will be forced to
-                                                         transmit when bit 15 (Force Link) is set.
-                                                         Command encoding:
-                                                         o PEM_SEND_IDLE              1h
-                                                         o PEM_SEND_EIDLE             2h
-                                                         o PEM_XMT_IN_EIDLE           3h
-                                                         o PEM_MOD_COMPL_PATTERN      4h
-                                                         o PEM_SEND_RCVR_DETECT_SEQ   5h
-                                                         o PEM_SEND_TS1               6h
-                                                         o PEM_SEND_TS2               7h
-                                                         o PEM_COMPLIANCE_PATTERN     8h
-                                                         o PEM_SEND_SDS               9h
-                                                         o PEM_SEND_BEACON            ah
-                                                         o PEM_SEND_N_FTS             bh
-                                                         o PEM_NORM                   ch
-                                                         o PEM_SEND_SKP               dh
-                                                         o PEM_SEND_EIES              eh
-                                                         o PEM_SEND_EIES_SYM          fh */
+	uint32_t reserved_8_14                : 7;
 	uint32_t link_num                     : 8;  /**< Link number. Not used for endpoint. */
 #else
 	uint32_t link_num                     : 8;
-	uint32_t link_cmd                     : 4;
-	uint32_t reserved_12_14               : 3;
+	uint32_t reserved_8_14                : 7;
 	uint32_t force_link                   : 1;
 	uint32_t link_state                   : 6;
 	uint32_t reserved_22_23               : 2;
 	uint32_t lpec                         : 8;
 #endif
 	} s;
-	struct cvmx_pcieepx_cfg450_cn52xx {
+	struct cvmx_pcieepx_cfg450_s          cn52xx;
+	struct cvmx_pcieepx_cfg450_s          cn52xxp1;
+	struct cvmx_pcieepx_cfg450_s          cn56xx;
+	struct cvmx_pcieepx_cfg450_s          cn56xxp1;
+	struct cvmx_pcieepx_cfg450_s          cn61xx;
+	struct cvmx_pcieepx_cfg450_s          cn63xx;
+	struct cvmx_pcieepx_cfg450_s          cn63xxp1;
+	struct cvmx_pcieepx_cfg450_s          cn66xx;
+	struct cvmx_pcieepx_cfg450_s          cn68xx;
+	struct cvmx_pcieepx_cfg450_s          cn68xxp1;
+	struct cvmx_pcieepx_cfg450_cn70xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t lpec                         : 8;  /**< Low Power Entrance Count
                                                          The Power Management state will wait for this many clock cycles
@@ -11154,34 +12262,103 @@ union cvmx_pcieepx_cfg450 {
                                                          * As the The Force Link is a pulse, writing a 1 to it does
                                                            trigger the forced link state event, even thought reading it
                                                            always returns a 0. */
-	uint32_t reserved_8_14                : 7;
+	uint32_t reserved_12_14               : 3;
+	uint32_t link_cmd                     : 4;  /**< Link Command
+                                                         The Link command that the PCI Express Core will be forced to
+                                                         transmit when bit 15 (Force Link) is set.
+                                                         Command encoding:
+                                                         o PEM_SEND_IDLE              1h
+                                                         o PEM_SEND_EIDLE             2h
+                                                         o PEM_XMT_IN_EIDLE           3h
+                                                         o PEM_MOD_COMPL_PATTERN      4h
+                                                         o PEM_SEND_RCVR_DETECT_SEQ   5h
+                                                         o PEM_SEND_TS1               6h
+                                                         o PEM_SEND_TS2               7h
+                                                         o PEM_COMPLIANCE_PATTERN     8h
+                                                         o PEM_SEND_SDS               9h
+                                                         o PEM_SEND_BEACON            ah
+                                                         o PEM_SEND_N_FTS             bh
+                                                         o PEM_NORM                   ch
+                                                         o PEM_SEND_SKP               dh
+                                                         o PEM_SEND_EIES              eh
+                                                         o PEM_SEND_EIES_SYM          fh */
 	uint32_t link_num                     : 8;  /**< Link Number
                                                          Not used for Endpoint */
 #else
 	uint32_t link_num                     : 8;
-	uint32_t reserved_8_14                : 7;
+	uint32_t link_cmd                     : 4;
+	uint32_t reserved_12_14               : 3;
 	uint32_t force_link                   : 1;
 	uint32_t link_state                   : 6;
 	uint32_t reserved_22_23               : 2;
 	uint32_t lpec                         : 8;
 #endif
-	} cn52xx;
-	struct cvmx_pcieepx_cfg450_cn52xx     cn52xxp1;
-	struct cvmx_pcieepx_cfg450_cn52xx     cn56xx;
-	struct cvmx_pcieepx_cfg450_cn52xx     cn56xxp1;
-	struct cvmx_pcieepx_cfg450_cn52xx     cn61xx;
-	struct cvmx_pcieepx_cfg450_cn52xx     cn63xx;
-	struct cvmx_pcieepx_cfg450_cn52xx     cn63xxp1;
-	struct cvmx_pcieepx_cfg450_cn52xx     cn66xx;
-	struct cvmx_pcieepx_cfg450_cn52xx     cn68xx;
-	struct cvmx_pcieepx_cfg450_cn52xx     cn68xxp1;
-	struct cvmx_pcieepx_cfg450_s          cn70xx;
-	struct cvmx_pcieepx_cfg450_s          cn70xxp1;
-	struct cvmx_pcieepx_cfg450_cn52xx     cn73xx;
-	struct cvmx_pcieepx_cfg450_cn52xx     cn78xx;
-	struct cvmx_pcieepx_cfg450_cn52xx     cn78xxp2;
-	struct cvmx_pcieepx_cfg450_cn52xx     cnf71xx;
-	struct cvmx_pcieepx_cfg450_cn52xx     cnf75xx;
+	} cn70xx;
+	struct cvmx_pcieepx_cfg450_cn70xx     cn70xxp1;
+	struct cvmx_pcieepx_cfg450_cn73xx {
+#ifdef __BIG_ENDIAN_BITFIELD
+	uint32_t lpec                         : 8;  /**< Low power entrance count. The power management state waits this many clock cycles for the
+                                                         associated completion of a CfgWr to PCIEEP()_CFG017 register, power state (PS) field
+                                                         register
+                                                         to go low-power. This register is intended for applications that do not let the PCI
+                                                         Express bus handle a completion for configuration request to the power management control
+                                                         and status (PCIEEP()_CFG017) register. */
+	uint32_t reserved_22_23               : 2;
+	uint32_t link_state                   : 6;  /**< Link state. The link state that the PCI Express bus is forced to when bit 15 (force link)
+                                                         is set. State encoding:
+                                                         0x0 = DETECT_QUIET.
+                                                         0x1 = DETECT_ACT.
+                                                         0x2 = POLL_ACTIVE.
+                                                         0x3 = POLL_COMPLIANCE.
+                                                         0x4 = POLL_CONFIG.
+                                                         0x5 = PRE_DETECT_QUIET.
+                                                         0x6 = DETECT_WAIT.
+                                                         0x7 = CFG_LINKWD_START.
+                                                         0x8 = CFG_LINKWD_ACEPT.
+                                                         0x9 = CFG_LANENUM_WAIT.
+                                                         0xA = CFG_LANENUM_ACEPT.
+                                                         0xB = CFG_COMPLETE.
+                                                         0xC = CFG_IDLE.
+                                                         0xD = RCVRY_LOCK.
+                                                         0xE = RCVRY_SPEED.
+                                                         0xF = RCVRY_RCVRCFG.
+                                                         0x10 = RCVRY_IDLE.
+                                                         0x11 = L0.
+                                                         0x12 = L0S.
+                                                         0x13 = L123_SEND_EIDLE.
+                                                         0x14 = L1_IDLE.
+                                                         0x15 = L2_IDLE.
+                                                         0x16 = L2_WAKE.
+                                                         0x17 = DISABLED_ENTRY.
+                                                         0x18 = DISABLED_IDLE.
+                                                         0x19 = DISABLED.
+                                                         0x1A = LPBK_ENTRY.
+                                                         0x1B = LPBK_ACTIVE.
+                                                         0x1C = LPBK_EXIT.
+                                                         0x1D = LPBK_EXIT_TIMEOUT.
+                                                         0x1E = HOT_RESET_ENTRY.
+                                                         0x1F = HOT_RESET. */
+	uint32_t force_link                   : 1;  /**< Force link. Forces the link to the state specified by [LINK_STATE]. The force link
+                                                         pulse triggers link renegotiation.
+                                                         As the force link is a pulse, writing a 1 to it does trigger the forced link state event,
+                                                         even though reading it always returns a 0. */
+	uint32_t reserved_12_14               : 3;
+	uint32_t forced_ltssm                 : 4;  /**< Forced link command. */
+	uint32_t link_num                     : 8;  /**< Link number. Not used for endpoint. */
+#else
+	uint32_t link_num                     : 8;
+	uint32_t forced_ltssm                 : 4;
+	uint32_t reserved_12_14               : 3;
+	uint32_t force_link                   : 1;
+	uint32_t link_state                   : 6;
+	uint32_t reserved_22_23               : 2;
+	uint32_t lpec                         : 8;
+#endif
+	} cn73xx;
+	struct cvmx_pcieepx_cfg450_cn73xx     cn78xx;
+	struct cvmx_pcieepx_cfg450_cn73xx     cn78xxp2;
+	struct cvmx_pcieepx_cfg450_s          cnf71xx;
+	struct cvmx_pcieepx_cfg450_cn73xx     cnf75xx;
 };
 typedef union cvmx_pcieepx_cfg450 cvmx_pcieepx_cfg450_t;
 
@@ -11596,7 +12773,8 @@ union cvmx_pcieepx_cfg453 {
 	uint32_t ack_nak                      : 1;  /**< Ack/Nak disable. Prevents the PCI Express bus from sending Ack and Nak DLLPs. */
 	uint32_t fcd                          : 1;  /**< Flow control disable. Prevents the PCI Express bus from sending FC DLLPs. */
 	uint32_t ilst                         : 24; /**< Insert lane skew for transmit. Causes skew between lanes for test purposes. There are
-                                                         three bits per lane. The value is in units of one symbol time. For example, the value 010b
+                                                         three bits per lane. The value is in units of one symbol time. For example, the value 010
+                                                         b
                                                          for a lane forces a skew of two symbol times for that lane. The maximum skew value for any
                                                          lane is 5 symbol times. */
 #else
@@ -11975,7 +13153,7 @@ union cvmx_pcieepx_cfg460 {
 	struct cvmx_pcieepx_cfg460_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_20_31               : 12;
-	uint32_t tphfcc                       : 8;  /**< Transmit posted header FC Credits. The posted header credits advertised by the receiver at
+	uint32_t tphfcc                       : 8;  /**< Transmit posted header FC credits. The posted header credits advertised by the receiver at
                                                          the other end of the link, updated with each UpdateFC DLLP. */
 	uint32_t tpdfcc                       : 12; /**< Transmit posted data FC credits. The posted data credits advertised by the receiver at the
                                                          other end of the link, updated with each UpdateFC DLLP. */
@@ -12562,11 +13740,12 @@ union cvmx_pcieepx_cfg515 {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint32_t reserved_21_31               : 11;
 	uint32_t s_d_e                        : 1;  /**< SEL_DE_EMPHASIS. Used to set the deemphasis level for upstream ports. */
-	uint32_t ctcrb                        : 1;  /**< Config Tx compliance receive bit. When set to 1, signals LTSSM to transmit TS ordered sets
+	uint32_t ctcrb                        : 1;  /**< Config TX compliance receive bit. When set to 1, signals LTSSM to transmit TS ordered sets
                                                          with the compliance receive bit assert (equal to 1). */
-	uint32_t cpyts                        : 1;  /**< Config PHY Tx swing. Indicates the voltage level that the PHY should drive. When set to 1,
+	uint32_t cpyts                        : 1;  /**< Config PHY TX swing. Indicates the voltage level that the PHY should drive. When set to 1,
                                                          indicates full swing. When set to 0, indicates low swing. */
-	uint32_t dsc                          : 1;  /**< Directed speed change. A write of 1 initiates a speed change; always reads as zero. */
+	uint32_t dsc                          : 1;  /**< Directed speed change. A write of 1 initiates a speed change.
+                                                         When the speed change occurs, the controller will clear the contents of this field. */
 	uint32_t le                           : 9;  /**< Lane enable. Indicates the number of lanes to check for exit from electrical idle in
                                                          Polling.Active and Polling.Compliance. 0x1 = x1, 0x2 = x2, etc. Used to limit the maximum
                                                          link width to ignore broken lanes that detect a receiver, but will not exit electrical
@@ -12574,7 +13753,8 @@ union cvmx_pcieepx_cfg515 {
 	uint32_t n_fts                        : 8;  /**< N_FTS. Sets the number of fast training sequences (N_FTS) that the core advertises as its
                                                          N_FTS during GEN2 Link training. This value is used to inform the link partner about the
                                                          PHY's ability to recover synchronization after a low power state.
-                                                         Do not set N_FTS to zero; doing so can cause the LTSSM to go into the recovery state when
+                                                         Do not set [N_FTS] to zero; doing so can cause the LTSSM to go into the recovery state
+                                                         when
                                                          exiting from L0s. */
 #else
 	uint32_t n_fts                        : 8;
@@ -12682,11 +13862,16 @@ union cvmx_pcieepx_cfg548 {
 	uint32_t u32;
 	struct cvmx_pcieepx_cfg548_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t reserved_19_31               : 13;
+	uint32_t reserved_26_31               : 6;
+	uint32_t rss                          : 2;  /**< Data rate for shadow register.  Hard-wired for Gen3. */
+	uint32_t eiedd                        : 1;  /**< Eq InvalidRequest and RxEqEval Different Time Assertion Disable.  Disable the assertion of
+                                                         Eq InvalidRequest and RxEqEval at different time. */
+	uint32_t reserved_19_22               : 4;
 	uint32_t dcbd                         : 1;  /**< Disable balance disable. Disable DC balance feature. */
 	uint32_t dtdd                         : 1;  /**< DLLP transmission delay disable. Disable delay transmission of DLLPs before equalization. */
 	uint32_t ed                           : 1;  /**< Equalization disable. Disable equalization feature. */
-	uint32_t reserved_12_15               : 4;
+	uint32_t reserved_13_15               : 3;
+	uint32_t rxeq_ph01_en                 : 1;  /**< Rx Equalization Phase 0/Phase 1 Hold Enable. */
 	uint32_t erd                          : 1;  /**< Equalization redo disable. Disable requesting reset of EIEOS count during equalization. */
 	uint32_t ecrd                         : 1;  /**< Equalization EIEOS count reset disable. Disable requesting reset of EIEOS count during
                                                          equalization. */
@@ -12703,11 +13888,15 @@ union cvmx_pcieepx_cfg548 {
 	uint32_t ep2p3d                       : 1;
 	uint32_t ecrd                         : 1;
 	uint32_t erd                          : 1;
-	uint32_t reserved_12_15               : 4;
+	uint32_t rxeq_ph01_en                 : 1;
+	uint32_t reserved_13_15               : 3;
 	uint32_t ed                           : 1;
 	uint32_t dtdd                         : 1;
 	uint32_t dcbd                         : 1;
-	uint32_t reserved_19_31               : 13;
+	uint32_t reserved_19_22               : 4;
+	uint32_t eiedd                        : 1;
+	uint32_t rss                          : 2;
+	uint32_t reserved_26_31               : 6;
 #endif
 	} s;
 	struct cvmx_pcieepx_cfg548_s          cn73xx;
@@ -12727,9 +13916,12 @@ union cvmx_pcieepx_cfg554 {
 	uint32_t u32;
 	struct cvmx_pcieepx_cfg554_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint32_t reserved_25_31               : 7;
+	uint32_t reserved_27_31               : 5;
+	uint32_t scefpm                       : 1;  /**< Request core to send back-to-back EIEOS in Recovery.RcvrLock state until
+                                                         presets to coefficient mapping is complete. */
+	uint32_t reserved_25_25               : 1;
 	uint32_t iif                          : 1;  /**< Include initial FOM. Include, or not, the FOM feedback from the initial preset evaluation
-                                                         performed in the EQ Master, when finding the highest FOM among all preset evaluations. */
+                                                         performed in the EQ master, when finding the highest FOM among all preset evaluations. */
 	uint32_t prv                          : 16; /**< Preset request vector. Requesting of presets during the initial part of the EQ master
                                                          phase. Encoding scheme as follows:
                                                          Bit [15:0] = 0x0: No preset is requested and evaluated in the EQ master phase.
@@ -12762,8 +13954,8 @@ union cvmx_pcieepx_cfg554 {
                                                          0 = Recovery.Speed.
                                                          1 = Recovry.Equalization.RcrLock.
                                                          When optimal settings are not found:
-                                                         * Equalization phase 3 successful status bit is not set in the Link Status Register
-                                                         * Equalization phase 3 complete status bit is set in the Link Status Register */
+                                                         * Equalization phase 3 successful status bit is not set in the link status register.
+                                                         * Equalization phase 3 complete status bit is set in the link status register. */
 	uint32_t fm                           : 4;  /**< Feedback mode.
                                                          0 = Direction of change (not supported).
                                                          1 = Figure of merit.
@@ -12775,7 +13967,9 @@ union cvmx_pcieepx_cfg554 {
 	uint32_t reserved_6_7                 : 2;
 	uint32_t prv                          : 16;
 	uint32_t iif                          : 1;
-	uint32_t reserved_25_31               : 7;
+	uint32_t reserved_25_25               : 1;
+	uint32_t scefpm                       : 1;
+	uint32_t reserved_27_31               : 5;
 #endif
 	} s;
 	struct cvmx_pcieepx_cfg554_s          cn73xx;
@@ -12808,5 +14002,30 @@ union cvmx_pcieepx_cfg558 {
 	struct cvmx_pcieepx_cfg558_s          cnf75xx;
 };
 typedef union cvmx_pcieepx_cfg558 cvmx_pcieepx_cfg558_t;
+
+/**
+ * cvmx_pcieep#_cfg559
+ *
+ * This register contains the five hundred sixtieth 32-bits of PCIe type 0 configuration space.
+ *
+ */
+union cvmx_pcieepx_cfg559 {
+	uint32_t u32;
+	struct cvmx_pcieepx_cfg559_s {
+#ifdef __BIG_ENDIAN_BITFIELD
+	uint32_t reserved_1_31                : 31;
+	uint32_t dbi_ro_wr_en                 : 1;  /**< Write to RO registers using DBI.  When you set this bit, then some
+                                                         RO bits are writable from the DBI. */
+#else
+	uint32_t dbi_ro_wr_en                 : 1;
+	uint32_t reserved_1_31                : 31;
+#endif
+	} s;
+	struct cvmx_pcieepx_cfg559_s          cn73xx;
+	struct cvmx_pcieepx_cfg559_s          cn78xx;
+	struct cvmx_pcieepx_cfg559_s          cn78xxp2;
+	struct cvmx_pcieepx_cfg559_s          cnf75xx;
+};
+typedef union cvmx_pcieepx_cfg559 cvmx_pcieepx_cfg559_t;
 
 #endif

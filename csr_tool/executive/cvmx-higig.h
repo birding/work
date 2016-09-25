@@ -1,5 +1,5 @@
 /***********************license start***************
- * Copyright (c) 2003-2010  Cavium Inc. (support@cavium.com). All rights
+ * Copyright (c) 2003-2016  Cavium Inc. (support@cavium.com). All rights
  * reserved.
  *
  *
@@ -43,14 +43,18 @@
  * Functions and typedefs for using Octeon in HiGig/HiGig+/HiGig2 mode over
  * XAUI.
  *
- * <hr>$Revision: 91069 $<hr>
+ * <hr>$Revision: 144255 $<hr>
  */
 
 #ifndef __CVMX_HIGIG_H__
 #define __CVMX_HIGIG_H__
 #include "cvmx-wqe.h"
+#include "cvmx-pki.h"
+#include "cvmx-pki-resources.h"
 #include "cvmx-helper.h"
+#include "cvmx-helper-bgx.h"
 #include "cvmx-helper-util.h"
+#include "cvmx-bgxx-defs.h"
 
 #ifdef	__cplusplus
 /* *INDENT-OFF* */
@@ -339,10 +343,9 @@ typedef struct {
 } cvmx_higig2_header_t;
 
 
-static inline void __cvmx_higig_set_qos_priority(void)
+static inline void __cvmx_higig_set_qos_priority_o68(void)
 {
 	int i;
-	if (OCTEON_IS_MODEL(OCTEON_CN68XX)) {
 		cvmx_pip_pri_tblx_t pip_pri_tbl;
 
 		for (i = 0; i < 64; i++) {
@@ -350,7 +353,12 @@ static inline void __cvmx_higig_set_qos_priority(void)
 			pip_pri_tbl.s.hg2_qos = i & 7;
 			cvmx_write_csr(CVMX_PIP_PRI_TBLX(i), pip_pri_tbl.u64);
 		}
-	} else {
+}
+
+static inline void __cvmx_higig_set_qos_priority_o1(void)
+{
+	int i;
+
 		for (i = 0; i < 64; i++) {
 			cvmx_pip_hg_pri_qos_t pip_hg_pri_qos;
 			pip_hg_pri_qos.u64 = 0;
@@ -359,21 +367,15 @@ static inline void __cvmx_higig_set_qos_priority(void)
 			pip_hg_pri_qos.s.qos = i & 7;
 			cvmx_write_csr(CVMX_PIP_HG_PRI_QOS, pip_hg_pri_qos.u64);
 		}
-	}
+
 }
 
-/**
- * Initialize the HiGig aspects of a XAUI interface. This function
- * should be called before the cvmx-helper generic init.
- *
- * @param interface Interface to initialize HiGig on (0-1)
- * @param enable_higig2
- *                  Non zero to enable HiGig2 support. Zero to support HiGig
- *                  and HiGig+.
- *
- * @return Zero on success, negative on failure
+/*
+ * The function below for pre-CN68XX models was derived from
+ * a version that combines them with CN68XX, and needs to be
+ * reviewed to see on which specific models it may in fact work.
  */
-static inline int cvmx_higig_initialize(int interface, int enable_higig2)
+static inline int cvmx_higig_init_o1(int interface, int enable_higig2)
 {
 	cvmx_pip_prt_cfgx_t pip_prt_cfg;
 	cvmx_gmxx_rxx_udd_skp_t gmx_rx_udd_skp;
@@ -387,9 +389,6 @@ static inline int cvmx_higig_initialize(int interface, int enable_higig2)
 	int header_size = (enable_higig2) ? 16 : 12;
 
 	/* Setup PIP to handle HiGig */
-	if (octeon_has_feature(OCTEON_FEATURE_PKND))
-		pknd = cvmx_helper_get_pknd(interface, 0);
-	else
 		pknd = interface * 16;
 	pip_prt_cfg.u64 = cvmx_read_csr(CVMX_PIP_PRT_CFGX(pknd));
 	pip_prt_cfg.s.dsa_en = 0;
@@ -399,36 +398,13 @@ static inline int cvmx_higig_initialize(int interface, int enable_higig2)
 	cvmx_write_csr(CVMX_PIP_PRT_CFGX(pknd), pip_prt_cfg.u64);
 
 	/* Setup some sample QoS defaults. These can be changed later */
-	__cvmx_higig_set_qos_priority();
+	__cvmx_higig_set_qos_priority_o1();
 
 	/* Setup GMX RX to treat the HiGig header as user data to ignore */
 	gmx_rx_udd_skp.u64 = cvmx_read_csr(CVMX_GMXX_RXX_UDD_SKP(0, interface));
 	gmx_rx_udd_skp.s.len = header_size;
 	gmx_rx_udd_skp.s.fcssel = 0;
 	cvmx_write_csr(CVMX_GMXX_RXX_UDD_SKP(0, interface), gmx_rx_udd_skp.u64);
-
-	/* Encounter Higig header in setting min-pkt size */
-	if (OCTEON_IS_MODEL(OCTEON_CN68XX)) {
-		cvmx_pko_reg_read_idx_t pko_index;
-		cvmx_pko_mem_iport_ptrs_t pko_mem_iport;
-		cvmx_pko_reg_min_pkt_t pko_min_pkt;
-
-		pko_index.u64 = 0;
-		pko_index.s.index = cvmx_helper_get_pko_port(interface, 0);
-		cvmx_write_csr(CVMX_PKO_REG_READ_IDX, pko_index.u64);
-
-		/* Use size2 for higig and size3 for higig2 */
-		pko_mem_iport.u64 = cvmx_read_csr(CVMX_PKO_MEM_IPORT_PTRS);
-		pko_mem_iport.s.min_pkt = (enable_higig2) ? 2 : 3;
-		cvmx_write_csr(CVMX_PKO_MEM_IPORT_PTRS, pko_mem_iport.u64);
-
-		pko_min_pkt.u64 = cvmx_read_csr(CVMX_PKO_REG_MIN_PKT);
-		if (enable_higig2)
-			pko_min_pkt.s.size2 = 59 + header_size;
-		else
-			pko_min_pkt.s.size3 = 59 + header_size;
-		cvmx_write_csr(CVMX_PKO_REG_MIN_PKT, pko_min_pkt.u64);
-	}
 
 	/* Disable GMX preamble checking */
 	gmx_rx_frm_ctl.u64 = cvmx_read_csr(CVMX_GMXX_RXX_FRM_CTL(0, interface));
@@ -476,6 +452,311 @@ static inline int cvmx_higig_initialize(int interface, int enable_higig2)
 	cvmx_write_csr(CVMX_GMXX_TX_XAUI_CTL(interface), gmx_tx_xaui_ctl.u64);
 
 	return 0;
+}
+
+static inline int cvmx_higig_init_o68(int interface, int enable_higig2)
+{
+	cvmx_pip_prt_cfgx_t pip_prt_cfg;
+	cvmx_gmxx_rxx_udd_skp_t gmx_rx_udd_skp;
+	cvmx_gmxx_txx_min_pkt_t gmx_tx_min_pkt;
+	cvmx_gmxx_txx_append_t gmx_tx_append;
+	cvmx_gmxx_tx_ifg_t gmx_tx_ifg;
+	cvmx_gmxx_tx_ovr_bp_t gmx_tx_ovr_bp;
+	cvmx_gmxx_rxx_frm_ctl_t gmx_rx_frm_ctl;
+	cvmx_gmxx_tx_xaui_ctl_t gmx_tx_xaui_ctl;
+		cvmx_pko_reg_read_idx_t pko_index;
+		cvmx_pko_mem_iport_ptrs_t pko_mem_iport;
+		cvmx_pko_reg_min_pkt_t pko_min_pkt;
+	int pknd;
+	int header_size = (enable_higig2) ? 16 : 12;
+
+	/* Setup PIP to handle HiGig */
+	pknd = cvmx_helper_get_pknd(interface, 0);
+	pip_prt_cfg.u64 = cvmx_read_csr(CVMX_PIP_PRT_CFGX(pknd));
+	pip_prt_cfg.s.dsa_en = 0;
+	pip_prt_cfg.s.higig_en = 1;
+	pip_prt_cfg.s.hg_qos = 1;
+	pip_prt_cfg.s.skip = header_size;
+	cvmx_write_csr(CVMX_PIP_PRT_CFGX(pknd), pip_prt_cfg.u64);
+
+	/* Setup some sample QoS defaults. These can be changed later */
+	__cvmx_higig_set_qos_priority_o68();
+
+	/* Setup GMX RX to treat the HiGig header as user data to ignore */
+	gmx_rx_udd_skp.u64 = cvmx_read_csr(CVMX_GMXX_RXX_UDD_SKP(0, interface));
+	gmx_rx_udd_skp.s.len = header_size;
+	gmx_rx_udd_skp.s.fcssel = 0;
+	cvmx_write_csr(CVMX_GMXX_RXX_UDD_SKP(0, interface), gmx_rx_udd_skp.u64);
+
+	/* Encounter Higig header in setting min-pkt size */
+
+		pko_index.u64 = 0;
+		pko_index.s.index = cvmx_helper_get_pko_port(interface, 0);
+		cvmx_write_csr(CVMX_PKO_REG_READ_IDX, pko_index.u64);
+
+		/* Use size2 for higig and size3 for higig2 */
+		pko_mem_iport.u64 = cvmx_read_csr(CVMX_PKO_MEM_IPORT_PTRS);
+		pko_mem_iport.s.min_pkt = (enable_higig2) ? 2 : 3;
+		cvmx_write_csr(CVMX_PKO_MEM_IPORT_PTRS, pko_mem_iport.u64);
+
+		pko_min_pkt.u64 = cvmx_read_csr(CVMX_PKO_REG_MIN_PKT);
+		if (enable_higig2)
+			pko_min_pkt.s.size2 = 59 + header_size;
+		else
+			pko_min_pkt.s.size3 = 59 + header_size;
+		cvmx_write_csr(CVMX_PKO_REG_MIN_PKT, pko_min_pkt.u64);
+
+	/* Disable GMX preamble checking */
+	gmx_rx_frm_ctl.u64 = cvmx_read_csr(CVMX_GMXX_RXX_FRM_CTL(0, interface));
+	gmx_rx_frm_ctl.s.pre_chk = 0;
+	cvmx_write_csr(CVMX_GMXX_RXX_FRM_CTL(0, interface), gmx_rx_frm_ctl.u64);
+
+	/* Setup GMX TX to pad properly min sized packets */
+	gmx_tx_min_pkt.u64 = cvmx_read_csr(CVMX_GMXX_TXX_MIN_PKT(0, interface));
+	gmx_tx_min_pkt.s.min_size = 59 + header_size;
+	cvmx_write_csr(CVMX_GMXX_TXX_MIN_PKT(0, interface), gmx_tx_min_pkt.u64);
+
+	/* Setup GMX TX to not add a preamble */
+	gmx_tx_append.u64 = cvmx_read_csr(CVMX_GMXX_TXX_APPEND(0, interface));
+	gmx_tx_append.s.preamble = 0;
+	cvmx_write_csr(CVMX_GMXX_TXX_APPEND(0, interface), gmx_tx_append.u64);
+
+	/* Reduce the inter frame gap to 8 bytes */
+	gmx_tx_ifg.u64 = cvmx_read_csr(CVMX_GMXX_TX_IFG(interface));
+	gmx_tx_ifg.s.ifg1 = 4;
+	gmx_tx_ifg.s.ifg2 = 4;
+	cvmx_write_csr(CVMX_GMXX_TX_IFG(interface), gmx_tx_ifg.u64);
+
+	/* Disable GMX backpressure */
+	gmx_tx_ovr_bp.u64 = cvmx_read_csr(CVMX_GMXX_TX_OVR_BP(interface));
+	gmx_tx_ovr_bp.s.bp = 0;
+	gmx_tx_ovr_bp.s.en = 0xf;
+	gmx_tx_ovr_bp.s.ign_full = 0xf;
+	cvmx_write_csr(CVMX_GMXX_TX_OVR_BP(interface), gmx_tx_ovr_bp.u64);
+
+	if (enable_higig2) {
+		/* Enable HiGig2 support and forwarding of virtual port backpressure
+		   to PKO */
+		cvmx_gmxx_hg2_control_t gmx_hg2_control;
+		gmx_hg2_control.u64 = cvmx_read_csr(CVMX_GMXX_HG2_CONTROL(interface));
+		gmx_hg2_control.s.hg2rx_en = 1;
+		gmx_hg2_control.s.hg2tx_en = 1;
+		gmx_hg2_control.s.logl_en = 0xffff;
+		gmx_hg2_control.s.phys_en = 1;
+		cvmx_write_csr(CVMX_GMXX_HG2_CONTROL(interface), gmx_hg2_control.u64);
+	}
+
+	/* Enable HiGig */
+	gmx_tx_xaui_ctl.u64 = cvmx_read_csr(CVMX_GMXX_TX_XAUI_CTL(interface));
+	gmx_tx_xaui_ctl.s.hg_en = 1;
+	cvmx_write_csr(CVMX_GMXX_TX_XAUI_CTL(interface), gmx_tx_xaui_ctl.u64);
+
+	return 0;
+}
+
+/*
+ * Install a HiGig/HiGig2 PCAM entry that skips over
+ * the header before parsing Layer-2 header for every
+ * port configured for HiGig* support.
+ */
+static int __cvmx_pki_pcam_higig(int node, int style, int hsz)
+{
+	struct cvmx_pki_pcam_input pcam_input;
+	struct cvmx_pki_pcam_action pcam_action;
+	enum cvmx_pki_term field;
+	int index;
+	int bank;
+	uint64_t cl_mask = CVMX_PKI_CLUSTER_ALL;
+
+	memset(&pcam_input, 0, sizeof(pcam_input));
+	memset(&pcam_action, 0, sizeof(pcam_action));
+
+	field = CVMX_PKI_PCAM_TERM_HIGIG;
+	bank = field & 0x01;
+
+	index = cvmx_pki_pcam_entry_alloc(node,
+		CVMX_PKI_FIND_AVAL_ENTRY, bank, cl_mask);
+	if (index < 0) {
+		cvmx_dprintf("ERROR: Allocating pcam entry node=%d bank=%d\n",
+			node, bank);
+		return -1;
+	}
+
+	pcam_input.style = style;
+	pcam_input.style_mask = 0xff;
+	pcam_input.field = field;
+	pcam_input.field_mask = 0xff;
+	pcam_input.data = 0;
+	pcam_input.data_mask = 0;
+	pcam_action.parse_mode_chg = CVMX_PKI_PARSE_NO_CHG;
+	pcam_action.layer_type_set = CVMX_PKI_LTYPE_E_NONE;
+	pcam_action.style_add = 0;
+	pcam_action.pointer_advance = hsz;
+
+	cvmx_pki_pcam_write_entry(node, index, cl_mask,
+			pcam_input, pcam_action);
+	return 0;
+}
+
+static inline int cvmx_higig_init_o3(int xiface, int port, int enable_higig2)
+{
+	int header_size = (enable_higig2) ? 16 : 12;
+	struct cvmx_pki_global_config gcfg;
+        struct cvmx_pki_pkind_config pcfg;
+	int pkind;
+	cvmx_bgxx_cmrx_config_t cmr_config;
+	cvmx_bgxx_smux_rx_udd_skp_t udd_skip;
+	cvmx_bgxx_spux_misc_control_t misc_ctl;
+	cvmx_bgxx_smux_hg2_control_t hg2_control;
+	cvmx_bgxx_smux_tx_ifg_t ifg;
+	cvmx_bgxx_smux_rx_frm_ctl_t frm_ctl;
+	cvmx_bgxx_smux_tx_ctl_t tx_ctl;
+	cvmx_bgxx_smux_tx_append_t txa;
+	cvmx_xiface_t xi = cvmx_helper_xiface_to_node_interface(xiface);
+	int node = xi.node;
+	int interface = xi.interface;
+
+	/* Verify that the interface belongs to BGX */
+	if (interface >= CVMX_HELPER_MAX_GMX)
+		return -1;
+
+        cmr_config.u64 = cvmx_read_csr_node(node,
+		CVMX_BGXX_CMRX_CONFIG(port, interface));
+
+	/* HiGig is not supported for SGMII/XCV interfaces */
+	if ((cmr_config.s.lmac_type == 0) || (cmr_config.s.lmac_type == 5))
+	    return -2;
+
+	/*
+	 * NOTE: Code below assumes each BGX interface has
+	 * a unique PKIND, and a unuque initial STYLE.
+	 */
+
+	/* Setup PKI to handle HiGig: Global and PKIND */
+	cvmx_pki_read_global_config(node, &gcfg);
+	gcfg.gbl_pen.hg_pen = 1;
+	cvmx_pki_write_global_config(node, &gcfg);
+
+	pkind = cvmx_helper_get_pknd(xiface, port);
+	cvmx_pki_read_pkind_config(node, pkind, &pcfg);
+        pcfg.parse_en.hg_en = 1;
+        pcfg.parse_en.hg2_en = (enable_higig2)? 1: 0;
+	cvmx_pki_write_pkind_config(node, pkind, &pcfg);
+
+	/* PKI: Install a PCAM entry to skip HiGiG/HiGiG2 header in parser */
+	__cvmx_pki_pcam_higig(node, pcfg.initial_style, header_size);
+
+	/* BGX: Reduce Inter-frame gap from 12 to 8 bytes */
+	ifg.u64 = 0;
+	ifg.s.ifg1 = 4;
+	ifg.s.ifg2 = 4;
+	cvmx_write_csr_node(node, CVMX_BGXX_SMUX_TX_IFG(port, interface), ifg.u64);
+
+	/* BGX: Configure user-data length to HiGig2 header size */
+	udd_skip.u64 = cvmx_read_csr_node(node,
+		CVMX_BGXX_SMUX_RX_UDD_SKP(port, interface));
+	udd_skip.s.fcssel = 0;
+	udd_skip.s.len = header_size;
+	cvmx_write_csr_node(node,
+		CVMX_BGXX_SMUX_RX_UDD_SKP(port, interface), udd_skip.u64);
+
+	/* BGX: Enable more idle skips for small IFG (SMU only) */
+	misc_ctl.u64 = cvmx_read_csr_node(node,
+		CVMX_BGXX_SPUX_MISC_CONTROL(port, interface));
+	misc_ctl.s.skip_after_term = 1;
+	cvmx_write_csr_node(node,
+		CVMX_BGXX_SPUX_MISC_CONTROL(port, interface), misc_ctl.u64);
+
+	/* BGX HiGig2 control (SMU only) */
+	hg2_control.u64 = cvmx_read_csr_node(node,
+		CVMX_BGXX_SMUX_HG2_CONTROL(port, interface));
+	hg2_control.s.hg2tx_en = (enable_higig2) ? 1 : 0;
+	hg2_control.s.hg2rx_en = (enable_higig2) ? 1 : 0;
+	hg2_control.s.phys_en = (enable_higig2) ? 1 : 0;
+	hg2_control.s.logl_en = (enable_higig2) ? 1 : 0;
+	cvmx_write_csr_node(node,
+		CVMX_BGXX_SMUX_HG2_CONTROL(port, interface), hg2_control.u64);
+
+	/* BGX RX Control - Disable preamble checks */
+	frm_ctl.u64 = cvmx_read_csr_node(node,
+		CVMX_BGXX_SMUX_RX_FRM_CTL(port, interface));
+	frm_ctl.s.pre_chk = 0;
+	frm_ctl.s.pre_strp = 0;
+	cvmx_write_csr_node(node,
+		CVMX_BGXX_SMUX_RX_FRM_CTL(port, interface), frm_ctl.u64);
+
+	/* BGX TX Control */
+	tx_ctl.u64 = cvmx_read_csr_node(node,
+		CVMX_BGXX_SMUX_TX_CTL(port, interface));
+	tx_ctl.s.hg_en = 1;
+	tx_ctl.s.hg_pause_hgi = (enable_higig2)? 1: 0;
+	cvmx_write_csr_node(node,
+		CVMX_BGXX_SMUX_TX_CTL(port, interface), tx_ctl.u64);
+
+	txa.u64 = cvmx_read_csr_node(node,
+		CVMX_BGXX_SMUX_TX_APPEND(port, interface));
+	txa.s.preamble = 0;
+	cvmx_write_csr_node(node,
+		CVMX_BGXX_SMUX_TX_APPEND(port, interface), txa.u64);
+
+	/* Disable standard flow control for HiGig2 */
+	if (enable_higig2) {
+		cvmx_bgxx_smux_cbfc_ctl_t cbfc_ctl;
+		cbfc_ctl.u64 = cvmx_read_csr_node(node,
+			CVMX_BGXX_SMUX_CBFC_CTL(port, interface));
+		cbfc_ctl.s.rx_en = 0;
+		cbfc_ctl.s.tx_en = 0;
+		cvmx_write_csr_node(node,
+			CVMX_BGXX_SMUX_CBFC_CTL(port, interface),
+			cbfc_ctl.u64);
+	}
+
+	/* Configure PKO */
+
+	/*
+	 * NOTE:
+	 * PKO3 has only a global min packet register,
+	 * which is not appropriate for HiGig.
+	 */
+
+	/*
+	 * FIXME:
+	 * HiGig QoS not implemented yet, may require PKI microcode fix.
+	 */
+	return 0;
+}
+
+/**
+ * Initialize the HiGig aspects of a XAUI interface. This function
+ * should be called before the cvmx-helper generic init.
+ *
+ * @param interface Interface that this operation applies to
+ * @param port is the interface port the operation applies to
+ * @param enable_higig2
+ *                  Non zero to enable HiGig2 support. Zero to support HiGig
+ *                  and HiGig+.
+ *
+ * @return Zero on success, negative on failure
+ *
+ * NOTE:
+ * This function name and signature has changed from previous releases
+ * to support Octeon-3, where each interface may have up to 4 ports,
+ * and each may be individually enabled to accept the HiGig/HiGig2 custom
+ * frame format.
+ */
+static inline int cvmx_higig_init(int interface, int port, int enable_higig2)
+{
+
+	if (octeon_has_feature(OCTEON_FEATURE_PKI)) {
+		return cvmx_higig_init_o3(interface, port, enable_higig2);
+	} else if (OCTEON_IS_MODEL(OCTEON_CN68XX)) {
+		cvmx_warn_if(port != 0, "Interface port range exceeded");
+		return cvmx_higig_init_o68(interface, enable_higig2);
+	} else {
+		cvmx_warn_if(port != 0, "Interface port range exceeded");
+		return cvmx_higig_init_o1(interface, enable_higig2);
+	}
+
 }
 
 #ifdef	__cplusplus

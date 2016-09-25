@@ -771,7 +771,7 @@ cvmx_helper_link_info_t __cvmx_helper_ilk_link_get(int ipd_port)
 
 retry:
 	retry_count++;
-	if (retry_count > 10)
+	if (retry_count > 200)
 		goto fail;
 
 	/* Read RX config and status bits */
@@ -804,6 +804,7 @@ retry:
 		ilk_rxx_cfg1.s.rx_align_ena = 0;
 		cvmx_write_csr_node(node, CVMX_ILK_RXX_CFG1(interface), ilk_rxx_cfg1.u64);
 		//cvmx_dprintf("ILK%d: Looking for word boundary lock\n", interface);
+		cvmx_wait_usec(50);
 		goto retry;
 	}
 
@@ -818,9 +819,9 @@ retry:
 			ilk_rxx_cfg1.s.rx_align_ena = 1;
 			cvmx_write_csr_node(node, CVMX_ILK_RXX_CFG1(interface), ilk_rxx_cfg1.u64);
 			//printf("ILK%d: Looking for lane alignment\n", interface);
-			goto retry;
 		}
-		goto fail;
+		cvmx_wait_usec(50);
+		goto retry;
 	}
 
 	if (ilk_rxx_int.s.lane_align_fail) {

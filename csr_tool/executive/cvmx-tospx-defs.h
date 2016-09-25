@@ -1219,7 +1219,7 @@ union cvmx_tospx_conf {
                                                          1 = Update at the specified time by registers TOSP()_UL_WIN_UPD_SCNT
                                                          and TOSP()_DL_WIN_UPD_SCNT. (recommended) */
 	uint64_t diversity                    : 1;  /**< UL AXC1 disable (used to support FDD SISO with CLK
-                                                         4x)
+                                                         4x).
                                                          0 = Data gets written to the diversity FIFO in MIMO mode
                                                          (default).
                                                          1 = No data written to the diversity FIFO in MIMO mode. */
@@ -1227,7 +1227,7 @@ union cvmx_tospx_conf {
                                                          0 = TDD (default).
                                                          1 = FDD. */
 	uint64_t prod_type                    : 1;  /**< Product type.
-                                                         0 = UE (not supported),
+                                                         0 = UE (not supported).
                                                          1 = eNB, enables using 1PPS synchronization scheme.
                                                          Must be set to 1. CNF75XX only supports eNB mode. */
 	uint64_t txnrx_ctrl                   : 1;  /**< RFIC IF TXnRX signal pulse control.

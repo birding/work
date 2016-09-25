@@ -143,14 +143,20 @@ static int cvmx_timer_resource_free(unsigned node, unsigned ring_id);
  */
 static int cvmx_timer_version(void)
 {
+	static int processed = 0;
+	if (processed)
+		return processed;
+	
 	if (OCTEON_IS_MODEL(OCTEON_CN78XX) ||
 		OCTEON_IS_MODEL(OCTEON_CN73XX) ||
 		OCTEON_IS_MODEL(OCTEON_CNF75XX))
-		return 3;
+		processed = 3;
 	else if (OCTEON_IS_MODEL(OCTEON_CN68XX))
-		return 2;
+		processed = 2;
 	else
-		return 1;
+		processed = 1;
+
+	return processed;
 }
 
 /**
@@ -161,10 +167,16 @@ static int cvmx_timer_version(void)
 static unsigned
 cvmx_timer_max_ring_exp(void)
 {
+	static unsigned processed = 0;
+	if (processed)
+		return processed;
+
 	if (cvmx_timer_version() > 1)
-		return 20;
+		processed = 20;
 	else
-		return 10;
+		processed = 10;
+
+	return processed;
 }
 
 /**
@@ -174,10 +186,16 @@ cvmx_timer_max_ring_exp(void)
 static unsigned
 cvmx_timer_rings_per_node(void)
 {
+	static unsigned processed = 0;
+	if (processed)
+		return processed;
+
 	if (cvmx_timer_version() > 1)
-		return 64;
+		processed = 64;
 	else
-		return 16;
+		processed = 16;
+
+	return processed;
 }
 
 static inline void * cvmx_timer_chunk_alloc(cvmx_timer_id_t timer_id)

@@ -361,7 +361,7 @@ typedef union cvmx_ndf_dma_cfg cvmx_ndf_dma_cfg_t;
  *
  * This command sequence starts with a BUS_ACQ command, and the last command in the sequence must
  * be a BUS_REL command. The execution unit starts execution of the sequence only if the
- * NDF_DRBELL[CNT] is non-zero when it fetches the BUS_ACQ command.
+ * NDF_DRBELL[CNT] is nonzero when it fetches the BUS_ACQ command.
  *
  * Software can load multiple such sequences, each starting with a CHIP_EN command and ending
  * with a CHIP_DIS command, and then write a data value to this register to increment the CNT
@@ -373,7 +373,7 @@ typedef union cvmx_ndf_dma_cfg cvmx_ndf_dma_cfg_t;
  * Hardware can also modifies the value of CNT. Every time hardware executes a BUS_ACQ command to
  * arbitrate and win the boot bus, it decrements CNT by 1. If CNT is already 0 or negative, the
  * hardware command-execution unit stalls when it fetches the new BUS_ACQ command from the
- * NDF_CMD queue. Only when the software writes to this register with a non-zero data value can
+ * NDF_CMD queue. Only when the software writes to this register with a nonzero data value can
  * the execution unit come out of the stalled condition, and resume execution.
  *
  * Sixty-four-bit operations must be used to access this register.
@@ -597,13 +597,13 @@ union cvmx_ndf_misc {
 	uint64_t reserved_28_63               : 36;
 	uint64_t mb_dis                       : 1;  /**< Set to disable multi-bit error hangs. Allows boot loads and boot DMAs to proceed as if no
                                                          multi-bit errors occurred. Hardware fixes single bit errors as usual. */
-	uint64_t nbr_hwm                      : 3;  /**< High watermark for NBR FIFO or load/store operations. This field specifies the high
+	uint64_t nbr_hwm                      : 3;  /**< High watermark for NBR FIFO or load/store operations. Specifies the high
                                                          watermark for the IOI outbound load/store commands receive FIFO. NBR_HWM+1 is used
                                                          as the high watermark.  So a value of 0 allows 1 entry in the FIFO at a time.  The
                                                          FIFO size is 8 entries. */
 	uint64_t wait_cnt                     : 6;  /**< Wait input filter count. Represents the number of coprocessor-clock cycles for glitch
                                                          filtering of BOOT_WAIT_L from the NAND flash device. */
-	uint64_t fr_byt                       : 11; /**< Unfilled NDF_CMD queue bytes. This field specifies the number of unfilled bytes in the
+	uint64_t fr_byt                       : 11; /**< Unfilled NDF_CMD queue bytes. Specifies the number of unfilled bytes in the
                                                          NDF_CMD queue. Bytes become unfilled as commands complete execution and exit. (FIFO is 256
                                                          bytes when BT_DIS = 0 and 1536 bytes when BT_DIS = 1.) */
 	uint64_t rd_done                      : 1;  /**< Read done. This bit is set to 1 by hardware when it reads the last eight bytes out of the
@@ -718,7 +718,7 @@ union cvmx_ndf_st_reg {
 	uint64_t rd_ff_bad                    : 1;  /**< The NDF_CMD-queue read-back state machine is in a 'bad' state. */
 	uint64_t rd_ff                        : 2;  /**< NDF_CMD-queue read-back state machine states. */
 	uint64_t main_bad                     : 1;  /**< The main state machine is in a 'bad' state. */
-	uint64_t main_sm                      : 3;  /**< Main state-machine states. */
+	uint64_t main_sm                      : 3;  /**< Main state machine states. */
 #else
 	uint64_t main_sm                      : 3;
 	uint64_t main_bad                     : 1;

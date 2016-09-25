@@ -2787,7 +2787,7 @@ typedef union cvmx_mio_boot_dma_adrx cvmx_mio_boot_dma_adrx_t;
  * This is the DMA engine n configuration register (one register for each of two engines).
  * Care must be taken to insure that the DMA duration not exceed the processor timeout of 2^29
  * core clocks or the RML timeout specified in SLI_WINDOW_CTL[TIME] coprocessor clocks if
- * accesses to the bootbus occur while DMA operations are in progress.
+ * accesses to the boot bus occur while DMA operations are in progress.
  * The DMA operation duration in coprocessor clocks as:
  * MIO_BOOT_DMA_CFG()[SIZE] * MIO_BOOT_DMA_TIM()[TIM_MULT] * CYCLE_TIME.
  * Where:
@@ -2981,29 +2981,33 @@ union cvmx_mio_boot_dma_timx {
 	uint64_t u64;
 	struct cvmx_mio_boot_dma_timx_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t dmack_pi                     : 1;  /**< DMA acknowledgment polarity inversion. DMACK_PI inverts the assertion level of
+	uint64_t dmack_pi                     : 1;  /**< DMA acknowledgment polarity inversion. [DMACK_PI] inverts the assertion level of
                                                          BOOT_DMACKn. The default polarity of BOOT_DMACK<1:0> is selected on the first deassertion
                                                          of reset by the values on BOOT_AD<12:11>, where 0 specifies active high and 1 specifies
                                                          active low. (See MIO_BOOT_PIN_DEFS for a read-only copy of the default polarity.)
                                                          BOOT_AD<12:11> have internal pull-down resistors, so place a pull-up resistor on
                                                          BOOT_AD<n+11> for active low default polarity on engine n. To interface with CF cards in
                                                          True IDE Mode, either a pull-up resistor should be placed on BOOT_AD<n+11> OR the
-                                                         corresponding DMACK_PI[n] should be set. */
-	uint64_t dmarq_pi                     : 1;  /**< DMA request polarity inversion. DMARQ_PI inverts the assertion level of BOOT_DMARQn. The
+                                                         corresponding DMACK_PI<n> should be set. */
+	uint64_t dmarq_pi                     : 1;  /**< DMA request polarity inversion. [DMARQ_PI] inverts the assertion level of BOOT_DMARQn. The
                                                          default polarity of BOOT_DMARQ<1:0> is active high, so that setting the polarity inversion
                                                          bits changes the polarity to active low. To interface with CF cards in True IDE Mode, the
-                                                         corresponding DMARQ_PI[n] should be clear. */
+                                                         corresponding DMARQ_PI<n> should be clear. */
 	uint64_t tim_mult                     : 2;  /**< Timing multiplier. This field specifies the timing multiplier for an engine. The timing
-                                                         multiplier applies to all timing parameters, except for DMARQ and RD_DLY, which simply
-                                                         count coprocessor-clock cycles. TIM_MULT is encoded as follows: 0x0 = 4x, 0x1 = 1x, 0x2 =
-                                                         2x, 0x3 = 8x. */
+                                                         multiplier applies to all timing parameters, except for [DMARQ] and [RD_DLY], which simply
+                                                         count coprocessor-clock cycles. [TIM_MULT] is encoded as follows:
+                                                         0x0 = 4*.
+                                                         0x1 = 1*.
+                                                         0x2 = 2*.
+                                                         0x3 = 8*. */
 	uint64_t rd_dly                       : 3;  /**< Read sample delay. This field specifies the read sample delay in coprocessor-clock cycles
                                                          for an engine. For read operations, the data bus is normally sampled on the same
                                                          coprocessor-clock edge that drives BOOT_OE_L high (and also low in DDR mode). This
                                                          parameter can delay that sampling edge by up to seven coprocessor-clock cycles.
-                                                         The number of coprocessor-clock cycles counted by the OE_A and DMACK_H + PAUSE timing
-                                                         parameters must be greater than RD_DLY. */
-	uint64_t ddr                          : 1;  /**< DDR mode. If DDR is set, then WE_N must be less than WE_A. */
+                                                         The number of coprocessor-clock cycles counted by the [OE_A] and [DMACK_H] + [PAUSE]
+                                                         timing
+                                                         parameters must be greater than [RD_DLY]. */
+	uint64_t ddr                          : 1;  /**< DDR mode. If DDR is set, then [WE_N] must be less than [WE_A]. */
 	uint64_t width                        : 1;  /**< Bus width (0 = 16 bits, 1 = 32 bits). */
 	uint64_t reserved_48_54               : 7;
 	uint64_t pause                        : 6;  /**< Pause count. */
@@ -3013,7 +3017,7 @@ union cvmx_mio_boot_dma_timx {
 	uint64_t oe_n                         : 6;  /**< Output enable negated count. */
 	uint64_t oe_a                         : 6;  /**< Output enable asserted count. */
 	uint64_t dmack_s                      : 6;  /**< DMA acknowledgment setup count. */
-	uint64_t dmarq                        : 6;  /**< DMA request count. (Must be non-zero.) */
+	uint64_t dmarq                        : 6;  /**< DMA request count. (Must be nonzero.) */
 #else
 	uint64_t dmarq                        : 6;
 	uint64_t dmack_s                      : 6;
@@ -3226,7 +3230,7 @@ union cvmx_mio_boot_loc_cfgx {
 	uint64_t reserved_32_63               : 32;
 	uint64_t en                           : 1;  /**< Local region 0/1 enable. */
 	uint64_t reserved_28_30               : 3;
-	uint64_t base                         : 25; /**< Local region 0/1 base address, specifying address bits [31:7] of the region. */
+	uint64_t base                         : 25; /**< Local region 0/1 base address, specifying address bits <31:7> of the region. */
 	uint64_t reserved_0_2                 : 3;
 #else
 	uint64_t reserved_0_2                 : 3;
@@ -3403,7 +3407,7 @@ union cvmx_mio_boot_pin_defs {
 	struct cvmx_mio_boot_pin_defs_cn70xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_33_63               : 31;
-	uint64_t dlm_supply                   : 1;  /**< DLM Power Supply Setting based on DLMC_VPH_SELECT_18 pin 1 = 1.8V 0 = 2.5V All others = Reserved */
+	uint64_t dlm_supply                   : 1;  /**< DLM Power Supply Setting based on DLMC_VPH_SELECT_18 pin 1 = 1.8V. All others = Reserved. */
 	uint64_t rgm_supply                   : 2;  /**< RGMii Power Supply Setting based on VDD_RGM_SUPPLY_SELECT pin 01 = 1.8V 10 = 2.5V All
                                                          others = Reserved */
 	uint64_t smi_supply                   : 3;  /**< SMI Power Supply Setting based on VDD_SMI_SUPPLY_SELECT pin 001 = 1.8V 010 = 2.5V 100 =
@@ -3442,20 +3446,20 @@ union cvmx_mio_boot_pin_defs {
 	struct cvmx_mio_boot_pin_defs_cn73xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_56_63               : 8;
-	uint64_t rgm_supply                   : 2;  /**< RGMii power supply setting based on VDD_RGM_SUPPLY_SELECT pin:
+	uint64_t rgm_supply                   : 2;  /**< RGMII power supply setting based on VDD_RGM_SUPPLY_SELECT pin:
                                                          0x1 = 1.8V.
                                                          0x2 = 2.5V.
-                                                         else Reserved. */
+                                                         _ All other values reserved. */
 	uint64_t smi_supply                   : 3;  /**< SMI power supply setting based on VDD_SMI_SUPPLY_SELECT pin:
                                                          0x1 = 1.8V.
                                                          0x2 = 2.5V.
                                                          0x4 = 3.3V.
-                                                         else Reserved. */
+                                                         _ All other values reserved. */
 	uint64_t io_supply                    : 3;  /**< I/O power supply setting based on VDD_IO_SUPPLY_SELECT pin:
                                                          0x1 = 1.8V.
                                                          0x2 = 2.5V.
                                                          0x4 = 3.3V.
-                                                         else Reserved. */
+                                                         _ All other values reserved. */
 	uint64_t reserved_33_47               : 15;
 	uint64_t vrm_disable                  : 1;  /**< VRM disabled. */
 	uint64_t user1                        : 13; /**< BOOT_AD<31:19> latched during power up. */
@@ -3506,12 +3510,12 @@ union cvmx_mio_boot_pin_defs {
                                                          0x1 = 1.8V.
                                                          0x2 = 2.5V.
                                                          0x4 = 3.3V.
-                                                         else Reserved. */
+                                                         _ All other values reserved. */
 	uint64_t io_supply                    : 3;  /**< I/O power supply setting based on VDD_IO_SUPPLY_SELECT pin:
                                                          0x1 = 1.8V.
                                                          0x2 = 2.5V.
                                                          0x4 = 3.3V.
-                                                         else Reserved. */
+                                                         _ All other values reserved. */
 	uint64_t reserved_33_47               : 15;
 	uint64_t vrm_disable                  : 1;  /**< VRM disabled. */
 	uint64_t user1                        : 13; /**< BOOT_AD<31:19> latched during power up. */
@@ -3569,19 +3573,22 @@ union cvmx_mio_boot_reg_cfgx {
 	struct cvmx_mio_boot_reg_cfgx_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_44_63               : 20;
-	uint64_t dmack                        : 2;  /**< Region 1-7 DMACK. If non-zero, this field asserts the corresponding BOOT_DMACK[n] pin when
+	uint64_t dmack                        : 2;  /**< Region 1-7 DMACK. If nonzero, this field asserts the corresponding BOOT_DMACK<n> pin when
                                                          an access to this region is performed. DMACK is encoded as follows:
                                                          0x0 = disabled.
-                                                         0x1 = BOOT_DMACK[0].
-                                                         0x2 = BOOT_DMACK[1].
-                                                         0x3 = BOOT_DMACK[2].
+                                                         0x1 = BOOT_DMACK<0>.
+                                                         0x2 = BOOT_DMACK<1>.
+                                                         0x3 = BOOT_DMACK<2>.
                                                          This is useful for CF cards in PC card memory mode that support DMA because the -REG and
                                                          -DMACK pins are shared.
-                                                         The assertion level of boot_dmack is specified by MIO_BOOT_DMA_TIM()[DMACK_PI]. */
+                                                         The assertion level of BOOT_DMACK is specified by MIO_BOOT_DMA_TIM()[DMACK_PI]. */
 	uint64_t tim_mult                     : 2;  /**< Region 1-7 timing multiplier. Specifies the timing multiplier for a region. The timing
                                                          multiplier applies to all timing parameters, except for WAIT and RD_DLY, which simply
-                                                         count coprocessor-clock cycles. TIM_MULT is encoded as follows: 0x0 = 4*, 0x1 = 1*, 0x2 =
-                                                         2*, 0x3 = 8*. */
+                                                         count coprocessor-clock cycles. TIM_MULT is encoded as follows:
+                                                         0x0 = 4*.
+                                                         0x1 = 1*.
+                                                         0x2 = 2*.
+                                                         0x3 = 8*. */
 	uint64_t rd_dly                       : 3;  /**< Region 1-7 read sample delay. Specifies the read sample delay in coprocessor-clock cycles
                                                          for a region. For read operations, the data bus is normally sampled on the same
                                                          coprocessor-clock edge that drives BOOT_OE_L to the inactive state (or the coprocessor-
@@ -3601,12 +3608,14 @@ union cvmx_mio_boot_reg_cfgx {
                                                          This is useful for CF cards because it allows the use of 2 separate timing configurations
                                                          for common memory and attribute memory. */
 	uint64_t ale                          : 1;  /**< Region 1-7 address-latch-enable mode. Enables the multiplexed address/data bus mode. The
-                                                         reset value for region 0 is the value of BOOT_AD[15] on the deassertion of reset.6 */
-	uint64_t width                        : 1;  /**< Region 1-7 bus width: 0 = 8 bits, 1 = 16 bits.
-                                                         The reset value for region 0 is the value of BOOT_AD[14] on the deassertion of reset.7 */
+                                                         reset value for region 0 is the value of BOOT_AD[15] on the deassertion of reset. */
+	uint64_t width                        : 1;  /**< Region 1-7 bus width:
+                                                         0 = 8 bits.
+                                                         1 = 16 bits.
+                                                         The reset value for region 0 is the value of BOOT_AD<14> on the deassertion of reset. */
 	uint64_t size                         : 12; /**< Region 1-7 size. Region size is specified in 64K blocks and in 'block-1' notation (i.e.
                                                          0x0 = one 64K block, 0x1 = two 64K blocks, etc.). */
-	uint64_t base                         : 16; /**< Region 1-7 base address. Specifies address bits [31:16] of the first 64K block of the
+	uint64_t base                         : 16; /**< Region 1-7 base address. Specifies address bits <31:16> of the first 64K block of the
                                                          region. */
 #else
 	uint64_t base                         : 16;
@@ -3731,18 +3740,22 @@ union cvmx_mio_boot_reg_timx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t pagem                        : 1;  /**< Region 1-7 page mode. */
 	uint64_t waitm                        : 1;  /**< Region 1-7 wait mode. */
-	uint64_t pages                        : 2;  /**< Region 1-7 page size: 00 = 8 bytes, 01 = 2 bytes, 10 = 4 bytes, 11 = 8 bytes. */
-	uint64_t ale                          : 6;  /**< Region 1-7 ALE count. Must be non-zero to ensure legal transitions on the corresponding
+	uint64_t pages                        : 2;  /**< Region 1-7 page size:
+                                                         0x0 = 8 bytes.
+                                                         0x1 = 2 bytes.
+                                                         0x2 = 4 bytes.
+                                                         0x3 = 8 bytes. */
+	uint64_t ale                          : 6;  /**< Region 1-7 ALE count. Must be nonzero to ensure legal transitions on the corresponding
                                                          boot bus outputs. */
-	uint64_t page                         : 6;  /**< Region 1-7 page count. Must be non-zero to ensure legal transitions on the corresponding
+	uint64_t page                         : 6;  /**< Region 1-7 page count. Must be nonzero to ensure legal transitions on the corresponding
                                                          boot bus outputs. */
 	uint64_t wait                         : 6;  /**< Region 1-7 wait count, must be nonzero when WAITM is set to 1. */
 	uint64_t pause                        : 6;  /**< Region 1-7 pause count. */
 	uint64_t wr_hld                       : 6;  /**< Region 1-7 write-hold count. */
 	uint64_t rd_hld                       : 6;  /**< Region 1-7 read-hold count. */
-	uint64_t we                           : 6;  /**< Region 1-7 write-enable count. Must be non-zero to ensure legal transitions on the
+	uint64_t we                           : 6;  /**< Region 1-7 write-enable count. Must be nonzero to ensure legal transitions on the
                                                          corresponding boot bus outputs. */
-	uint64_t oe                           : 6;  /**< Region 1-7 output-enable count. Must be non-zero to ensure legal transitions on the
+	uint64_t oe                           : 6;  /**< Region 1-7 output-enable count. Must be nonzero to ensure legal transitions on the
                                                          corresponding boot bus outputs. */
 	uint64_t ce                           : 6;  /**< Region 1-7 chip-enable count. */
 	uint64_t adr                          : 6;  /**< Region 1-7 address count. */
@@ -3919,7 +3932,7 @@ union cvmx_mio_emm_buf_dat {
 	uint64_t u64;
 	struct cvmx_mio_emm_buf_dat_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t dat                          : 64; /**< Direct access to the 1KB data buffer memory. Address specified by MIO_EMM_BUF_IDX. */
+	uint64_t dat                          : 64; /**< Direct access to the 1 KB data buffer memory. Address specified by MIO_EMM_BUF_IDX. */
 #else
 	uint64_t dat                          : 64;
 #endif
@@ -3990,13 +4003,8 @@ union cvmx_mio_emm_cfg {
                                                          * BOOT_WE_L driven to 0. */
 	uint64_t reserved_4_15                : 12;
 	uint64_t bus_ena                      : 4;  /**< eMMC bus enable mask.
-                                                         Setting bit0 of [BUS_ENA] causes EMMC_CMD[0] to become dedicated eMMC bus 0 command (i.e.
-                                                         disabling any NOR use).
-                                                         Setting bit1 of [BUS_ENA] causes EMMC_CMD[1] to become dedicated eMMC bus 1 command (i.e.
-                                                         disabling any NOR use).
-                                                         Setting bit2 of [BUS_ENA] causes EMMC_CMD[2] to become dedicated eMMC bus 2 command (i.e.
-                                                         disabling any NOR use).
-                                                         Bit3 of [BUS_ENA] is reserved.
+                                                         Setting bits 0..2 enable the corresponding EMMC bus by allowing EMMC_CMD[BUS_ENA]
+                                                         operation. Bit 3 is reserved.
                                                          Clearing all bits of this field will reset the other MIO_EMM_* registers.  It might be
                                                          necessary
                                                          to set and and clear the bits several times to insure the MIO_EMM_* registers have been
@@ -4040,7 +4048,7 @@ union cvmx_mio_emm_cmd {
 	uint64_t reserved_56_58               : 3;
 	uint64_t dbuf                         : 1;  /**< Specify the data buffer to be used for a block transfer. */
 	uint64_t offset                       : 6;  /**< Debug only. Specify the number of 8-byte transfers used in the command. Value is
-                                                         64-OFFSET. The block transfer still starts at the first byte in the 512B data buffer.
+                                                         64-OFFSET. The block transfer still starts at the first byte in the 512 B data buffer.
                                                          Software must ensure CMD16 has updated the card block length. */
 	uint64_t reserved_43_48               : 6;
 	uint64_t ctype_xor                    : 2;  /**< Command type override; typically zero. Value is XOR'd with the default command type. See
@@ -4147,7 +4155,7 @@ union cvmx_mio_emm_dma {
 	uint64_t bus_id                       : 2;  /**< Specify the eMMC bus */
 	uint64_t dma_val                      : 1;  /**< Software writes this bit to a 1 to indicate that hardware should perform the DMA transfer.
                                                          Hardware clears this bit when the DMA operation completes or is terminated. */
-	uint64_t sector                       : 1;  /**< Specify CARD_ADDR and eMMC are using sector (512B) addressing. */
+	uint64_t sector                       : 1;  /**< Specify CARD_ADDR and eMMC are using sector (512 B) addressing. */
 	uint64_t dat_null                     : 1;  /**< Do not perform any eMMC commands. A DMA read returns all 0s. A DMA write tosses the data.
                                                          In the case of a failure, this can be used to unwind the DMA engine. */
 	uint64_t thres                        : 6;  /**< Number of 8-byte blocks of data that must exist in the DBUF before starting the 512-byte
@@ -4157,8 +4165,8 @@ union cvmx_mio_emm_dma {
 	uint64_t multi                        : 1;  /**< Perform operation using a multiple block command instead of a series of single block commands. */
 	uint64_t block_cnt                    : 16; /**< Number of blocks to read/write. Hardware decrements the block count after each successful
                                                          block transfer. */
-	uint64_t card_addr                    : 32; /**< Data address for media <= 2GB is a 32-bit byte address, and data address for media > 2GB
-                                                         is a 32-bit sector (512B) address. Hardware advances the card address after each
+	uint64_t card_addr                    : 32; /**< Data address for media <= 2 GB is a 32-bit byte address, and data address for media > 2 GB
+                                                         is a 32-bit sector (512 B) address. Hardware advances the card address after each
                                                          successful block transfer by 512 for byte addressing and by 1 for sector addressing. */
 #else
 	uint64_t card_addr                    : 32;
@@ -4229,7 +4237,7 @@ typedef union cvmx_mio_emm_dma cvmx_mio_emm_dma_t;
  * cvmx_mio_emm_dma_adr
  *
  * This register sets the address for eMMC/SD flash transfers to/from memory. Sixty-four-bit
- * operations must be used to access this register.  This register is updated by the dma
+ * operations must be used to access this register. This register is updated by the DMA
  * hardware and can be reloaded by the values placed in the MIO_EMM_DMA_FIFO_ADR.
  */
 union cvmx_mio_emm_dma_adr {
@@ -4255,7 +4263,7 @@ typedef union cvmx_mio_emm_dma_adr cvmx_mio_emm_dma_adr_t;
  *
  * This register controls the internal DMA engine used with the eMMC/SD flash controller. Sixty-
  * four-bit operations must be used to access this register.  This register is updated by the
- * hardware dma engine and can also be reloaded by writes to the MIO_EMM_DMA_FIFO_CMD register.
+ * hardware DMA engine and can also be reloaded by writes to the MIO_EMM_DMA_FIFO_CMD register.
  */
 union cvmx_mio_emm_dma_cfg {
 	uint64_t u64;
@@ -4379,14 +4387,14 @@ union cvmx_mio_emm_dma_fifo_cmd {
 	uint64_t reserved_63_63               : 1;
 	uint64_t rw                           : 1;  /**< DMA engine R/W bit: 0 = read, 1 = write. */
 	uint64_t reserved_61_61               : 1;
-	uint64_t intdis                       : 1;  /**< DMA command interrupt disable.  When set, the dma command being summitted will
-                                                         not enerate a MIO_EMM_DMA_INT[DONE] interrupt when it completes.  When cleared
+	uint64_t intdis                       : 1;  /**< DMA command interrupt disable.  When set, the DMA command being submitted will
+                                                         not generate a MIO_EMM_DMA_INT[DONE] interrupt when it completes.  When cleared
                                                          the command will generate the interrupt.
                                                          For example, this field can be set for all the DMA commands submitted to the
                                                          DMA FIFO in the case of a write to the eMMC device because the MIO_EMM_INT[DONE]
                                                          interrupt would signify the end of the operation.  It could be cleared on the last
-                                                         dma command being submitted to the DMA FIFO and the MIO_EMM_DMA_INT[DONE] would
-                                                         occur when the read from the eMMC device was available in lcal emory. */
+                                                         DMA command being submitted to the DMA FIFO and the MIO_EMM_DMA_INT[DONE] would
+                                                         occur when the read from the eMMC device was available in local memory. */
 	uint64_t swap32                       : 1;  /**< DMA engine 32-bit swap. */
 	uint64_t swap16                       : 1;  /**< DMA engine enable 16-bit swap. */
 	uint64_t swap8                        : 1;  /**< DMA engine enable 8-bit swap. */
@@ -4620,7 +4628,7 @@ union cvmx_mio_emm_modex {
 	struct cvmx_mio_emm_modex_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_49_63               : 15;
-	uint64_t hs_timing                    : 1;  /**< Current high-speed timing mode. Required when CLK frequency is higher than 20MHz. */
+	uint64_t hs_timing                    : 1;  /**< Current high-speed timing mode. Required when CLK frequency is higher than 20 MHz. */
 	uint64_t reserved_43_47               : 5;
 	uint64_t bus_width                    : 3;  /**< Current card bus mode. Out of reset, the card is in 1-bit data bus mode. Select bus width.
                                                          0x0 = 1-bit data bus (power on).
@@ -5265,12 +5273,10 @@ union cvmx_mio_fus_dat2 {
                                                          0x2 = RTL simulator.
                                                          0x3 = ASIM.
                                                          0x4-0x7 = Reserved. */
-	uint64_t gbl_pwr_throttle             : 8;  /**< Controls global power throttling. MSB is a spare, and lower 7 bits indicate
-                                                         N/128 power reduction. Small values have less throttling and higher
-                                                         performance. 0x0 disables throttling. */
+	uint64_t gbl_pwr_throttle             : 8;  /**< Reserved. */
 	uint64_t fus118                       : 1;  /**< Fuse information - Ignore Authentik disable. */
 	uint64_t rom_info                     : 10; /**< Fuse information - ROM info. */
-	uint64_t power_limit                  : 2;  /**< Fuse information - Power limit. */
+	uint64_t power_limit                  : 2;  /**< Reserved. */
 	uint64_t dorm_crypto                  : 1;  /**< Fuse information - Dormant encryption enable. See NOCRYPTO. */
 	uint64_t fus318                       : 1;  /**< Reserved. */
 	uint64_t raid_en                      : 1;  /**< Fuse information - RAID enabled. */
@@ -5660,7 +5666,7 @@ union cvmx_mio_fus_dat2 {
 	uint64_t reserved_48_63               : 16;
 	uint64_t fus118                       : 1;  /**< Fuse information - Ignore Authentik disable. */
 	uint64_t rom_info                     : 10; /**< Fuse information - ROM info. */
-	uint64_t power_limit                  : 2;  /**< Fuse information - Power limit. */
+	uint64_t power_limit                  : 2;  /**< Reserved. */
 	uint64_t dorm_crypto                  : 1;  /**< Fuse information - Dormant encryption enable. */
 	uint64_t fus318                       : 1;  /**< Reserved. */
 	uint64_t raid_en                      : 1;  /**< Fuse information - RAID enabled. */
@@ -5704,12 +5710,10 @@ union cvmx_mio_fus_dat2 {
                                                          0x2 = RTL simulator.
                                                          0x3 = ASIM.
                                                          0x4-0x7 = Reserved. */
-	uint64_t gbl_pwr_throttle             : 8;  /**< Controls global power throttling. MSB is a spare, and lower 7 bits indicate
-                                                         N/128 power reduction. Small values have less throttling and higher
-                                                         performance. 0x0 disables throttling. */
+	uint64_t gbl_pwr_throttle             : 8;  /**< Reserved. */
 	uint64_t fus118                       : 1;  /**< Fuse information - Ignore Authentik disable. */
 	uint64_t rom_info                     : 10; /**< Fuse information - ROM info. */
-	uint64_t power_limit                  : 2;  /**< Fuse information - Power limit. */
+	uint64_t power_limit                  : 2;  /**< Reserved. */
 	uint64_t dorm_crypto                  : 1;  /**< Fuse information - Dormant encryption enable. See NOCRYPTO. */
 	uint64_t fus318                       : 1;  /**< Reserved. */
 	uint64_t raid_en                      : 1;  /**< Fuse information - RAID enabled. */
@@ -5757,7 +5761,7 @@ union cvmx_mio_fus_dat2 {
 	uint64_t reserved_48_55               : 8;
 	uint64_t fus118                       : 1;  /**< Fuse information - Ignore Authentik disable. */
 	uint64_t rom_info                     : 10; /**< Fuse information - ROM info. */
-	uint64_t power_limit                  : 2;  /**< Fuse information - Power limit. */
+	uint64_t power_limit                  : 2;  /**< Reserved. */
 	uint64_t dorm_crypto                  : 1;  /**< Fuse information - Dormant encryption enable. See NOCRYPTO. */
 	uint64_t fus318                       : 1;  /**< Reserved. */
 	uint64_t raid_en                      : 1;  /**< Fuse information - RAID enabled. */
@@ -5804,11 +5808,10 @@ union cvmx_mio_fus_dat2 {
                                                          0x4-0x7 = Reserved. */
 	uint64_t gbl_pwr_throttle             : 8;  /**< Controls global power throttling. MSB is a spare, and lower 7 bits indicate
                                                          N/128 power reduction. Small values have less throttling and higher
-                                                         performance. 0x0 disables throttling.
-                                                         Added in pass 2. */
+                                                         performance. 0x0 disables throttling. */
 	uint64_t fus118                       : 1;  /**< Fuse information - Ignore Authentik disable. */
 	uint64_t rom_info                     : 10; /**< Fuse information - ROM info. */
-	uint64_t power_limit                  : 2;  /**< Fuse information - Power limit. */
+	uint64_t power_limit                  : 2;  /**< Reserved. */
 	uint64_t dorm_crypto                  : 1;  /**< Fuse information - Dormant encryption enable. See NOCRYPTO. */
 	uint64_t fus318                       : 1;  /**< Reserved. */
 	uint64_t raid_en                      : 1;  /**< Fuse information - RAID enabled. */
@@ -5859,11 +5862,11 @@ union cvmx_mio_fus_dat3 {
 	uint64_t pll_ctl                      : 10; /**< Fuse information - PLL control. */
 	uint64_t dfa_info_dte                 : 3;  /**< Reserved. */
 	uint64_t dfa_info_clm                 : 4;  /**< Reserved. */
-	uint64_t pll_alt_matrix               : 1;  /**< Select alternate PLL matrix. */
+	uint64_t pll_alt_matrix               : 1;  /**< Fuse information - Select alternate PLL matrix. */
 	uint64_t reserved_38_39               : 2;
 	uint64_t efus_lck_rsv                 : 1;  /**< Fuse information - efuse lockdown. */
 	uint64_t efus_lck_man                 : 1;  /**< Fuse information - efuse lockdown. */
-	uint64_t pll_half_dis                 : 1;  /**< Fuse information - Coprocessor-clock PLL control. */
+	uint64_t pll_half_dis                 : 1;  /**< Fuse information - coprocessor-clock PLL control. */
 	uint64_t l2c_crip                     : 3;  /**< Fuse information - L2C cripple:
                                                          0x0 = Full cache (16-way, 16 MB).
                                                          0x1 = 3/4 ways (12-way, 12 MB).
@@ -6073,7 +6076,7 @@ union cvmx_mio_fus_dat3 {
                                                          0x2 = Selects CLKF/8. */
 	uint64_t efus_lck_rsv                 : 1;  /**< Fuse information - efuse lockdown. */
 	uint64_t efus_lck_man                 : 1;  /**< Fuse information - efuse lockdown. */
-	uint64_t pll_half_dis                 : 1;  /**< Fuse information - Coprocessor-clock PLL control. */
+	uint64_t pll_half_dis                 : 1;  /**< Fuse information - coprocessor-clock PLL control. */
 	uint64_t l2c_crip                     : 3;  /**< Fuse information - L2C cripple:
                                                          0x0 = Full cache (4-way 512 KB).
                                                          0x1 = 3/4 ways (3-way 384 KB).
@@ -6083,7 +6086,7 @@ union cvmx_mio_fus_dat3 {
 	uint64_t use_int_refclk               : 1;  /**< If set use the PLL output as the low-jitter reference clock to the rclk DLLs. Default is
                                                          to use the external input reference clock.
                                                          Added in pass 2. */
-	uint64_t zip_info                     : 2;  /**< Fuse information - Zip information. */
+	uint64_t zip_info                     : 2;  /**< Fuse information - ZIP information. */
 	uint64_t bar2_sz_conf                 : 1;  /**< Fuse information - When 0, BAR2 size conforms to PCIE specification. */
 	uint64_t efus_lck                     : 1;  /**< Fuse information - efuse lockdown. */
 	uint64_t efus_ign                     : 1;  /**< Fuse information - efuse ignore. */
@@ -6122,7 +6125,7 @@ union cvmx_mio_fus_dat3 {
 	uint64_t reserved_38_40               : 3;
 	uint64_t efus_lck_rsv                 : 1;  /**< Fuse information - efuse lockdown. */
 	uint64_t efus_lck_man                 : 1;  /**< Fuse information - efuse lockdown. */
-	uint64_t pll_half_dis                 : 1;  /**< Fuse information - Coprocessor-clock PLL control. */
+	uint64_t pll_half_dis                 : 1;  /**< Fuse information - coprocessor-clock PLL control. */
 	uint64_t l2c_crip                     : 3;  /**< Fuse information - L2C cripple:
                                                          0x0 = Full cache (4-way 512 KB).
                                                          0x1 = 3/4 ways (3-way 384 KB).
@@ -6130,7 +6133,7 @@ union cvmx_mio_fus_dat3 {
                                                          0x3 = 1/4 ways (1-way 128 KB).
                                                          0x4-0x7 = Reserved. */
 	uint64_t reserved_31_31               : 1;
-	uint64_t zip_info                     : 2;  /**< Fuse information - Zip information. */
+	uint64_t zip_info                     : 2;  /**< Fuse information - ZIP information. */
 	uint64_t bar2_sz_conf                 : 1;  /**< Fuse information - When 0, BAR2 size conforms to PCIE specification. */
 	uint64_t efus_lck                     : 1;  /**< Fuse information - efuse lockdown. */
 	uint64_t efus_ign                     : 1;  /**< Fuse information - efuse ignore. */
@@ -6165,14 +6168,14 @@ union cvmx_mio_fus_dat3 {
 	uint64_t pll_ctl                      : 10; /**< Fuse information - PLL control. */
 	uint64_t dfa_info_dte                 : 3;  /**< Fuse information - HFA information (HTE). */
 	uint64_t dfa_info_clm                 : 4;  /**< Fuse information - HFA information (cluster mask). */
-	uint64_t pll_alt_matrix               : 1;  /**< Select alternate PLL matrix. */
+	uint64_t pll_alt_matrix               : 1;  /**< Fuse information - Select alternate PLL matrix. */
 	uint64_t pll_bwadj_denom              : 2;  /**< Select CLKF denominator for BWADJ value.
                                                          0x0 = Selects CLKF/4.
                                                          0x1 = Selects CLKF/2.
                                                          0x2 = Selects CLKF/8. */
 	uint64_t efus_lck_rsv                 : 1;  /**< Fuse information - efuse lockdown. */
 	uint64_t efus_lck_man                 : 1;  /**< Fuse information - efuse lockdown. */
-	uint64_t pll_half_dis                 : 1;  /**< Fuse information - Coprocessor-clock PLL control. */
+	uint64_t pll_half_dis                 : 1;  /**< Fuse information - coprocessor-clock PLL control. */
 	uint64_t l2c_crip                     : 3;  /**< Fuse information - L2C cripple:
                                                          0x0 = Full cache (16-way, 16 MB).
                                                          0x1 = 3/4 ways (12-way, 12 MB).
@@ -6181,7 +6184,7 @@ union cvmx_mio_fus_dat3 {
                                                          0x4-0x7 = Reserved. */
 	uint64_t use_int_refclk               : 1;  /**< If set, use the PLL output as the low-jitter reference clock to the rclk DLLs. Default is
                                                          to use the internal input reference clock. */
-	uint64_t zip_info                     : 2;  /**< Fuse information - Zip information. */
+	uint64_t zip_info                     : 2;  /**< Fuse information - ZIP information. */
 	uint64_t bar2_sz_conf                 : 1;  /**< Fuse information - When 0, BAR2 size conforms to PCIe specification. */
 	uint64_t efus_lck                     : 1;  /**< Fuse information - efuse lockdown. */
 	uint64_t efus_ign                     : 1;  /**< Fuse information - efuse ignore. */
@@ -6234,7 +6237,7 @@ union cvmx_mio_fus_dat3 {
 	uint64_t reserved_38_40               : 3;
 	uint64_t efus_lck_rsv                 : 1;  /**< Fuse information - efuse lockdown. */
 	uint64_t efus_lck_man                 : 1;  /**< Fuse information - efuse lockdown. */
-	uint64_t pll_half_dis                 : 1;  /**< Fuse information - Coprocessor-clock PLL control. */
+	uint64_t pll_half_dis                 : 1;  /**< Fuse information - coprocessor-clock PLL control. */
 	uint64_t l2c_crip                     : 3;  /**< Fuse information - L2C cripple:
                                                          0x0 = Full cache (16-way, 16 MB).
                                                          0x1 = 3/4 ways (12-way, 12 MB).
@@ -6242,7 +6245,7 @@ union cvmx_mio_fus_dat3 {
                                                          0x3 = 1/4 ways (4-way, 4MB).
                                                          0x4-0x7 = Reserved. */
 	uint64_t reserved_31_31               : 1;
-	uint64_t zip_info                     : 2;  /**< Fuse information - Zip information. */
+	uint64_t zip_info                     : 2;  /**< Fuse information - ZIP information. */
 	uint64_t bar2_sz_conf                 : 1;  /**< Fuse information - When 0, BAR2 size conforms to PCIe specification. */
 	uint64_t efus_lck                     : 1;  /**< Fuse information - efuse lockdown. */
 	uint64_t efus_ign                     : 1;  /**< Fuse information - efuse ignore. */
@@ -6285,14 +6288,14 @@ union cvmx_mio_fus_dat3 {
 	uint64_t pll_ctl                      : 10; /**< Fuse information - PLL control. */
 	uint64_t dfa_info_dte                 : 3;  /**< Reserved. */
 	uint64_t dfa_info_clm                 : 4;  /**< Reserved. */
-	uint64_t pll_alt_matrix               : 1;  /**< Select alternate PLL matrix. */
+	uint64_t pll_alt_matrix               : 1;  /**< Fuse information - Select alternate PLL matrix. */
 	uint64_t pll_bwadj_denom              : 2;  /**< Select CLKF denominator for BWADJ value.
                                                          0x0 = Selects CLKF/4.
                                                          0x1 = Selects CLKF/2.
                                                          0x2 = Selects CLKF/8. */
 	uint64_t efus_lck_rsv                 : 1;  /**< Fuse information - efuse lockdown. */
 	uint64_t efus_lck_man                 : 1;  /**< Fuse information - efuse lockdown. */
-	uint64_t pll_half_dis                 : 1;  /**< Fuse information - Coprocessor-clock PLL control. */
+	uint64_t pll_half_dis                 : 1;  /**< Fuse information - coprocessor-clock PLL control. */
 	uint64_t l2c_crip                     : 3;  /**< Fuse information - L2C cripple:
                                                          0x0 = Full cache (16-way, 16 MB).
                                                          0x1 = 3/4 ways (12-way, 12 MB).
@@ -6877,7 +6880,7 @@ typedef union cvmx_mio_fus_prog_times cvmx_mio_fus_prog_times_t;
  * question, then software can poll MIO_FUS_RCMD[PEND]. When PEND is clear, then
  * MIO_FUS_RCMD[DAT] is valid. In addition, if the efuse read went to the efuse banks (e.g.
  * (ADDR/16) not [0,1,7] || EFUSE), software can read MIO_FUS_BNK_DAT() which contains all 128
- * fuses in the bank associated in ADDR.  Fuses 1023..960 are not accessable if
+ * fuses in the bank associated in ADDR.  Fuses 1023..960 are not accessible if
  * MIO_FUS_DAT2[DORM_CRYPTO] is enabled.
  */
 union cvmx_mio_fus_rcmd {
@@ -7656,7 +7659,7 @@ typedef union cvmx_mio_ptp_ckout_hi_incr cvmx_mio_ptp_ckout_hi_incr_t;
 /**
  * cvmx_mio_ptp_ckout_lo_incr
  *
- * This register contains the PTP CKOUTthreshold increment on pre-inverted PTP_CKOUT falling
+ * This register contains the PTP CKOUT threshold increment on pre-inverted PTP_CKOUT falling
  * edge. See MIO_PTP_CKOUT_THRESH_HI for details.
  */
 union cvmx_mio_ptp_ckout_lo_incr {
@@ -7762,10 +7765,10 @@ union cvmx_mio_ptp_clock_cfg {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_40_63               : 24;
 	uint64_t ext_clk_edge                 : 2;  /**< External clock input edge:
-                                                         00 = Rising edge.
-                                                         01 = Falling edge.
-                                                         10 = Both rising and falling edge.
-                                                         11 = Reserved. */
+                                                         0x0 = Rising edge.
+                                                         0x1 = Falling edge.
+                                                         0x2 = Both rising and falling edge.
+                                                         0x3 = Reserved. */
 	uint64_t ckout_out4                   : 1;  /**< Destination for PTP Clock Out output
                                                          See CKOUT_OUT */
 	uint64_t pps_out                      : 5;  /**< Destination for PTP PPS output to GPIO
@@ -8096,7 +8099,7 @@ typedef union cvmx_mio_ptp_clock_comp cvmx_mio_ptp_clock_comp_t;
 /**
  * cvmx_mio_ptp_clock_hi
  *
- * This register provides bits<95:32> of the PTP clock. Writes to MIO_PTP_CLOCK_HI also clear
+ * This register provides bits <95:32> of the PTP clock. Writes to MIO_PTP_CLOCK_HI also clear
  * MIO_PTP_CLOCK_LO. To update all 96 bits, write MIO_PTP_CLOCK_HI followed by MIO_PTP_CLOCK_LO.
  * MIO_PTP_CLOCK_CFG[PTP_EN] needs to be enabled before writing this register.
  */
@@ -8128,7 +8131,7 @@ typedef union cvmx_mio_ptp_clock_hi cvmx_mio_ptp_clock_hi_t;
 /**
  * cvmx_mio_ptp_clock_lo
  *
- * This register provides bits<31:0> of the PTP clock.  MIO_PTP_CLOCK_CFG[PTP_EN] needs to be
+ * This register provides bits <31:0> of the PTP clock.  MIO_PTP_CLOCK_CFG[PTP_EN] needs to be
  * enabled before writing this register.
  */
 union cvmx_mio_ptp_clock_lo {
@@ -8201,7 +8204,7 @@ typedef union cvmx_mio_ptp_dpll_err_int cvmx_mio_ptp_dpll_err_int_t;
 /**
  * cvmx_mio_ptp_dpll_err_thresh
  *
- * This register configures the Digital PLL error interrupt.
+ * This register configures the digital PLL error interrupt.
  *
  */
 union cvmx_mio_ptp_dpll_err_thresh {
@@ -8227,7 +8230,7 @@ typedef union cvmx_mio_ptp_dpll_err_thresh cvmx_mio_ptp_dpll_err_thresh_t;
 /**
  * cvmx_mio_ptp_dpll_incr
  *
- * This register contains the Digital PLL increment on each coprocessor clock rising edge.
+ * This register contains the digital PLL increment on each coprocessor clock rising edge.
  * Zero disables the digital PLL.
  */
 union cvmx_mio_ptp_dpll_incr {
@@ -10155,7 +10158,7 @@ union cvmx_mio_twsx_sw_twsi {
 	uint64_t v                            : 1;  /**< Valid bit. Set on a write operation (should always be written with a 1). Cleared when a
                                                          TWSI master-mode operation completes, a TWSI configuration register access completes, or
                                                          when the TWSI device reads the register if [SLONLY] = 1. */
-	uint64_t slonly                       : 1;  /**< Slave-only mode.
+	uint64_t slonly                       : 1;  /**< Slave only mode.
                                                          When this bit is set, no operations are initiated with a write operation. Only the D field
                                                          is updated in this case.
                                                          When this bit is clear, a write operation initiates either a master-mode operation or a
@@ -10192,7 +10195,7 @@ union cvmx_mio_twsx_sw_twsi {
                                                          only used for 10-bit addressing.
                                                          Note that when mastering a 7-bit OP, ADDR<6:0> should not take any of the values 0x78,
                                                          0x79, 0x7A nor 0x7B. (These 7-bit addresses are reserved to extend to 10-bit addressing). */
-	uint64_t ia                           : 5;  /**< Internal Address. Used when launching a combined master-mode operation. The lower 3
+	uint64_t ia                           : 5;  /**< Internal address. Used when launching a combined master-mode operation. The lower 3
                                                          address bits are contained in [EOP_IA]. */
 	uint64_t eop_ia                       : 3;  /**< Extra opcode, used when OP<3:0> = 0x6 and [SLONLY] = 0.
                                                          0x0 = TWSI slave address register (TWSI_SLAVE_ADD).

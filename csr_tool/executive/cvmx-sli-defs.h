@@ -553,8 +553,8 @@ static inline uint64_t CVMX_SLI_MACX_PFX_DMA_VF_INT(unsigned long offset, unsign
 {
 	if (!(
 	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 1)) && ((block_id <= 3))))))
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset == 0)) && ((block_id <= 3)))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset == 0)) && ((block_id <= 3))))))
 		cvmx_warn("CVMX_SLI_MACX_PFX_DMA_VF_INT(%lu,%lu) is invalid on this chip\n", offset, block_id);
 	return 0x0000000000027280ull + (((offset) & 1) + ((block_id) & 3) * 0x2ull) * 16;
 }
@@ -566,8 +566,8 @@ static inline uint64_t CVMX_SLI_MACX_PFX_DMA_VF_INT_ENB(unsigned long offset, un
 {
 	if (!(
 	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 1)) && ((block_id <= 3))))))
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset == 0)) && ((block_id <= 3)))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset == 0)) && ((block_id <= 3))))))
 		cvmx_warn("CVMX_SLI_MACX_PFX_DMA_VF_INT_ENB(%lu,%lu) is invalid on this chip\n", offset, block_id);
 	return 0x0000000000027500ull + (((offset) & 1) + ((block_id) & 3) * 0x2ull) * 16;
 }
@@ -579,8 +579,8 @@ static inline uint64_t CVMX_SLI_MACX_PFX_FLR_VF_INT(unsigned long offset, unsign
 {
 	if (!(
 	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 1)) && ((block_id <= 3))))))
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset == 0)) && ((block_id <= 3)))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset == 0)) && ((block_id <= 3))))))
 		cvmx_warn("CVMX_SLI_MACX_PFX_FLR_VF_INT(%lu,%lu) is invalid on this chip\n", offset, block_id);
 	return 0x0000000000027400ull + (((offset) & 1) + ((block_id) & 3) * 0x2ull) * 16;
 }
@@ -592,8 +592,8 @@ static inline uint64_t CVMX_SLI_MACX_PFX_INT_ENB(unsigned long offset, unsigned 
 {
 	if (!(
 	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 1)) && ((block_id <= 3))))))
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset == 0)) && ((block_id <= 3)))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset == 0)) && ((block_id <= 3))))))
 		cvmx_warn("CVMX_SLI_MACX_PFX_INT_ENB(%lu,%lu) is invalid on this chip\n", offset, block_id);
 	return 0x0000000000027080ull + (((offset) & 1) + ((block_id) & 3) * 0x2ull) * 16;
 }
@@ -605,8 +605,8 @@ static inline uint64_t CVMX_SLI_MACX_PFX_INT_SUM(unsigned long offset, unsigned 
 {
 	if (!(
 	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 1)) && ((block_id <= 3))))))
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset == 0)) && ((block_id <= 3)))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset == 0)) && ((block_id <= 3))))))
 		cvmx_warn("CVMX_SLI_MACX_PFX_INT_SUM(%lu,%lu) is invalid on this chip\n", offset, block_id);
 	return 0x0000000000027000ull + (((offset) & 1) + ((block_id) & 3) * 0x2ull) * 16;
 }
@@ -618,8 +618,8 @@ static inline uint64_t CVMX_SLI_MACX_PFX_MBOX_INT(unsigned long offset, unsigned
 {
 	if (!(
 	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 1)) && ((block_id <= 3))))))
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset == 0)) && ((block_id <= 3)))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset == 0)) && ((block_id <= 3))))))
 		cvmx_warn("CVMX_SLI_MACX_PFX_MBOX_INT(%lu,%lu) is invalid on this chip\n", offset, block_id);
 	return 0x0000000000027380ull + (((offset) & 1) + ((block_id) & 3) * 0x2ull) * 16;
 }
@@ -631,8 +631,8 @@ static inline uint64_t CVMX_SLI_MACX_PFX_PKT_VF_INT(unsigned long offset, unsign
 {
 	if (!(
 	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 1)) && ((block_id <= 3))))))
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset == 0)) && ((block_id <= 3)))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset == 0)) && ((block_id <= 3))))))
 		cvmx_warn("CVMX_SLI_MACX_PFX_PKT_VF_INT(%lu,%lu) is invalid on this chip\n", offset, block_id);
 	return 0x0000000000027300ull + (((offset) & 1) + ((block_id) & 3) * 0x2ull) * 16;
 }
@@ -644,8 +644,8 @@ static inline uint64_t CVMX_SLI_MACX_PFX_PKT_VF_INT_ENB(unsigned long offset, un
 {
 	if (!(
 	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 1)) && ((block_id <= 3))))))
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset == 0)) && ((block_id <= 3)))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset == 0)) && ((block_id <= 3))))))
 		cvmx_warn("CVMX_SLI_MACX_PFX_PKT_VF_INT_ENB(%lu,%lu) is invalid on this chip\n", offset, block_id);
 	return 0x0000000000027580ull + (((offset) & 1) + ((block_id) & 3) * 0x2ull) * 16;
 }
@@ -657,8 +657,8 @@ static inline uint64_t CVMX_SLI_MACX_PFX_PP_VF_INT(unsigned long offset, unsigne
 {
 	if (!(
 	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 1)) && ((block_id <= 3))))))
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset == 0)) && ((block_id <= 3)))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset == 0)) && ((block_id <= 3))))))
 		cvmx_warn("CVMX_SLI_MACX_PFX_PP_VF_INT(%lu,%lu) is invalid on this chip\n", offset, block_id);
 	return 0x0000000000027200ull + (((offset) & 1) + ((block_id) & 3) * 0x2ull) * 16;
 }
@@ -670,8 +670,8 @@ static inline uint64_t CVMX_SLI_MACX_PFX_PP_VF_INT_ENB(unsigned long offset, uns
 {
 	if (!(
 	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 1)) && ((block_id <= 3))))))
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset == 0)) && ((block_id <= 3)))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset == 0)) && ((block_id <= 3))))))
 		cvmx_warn("CVMX_SLI_MACX_PFX_PP_VF_INT_ENB(%lu,%lu) is invalid on this chip\n", offset, block_id);
 	return 0x0000000000027480ull + (((offset) & 1) + ((block_id) & 3) * 0x2ull) * 16;
 }
@@ -1843,14 +1843,14 @@ static inline uint64_t CVMX_SLI_PKTX_CNTS(unsigned long offset)
 				if ((offset <= 63))
 					return 0x0000000000002400ull + ((offset) & 63) * 16;
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
-				if ((offset <= 127))
-					return 0x00000000000100B0ull + ((offset) & 127) * 0x20000ull;
-			if ((offset <= 127))
-				return 0x00000000000100B0ull + ((offset) & 127) * 0x20000ull;
+				if ((offset <= 63))
+					return 0x00000000000100B0ull + ((offset) & 63) * 0x20000ull;
+			if ((offset <= 63))
+				return 0x00000000000100B0ull + ((offset) & 63) * 0x20000ull;
 			break;
 	}
 	cvmx_warn("CVMX_SLI_PKTX_CNTS (offset = %lu) not supported on this chip\n", offset);
-	return 0x00000000000100B0ull + ((offset) & 127) * 0x20000ull;
+	return 0x00000000000100B0ull + ((offset) & 63) * 0x20000ull;
 }
 #else
 static inline uint64_t CVMX_SLI_PKTX_CNTS(unsigned long offset)
@@ -1880,14 +1880,14 @@ static inline uint64_t CVMX_SLI_PKTX_CNTS(unsigned long offset)
 static inline uint64_t CVMX_SLI_PKTX_ERROR_INFO(unsigned long offset)
 {
 	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 127))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 127))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 127)))))
+	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 63))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 63))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 63)))))
 		cvmx_warn("CVMX_SLI_PKTX_ERROR_INFO(%lu) is invalid on this chip\n", offset);
-	return 0x00000000000100C0ull + ((offset) & 127) * 0x20000ull;
+	return 0x00000000000100C0ull + ((offset) & 63) * 0x20000ull;
 }
 #else
-#define CVMX_SLI_PKTX_ERROR_INFO(offset) (0x00000000000100C0ull + ((offset) & 127) * 0x20000ull)
+#define CVMX_SLI_PKTX_ERROR_INFO(offset) (0x00000000000100C0ull + ((offset) & 63) * 0x20000ull)
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_SLI_PKTX_INPUT_CONTROL(unsigned long offset)
@@ -1902,14 +1902,14 @@ static inline uint64_t CVMX_SLI_PKTX_INPUT_CONTROL(unsigned long offset)
 				if ((offset <= 63))
 					return 0x0000000000004000ull + ((offset) & 63) * 16;
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
-				if ((offset <= 127))
-					return 0x0000000000010000ull + ((offset) & 127) * 0x20000ull;
-			if ((offset <= 127))
-				return 0x0000000000010000ull + ((offset) & 127) * 0x20000ull;
+				if ((offset <= 63))
+					return 0x0000000000010000ull + ((offset) & 63) * 0x20000ull;
+			if ((offset <= 63))
+				return 0x0000000000010000ull + ((offset) & 63) * 0x20000ull;
 			break;
 	}
 	cvmx_warn("CVMX_SLI_PKTX_INPUT_CONTROL (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000000000010000ull + ((offset) & 127) * 0x20000ull;
+	return 0x0000000000010000ull + ((offset) & 63) * 0x20000ull;
 }
 #else
 static inline uint64_t CVMX_SLI_PKTX_INPUT_CONTROL(unsigned long offset)
@@ -1950,14 +1950,14 @@ static inline uint64_t CVMX_SLI_PKTX_INSTR_BADDR(unsigned long offset)
 				if ((offset <= 63))
 					return 0x0000000000002800ull + ((offset) & 63) * 16;
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
-				if ((offset <= 127))
-					return 0x0000000000010010ull + ((offset) & 127) * 0x20000ull;
-			if ((offset <= 127))
-				return 0x0000000000010010ull + ((offset) & 127) * 0x20000ull;
+				if ((offset <= 63))
+					return 0x0000000000010010ull + ((offset) & 63) * 0x20000ull;
+			if ((offset <= 63))
+				return 0x0000000000010010ull + ((offset) & 63) * 0x20000ull;
 			break;
 	}
 	cvmx_warn("CVMX_SLI_PKTX_INSTR_BADDR (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000000000010010ull + ((offset) & 127) * 0x20000ull;
+	return 0x0000000000010010ull + ((offset) & 63) * 0x20000ull;
 }
 #else
 static inline uint64_t CVMX_SLI_PKTX_INSTR_BADDR(unsigned long offset)
@@ -2005,14 +2005,14 @@ static inline uint64_t CVMX_SLI_PKTX_INSTR_BAOFF_DBELL(unsigned long offset)
 				if ((offset <= 63))
 					return 0x0000000000002C00ull + ((offset) & 63) * 16;
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
-				if ((offset <= 127))
-					return 0x0000000000010020ull + ((offset) & 127) * 0x20000ull;
-			if ((offset <= 127))
-				return 0x0000000000010020ull + ((offset) & 127) * 0x20000ull;
+				if ((offset <= 63))
+					return 0x0000000000010020ull + ((offset) & 63) * 0x20000ull;
+			if ((offset <= 63))
+				return 0x0000000000010020ull + ((offset) & 63) * 0x20000ull;
 			break;
 	}
 	cvmx_warn("CVMX_SLI_PKTX_INSTR_BAOFF_DBELL (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000000000010020ull + ((offset) & 127) * 0x20000ull;
+	return 0x0000000000010020ull + ((offset) & 63) * 0x20000ull;
 }
 #else
 static inline uint64_t CVMX_SLI_PKTX_INSTR_BAOFF_DBELL(unsigned long offset)
@@ -2060,14 +2060,14 @@ static inline uint64_t CVMX_SLI_PKTX_INSTR_FIFO_RSIZE(unsigned long offset)
 				if ((offset <= 63))
 					return 0x0000000000003000ull + ((offset) & 63) * 16;
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
-				if ((offset <= 127))
-					return 0x0000000000010030ull + ((offset) & 127) * 0x20000ull;
-			if ((offset <= 127))
-				return 0x0000000000010030ull + ((offset) & 127) * 0x20000ull;
+				if ((offset <= 63))
+					return 0x0000000000010030ull + ((offset) & 63) * 0x20000ull;
+			if ((offset <= 63))
+				return 0x0000000000010030ull + ((offset) & 63) * 0x20000ull;
 			break;
 	}
 	cvmx_warn("CVMX_SLI_PKTX_INSTR_FIFO_RSIZE (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000000000010030ull + ((offset) & 127) * 0x20000ull;
+	return 0x0000000000010030ull + ((offset) & 63) * 0x20000ull;
 }
 #else
 static inline uint64_t CVMX_SLI_PKTX_INSTR_FIFO_RSIZE(unsigned long offset)
@@ -2122,14 +2122,14 @@ static inline uint64_t CVMX_SLI_PKTX_INT_LEVELS(unsigned long offset)
 				if ((offset <= 63))
 					return 0x0000000000004400ull + ((offset) & 63) * 16;
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
-				if ((offset <= 127))
-					return 0x00000000000100A0ull + ((offset) & 127) * 0x20000ull;
-			if ((offset <= 127))
-				return 0x00000000000100A0ull + ((offset) & 127) * 0x20000ull;
+				if ((offset <= 63))
+					return 0x00000000000100A0ull + ((offset) & 63) * 0x20000ull;
+			if ((offset <= 63))
+				return 0x00000000000100A0ull + ((offset) & 63) * 0x20000ull;
 			break;
 	}
 	cvmx_warn("CVMX_SLI_PKTX_INT_LEVELS (offset = %lu) not supported on this chip\n", offset);
-	return 0x00000000000100A0ull + ((offset) & 127) * 0x20000ull;
+	return 0x00000000000100A0ull + ((offset) & 63) * 0x20000ull;
 }
 #else
 static inline uint64_t CVMX_SLI_PKTX_INT_LEVELS(unsigned long offset)
@@ -2167,14 +2167,14 @@ static inline uint64_t CVMX_SLI_PKTX_IN_BP(unsigned long offset)
 static inline uint64_t CVMX_SLI_PKTX_MBOX_INT(unsigned long offset)
 {
 	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 127))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 127))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 127)))))
+	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 63))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 63))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 63)))))
 		cvmx_warn("CVMX_SLI_PKTX_MBOX_INT(%lu) is invalid on this chip\n", offset);
-	return 0x0000000000010210ull + ((offset) & 127) * 0x20000ull;
+	return 0x0000000000010210ull + ((offset) & 63) * 0x20000ull;
 }
 #else
-#define CVMX_SLI_PKTX_MBOX_INT(offset) (0x0000000000010210ull + ((offset) & 127) * 0x20000ull)
+#define CVMX_SLI_PKTX_MBOX_INT(offset) (0x0000000000010210ull + ((offset) & 63) * 0x20000ull)
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_SLI_PKTX_OUTPUT_CONTROL(unsigned long offset)
@@ -2189,14 +2189,14 @@ static inline uint64_t CVMX_SLI_PKTX_OUTPUT_CONTROL(unsigned long offset)
 				if ((offset <= 63))
 					return 0x0000000000004800ull + ((offset) & 63) * 16;
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
-				if ((offset <= 127))
-					return 0x0000000000010050ull + ((offset) & 127) * 0x20000ull;
-			if ((offset <= 127))
-				return 0x0000000000010050ull + ((offset) & 127) * 0x20000ull;
+				if ((offset <= 63))
+					return 0x0000000000010050ull + ((offset) & 63) * 0x20000ull;
+			if ((offset <= 63))
+				return 0x0000000000010050ull + ((offset) & 63) * 0x20000ull;
 			break;
 	}
 	cvmx_warn("CVMX_SLI_PKTX_OUTPUT_CONTROL (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000000000010050ull + ((offset) & 127) * 0x20000ull;
+	return 0x0000000000010050ull + ((offset) & 63) * 0x20000ull;
 }
 #else
 static inline uint64_t CVMX_SLI_PKTX_OUTPUT_CONTROL(unsigned long offset)
@@ -2237,14 +2237,14 @@ static inline uint64_t CVMX_SLI_PKTX_OUT_SIZE(unsigned long offset)
 				if ((offset <= 63))
 					return 0x0000000000000C00ull + ((offset) & 63) * 16;
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
-				if ((offset <= 127))
-					return 0x0000000000010060ull + ((offset) & 127) * 0x20000ull;
-			if ((offset <= 127))
-				return 0x0000000000010060ull + ((offset) & 127) * 0x20000ull;
+				if ((offset <= 63))
+					return 0x0000000000010060ull + ((offset) & 63) * 0x20000ull;
+			if ((offset <= 63))
+				return 0x0000000000010060ull + ((offset) & 63) * 0x20000ull;
 			break;
 	}
 	cvmx_warn("CVMX_SLI_PKTX_OUT_SIZE (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000000000010060ull + ((offset) & 127) * 0x20000ull;
+	return 0x0000000000010060ull + ((offset) & 63) * 0x20000ull;
 }
 #else
 static inline uint64_t CVMX_SLI_PKTX_OUT_SIZE(unsigned long offset)
@@ -2305,14 +2305,14 @@ static inline uint64_t CVMX_SLI_PKTX_SLIST_BADDR(unsigned long offset)
 				if ((offset <= 63))
 					return 0x0000000000001400ull + ((offset) & 63) * 16;
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
-				if ((offset <= 127))
-					return 0x0000000000010070ull + ((offset) & 127) * 0x20000ull;
-			if ((offset <= 127))
-				return 0x0000000000010070ull + ((offset) & 127) * 0x20000ull;
+				if ((offset <= 63))
+					return 0x0000000000010070ull + ((offset) & 63) * 0x20000ull;
+			if ((offset <= 63))
+				return 0x0000000000010070ull + ((offset) & 63) * 0x20000ull;
 			break;
 	}
 	cvmx_warn("CVMX_SLI_PKTX_SLIST_BADDR (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000000000010070ull + ((offset) & 127) * 0x20000ull;
+	return 0x0000000000010070ull + ((offset) & 63) * 0x20000ull;
 }
 #else
 static inline uint64_t CVMX_SLI_PKTX_SLIST_BADDR(unsigned long offset)
@@ -2360,14 +2360,14 @@ static inline uint64_t CVMX_SLI_PKTX_SLIST_BAOFF_DBELL(unsigned long offset)
 				if ((offset <= 63))
 					return 0x0000000000001800ull + ((offset) & 63) * 16;
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
-				if ((offset <= 127))
-					return 0x0000000000010080ull + ((offset) & 127) * 0x20000ull;
-			if ((offset <= 127))
-				return 0x0000000000010080ull + ((offset) & 127) * 0x20000ull;
+				if ((offset <= 63))
+					return 0x0000000000010080ull + ((offset) & 63) * 0x20000ull;
+			if ((offset <= 63))
+				return 0x0000000000010080ull + ((offset) & 63) * 0x20000ull;
 			break;
 	}
 	cvmx_warn("CVMX_SLI_PKTX_SLIST_BAOFF_DBELL (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000000000010080ull + ((offset) & 127) * 0x20000ull;
+	return 0x0000000000010080ull + ((offset) & 63) * 0x20000ull;
 }
 #else
 static inline uint64_t CVMX_SLI_PKTX_SLIST_BAOFF_DBELL(unsigned long offset)
@@ -2415,14 +2415,14 @@ static inline uint64_t CVMX_SLI_PKTX_SLIST_FIFO_RSIZE(unsigned long offset)
 				if ((offset <= 63))
 					return 0x0000000000001C00ull + ((offset) & 63) * 16;
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
-				if ((offset <= 127))
-					return 0x0000000000010090ull + ((offset) & 127) * 0x20000ull;
-			if ((offset <= 127))
-				return 0x0000000000010090ull + ((offset) & 127) * 0x20000ull;
+				if ((offset <= 63))
+					return 0x0000000000010090ull + ((offset) & 63) * 0x20000ull;
+			if ((offset <= 63))
+				return 0x0000000000010090ull + ((offset) & 63) * 0x20000ull;
 			break;
 	}
 	cvmx_warn("CVMX_SLI_PKTX_SLIST_FIFO_RSIZE (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000000000010090ull + ((offset) & 127) * 0x20000ull;
+	return 0x0000000000010090ull + ((offset) & 63) * 0x20000ull;
 }
 #else
 static inline uint64_t CVMX_SLI_PKTX_SLIST_FIFO_RSIZE(unsigned long offset)
@@ -2452,14 +2452,14 @@ static inline uint64_t CVMX_SLI_PKTX_SLIST_FIFO_RSIZE(unsigned long offset)
 static inline uint64_t CVMX_SLI_PKTX_VF_INT_SUM(unsigned long offset)
 {
 	if (!(
-	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 127))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 127))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 127)))))
+	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && ((offset <= 63))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && ((offset <= 63))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && ((offset <= 63)))))
 		cvmx_warn("CVMX_SLI_PKTX_VF_INT_SUM(%lu) is invalid on this chip\n", offset);
-	return 0x00000000000100D0ull + ((offset) & 127) * 0x20000ull;
+	return 0x00000000000100D0ull + ((offset) & 63) * 0x20000ull;
 }
 #else
-#define CVMX_SLI_PKTX_VF_INT_SUM(offset) (0x00000000000100D0ull + ((offset) & 127) * 0x20000ull)
+#define CVMX_SLI_PKTX_VF_INT_SUM(offset) (0x00000000000100D0ull + ((offset) & 63) * 0x20000ull)
 #endif
 #if CVMX_ENABLE_CSR_ADDRESS_CHECKING
 static inline uint64_t CVMX_SLI_PKTX_VF_SIG(unsigned long offset)
@@ -2736,14 +2736,14 @@ static inline uint64_t CVMX_SLI_PKT_IN_DONEX_CNTS(unsigned long offset)
 				if ((offset <= 63))
 					return 0x0000000000002000ull + ((offset) & 63) * 16;
 			if (OCTEON_IS_MODEL(OCTEON_CN78XX))
-				if ((offset <= 127))
-					return 0x0000000000010040ull + ((offset) & 127) * 0x20000ull;
-			if ((offset <= 127))
-				return 0x0000000000010040ull + ((offset) & 127) * 0x20000ull;
+				if ((offset <= 63))
+					return 0x0000000000010040ull + ((offset) & 63) * 0x20000ull;
+			if ((offset <= 63))
+				return 0x0000000000010040ull + ((offset) & 63) * 0x20000ull;
 			break;
 	}
 	cvmx_warn("CVMX_SLI_PKT_IN_DONEX_CNTS (offset = %lu) not supported on this chip\n", offset);
-	return 0x0000000000010040ull + ((offset) & 127) * 0x20000ull;
+	return 0x0000000000010040ull + ((offset) & 63) * 0x20000ull;
 }
 #else
 static inline uint64_t CVMX_SLI_PKT_IN_DONEX_CNTS(unsigned long offset)
@@ -2939,8 +2939,8 @@ static inline uint64_t CVMX_SLI_PKT_MACX_PFX_RINFO(unsigned long offset, unsigne
 {
 	if (!(
 	      (OCTEON_IS_MODEL(OCTEON_CN73XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset <= 1)) && ((block_id <= 3)))) ||
-	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset <= 1)) && ((block_id <= 3))))))
+	      (OCTEON_IS_MODEL(OCTEON_CN78XX) && (((offset == 0)) && ((block_id <= 3)))) ||
+	      (OCTEON_IS_MODEL(OCTEON_CNF75XX) && (((offset == 0)) && ((block_id <= 3))))))
 		cvmx_warn("CVMX_SLI_PKT_MACX_PFX_RINFO(%lu,%lu) is invalid on this chip\n", offset, block_id);
 	return 0x0000000000029030ull + (((offset) & 1) + ((block_id) & 3) * 0x2ull) * 16;
 }
@@ -4246,12 +4246,12 @@ union cvmx_sli_ciu_int_enb {
 	uint64_t m1p0_pppf_err                : 1;  /**< Enables SLI_CIU_INT_SUM[M1P0_PPPF_ERR] to generate an interrupt to the CIU. */
 	uint64_t m1p0_pktpf_err               : 1;  /**< Enables SLI_CIU_INT_SUM[M1P0_PKTPF_ERR] to generate an interrupt to the CIU. */
 	uint64_t m1p0_dmapf_err               : 1;  /**< Enables SLI_CIU_INT_SUM[M1P0_DMAPF_ERR] to generate an interrupt to the CIU. */
-	uint64_t m0p1_pppf_err                : 1;  /**< Enables SLI_CIU_INT_SUM[M0P1_PPPF_ERR] to generate an interrupt to the CIU. */
-	uint64_t m0p1_ppvf_err                : 1;  /**< Enables SLI_CIU_INT_SUM[M0P1_PPVF_ERR] to generate an interrupt to the CIU. */
-	uint64_t m0p1_pktpf_err               : 1;  /**< Enables SLI_CIU_INT_SUM[M0P1_PKTPF_ERR] to generate an interrupt to the CIU. */
-	uint64_t m0p1_pktvf_err               : 1;  /**< Enables SLI_CIU_INT_SUM[M0P1_PKTVF_ERR] to generate an interrupt to the CIU. */
-	uint64_t m0p1_dmapf_err               : 1;  /**< Enables SLI_CIU_INT_SUM[M0P1_DMAPF_ERR] to generate an interrupt to the CIU. */
-	uint64_t m0p1_dmavf_err               : 1;  /**< Enables SLI_CIU_INT_SUM[M0P1_DMAVF_ERR] to generate an interrupt to the CIU. */
+	uint64_t m0p1_pppf_err                : 1;  /**< Not used by hardware. */
+	uint64_t m0p1_ppvf_err                : 1;  /**< Not used by hardware. */
+	uint64_t m0p1_pktpf_err               : 1;  /**< Not used by hardware. */
+	uint64_t m0p1_pktvf_err               : 1;  /**< Not used by hardware. */
+	uint64_t m0p1_dmapf_err               : 1;  /**< Not used by hardware. */
+	uint64_t m0p1_dmavf_err               : 1;  /**< Not used by hardware. */
 	uint64_t m0p0_pppf_err                : 1;  /**< Enables SLI_CIU_INT_SUM[M0P0_PPPF_ERR] to generate an interrupt to the CIU. */
 	uint64_t m0p0_ppvf_err                : 1;  /**< Enables SLI_CIU_INT_SUM[M0P0_PPVF_ERR] to generate an interrupt to the CIU. */
 	uint64_t m0p0_pktpf_err               : 1;  /**< Enables SLI_CIU_INT_SUM[M0P0_PKTPF_ERR] to generate an interrupt to the CIU. */
@@ -4261,8 +4261,8 @@ union cvmx_sli_ciu_int_enb {
 	uint64_t m2v0_flr                     : 1;  /**< Enables SLI_CIU_INT_SUM[M2V0_FLR] to generate an interrupt to the CIU. */
 	uint64_t m2p0_flr                     : 1;  /**< Enables SLI_CIU_INT_SUM[M2P0_FLR] to generate an interrupt to the CIU. */
 	uint64_t reserved_5_8                 : 4;
-	uint64_t m0v1_flr                     : 1;  /**< Enables SLI_CIU_INT_SUM[M0V1_FLR] to generate an interrupt to the CIU. */
-	uint64_t m0p1_flr                     : 1;  /**< Enables SLI_CIU_INT_SUM[M0P1_FLR] to generate an interrupt to the CIU. */
+	uint64_t m0v1_flr                     : 1;  /**< Not used by hardware. */
+	uint64_t m0p1_flr                     : 1;  /**< Not used by hardware. */
 	uint64_t m0v0_flr                     : 1;  /**< Enables SLI_CIU_INT_SUM[M0V0_FLR] to generate an interrupt to the CIU. */
 	uint64_t m0p0_flr                     : 1;  /**< Enables SLI_CIU_INT_SUM[M0P0_FLR] to generate an interrupt to the CIU. */
 	uint64_t rml_to                       : 1;  /**< Enables SLI_CIU_INT_SUM[RML_TO] to generate an interrupt to the CIU. */
@@ -4397,108 +4397,90 @@ union cvmx_sli_ciu_int_sum {
 	uint64_t m0_up_b0                     : 1;  /**< Received unsupported P-TLP for Bar 0 from MAC 0. This occurs when the BAR 0 address space
                                                          This can only be set by a PF and not a VF access.
                                                          Throws SLI_INTSN_E::SLI_INT_M0_UP_B0. */
-	uint64_t m3p0_pppf_err                : 1;  /**< On Mac3 PF0, when an error response is received for a PF PP transaction read,
+	uint64_t m3p0_pppf_err                : 1;  /**< On SLI_PORT_E::SRIO1 PF0, when an error response is received for a PF PP transaction read,
                                                          this bit is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M3P0_PPPF_ERR. */
-	uint64_t m3p0_pktpf_err               : 1;  /**< On Mac3 PF0, When an error response is received for a PF packet transaction read or a
-                                                         doorbell
-                                                         overflow for a ring associated with this PF occurs,
-                                                         this bit is set.
+	uint64_t m3p0_pktpf_err               : 1;  /**< On SLI_PORT_E::SRIO1 PF0, When an error response is received for a PF packet transaction
+                                                         read or a doorbell overflow for a ring associated with this PF occurs, this bit is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M3P0_PKTPF_ERR. */
-	uint64_t m3p0_dmapf_err               : 1;  /**< On Mac3 PF0, when an error response is received for a PF DMA transcation read, this bit is
-                                                         set.
+	uint64_t m3p0_dmapf_err               : 1;  /**< On SLI_PORT_E::SRIO1 PF0, when an error response is received for a PF DMA transaction
+                                                         read,
+                                                         this bit is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M3P0_DMAPF_ERR. */
-	uint64_t m2p0_pppf_err                : 1;  /**< On Mac2 PF0, when an error response is received for a PF PP transaction read,
+	uint64_t m2p0_pppf_err                : 1;  /**< On SLI_PORT_E::SRIO0 PF0, when an error response is received for a PF PP transaction read,
                                                          this bit is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M2P0_PPPF_ERR. */
-	uint64_t m2p0_ppvf_err                : 1;  /**< On Mac2 PF0, when an error response is received for a VF PP transaction read, this bit is
-                                                         set. This bit should be cleared and followed by a read
-                                                         to SLI_MAC()_PF()_PP_VF_INT to discover which VF.
+	uint64_t m2p0_ppvf_err                : 1;  /**< This interrupt should not occur.
                                                          Throws SLI_INTSN_E::SLI_INT_M2P0_PPVF_ERR. */
-	uint64_t m2p0_pktpf_err               : 1;  /**< On Mac2 PF0, When an error response is received for a PF packet transaction read or a
-                                                         doorbell
-                                                         overflow for a ring associated with this PF occurs,
-                                                         this bit is set.
+	uint64_t m2p0_pktpf_err               : 1;  /**< On SLI_PORT_E::SRIO0 PF0, When an error response is received for a PF packet transaction
+                                                         read or a doorbell overflow for a ring associated with this PF occurs, this bit is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M2P0_PKTPF_ERR. */
-	uint64_t m2p0_pktvf_err               : 1;  /**< On Mac2 PF0, when an error response is received for a VF PP transaction read, a doorbell
-                                                         overflow for a ring associated with a VF occurs or an illegal memory access from a VF
-                                                         occurs, this bit is set. This bit should be cleared and followed by a read
-                                                         to SLI_MAC()_PF()_PKT_VF_INT to discover which VF.
+	uint64_t m2p0_pktvf_err               : 1;  /**< This interrupt should not occur.
                                                          Throws SLI_INTSN_E::SLI_INT_M2P0_PKTVF_ERR. */
-	uint64_t m2p0_dmapf_err               : 1;  /**< On Mac2 PF0, when an error response is received for a PF DMA transcation read, this bit is
-                                                         set.
+	uint64_t m2p0_dmapf_err               : 1;  /**< On SLI_PORT_E::SRIO0 PF0, when an error response is received for a PF DMA transaction
+                                                         read,
+                                                         this bit is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M2P0_DMAPF_ERR. */
-	uint64_t m2p0_dmavf_err               : 1;  /**< When an error response is received for a VF DMA transaction read on MAC2 PF0, this bit is
-                                                         set. This bit should be cleared and followed by a read to SLI_MAC()_PF()_DMA_VF_INT to
-                                                         discover which VF.
+	uint64_t m2p0_dmavf_err               : 1;  /**< This interrupt should not occur.
                                                          Throws SLI_INTSN_E::SLI_INT_M2P0_DMAVF_ERR. */
-	uint64_t m1p0_pppf_err                : 1;  /**< On Mac1 PF0, when an error response is received for a PF PP transaction read,
+	uint64_t m1p0_pppf_err                : 1;  /**< On SLI_PORT_E::PEM1 PF0, when an error response is received for a PF PP transaction read,
                                                          this bit is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M1P0_PPPF_ERR. */
-	uint64_t m1p0_pktpf_err               : 1;  /**< On Mac1 PF0, When an error response is received for a PF packet transaction read or a
-                                                         doorbell
-                                                         overflow for a ring associated with this PF occurs,
-                                                         this bit is set.
+	uint64_t m1p0_pktpf_err               : 1;  /**< On SLI_PORT_E::PEM1 PF0, When an error response is received for a PF packet transaction
+                                                         read or a doorbell overflow for a ring associated with this PF occurs, this bit is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M1P0_PKTPF_ERR. */
-	uint64_t m1p0_dmapf_err               : 1;  /**< On Mac1 PF0, when an error response is received for a PF DMA transcation read, this bit is
-                                                         set.
+	uint64_t m1p0_dmapf_err               : 1;  /**< On SLI_PORT_E::PEM1 PF0, when an error response is received for a PF DMA transaction read,
+                                                         this bit is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M1P0_DMAPF_ERR. */
-	uint64_t m0p1_pppf_err                : 1;  /**< This interrupt cannot occur in o75.
+	uint64_t m0p1_pppf_err                : 1;  /**< This interrupt cannot occur.
                                                          Throws SLI_INTSN_E::SLI_INT_M0P1_PPPF_ERR. */
-	uint64_t m0p1_ppvf_err                : 1;  /**< This interrupt cannot occur in o75.
+	uint64_t m0p1_ppvf_err                : 1;  /**< This interrupt cannot occur.
                                                          Throws SLI_INTSN_E::SLI_INT_M0P1_PPVF_ERR. */
-	uint64_t m0p1_pktpf_err               : 1;  /**< This interrupt cannot occur in o75.
+	uint64_t m0p1_pktpf_err               : 1;  /**< This interrupt cannot occur.
                                                          Throws SLI_INTSN_E::SLI_INT_M0P1_PKTPF_ERR. */
-	uint64_t m0p1_pktvf_err               : 1;  /**< This interrupt cannot occur in o75.
+	uint64_t m0p1_pktvf_err               : 1;  /**< This interrupt cannot occur.
                                                          Throws SLI_INTSN_E::SLI_INT_M0P1_PKTVF_ERR. */
-	uint64_t m0p1_dmapf_err               : 1;  /**< This interrupt cannot occur in o75.
+	uint64_t m0p1_dmapf_err               : 1;  /**< This interrupt cannot occur.
                                                          Throws SLI_INTSN_E::SLI_INT_M0P1_DMAPF_ERR. */
-	uint64_t m0p1_dmavf_err               : 1;  /**< This interrupt cannot occur in o75.
+	uint64_t m0p1_dmavf_err               : 1;  /**< This interrupt cannot occur.
                                                          Throws SLI_INTSN_E::SLI_INT_M0P1_DMAVF_ERR. */
-	uint64_t m0p0_pppf_err                : 1;  /**< On Mac0 PF0, when an error response is received for a PF PP transaction read,
+	uint64_t m0p0_pppf_err                : 1;  /**< On SLI_PORT_E::PEM0 PF0, when an error response is received for a PF PP transaction read,
                                                          this bit is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M0P0_PPPF_ERR. */
-	uint64_t m0p0_ppvf_err                : 1;  /**< On Mac0 PF0, when an error response is received for a VF PP transaction read, this bit is
-                                                         set. This bit should be cleared and followed by a read to SLI_MAC()_PF()_PP_VF_INT to
-                                                         discover which VF is set.
-                                                         Note: this will only be set for SRIOV PF's MAC0 PF0 MAC2 PF0
+	uint64_t m0p0_ppvf_err                : 1;  /**< On SLI_PORT_E::PEM0 PF0, when an error response is received for a VF PP transaction read,
+                                                         this bit is set. This bit should be cleared and followed by a read to
+                                                         SLI_MAC()_PF()_PP_VF_INT to discover which VF is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M0P0_PPVF_ERR. */
-	uint64_t m0p0_pktpf_err               : 1;  /**< On Mac0 PF0, When an error response is received for a PF packet transaction read or a
-                                                         doorbell
-                                                         overflow for a ring associated with this PF occurs,
-                                                         this bit is set.
+	uint64_t m0p0_pktpf_err               : 1;  /**< On SLI_PORT_E::PEM0 PF0, When an error response is received for a PF packet transaction
+                                                         read or a doorbell overflow for a ring associated with this PF occurs, this bit is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M0P0_PKTPF_ERR. */
-	uint64_t m0p0_pktvf_err               : 1;  /**< On Mac0 PF0, when an error response is received for a VF PP transaction read, a doorbell
-                                                         overflow for a ring associated with a VF occurs or an illegal memory access from a VF
-                                                         occurs, this bit is set. This bit should be cleared and followed by a read to
+	uint64_t m0p0_pktvf_err               : 1;  /**< On SLI_PORT_E::PEM0 PF0, when an error response is received for a VF PP transaction read,
+                                                         a doorbell overflow for a ring associated with a VF occurs or an illegal memory access
+                                                         from a VF occurs, this bit is set. This bit should be cleared and followed by a read to
                                                          SLI_MAC()_PF()_PKT_VF_INT to discover which VF is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M0P0_PKTVF_ERR. */
-	uint64_t m0p0_dmapf_err               : 1;  /**< On Mac0 PF0, when an error response is received for a PF DMA transcation read, this bit is
-                                                         set.
+	uint64_t m0p0_dmapf_err               : 1;  /**< On SLI_PORT_E::PEM0 PF0, when an error response is received for a PF DMA transaction read,
+                                                         this bit is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M0P0_DMAPF_ERR. */
-	uint64_t m0p0_dmavf_err               : 1;  /**< When an error response is received for a VF DMA transaction read on MAC0 PF0, this bit is
-                                                         set. This bit should be cleared and followed by a read to SLI_MAC()_PF()_DMA_VF_INT is
-                                                         required to discover which VF is set.
-                                                         Note: this will only be set for SRIOV PF's MAC0 PF0 MAC2 PF0
+	uint64_t m0p0_dmavf_err               : 1;  /**< When an error response is received for a VF DMA transaction read on SLI_PORT_E::PEM0 PF0,
+                                                         this bit is set. This bit should be cleared and followed by a read to
+                                                         SLI_MAC()_PF()_DMA_VF_INT is required to discover which VF is set.
                                                          Throws SLI_INTSN_E::SLI_INT_M0P0_DMAVF_ERR. */
-	uint64_t m2v0_flr                     : 1;  /**< A FLR occurred for a VF on MAC2 PF0
-                                                         This bit should be cleared and followed by a read to SLI_MAC()_PF()_FLR_VF_INT to discover
-                                                         which VF experienced the FLR.
+	uint64_t m2v0_flr                     : 1;  /**< This interrupt should not occur.
                                                          Throws SLI_INTSN_E::SLI_INT_M2V0_FLR. */
-	uint64_t m2p0_flr                     : 1;  /**< A FLR occurred for MAC0 PF2. This bit should be cleared and followed by a read to
-                                                         SLI_MAC()_PF()_FLR_VF_INT
-                                                         to discover which VF experienced the FLR.
+	uint64_t m2p0_flr                     : 1;  /**< A FLR occurred for SLI_PORT_E::PEM2 PF0. This bit should be cleared and followed by
+                                                         a read to SLI_MAC()_PF()_FLR_VF_INT to discover which VF experienced the FLR.
                                                          Throws SLI_INTSN_E::SLI_INT_M2P0_FLR. */
 	uint64_t reserved_5_8                 : 4;
-	uint64_t m0v1_flr                     : 1;  /**< This interrupt cannot occur in o75.
+	uint64_t m0v1_flr                     : 1;  /**< This interrupt cannot occur.
                                                          Throws SLI_INTSN_E::SLI_INT_M0V1_FLR. */
-	uint64_t m0p1_flr                     : 1;  /**< This interrupt cannot occur in o75.
+	uint64_t m0p1_flr                     : 1;  /**< This interrupt cannot occur.
                                                          Throws SLI_INTSN_E::SLI_INT_M0P1_FLR. */
-	uint64_t m0v0_flr                     : 1;  /**< A FLR occurred for a VF on MAC0 PF0. This bit should be cleared and followed by a read to
-                                                         SLI_MAC()_PF()_FLR_VF_INT
-                                                         to discover which VF experienced the FLR.
+	uint64_t m0v0_flr                     : 1;  /**< An FLR occurred for a VF on SLI_PORT_E::PEM0 PF0.
+                                                         This bit should be cleared and followed by a read to SLI_MAC()_PF()_FLR_VF_INT to discover
+                                                         which VF experienced the FLR.
                                                          Throws SLI_INTSN_E::SLI_INT_M0V0_FLR. */
-	uint64_t m0p0_flr                     : 1;  /**< A FLR occurred for MAC0 PF0.
+	uint64_t m0p0_flr                     : 1;  /**< A FLR occurred for SLI_PORT_E::PEM0 PF0.
                                                          Throws SLI_INTSN_E::SLI_INT_M0P0_FLR. */
 	uint64_t rml_to                       : 1;  /**< A read or write transfer to a RSL that did not complete within
                                                          SLI_WINDOW_CTL[TIME] coprocessor-clock cycles
@@ -4565,7 +4547,7 @@ typedef union cvmx_sli_ciu_int_sum cvmx_sli_ciu_int_sum_t;
  * cvmx_sli_ctl_port#
  *
  * These registers contains control information for access to ports. Indexed by SLI_PORT_E.
- * Note: SLI_CTL_PORT0 controls PF0
+ * Note: SLI_CTL_PORT0 controls PF0.
  */
 union cvmx_sli_ctl_portx {
 	uint64_t u64;
@@ -4741,10 +4723,10 @@ union cvmx_sli_ctl_status {
 	uint64_t reserved_32_63               : 32;
 	uint64_t m2s1_ncbi                    : 4;  /**< Contains the IOBI that traffic (inbound BAR1/BAR2 posted writes, inbound BAR1/BAR2
                                                          non-posted reads, outbound BAR1/BAR2 completions, and inbound CPU completions)
-                                                         from MAC2 and MAC3 is placed on. Values 2-15 are reserved. */
+                                                         from SLI_PORT_E::SRIO0 and SLI_PORT_E::SRIO1 is placed on. Values 2-15 are reserved. */
 	uint64_t m2s0_ncbi                    : 4;  /**< Contains the IOBI that traffic  (inbound BAR1/BAR2 posted writes, inbound BAR1/BAR2
                                                          non-posted reads, outbound BAR1/BAR2 completions, and inbound CPU completions)
-                                                         from MAC0 and MAC1 is placed on.  Values 2-15 are reserved. */
+                                                         from SLI_PORT_E::PEM0 and SLI_PORT_E::PEM1 is placed on.  Values 2-15 are reserved. */
 	uint64_t oci_id                       : 4;  /**< The CCPI ID. */
 	uint64_t p1_ntags                     : 6;  /**< Number of tags available for MAC port 1.
                                                          In RC mode, one tag is needed for each outbound TLP that requires a CPL TLP.
@@ -4823,10 +4805,10 @@ union cvmx_sli_ctl_status {
 	uint64_t reserved_32_63               : 32;
 	uint64_t m2s1_ncbi                    : 4;  /**< Contains the IOBI that traffic (inbound BAR1/BAR2 posted writes, inbound BAR1/BAR2
                                                          non-posted reads, outbound BAR1/BAR2 completions, and inbound CPU completions)
-                                                         from MAC2 and MAC3 is placed on. Values 2-15 are reserved. */
+                                                         from SLI_PORT_E::PEM2 and SLI_PORT_E::PEM3 is placed on. Values 2-15 are reserved. */
 	uint64_t m2s0_ncbi                    : 4;  /**< Contains the IOBI that traffic  (inbound BAR1/BAR2 posted writes, inbound BAR1/BAR2
                                                          non-posted reads, outbound BAR1/BAR2 completions, and inbound CPU completions)
-                                                         from MAC0 and MAC1 is placed on.  Values 2-15 are reserved. */
+                                                         from SLI_PORT_E::PEM0 and SLI_PORT_E::PEM1 is placed on.  Values 2-15 are reserved. */
 	uint64_t reserved_20_23               : 4;
 	uint64_t p1_ntags                     : 6;  /**< Number of tags available for MAC port 1.
                                                          In RC mode, one tag is needed for each outbound TLP that requires a CPL TLP.
@@ -4872,7 +4854,7 @@ union cvmx_sli_data_out_cnt {
 	uint64_t p1_ucnt                      : 16; /**< FIFO1 unload count. This counter is incremented by 1 every time a word is removed from
                                                          data out FIFO1, whose count is shown in P1_FCNT. */
 	uint64_t p1_fcnt                      : 6;  /**< FIFO1 data out count. Number of address data words presently buffered in the FIFO1. MACs
-                                                         associated with FIFO1: PCIe2, PCIe3, SRIO2, SRIO3. */
+                                                         associated with FIFO1: SRIO0, SRIO1. */
 	uint64_t p0_ucnt                      : 16; /**< FIFO0 unload count. This counter is incremented by 1 every time a word is removed from
                                                          data out FIFO0, whose count is shown in P0_FCNT. */
 	uint64_t p0_fcnt                      : 6;  /**< FIFO0 data out count. Number of address data words presently buffered in the FIFO0. MACs
@@ -6343,7 +6325,7 @@ typedef union cvmx_sli_int_enb_portx cvmx_sli_int_enb_portx_t;
  * cvmx_sli_int_sum
  *
  * The fields in this register are set when an interrupt condition occurs; write 1 to clear. All
- * fields of the register are valid when a PF reads the register. Not available to VF's, and
+ * fields of the register are valid when a PF reads the register. Not available to VFs, and
  * writes by the
  * VF do not modify the register.
  */
@@ -7351,15 +7333,14 @@ typedef union cvmx_sli_last_win_rdata3 cvmx_sli_last_win_rdata3_t;
  * When an error response is received for a VF DMA transaction read, the appropriate VF indexed
  * bit is set.  The appropriate PF should read the appropriate register.
  * Indexed by (MAC index) SLI_PORT_E.
- * These registers are only valid for MAC0
+ * This CSR array is valid only for SLI_PORT_E::PEM0 PF0.
  */
 union cvmx_sli_macx_pfx_dma_vf_int {
 	uint64_t u64;
 	struct cvmx_sli_macx_pfx_dma_vf_int_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t vf_int                       : 64; /**< When an error response is received for a VF DMA transaction read, the appropriate VF
-                                                         indexed
-                                                         bit is set. */
+                                                         indexed bit is set. */
 #else
 	uint64_t vf_int                       : 64;
 #endif
@@ -7374,7 +7355,7 @@ typedef union cvmx_sli_macx_pfx_dma_vf_int cvmx_sli_macx_pfx_dma_vf_int_t;
  * cvmx_sli_mac#_pf#_dma_vf_int_enb
  *
  * Indexed by (MAC index) SLI_PORT_E.
- * These registers are only valid for MAC0 PF0
+ * This CSR array is valid only for SLI_PORT_E::PEM0 PF0.
  */
 union cvmx_sli_macx_pfx_dma_vf_int_enb {
 	uint64_t u64;
@@ -7395,7 +7376,7 @@ typedef union cvmx_sli_macx_pfx_dma_vf_int_enb cvmx_sli_macx_pfx_dma_vf_int_enb_
  * cvmx_sli_mac#_pf#_flr_vf_int
  *
  * Indexed by (MAC index) SLI_PORT_E.
- * These registers are only valid for MAC0 PF0
+ * This CSR array is valid only for SLI_PORT_E::PEM0 PF0.
  */
 union cvmx_sli_macx_pfx_flr_vf_int {
 	uint64_t u64;
@@ -7417,7 +7398,6 @@ typedef union cvmx_sli_macx_pfx_flr_vf_int cvmx_sli_macx_pfx_flr_vf_int_t;
  *
  * Interrupt enable register for a given PF SLI_MAC()_PF()_INT_SUM register.
  * Indexed by (MAC index) SLI_PORT_E.
- * CN73XX valid copies are MAC0 PF0, MAC1 PF0, MAC2 PF0, MAC3 PF0
  */
 union cvmx_sli_macx_pfx_int_enb {
 	uint64_t u64;
@@ -7427,20 +7407,24 @@ union cvmx_sli_macx_pfx_int_enb {
                                                          for MSI/INTA. */
 	uint64_t ppvf_err                     : 1;  /**< Enables SLI_MAC()_PF()_INT_SUM[PPVF_ERR] to generate an interrupt to the MAC core
                                                          for MSI/INTA.
-                                                         Note: this corresponding interrupt will only be valid for SRIOV PF's MAC0 PF0 MAC2 PF0 */
+                                                         Note: the corresponding interrupt will only ever be set for SR-IOV PF's:
+                                                         SLI_PORT_E::PEM0 PF0. */
 	uint64_t pktpf_err                    : 1;  /**< Enables SLI_MAC()_PF()_INT_SUM[PKTPF_ERR] to generate an interrupt to the MAC core
                                                          for MSI/INTA. */
 	uint64_t pktvf_err                    : 1;  /**< Enables SLI_MAC()_PF()_INT_SUM[PKTVF_ERR] to generate an interrupt to the MAC core
                                                          for MSI/INTA.
-                                                         Note: this corresponding interrupt will only be valid for SRIOV PF's MAC0 PF0 MAC2 PF0 */
+                                                         Note: the corresponding interrupt will only ever be set for SR-IOV PF's:
+                                                         SLI_PORT_E::PEM0 PF0. */
 	uint64_t dmapf_err                    : 1;  /**< Enables SLI_MAC()_PF()_INT_SUM[DMAPF_ERR] to generate an interrupt to the MAC core
                                                          for MSI/INTA. */
 	uint64_t dmavf_err                    : 1;  /**< Enables SLI_MAC()_PF()_INT_SUM[DMAVF_ERR] to generate an interrupt to the MAC core
                                                          for MSI/INTA.
-                                                         Note: this corresponding interrupt will only be valid for SRIOV PF's MAC0 PF0 MAC2 PF0 */
+                                                         Note: the corresponding interrupt will only ever be set for SR-IOV PF's:
+                                                         SLI_PORT_E::PEM0 PF0. */
 	uint64_t vf_mbox                      : 1;  /**< Enables SLI_MAC()_PF()_INT_SUM[VF_MBOX] to generate an interrupt to the MAC core
                                                          for MSI/INTA.
-                                                         Note: this corresponding interrupt will only be valid for SRIOV PF's MAC0 PF0 MAC2 PF0 */
+                                                         Note: the corresponding interrupt will only ever be set for SR-IOV PF's:
+                                                         SLI_PORT_E::PEM0 PF0. */
 	uint64_t reserved_38_56               : 19;
 	uint64_t dtime                        : 2;  /**< Enables SLI_MAC()_PF()_INT_SUM[DTIME] to generate an interrupt to the MAC core for
                                                          MSI/INTA. */
@@ -7500,7 +7484,6 @@ typedef union cvmx_sli_macx_pfx_int_enb cvmx_sli_macx_pfx_int_enb_t;
  * cvmx_sli_mac#_pf#_int_sum
  *
  * Interrupt summary register for a given PF. Indexed (MAC index) by SLI_PORT_E.
- * CN73XX valid copies are MAC0 PF0, MAC1 PF0, MAC2 PF0, MAC3 PF0
  * The fields in this register are set when an interrupt condition occurs; write 1 to clear.
  */
 union cvmx_sli_macx_pfx_int_sum {
@@ -7510,31 +7493,31 @@ union cvmx_sli_macx_pfx_int_sum {
 	uint64_t pppf_err                     : 1;  /**< When an error response is received for a PF PP transaction read, this bit is set. */
 	uint64_t ppvf_err                     : 1;  /**< When an error response is received for a VF PP transaction read, this bit is set.
                                                          A subsequent read to SLI_MAC()_PF()_PP_VF_INT is required to discover which VF.
-                                                         Note: this will only be set for SRIOV PF's MAC0 PF0 MAC2 PF0 */
+                                                         Note: this will only ever be set for SR-IOV PF's: SLI_PORT_E::PEM0 PF0. */
 	uint64_t pktpf_err                    : 1;  /**< This bit is set when any of the following events occur
                                                          1) An error response is received for PF packet transaction read.
                                                          2) A doorbell overflow for a ring associated with this PF occurs in
                                                             SLI_PKT()_INSTR_BAOFF_DBELL or SLI_PKT()_SLIST_BAOFF_DBELL.
-                                                         3) A packet was receveived from PKO for ring X, SLI_PKT_GBL_CONTROL[NOPTR_D] = 0
+                                                         3) A packet was received from PKO for ring X, SLI_PKT_GBL_CONTROL[NOPTR_D] = 0
                                                             and SLI_PKTX_SLIST_BAOFF_DBELL[DBELL] = 0. */
 	uint64_t pktvf_err                    : 1;  /**< This bit is set when any of the following events occur
                                                          1) An error response is received for VF packet transaction read.
                                                          2) A doorbell overflow for a ring associated with a VF occurs in
                                                             SLI_PKT()_INSTR_BAOFF_DBELL or SLI_PKT()_SLIST_BAOFF_DBELL.
-                                                         3) A packet was receveived from PKO for ring X, SLI_PKT_GBL_CONTROL[NOPTR_D] = 0
+                                                         3) A packet was received from PKO for ring X, SLI_PKT_GBL_CONTROL[NOPTR_D] = 0
                                                             and SLI_PKTX_SLIST_BAOFF_DBELL[DBELL] = 0.
                                                          4) An illegal bar0 bar1 bar2 memory access from a VF occurs.
                                                          A subsequent read to SLI_MAC()_PF()_PKT_VF_INT is required to discover which VF.
-                                                         Note: this will only be set for SRIOV PF's MAC0 PF0 MAC2 PF0 */
-	uint64_t dmapf_err                    : 1;  /**< When an error response is received for a PF DMA transcation read, this bit is set. */
+                                                         Note: this will only ever be set for SR-IOV PF's: SLI_PORT_E::PEM0 PF0. */
+	uint64_t dmapf_err                    : 1;  /**< When an error response is received for a PF DMA transaction read, this bit is set. */
 	uint64_t dmavf_err                    : 1;  /**< When an error response is received for a VF DMA transaction read, this bit is set.
                                                          A subsequent read to SLI_MAC()_PF()_DMA_VF_INT is required to discover which VF.
-                                                         Note: this will only be set for SRIOV PF's MAC0 PF0 MAC2 PF0 */
+                                                         Note: this will only ever be set for SR-IOV PF's: SLI_PORT_E::PEM0 PF0. */
 	uint64_t vf_mbox                      : 1;  /**< When an VF wants to communicate to a PF it writes its SLI_PKT_PF_MBOX_SIG2 register
                                                          causing
                                                          this bit to be set.
                                                          A subsequent read to SLI_MAC()_PF()_MBOX_INT is required to discover which VF.
-                                                         Note: this will only be set for SRIOV PF's MAC0 PF0 MAC2 PF0 */
+                                                         Note: this will only ever be set for SR-IOV PF's: SLI_PORT_E::PEM0 PF0. */
 	uint64_t reserved_38_56               : 19;
 	uint64_t dtime                        : 2;  /**< Whenever SLI_DMA()_CNT[CNT] is not 0, the SLI_DMA()_TIM[TIM] timer increments
                                                          every SLI clock. DTIME<x> is set whenever SLI_DMA()_TIM[TIM] >
@@ -7566,7 +7549,11 @@ union cvmx_sli_macx_pfx_int_sum {
                                                          for legacy code.
                                                          Packet counter has an interrupt. The specific rings can be found in SLI_PKT_CNT_INT. */
 	uint64_t reserved_2_3                 : 2;
-	uint64_t mio_int                      : 1;  /**< Interrupt from CIU for this PF. Each PF has a seperate interrupt from CIU. */
+	uint64_t mio_int                      : 1;  /**< Interrupt from CIU for this PF. CIU can output an interrupt for each each MAC
+                                                         included in the CIU_DEST_IO_E enumeration. SLI can send the CIU interrupt for a
+                                                         MAC out its PF0. [MIO_INT] bits are copies of corresponding CIU3_DEST()_IO_INT[INTR]
+                                                         bits.
+                                                         [MIO_INT] cannot assert for SLI_PORT_E::SRIO0 PF0 and SLI_PORT_E::SRIO1 PF0. */
 	uint64_t rml_to                       : 1;  /**< A read or write transfer to a RSL that did not complete within
                                                          SLI_WINDOW_CTL[TIME] coprocessor-clock cycles. */
 #else
@@ -7603,14 +7590,15 @@ typedef union cvmx_sli_macx_pfx_int_sum cvmx_sli_macx_pfx_int_sum_t;
 /**
  * cvmx_sli_mac#_pf#_mbox_int
  *
+ * When a VF to PF MBOX write occurs the appropriate bit is set.
  * Indexed by (MAC index) SLI_PORT_E.
- * These registers are only valid for MAC0 PF0
+ * This CSR array is valid only for SLI_PORT_E::PEM0 PF0.
  */
 union cvmx_sli_macx_pfx_mbox_int {
 	uint64_t u64;
 	struct cvmx_sli_macx_pfx_mbox_int_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t vf_int                       : 64; /**< When an VF wants to communicate to a PF it writes its SLI_PKT(0..63)_PF_VF_MBOX_SIG(0..1)
+	uint64_t vf_int                       : 64; /**< When an VF wants to communicate to a PF it writes its SLI_PKT()_PF_VF_MBOX_SIG()
                                                          register the appropriate ring indexed bit is set.  The PF should then read  the
                                                          appropriate SLI_PKT()_PF_VF_MBOX_SIG() indexed register. */
 #else
@@ -7631,15 +7619,14 @@ typedef union cvmx_sli_macx_pfx_mbox_int cvmx_sli_macx_pfx_mbox_int_t;
  * the appropriate VF indexed bit is set.  The appropriate PF should read the appropriate
  * register.
  * Indexed by (MAC index) SLI_PORT_E.
- * These registers are only valid for MAC0 PF0
+ * This CSR array is valid only for SLI_PORT_E::PEM0 PF0.
  */
 union cvmx_sli_macx_pfx_pkt_vf_int {
 	uint64_t u64;
 	struct cvmx_sli_macx_pfx_pkt_vf_int_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t vf_int                       : 64; /**< When an error response is received for a VF PKT transaction read, the appropriate VF
-                                                         indexed
-                                                         bit is set. */
+                                                         indexed bit is set. */
 #else
 	uint64_t vf_int                       : 64;
 #endif
@@ -7654,7 +7641,7 @@ typedef union cvmx_sli_macx_pfx_pkt_vf_int cvmx_sli_macx_pfx_pkt_vf_int_t;
  * cvmx_sli_mac#_pf#_pkt_vf_int_enb
  *
  * Indexed by (MAC index) SLI_PORT_E.
- * These registers are only valid for MAC0 PF0
+ * This CSR array is valid only for SLI_PORT_E::PEM0 PF0.
  */
 union cvmx_sli_macx_pfx_pkt_vf_int_enb {
 	uint64_t u64;
@@ -7677,15 +7664,14 @@ typedef union cvmx_sli_macx_pfx_pkt_vf_int_enb cvmx_sli_macx_pfx_pkt_vf_int_enb_
  * When an error response is received for a VF PP transaction read, the appropriate VF indexed
  * bit is set.  The appropriate PF should read the appropriate register.
  * Indexed by (MAC index) SLI_PORT_E.
- * These registers are only valid for MAC0 PF0
+ * This CSR array is valid only for SLI_PORT_E::PEM0 PF0.
  */
 union cvmx_sli_macx_pfx_pp_vf_int {
 	uint64_t u64;
 	struct cvmx_sli_macx_pfx_pp_vf_int_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t vf_int                       : 64; /**< When an error response is received for a VF PP transaction read, the appropriate VF
-                                                         indexed
-                                                         bit is set. */
+                                                         indexed bit is set. */
 #else
 	uint64_t vf_int                       : 64;
 #endif
@@ -7700,7 +7686,7 @@ typedef union cvmx_sli_macx_pfx_pp_vf_int cvmx_sli_macx_pfx_pp_vf_int_t;
  * cvmx_sli_mac#_pf#_pp_vf_int_enb
  *
  * Indexed by (MAC index) SLI_PORT_E.
- * These registers are only valid for MAC0 PF0
+ * This CSR array is valid only for SLI_PORT_E::PEM0 PF0.
  */
 union cvmx_sli_macx_pfx_pp_vf_int_enb {
 	uint64_t u64;
@@ -8786,39 +8772,27 @@ typedef union cvmx_sli_msi_wr_map cvmx_sli_msi_wr_map_t;
  *
  * The MSI-X table cannot be burst read or written.
  *
- * The MSI-X Table is (128 + 5) entries deep. Each PF of a MAC can see up to 64 VF ring entries
- * and its own PF entry. The (MAC0,PF0), (MAC1,PF0), (MAC2,PF0), and (MAC3,PF0),
- * each can see up to 64 entries and its own PF entry.
- * The first 128 entries contain MSI-X vectors for each of the 128 DPI packet rings.
- * Entries, or rings, are assigned to (MAC0,PF0), and (MAC2,PF0) based on the SRN,
- * RPVF,TRS. and NVFS fields of SLI_PKT_MAC()_RINFO.
- * Each VF has access to only its own entries and therefore sees the MSI-X table as large as 8
- * entries,
- * A VF must not try to configure more entries than it owns. A VF always sees its first entry as
- * entry 0.
- * The actual MSI-X table offset is calculated as follows:   (SRN + ((VF-1) * RPVF)).
+ * The combination of all MSI-X Tables contain (64 + 4) entries - one per
+ * ring plus one per PF. (i.e. 64 plus one per valid SLI_MAC()_PF()_INT_SUM
+ * present.)
  *
- * <pre>
- *    RPVF   Rings VF owns               Max VFs
- *    ---    -------------------------   -------
- *      0    0                           0
- *      1    0                           64
- *      2    0,1                         32
- *      4    0,1,2,3                     16
- *      8    0,1,2,3,4,5,6,7              8
- * </pre>
+ * The MSI-X table for an individual PF has SLI_PKT_MAC()_PF()_RINFO[TRS]
+ * entries for the rings associated to the PF (up to 64 max) plus one
+ * more table entry for SLI_MAC()_PF()_INT_SUM. The
+ * SLI_MAC()_PF()_INT_SUM-related MSI-X table entry is
+ * always entry SLI_MSIX(SLI_PKT_MAC()_PF()_RINFO[TRS])_TABLE_ADDR and
+ * always present and valid. All earlier SLI_MSIX()_TABLE_ADDR entries
+ * correspond to rings. When SLI_PKT_MAC()_PF()_RINFO[NVFS]=0, SR-IOV
+ * virtual functions cannot be used, and all SLI_PKT_MAC()_PF()_RINFO[TRS]+1
+ * entries in the PF MSI-X table are present and valid for use by the PF.
+ * When SLI_PKT_MAC()_PF()_RINFO[NVFS]!=0, SR-IOV virtual functions may
+ * be used, and the first
+ *   SLI_PKT_MAC()_PF()_RINFO[NVFS]*SLI_PKT_MAC()_PF()_RINFO[RPVF]
+ * entries of the PF MSI-X table are present but not valid, and
+ * should never be accessed by the PF.
  *
- * A MAC's PF can access the entries for its VF (a total of TNR, regardless of VF Mode).
- *
- * When (TNR > 0), then the last, i.e. (TNR+1), entry is for PCIe related errors and is only
- * accessible by the PF. When (TNR = 0), then entry 0 is of PCIe related errors and is only
- * accessible by PF.
- *
- * Each MAC can access one PF. The hardware will enable writing to and reading from the
- * appropriate entry based on the pcsr_src vector.
- *
- * In non SRIO-V mode, there is no virtual function support, but a PF can configure up to 65
- * entries (up to 64 VF rings + 1 PF ring) for itself.
+ * The MSI-X table for an individual VF has SLI_PKT_MAC()_PF()_RINFO[RPVF]
+ * entries (up to 8 max), all valid, one per ring that the VF owns.
  */
 union cvmx_sli_msixx_table_addr {
 	uint64_t u64;
@@ -8839,8 +8813,8 @@ typedef union cvmx_sli_msixx_table_addr cvmx_sli_msixx_table_addr_t;
 /**
  * cvmx_sli_msix#_table_data
  *
- * The MSI-X table cannot be burst read or written. F/PF access is the same as described
- * for the SLI_MSIX()_TABLE_ADDR.
+ * The MSI-X table cannot be burst read or written. VF/PF access is the same as
+ * described for the SLI_MSIX()_TABLE_ADDR.
  */
 union cvmx_sli_msixx_table_data {
 	uint64_t u64;
@@ -8907,8 +8881,8 @@ typedef union cvmx_sli_msix_macx_pf_table_data cvmx_sli_msix_macx_pf_table_data_
 /**
  * cvmx_sli_msix_pba0
  *
- * The MSI-X Pending Bit Array cannot be burst read.
- * In SRIO-V Mode, a VF will find its pending completion interrupts in bit
+ * The MSI-X pending bit array cannot be burst read.
+ * In SRIO-V mode, a VF will find its pending completion interrupts in bit
  * positions [(RPVF-1):0]. If RPVF<64, bits [63:RPVF] are returned as zero.
  *
  * Each VF can read their own pending completion interrupts based on the ring/VF
@@ -8925,14 +8899,15 @@ typedef union cvmx_sli_msix_macx_pf_table_data cvmx_sli_msix_macx_pf_table_data_
  *      8            8          MSG_PND7  - MSG_PND0
  * </pre>
  *
- * If SLI_PEM()_TNR=63 (i.e. 64 total DPI Packet Rings configured), a PF will
- * find its pending completion interrupts in bit positions [63:0]. When SLI_PEM()_TNR=63,
+ * If SLI_PKT_MAC()_PF()_RINFO[TRS]=63 (i.e. 64 total DPI Packet Rings configured), a PF will
+ * find its pending completion interrupts in bit positions [63:0]. When
+ * SLI_PKT_MAC()_PF()_RINFO[TRS]=63,
  * the PF will find its PCIe error interrupt in SLI_MSIX_PBA1, bit position 0.
  *
- * If SLI_PEM()_TNR<63 (i.e. 0, 1, 2, 4, or 8 rings configured), a PF will find its
- * ring pending completion interrupts in bit positions [TNR:0]. It will find its PCIe
+ * If SLI_PKT_MAC()_PF()_RINFO[TRS]<63 (i.e. 0, 1, 2, 4, or 8 rings configured), a PF will find
+ * its ring pending completion interrupts in bit positions [TNR:0]. It will find its PCIe
  * error interrupt in bit position [(TNR+1)]. Bits [63:(TNR+2)] are returned as zero.
- * When SLI_PEM()_TNR<63, SLI_MSIX_PBA1 is not used and returns zeros."
+ * When SLI_PKT_MAC()_PF()_RINFO[TRS]<63, SLI_MSIX_PBA1 is not used and returns zeros.
  *
  * If SRIO-V Mode is off there is no virtual function support, but the PF can configure up to 65
  * entries (up to 64 DPI Packet Rings plus 1 PF ring) for itself.
@@ -8959,7 +8934,7 @@ typedef union cvmx_sli_msix_pba0 cvmx_sli_msix_pba0_t;
  * The MSI-X pending bit array cannot be burst read.
  *
  * PF_PND is assigned to PCIe related errors. The error bit can only be found in PBA1 when
- * SLI_PEM()_TNR=63 (i.e. 64 total DPI Packet Rings configured).
+ * SLI_PKT_MAC()_PF()_RINFO[TRS]=63 (i.e. 64 total DPI Packet Rings configured).
  *
  * This register is accessible by the PF. A read by a particular PF only
  * returns its own pending status. That is, any PF can read this register, but the hardware
@@ -9046,8 +9021,7 @@ typedef union cvmx_sli_pcie_msi_rcv cvmx_sli_pcie_msi_rcv_t;
  * cvmx_sli_pcie_msi_rcv_b1
  *
  * This register is where MSI write operations are directed from the MAC. This register can be
- * used by
- * the PCIe and SRIO MACs.
+ * used by the PCIe and SRIO MACs.
  */
 union cvmx_sli_pcie_msi_rcv_b1 {
 	uint64_t u64;
@@ -9084,8 +9058,7 @@ typedef union cvmx_sli_pcie_msi_rcv_b1 cvmx_sli_pcie_msi_rcv_b1_t;
  * cvmx_sli_pcie_msi_rcv_b2
  *
  * This register is where MSI write operations are directed from the MAC.  This register can be
- * used
- * by PCIe and SRIO MACs.
+ * used by PCIe and SRIO MACs.
  */
 union cvmx_sli_pcie_msi_rcv_b2 {
 	uint64_t u64;
@@ -9122,8 +9095,7 @@ typedef union cvmx_sli_pcie_msi_rcv_b2 cvmx_sli_pcie_msi_rcv_b2_t;
  * cvmx_sli_pcie_msi_rcv_b3
  *
  * This register is where MSI write operations are directed from the MAC. This register can be
- * used by
- * PCIe and SRIO MACs.
+ * used by PCIe and SRIO MACs.
  */
 union cvmx_sli_pcie_msi_rcv_b3 {
 	uint64_t u64;
@@ -9167,8 +9139,8 @@ union cvmx_sli_pktx_cnts {
 	struct cvmx_sli_pktx_cnts_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t po_int                       : 1;  /**< Packet output interrupt bit for the ring. [PO_INT] reads as one whenever:
-                                                          * [CNT]   > SLI_PKT()_INT_LEVELS[CNT], or
-                                                          * [TIMER] > SLI_PKT()_INT_LEVELS[TIME]
+                                                          * [CNT]   > SLI_PKT()_INT_LEVELS[CNT].
+                                                          * Or, [TIMER] > SLI_PKT()_INT_LEVELS[TIME].
                                                          [PO_INT] can cause an MSI-X interrupt for ring, and its [CNT] ([TIMER]) component
                                                          can cause SLI_MAC()_PF()_INT_SUM[PCNT] (SLI_MAC()_PF()_INT_SUM[PTIME]) to
                                                          be set if
@@ -9178,7 +9150,7 @@ union cvmx_sli_pktx_cnts {
 	uint64_t pi_int                       : 1;  /**< Packet input interrupt bit for the ring. A copy of SLI_PKT_IN_DONE()_CNTS[PI_INT]. */
 	uint64_t mbox_int                     : 1;  /**< Reads corresponding bit in SLI_PKT()_MBOX_INT. */
 	uint64_t resend                       : 1;  /**< A write of 1 will resend an MSI-X interrupt message if there is a pending interrupt in
-                                                         P0_INT, PI_INT or MBOX_INT for this ring after the write of [CNT] occurs.
+                                                         [P0_INT], [PI_INT] or [MBOX_INT] for this ring after the write of [CNT] occurs.
                                                          [RESEND] and [CNT] must be written together with the assumption that the write of
                                                          [CNT] will clear the [PO_INT] interrupt bit. If the write of [CNT] does not cause
                                                          the [CNT] to drop below the thresholds another MSI-X message will be sent.
@@ -9187,7 +9159,7 @@ union cvmx_sli_pktx_cnts {
 	uint64_t timer                        : 22; /**< Timer, incremented every 1024 coprocessor-clock cycles when [CNT] is
                                                          not zero. The hardware clears both [TIMER] and [PO_INT] when [CNT]
                                                          goes to 0. The first increment of this count can occur between 0 to
-                                                         1023 coprocessor-clock cycles after [CNT] becomes non-zero. */
+                                                         1023 coprocessor-clock cycles after [CNT] becomes nonzero. */
 	uint64_t cnt                          : 32; /**< Ring counter. Hardware adds to [CNT] as it sends packets out. On a write
                                                          to this register, hardware subtracts the amount written to the [CNT] field from
                                                          [CNT], which will clear [PO_INT] if [CNT] becomes <= SLI_PKT()_INT_LEVELS[CNT].
@@ -9277,7 +9249,7 @@ union cvmx_sli_pktx_cnts {
 	uint64_t timer                        : 22; /**< Timer, incremented every 1024 coprocessor-clock cycles when [CNT] is
                                                          not zero. The hardware clears both [TIMER] and [PO_INT] when [CNT]
                                                          goes to 0. The first increment of this count can occur between 0 to
-                                                         1023 coprocessor-clock cycles after [CNT] becomes non-zero. */
+                                                         1023 coprocessor-clock cycles after [CNT] becomes nonzero. */
 	uint64_t cnt                          : 32; /**< Ring counter. Hardware adds to [CNT] as it sends packets out. On a write
                                                          to this register, hardware subtracts the amount written to the [CNT] field from
                                                          [CNT], which will clear [PO_INT] if [CNT] becomes <= SLI_PKT(i)_INT_LEVELS[CNT].
@@ -9394,20 +9366,20 @@ union cvmx_sli_pktx_input_control {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_55_63               : 9;
 	uint64_t rpvf                         : 7;  /**< The number of rings assigned to this VF.
-                                                         Read only copy of SLI_PKT_MAC(0..3)_PF(0..1)_RINFO[RPVF] */
+                                                         Read only copy of SLI_PKT_MAC()_PF()_RINFO[RPVF] */
 	uint64_t reserved_31_47               : 17;
 	uint64_t mac_num                      : 2;  /**< The MAC (PEM) that the physical function belongs to. Enumerated by SLI_PORT_E.
                                                          [MAC_NUM] is RO when accessed via BAR0 of a virtual function, and R/W otherwise.
                                                          [MAC_NUM] applies to the ring pair, which includes both this input
                                                          ring and to the output ring of the same index. */
-	uint64_t quiet                        : 1;  /**< Asserted after a rings has gone into reset and the the ring has met the conditions
+	uint64_t quiet                        : 1;  /**< Asserted after a ring has gone into reset and the ring has met the conditions
                                                          of SLI_PKT_GBL_CONTROL[QTIME]. */
 	uint64_t reserved_27_27               : 1;
-	uint64_t rdsize                       : 2;  /**< Number of instructions to be read in one MAC read request. Two bit value are:
-                                                         0x0 = 1 Instruction.
-                                                         0x1 = 2 Instructions.
-                                                         0x2 = 3 Instructions.
-                                                         0x3 = 4 Instructions. */
+	uint64_t rdsize                       : 2;  /**< Number of instructions to be read in one MAC read request. Two-bit values are:
+                                                         0x0 = 1 instruction.
+                                                         0x1 = 2 instructions.
+                                                         0x2 = 3 instructions.
+                                                         0x3 = 4 instructions. */
 	uint64_t is_64b                       : 1;  /**< When IS_64B=1, instruction input ring i uses 64B versus 32B. */
 	uint64_t rst                          : 1;  /**< Packet reset. When [RST]=1, the rings are in reset. [RST] can be set
                                                          by software writing a 1 to the field, by hardware upon receipt of an
@@ -9487,7 +9459,7 @@ union cvmx_sli_pktx_input_control {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_55_63               : 9;
 	uint64_t rpvf                         : 7;  /**< The number of rings assigned to this VF.
-                                                         Read only copy of SLI_PKT_MAC(0..3)_PF(0..1)_RINFO[RPVF] */
+                                                         Read only copy of SLI_PKT_MAC()_PF()_RINFO[RPVF] */
 	uint64_t pvf_num                      : 16; /**< The function that the ring belongs to. DPI_DMA_FUNC_SEL_S describes
                                                          the format of this field. If [PVF_NUM]!=0, [MAC_NUM] must select a
                                                          PCIe MAC that supports more than one physical function and/or must
@@ -9503,14 +9475,14 @@ union cvmx_sli_pktx_input_control {
                                                          [MAC_NUM] is RO when accessed via BAR0 of a virtual function, and R/W otherwise.
                                                          [MAC_NUM] applies to the ring pair, which includes both this input
                                                          ring and to the output ring of the same index. */
-	uint64_t quiet                        : 1;  /**< Asserted after a rings has gone into reset and the the ring has met the conditions
+	uint64_t quiet                        : 1;  /**< Asserted after a ring has gone into reset and the ring has met the conditions
                                                          of SLI_PKT_GBL_CONTROL[QTIME]. */
 	uint64_t reserved_27_27               : 1;
-	uint64_t rdsize                       : 2;  /**< Number of instructions to be read in one MAC read request. Two bit value are:
-                                                         0x0 = 1 Instruction.
-                                                         0x1 = 2 Instructions.
-                                                         0x2 = 3 Instructions.
-                                                         0x3 = 4 Instructions. */
+	uint64_t rdsize                       : 2;  /**< Number of instructions to be read in one MAC read request. Two-bit values are:
+                                                         0x0 = 1 instruction.
+                                                         0x1 = 2 instructions.
+                                                         0x2 = 3 instructions.
+                                                         0x3 = 4 instructions. */
 	uint64_t is_64b                       : 1;  /**< When IS_64B=1, instruction input ring i uses 64B versus 32B. */
 	uint64_t rst                          : 1;  /**< Packet reset. When [RST]=1, the rings are in reset. [RST] can be set
                                                          by software writing a 1 to the field, by hardware upon receipt of an
@@ -9692,7 +9664,7 @@ union cvmx_sli_pktx_instr_baddr {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t addr                         : 61; /**< Base address for instruction ring. [ADDR] Must be naturally-aligned to the
                                                          instruction size selected by SLI_PKT()_INPUT_CONTROL[IS_64B].  The hardware
-                                                         will ignore the bottom bits if not naturally aligned. */
+                                                         ignores the bottom bits if not naturally aligned. */
 	uint64_t reserved_0_2                 : 3;
 #else
 	uint64_t reserved_0_2                 : 3;
@@ -9732,7 +9704,7 @@ union cvmx_sli_pktx_instr_baoff_dbell {
                                                          value written to [DBELL]. Hardware decrements [DBELL] as it reads instructions,
                                                          simultaneously also "incrementing" [AOFF].
                                                          A write of 0xFFFFFFFF to [DBELL] clears both [DBELL] and [AOFF].
-                                                         Writes of non 0xFFFFFFFF are ignored if this ring is in reset */
+                                                         Writes of non 0xFFFFFFFF are ignored if this ring is in reset. */
 #else
 	uint64_t dbell                        : 32;
 	uint64_t aoff                         : 32;
@@ -10063,7 +10035,7 @@ union cvmx_sli_pktx_mbox_int {
                                                          SLI_PKT()_CNTS[CNT]." */
 	uint64_t pi_int                       : 1;  /**< "Reads corresponding bit of SLI_PKT_IN_INT[RING<\#>]. This interrupt
                                                          can be cleared by writing SLI_PKT_IN_DONE()_CNTS." */
-	uint64_t mbox_int                     : 1;  /**< Set to one when a PF writes the corresponding ring SLI_PKT(0..63)_PF_VF_MBOX_SIG(0)
+	uint64_t mbox_int                     : 1;  /**< Set to one when a PF writes the corresponding ring SLI_PKT()_PF_VF_MBOX_SIG(0)
                                                          register. Writes will clear this interrupt.  This bit can only be written by the VF side.
                                                          It cannot be cleared by the PF. [MBOX_INT] can cause an MSI-X interrupt for the ring,
                                                          but will never cause an INTA/B/C/D nor MSI interrupt nor set any
@@ -10075,7 +10047,7 @@ union cvmx_sli_pktx_mbox_int {
                                                          The [RESEND] bit will never effect INTA/B/C/D or MSI interrupt */
 	uint64_t reserved_1_59                : 59;
 	uint64_t mbox_en                      : 1;  /**< Enables interrupt to the MSIX vector associated with this VF when the PF writes the
-                                                         corresponding ring in SLI_PKT(0..63)_VF_MBOX_SIG(0). */
+                                                         corresponding ring in SLI_PKT()_VF_MBOX_SIG(0). */
 #else
 	uint64_t mbox_en                      : 1;
 	uint64_t reserved_1_59                : 59;
@@ -10102,8 +10074,11 @@ union cvmx_sli_pktx_out_size {
 	struct cvmx_sli_pktx_out_size_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_23_63               : 41;
-	uint64_t isize                        : 7;  /**< Info bytes size (bytes) for this ring. Legal sizes are 0 to 120. Not used in buffer-
-                                                         pointer-only mode. */
+	uint64_t isize                        : 7;  /**< Info bytes size (bytes) for this ring. Legal sizes are 0 to 59. Not used in buffer-
+                                                         pointer-only mode.
+                                                         PKO should be configured to pad all DPI packet output packets to 60 bytes
+                                                         or more, so all packets will be more than [ISIZE] bytes. See
+                                                         PKO_MAC()_CFG[MIN_PAD_ENA] and PKO_PDM_CFG[PKO_PAD_MINLEN]. */
 	uint64_t bsize                        : 16; /**< Buffer size (bytes) for this ring. Legal values have to be greater then 128.
                                                          Writes of [BSIZE] less than 128 will set [BSIZE] to 128. */
 #else
@@ -10123,8 +10098,11 @@ union cvmx_sli_pktx_out_size {
 	struct cvmx_sli_pktx_out_size_cn73xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_22_63               : 42;
-	uint64_t isize                        : 6;  /**< Info bytes size (bytes) for this ring. Legal sizes are 0 to 120. Not used in buffer-
-                                                         pointer-only mode. */
+	uint64_t isize                        : 6;  /**< Info bytes size (bytes) for this ring. Legal sizes are 0 to 59. Not used in buffer-
+                                                         pointer-only mode.
+                                                         PKO should be configured to pad all DPI packet output packets to 60 bytes
+                                                         or more, so all packets will be more than [ISIZE] bytes. See
+                                                         PKO_MAC()_CFG[MIN_PAD_ENA] and PKO_PDM_CFG[PKO_PAD_MINLEN]. */
 	uint64_t bsize                        : 16; /**< Buffer size (bytes) for this ring. Legal values have to be greater then 128.
                                                          Writes of [BSIZE] less than 128 will set [BSIZE] to 128. */
 #else
@@ -10161,7 +10139,7 @@ union cvmx_sli_pktx_output_control {
                                                          [TENB] has no effect on SLI_PKT_TIME_INT or SLI_PKT_INT, and
                                                          has no effect on any non-SLI_MAC()_PF()_INT_SUM interrupt. */
 	uint64_t cenb                         : 1;  /**< SLI_MAC()_PF()_INT_SUM[PCNT] interrupt enable for this ring i. When [CENB] is set
-                                                         and (SLI_PKT(i)_CNTS[TIMER] > SLI_PKT(i)_INT_LEVELS[TIME]),
+                                                         and (SLI_PKT(i)_CNTS[CNT] > SLI_PKT(i)_INT_LEVELS[CNT]),
                                                          SLI_MAC()_PF()_INT_SUM[PCNT] will be set, and SLI_INT_SUM interrupts
                                                          can occur if corresponding SLI_MAC()_PF()_INT_SUM[PCNT] is set.
                                                          When [CENB] is clear, SLI_MAC()_PF()_INT_SUM[PCNT] will never assert due to
@@ -10240,27 +10218,28 @@ typedef union cvmx_sli_pktx_output_control cvmx_sli_pktx_output_control_t;
  * There are two registers per ring, SIG(0) and SIG(1). The PF and VF, both, have read and
  * write access to these registers.
  *
- * For PF to VF ring interrupt, MBOX_EN bit of the SLI_PKT(0..127)_MBOX_INT must be set.
- * When MBOX_EN bit is set, write from the PF to byte-0 of the SIG(0) register will cause
- * an interrupt by setting MBOX_INT field in corresponding ring address of
+ * For PF-to-VF ring interrupts, SLI_PKT(0..63)_MBOX_INT[MBOX_EN] must be set.
+ * When [MBOX_EN] is set, writes from the PF to byte 0 of the SIG(0) register will cause
+ * an interrupt by setting [MBOX_INT] in the corresponding ring address of
  * SLI_PKT()_MBOX_INT[MBOX_INT],
- * SLI_PKT_IN_DONE()_CNTS[MBOX_INT], SLI_PKT()_CNTS[MBOX_INT].
+ * SLI_PKT_IN_DONE()_CNTS[MBOX_INT], and SLI_PKT()_CNTS[MBOX_INT].
  *
- * For VF to PF ring interrupt, VF_MBOX bit of the SLI_MAC(0..3)_PF(0..1)_INT_ENB must be set.
- * When VF_MBOX bit is set, write from the VF to byte-0 of the SIG(1) register will cause an
+ * For VF-to-PF ring interrupt, SLI_MAC()_PF()_INT_ENB[VF_MBOX] must be set.
+ * When [VF_MBOX] is set, write from the VF to byte 0 of the SIG(1) register will cause an
  * interrupt by setting ring address VF_INT field in corresponding SLI_MAC()_PF()_MBOX_INT
  * register,
- * which may cause an interrupt to occure through PF.
+ * which may cause an interrupt to occur through PF.
  *
- * Each PF and VF can only access the rings that its owns as programmed by SLI_PKT_MAC()_RINFO.
- * The signaling is ring based. If a VF owns more than one ring it can ignore the other
- * rings registers if not needed.
+ * Each PF and VF can only access the rings that it owns as programmed by
+ * SLI_PKT_MAC()_PF()_RINFO.
+ * The signaling is ring-based. If a VF owns more than one ring, it can ignore the other
+ * rings' registers if not needed.
  */
 union cvmx_sli_pktx_pf_vf_mbox_sigx {
 	uint64_t u64;
 	struct cvmx_sli_pktx_pf_vf_mbox_sigx_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t data                         : 64; /**< Communication data from PF to VF. Writes to SLI_PKT(0..127)_PF_VF_MBOX_SIG(0)
+	uint64_t data                         : 64; /**< Communication data from PF to VF. Writes to SLI_PKT()_PF_VF_MBOX_SIG(0)
                                                          in the corresponding VF. */
 #else
 	uint64_t data                         : 64;
@@ -10393,7 +10372,7 @@ typedef union cvmx_sli_pktx_slist_fifo_rsize cvmx_sli_pktx_slist_fifo_rsize_t;
  * cvmx_sli_pkt#_vf_int_sum
  *
  * This register contains summary interrupts bits for a VF. A VF read of this register
- * for any of its 8 rings will return the same 8 bit summary for packet input, packet
+ * for any of its 8 rings will return the same 8-bit summary for packet input, packet
  * output and mailbox interrupts. If a PF reads this register it will return 0x0.
  */
 union cvmx_sli_pktx_vf_int_sum {
@@ -10403,9 +10382,9 @@ union cvmx_sli_pktx_vf_int_sum {
 	uint64_t reserved_40_63               : 24;
 	uint64_t mbox                         : 8;  /**< Summary read-only bits of SLI_PKT()_PF_VF_MBOX_SIG()[MBOX_INT] for rings owned by this VF. */
 	uint64_t reserved_24_31               : 8;
-	uint64_t pkt_out                      : 8;  /**< Summary read-only bits of SLI_PKT_IN_DONE()_CNTS[PI_INT] for rings owned by this VF. */
+	uint64_t pkt_out                      : 8;  /**< Summary read-only bits of SLI_PKT()_CNTS[PO_INT] for rings owned by this VF. */
 	uint64_t reserved_8_15                : 8;
-	uint64_t pkt_in                       : 8;  /**< Summary read-only bits of SLI_PKT()_CNTS[PO_INT] for rings owned by this VF. */
+	uint64_t pkt_in                       : 8;  /**< Summary read-only bits of SLI_PKT_IN_DONE()_CNTS[PI_INT] for rings owned by this VF. */
 #else
 	uint64_t pkt_in                       : 8;
 	uint64_t reserved_8_15                : 8;
@@ -10744,7 +10723,7 @@ typedef union cvmx_sli_pkt_dpaddr cvmx_sli_pkt_dpaddr_t;
 /**
  * cvmx_sli_pkt_gbl_control
  *
- * This register contains control bits that effect every packet ring
+ * This register contains control bits that affect all packet rings.
  *
  */
 union cvmx_sli_pkt_gbl_control {
@@ -10753,19 +10732,18 @@ union cvmx_sli_pkt_gbl_control {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
 	uint64_t qtime                        : 16; /**< After a packet ring is disabled on the assertion of SLI_PKT()_INPUT_CONTROL[RST],
-                                                         the hardware will set the SLI_PKT()_INPUT_CONTROL[QUIET] bit
+                                                         the hardware will set SLI_PKT()_INPUT_CONTROL[QUIET]
                                                          after at least [QTIME] * 1024 cycles. */
 	uint64_t reserved_14_15               : 2;
 	uint64_t bpkind                       : 6;  /**< PKIND sent to PKI when DPI_PKT_INST_HDR_S[PKIND] corresponding bit in
-                                                         SLI_PKT_PKIND_VALID[ENB] is set to a 0. */
+                                                         SLI_PKT_PKIND_VALID[ENB] is cleared to a 0. */
 	uint64_t reserved_4_7                 : 4;
-	uint64_t pkpfval                      : 1;  /**< when zero, only VF's are subject to SLI_PKT_PKIND_VALID constraints, and PF instructions
+	uint64_t pkpfval                      : 1;  /**< When 0, only VFs are subject to SLI_PKT_PKIND_VALID constraints, and PF instructions
                                                          can select any PKI PKIND.
-                                                         When one, both PF's and VF's are subject to SLI_PKT_PKIND_VALID constraints. */
-	uint64_t bpflr_d                      : 1;  /**< Disables clearing SLI_PKT_OUT_BP_EN bit on a FLR. */
+                                                         When 1, both PFs and VFs are subject to SLI_PKT_PKIND_VALID constraints. */
+	uint64_t bpflr_d                      : 1;  /**< Disables clearing SLI_PKT_OUT_BP_EN bit on an FLR. */
 	uint64_t noptr_d                      : 1;  /**< Disables putting a ring into reset when a packet is received from PKO and
-                                                         the associated ring has no doorbells to send the packet out.
-                                                         SLI_PKT_IN_DONE()_CNTS[CNT] when written. */
+                                                         the associated ring has no doorbells to send the packet out. */
 	uint64_t picnt_d                      : 1;  /**< Disables the subtraction of SLI_PKT_IN_DONE()_CNTS[CNT] from
                                                          SLI_PKT_IN_DONE()_CNTS[CNT] when written. */
 #else
@@ -10831,22 +10809,22 @@ union cvmx_sli_pkt_in_donex_cnts {
 	uint64_t po_int                       : 1;  /**< "Returns a 1 when either the corresponding bit in SLI_PKT_TIME_INT[RING[\#]] or
                                                          SLI_PKT_CNT_INT[RING[\#]] is set." */
 	uint64_t pi_int                       : 1;  /**< Packet input interrupt bit for the ring. The hardware sets [PI_INT] whenever it updates
-                                                         [CNT<31:0>] and is greater then [WMARK][15:0] and CINT_ENB is set.
-                                                         The hardware will clear [PI_INT] when [CNT<31:0>] is less then or equal to [WMARK][15:0]
+                                                         [CNT<31:0>] and is greater then [WMARK][15:0] and [CINT_ENB] is set.
+                                                         The hardware will clear [PI_INT] when [CNT] is less then or equal to [WMARK][15:0]
                                                          [PI_INT] can cause an MSI-X interrupt for the ring, but will never cause an INTA/B/C/D
                                                          nor MSI interrupt nor set any SLI_MAC()_PF()_INT_SUM bit. SLI_PKT_IN_INT is a
                                                          multi-ring version of [PI_INT], and [PI_INT] is one component of SLI_PKT_INT. See also
                                                          SLI_PKT()_CNTS[PI_INT]. */
 	uint64_t mbox_int                     : 1;  /**< Reads corresponding bit in SLI_PKT()_MBOX_INT. */
 	uint64_t resend                       : 1;  /**< A write of 1 will resend an MSI-X interrupt message if there is a pending interrupt in
-                                                         P0_INT, PI_INT or MBOX_INT for this ring after the write of [CNT] occurs.
+                                                         [P0_INT], [PI_INT] or [MBOX_INT] for this ring after the write of [CNT] occurs.
                                                          [RESEND] and [CNT] must be written together with the assumption that the write of
                                                          [CNT] will clear the [PI_INT] interrupt bit. If the write of [CNT] does not cause
-                                                         the [CNT] to drop below the thresholds another MSI-X message will be sent.
-                                                         The [RESEND] bit will never effect INTA/B/C/D or MSI interrupt */
+                                                         the [CNT] to drop below the thresholds another MSI-X message is sent.
+                                                         The [RESEND] bit never affects INTA/B/C/D or MSI interrupts. */
 	uint64_t reserved_49_59               : 11;
 	uint64_t cint_enb                     : 1;  /**< Packet input interrupt enable bit for the ring. When [CINT_ENB] is set,
-                                                         the hardware will set [PI_INT] whenever it updates [CNT] and it is greater
+                                                         the hardware sets [PI_INT] whenever it updates [CNT] and it is greater
                                                          than [WMARK].
                                                          When [CINT_ENB] is clear,  the hardware will never set [PI_INT]. */
 	uint64_t wmark                        : 16; /**< Packet input interrupt watermark for the ring. If [CINT_ENB] is set
@@ -10855,7 +10833,7 @@ union cvmx_sli_pkt_in_donex_cnts {
 	uint64_t cnt                          : 32; /**< Packet input done count for the ring. The hardware increments [CNT] by one
                                                          after it finishes reading (from the remote host) an instruction from the ring
                                                          and all of its associated packet data.
-                                                         If SLI_PKT_GBL_CONTROL[PICNT_D] is not set, when [CNT] is written it will subtract
+                                                         If SLI_PKT_GBL_CONTROL[PICNT_D] is not set, when [CNT] is written, it will subtract
                                                          the value from [CNT]. */
 #else
 	uint64_t cnt                          : 32;
@@ -10967,9 +10945,9 @@ typedef union cvmx_sli_pkt_in_instr_counts cvmx_sli_pkt_in_instr_counts_t;
 /**
  * cvmx_sli_pkt_in_int
  *
- * This register specifies which input packets rings are interrupting because of done cnts.
- * A bit set in this intterupt register will set a corresponding bit in SLI_PKT_INT which
- * can cause a MSIX interrupt.  When read by a function, this register informs which rings
+ * This register specifies which input packets rings are interrupting because of done counts.
+ * A bit set in this interrupt register will set a corresponding bit in SLI_PKT_INT which
+ * can cause a MSI-X interrupt.  When read by a function, this register informs which rings
  * owned by the function (0 to N, N as large as 63) have this interrupt pending.
  * SLI_PKT_IN_INT conditions can cause MSI-X interrupts, but do not cause any
  * SLI_MAC()_PF()_INT_SUM
@@ -10995,7 +10973,7 @@ typedef union cvmx_sli_pkt_in_int cvmx_sli_pkt_in_int_t;
 /**
  * cvmx_sli_pkt_in_jabber
  *
- * Register to set limit on sli packet input packet sizes
+ * Register to set limit on SLI packet input packet sizes.
  *
  */
 union cvmx_sli_pkt_in_jabber {
@@ -11003,7 +10981,7 @@ union cvmx_sli_pkt_in_jabber {
 	struct cvmx_sli_pkt_in_jabber_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_32_63               : 32;
-	uint64_t size                         : 32; /**< Byte count for limiting sizes of packet sizes that are allowed for sli packet inbound
+	uint64_t size                         : 32; /**< Byte count for limiting sizes of packet sizes that are allowed for SLI packet inbound
                                                          packets.  This byte limit does not include FSZ bytes of a packet. */
 #else
 	uint64_t size                         : 32;
@@ -11357,10 +11335,10 @@ union cvmx_sli_pkt_int {
 	uint64_t ring                         : 64; /**< Multi-ring packet interrupt register. Each RING<i> is set whenever any
                                                          of these three conditions are true:
                                                           * SLI_PKT(i)_CNTS[CNT] > SLI_PKT(i)_INT_LEVELS[CNT] (i.e. SLI_PKT_CNT_INT<i>
-                                                            is set), or
-                                                          * SLI_PKT(i)_CNTS[TIMER] > SLI_PKT(i)_INT_LEVELS[TIME] (i.e. SLI_PKT_TIME_INT<i>
-                                                            is set), or
-                                                          * SLI_PKT_IN_DONE(i)_CNTS[PI_INT] (i.e. SLI_PKT_IN_INT<i>) is set.
+                                                            is set),
+                                                          * Or, SLI_PKT(i)_CNTS[TIMER] > SLI_PKT(i)_INT_LEVELS[TIME] (i.e. SLI_PKT_TIME_INT<i>
+                                                            is set).
+                                                          * Or, SLI_PKT_IN_DONE(i)_CNTS[PI_INT] (i.e. SLI_PKT_IN_INT<i>) is set.
                                                          Any of these three conditions can cause an MSI-X interrupt, but only
                                                          the first two (i.e. SLI_PKT_CNT_INT and SLI_PKT_TIME_INT) can cause
                                                          INTA/B/C/D and MSI interrupts.
@@ -11445,10 +11423,9 @@ typedef union cvmx_sli_pkt_iptr cvmx_sli_pkt_iptr_t;
  * cvmx_sli_pkt_mac#_pf#_rinfo
  *
  * This register sets the total number and starting number of rings for a given MAC and PF
- * combination. Indexed by (MAC index) SLI_PORT_E. In SRIOV mode SLI_PKT_MAC()_PF()_RINFO[RPVF]
- * and
- * SLI_PKT_MAC()_PF()_RINFO[NVFS] must be non zero and determine which rings the PF and
- * VF's own.
+ * combination. Indexed by (MAC index) SLI_PORT_E. In SR-IOV mode, SLI_PKT_MAC()_PF()_RINFO[RPVF]
+ * and SLI_PKT_MAC()_PF()_RINFO[NVFS] must be non zero and determine which rings the PFs and
+ * VFs own.
  *
  * An individual VF will own SLI_PKT_MAC()_PF()_RINFO[RPVF] number of rings.
  *
@@ -11460,7 +11437,7 @@ typedef union cvmx_sli_pkt_iptr cvmx_sli_pkt_iptr_t;
  *
  * e.g. Given:
  * _ SLI_PKT_MAC0_PF0_RINFO[SRN] = 32,
- * _ SLI_PKT_MAC0_PF0_RINFO[TRS] = 35,
+ * _ SLI_PKT_MAC0_PF0_RINFO[TRS] = 32,
  * _ SLI_PKT_MAC0_PF0_RINFO[RPVF] = 4,
  * _ SLI_PKT_MAC0_PF0_RINFO[NVFS] = 7:
  * _ rings owned by VF1: 32,33,34,35
@@ -11470,24 +11447,22 @@ typedef union cvmx_sli_pkt_iptr cvmx_sli_pkt_iptr_t;
  * _ rings owned by VF5: 48,49,50,51
  * _ rings owned by VF6: 52,53,54,55
  * _ rings owned by VF7: 56,57,58,59
- * _ rings owned by PF:  60,61,62,63,64,65,66
- *
- * CNXXXX valid copies are MAC0 PF0, MAC1 PF0, MAC2 PF0, MAC3 PF3.
+ * _ rings owned by PF:  60,61,62,63
  */
 union cvmx_sli_pkt_macx_pfx_rinfo {
 	uint64_t u64;
 	struct cvmx_sli_pkt_macx_pfx_rinfo_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_55_63               : 9;
-	uint64_t nvfs                         : 7;  /**< The number of VF's for this PF. This field must not be zero whenever RPVF != 0.
+	uint64_t nvfs                         : 7;  /**< The number of VFs for this PF. This field must not be zero whenever RPVF != 0.
                                                          Legal values are 0 to 64, with the requirement of (NVFS * RPVF) <= TRS. */
 	uint64_t reserved_40_47               : 8;
-	uint64_t rpvf                         : 8;  /**< The number of rings assigned to a VF for this PF. Legal values are 0,1,2,4,8
+	uint64_t rpvf                         : 8;  /**< The number of rings assigned to a VF for this PF. Legal values are 0 to 8
                                                          with the requirement of (NVFS * RPVF) <= TRS. */
 	uint64_t reserved_24_31               : 8;
 	uint64_t trs                          : 8;  /**< The number of rings assigned to the PF. Legal value are 0 to 64. */
 	uint64_t reserved_7_15                : 9;
-	uint64_t srn                          : 7;  /**< The starting ring number used by the PF. Legal value are 0 to 127. */
+	uint64_t srn                          : 7;  /**< The starting ring number used by the PF. Legal value are 0 to 63. */
 #else
 	uint64_t srn                          : 7;
 	uint64_t reserved_7_15                : 9;
@@ -11688,8 +11663,8 @@ union cvmx_sli_pkt_mem_ctl {
 	uint64_t msix_data_ecc                : 1;  /**< When set pcsr_ncsr_msix_data_ecc_ena will have an ECC not generated and checked. */
 	uint64_t msix_addr_fs                 : 2;  /**< Used to flip the synd. for pcsr_ncsr_msix_addr_flip_synd. */
 	uint64_t msix_addr_ecc                : 1;  /**< When set pcsr_ncsr_msix_addr_ecc_ena will have an ECC not generated and checked. */
-	uint64_t pof_fs                       : 2;  /**< Used to flip the synd for packet-out-fifo memory. */
-	uint64_t pof_ecc                      : 1;  /**< When set packet-out-fifo memory will have an ECC not generated and checked. */
+	uint64_t pof_fs                       : 2;  /**< Used to flip the synd for packet-out-FIFO memory. */
+	uint64_t pof_ecc                      : 1;  /**< When set packet-out-FIFO memory will have an ECC not generated and checked. */
 	uint64_t pos_fs                       : 2;  /**< Used to flip the synd. for pcsr_pout_size_csr_flip_synd. */
 	uint64_t pos_ecc                      : 1;  /**< When set will have an ECC not generated and checked. */
 	uint64_t pinm_fs                      : 2;  /**< Used to flip the synd. for pcsr_instr_mem_csr_flip_synd. */
@@ -12094,7 +12069,7 @@ union cvmx_sli_pkt_pkind_valid {
 	struct cvmx_sli_pkt_pkind_valid_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t enb                          : 64; /**< Enables bits for 64 possible pkinds.  If set to a 1, the corresponding
-                                                         DPI_PKT_INST_HDR_S[PKIND] is allowed to be passed to PKI.  If set to a 0,
+                                                         DPI_PKT_INST_HDR_S[PKIND] is allowed to be passed to PKI. If cleared to a 0,
                                                          the DPI_PKT_INST_HDR_S[PKIND] will be changed to the pkind set in
                                                          SLI_PKT_GBL_CONTROL[BPKIND] when sent to PKI. */
 #else
@@ -12506,11 +12481,7 @@ union cvmx_sli_s2m_portx_ctl {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_7_63                : 57;
 	uint64_t dvferr                       : 1;  /**< Disables setting SLI_MAC()_PF()_INT_SUM[PKTVF_ERR] for vf illegal memory access */
-	uint64_t lcl_node                     : 1;  /**< Local CCPI node. When set to 1, all window access is treated as local CCPI
-                                                         access. Normally, if address bits [37:36] of the window address CSRs are not
-                                                         equal to the chip's CCPI value, the window operation is sent to the CCPI for
-                                                         remote chip access. This field, when set, disables this and treats all access to
-                                                         be for the local CCPI. */
+	uint64_t lcl_node                     : 1;  /**< Must be zero. */
 	uint64_t wind_d                       : 1;  /**< Window disable. When set to 1, disables access to the window registers from the MAC port. */
 	uint64_t bar0_d                       : 1;  /**< BAR0 disable. When set, disables access from the MAC to BAR0 for the following
                                                          address offsets:
@@ -12592,11 +12563,7 @@ union cvmx_sli_s2m_portx_ctl {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_7_63                : 57;
 	uint64_t dvferr                       : 1;  /**< Disables setting SLI_MAC()_PF()_INT_SUM[PKTVF_ERR] for vf illegal memory access */
-	uint64_t lcl_node                     : 1;  /**< Local CCPI node. When set to 1, all window access is treated as local CCPI
-                                                         access. Normally, if address bits [37:36] of the window address CSRs are not
-                                                         equal to the chip's CCPI value, the window operation is sent to the CCPI for
-                                                         remote chip access. This field, when set, disables this and treats all access to
-                                                         be for the local CCPI. */
+	uint64_t lcl_node                     : 1;  /**< Must be zero. */
 	uint64_t wind_d                       : 1;  /**< Window disable. When set to 1, disables access to the window registers from the MAC port. */
 	uint64_t bar0_d                       : 1;  /**< BAR0 disable. When set, disables access from the MAC to BAR0 for the following
                                                          address offsets:
@@ -12644,7 +12611,7 @@ union cvmx_sli_s2m_portx_ctl {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_6_63                : 58;
 	uint64_t lcl_node                     : 1;  /**< Local CCPI node. When set to 1, all window access is treated as local CCPI
-                                                         access. Normally, if address bits [37:36] of the window address registers are not
+                                                         access. Normally, if address bits [37:36] of the window address CSRs are not
                                                          equal to the chip's CCPI value, the window operation is sent to the CCPI for
                                                          remote chip access. This field, when set, disables this and treats all access to
                                                          be for the local CCPI. */
@@ -12955,7 +12922,8 @@ typedef union cvmx_sli_tx_pipe cvmx_sli_tx_pipe_t;
  * cvmx_sli_win_rd_addr
  *
  * When the LSB of this register is written, the address in this register will be read. The data
- * returned from this read will be placed in the WIN_RD_DATA register. This register should NOT
+ * returned from this read operation is placed in the WIN_RD_DATA register. This register should
+ * NOT
  * be used to read SLI_* registers.
  */
 union cvmx_sli_win_rd_addr {
@@ -12972,11 +12940,11 @@ union cvmx_sli_win_rd_addr {
 	uint64_t rd_addr                      : 48; /**< The address to be read.
                                                          [47:40] = NCB_ID.
                                                          [39:38] = 0x0, Not used.
-                                                         [37:36] = CCPI_ID.
+                                                         [37:36] = Must be zero.
                                                          [35:0]  = Address.
                                                          When [47:43] specifies SLI and [42:40] = 0x0, bits [39:0] are defined as follows:
                                                          [39:38] = Not used.
-                                                         [37:36] = CCPI_ID.
+                                                         [37:36] = Must be zero.
                                                          [35:32] = 0x0, Not used.
                                                          [31:24] = RSL_ID.
                                                          [23:0]  = RSL register offset. */
@@ -13051,11 +13019,11 @@ union cvmx_sli_win_wr_addr {
 	uint64_t wr_addr                      : 45; /**< The address that is written to when the SLI_WIN_WR_DATA register is written.
                                                          [47:40] = NCB_ID.
                                                          [39:38] = 0x0, Not used.
-                                                         [37:36] = CCPI_ID.
+                                                         [37:36] = Must be zero.
                                                          [35:0]  = Address.
                                                          When [47:43] specifies SLI and [42:40] = 0x0, bits [39:0] are defined as follows:
                                                          [39:38] = Not used.
-                                                         [37:36] = CCPI_ID.
+                                                         [37:36] = Must be zero.
                                                          [35:32] = 0x0, Not used.
                                                          [31:24] = RSL_ID.
                                                          [23:0]  = RSL register offset. */
@@ -13162,7 +13130,7 @@ union cvmx_sli_window_ctl {
 	uint64_t u64;
 	struct cvmx_sli_window_ctl_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t ocx_time                     : 32; /**< This fields is unused. */
+	uint64_t ocx_time                     : 32; /**< This field is unused. */
 	uint64_t time                         : 32; /**< Time to wait. The number of coprocessor-clock cycles to wait for a window access before timing out. */
 #else
 	uint64_t time                         : 32;

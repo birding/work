@@ -276,9 +276,6 @@ typedef union cvmx_vrmx_alt_fuse cvmx_vrmx_alt_fuse_t;
 
 /**
  * cvmx_vrm#_device_status
- *
- * Added in pass 2.
- *
  */
 union cvmx_vrmx_device_status {
 	uint64_t u64;
@@ -309,9 +306,6 @@ typedef union cvmx_vrmx_device_status cvmx_vrmx_device_status_t;
 
 /**
  * cvmx_vrm#_eco
- *
- * Added in pass 2.
- *
  */
 union cvmx_vrmx_eco {
 	uint64_t u64;
@@ -410,7 +404,7 @@ union cvmx_vrmx_telemetry_cmnd {
                                                          0x1 = Read V.
                                                          0x2 = Read I.
                                                          0x3 = Read V.
-                                                         Hardware clears CMND to indicate operation completed. */
+                                                         Hardware clears [CMND] to indicate operation completed. */
 #else
 	uint64_t cmnd                         : 2;
 	uint64_t reserved_2_63                : 62;
@@ -452,9 +446,6 @@ typedef union cvmx_vrmx_telemetry_read cvmx_vrmx_telemetry_read_t;
 
 /**
  * cvmx_vrm#_trip
- *
- * Added in pass 2.
- *
  */
 union cvmx_vrmx_trip {
 	uint64_t u64;
@@ -523,7 +514,7 @@ union cvmx_vrmx_ts_temp_conv_ctl {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_13_63               : 51;
 	uint64_t reset_sm                     : 1;  /**< This will force the temperature conversion state machine into the reset state until
-                                                         RESET_SM is cleared. */
+                                                         [RESET_SM] is cleared. */
 	uint64_t sw_access                    : 1;  /**< If set, software controls inputs of analog temperature sensor. */
 	uint64_t ts_switch                    : 9;  /**< Alternate software access to control temperature sensor switches. */
 	uint64_t ts_curr2en                   : 1;  /**< Controls curr2_en pin on analog temperature sensor block. */
@@ -555,12 +546,13 @@ union cvmx_vrmx_ts_temp_conv_result {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_24_63               : 40;
 	uint64_t n_valid                      : 1;  /**< When set N_VALUE is valid. */
-	uint64_t n_value                      : 11; /**< N cycle count values after calibration initiated. Qualified by N_VALID. */
-	uint64_t temp_valid                   : 1;  /**< When set TEMP_CORRECTED is valid.
+	uint64_t n_value                      : 11; /**< N cycle count values after calibration initiated. Qualified by [N_VALID]. */
+	uint64_t temp_valid                   : 1;  /**< When set [TEMP_CORRECTED] is valid.
                                                          This bit is pulsed on each conversion, and as such software may not be able to observe the
-                                                         cycle in which TEMP_VALID is set. */
+                                                         cycle in which [TEMP_VALID] is set. */
 	uint64_t temp_corrected               : 11; /**< Corrected temperature read out from the temp sensor module, in degrees C with
-                                                         two bits of fraction. Unpredictable unless TEMP_VALID is set. */
+                                                         two bits of fraction. Twos-complement if negative temperature. Unpredictable
+                                                         unless [TEMP_VALID] is set. */
 #else
 	uint64_t temp_corrected               : 11;
 	uint64_t temp_valid                   : 1;

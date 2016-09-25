@@ -42,7 +42,7 @@
  *
  * Helper utilities for qlm.
  *
- * <hr>$Revision: 137936 $<hr>
+ * <hr>$Revision: 143543 $<hr>
  */
 
 #ifndef __CVMX_QLM_H__
@@ -248,6 +248,16 @@ enum cvmx_gmx_inf_mode {
 };
 
 /**
+ * Eye diagram captures are stored in the following structure
+ */
+typedef struct
+{
+	int width;              /* Width in the x direction (time) */
+	int height;             /* Height in the y direction (voltage) */
+	uint32_t data[64][128]; /* Error count at location, saturates as max */
+} cvmx_qlm_eye_t;
+
+/**
  * These apply to DLM1 and DLM2 if its not in SATA mode
  * Manual refers to lanes as follows:
  *  DML 0 lane 0 == GSER0 lane 0
@@ -330,5 +340,9 @@ int cvmx_dump_gser_config_node(unsigned node, unsigned gser);
  */
 int cvmx_dump_gser_status_node(unsigned node, unsigned gser);
 #endif
+
+int cvmx_qlm_eye_display(int node, int qlm, int qlm_lane, int format, const cvmx_qlm_eye_t *eye);
+
+void cvmx_prbs_process_cmd(int node, int qlm, int mode);
 
 #endif /* __CVMX_QLM_H__ */

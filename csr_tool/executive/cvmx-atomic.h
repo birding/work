@@ -42,7 +42,7 @@
  *
  * This file provides atomic operations
  *
- * <hr>$Revision: 135592 $<hr>
+ * <hr>$Revision: 142870 $<hr>
  *
  *
  */
@@ -347,15 +347,19 @@ static inline int64_t cvmx_atomic_fetch_and_add64_nosync(int64_t * ptr, int64_t 
 
 #ifdef CVMX_CAVIUM_OCTEON2
 	{
-		CVMX_PUSH_OCTEON2;
 		if (__builtin_constant_p(incr) && incr == 1) {
-			__asm__ __volatile__("laid  %0,(%2)":"=r"(ret), "+m"(ptr):"r"(ptr):"memory");
+			__asm__ __volatile__(CVMX_PUSH_OCTEON2_STR
+					     "laid  %0,(%2)"
+					     CVMX_POP_OCTEON2_STR:"=r"(ret), "+m"(ptr):"r"(ptr):"memory");
 		} else if (__builtin_constant_p(incr) && incr == -1) {
-			__asm__ __volatile__("ladd  %0,(%2)":"=r"(ret), "+m"(ptr):"r"(ptr):"memory");
+			__asm__ __volatile__(CVMX_PUSH_OCTEON2_STR
+					     "ladd  %0,(%2)"
+					     CVMX_POP_OCTEON2_STR:"=r"(ret), "+m"(ptr):"r"(ptr):"memory");
 		} else {
-			__asm__ __volatile__("laad  %0,(%2),%3":"=r"(ret), "+m"(ptr):"r"(ptr), "r"(incr):"memory");
+			__asm__ __volatile__(CVMX_PUSH_OCTEON2_STR
+					     "laad  %0,(%2),%3"
+					     CVMX_POP_OCTEON2_STR:"=r"(ret), "+m"(ptr):"r"(ptr), "r"(incr):"memory");
 		}
-		CVMX_POP_OCTEON2;
 	}
 #else
 	{
@@ -416,15 +420,19 @@ static inline int32_t cvmx_atomic_fetch_and_add32_nosync(int32_t * ptr, int32_t 
 
 #ifdef CVMX_CAVIUM_OCTEON2
 	{
-		CVMX_PUSH_OCTEON2;
 		if (__builtin_constant_p(incr) && incr == 1) {
-			__asm__ __volatile__("lai  %0,(%2)":"=r"(ret), "+m"(ptr):"r"(ptr):"memory");
+			__asm__ __volatile__(CVMX_PUSH_OCTEON2_STR
+					     "lai  %0,(%2)"
+					     CVMX_POP_OCTEON2_STR:"=r"(ret), "+m"(ptr):"r"(ptr):"memory");
 		} else if (__builtin_constant_p(incr) && incr == -1) {
-			__asm__ __volatile__("lad  %0,(%2)":"=r"(ret), "+m"(ptr):"r"(ptr):"memory");
+			__asm__ __volatile__(CVMX_PUSH_OCTEON2_STR
+					     "lad  %0,(%2)"
+					     CVMX_POP_OCTEON2_STR:"=r"(ret), "+m"(ptr):"r"(ptr):"memory");
 		} else {
-			__asm__ __volatile__("laa  %0,(%2),%3":"=r"(ret), "+m"(ptr):"r"(ptr), "r"(incr):"memory");
+			__asm__ __volatile__(CVMX_PUSH_OCTEON2_STR
+					     "laa  %0,(%2),%3"
+					     CVMX_POP_OCTEON2_STR:"=r"(ret), "+m"(ptr):"r"(ptr), "r"(incr):"memory");
 		}
-		CVMX_POP_OCTEON2;
 	}
 #else
 	{
@@ -605,15 +613,19 @@ static inline uint64_t cvmx_atomic_swap64_nosync(uint64_t * ptr, uint64_t new_va
 
 #ifdef CVMX_CAVIUM_OCTEON2
 	{
-		CVMX_PUSH_OCTEON2;
 		if (__builtin_constant_p(new_val) && new_val == 0) {
-			__asm__ __volatile__("lacd  %0,(%1)":"=r"(ret):"r"(ptr):"memory");
+			__asm__ __volatile__(CVMX_PUSH_OCTEON2_STR
+					     "lacd  %0,(%1)"
+					     CVMX_POP_OCTEON2_STR:"=r"(ret):"r"(ptr):"memory");
 		} else if (__builtin_constant_p(new_val) && new_val == ~0ull) {
-			__asm__ __volatile__("lasd  %0,(%1)":"=r"(ret):"r"(ptr):"memory");
+			__asm__ __volatile__(CVMX_PUSH_OCTEON2_STR
+					     "lasd  %0,(%1)"
+					     CVMX_POP_OCTEON2_STR:"=r"(ret):"r"(ptr):"memory");
 		} else {
-			__asm__ __volatile__("lawd  %0,(%1),%2":"=r"(ret):"r"(ptr), "r"(new_val):"memory");
+			__asm__ __volatile__(CVMX_PUSH_OCTEON2_STR
+					     "lawd  %0,(%1),%2"
+					      CVMX_POP_OCTEON2_STR:"=r"(ret):"r"(ptr), "r"(new_val):"memory");
 		}
-		CVMX_POP_OCTEON2;
 	}
 #else
 	{
@@ -654,15 +666,19 @@ static inline uint32_t cvmx_atomic_swap32_nosync(uint32_t * ptr, uint32_t new_va
 
 #ifdef CVMX_CAVIUM_OCTEON2
 	{
-		CVMX_PUSH_OCTEON2;
 		if (__builtin_constant_p(new_val) && new_val == 0) {
-			__asm__ __volatile__("lac  %0,(%1)":"=r"(ret):"r"(ptr):"memory");
+			__asm__ __volatile__(CVMX_PUSH_OCTEON2_STR
+					     "lac  %0,(%1)"
+					     CVMX_POP_OCTEON2_STR:"=r"(ret):"r"(ptr):"memory");
 		} else if (__builtin_constant_p(new_val) && new_val == ~0u) {
-			__asm__ __volatile__("las  %0,(%1)":"=r"(ret):"r"(ptr):"memory");
+			__asm__ __volatile__(CVMX_PUSH_OCTEON2_STR
+					     "las  %0,(%1)"
+					     CVMX_POP_OCTEON2_STR:"=r"(ret):"r"(ptr):"memory");
 		} else {
-			__asm__ __volatile__("law  %0,(%1),%2":"=r"(ret):"r"(ptr), "r"(new_val):"memory");
+			__asm__ __volatile__(CVMX_PUSH_OCTEON2_STR
+					     "law  %0,(%1),%2"
+					     CVMX_POP_OCTEON2_STR:"=r"(ret):"r"(ptr), "r"(new_val):"memory");
 		}
-		CVMX_POP_OCTEON2;
 	}
 #else
 	{

@@ -732,7 +732,7 @@ union cvmx_ila_lne_dbg {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_60_63               : 4;
 	uint64_t tx_bad_crc32                 : 1;  /**< Send one diagnostic word with bad CRC32 to the selected lane. Note that it injects just once. */
-	uint64_t tx_bad_6467_cnt              : 5;  /**< Specifies the number of bad 64B/67B codewords on the selected lane. */
+	uint64_t tx_bad_6467_cnt              : 5;  /**< Specifies the number of bad 64/67 bit codewords on the selected lane. */
 	uint64_t tx_bad_sync_cnt              : 3;  /**< Specifies the number of bad sync words on the selected lane. */
 	uint64_t tx_bad_scram_cnt             : 3;  /**< Specifies the number of bad scrambler state on the selected lane. */
 	uint64_t reserved_40_47               : 8;
@@ -836,7 +836,7 @@ union cvmx_ila_rxx_cfg0 {
                                                          diagnostic word, zero or more skip words, and the data payload. Must be larger than
                                                          ILA_TX()_CFG1[SKIP_CNT] + 32.
                                                          Supported range:
-                                                         _ ILA_TX()_CFG1[SKIP_CNT] + 32 < MFRM_LEN <= 4096 */
+                                                         _ ILA_TX()_CFG1[SKIP_CNT] + 32 < [MFRM_LEN] <= 4096 */
 	uint64_t brst_shrt                    : 7;  /**< Minimum interval between burst control words, as a multiple of eight bytes. Supported
                                                          range from 8 to 512 bytes (i.e. 0 < BRST_SHRT <= 64).
                                                          This field affects the ILA_RX()_STAT4[BRST_SHRT_ERR_CNT] counter. It does not affect
@@ -852,8 +852,8 @@ union cvmx_ila_rxx_cfg0 {
                                                          link. */
 	uint64_t reserved_8_25                : 18;
 	uint64_t lane_ena                     : 8;  /**< Lane enable mask. The link is enabled if any lane is enabled. The same lane should not be
-                                                         enabled in multiple ILA_RXn_CFG0. Each bit of LANE_ENA maps to an RX lane (RLE) and a QLM
-                                                         lane. Note that [LANE_REV] has no effect on this mapping.
+                                                         enabled in multiple ILA_RXn_CFG0. Each bit of [LANE_ENA] maps to an RX lane (RLE) and a
+                                                         QLM lane. Note that [LANE_REV] has no effect on this mapping.
                                                          _ [LANE_ENA<0>]  = RLE0  = QLM2 lane 0.
                                                          _ [LANE_ENA<1>]  = RLE1  = QLM2 lane 1.
                                                          _ [LANE_ENA<2>]  = RLE2  = QLM2 lane 2.
@@ -896,8 +896,8 @@ union cvmx_ila_rxx_cfg1 {
                                                          though the link went down. */
 	uint64_t pkt_ena                      : 1;  /**< Packet receive enable. When set to 0, any received SOP causes the entire packet to be dropped. */
 	uint64_t reserved_19_19               : 1;
-	uint64_t tx_link_fc                   : 1;  /**< Link flow-control status transmitted by the TX-link XON (=1) when RX_FIFO_CNT <=
-                                                         RX_FIFO_HWM and lane alignment is done. */
+	uint64_t tx_link_fc                   : 1;  /**< Link flow-control status transmitted by the TX-link XON (=1) when [RX_FIFO_CNT] <=
+                                                         [RX_FIFO_HWM] and lane alignment is done. */
 	uint64_t rx_link_fc                   : 1;  /**< Link flow-control status received in burst/idle control words. XOFF (=0) causes TX-link to
                                                          stop transmitting on all channels. */
 	uint64_t rx_align_ena                 : 1;  /**< Enable the lane alignment. This should only be done after all enabled lanes have achieved
@@ -954,7 +954,7 @@ union cvmx_ila_rxx_int {
 	struct cvmx_ila_rxx_int_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_6_63                : 58;
-	uint64_t lane_bad_word                : 1;  /**< A lane encountered either a bad 64B/67B code word or an unknown control-word type. */
+	uint64_t lane_bad_word                : 1;  /**< A lane encountered either a bad 64/67 bit code word or an unknown control-word type. */
 	uint64_t stat_cnt_ovfl                : 1;  /**< Statistics counter overflow. */
 	uint64_t lane_align_done              : 1;  /**< Lane alignment successful. */
 	uint64_t word_sync_done               : 1;  /**< All enabled lanes have achieved word-boundary lock and scrambler synchronization. Lane
@@ -1158,7 +1158,7 @@ union cvmx_ila_rxx_stat7 {
 	struct cvmx_ila_rxx_stat7_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_16_63               : 48;
-	uint64_t bad_64b67b_cnt               : 16; /**< Indicates the number of bad 64B/67B code words. Wraps on overflow if
+	uint64_t bad_64b67b_cnt               : 16; /**< Indicates the number of bad 64/67 bit code words. Wraps on overflow if
                                                          ILA_RX()_CFG0[LNK_STATS_WRAP]=1. Otherwise, saturates. On overflow/saturate, sets
                                                          ILA_RX()_INT[STAT_CNT_OVFL]. */
 #else
@@ -1260,7 +1260,7 @@ union cvmx_ila_rx_lnex_int {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_10_63               : 54;
 	uint64_t disp_err                     : 1;  /**< RX disparity error encountered. Throws ILA_INTSN_E::ILA_RXLNE()_DISP_ERR. */
-	uint64_t bad_64b67b                   : 1;  /**< Bad 64B/67B code word encountered. Once the bad word reaches the burst-control unit (as
+	uint64_t bad_64b67b                   : 1;  /**< Bad 64/67 bit code word encountered. Once the bad word reaches the burst-control unit (as
                                                          indicated by ILA_RX()_INT[LANE_BAD_WORD]) it is discarded and all open packets receive an
                                                          error. Throws ILA_INTSN_E::ILA_RXLNE()_BAD_64B67B. */
 	uint64_t stat_cnt_ovfl                : 1;  /**< RX-lane statistic counter overflow. Throws ILA_INTSN_E::ILA_RXLNE()_STAT_CNT_OVFL. */
@@ -1392,7 +1392,7 @@ union cvmx_ila_rx_lnex_stat3 {
 	struct cvmx_ila_rx_lnex_stat3_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_18_63               : 46;
-	uint64_t bad_64b67b_cnt               : 18; /**< Indicates the number of bad 64B/67B words, meaning bit <65> or bit <64> has been
+	uint64_t bad_64b67b_cnt               : 18; /**< Indicates the number of bad 64/67 bit words, meaning bit <65> or bit <64> has been
                                                          corrupted. On overflow, saturates and sets ILA_RX_LNE()_INT[STAT_CNT_OVFL]. */
 #else
 	uint64_t bad_64b67b_cnt               : 18;
@@ -1642,16 +1642,16 @@ union cvmx_ila_txx_cfg0 {
                                                          word, zero or more skip words, and the data payload. Must be larger than
                                                          ILA_TX()_CFG1[SKIP_CNT] + 9.
                                                          Supported range:
-                                                         _ ILA_TX()_CFG1[SKIP_CNT] + 9 < MFRM_LEN <= 4096) */
+                                                         _ ILA_TX()_CFG1[SKIP_CNT] + 9 < [MFRM_LEN] <= 4096) */
 	uint64_t brst_shrt                    : 7;  /**< Minimum interval between burst control words, as a multiple of eight bytes. Supported
                                                          range from eight to 512 bytes
-                                                         (i.e. 0 < BRST_SHRT <= 64). */
+                                                         (i.e. 0 < [BRST_SHRT] <= 64). */
 	uint64_t lane_rev                     : 1;  /**< Lane reversal.   When enabled, lane striping is performed from most significant lane
                                                          enabled to least significant lane enabled. [LANE_ENA] must be zero before changing
                                                          [LANE_REV]. */
 	uint64_t brst_max                     : 5;  /**< Maximum size of a data burst, as a multiple of 64 byte blocks.
                                                          Supported range is from 64 bytes to 1024 bytes
-                                                         (i.e. 0 < BRST_MAX <= 16). */
+                                                         (i.e. 0 < [BRST_MAX] <= 16). */
 	uint64_t reserved_8_25                : 18;
 	uint64_t lane_ena                     : 8;  /**< Lane enable mask. Link is enabled if any lane is enabled. The same lane should not be
                                                          enabled in multiple ILA_TX()_CFG0. Each bit of LANE_ENA maps to a TX lane (TLE) and a QLM
@@ -1694,10 +1694,11 @@ union cvmx_ila_txx_cfg1 {
 	struct cvmx_ila_txx_cfg1_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t ser_low                      : 4;  /**< Reduce latency by limiting the amount of data in flight for each SerDes. Writting to 0
-                                                         causes hardware to determine a typically optimal value. Added in pass 2. */
+                                                         causes hardware to determine a typically optimal value. */
 	uint64_t reserved_43_59               : 17;
 	uint64_t ser_limit                    : 10; /**< Reserved. */
-	uint64_t pkt_busy                     : 1;  /**< TX-link is transmitting data. */
+	uint64_t pkt_busy                     : 1;  /**< Packet busy. When [PKT_ENA]=0, [PKT_BUSY]=1 indicates the TX-link is
+                                                         transmitting data. When [PKT_ENA]=1, [PKT_BUSY] is undefined. */
 	uint64_t reserved_26_31               : 6;
 	uint64_t skip_cnt                     : 4;  /**< Number of skip words to insert after the scrambler state. */
 	uint64_t pkt_flush                    : 1;  /**< Packet transmit flush. When asserted, the TxFIFO continuously drains; all data is dropped.
@@ -1771,11 +1772,9 @@ union cvmx_ila_txx_dbg {
 	uint64_t data_rate                    : 13; /**< The number of coprocessor-clocks to transmit 32 words, where each word is 67 bits.  HW
                                                          will automatically calculate a conservative value for this field.  SW can override the
                                                          calculation by writing
-                                                         _ DAT_RATE = roundup((67*SCLK / GBAUD)*32).
-                                                         Added in pass 2. */
+                                                         _ DAT_RATE = roundup((67*SCLK / GBAUD)*32). */
 	uint64_t low_delay                    : 6;  /**< The delay before reacting to a lane low data indication, as a multiple of 64
-                                                         coprocessor-clocks.
-                                                         Added in pass 2. */
+                                                         coprocessor-clocks. */
 	uint64_t reserved_3_9                 : 7;
 	uint64_t tx_bad_crc24                 : 1;  /**< Send a control word with bad CRC24. Hardware clears this field once the injection is performed. */
 	uint64_t tx_bad_ctlw2                 : 1;  /**< Send a control word without the control bit set. */

@@ -739,7 +739,7 @@ typedef union cvmx_vdecx_status cvmx_vdecx_status_t;
  *
  * This register reports task configuration errors, that occur when a
  * specified parameter value is outside the acceptable range.  Different
- * bit-mappings are used depending on whether the PHY_MODE for the job is set
+ * bit mappings are used depending on whether the PHY_MODE for the job is set
  * to LTE, GSM or 3G mode.
  */
 union cvmx_vdecx_tc_config_err_flags_reg {

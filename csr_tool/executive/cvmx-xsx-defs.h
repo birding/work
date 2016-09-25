@@ -235,7 +235,7 @@ union cvmx_xsx_smtx_arbpri {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_3_63                : 61;
 	uint64_t hogen                        : 1;  /**< Bus-hog limit enable. When set to 1, the RDPRI bit setting is inverted
-                                                         every 8th clock cycle to prevent starvation in the presence of
+                                                         every eighth clock cycle to prevent starvation in the presence of
                                                          persistent conflicts. */
 	uint64_t rdpri                        : 1;  /**< When set to 1, reads have priority over writes in bank conflicts. When
                                                          set to 0, writes have priority when resolving bank conflicts. */
@@ -322,12 +322,12 @@ union cvmx_xsx_smtx_err_ecc_flip {
 	struct cvmx_xsx_smtx_err_ecc_flip_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_34_63               : 30;
-	uint64_t ramx                         : 2;  /**< This bit flips a second bit of syndrome of the write port paths to the
-                                                         respective SMT. Bit 1 controls write wort 1, and bit 0 controls write
+	uint64_t ramx                         : 2;  /**< This bit flips the second bit of syndrome of the write port paths to the
+                                                         respective SMT. Bit 1 controls write port 1, and bit 0 controls write
                                                          port 0. */
 	uint64_t reserved_2_31                : 30;
 	uint64_t ram                          : 2;  /**< This bit flips the first bit of syndrome of the write port paths to
-                                                         the respective SMT. Bit 1 controls write wort 1, and bit 0 controls
+                                                         the respective SMT. Bit 1 controls write port 1, and bit 0 controls
                                                          write port 0. */
 #else
 	uint64_t ram                          : 2;

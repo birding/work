@@ -8,7 +8,7 @@
 #include "cvmx-version.h"
 
 
-#define OCT_CSR_TOOL_VERSION_STRING "1.1.3"
+#define OCT_CSR_TOOL_VERSION_STRING "1.1.4"
 
 int octeon_model = -1;
 char * octeon_modelStr = NULL;
@@ -19,6 +19,11 @@ char * inputfile = NULL;
 #define FUNC_GEN_CODE 2
 #define FUNC_DUMP_FORMAT 3
 int FuncMode = FUNC_NULL;
+
+const char * get_csr_tool_version(void)
+{
+   return OCT_CSR_TOOL_VERSION_STRING;
+}
 
 #if 1
 unsigned int cvmx_get_node_num(void)
@@ -38,6 +43,7 @@ uint64_t cvmx_read_csr_node(uint64_t node __attribute__ ((unused)), uint64_t csr
 
 uint32_t cvmx_get_proc_id(void)
 {
+	printf("\n%s is not implemented\n\n", __func__);
     return octeon_model;
 }
 #endif
@@ -78,9 +84,9 @@ void usage(char * const *argv) {
 		"    -g : generate the dumping code\n"
 		"    -f : format the dumping results\n"
 		"examples:\n"
-		"    -t cn78XX -s -i GSER1_PLL > GSER1_PLL.txt : search the registers like Gser1_pll* to reg.txt\n"
-		"    -t cn78XX -g -i GSER1_PLL.txt : generate the dumping code.\n"
-		"    -t cn78XX -f -i csrdump.txt : translate the csr dumping to readable format\n"
+		"    -t cn78XXp2 -s -i GSER1_PLL > GSER1_PLL : search the registers like Gser1_pll* to reg.txt\n"
+		"    -t cn78XXp2 -g -i GSER1_PLL : generate the dumping code.\n"
+		"    -t cn78XXp2 -f -i csrdump.txt : translate the csr dumping to readable format\n"
 		"    \n",
 		argv[0]);
 }
@@ -146,12 +152,13 @@ int parse_options(int argc, char * const *argv)
     return 0;
 }
 
-int dumping_format(char * inputfile, int cpuid)
+int __dumping_format(char * inputfile, int cpuid)
 {
 	printf("\n%s is not supported\n\n", __func__);
 	return -1;
 }
-int dumping_format(char * inputfile, int cpuid) __attribute__((weak));
+int dumping_format(char * inputfile, int cpuid) 
+	__attribute__((weak, alias("__dumping_format")));
 
 int register_serach_code(char * regStr, int octeon_model)
 {
@@ -160,12 +167,13 @@ int register_serach_code(char * regStr, int octeon_model)
 }
 int register_serach_code(char * regStr, int octeon_model) __attribute__((weak));
 
-int generate_code(char * inputfile, int cpuid, char *pattern)
+int __generate_code(char * inputfile, int cpuid, char *pattern)
 {
 	printf("\n%s is not supported\n\n", __func__);
 	return -1;
 }
-int generate_code(char * inputfile, int cpuid, char *pattern) __attribute__((weak));
+int generate_code(char * inputfile, int cpuid, char *pattern) 
+	__attribute__((weak, alias("__generate_code")));
 
 
 int main(int argc, char * const *argv) 
@@ -180,6 +188,7 @@ int main(int argc, char * const *argv)
 	if(inputfile == NULL)
 	{
 		printf("[%d]no input\n", __LINE__); 
+		usage(argv);
 		return -1;
 	}
 

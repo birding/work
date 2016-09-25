@@ -285,16 +285,13 @@ static inline uint64_t CVMX_RST_THERMAL_ALERT_FUNC(void)
 
 /**
  * cvmx_rst_bist_timer
- *
- * Added in pass 2.
- *
  */
 union cvmx_rst_bist_timer {
 	uint64_t u64;
 	struct cvmx_rst_bist_timer_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_29_63               : 35;
-	uint64_t count                        : 29; /**< Number of 50 Mhz reference clocks that have elapsed during bist and repair during the last
+	uint64_t count                        : 29; /**< Number of 50 MHz reference clocks that have elapsed during bist and repair during the last
                                                          reset.
                                                          If MSB is set the BIST chain did not complete as expected. */
 #else
@@ -393,7 +390,7 @@ union cvmx_rst_bphy_soft_rst {
 	struct cvmx_rst_bphy_soft_rst_s {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_1_63                : 63;
-	uint64_t soft_rst                     : 1;  /**< Reserved.  For diagonistic use only. */
+	uint64_t soft_rst                     : 1;  /**< Reserved.  For diagnostic use only. */
 #else
 	uint64_t soft_rst                     : 1;
 	uint64_t reserved_1_63                : 63;
@@ -488,9 +485,6 @@ typedef union cvmx_rst_ckill cvmx_rst_ckill_t;
 
 /**
  * cvmx_rst_cold_data#
- *
- * Added in pass 2.
- *
  */
 union cvmx_rst_cold_datax {
 	uint64_t u64;
@@ -583,9 +577,6 @@ typedef union cvmx_rst_ctlx cvmx_rst_ctlx_t;
 
 /**
  * cvmx_rst_debug
- *
- * Added in pass 2.
- *
  */
 union cvmx_rst_debug {
 	uint64_t u64;
@@ -636,9 +627,6 @@ typedef union cvmx_rst_delay cvmx_rst_delay_t;
 
 /**
  * cvmx_rst_eco
- *
- * Added in pass 2.
- *
  */
 union cvmx_rst_eco {
 	uint64_t u64;
@@ -842,15 +830,12 @@ typedef union cvmx_rst_pp_power cvmx_rst_pp_power_t;
 
 /**
  * cvmx_rst_ref_cntr
- *
- * Added in pass 2.
- *
  */
 union cvmx_rst_ref_cntr {
 	uint64_t u64;
 	struct cvmx_rst_ref_cntr_s {
 #ifdef __BIG_ENDIAN_BITFIELD
-	uint64_t cnt                          : 64; /**< Count. The counter is initialized to 0x0 during a cold reset and is otherwise continiously
+	uint64_t cnt                          : 64; /**< Count. The counter is initialized to 0x0 during a cold reset and is otherwise continuously
                                                          running.
                                                          CNT is incremented every reference clock cycle (i.e. at 50 MHz). */
 #else

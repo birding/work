@@ -779,15 +779,15 @@ union cvmx_zip_ctl_cfg {
 	struct cvmx_zip_ctl_cfg_cn73xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_52_63               : 12;
-	uint64_t ildf                         : 4;  /**< Instruction Load Command FIFO credits <= 8. */
+	uint64_t ildf                         : 4;  /**< Instruction load command FIFO credits <= 8. */
 	uint64_t reserved_43_47               : 5;
 	uint64_t iprf                         : 3;  /**< Instruction Page Return Command FIFO credits <= 4. */
 	uint64_t reserved_36_39               : 4;
 	uint64_t idtf                         : 4;  /**< Input Data Tag FIFOs (per core) credits <= 8. */
 	uint64_t reserved_27_31               : 5;
-	uint64_t stcf                         : 3;  /**< Store Command FIFO credits <= 4. */
+	uint64_t stcf                         : 3;  /**< Store command FIFO credits <= 4. */
 	uint64_t reserved_19_23               : 5;
-	uint64_t ldf                          : 3;  /**< Load Command FIFO credits <= 4. */
+	uint64_t ldf                          : 3;  /**< Load command FIFO credits <= 4. */
 	uint64_t reserved_11_15               : 5;
 	uint64_t wkqf                         : 3;  /**< WorkQueue FIFO credits <= 4. */
 	uint64_t reserved_2_7                 : 6;
@@ -983,13 +983,13 @@ union cvmx_zip_ecc_ctl {
                                                          2'b10, 2'b01: Flip 1 bit
                                                          2'b11       : Flip 2 bits */
 	uint64_t reserved_11_31               : 21;
-	uint64_t gpf_cdis                     : 1;  /**< G/S Pointer FIFO ECC correction disable. */
-	uint64_t gpf_fs                       : 2;  /**< Controls G/S Pointer FIFO flip syndrome. */
+	uint64_t gpf_cdis                     : 1;  /**< G/S pointer FIFO ECC correction disable. */
+	uint64_t gpf_fs                       : 2;  /**< Controls G/S pointer FIFO flip syndrome. */
 	uint64_t reserved_7_7                 : 1;
 	uint64_t idf_cdis                     : 1;  /**< Input Data FIFO ECC correction disable. */
 	uint64_t idf_fs                       : 2;  /**< Controls Input Data FIFO flip syndrome. */
 	uint64_t reserved_3_3                 : 1;
-	uint64_t iqf_cdis                     : 1;  /**< Instruction Queue FIFO ECC correction disable. */
+	uint64_t iqf_cdis                     : 1;  /**< Instruction queue FIFO ECC correction disable. */
 	uint64_t reserved_0_1                 : 2;
 #else
 	uint64_t reserved_0_1                 : 2;
@@ -1026,14 +1026,14 @@ union cvmx_zip_ecc_ctl {
 	struct cvmx_zip_ecc_ctl_cn73xx {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_11_63               : 53;
-	uint64_t gpf_cdis                     : 1;  /**< G/S Pointer FIFO ECC correction disable. */
-	uint64_t gpf_fs                       : 2;  /**< Controls G/S Pointer FIFO flip syndrome. */
+	uint64_t gpf_cdis                     : 1;  /**< G/S pointer FIFO ECC correction disable. */
+	uint64_t gpf_fs                       : 2;  /**< Controls G/S pointer FIFO flip syndrome. */
 	uint64_t reserved_7_7                 : 1;
 	uint64_t idf_cdis                     : 1;  /**< Input Data FIFO ECC correction disable. */
 	uint64_t idf_fs                       : 2;  /**< Controls Input Data FIFO flip syndrome. */
 	uint64_t reserved_3_3                 : 1;
-	uint64_t iqf_cdis                     : 1;  /**< Instruction Queue FIFO ECC correction disable. */
-	uint64_t iqf_fs                       : 2;  /**< Controls Instruction Queue FIFO flip syndrome.
+	uint64_t iqf_cdis                     : 1;  /**< Instruction queue FIFO ECC correction disable. */
+	uint64_t iqf_fs                       : 2;  /**< Controls instruction queue FIFO flip syndrome.
                                                          0x0 = no error generation.
                                                          0x1 = flip one bit.
                                                          0x2 = flip one bit.
@@ -1090,9 +1090,6 @@ typedef union cvmx_zip_ecce_int cvmx_zip_ecce_int_t;
 
 /**
  * cvmx_zip_eco
- *
- * Added in pass 2.
- *
  */
 union cvmx_zip_eco {
 	uint64_t u64;
@@ -1566,8 +1563,8 @@ union cvmx_zip_que_pri {
 #ifdef __BIG_ENDIAN_BITFIELD
 	uint64_t reserved_8_63                : 56;
 	uint64_t pri                          : 8;  /**< Queue priority. Each bit corresponds to a queue:
-                                                         PRI[n]=1: Queue n has higher priority. Round-Robin between higher priority queues.
-                                                         PRI[n]=0: Queue n has lower priority. Round-Robin between lower priority queues. */
+                                                         PRI[[a]]=1: Queue [a] has higher priority. Round-robin between higher priority queues.
+                                                         PRI[[a]]=0: Queue [a] has lower priority. Round-robin between lower priority queues. */
 #else
 	uint64_t pri                          : 8;
 	uint64_t reserved_8_63                : 56;
