@@ -8,7 +8,7 @@
 #include "cvmx-version.h"
 
 
-#define OCT_CSR_TOOL_VERSION_STRING "1.1.4"
+#define OCT_CSR_TOOL_VERSION_STRING "1.1.5"
 
 int octeon_model = -1;
 char * octeon_modelStr = NULL;

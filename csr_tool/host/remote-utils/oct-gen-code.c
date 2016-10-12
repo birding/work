@@ -108,10 +108,10 @@ int generate_code(char * inputfile, int cpuid, char *pattern)
 						pcie_port,
 						buf, (unsigned long long)csr_addr);
 		}else{
-			csr_addr |= (1ull <<63);
-			sprintf(outbuf, "\tcvmx_dprintf(\"%s 0x%016llx 0x%%016llx\\n\","
-						"(long long)cvmx_read_csr(0x%016llx));\n", 
-						buf, (unsigned long long)csr_addr, (unsigned long long)csr_addr);
+			sprintf(outbuf, "\tcvmx_dprintf(\"%s 0x%llx 0x%%llx\\n\","
+						"(long long)cvmx_read_csr(0x%llx));\n", 
+						buf, (unsigned long long)csr_addr, 
+						(unsigned long long)(csr_addr|(1ull <<63)));
 		}
 		
 		fwrite (outbuf , strlen(outbuf), 1 , outfile);
