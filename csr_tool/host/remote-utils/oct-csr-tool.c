@@ -8,7 +8,7 @@
 #include "cvmx-version.h"
 
 
-#define OCT_CSR_TOOL_VERSION_STRING "1.1.5"
+#define OCT_CSR_TOOL_VERSION_STRING "1.1.7"
 
 int octeon_model = -1;
 char * octeon_modelStr = NULL;
@@ -167,22 +167,143 @@ int register_serach_code(char * regStr, int octeon_model)
 }
 int register_serach_code(char * regStr, int octeon_model) __attribute__((weak));
 
-int __generate_code(char * inputfile, int cpuid, char *pattern)
+int __generate_code(char * inputfile, char * outputfile, int cpuid, char *pattern)
 {
 	printf("\n%s is not supported\n\n", __func__);
 	return -1;
 }
-int generate_code(char * inputfile, int cpuid, char *pattern) 
+int generate_code(char * inputfile, char * outputfile, int cpuid, char *pattern) 
 	__attribute__((weak, alias("__generate_code")));
 
 
-int main(int argc, char * const *argv) 
+char strInput[256]={0};
+char strOutput[256]={0};
+char strModel[256]={0};
+char cRedirect=0;
+
+int console_prompt(int argc, char * const *argv)
 {
-	/* Make sure we got the correct number of arguments */
-	if (parse_options(argc, argv)){
-		return -1;
+	int iCpu;
+    int iFuncMode;
+	
+	printf("\nVersion: %s\n", OCT_CSR_TOOL_VERSION_STRING); 
+	printf("SDK version: %s\n\n", OCTEON_SDK_VERSION_STRING); 	
+	printf("Select CPU model:\n\t[1]CN78XXP2\n\t[2]CN78XX\n"
+			"\t[3]CN73XX\n\t[4]CN70XXP1\n\t[5]CN70XX\n\t[6]CN68XX\n>> ");
+	scanf("%d",&iCpu);
+	switch(iCpu)
+	{
+		case 6:
+			strcpy(strModel, "CN68XX");
+			break;
+		case 5:
+			strcpy(strModel, "CN70XX");
+			break;	
+		case 4:
+			strcpy(strModel, "CN70XXP1");
+			break;	
+		case 3:
+			strcpy(strModel, "CN73XX");
+			break;	
+		case 2:
+			strcpy(strModel, "CN78XX");
+			break;				
+		case 1:
+			strcpy(strModel, "CN78XXP2");
+			break;
+		default:
+			return -3;
+	}
+	octeon_modelStr = strModel;
+	octeon_model = csr_get_model(octeon_modelStr);
+	
+	printf("Select function:\n\t[1]searching the partial register name in the database\n"
+			"\t[2]generate printf code with the input TXT file\n"
+			"\t[3]translate register dumping into a readable format\n>> ");
+	scanf("%d",&iFuncMode);
+	switch(iFuncMode)
+	{
+		case 1:
+			FuncMode = FUNC_REG_SEARCH;
+			printf("Register Name:\n>> ");
+			break;	
+		case 2:
+			FuncMode = FUNC_GEN_CODE;
+			printf("Registers file:\n>> ");
+			break;				
+		case 3:
+			FuncMode =  FUNC_DUMP_FORMAT;
+			printf("csr dumping file:\n>> ");
+			break;
+		default:
+			return -2;
 	}
 
+	scanf("%s", strInput);
+	inputfile = strInput;
+	fflush(stdin);
+#ifndef QT_PROJECT
+    getchar();
+#endif
+	//printf("\n#%s#\n", strInput);
+
+	//get the output file name
+    cRedirect = '0';
+	memset(strOutput, 0, 256);
+	if((FUNC_REG_SEARCH ==  FuncMode)||(FUNC_DUMP_FORMAT ==  FuncMode)){
+		printf("output all the result to a TXT file(Y/N):\n>> ");
+        cRedirect = getchar();
+		fflush(stdin);
+	}	
+    if(('y' == cRedirect)||('Y' == cRedirect)){
+		if(FUNC_REG_SEARCH == FuncMode)
+			sprintf(strOutput, "%s.%s", strInput, "reg");
+
+		if(FUNC_DUMP_FORMAT == FuncMode)
+			sprintf(strOutput, "%s.%s", strInput, "readable");
+	}
+
+	//output the command
+	printf("Command is running: %s -t %s ", argv[0], strModel);
+	switch(FuncMode)
+	{
+		case FUNC_REG_SEARCH:
+			printf("-s -i %s ", strInput);
+			break;
+		case FUNC_GEN_CODE:
+			printf("-g -i %s ", strInput);
+			break;
+		case FUNC_DUMP_FORMAT:
+			printf("-f -i %s ", strInput);
+			break;
+		default :
+			return -5;
+	}
+    if(('y' == cRedirect)||('Y' == cRedirect))
+		printf(" > %s", strOutput);
+	printf("\n");
+		
+	return 0;
+} 
+#ifdef QT_PROJECT
+int QT_main(int argc, char * const *argv)
+#else
+int main(int argc, char * const *argv) 
+#endif
+{
+	int ret = 0;
+	if(1 == argc){
+		ret = console_prompt(argc, argv);
+		if(0 != ret){
+			printf("\n invalid input %d\n", ret);
+			return -1;
+		}
+	}else{
+		if (parse_options(argc, argv)){
+			return -1;
+		}
+	}
+		
 	//printf("[%d]octeon_model: %s 0x%08x\n", __LINE__, octeon_modelStr, octeon_model); 
 	//printf("[%d]FuncMode: 0x%x\n", __LINE__, FuncMode); 
 	if(inputfile == NULL)
@@ -192,18 +313,33 @@ int main(int argc, char * const *argv)
 		return -1;
 	}
 
+    if(('y' == cRedirect)||('Y' == cRedirect)){
+#ifndef QT_PROJECT
+        stdout = freopen(strOutput,"w",stdout);
+#else
+        freopen(strOutput,"w",stdout);
+#endif
+    }
+
 	if(FUNC_REG_SEARCH == FuncMode)
 	{
 		register_serach_code(inputfile, octeon_model);
 	}
 	if(FUNC_GEN_CODE == FuncMode)
 	{
-		generate_code(inputfile, octeon_model, octeon_modelStr);
+		sprintf(strOutput, "%s.%s", inputfile, "code");
+		generate_code(inputfile, strOutput, octeon_model, octeon_modelStr);
 	}
 	if(FUNC_DUMP_FORMAT == FuncMode)
 	{
 		dumping_format(inputfile, octeon_model);
 	}	
+
+    if(('y' == cRedirect)||('Y' == cRedirect)){
+#ifdef QT_PROJECT
+        freopen("CON","w",stdout);
+#endif
+    }
 	return 0;
 }
 

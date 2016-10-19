@@ -7,7 +7,6 @@
 #include "cvmx-csr-db.h"
 #include "cvmx-version.h"
 
-
 #if 1
 #define Debug_printf printf
 #else
@@ -39,7 +38,7 @@ int string_to_upper(char * p)
 	return len;
 }
 extern const char * get_csr_tool_version(void);
-int generate_code(char * inputfile, int cpuid, char *pattern)
+int generate_code(char * inputfile, char * outputfile, int cpuid, char *pattern)
 {
 	FILE *infile = NULL;
 	FILE *outfile = NULL;
@@ -48,12 +47,14 @@ int generate_code(char * inputfile, int cpuid, char *pattern)
 	uint64_t csr_addr;
 	int csr_type, csr_widthbits;	
 	char outbuf[MAX_LINE];
+	int ret = 0;
 	
-	memset(buf, 0, MAX_LINE);
-	sprintf(buf, "%s_%s.c", pattern, inputfile);
-	//printf("\n %s \n", buf);
+	if((NULL == inputfile) ||(NULL ==  outputfile)){
+		printf("file name is missing\n");
+		return -1;
+	}
 	
-	outfile = fopen(buf, "wt+");
+	outfile = fopen(outputfile, "wt+");
 	if (!outfile)
 	{
 		printf("outfile error\n"); 
@@ -87,10 +88,12 @@ int generate_code(char * inputfile, int cpuid, char *pattern)
 		buf[len-1] = '\0';  
 		//printf("buf %s %d \n",buf,len - 1);
 		
-		cvmx_csr_db_get_params(cpuid, 
+		ret = cvmx_csr_db_get_params(cpuid, 
 				buf, &csr_addr, &csr_type, NULL, &csr_widthbits);
-		//printf("0x%016llx \n", (unsigned long long)csr_addr);
+		//printf("0x%016llx ret %d\n", (unsigned long long)csr_addr, ret);
 		//sprintf(outbuf, "%s 0x%016llx\n", buf, (unsigned long long)csr_addr);
+		if(0 != ret)
+			continue;
 		
 		if ((csr_type == CVMX_CSR_DB_TYPE_PCICONFIGEP) || (csr_type == CVMX_CSR_DB_TYPE_PCICONFIGRC)) {
 			/* Names are of the format "PCIE??#_CFG???". The # is the pcie port number */

@@ -25,7 +25,7 @@ c. once we get the printf result of the dumping code. copy it to 'csrdump.txt'
 d ./oct-csr-tool -t cn78XXp2 -f -i csrdump.txt
 
 [root@localhost csr_tool]# ./host/remote-utils/oct-csr-tool -v
-./host/remote-utils/oct-csr-tool version: 1.1.5
+./host/remote-utils/oct-csr-tool version: 1.1.7
 SDK version: Cavium Inc. OCTEON SDK version 3.1.2-p7, build 591
 
 

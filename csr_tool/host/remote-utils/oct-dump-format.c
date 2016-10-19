@@ -30,7 +30,7 @@ void Parser_register(struct reg_info * reginfo)
 	}
 
 	if(csr_addr != (reginfo->regaddr & 0x00ffFFFFffffFFFF)){
-		printf("warning addr is not match (0x%llx)(0x%llx)\n", reginfo->regaddr, (long long)csr_addr);
+        printf("warning addr is not match (0x%llx)(0x%llx)\n", reginfo->regaddr, (long long)csr_addr);
 	}
 	
 	cvmx_csr_db_decode_by_name_node(0, octeon_model, reginfo->regname, reginfo->regvalue);
