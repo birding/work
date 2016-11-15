@@ -1,0 +1,59 @@
+
+cd /home/sdk312/sdk312p7/OCTEON-SDK/examples/traffic-gen/
+
+usb start
+Octeon ebb7804# fatload usb 0 0 u-boot-octeon_ebb7804.bin
+bootloaderupdate
+
+EBB7804 MCU Command> cfg_interface
+
+Octeon ebb7804# dhcp
+setenv serverip 10.197.1.219; tftpboot 0 traffic-gen; bootoct 0 numcores=48
+
+
+loopback 0x810 internal
+rx.display 0x810 on
+tx.count 0x810 1
+
+#arp
+tx.size 0x810 64
+tx.data[0] 0x810 0x0001000100050010
+tx.data[1] 0x810 0x9400000208060001
+tx.data[2] 0x810 0x0800060400020010
+tx.data[3] 0x810 0x9400000201010102
+tx.data[4] 0x810 0x0001000100050101
+tx.data[5] 0x810 0x0101000000000000
+
+#DSA+ARP
+tx.size 0x810 72
+tx.data[0] 0x810 0x0001000100050010
+tx.data[1] 0x810 0x94000002c0381000
+tx.data[2] 0x810 0x1000401008060001
+tx.data[3] 0x810 0x0800060400020010
+tx.data[4] 0x810 0x9400000201010102
+tx.data[5] 0x810 0x0001000100050101
+tx.data[6] 0x810 0x0101000000000000
+
+start 0x810
+
+
+#default:
+WORD00: 0000081001010001 aura=0x0 apad=0 chan=0x810 bufs=1 style=0x1 pknd=0x1
+ 
+#DSA+ARP:
+    WORD00: 0000281001090001 aura=0x0 apad=2 chan=0x810 bufs=1 style=0x9 pknd=0x1
+    WORD01: 004c00000fff0000 len=76 grp=0x0 tt=ORDERED tag=0x0fff0000
+    WORD02: 0000020d00000000 lbty=6(ARP) lcty=8(IP4)
+    WORD03: 00ce0007faf08032 size=206 addr=0x7faf08032
+    WORD04: 00000000001a1400 lbptr=20 lcptr=26
+                 0001000100050010
+                 94000002c0381000
+                 1000401008060001
+                 0800060400020010
+                 9400000201010102
+                 0001000100050101
+                 0101000000000000
+                 6f70717273747576
+                 7778797a61626364
+                 979e55c0
+                 

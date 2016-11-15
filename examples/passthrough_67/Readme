@@ -1,0 +1,3 @@
+cp /home/sdk312/sdk312p7/OCTEON-SDK/examples/passthrough_67/passthrough.c ./
+read efuse info on OCTEON6780
+for CN6780 pcie issue
