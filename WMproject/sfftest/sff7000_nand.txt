@@ -1,0 +1,234 @@
+
+/home/sdk312/sdk312p7/OCTEON-SDKsffnand
+
+source env-setup OCTEON_CN71XX
+cd bootloader/u-boot
+make clean
+make octeon_generic_cn70xx_spi_stage2_config
+make
+cp u-boot-octeon_generic_cn70xx_spi_stage2.bin ../  
+   
+make clean
+make octeon_sff7000_config
+make
+cp u-boot-octeon_sff7000.bin /media/sf_F_DRIVE/tftproot/u-boot-octeon_sff7000_nand.bin
+
+cd ../spi-boot/
+make clean
+make
+cp spi-boot.bin ../
+
+
+
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0
+tftpboot 0 u-boot-octeon_sff7000_nand.bin
+sf probe;sf update $(fileaddr) 0x100000 $(filesize);
+
+tftpboot 0 u-boot-octeon_sff7000_sdk312p7.bin
+
+setenv octeon_debug_nand info
+
+
+Octeon sff7000(ram)# nand info
+
+
+
+Device 0: nand0, sector size 1024 KiB
+  Size           4096 MiB
+  Page size      8192 b
+  OOB size        448 b
+  Erase size  1048576 b
+  ONFI version   2.2
+  Manufacturer   MICRON
+  Model          MT29F32G08ABAAAWP
+  
+Octeon sff7000(ram)# nand erase.chip
+
+NAND erase.chip: device 0 whole chip
+Skipping bad block at  0x05a00000                                          
+Skipping bad block at  0x05b00000                                          
+Erasing at 0xfff00000 -- 100% complete.
+OK
+
+Octeon sff7000(ram)# nand erase.part root
+
+NAND erase.part: device 0 offset 0x0, size 0x40000000
+Skipping bad block at  0x05a00000                                          
+Skipping bad block at  0x05b00000                                          
+Erasing at 0x3ff00000 -- 100% complete.
+
+
+
+setenv mtdparts mtdparts=octeon_nand0:0x40000000@0x0(root)
+saveenv
+Octeon sff7000(ram)# mtdparts
+
+device nand0 <octeon_nand0>, # parts = 1
+ #: name                size            offset          mask_flags
+ 0: root                0x40000000      0x00000000      0
+
+active partition: nand0,0 - (root) 0x40000000 @ 0x00000000
+
+defaults:
+mtdids  : nor0=octeon_nor0,nand0=octeon_nand0
+mtdparts: octeon_nor0:2560k(bootloader)ro,2m(kernel),3520k(cramfs),64k(environment)ro;octeon_nand0:6m(bootloader)ro,2m(environment),8m(kernel),512m(rootfs)
+
+Octeon sff7000(ram)# ubi part root
+UBI: attaching mtd2 to ubi0
+UBI: physical eraseblock size:   1048576 bytes (1024 KiB)
+UBI: logical eraseblock size:    1040384 bytes
+UBI: smallest flash I/O unit:    8192
+UBI: sub-page size:              2048
+UBI: VID header offset:          2048 (aligned 2048)
+UBI: data offset:                8192
+UBI: empty MTD device detected
+UBI: create volume table (copy #1)
+UBI: create volume table (copy #2)
+UBI: attached mtd2 to ubi0
+UBI: MTD device name:            "mtd=0"
+UBI: MTD device size:            1024 MiB
+UBI: number of good PEBs:        1022
+UBI: number of bad PEBs:         2
+UBI: max. allowed volumes:       128
+UBI: wear-leveling threshold:    4096
+UBI: number of internal volumes: 1
+UBI: number of user volumes:     0
+UBI: available PEBs:             1008
+UBI: total number of reserved PEBs: 14
+UBI: number of PEBs reserved for bad PEB handling: 10
+UBI: max/mean erase counter: 1/0
+
+Octeon sff7000(ram)# ubi create root
+No size specified -> Using max size (1048707072)
+Creating dynamic volume root of size 1048707072
+
+#######
+mkfs.ubifs -r _home_sdk312_sdk312p7_OCTEON-SDK_linux_embedded_rootfs-rootfs/  -m 8192 -e 1040384 -c 1024 -o rootfs_sff.ubi
+-m, --min-io-size=SIZE       minimum I/O unit size，最小输入输出大小 (一般为页大小)
+-e, --leb-size=SIZE        logical erase block size逻辑可擦出块大小  ((每块的页数-2)*页大小)
+-c, --max-leb-cnt=COUNT    maximum logical erase block count最大逻辑可擦出块数目 (根据ubi volume来设置，实际上是设置此卷的最大容量)
+max-leb-cnt = (volume size/logical eraseblock size) = 1024M/1024K
+
+
+########################
+
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0;
+##setenv ethact octeth0
+tftpboot 0 rootfs_sff.ubi
+ubi write $(fileaddr) root $(filesize)
+
+
+
+
+/////test command
+reset
+mtdparts
+ubi part root
+--UBI: attaching mtd2 to ubi0
+
+ubifsmount ubi0:root
+ubifsls
+
+
+ubifsls
+ubifsls sbin
+ubifsload 80008000 sbin/ip
+/////refer to sff_nand_uboot.log///
+
+
+Octeon sff7000(ram)# mtdparts 
+
+device nand0 <octeon_nand0>, # parts = 1
+ #: name                size            offset          mask_flags
+ 0: root                0x40000000      0x00000000      0
+
+active partition: nand0,0 - (root) 0x40000000 @ 0x00000000
+
+###############linux##################
+/home/sdk312/sdk312p7/OCTEON-SDKsffnand
+source  env-setup OCTEON_CN71XX
+cd linux
+vi kernel/kernel.config 
+modify
+CONFIG_CAVIUM_OCTEON_NAND=y
+make kernel
+make kernel-deb
+cp kernel/linux/vmlinux.64 /media/sf_F_DRIVE/tftproot/vmlinux.64.deb  
+ 
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0;
+
+tftpboot 0 vmlinux.64.deb;
+bootoctlinux 0 numcores=4 endbootargs ubi.mtd=1 root=ubi0:root rootfstype=ubifs rw
+
+
+~ # cat /proc/mtd
+dev:    size   erasesize  name
+mtd0: 01000000 00010000 "spi32766.0"
+mtd1: 00800000 00010000 "phys_mapped_flash"
+mtd2: 100000000 00100000 "octeon_nand0"
+
+
+~ # fdisk /dev/mtdblock0  -l
+
+Disk /dev/mtdblock0: 16 MB, 16777216 bytes
+255 heads, 63 sectors/track, 2 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+
+Disk /dev/mtdblock0 doesn't contain a valid partition table
+~ # fdisk /dev/mtdblock1  -l
+
+Disk /dev/mtdblock1: 8 MB, 8388608 bytes
+255 heads, 63 sectors/track, 1 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+
+Disk /dev/mtdblock1 doesn't contain a valid partition table
+~ # 
+~ # fdisk /dev/mtdblock2  -l
+
+Disk /dev/mtdblock2: 4294 MB, 4294967296 bytes
+255 heads, 63 sectors/track, 522 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+
+Disk /dev/mtdblock2 doesn't contain a valid partition table
+
+
+
+
+###generate patch###
+mkdir OCTEON-SDK-sffpatch
+cd /home/sdk312/sdk312p7/OCTEON-SDK-sffpatch/
+rpm -ivh  --prefix=/home/sdk312/sdk312p7/OCTEON-SDK-sffpatch/ --force /media/sf_F_DRIVE/SDK/SDK312/OCTEON-SDK-3.1.2-568.i386.rpm 
+rpm -ivh  --prefix=/home/sdk312/sdk312p7/OCTEON-SDK-sffpatch/ --force /media/sf_F_DRIVE/SDK/SDK312/OCTEON-LINUX-3.1.2-568.i386.rpm 
+cd OCTEON-SDK/
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/sdk.patch 
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/linux.patch
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/sdk-ejtag.patch  
+rm tools
+tar -xf /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/tools-3.1.2_build_49.tgz
+ln -s tools-3.1.2_build_49 tools
+/home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/octeon_copy_3_1_2_p7_files.sh /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/
+
+cd ../
+mv OCTEON-SDK OCTEON-SDK.orig
+
+*install SDK again*
+mv OCTEON-SDK OCTEON-SDKsffnand
+*merge all the modifications to OCTEON-SDKsffnand
+
+
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/ OCTEON-SDKsffnand/bootloader/u-boot/ > sffnand_uboot.patch 
+diff -purBN --no-dereference OCTEON-SDK.orig/executive/ OCTEON-SDKsffnand/executive/ > sffnand_executive.patch 
+diff -purBN --no-dereference OCTEON-SDK.orig/linux/kernel/ OCTEON-SDKsffnand/linux/kernel/ > sffnand_kernel.patch 
+
+
+##source code####
+*install the SDK
+*apply the patches
+cd ../OCTEON-SDK.orig/
+patch -s -p1 < ../sffnand_uboot.patch
+patch -s -p1 < ../sffnand_executive.patch 
+patch -s -p1 < ../sffnand_kernel.patch 
+cd ../
+rm OCTEON-SDKsffnand/ -rf
+mv OCTEON-SDK.orig/ OCTEON-SDK.afterpatch
+

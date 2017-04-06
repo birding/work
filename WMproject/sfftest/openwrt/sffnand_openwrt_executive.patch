@@ -1,0 +1,52 @@
+diff -purBN --no-dereference OCTEON-SDK.orig/executive/cvmx-nand.c OCTEON-SDKsffnand/executive/cvmx-nand.c
+--- OCTEON-SDK.orig/executive/cvmx-nand.c	2017-02-14 11:55:04.541531202 +0800
++++ OCTEON-SDKsffnand/executive/cvmx-nand.c	2017-02-14 12:00:50.064881923 +0800
+@@ -45,7 +45,7 @@
+  *
+  * <hr>$Revision: 35726 $<hr>
+  */
+-
++//#define DEBUG 1
+ 
+ #ifdef CVMX_BUILD_FOR_LINUX_KERNEL
+ # include <asm/octeon/cvmx.h>
+@@ -452,7 +452,7 @@ cvmx_nand_onfi_process(cvmx_nand_onfi_pa
+ 		return NULL;
+ 	}
+ 
+-	if (cvmx_unlikely(cvmx_nand_flags & CVMX_NAND_INITIALIZE_FLAGS_DEBUG)) {
++	if (cvmx_unlikely(cvmx_nand_flags & CVMX_NAND_INITIALIZE_FLAGS_INFO)) {
+ 		nand_debug("%*sONFI Information (from copy %d in param page)\n", 2 * debug_indent, "", index);
+ 		debug_indent++;
+ 		nand_debug("%*sonfi = %c%c%c%c\n", 2 * debug_indent, "", param_page[index].onfi[0], param_page[index].onfi[1],
+@@ -842,7 +842,7 @@ cvmx_nand_status_t cvmx_nand_initialize(
+ 			cvmx_nand_read_param_page(chip,
+ 						  cvmx_ptr_to_phys(cvmx_nand_buffer),
+ 						  256 * 3);
+-			if (cvmx_unlikely(cvmx_nand_flags & CVMX_NAND_INITIALIZE_FLAGS_DEBUG)) {
++			if (cvmx_unlikely(cvmx_nand_flags & CVMX_NAND_INITIALIZE_FLAGS_INFO)) {
+ 				nand_debug("%s: NAND chip %d is ONFI\n",
+ 					     __func__, chip);
+ 				__cvmx_nand_hex_dump(cvmx_ptr_to_phys(cvmx_nand_buffer),
+@@ -1746,7 +1746,9 @@ cvmx_nand_status_t cvmx_nand_page_write(
+ 
+ 	buffer_length =
+ 		cvmx_nand_state[chip].page_size + cvmx_nand_state[chip].oob_size;
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]buffer_length 0x%x \n", __func__, __LINE__, buffer_length);
++#endif	
+ 	/* The NAND DMA engine always does transfers in 8 byte blocks, so round
+ 	 * the buffer size down to a multiple of 8, otherwise we will transfer
+ 	 * too much data to the NAND chip.  Note this prevents the last few
+diff -purBN --no-dereference OCTEON-SDK.orig/executive/cvmx-nand.h OCTEON-SDKsffnand/executive/cvmx-nand.h
+--- OCTEON-SDK.orig/executive/cvmx-nand.h	2015-11-21 09:46:54.000000000 +0800
++++ OCTEON-SDKsffnand/executive/cvmx-nand.h	2017-02-14 12:01:04.510781697 +0800
+@@ -117,6 +117,7 @@ extern "C" {
+ typedef enum {
+ 	CVMX_NAND_INITIALIZE_FLAGS_16BIT = 1 << 0,
+ 	CVMX_NAND_INITIALIZE_FLAGS_DONT_PROBE = 1 << 1,
++	CVMX_NAND_INITIALIZE_FLAGS_INFO = 1 << 2,
+ 	CVMX_NAND_INITIALIZE_FLAGS_DEBUG = 1 << 15,
+ } cvmx_nand_initialize_flags_t;
+ 

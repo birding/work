@@ -1,0 +1,203 @@
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/board/octeon/sff7000/sff7000.dts OCTEON-SDKsffnand/bootloader/u-boot/board/octeon/sff7000/sff7000.dts
+--- OCTEON-SDK.orig/bootloader/u-boot/board/octeon/sff7000/sff7000.dts	2017-02-07 13:34:26.830288769 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/board/octeon/sff7000/sff7000.dts	2017-02-07 13:39:20.361280922 +0800
+@@ -220,7 +220,7 @@
+ 				reg = <0 0 0x800000>;
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
+-
++/*
+ 				partition@0 {
+ 					label = "bootloader";
+ 					reg = <0 0x280000>;
+@@ -239,6 +239,7 @@
+ 					reg = <0x7f0000 0x10000>;
+ 					read-only;
+ 				};
++*/
+ 			};
+ 		};
+ 
+@@ -690,6 +691,12 @@
+ 				 * and 16-bits
+ 				 */
+ 				nand-bus-width = <8>;
++				
++				/*offset 0 - 1024M*/
++				partition@0 {
++					label = "root";
++					reg = <0 0x40000000>;
++				};
+ 			};
+ 		};
+ 
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/common/cmd_mtdparts.c OCTEON-SDKsffnand/bootloader/u-boot/common/cmd_mtdparts.c
+--- OCTEON-SDK.orig/bootloader/u-boot/common/cmd_mtdparts.c	2015-11-21 09:47:22.000000000 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/common/cmd_mtdparts.c	2017-02-07 13:39:32.590253751 +0800
+@@ -70,7 +70,7 @@
+  * mtdparts=mtdparts=edb7312-nor:256k(ARMboot)ro,-(root);edb7312-nand:-(home)
+  *
+  */
+-
++#define WM_DEBUG 1
+ #include <common.h>
+ #include <command.h>
+ #include <malloc.h>
+@@ -316,7 +316,10 @@ static int part_validate_eraseblock(stru
+ 		return 1;
+ 
+ 	part->sector_size = mtd->erasesize;
+-
++#ifdef WM_DEBUG	
++	printf("[%s][%d]mtd->numeraseregions %d\n", __func__, __LINE__,
++		mtd->numeraseregions);
++#endif
+ 	if (!mtd->numeraseregions) {
+ 		/*
+ 		 * Only one eraseregion (NAND, OneNAND or uniform NOR),
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/mtdcore.c OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/mtdcore.c
+--- OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/mtdcore.c	2015-11-21 09:47:30.000000000 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/mtdcore.c	2017-02-07 13:40:08.028070522 +0800
+@@ -6,7 +6,7 @@
+  * it under the terms of the GNU General Public License version 2 as
+  * published by the Free Software Foundation.
+  */
+-
++#define WM_DEBUG
+ #include <linux/mtd/mtd.h>
+ #include <linux/compat.h>
+ #include <ubi_uboot.h>
+@@ -37,6 +37,10 @@ int add_mtd_device(struct mtd_info *mtd)
+ 			   our caller is still holding us here. So none
+ 			   of this try_ nonsense, and no bitching about it
+ 			   either. :) */
++#ifdef WM_DEBUG
++			printf("[%s][%d]index %d name %s numeraseregions %d\n", __func__, __LINE__, 
++				mtd->index, mtd->name, mtd->numeraseregions);
++#endif			   
+ 			return 0;
+ 		}
+ 
+@@ -102,7 +106,10 @@ struct mtd_info *get_mtd_device(struct m
+ 
+ 	if (!ret)
+ 		goto out_unlock;
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]num %d index %d numeraseregions %d\n", __func__, __LINE__, 
++		num, mtd->index, mtd->numeraseregions);
++#endif
+ 	ret->usecount++;
+ 	return ret;
+ 
+@@ -132,7 +139,10 @@ struct mtd_info *get_mtd_device_nm(const
+ 
+ 	if (!mtd)
+ 		goto out_unlock;
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]i %d index %d numeraseregions %d\n", __func__, __LINE__, 
++		i, mtd->index, mtd->numeraseregions);
++#endif
+ 	mtd->usecount++;
+ 	return mtd;
+ 
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/ubi/build.c OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/ubi/build.c
+--- OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/ubi/build.c	2015-11-21 09:47:30.000000000 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/ubi/build.c	2017-02-07 13:39:53.482780855 +0800
+@@ -20,7 +20,7 @@
+  * bottleneck when flashes reach certain large size. Then one may improve UBI
+  * and add other methods, although it does not seem to be easy to do.
+  */
+-
++#define WM_DEBUG 1
+ #ifdef UBI_LINUX
+ #include <linux/err.h>
+ #include <linux/module.h>
+@@ -707,6 +707,9 @@ int ubi_attach_mtd_dev(struct mtd_info *
+ 	struct ubi_device *ubi;
+ 	int i, err;
+ 
++#ifdef WM_DEBUG
++	printf("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	/*
+ 	 * Check if we already have the same MTD device attached.
+ 	 *
+@@ -771,7 +774,9 @@ int ubi_attach_mtd_dev(struct mtd_info *
+ 	spin_lock_init(&ubi->volumes_lock);
+ 
+ 	ubi_msg("attaching mtd%d to ubi%d", mtd->index, ubi_num);
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	err = io_init(ubi);
+ 	if (err)
+ 		goto out_free;
+@@ -815,7 +820,9 @@ int ubi_attach_mtd_dev(struct mtd_info *
+ 			err);
+ 		goto out_uif;
+ 	}
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	ubi_msg("attached mtd%d to ubi%d", mtd->index, ubi_num);
+ 	ubi_msg("MTD device name:            \"%s\"", mtd->name);
+ 	ubi_msg("MTD device size:            %llu MiB", ubi->flash_size >> 20);
+@@ -961,7 +968,9 @@ int __init ubi_init(void)
+ 		ubi_err("too many MTD devices, maximum is %d", UBI_MAX_DEVICES);
+ 		return -EINVAL;
+ 	}
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]mtd_devs %d\n", __func__, __LINE__, mtd_devs);
++#endif
+ 	/* Create base sysfs directory and sysfs files */
+ 	ubi_class = class_create(THIS_MODULE, UBI_NAME_STR);
+ 	if (IS_ERR(ubi_class)) {
+@@ -996,7 +1005,9 @@ int __init ubi_init(void)
+ 		struct mtd_info *mtd;
+ 
+ 		cond_resched();
+-
++#ifdef WM_DEBUG
++		printf("[%s][%d]i %d, p->name %s\n", __func__, __LINE__, i, p->name);
++#endif
+ 		mtd = open_mtd_device(p->name);
+ 		if (IS_ERR(mtd)) {
+ 			err = PTR_ERR(mtd);
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/include/configs/octeon_sff7000.h OCTEON-SDKsffnand/bootloader/u-boot/include/configs/octeon_sff7000.h
+--- OCTEON-SDK.orig/bootloader/u-boot/include/configs/octeon_sff7000.h	2017-02-07 13:34:27.155289582 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/include/configs/octeon_sff7000.h	2017-02-07 13:40:26.423672853 +0800
+@@ -77,17 +77,10 @@
+  * variable to define the MTD partitions for u-boot.
+  */
+ #define MTDPARTS_DEFAULT				\
+-	"octeon_nor0:2560k(bootloader)ro,"		\
+-	"2m(kernel),"					\
+-	"3520k(cramfs),"				\
+-	"64k(environment)ro;"				\
+-	"octeon_nand0:6m(bootloader)ro,"		\
+-	"2m(environment),"				\
+-	"8m(kernel),"					\
+-	"512m(rootfs)\0"
++	"octeon_nand0:1024m(root)\0"
+ 
+ 
+-#define MTDIDS_DEFAULT	"nor0=octeon_nor0,nand0=octeon_nand0\0"
++#define MTDIDS_DEFAULT	"nand0=octeon_nand0\0"
+ 
+ /**
+  * Start of where the NAND bootloader images are placed.  Must be on an erase
+@@ -161,6 +154,9 @@
+ #define CONFIG_CMD_FAT			/** FAT support			*/
+ #define CONFIG_FAT_WRITE		/** FAT write support		*/
+ 
++#define CONFIG_CMD_UBI
++#define CONFIG_CMD_UBIFS
++
+ /* SPI NOR flash support */
+ #define CONFIG_SF_DEFAULT_BUS		0	/** Default SPI bus	*/
+ #define CONFIG_SF_DEFAULT_CS		0	/** Default SPI chip select */

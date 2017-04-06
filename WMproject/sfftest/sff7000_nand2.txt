@@ -1,0 +1,282 @@
+
+
+###generate patch###
+mkdir /home/sdk312/sdk312p7/OCTEON-SDK-sffpatch
+cd /home/sdk312/sdk312p7/OCTEON-SDK-sffpatch/
+rpm -ivh  --prefix=/home/sdk312/sdk312p7/OCTEON-SDK-sffpatch/ --force /media/sf_F_DRIVE/SDK/SDK312/OCTEON-SDK-3.1.2-568.i386.rpm 
+rpm -ivh  --prefix=/home/sdk312/sdk312p7/OCTEON-SDK-sffpatch/ --force /media/sf_F_DRIVE/SDK/SDK312/OCTEON-LINUX-3.1.2-568.i386.rpm 
+cd OCTEON-SDK/
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/sdk.patch 
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/linux.patch
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/sdk-ejtag.patch  
+rm tools
+tar -xf /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/tools-3.1.2_build_49.tgz
+ln -s tools-3.1.2_build_49 tools
+/home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/octeon_copy_3_1_2_p7_files.sh /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/
+
+cd ../
+mv OCTEON-SDK OCTEON-SDK.orig
+
+*install SDK again*
+mv OCTEON-SDK OCTEON-SDKsffnand
+*merge all the modifications to OCTEON-SDKsffnand
+
+
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/ OCTEON-SDKsffnand/bootloader/u-boot/ > sffnand_uboot.patch 
+diff -purBN --no-dereference OCTEON-SDK.orig/executive/ OCTEON-SDKsffnand/executive/ > sffnand_executive.patch 
+diff -purBN --no-dereference OCTEON-SDK.orig/linux/kernel/ OCTEON-SDKsffnand/linux/kernel/ > sffnand_kernel.patch 
+
+
+##source code####
+*install the SDK
+*apply the patches
+cd ../OCTEON-SDK.orig/
+patch -s -p1 < /home/github/work/WMproject/sfftest/sffnand_uboot.patch 
+patch -s -p1 < /home/github/work/WMproject/sfftest/sffnand_executive.patch 
+patch -s -p1 < /home/github/work/WMproject/sfftest/sffnand_kernel.patch 
+cd ../
+rm OCTEON-SDKsffnand/ -rf
+mv OCTEON-SDK.orig/ OCTEON-SDK.afterpatch
+
+
+
+
+cd /home/sdk312/sdk312p7/OCTEON-SDKsffnand2/OCTEON-SDK
+
+source env-setup OCTEON_CN71XX
+cd bootloader/u-boot
+make clean
+make octeon_sff7000_config
+make
+cp u-boot-octeon_sff7000.bin /media/sf_F_DRIVE/tftproot/u-boot-octeon_sff7000_nand.bin
+
+
+
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0
+tftpboot 0 u-boot-octeon_sff7000_nand.bin
+sf probe;sf update $(fileaddr) 0x100000 $(filesize);
+
+
+setenv mtdparts mtdparts=octeon_nand0:0x20000000@0x0(root)
+saveenv
+Octeon sff7000(ram)# mtdparts 
+
+device nand0 <octeon_nand0>, # parts = 1
+ #: name                size            offset          mask_flags
+ 0: root                0x20000000      0x00000000      0
+
+active partition: nand0,0 - (root) 0x20000000 @ 0x00000000
+
+defaults:
+mtdids  : nand0=octeon_nand0
+mtdparts: octeon_nand0:1024m(root)
+
+Octeon sff7000(ram)# nand erase.chip
+
+NAND erase.chip: device 0 whole chip
+Skipping bad block at  0x05a00000                                          
+Skipping bad block at  0x05b00000                                          
+Erasing at 0xfff00000 -- 100% complete.
+OK
+
+Octeon sff7000(ram)# ubi part root
+[get_mtd_device_nm][139]i 0 index 0 numeraseregions 0
+[ubi_init][972]mtd_devs 1
+[ubi_init][1009]i 0, p->name mtd=0
+[get_mtd_device_nm][139]i 2 index 2 numeraseregions 0
+[ubi_attach_mtd_dev][711]
+UBI: attaching mtd2 to ubi0
+[ubi_attach_mtd_dev][778]
+UBI: physical eraseblock size:   1048576 bytes (1024 KiB)
+UBI: logical eraseblock size:    1040384 bytes
+UBI: smallest flash I/O unit:    8192
+UBI: sub-page size:              2048
+UBI: VID header offset:          2048 (aligned 2048)
+UBI: data offset:                8192
+UBI: empty MTD device detected
+UBI: create volume table (copy #1)
+UBI: create volume table (copy #2)
+[ubi_attach_mtd_dev][824]
+UBI: attached mtd2 to ubi0
+UBI: MTD device name:            "mtd=0"
+UBI: MTD device size:            512 MiB
+UBI: number of good PEBs:        510
+UBI: number of bad PEBs:         2
+UBI: max. allowed volumes:       128
+UBI: wear-leveling threshold:    4096
+UBI: number of internal volumes: 1
+UBI: number of user volumes:     0
+UBI: available PEBs:             501
+UBI: total number of reserved PEBs: 9
+UBI: number of PEBs reserved for bad PEB handling: 5
+UBI: max/mean erase counter: 1/0
+
+Octeon sff7000(ram)# ubi create root
+No size specified -> Using max size (521232384)
+Creating dynamic volume root of size 521232384
+
+cd /tmp/
+mkfs.ubifs -r _home_sdk312_sdk312p7_OCTEON-SDKsffnand2_OCTEON-SDK_linux_embedded_rootfs-rootfs/  -m 8192 -e 1040384 -c 500 -o rootfs_sff2.ubi
+mv rootfs_sff2.ubi /media/sf_F_DRIVE/tftproot/
+
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0;
+tftpboot 0 rootfs_sff2.ubi
+ubi write $(fileaddr) root $(filesize)
+
+
+///test on uboot
+reset
+mtdparts
+Octeon sff7000(ram)# ubi part root
+[get_mtd_device_nm][143]i 0 index 0 numeraseregions 0
+[add_mtd_device][41]index 2 name mtd=0 numeraseregions 0
+[ubi_init][972]mtd_devs 1
+[ubi_init][1009]i 0, p->name mtd=0
+[get_mtd_device_nm][143]i 2 index 2 numeraseregions 0
+[ubi_attach_mtd_dev][711]
+UBI: attaching mtd2 to ubi0
+[ubi_attach_mtd_dev][778]
+UBI: physical eraseblock size:   1048576 bytes (1024 KiB)
+UBI: logical eraseblock size:    1040384 bytes
+UBI: smallest flash I/O unit:    8192
+UBI: sub-page size:              2048
+UBI: VID header offset:          2048 (aligned 2048)
+UBI: data offset:                8192
+[ubi_attach_mtd_dev][824]
+UBI: attached mtd2 to ubi0
+UBI: MTD device name:            "mtd=0"
+UBI: MTD device size:            512 MiB
+UBI: number of good PEBs:        510
+UBI: number of bad PEBs:         2
+UBI: max. allowed volumes:       128
+UBI: wear-leveling threshold:    4096
+UBI: number of internal volumes: 1
+UBI: number of user volumes:     1
+UBI: available PEBs:             0
+UBI: total number of reserved PEBs: 510
+UBI: number of PEBs reserved for bad PEB handling: 5
+UBI: max/mean erase counter: 4/1
+
+Octeon sff7000(ram)# ubifsmount ubi0:root
+UBIFS: mounted UBI device 0, volume 0, name "root"
+UBIFS: mounted read-only
+UBIFS: file system size:   509788160 bytes (497840 KiB, 486 MiB, 490 LEBs)
+UBIFS: journal size:       12550144 bytes (12256 KiB, 11 MiB, 13 LEBs)
+UBIFS: media format:       w4/r0 (latest is w4/r0)
+UBIFS: default compressor: LZO
+UBIFS: reserved for root:  0 bytes (0 KiB)
+
+ubifsls
+ubifsls sbin
+ubifsload 80008000 sbin/ip
+
+
+
+//kernel
+###############linux##################
+/home/sdk312/sdk312p7/OCTEON-SDKsffnand2/OCTEON-SDK/
+source  env-setup OCTEON_CN71XX
+cd linux
+vi kernel/kernel.config 
+modify
+CONFIG_CAVIUM_OCTEON_NAND=y
+make kernel
+make kernel-deb
+cp kernel/linux/vmlinux.64 /media/sf_F_DRIVE/tftproot/vmlinux.64.deb2  
+ 
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0;
+
+tftpboot 0 vmlinux.64.deb2;
+bootoctlinux 0 numcores=4 endbootargs ubi.mtd=1 root=ubi0:root rootfstype=ubifs rw
+---done
+
+Bootbus flash: Setting flash for 8MB flash at 0x1f400000
+phys_mapped_flash: Found 1 x16 devices at 0x0 in 8-bit bank. Manufacturer ID 0x000001 Chip ID 0x000c01
+Amd/Fujitsu Extended Query Table at 0x0040
+  Amd/Fujitsu Extended Query version 1.3.
+number of CFI chips: 1
+[add_mtd_device][413]index 0 name phys_mapped_flash numeraseregions 1
+ONFI param page 0 valid
+ONFI flash detected
+NAND device: Manufacturer ID: 0x2c, Chip ID: 0x68 (Micron MT29F32G08ABAAAWP), 4096MiB, page size: 8192, OOB size: 448
+Scanning device for bad blocks
+Bad eraseblock 90 at 0x000005a00000
+Bad eraseblock 91 at 0x000005b00000
+[octeon_nand_probe][1376]numeraseregions 0
+[add_mtd_device][413]index 1 name octeon_nand0 numeraseregions 0 ----> index 1 => bootargs ubi.mtd=1
+[ubi_init][1235]mtd_devs 1
+[ubi_init][1245]
+[ubi_init][1259]
+[ubi_init][1267]
+[ubi_init][1274]
+[ubi_init][1283]i 0, p->name 1
+[ubi_attach_mtd_dev][874]
+UBI: attaching mtd1 to ubi0
+[ubi_attach_mtd_dev][979] mtd1 to ubi0
+UBI: scanning is finished
+[ubi_attach_mtd_dev][1008]
+[uif_init][505]
+[ubi_attach_mtd_dev][1026]
+UBI: attached mtd1 (name "octeon_nand0", size 4096 MiB) to ubi0
+UBI: PEB size: 1048576 bytes (1024 KiB), LEB size: 1040384 bytes
+UBI: min./max. I/O unit sizes: 8192/8192, sub-page size 2048
+UBI: VID header offset: 2048 (aligned 2048), data offset: 8192
+UBI: good PEBs: 4094, bad PEBs: 2, corrupted PEBs: 0
+UBI: user volume: 1, internal volumes: 1, max. volumes count: 128
+UBI: max/mean erase counter: 4/1, WL threshold: 4096, image sequence number: 0
+UBI: available PEBs: 3511, total reserved PEBs: 583, PEBs reserved for bad PEB handling: 78
+UBI: background thread "ubi_bgt0d" started, PID 1189
+rtc-ds1307 0-0068: setting system clock to 2002-01-12 04:33:34 UTC (1010810014)
+UBIFS: background thread "ubifs_bgt0_0" started, PID 1191
+UBIFS: recovery needed
+UBIFS: recovery completed
+UBIFS: mounted UBI device 0, volume 0, name "root"
+UBIFS: LEB size: 1040384 bytes (1016 KiB), min./max. I/O unit sizes: 8192 bytes/8192 bytes
+UBIFS: FS size: 509788160 bytes (486 MiB, 490 LEBs), journal size 12550144 bytes (11 MiB, 13 LEBs)
+UBIFS: reserved for root: 0 bytes (0 KiB)
+UBIFS: media format: w4/r0 (latest is w4/r0), UUID AF08F87D-2495-4128-A62B-5844F2F8B681, small LPT model
+VFS: Mounted root (ubifs filesystem) on device 0:13.
+Freeing unused kernel memory: 312K (ffffffff81062000 - ffffffff810b0000)
+/sbin/rc starting
+Mounting file systems
+mount: mounting none on /proc/bus/usb failed: No such file or directory
+Setting up loopback
+Starting syslogd
+Starting telnetd
+/sbin/rc complete
+Jan 12 04:33:35 (none) syslog.info syslogd started: BusyBox v1.22.1
+Jan 12 04:33:35 (none) daemon.info init: starting pid 1202, tty '': '-/bin/cav_sh /bin/sh'
+
+
+BusyBox v1.22.1 (2017-02-07 20:39:46 CST) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+~ # NET: Registered protocol family 10
+ls
+1.txt     etc       init      lib32-fp  linuxrc   proc      share     usr
+bin       examples  lib       lib64     mnt       root      sys       var
+dev       home      lib32     lib64-fp  mnth      sbin      tmp
+~ # 
+
+//reboot 之后不能ubifsmount？？？
+reboot
+Octeon sff7000(ram)# ubifsmount ubi0:root
+UBIFS: recovery needed
+UBIFS: recovery deferred
+UBIFS: mounted UBI device 0, volume 0, name "root"
+UBIFS: mounted read-only
+UBIFS: file system size:   509788160 bytes (497840 KiB, 486 MiB, 490 LEBs)
+UBIFS: journal size:       12550144 bytes (12256 KiB, 11 MiB, 13 LEBs)
+UBIFS: media format:       w4/r0 (latest is w4/r0)
+UBIFS: default compressor: LZO
+UBIFS: reserved for root:  0 bytes (0 KiB)
+UBIFS error (pid 0): ubifs_read_node: bad node type (255 but expected 0)
+UBIFS error (pid 0): ubifs_read_node: bad node at LEB 71:123264
+UBIFS error (pid 0): ubifs_iget: failed to read inode 1, error -22
+UBIFS error (pid 0): ubifs_mount: Error reading superblock on volume 'ubi0:root' errno=-22!
+
+ubifsmount - mount UBIFS volume
+
+Usage:
+ubifsmount <volume-name>
+    - mount 'volume-name' volume

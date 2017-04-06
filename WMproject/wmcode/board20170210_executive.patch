@@ -1,0 +1,131 @@
+diff -purBN --no-dereference OCTEON-SDK.orig/executive/cvmx-helper-agl.c OCTEON-SDK.wm/executive/cvmx-helper-agl.c
+--- OCTEON-SDK.orig/executive/cvmx-helper-agl.c	2015-11-21 09:46:54.000000000 +0800
++++ OCTEON-SDK.wm/executive/cvmx-helper-agl.c	2017-02-10 11:59:40.434964123 +0800
+@@ -142,7 +142,11 @@ int __cvmx_helper_agl_probe(int interfac
+ 	if (OCTEON_IS_MODEL(OCTEON_CN70XX)) {
+ 		bool tx_enable_bypass;
+ 		int tx_delay;
++#ifndef WMBOARD
+ 		agl_prtx_ctl.s.refclk_sel = 0;
++#else
++		agl_prtx_ctl.s.refclk_sel = 2;
++#endif
+ 		agl_prtx_ctl.s.clkrx_set =
+ 			cvmx_helper_get_agl_rx_clock_skew(interface, port);
+ 		agl_prtx_ctl.s.clkrx_byp =
+diff -purBN --no-dereference OCTEON-SDK.orig/executive/cvmx-nand.c OCTEON-SDK.wm/executive/cvmx-nand.c
+--- OCTEON-SDK.orig/executive/cvmx-nand.c	2017-02-10 11:49:30.555387534 +0800
++++ OCTEON-SDK.wm/executive/cvmx-nand.c	2017-02-10 11:58:08.381437246 +0800
+@@ -45,7 +45,7 @@
+  *
+  * <hr>$Revision: 35726 $<hr>
+  */
+-
++#define DEBUG 1
+ 
+ #ifdef CVMX_BUILD_FOR_LINUX_KERNEL
+ # include <asm/octeon/cvmx.h>
+@@ -142,6 +142,7 @@ static const onfi_speed_mode_desc_t onfi
+ 	{25, 15, 45, 10, 25},	/* Micron NAND512RxA2S 1.8v */
+ 	{25, 15, 50, 10, 0},	/* Micron NAND128/256WxA 3.3v */
+ 	{40, 20, 60, 10, 0},	/* Micron NAND256RxA 1.8v */
++	{24, 20, 50, 10, 24},	/*Mode 11 WM */
+ };
+ 
+ typedef enum {
+@@ -926,10 +927,10 @@ cvmx_nand_status_t cvmx_nand_initialize(
+ 
+ 		} else {
+ 			/* We have a non-ONFI part. */
+-			if (cvmx_unlikely(cvmx_nand_flags & CVMX_NAND_INITIALIZE_FLAGS_DEBUG))
+-				nand_debug("%s: Chip %d doesn't support ONFI.  ID: 0x%02x 0x%02x\n",
++			if (cvmx_unlikely(cvmx_nand_flags & CVMX_NAND_INITIALIZE_FLAGS_INFO))
++				nand_debug("%s: Chip %d doesn't support ONFI.  ID: 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x\n",
+ 					     __func__, chip, nand_id_buffer[0],
+-					     nand_id_buffer[1]);
++					     nand_id_buffer[1], nand_id_buffer[2], nand_id_buffer[3], nand_id_buffer[4]);
+ 
+ 			switch (nand_id_buffer[0]) {
+ 			case 0xEC: {
+@@ -1014,6 +1015,70 @@ cvmx_nand_status_t cvmx_nand_initialize(
+ 				 */
+ 				continue;
+ 			}
++			//WMBOARD
++			case 0x98: {
++				/* Toshiba TH58NVG3S0HTAI0 */
++				uint64_t nand_size_bits = 0;
++				/* NAND page size in bytes */
++				cvmx_nand_state[chip].page_size =4096;				
++				/* NAND OOB (spare) size in bytes (per page) */
++ 				cvmx_nand_state[chip].oob_size = 256;
++				cvmx_nand_state[chip].pages_per_block =64;
++				cvmx_nand_state[chip].blocks = 4096;
++
++				nand_size_bits = cvmx_nand_state[chip].page_size 
++						* cvmx_nand_state[chip].pages_per_block 
++						* cvmx_nand_state[chip].blocks * 8ULL;
++
++
++				switch (nand_id_buffer[1]) {
++				case 0xD3:	/* TH58NVG3S0HTAI0 */
++				default:
++					cvmx_nand_state[chip].onfi_timing = 11;
++					//cvmx_nand_state[chip].onfi_timing = 1;
++					//cvmx_nand_state[chip].onfi_timing = 0;
++					break;
++				}
++
++				if (cvmx_unlikely(cvmx_nand_flags &
++					CVMX_NAND_INITIALIZE_FLAGS_INFO)) {
++					nand_debug("%s: Toshiba NAND chip detected, using parameters decoded from ID bytes.\n",
++						     __func__);
++					nand_debug(
++						"%s: Defaults: page size: %d, OOB size: %d, pages per block %d, part size: %d MBytes, timing mode: %d\n",
++						__func__,
++						cvmx_nand_state[chip].page_size,
++						cvmx_nand_state[chip].oob_size,
++						cvmx_nand_state[chip].pages_per_block,
++						(int)(nand_size_bits / (8 * 1024 * 1024)),
++						cvmx_nand_state[chip].onfi_timing);
++					nand_debug("%s: Address cycles: %d, column bits: %d, row bits: %d, block count: %d\n",
++						__func__,
++						__cvmx_nand_get_address_cycles(chip),
++						__cvmx_nand_get_column_bits(chip),
++						__cvmx_nand_get_row_bits(chip),
++						cvmx_nand_state[chip].blocks);
++				}
++
++				__set_onfi_timing_mode(cvmx_nand_state[chip].tim_par,
++					clocks_us,
++					cvmx_nand_state[chip].onfi_timing);
++				if (cvmx_nand_state[chip].page_size
++					+ cvmx_nand_state[chip].oob_size
++					> CVMX_NAND_MAX_PAGE_AND_OOB_SIZE) {
++					nand_debug(
++						"%s: ERROR: Page size (%d) + "
++						"OOB size (%d) is greater than"
++						" max size (%d)\n",
++						__func__,
++						cvmx_nand_state[chip].page_size,
++						cvmx_nand_state[chip].oob_size,
++						CVMX_NAND_MAX_PAGE_AND_OOB_SIZE);
++						__cvmx_nand_select(nand_selected);
++					return CVMX_NAND_ERROR;
++				}
++				continue;
++			}//WMBOARD end
+ 			default:
+ 				break;
+ 			}
+diff -purBN --no-dereference OCTEON-SDK.orig/executive/cvmx-nand.h OCTEON-SDK.wm/executive/cvmx-nand.h
+--- OCTEON-SDK.orig/executive/cvmx-nand.h	2015-11-21 09:46:54.000000000 +0800
++++ OCTEON-SDK.wm/executive/cvmx-nand.h	2017-02-10 11:58:19.233032239 +0800
+@@ -117,6 +117,7 @@ extern "C" {
+ typedef enum {
+ 	CVMX_NAND_INITIALIZE_FLAGS_16BIT = 1 << 0,
+ 	CVMX_NAND_INITIALIZE_FLAGS_DONT_PROBE = 1 << 1,
++	CVMX_NAND_INITIALIZE_FLAGS_INFO = 1 << 2,
+ 	CVMX_NAND_INITIALIZE_FLAGS_DEBUG = 1 << 15,
+ } cvmx_nand_initialize_flags_t;
+ 

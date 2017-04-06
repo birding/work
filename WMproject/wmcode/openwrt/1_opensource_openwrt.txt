@@ -1,0 +1,51 @@
+
+
+¡¾OpenWRT¡¿ Chaos Calmer 15.05 ±àÒë
+
+ubuntu
+root@yisp-VirtualBox:~# cat /etc/issue
+Ubuntu 16.04 LTS \n \l
+
+root@yisp-VirtualBox:~# uname -a
+Linux yisp-VirtualBox 4.4.0-21-generic #37-Ubuntu SMP Mon Apr 18 18:33:37 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+
+apt-get install ssh vim samba tftp 
+
+apt-get install git git-core build-essential libssl-dev libncurses5-dev unzip subversion mercurial zlib1g-dev  gawk  flex  patch   git-core g++   subversion 
+  
+  
+mkdir -p /home/card/openwrt/yisptest
+cd /home/card/openwrt/yisptest
+git clone git://git.coding.net/leop/openwrt.git
+cd openwrt/
+
+./scripts/feeds update -a
+./scripts/feeds install -a
+
+make defconfig
+make prereq
+
+
+make menuconfig
+    Target System -> Cavium Networks Octeon
+make   ---- error
+
+
+make menuconfig
+    Target System -> Ralink RT288x/RT3xxx
+    Subtarget -> MT7620 based boards
+make clean
+make -j1 V=s
+
+cd /media/sf_F_DRIVE/BaiduYunDownload/
+cp gcc-linaro-4.8-2014.04.tar.xz /home/card/openwrt/yisptest/openwrt/dl/
+cp linux-firmware-2015-03-20-f404336ba808cbd57547196e13367079a23b822c.tar.bz2 /home/card/openwrt/yisptest/openwrt/dl/
+
+make
+
+make V=s -j2
+
+
+root@yisp-VirtualBox:/home/card/openwrt/yisptest/openwrt# ls bin/
+ramips
+root@yisp-VirtualBox:/home/card/openwrt/yisptest/openwrt# ls bin/ramips/

@@ -1,0 +1,252 @@
+diff -purBN --no-dereference OCTEON-SDK.orig/linux/kernel/kernel.config OCTEON-SDK.wm/linux/kernel/kernel.config
+--- OCTEON-SDK.orig/linux/kernel/kernel.config	2017-02-10 11:49:32.099931894 +0800
++++ OCTEON-SDK.wm/linux/kernel/kernel.config	2017-02-10 12:09:57.494921425 +0800
+@@ -69,7 +69,7 @@ CONFIG_CAVIUM_OCTEON_LOCK_L2_LOW_LEVEL_I
+ CONFIG_CAVIUM_OCTEON_LOCK_L2_INTERRUPT=y
+ CONFIG_CAVIUM_OCTEON_LOCK_L2_MEMCPY=y
+ CONFIG_CAVIUM_RESERVE32=0
+-# CONFIG_CAVIUM_OCTEON_NAND is not set
++CONFIG_CAVIUM_OCTEON_NAND=y
+ CONFIG_CAVIUM_OCTEON_RAPIDIO=y
+ CONFIG_RAPIDIO=y
+ CONFIG_CAVIUM_OCTEON_ERROR_TREE=y
+diff -purBN --no-dereference OCTEON-SDK.orig/linux/kernel/linux/arch/mips/cavium-octeon/executive/cvmx-nand.c OCTEON-SDK.wm/linux/kernel/linux/arch/mips/cavium-octeon/executive/cvmx-nand.c
+--- OCTEON-SDK.orig/linux/kernel/linux/arch/mips/cavium-octeon/executive/cvmx-nand.c	2017-02-10 11:49:32.117949910 +0800
++++ OCTEON-SDK.wm/linux/kernel/linux/arch/mips/cavium-octeon/executive/cvmx-nand.c	2017-02-10 12:07:24.491128668 +0800
+@@ -142,6 +142,7 @@ static const onfi_speed_mode_desc_t onfi
+ 	{25, 15, 45, 10, 25},	/* Micron NAND512RxA2S 1.8v */
+ 	{25, 15, 50, 10, 0},	/* Micron NAND128/256WxA 3.3v */
+ 	{40, 20, 60, 10, 0},	/* Micron NAND256RxA 1.8v */
++	{24, 20, 50, 10, 24},	/*Mode 11 WM */
+ };
+ 
+ typedef enum {
+@@ -200,6 +201,7 @@ static CVMX_SHARED const char *cvmx_nand
+ 
+ #ifndef CVMX_BUILD_FOR_UBOOT
+ # define	nand_debug(format, args...)	cvmx_dprintf(format, ##args)
++//# define	nand_debug(format, args...)	printk(format, ##args)
+ #else
+ # define	nand_debug(format, args...)	debug(format, ##args)
+ #endif
+@@ -927,9 +929,9 @@ cvmx_nand_status_t cvmx_nand_initialize(
+ 		} else {
+ 			/* We have a non-ONFI part. */
+ 			if (cvmx_unlikely(cvmx_nand_flags & CVMX_NAND_INITIALIZE_FLAGS_DEBUG))
+-				nand_debug("%s: Chip %d doesn't support ONFI.  ID: 0x%02x 0x%02x\n",
++				nand_debug("%s: Chip %d doesn't support ONFI.  ID: 0x%02x 0x%02x 0x%02x 0x%02x 0x%02x\n",
+ 					     __func__, chip, nand_id_buffer[0],
+-					     nand_id_buffer[1]);
++					     nand_id_buffer[1], nand_id_buffer[2], nand_id_buffer[3], nand_id_buffer[4]);
+ 
+ 			switch (nand_id_buffer[0]) {
+ 			case 0xEC: {
+@@ -1014,6 +1016,70 @@ cvmx_nand_status_t cvmx_nand_initialize(
+ 				 */
+ 				continue;
+ 			}
++			//WMBOARD
++			case 0x98: {
++				/* Toshiba TH58NVG3S0HTAI0 */
++				uint64_t nand_size_bits = 0;
++				/* NAND page size in bytes */
++				cvmx_nand_state[chip].page_size =4096;				
++				/* NAND OOB (spare) size in bytes (per page) */
++ 				cvmx_nand_state[chip].oob_size = 256;
++				cvmx_nand_state[chip].pages_per_block =64;
++				cvmx_nand_state[chip].blocks = 4096;
++
++				nand_size_bits = cvmx_nand_state[chip].page_size 
++						* cvmx_nand_state[chip].pages_per_block 
++						* cvmx_nand_state[chip].blocks * 8ULL;
++
++
++				switch (nand_id_buffer[1]) {
++				case 0xD3:	/* TH58NVG3S0HTAI0 */
++				default:
++					cvmx_nand_state[chip].onfi_timing = 11;
++					//cvmx_nand_state[chip].onfi_timing = 1;
++					//cvmx_nand_state[chip].onfi_timing = 0;
++					break;
++				}
++
++				if (cvmx_unlikely(cvmx_nand_flags &
++					CVMX_NAND_INITIALIZE_FLAGS_DEBUG)) {
++					nand_debug("%s: Toshiba NAND chip detected, using parameters decoded from ID bytes.\n",
++						     __func__);
++					nand_debug(
++						"%s: Defaults: page size: %d, OOB size: %d, pages per block %d, part size: %d MBytes, timing mode: %d\n",
++						__func__,
++						cvmx_nand_state[chip].page_size,
++						cvmx_nand_state[chip].oob_size,
++						cvmx_nand_state[chip].pages_per_block,
++						(int)(nand_size_bits / (8 * 1024 * 1024)),
++						cvmx_nand_state[chip].onfi_timing);
++					nand_debug("%s: Address cycles: %d, column bits: %d, row bits: %d, block count: %d\n",
++						__func__,
++						__cvmx_nand_get_address_cycles(chip),
++						__cvmx_nand_get_column_bits(chip),
++						__cvmx_nand_get_row_bits(chip),
++						cvmx_nand_state[chip].blocks);
++				}
++
++				__set_onfi_timing_mode(cvmx_nand_state[chip].tim_par,
++					clocks_us,
++					cvmx_nand_state[chip].onfi_timing);
++				if (cvmx_nand_state[chip].page_size
++					+ cvmx_nand_state[chip].oob_size
++					> CVMX_NAND_MAX_PAGE_AND_OOB_SIZE) {
++					nand_debug(
++						"%s: ERROR: Page size (%d) + "
++						"OOB size (%d) is greater than"
++						" max size (%d)\n",
++						__func__,
++						cvmx_nand_state[chip].page_size,
++						cvmx_nand_state[chip].oob_size,
++						CVMX_NAND_MAX_PAGE_AND_OOB_SIZE);
++						__cvmx_nand_select(nand_selected);
++					return CVMX_NAND_ERROR;
++				}
++				continue;
++			}//WMBOARD end
+ 			default:
+ 				break;
+ 			}
+diff -purBN --no-dereference OCTEON-SDK.orig/linux/kernel/linux/arch/mips/cavium-octeon/octeon-nand.c OCTEON-SDK.wm/linux/kernel/linux/arch/mips/cavium-octeon/octeon-nand.c
+--- OCTEON-SDK.orig/linux/kernel/linux/arch/mips/cavium-octeon/octeon-nand.c	2017-02-10 11:49:32.141973931 +0800
++++ OCTEON-SDK.wm/linux/kernel/linux/arch/mips/cavium-octeon/octeon-nand.c	2017-02-10 12:09:13.877251214 +0800
+@@ -8,7 +8,12 @@
+  *
+  * Copyright (C) 2008 - 2012 Cavium, Inc.
+  */
+-
++#define WM_DEBUG
++#ifdef WM_DEBUG
++#define WM_printf printk
++#else 
++#define WM_printf(format, args...) 
++#endif
+ #include <asm/octeon/cvmx.h>
+ #include <asm/octeon/cvmx-nand.h>
+ #include <asm/octeon/octeon.h>
+@@ -55,6 +60,9 @@ static int debug;
+ module_param(debug, int, 0644);
+ MODULE_PARM_DESC(debug, "Debug bit field. -1 will turn on all debugging.");
+ 
++static int wmboard;
++module_param(wmboard, int, 0644);
++MODULE_PARM_DESC(wmboard, "1 for on wmboard");
+ 
+ struct octeon_nand {
+ 	struct mtd_info mtd;
+@@ -878,6 +886,41 @@ static int octeon_read_extended_paramete
+ 	return 0;
+ }
+ 
++int wmboard_adjustment(struct octeon_nand *priv)
++{
++	struct nand_chip * chip = &priv->nand;
++
++	chip->page_shift = ffs(4096) - 1; //4096bytes per page
++	chip->ecc.strength = 8;	//???
++	//chip->ecc.strength =
++	//			(chip->ecc.bytes * 8) / fls(8 * chip->ecc.size);
++	if (octeon_has_feature(OCTEON_FEATURE_BCH)) {
++			WM_printf("Using hardware ECC syndrome support\n");
++			chip->ecc.mode = NAND_ECC_HW_SYNDROME;
++			//chip->ecc.strength = chip->onfi_params.ecc_bits;
++			chip->ecc.read_page = octeon_nand_hw_bch_read_page;
++			chip->ecc.write_page = octeon_nand_hw_bch_write_page;
++			chip->ecc.read_page_raw = octeon_nand_read_page_raw;
++			chip->ecc.write_page_raw = octeon_nand_write_page_raw;
++			chip->ecc.read_oob = octeon_nand_read_oob_std;
++			chip->ecc.write_oob = octeon_nand_write_oob_std;
++
++			chip->ecc.size = 512;
++			chip->ecc.bytes = ((15 * chip->ecc.strength) + 7) / 8;
++			chip->ecc.steps = (1 << chip->page_shift) / chip->ecc.size;
++
++			chip->ecc.calculate = octeon_nand_bch_calculate;
++			chip->ecc.correct = octeon_nand_bch_correct;
++			chip->ecc.hwctl = octeon_nand_bch_hwctl;
++			WM_printf("NAND chip %d using hw_bch ECC for %d bits of correction per %d byte block.  ECC size is %d bytes\n",
++			      priv->selected_chip,
++			      chip->ecc.strength,
++			      chip->ecc.size,
++			      chip->ecc.bytes);
++		}
++	return 0;
++}
++
+ static int octeon_nand_scan_onfi(struct octeon_nand *priv)
+ {
+ 	cvmx_nand_onfi_param_page_t *onfi_params;
+@@ -902,7 +945,13 @@ static int octeon_nand_scan_onfi(struct
+ 		dev_err(priv->dev, "Parameter header: %02x %02x %02x %02x\n",
+ 			priv->data[0], priv->data[1], priv->data[2],
+ 			priv->data[3]);
+-		goto out;
++		if(wmboard){		
++			up(&octeon_bootbus_sem);
++			return 0;
++		}else{
++			goto out;
++		}
++			
+ 	}
+ 	if (cvmx_nand_read_param_page(priv->selected_chip,
+ 				      cvmx_ptr_to_phys(priv->data),
+@@ -1293,7 +1342,7 @@ static int octeon_nand_probe(struct plat
+ #endif
+ 
+ 	down(&octeon_bootbus_sem);
+-	cvmx_nand_initialize(0 /* CVMX_NAND_INITIALIZE_FLAGS_DEBUG */
++	cvmx_nand_initialize(0 |CVMX_NAND_INITIALIZE_FLAGS_DEBUG 
+ 			       /*CVMX_NAND_INITIALIZE_FLAGS_DONT_PROBE */,
+ 			     active_chips);
+ 	up(&octeon_bootbus_sem);
+@@ -1346,6 +1395,12 @@ static int octeon_nand_probe(struct plat
+ 			dev_err(&pdev->dev, "Failed to scan NAND device\n");
+ 			return -1;
+ 		}
++		
++		if(wmboard){
++			wmboard_adjustment(priv);
++		}
++		
++		WM_printf("[%s][%d]chip %d\n",	__func__, __LINE__, chip);		
+ 		rv = octeon_nand_hw_bch_init(priv);
+ 		if (rv) {
+ 			dev_err(&pdev->dev, "Failed to initialize BCH for NAND\n");
+@@ -1376,6 +1431,7 @@ static int octeon_nand_probe(struct plat
+ 					  NULL, NULL, 0);
+ 		octeon_nand_open_mtd[chip] = priv;
+ 		chip_num++;
++		printk("[%s][%d]chip %d\n",	__func__, __LINE__, chip);
+ 	}
+ 	return 0;
+ }
+diff -purBN --no-dereference OCTEON-SDK.orig/linux/kernel/linux/drivers/mtd/mtdcore.c OCTEON-SDK.wm/linux/kernel/linux/drivers/mtd/mtdcore.c
+--- OCTEON-SDK.orig/linux/kernel/linux/drivers/mtd/mtdcore.c	2015-11-21 09:53:10.000000000 +0800
++++ OCTEON-SDK.wm/linux/kernel/linux/drivers/mtd/mtdcore.c	2017-02-10 12:12:34.654788609 +0800
+@@ -20,7 +20,7 @@
+  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  *
+  */
+-
++#define WM_DEBUG
+ #include <linux/module.h>
+ #include <linux/kernel.h>
+ #include <linux/ptrace.h>
+@@ -408,6 +408,11 @@ int add_mtd_device(struct mtd_info *mtd)
+ 	   of this try_ nonsense, and no bitching about it
+ 	   either. :) */
+ 	__module_get(THIS_MODULE);
++
++#ifdef WM_DEBUG
++	printk("[%s][%d]index %d name %s numeraseregions %d\n", __func__, __LINE__, 
++				mtd->index, mtd->name, mtd->numeraseregions);
++#endif	
+ 	return 0;
+ 
+ fail_added:

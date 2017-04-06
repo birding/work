@@ -1,0 +1,169 @@
+root@yisp-VirtualBox:/home/card/openwrt_sff71/openwrt-release/octeon-sdk/linux/kernel/linux# grep -rn liteon ./        
+./include/linux/phy.h:28:// liteon add >>>
+./include/linux/phy.h:31:// liteon add <<<
+./include/linux/phy.h:63:// liteon add >>>
+./include/linux/phy.h:67:// liteon add <<<
+./.tmp_System.map:6554:ffffffff80992730 t liteon_fw_version_proc_open
+./.tmp_System.map:6555:ffffffff80992748 t liteon_revision_proc_open
+./.tmp_System.map:6557:ffffffff80992778 t liteon_fw_version_proc_show
+./.tmp_System.map:6558:ffffffff809927a8 t liteon_revision_proc_show
+./.tmp_System.map:22198:ffffffff80e36928 r liteon_revision_proc_fops
+./.tmp_System.map:22199:ffffffff80e36a00 r liteon_fw_version_proc_fops
+./.tmp_System.map:41665:ffffffff810e5a68 t liteon_proc_fw_version_init
+./.tmp_System.map:41666:ffffffff810e5ab4 t liteon_proc_revision_init
+./.tmp_System.map:42768:ffffffff811118c0 t __initcall_liteon_proc_fw_version_init6
+./.tmp_System.map:42769:ffffffff811118c8 t __initcall_liteon_proc_revision_init6
+./System.map:6554:ffffffff80992730 t liteon_fw_version_proc_open
+./System.map:6555:ffffffff80992748 t liteon_revision_proc_open
+./System.map:6557:ffffffff80992778 t liteon_fw_version_proc_show
+./System.map:6558:ffffffff809927a8 t liteon_revision_proc_show
+./System.map:22198:ffffffff80e36928 r liteon_revision_proc_fops
+./System.map:22199:ffffffff80e36a00 r liteon_fw_version_proc_fops
+./System.map:41665:ffffffff810e5a68 t liteon_proc_fw_version_init
+./System.map:41666:ffffffff810e5ab4 t liteon_proc_revision_init
+./System.map:42768:ffffffff811118c0 t __initcall_liteon_proc_fw_version_init6
+./System.map:42769:ffffffff811118c8 t __initcall_liteon_proc_revision_init6
+Binary file ./vmlinux.o matches
+Binary file ./fs/proc/proc.o matches
+./fs/proc/version.c:36://liteon add+
+./fs/proc/version.c:37:#include "liteon_config.h"
+./fs/proc/version.c:39:static int liteon_revision_proc_show(struct seq_file *m, void *v)
+./fs/proc/version.c:46:static int liteon_revision_proc_open(struct inode *inode, struct file *file)
+./fs/proc/version.c:48: return single_open(file, liteon_revision_proc_show, NULL);
+./fs/proc/version.c:51:static const struct file_operations liteon_revision_proc_fops = {
+./fs/proc/version.c:52: .open           = liteon_revision_proc_open,
+./fs/proc/version.c:58:static int __init liteon_proc_revision_init(void)
+./fs/proc/version.c:61: proc_create("sys_revision", 0, NULL, &liteon_revision_proc_fops);
+./fs/proc/version.c:65:module_init(liteon_proc_revision_init);
+./fs/proc/version.c:68:static int liteon_fw_version_proc_show(struct seq_file *m, void *v)
+./fs/proc/version.c:75:static int liteon_fw_version_proc_open(struct inode *inode, struct file *file)
+./fs/proc/version.c:77: return single_open(file, liteon_fw_version_proc_show, NULL);
+./fs/proc/version.c:80:static const struct file_operations liteon_fw_version_proc_fops = {
+./fs/proc/version.c:81: .open           = liteon_fw_version_proc_open,
+./fs/proc/version.c:87:static int __init liteon_proc_fw_version_init(void)
+./fs/proc/version.c:90: proc_create("sys_fw_version", 0, NULL, &liteon_fw_version_proc_fops);
+./fs/proc/version.c:94:module_init(liteon_proc_fw_version_init);
+./fs/proc/version.c:96://liteon add-
+Binary file ./fs/proc/built-in.o matches
+./fs/proc/.version.o.cmd:653:  include/liteon_config.h \
+Binary file ./fs/proc/version.o matches
+Binary file ./fs/built-in.o matches
+Binary file ./.tmp_vmlinux2 matches
+Binary file ./vmlinux matches
+./arch/mips/cavium-octeon/setup.c:329://liteon remove+
+./arch/mips/cavium-octeon/setup.c:331://liteon remove-
+./arch/mips/cavium-octeon/executive/cvmx-agl.c:47:#include <linux/of_device.h>  //liteon add +
+./arch/mips/cavium-octeon/executive/cvmx-agl.c:48:#include <linux/of_platform.h> //liteon add +
+./arch/mips/cavium-octeon/executive/cvmx-agl.c:139:     const char *sprop; //liteon add +
+./arch/mips/cavium-octeon/executive/cvmx-agl.c:249:         //liteon+ 
+./arch/mips/cavium-octeon/executive/cvmx-agl.c:263:             //liteon-
+./arch/mips/cavium-octeon/executive/cvmx-helper-sgmii.c:188:        //liteon+
+./arch/mips/cavium-octeon/executive/cvmx-helper-sgmii.c:195:        //liteon-
+./arch/mips/include/asm/octeon/cvmx-app-init.h:321://liteon+
+./arch/mips/include/asm/octeon/cvmx-app-init.h:322:     CVMX_BOARD_TYPE_WP868CP_CN6100 = 82,  //liteon add
+./arch/mips/include/asm/octeon/cvmx-app-init.h:323:     CVMX_BOARD_TYPE_WP868CP = 83,  //liteon add
+./arch/mips/include/asm/octeon/cvmx-app-init.h:324:     CVMX_BOARD_TYPE_WR8691C = 84,  //liteon add
+./arch/mips/include/asm/octeon/cvmx-app-init.h:325:     CVMX_BOARD_TYPE_SWS002C = 85,  //liteon add
+./arch/mips/include/asm/octeon/cvmx-app-init.h:326://liteon-
+./arch/mips/include/asm/octeon/cvmx-app-init.h:473://liteon+
+./arch/mips/include/asm/octeon/cvmx-app-init.h:478://liteon-
+Binary file ./.tmp_vmlinux1 matches
+./drivers/of/of_net.c:24://liteon add+
+./drivers/of/of_net.c:26://liteon add-
+./drivers/i2c/i2c-core.c:1627:  //liteon add >>
+./drivers/i2c/i2c-core.c:1629:  //liteon add <<
+./drivers/i2c/i2c-core.c:1684:  //liteon mark>>
+./drivers/i2c/i2c-core.c:1686:  //liteon mark<<
+./drivers/i2c/i2c-core.c:2506:  //liteon mark >>
+./drivers/i2c/i2c-core.c:2508:  //liteon mark <<
+Binary file ./drivers/built-in.o matches
+./drivers/net/phy/phy.c:768://liteon+
+./drivers/net/phy/phy.c:770://liteon-
+./drivers/net/phy/phy.c:795://liteon+
+./drivers/net/phy/phy.c:807://liteon-
+./drivers/net/phy/at803x.c:19:#include "liteon_config.h" //liteon add +
+./drivers/net/phy/at803x.c:20:#include <linux/of_device.h>  //liteon add +
+./drivers/net/phy/at803x.c:21:#include <linux/of_platform.h> //liteon add +
+./drivers/net/phy/at803x.c:39://liteon+
+./drivers/net/phy/at803x.c:54://liteon-
+./drivers/net/phy/at803x.c:132://liteon+
+./drivers/net/phy/at803x.c:164: if (strcmp(sprop,"cavium,wp868cp,wp868cp_v4"))//liteon add +
+./drivers/net/phy/at803x.c:189:         //liteon add +
+./drivers/net/phy/at803x.c:202:         //liteon add +
+./drivers/net/phy/at803x.c:217://liteon+
+./drivers/net/phy/at803x.c:219://liteon-
+./drivers/net/phy/at803x.c:245: //liteon add +
+./drivers/net/phy/at803x.c:250: //liteon add +
+./drivers/net/phy/at803x.c:310: //liteon add +
+./drivers/net/phy/at803x.c:313: //liteon add +
+./drivers/net/phy/at803x.c:323:    //liteon+
+./drivers/net/phy/at803x.c:327:    //liteon-
+./drivers/net/phy/at803x.c:340:    //liteon+
+./drivers/net/phy/at803x.c:342:    //liteon-
+./drivers/net/phy/at803x.c:352:    //liteon+
+./drivers/net/phy/at803x.c:354:    ////liteon-
+./drivers/net/phy/at803x.c:363:    //liteon+
+./drivers/net/phy/at803x.c:365:    //liteon-
+./drivers/net/phy/at803x.c:372:    //liteon+
+./drivers/net/phy/at803x.c:374:    //liteon-
+./drivers/net/phy/at803x.c:378:    //liteon+
+./drivers/net/phy/at803x.c:380:    //liteon-
+./drivers/net/phy/at803x.c:392://liteon+
+./drivers/net/phy/at803x.c:394://liteon-
+./drivers/net/phy/at803x.c:404:    //liteon+
+./drivers/net/phy/at803x.c:406:    //liteon-
+./drivers/net/phy/at803x.c:418:    //liteon+
+./drivers/net/phy/at803x.c:420:    //liteon-
+./drivers/net/phy/at803x.c:428:    //liteon+
+./drivers/net/phy/at803x.c:430:    //liteon-
+./drivers/net/phy/at803x.c:433:    //liteon+
+./drivers/net/phy/at803x.c:435:    //liteon-
+./drivers/net/phy/at803x.c:451:   for (i=0;i<4;i++)//liteon mark -
+./drivers/net/phy/at803x.c:514: //liteon add +
+./drivers/net/phy/at803x.c:580://liteon add +
+./drivers/net/phy/at803x.c:726:               //liteon+
+./drivers/net/phy/at803x.c:728:               //liteon-
+./drivers/net/phy/at803x.c:747://liteon-
+./drivers/net/phy/at803x.c:795://liteon+
+./drivers/net/phy/at803x.c:916://liteon-
+./drivers/net/phy/at803x.c:933://liteon+
+./drivers/net/phy/at803x.c:945://liteon-
+./drivers/net/phy/at803x.c:947://liteon add +
+./drivers/net/phy/at803x.c:950://liteon add +
+./drivers/net/phy/at803x.c:954://liteon+
+./drivers/net/phy/at803x.c:958://liteon-    
+./drivers/net/phy/at803x.c:973://liteon+    
+./drivers/net/phy/at803x.c:975://liteon-    
+./drivers/net/phy/at803x.c:985://liteon+    
+./drivers/net/phy/at803x.c:987://liteon-    
+./drivers/net/phy/.at803x.o.cmd:939:  include/liteon_config.h \
+./drivers/net/phy/athrs17_phy.h:105://liteon+
+./drivers/net/phy/athrs17_phy.h:115://liteon-
+./drivers/net/phy/athrs17_phy.h:579://liteon+
+./drivers/net/phy/athrs17_phy.h:713://liteon-
+./drivers/net/phy/vitesse.c:21://liteon add+
+./drivers/net/phy/vitesse.c:25://liteon add-
+./drivers/net/phy/vitesse.c:66://liteon add+
+./drivers/net/phy/vitesse.c:100://liteon add-
+./drivers/net/phy/vitesse.c:195://liteon add+
+./drivers/net/phy/vitesse.c:218:  printk("[liteon]vitesse_of_reg_init\n");
+./drivers/net/phy/vitesse.c:243:        printk("[liteon]reg_page=[%x],reg=[%x],mask=[%x],val_bits=[%x]\n",reg_page,reg,mask,val_bits);
+./drivers/net/phy/vitesse.c:398://liteon add-
+./drivers/net/phy/vitesse.c:428://liteon add+
+./drivers/net/phy/vitesse.c:441://liteon add-
+Binary file ./drivers/net/ethernet/built-in.o matches
+Binary file ./drivers/net/ethernet/octeon/octeon-ethernet.o matches
+Binary file ./drivers/net/ethernet/octeon/built-in.o matches
+Binary file ./drivers/net/ethernet/octeon/ethernet-mdio.o matches
+./drivers/net/ethernet/octeon/ethernet-mdio.c:417://liteon+
+./drivers/net/ethernet/octeon/ethernet-mdio.c:419:static int liteon_sgmii_1G_link(struct net_device *dev)
+./drivers/net/ethernet/octeon/ethernet-mdio.c:427:  //printk(KERN_ERR"liteon_sgmii_1G_link\n");
+./drivers/net/ethernet/octeon/ethernet-mdio.c:460://liteon-
+./drivers/net/ethernet/octeon/ethernet-mdio.c:480:        //liteon+
+./drivers/net/ethernet/octeon/ethernet-mdio.c:483:           liteon_sgmii_1G_link(dev); 
+./drivers/net/ethernet/octeon/ethernet-mdio.c:485:        //liteon-
+Binary file ./drivers/net/built-in.o matches
+./drivers/usb/host/xhci-octeon.c:184:   uctl_ctl.s.ssc_en =1; //liteon add for USB 3.0 IF test
+./drivers/usb/host/xhci-octeon.c:223:   //liteon modify+
+./drivers/usb/host/xhci-octeon.c:225:   uctl_ctl.s.ssc_en =1; //liteon modify for USB 3.0 IF test
+./drivers/usb/host/xhci-octeon.c:227:   //liteon modify-

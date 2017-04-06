@@ -1,0 +1,140 @@
+
+root@yisp-VirtualBox:/home/card/openwrt_sff71# cat /etc/issue
+Ubuntu 16.04 LTS \n \l
+
+cd /home/card/openwrt_sff71
+unzip /media/sf_F_DRIVE/SDK/OpenWRT_v1.9/openwrt-v1.9-src.zip
+
+apt-get install rpm
+rpm2cpio /media/sf_F_DRIVE/SDK/SDK312/OCTEON-SDK-3.1.2-568.i386.rpm | cpio -div
+rpm2cpio /media/sf_F_DRIVE/SDK/SDK312/OCTEON-LINUX-3.1.2-568.i386.rpm | cpio -div
+
+mkdir -p /home/sdk312/sdk312p7/
+cd /home/sdk312/sdk312p7/
+tar xzvf /media/sf_F_DRIVE/SDK/SDK312/sdk_3.1.2_update_p7.tgz
+
+cd /home/card/openwrt_sff71/usr/local/Cavium_Networks/OCTEON-SDK/
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/sdk.patch 
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/linux.patch
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/sdk-ejtag.patch  
+rm tools
+tar -xf /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/tools-3.1.2_build_49.tgz
+ln -s tools-3.1.2_build_49 tools
+/home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/octeon_copy_3_1_2_p7_files.sh /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/
+
+
+cd /home/card/openwrt_sff71/
+rm -rf openwrt-release
+cd /home/card/openwrt_sff71/openwrt-v1.9-src/octeon/scripts
+./setup.sh cavmSdkPath=/home/card/openwrt_sff71/usr/local/Cavium_Networks/OCTEON-SDK  workPath=/home/card/openwrt_sff71/openwrt-release
+
+
+cd /home/card/openwrt_sff71/openwrt-release
+cd chaos_calmer/
+make
+
+ls bin/cn71xx/
+md5sums  openwrt-cn71xx-rootfs.tar.gz  openwrt-cn71xx-vmlinux-initramfs  packages  sha256sums
+
+
+
+issues:
+http://www.right.com.cn/forum/thread-196182-1-1.html
+change to use ubuntu
+
+
+cd /home/card/openwrt_sff71/openwrt-release/chaos_calmer
+cp bin/cn71xx/openwrt-cn71xx-vmlinux-initramfs /media/sf_F_DRIVE/tftproot/
+
+
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0;
+tftpboot 0 openwrt-cn71xx-vmlinux-initramfs;
+bootoctlinux $(loadaddr) coremask=f mem=1024M
+
+
+CONFIG_INITRAMFS_SOURCE="/home/card/openwrt_sff71/openwrt-release/chaos_calmer/build_dir/target-mips64-octeon-linux-gnu/root-cn71xx /home/card/openwrt_sff71/openwrt-release/chaos_calmer/target/linux/generic/image/initramfs-base-files.txt"
+
+
+cd /home/card/openwrt_sff71/openwrt-release/chaos_calmer
+mkdir /tmp/openwrt
+cp bin/cn71xx/openwrt-cn71xx-rootfs.tar.gz /tmp/openwrt/
+cd /tmp/openwrt/
+tar xzvf openwrt-cn71xx-rootfs.tar.gz 
+diff /tmp/openwrt/ /home/card/openwrt_sff71/openwrt-release/chaos_calmer/build_dir/target-mips64-octeon-linux-gnu/root-cn71xx/
+ 
+
+
+nand erase.chip
+Octeon sff7000(ram)# mtdparts 
+
+device nand0 <octeon_nand0>, # parts = 1
+ #: name                size            offset          mask_flags
+ 0: root                0x20000000      0x00000000      0
+
+Octeon sff7000(ram)# ubi part root
+UBI: attaching mtd2 to ubi0
+UBI: physical eraseblock size:   1048576 bytes (1024 KiB)
+UBI: logical eraseblock size:    1040384 bytes
+UBI: smallest flash I/O unit:    8192
+UBI: sub-page size:              2048
+UBI: VID header offset:          2048 (aligned 2048)
+UBI: data offset:                8192
+UBI: empty MTD device detected
+UBI: create volume table (copy #1)
+UBI: create volume table (copy #2)
+UBI: attached mtd2 to ubi0
+UBI: MTD device name:            "mtd=0"
+UBI: MTD device size:            512 MiB
+UBI: number of good PEBs:        510
+UBI: number of bad PEBs:         2
+UBI: max. allowed volumes:       128
+UBI: wear-leveling threshold:    4096
+UBI: number of internal volumes: 1
+UBI: number of user volumes:     0
+UBI: available PEBs:             501
+UBI: total number of reserved PEBs: 9
+UBI: number of PEBs reserved for bad PEB handling: 5
+UBI: max/mean erase counter: 1/0
+
+Octeon sff7000(ram)# ubi create root
+No size specified -> Using max size (521232384)
+Creating dynamic volume root of size 521232384
+
+
+ apt-get install uuid-dev libacl1-dev liblzo2-dev
+wget ftp://ftp.infradead.org/pub/mtd-utils/mtd-utils-2.0.0.tar.bz2
+tar -jxvf mtd-utils-2.0.0.tar.bz2
+cd mtd-utils-2.0.0
+ ./configure 
+ make 
+make install
+
+cd /home/card/openwrt_sff71/openwrt-release/chaos_calmer/build_dir/target-mips64-octeon-linux-gnu/
+mkfs.ubifs -r root-cn71xx/  -m 8192 -e 1040384 -c 500 -o openwrt_sff.ubi
+mv openwrt_sff.ubi /media/sf_F_DRIVE/tftproot/
+
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0;
+tftpboot 0 openwrt_sff.ubi
+ubi write $(fileaddr) root $(filesize)
+
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0;
+tftpboot 0 vmlinux.64.deb.openwrt;
+bootoctlinux 0 numcores=4 endbootargs ubi.mtd=2 root=ubi0:root rootfstype=ubifs rw loglevel=7
+
+
+
+ifconfig br-lan 172.16.1.2 up
+root@OpenWrt:/# brctl show
+bridge name     bridge id               STP enabled     interfaces
+br-lan          7fff.000fb71133cb       no              eth1
+                                                        eth2
+                                                        eth3
+                                                        eth4
+                                                        eth5
+                                                        eth6
+                                                        eth7
+                                                        agl0
+                                                        
+##From host:
+http://172.16.1.2
+

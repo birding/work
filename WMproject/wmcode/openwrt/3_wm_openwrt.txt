@@ -1,0 +1,87 @@
+
+setenv mtdparts mtdparts=octeon_nand0:0x30000000@0x0(root),0xF000000@0x31000000(kernel)
+
+nand erase.chip
+
+mtdparts
+ubi part root
+ubi create root
+
+Octeon sff7000(ram)# mtdparts 
+
+device nand0 <octeon_nand0>, # parts = 2
+ #: name                size            offset          mask_flags
+ 0: root                0x30000000      0x00000000      0
+ 1: kernel              0x0f000000      0x31000000      0
+
+active partition: nand0,0 - (root) 0x30000000 @ 0x00000000
+
+defaults:
+mtdids  : nand0=octeon_nand0
+mtdparts: octeon_nand0:6m(bootloader)ro,2m(environment),8m(kernel),512m(rootfs)
+Octeon sff7000(ram)# ubi part root
+UBI: attaching mtd1 to ubi0
+UBI: physical eraseblock size:   262144 bytes (256 KiB)
+UBI: logical eraseblock size:    258048 bytes
+UBI: smallest flash I/O unit:    4096
+UBI: sub-page size:              1024
+UBI: VID header offset:          1024 (aligned 1024)
+UBI: data offset:                4096
+UBI: empty MTD device detected
+UBI: create volume table (copy #1)
+UBI: create volume table (copy #2)
+UBI: attached mtd1 to ubi0
+UBI: MTD device name:            "mtd=0"
+UBI: MTD device size:            768 MiB
+UBI: number of good PEBs:        3070
+UBI: number of bad PEBs:         2
+UBI: max. allowed volumes:       128
+UBI: wear-leveling threshold:    4096
+UBI: number of internal volumes: 1
+UBI: number of user volumes:     0
+UBI: available PEBs:             3036
+UBI: total number of reserved PEBs: 34
+UBI: number of PEBs reserved for bad PEB handling: 30
+UBI: max/mean erase counter: 1/0
+Octeon sff7000(ram)# ubi create root
+No size specified -> Using max size (783433728)
+Creating dynamic volume root of size 783433728
+
+
+cd /home/card/openwrt_sff71/openwrt-release/chaos_calmer/build_dir/target-mips64-octeon-linux-gnu/
+mkfs.ubifs -r root-cn71xx/  -m 4096 -e 258048 -c 3000 -o openwrt_wm.ubi
+cp openwrt_wm.ubi /media/sf_F_DRIVE/tftproot/openwrt_wm.ubi
+
+
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0;
+tftpboot 0 openwrt_wm.ubi
+ubi write $(fileaddr) root $(filesize)
+
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0;
+tftpboot 0 vmlinux.64.deb.wm.openwrt;
+bootoctlinux 0 numcores=2 endbootargs ubi.mtd=1 root=ubi0:root rootfstype=ubifs rw octeon-nand.wmboard=1
+
+[   22.487240] [add_mtd_device][413]index 1 name octeon_nand0 numeraseregions 0
+
+
+nand erase 0x31000000 0x6000000
+
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0;
+tftpboot 0 vmlinux.64.deb.wm.openwrt;
+check the $(filesize) is not larger than 0x6000000
+nand write $(fileaddr) 0x31000000 0x6000000
+
+reset
+nand read $(loadaddr) 0x31000000 0x6000000
+bootoctlinux 0 numcores=2 endbootargs ubi.mtd=1 root=ubi0:root rootfstype=ubifs rw octeon-nand.wmboard=1
+
+
+
+
+ifconfig br-lan 172.16.1.2 up
+ping 172.16.1.1  --failed?
+                                             
+##From host:
+ping 172.16.1.2
+http://172.16.1.2
+

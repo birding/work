@@ -1,0 +1,659 @@
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/arch/mips/cpu/octeon/commands/cmd_octeon_nand.c OCTEON-SDKsffnand/bootloader/u-boot/arch/mips/cpu/octeon/commands/cmd_octeon_nand.c
+--- OCTEON-SDK.orig/bootloader/u-boot/arch/mips/cpu/octeon/commands/cmd_octeon_nand.c	2015-11-21 09:47:22.000000000 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/arch/mips/cpu/octeon/commands/cmd_octeon_nand.c	2017-02-14 12:01:33.848968355 +0800
+@@ -36,7 +36,7 @@
+  * marketing@cavium.com
+  *
+  ***********************license end**************************************/
+-
++//#define WM_DEBUG 1
+ #include <common.h>
+ #include <command.h>
+ 
+@@ -167,6 +167,12 @@ int oct_nand_block_is_bad(int chip_selec
+ 					 NAND_LARGE_BADBLOCK_POS :
+ 					 NAND_SMALL_BADBLOCK_POS);
+ 
++#ifdef WM_DEBUG
++	if(nand_addr ==  0x21000000)
++		printf("[%s][%d]block_size 0x%x page_size 0x%x, read_size 0x%x, cached_block_addr 0x%lx check_octeon_ecc 0x%x\n", __func__, __LINE__, 
++			block_size, page_size, read_size, (long)cached_block_addr,check_octeon_ecc);
++#endif
++
+ 	/* Since NAND is marked bad in terms of blocks, we only
+ 	 * care about what block the supplied address is in
+ 	 */
+@@ -196,7 +202,12 @@ int oct_nand_block_is_bad(int chip_selec
+ 				 * If so, the block is good, otherwise it is
+ 				 * bad
+ 				 */
+-				if (!cvmx_nand_correct_boot_ecc(buf)) {
++				 int ret = cvmx_nand_correct_boot_ecc(buf);
++#ifdef WM_DEBUG
++				if(nand_addr ==  0x21000000)
++						printf("[%s][%d]ret 0x%d\n", __func__, __LINE__, ret);
++#endif					 
++				if (!ret) {
+ 					/* No ECC errors detected */
+ 					/* Some bad blocks are set to all 0x00,
+ 					 * including OOB.  This meets all bad
+@@ -204,6 +215,7 @@ int oct_nand_block_is_bad(int chip_selec
+ 					 * also a valid Octeon BOOT bus
+ 					 * encoding.  Treat this as a bad block.
+ 					 */
++				 
+ 					for (i = 0; i < read_size; i++)
+ 						if (buf[i])
+ 							break;
+@@ -223,6 +235,10 @@ page_is_bad_exit:
+ 	/* Cache most recent lookup so looking up pages in same block is fast */
+ 	cached_block_addr = nand_addr;
+ 	cached_block_is_bad = block_is_bad;
++#ifdef WM_DEBUG
++	if(block_is_bad)
++	printf("[%s][%d] nand_addr 0x%lx block_is_bad 0x%x\n", __func__, __LINE__, (long)nand_addr, block_is_bad);
++#endif	
+ 	return block_is_bad;
+ }
+ 
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/board/octeon/sff7000/sff7000.dts OCTEON-SDKsffnand/bootloader/u-boot/board/octeon/sff7000/sff7000.dts
+--- OCTEON-SDK.orig/bootloader/u-boot/board/octeon/sff7000/sff7000.dts	2017-02-14 11:55:02.317529346 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/board/octeon/sff7000/sff7000.dts	2017-02-14 12:02:01.210782324 +0800
+@@ -220,7 +220,7 @@
+ 				reg = <0 0 0x800000>;
+ 				#address-cells = <1>;
+ 				#size-cells = <1>;
+-
++/*
+ 				partition@0 {
+ 					label = "bootloader";
+ 					reg = <0 0x280000>;
+@@ -239,6 +239,7 @@
+ 					reg = <0x7f0000 0x10000>;
+ 					read-only;
+ 				};
++*/
+ 			};
+ 		};
+ 
+@@ -690,6 +691,12 @@
+ 				 * and 16-bits
+ 				 */
+ 				nand-bus-width = <8>;
++				
++				/*offset 0 - 1024M*/
++				partition@0 {
++					label = "root";
++					reg = <0 0x40000000>;
++				};
+ 			};
+ 		};
+ 
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/common/cmd_mtdparts.c OCTEON-SDKsffnand/bootloader/u-boot/common/cmd_mtdparts.c
+--- OCTEON-SDK.orig/bootloader/u-boot/common/cmd_mtdparts.c	2015-11-21 09:47:22.000000000 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/common/cmd_mtdparts.c	2017-02-14 12:02:12.447862645 +0800
+@@ -70,7 +70,7 @@
+  * mtdparts=mtdparts=edb7312-nor:256k(ARMboot)ro,-(root);edb7312-nand:-(home)
+  *
+  */
+-
++#define WM_DEBUG 1
+ #include <common.h>
+ #include <command.h>
+ #include <malloc.h>
+@@ -316,7 +316,10 @@ static int part_validate_eraseblock(stru
+ 		return 1;
+ 
+ 	part->sector_size = mtd->erasesize;
+-
++#ifdef WM_DEBUG	
++	printf("[%s][%d]mtd->numeraseregions %d\n", __func__, __LINE__,
++		mtd->numeraseregions);
++#endif
+ 	if (!mtd->numeraseregions) {
+ 		/*
+ 		 * Only one eraseregion (NAND, OneNAND or uniform NOR),
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/common/cmd_nand.c OCTEON-SDKsffnand/bootloader/u-boot/common/cmd_nand.c
+--- OCTEON-SDK.orig/bootloader/u-boot/common/cmd_nand.c	2015-11-21 09:47:22.000000000 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/common/cmd_nand.c	2017-02-14 12:02:19.533214429 +0800
+@@ -399,6 +399,11 @@ static void nand_print_and_set_info(int
+ 	printf("  OOB size   %8d b\n", nand->oobsize);
+ 	printf("  Erase size %8d b\n", nand->erasesize);
+ 
++	printf("  ecc.mode %8d \n", chip->ecc.mode);
++	printf("  ecc.bytes %8d b\n", chip->ecc.bytes);
++	printf("  ecc.size %8d b\n", chip->ecc.size);
++	printf("  ecc.strength %8d \n", chip->ecc.strength);
++
+ 	/* Set geometry info */
+ 	setenv_hex("nand_writesize", nand->writesize);
+ 	setenv_hex("nand_oobsize", nand->oobsize);
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/mtdcore.c OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/mtdcore.c
+--- OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/mtdcore.c	2015-11-21 09:47:30.000000000 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/mtdcore.c	2017-02-14 12:03:14.714825663 +0800
+@@ -6,7 +6,7 @@
+  * it under the terms of the GNU General Public License version 2 as
+  * published by the Free Software Foundation.
+  */
+-
++#define WM_DEBUG
+ #include <linux/mtd/mtd.h>
+ #include <linux/compat.h>
+ #include <ubi_uboot.h>
+@@ -37,6 +37,10 @@ int add_mtd_device(struct mtd_info *mtd)
+ 			   our caller is still holding us here. So none
+ 			   of this try_ nonsense, and no bitching about it
+ 			   either. :) */
++#ifdef WM_DEBUG
++			printf("[%s][%d]index %d name %s numeraseregions %d\n", __func__, __LINE__, 
++				mtd->index, mtd->name, mtd->numeraseregions);
++#endif			   
+ 			return 0;
+ 		}
+ 
+@@ -102,7 +106,10 @@ struct mtd_info *get_mtd_device(struct m
+ 
+ 	if (!ret)
+ 		goto out_unlock;
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]num %d index %d numeraseregions %d\n", __func__, __LINE__, 
++		num, mtd->index, mtd->numeraseregions);
++#endif
+ 	ret->usecount++;
+ 	return ret;
+ 
+@@ -132,7 +139,10 @@ struct mtd_info *get_mtd_device_nm(const
+ 
+ 	if (!mtd)
+ 		goto out_unlock;
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]i %d index %d numeraseregions %d\n", __func__, __LINE__, 
++		i, mtd->index, mtd->numeraseregions);
++#endif
+ 	mtd->usecount++;
+ 	return mtd;
+ 
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/nand/nand_base.c OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/nand/nand_base.c
+--- OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/nand/nand_base.c	2015-11-21 09:47:30.000000000 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/nand/nand_base.c	2017-02-14 12:02:31.785853683 +0800
+@@ -31,7 +31,7 @@
+  * published by the Free Software Foundation.
+  *
+  */
+-
++//#define WM_DEBUG 1
+ #include <common.h>
+ 
+ #define ENOTSUPP	524	/* Operation is not supported */
+@@ -517,7 +517,11 @@ static int nand_block_checkbad(struct mt
+ 
+ 	if (!chip->bbt)
+ 		return chip->block_bad(mtd, ofs, getchip);
+-
++	
++#ifdef WM_DEBUG
++	printf("[%s][%d]ofs 0x%x chip->options 0x%x, bbt %p\n", __func__, __LINE__, 
++		(int)ofs, chip->options, chip->bbt);
++#endif
+ 	/* Return info from the table */
+ 	return nand_isbad_bbt(mtd, ofs, allowbbt);
+ }
+@@ -910,7 +914,9 @@ static int nand_read_page_swecc(struct m
+ 	uint8_t *ecc_calc = chip->buffers->ecccalc;
+ 	uint8_t *ecc_code = chip->buffers->ecccode;
+ 	uint32_t *eccpos = chip->ecc.layout->eccpos;
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]oob_required 0x%x page 0x%x\n", __func__, __LINE__, oob_required, page);
++#endif
+ 	chip->ecc.read_page_raw(mtd, chip, buf, 1, page);
+ 
+ 	for (i = 0; eccsteps; eccsteps--, i += eccbytes, p += eccsize)
+@@ -952,7 +958,9 @@ static int nand_read_subpage(struct mtd_
+ 	int datafrag_len, eccfrag_len, aligned_len, aligned_pos;
+ 	int busw = (chip->options & NAND_BUSWIDTH_16) ? 2 : 1;
+ 	int index = 0;
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	/* Column address within the page aligned to ECC size (256bytes) */
+ 	start_step = data_offs / chip->ecc.size;
+ 	end_step = (data_offs + readlen - 1) / chip->ecc.size;
+@@ -1259,7 +1267,9 @@ static int nand_do_read_ops(struct mtd_i
+ 	buf = ops->datbuf;
+ 	oob = ops->oobbuf;
+ 	oob_required = oob ? 1 : 0;
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]oob_required 0x%x\n", __func__, __LINE__, oob_required);
++#endif
+ 	while (1) {
+ 		WATCHDOG_RESET();
+ 
+@@ -1287,6 +1297,9 @@ static int nand_do_read_ops(struct mtd_i
+ 			else
+ 				ret = chip->ecc.read_page(mtd, chip, bufpoi,
+ 							  oob_required, page);
++#ifdef WM_DEBUG
++			printf("[%s][%d]ret 0x%x\n", __func__, __LINE__, ret);
++#endif			
+ 			if (ret < 0) {
+ 				if (!aligned)
+ 					/* Invalidate page cache */
+@@ -1350,7 +1363,9 @@ static int nand_do_read_ops(struct mtd_i
+ 	ops->retlen = ops->len - (size_t) readlen;
+ 	if (oob)
+ 		ops->oobretlen = ops->ooblen - oobreadlen;
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]ret 0x%x\n", __func__, __LINE__, ret);
++#endif
+ 	if (ret)
+ 		return ret;
+ 
+@@ -1376,7 +1391,9 @@ static int nand_read(struct mtd_info *mt
+ 	struct nand_chip *chip = mtd->priv;
+ 	struct mtd_oob_ops ops;
+ 	int ret;
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]from 0x%x, len 0x%x\n", __func__, __LINE__, (unsigned int)from, (unsigned int)len);
++#endif
+ 	nand_get_device(chip, mtd, FL_READING);
+ 	ops.len = len;
+ 	ops.datbuf = buf;
+@@ -1671,6 +1688,14 @@ out:
+ static int nand_write_page_raw(struct mtd_info *mtd, struct nand_chip *chip,
+ 				const uint8_t *buf, int oob_required)
+ {
++#ifdef WM_DEBUG
++	printf("[%s][%d] mtd->writesize 0x%x mtd->oobsize 0x%x \n", __func__, __LINE__,	
++		mtd->writesize, mtd->oobsize);
++
++	print_buffer(0, chip->oob_poi, 1, mtd->oobsize, 0);
++	printf("[%s][%d]\n", __func__, __LINE__);
++
++#endif
+ 	chip->write_buf(mtd, buf, mtd->writesize);
+ 	if (oob_required)
+ 		chip->write_buf(mtd, chip->oob_poi, mtd->oobsize);
+@@ -1736,10 +1761,25 @@ static int nand_write_page_swecc(struct
+ 	uint8_t *ecc_calc = chip->buffers->ecccalc;
+ 	const uint8_t *p = buf;
+ 	uint32_t *eccpos = chip->ecc.layout->eccpos;
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d] oob_required 0x%x eccsize 0x%x,eccbytes 0x%x,eccsteps 0x%x, ecc.total %d\n", __func__, __LINE__,	
++		oob_required, eccsize,eccbytes,eccsteps,  chip->ecc.total);
++	printf("[%s][%d] chip->ecc.layout %p\n", __func__, __LINE__,	
++		chip->ecc.layout);
++#endif
+ 	/* Software ECC calculation */
+-	for (i = 0; eccsteps; eccsteps--, i += eccbytes, p += eccsize)
++#ifdef WM_DEBUG
++	printf("[%s][%d]ecc_calc: ", __func__, __LINE__);
++#endif
++	for (i = 0; eccsteps; eccsteps--, i += eccbytes, p += eccsize){
+ 		chip->ecc.calculate(mtd, p, &ecc_calc[i]);
++#ifdef WM_DEBUG
++		printf(" 0x%x 0x%x 0x%x ", ecc_calc[i], ecc_calc[i+1], ecc_calc[i+2]);
++#endif		
++	}
++#ifdef WM_DEBUG
++	printf("\n");
++#endif
+ 
+ 	for (i = 0; i < chip->ecc.total; i++)
+ 		chip->oob_poi[eccpos[i]] = ecc_calc[i];
+@@ -1763,7 +1803,10 @@ static int nand_write_page_hwecc(struct
+ 	uint8_t *ecc_calc = chip->buffers->ecccalc;
+ 	const uint8_t *p = buf;
+ 	uint32_t *eccpos = chip->ecc.layout->eccpos;
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d] oob_required 0x%x eccsize 0x%x,eccbytes 0x%x,eccsteps 0x%x, ecc.total %d\n", __func__, __LINE__,	
++		oob_required, eccsize,eccbytes,eccsteps,  chip->ecc.total);
++#endif
+ 	for (i = 0; eccsteps; eccsteps--, i += eccbytes, p += eccsize) {
+ 		chip->ecc.hwctl(mtd, NAND_ECC_WRITE);
+ 		chip->write_buf(mtd, p, eccsize);
+@@ -1798,6 +1841,11 @@ static int nand_write_page_syndrome(stru
+ 	const uint8_t *p = buf;
+ 	uint8_t *oob = chip->oob_poi;
+ 
++#ifdef WM_DEBUG
++	printf("[%s][%d] oob_required 0x%x eccsize 0x%x,eccbytes 0x%x,eccsteps 0x%x, ecc.total %d\n", __func__, __LINE__,	
++		oob_required, eccsize,eccbytes,eccsteps,  chip->ecc.total);
++#endif
++
+ 	for (i = 0; eccsteps; eccsteps--, i += eccbytes, p += eccsize) {
+ 
+ 		chip->ecc.hwctl(mtd, NAND_ECC_WRITE);
+@@ -1841,7 +1889,10 @@ static int nand_write_page(struct mtd_in
+ 			   int cached, int raw)
+ {
+ 	int status;
+-
++	
++#ifdef WM_DEBUG
++	printf("[%s][%d] oob_required 0x%x raw %d\n", __func__, __LINE__,	oob_required, raw);
++#endif
+ 	chip->cmdfunc(mtd, NAND_CMD_SEQIN, 0x00, page);
+ 
+ 	if (unlikely(raw))
+@@ -2003,7 +2054,10 @@ static int nand_do_write_ops(struct mtd_
+ 	/* Don't allow multipage oob writes with offset */
+ 	if (oob && ops->ooboffs && (ops->ooboffs + ops->ooblen > oobmaxlen))
+ 		return -EINVAL;
+-
++	
++#ifdef WM_DEBUG
++	printf("[%s][%d] oob_required 0x%x, ecc.bytes 0x%x\n", __func__, __LINE__,	oob_required, chip->ecc.bytes);
++#endif
+ 	while (1) {
+ 		WATCHDOG_RESET();
+ 
+@@ -3232,7 +3286,13 @@ int nand_scan_tail(struct mtd_info *mtd)
+ 				   mtd->oobsize);
+ 		}
+ 	}
+-
++	
++#ifdef WM_DEBUG
++	printf("[%s][%d] oobsize 0x%x chip->write_page %p \n"
++		" chip->bbt_options 0x%x chip->ecc.layout %p, chip->ecc.mode %d, ecc.bytes 0x%x\n", __func__, __LINE__, 
++			mtd->oobsize, chip->write_page, 
++			chip->bbt_options, chip->ecc.layout, chip->ecc.mode, chip->ecc.bytes);
++#endif
+ 	if (!chip->write_page)
+ 		chip->write_page = nand_write_page;
+ 
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/nand/nand_ecc.c OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/nand/nand_ecc.c
+--- OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/nand/nand_ecc.c	2015-11-21 09:47:30.000000000 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/nand/nand_ecc.c	2017-02-14 12:02:38.116151672 +0800
+@@ -73,7 +73,9 @@ int nand_calculate_ecc(struct mtd_info *
+ {
+ 	uint8_t idx, reg1, reg2, reg3, tmp1, tmp2;
+ 	int i;
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d] \n", __func__, __LINE__);
++#endif
+ 	/* Initialize variables */
+ 	reg1 = reg2 = reg3 = 0;
+ 
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/nand/nand_util.c OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/nand/nand_util.c
+--- OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/nand/nand_util.c	2015-11-21 09:47:30.000000000 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/nand/nand_util.c	2017-02-14 12:02:46.714639507 +0800
+@@ -18,7 +18,7 @@
+  *
+  * SPDX-License-Identifier:	GPL-2.0
+  */
+-
++//#define WM_DEBUG 1
+ #include <common.h>
+ #include <command.h>
+ #include <watchdog.h>
+@@ -675,7 +675,10 @@ int nand_read_skip_bad(nand_info_t *nand
+ 			*actual = 0;
+ 		return -EINVAL;
+ 	}
+-
++	
++#ifdef WM_DEBUG
++	printf("[%s][%d] offset 0x%x len 0x%x\n", __func__, __LINE__, (unsigned int)offset, (unsigned int)*length);
++#endif
+ 	need_skip = check_skip_len(nand, offset, *length, &used_for_read);
+ 
+ 	if (actual)
+@@ -709,7 +712,9 @@ int nand_read_skip_bad(nand_info_t *nand
+ 		size_t read_length;
+ 
+ 		WATCHDOG_RESET();
+-
++#ifdef WM_DEBUG
++		printf("[%s][%d] offset 0x%x\n", __func__, __LINE__, (unsigned int)offset);
++#endif
+ 		if (nand_block_isbad(nand, offset & ~(nand->erasesize - 1))) {
+ 			printf("Skipping bad block 0x%08llx\n",
+ 				offset & ~(nand->erasesize - 1));
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/nand/octeon_nand.c OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/nand/octeon_nand.c
+--- OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/nand/octeon_nand.c	2017-02-14 11:55:02.422529434 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/nand/octeon_nand.c	2017-02-14 12:02:55.742018831 +0800
+@@ -36,7 +36,12 @@
+  * marketing@cavium.com
+  *
+  ***********************license end**************************************/
+-
++//#define WM_DEBUG
++#ifdef WM_DEBUG
++#define WM_printf printf
++#else
++#define WM_printf(...) 
++#endif
+ #include <common.h>
+ #include <asm/arch/cvmx.h>
+ #include <nand.h>
+@@ -172,7 +177,7 @@ void octeon_write_buf(struct mtd_info *m
+ 	WATCHDOG_RESET();
+ 	debug("%s: len: %d, index: %d, total length: %d\n",
+ 	      __func__, len, priv->index, priv->data_len);
+-#ifdef DEBUG
++#ifdef WM_DEBUG
+ 	print_buffer(0, buf, 1, len, 0);
+ #endif
+ 	memcpy(priv->data + priv->index, buf, len);
+@@ -189,7 +194,10 @@ void octeon_read_buf(struct mtd_info *mt
+ {
+ 	struct nand_chip *nand = mtd->priv;
+ 	struct octeon_nand_priv *priv = nand->priv;
+-
++	
++#ifdef WM_DEBUG
++	printf("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	debug("%s len: %d, index: %d, total length: %d\n",
+ 	      __func__, len, priv->index, priv->data_len);
+ 
+@@ -714,7 +722,10 @@ static int octeon_nand_hw_bch_write_page
+ 	uint8_t *ecc_calc = chip->buffers->ecccalc;
+ 
+ 	debug("%s(%p, %p, %p, %d)\n", __func__, mtd, chip, buf, oob_required);
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d] oob_required 0x%x eccsize 0x%x,eccbytes 0x%x,eccsteps 0x%x, ecc.total %d\n", __func__, __LINE__,	
++		oob_required, eccsize,eccbytes,eccsteps,  chip->ecc.total);
++#endif
+ 	/* Hardware ECC calculation */
+ 	for (i = 0; eccsteps; eccsteps--, i += eccbytes, p += eccsize) {
+ 		chip->ecc.calculate(mtd, p, &ecc_calc[i]);
+@@ -958,10 +969,14 @@ void octeon_cmdfunc(struct mtd_info *mtd
+ 
+ 	case NAND_CMD_PAGEPROG:
+ 		cmdprint("cmdfunc: PAGEPROG (page=0x%x)\n", priv->selected_page);
++#ifdef WM_DEBUG
++		printf("[%s][%d]priv->selected_page 0x%x nand->page_shift 0x%x\n", __func__, __LINE__, 
++			priv->selected_page, nand->page_shift);
++#endif		
+ #ifdef DEBUG
+ 		print_buffer(priv->selected_page << nand->page_shift, priv->data,
+ 			     1, 1 << nand->page_shift, 0);
+-		debug("OOB: (%d bytes)\n", mtd->oobsize);
++		printf("OOB: (%d bytes)\n", mtd->oobsize);
+ 		print_buffer(0, priv->data + (1 << nand->page_shift), 1,
+ 			     mtd->oobsize, 0);
+ #endif
+@@ -1194,6 +1209,8 @@ static int octeon_read_extended_paramete
+ 	debug("Found extended ecc header at offset %d in header\n", offset);
+ #ifdef CONFIG_OCTEON_HW_BCH
+ 	chip->ecc.strength = octeon_nand_bch_strength_adjust(ecc_info->ecc_bits);
++	WM_printf("[%s][%d]ecc_bits %d,ecc.strength %d\n", __func__, __LINE__,
++			ecc_info->ecc_bits, chip->ecc.strength);
+ #else
+ 	chip->ecc.strength = ecc_info->ecc_bits;
+ #endif
+@@ -1279,7 +1296,9 @@ static int octeon_nand_scan_onfi(struct
+ 	chip->page_shift =
+ 		fls(le32_to_cpu(chip->onfi_params.byte_per_page)) - 1;
+ 	chip->ecc.strength = chip->onfi_params.ecc_bits;
+-
++	WM_printf("[%s][%d]ecc_bits %d,ecc.strength %d\n", __func__, __LINE__,
++			chip->onfi_params.ecc_bits, chip->ecc.strength);
++	
+ 	if (chip->onfi_params.programs_per_page <= 1)
+ 		chip->options |= NAND_NO_SUBPAGE_WRITE;
+ 
+@@ -1331,6 +1350,7 @@ static int octeon_nand_scan_onfi(struct
+ 		 * OCTEON requires ((15 * t) + 7) / 8
+ 		 */
+ 		chip->ecc.bytes = ((15 * chip->ecc.strength) + 7) / 8;
++		WM_printf("[%s][%d]ecc.strength %d\n", __func__, __LINE__, chip->ecc.strength);
+ 		if (!chip->ecc.strength)
+ 			chip->ecc.strength =
+ 				(chip->ecc.bytes * 8) / fls(8 * chip->ecc.size);
+@@ -1339,7 +1359,7 @@ static int octeon_nand_scan_onfi(struct
+ 		chip->ecc.calculate = octeon_nand_bch_calculate_ecc;
+ 		chip->ecc.correct = octeon_nand_bch_correct;
+ 		chip->ecc.hwctl = octeon_nand_bch_hwecc_ctl;
+-		debug("NAND chip %d using hw_bch ECC for %d bits of correction per %d byte block.  ECC size is %d bytes\n",
++		WM_printf("NAND chip %d using hw_bch ECC for %d bits of correction per %d byte block.  ECC size is %d bytes\n",
+ 		      priv->selected_chip,
+ 		      chip->ecc.strength,
+ 		      chip->ecc.size,
+@@ -1574,6 +1594,10 @@ int board_nand_init(struct nand_chip *ch
+ 		}
+ 	}
+ 
++#ifdef WM_DEBUG
++	printf("[%s][%d] chip->ecc.mode 0x%x ecc.bytes 0x%x ecc.size 0x%x\n", __func__, __LINE__, 
++			chip->ecc.mode, chip->ecc.bytes, chip->ecc.size);
++#endif
+ 	/* Move on to next chip on next invocation */
+ 	cur_chip_select++;
+ 	return 0;
+@@ -1591,13 +1615,20 @@ int oct_nand_probe(void)
+ 	int active_nand_mask;
+ 	int chip = -1;
+ 	int debug_flag;
+-
++	char *eptr=NULL;
++	
+ 	/* Detect NAND flash */
+ 	WATCHDOG_RESET();
+ 	debug("%s: Calling cvmx_nand_initialize()\n", __func__);
+ 
+-	if (getenv("octeon_debug_nand")) {
+-		debug_flag = CVMX_NAND_INITIALIZE_FLAGS_DEBUG;
++	eptr=getenv("octeon_debug_nand");
++	if (eptr) {
++		if (!strcmp("info", eptr))
++		{
++			debug_flag = CVMX_NAND_INITIALIZE_FLAGS_INFO;
++		}else{
++			debug_flag = CVMX_NAND_INITIALIZE_FLAGS_DEBUG;
++		}
+ 		printf("OCTEON NAND debugging enabled.\n");
+ 	} else {
+ #ifdef DEBUG
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/ubi/build.c OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/ubi/build.c
+--- OCTEON-SDK.orig/bootloader/u-boot/drivers/mtd/ubi/build.c	2015-11-21 09:47:30.000000000 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/drivers/mtd/ubi/build.c	2017-02-14 12:03:05.051693733 +0800
+@@ -20,7 +20,7 @@
+  * bottleneck when flashes reach certain large size. Then one may improve UBI
+  * and add other methods, although it does not seem to be easy to do.
+  */
+-
++#define WM_DEBUG 1
+ #ifdef UBI_LINUX
+ #include <linux/err.h>
+ #include <linux/module.h>
+@@ -707,6 +707,9 @@ int ubi_attach_mtd_dev(struct mtd_info *
+ 	struct ubi_device *ubi;
+ 	int i, err;
+ 
++#ifdef WM_DEBUG
++	printf("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	/*
+ 	 * Check if we already have the same MTD device attached.
+ 	 *
+@@ -771,7 +774,9 @@ int ubi_attach_mtd_dev(struct mtd_info *
+ 	spin_lock_init(&ubi->volumes_lock);
+ 
+ 	ubi_msg("attaching mtd%d to ubi%d", mtd->index, ubi_num);
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	err = io_init(ubi);
+ 	if (err)
+ 		goto out_free;
+@@ -815,7 +820,9 @@ int ubi_attach_mtd_dev(struct mtd_info *
+ 			err);
+ 		goto out_uif;
+ 	}
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	ubi_msg("attached mtd%d to ubi%d", mtd->index, ubi_num);
+ 	ubi_msg("MTD device name:            \"%s\"", mtd->name);
+ 	ubi_msg("MTD device size:            %llu MiB", ubi->flash_size >> 20);
+@@ -961,7 +968,9 @@ int __init ubi_init(void)
+ 		ubi_err("too many MTD devices, maximum is %d", UBI_MAX_DEVICES);
+ 		return -EINVAL;
+ 	}
+-
++#ifdef WM_DEBUG
++	printf("[%s][%d]mtd_devs %d\n", __func__, __LINE__, mtd_devs);
++#endif
+ 	/* Create base sysfs directory and sysfs files */
+ 	ubi_class = class_create(THIS_MODULE, UBI_NAME_STR);
+ 	if (IS_ERR(ubi_class)) {
+@@ -996,7 +1005,9 @@ int __init ubi_init(void)
+ 		struct mtd_info *mtd;
+ 
+ 		cond_resched();
+-
++#ifdef WM_DEBUG
++		printf("[%s][%d]i %d, p->name %s\n", __func__, __LINE__, i, p->name);
++#endif
+ 		mtd = open_mtd_device(p->name);
+ 		if (IS_ERR(mtd)) {
+ 			err = PTR_ERR(mtd);
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/include/configs/octeon_sff7000.h OCTEON-SDKsffnand/bootloader/u-boot/include/configs/octeon_sff7000.h
+--- OCTEON-SDK.orig/bootloader/u-boot/include/configs/octeon_sff7000.h	2017-02-14 11:55:02.756529712 +0800
++++ OCTEON-SDKsffnand/bootloader/u-boot/include/configs/octeon_sff7000.h	2017-02-14 12:03:32.445532339 +0800
+@@ -77,17 +77,10 @@
+  * variable to define the MTD partitions for u-boot.
+  */
+ #define MTDPARTS_DEFAULT				\
+-	"octeon_nor0:2560k(bootloader)ro,"		\
+-	"2m(kernel),"					\
+-	"3520k(cramfs),"				\
+-	"64k(environment)ro;"				\
+-	"octeon_nand0:6m(bootloader)ro,"		\
+-	"2m(environment),"				\
+-	"8m(kernel),"					\
+-	"512m(rootfs)\0"
++	"octeon_nand0:1024m(root)\0"
+ 
+ 
+-#define MTDIDS_DEFAULT	"nor0=octeon_nor0,nand0=octeon_nand0\0"
++#define MTDIDS_DEFAULT	"nand0=octeon_nand0\0"
+ 
+ /**
+  * Start of where the NAND bootloader images are placed.  Must be on an erase
+@@ -161,6 +154,9 @@
+ #define CONFIG_CMD_FAT			/** FAT support			*/
+ #define CONFIG_FAT_WRITE		/** FAT write support		*/
+ 
++#define CONFIG_CMD_UBI
++#define CONFIG_CMD_UBIFS
++
+ /* SPI NOR flash support */
+ #define CONFIG_SF_DEFAULT_BUS		0	/** Default SPI bus	*/
+ #define CONFIG_SF_DEFAULT_CS		0	/** Default SPI chip select */

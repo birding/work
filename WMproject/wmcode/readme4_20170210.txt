@@ -1,0 +1,222 @@
+###generate patch###
+mkdir /home/sdk312/sdk312p7/OCTEON-SDKwmpatch/
+cd /home/sdk312/sdk312p7/OCTEON-SDKwmpatch/
+rpm -ivh  --prefix=/home/sdk312/sdk312p7/OCTEON-SDKwmpatch/ --force /media/sf_F_DRIVE/SDK/SDK312/OCTEON-SDK-3.1.2-568.i386.rpm 
+rpm -ivh  --prefix=/home/sdk312/sdk312p7/OCTEON-SDKwmpatch/ --force /media/sf_F_DRIVE/SDK/SDK312/OCTEON-LINUX-3.1.2-568.i386.rpm 
+cd OCTEON-SDK/
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/sdk.patch 
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/linux.patch
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/sdk-ejtag.patch  
+rm tools
+tar -xf /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/tools-3.1.2_build_49.tgz
+ln -s tools-3.1.2_build_49 tools
+/home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/octeon_copy_3_1_2_p7_files.sh /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/
+
+cd /home/sdk312/sdk312p7/OCTEON-SDKwmpatch/
+mv OCTEON-SDK/ OCTEON-SDK.orig
+
+#install SDK again
+cd /home/sdk312/sdk312p7/OCTEON-SDKwmpatch/
+mv OCTEON-SDK/ OCTEON-SDK.wm
+#merger the code to OCTEON-SDK.wm
+
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/ OCTEON-SDK.wm/bootloader/u-boot/ > board20170210_uboot.patch 
+diff -purBN --no-dereference OCTEON-SDK.orig/executive/ OCTEON-SDK.wm/executive/ > board20170210_executive.patch 
+diff -purBN --no-dereference OCTEON-SDK.orig/linux/kernel/ OCTEON-SDK.wm/linux/kernel/ > board20170210_linux.patch 
+
+
+##source code####
+
+#install SDK again
+
+patch -s -p1 < /media/sf_F_DRIVE/WM71/board20170210_uboot.patch 
+patch -s -p1 < /media/sf_F_DRIVE/WM71/board20170210_executive.patch
+patch -s -p1 < /media/sf_F_DRIVE/WM71/board20170210_linux.patch
+
+###########################
+
+
+
+source env-setup OCTEON_CN71XX
+cd bootloader/u-boot
+make clean
+make octeon_generic_cn70xx_spi_stage2_config
+make
+cp u-boot-octeon_generic_cn70xx_spi_stage2.bin ../  
+   
+make clean
+make octeon_sff7000_config
+make
+cp u-boot-octeon_sff7000.bin ../
+cp u-boot-octeon_sff7000.bin /media/sf_F_DRIVE/tftproot/u-boot-octeon_sff7000_wm.bin
+
+cd ../spi-boot/
+make clean
+make
+cp spi-boot.bin ../
+ 
+
+
+88E1512  -- RGMII   靠近电源下
+serial console   靠近电源上，（亮灯）
+
+
+setenv prompt WM7000#
+setenv disable_pci 1
+setenv ethact octrgmii0;
+ dhcp;
+
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0
+
+//offset 1MB
+tftpboot 0 u-boot-octeon_sff7000_wm.bin
+sf probe; sf update $(fileaddr) 0x100000 $(filesize); reset
+
+//offset 8KB
+tftpboot 0 u-boot-octeon_generic_cn70xx_spi_stage2.bin
+sf probe;sf update $(fileaddr) 0x2000 $(filesize)
+
+//offset 0KB
+tftpboot 0 spi-boot.bin
+sf probe; sf update $(fileaddr) 0x0 $(filesize)
+
+
+
+##NAND uboot##
+ubi/ubifs
+
+setenv octeon_debug_nand info
+
+Octeon sff7000(ram)# nand info
+
+Device 0: nand0, sector size 256 KiB
+  Size           1024 MiB
+  Page size      4096 b
+  OOB size        256 b
+  Erase size   262144 b
+  ecc.mode        3 
+  ecc.bytes       15 b
+  ecc.size      512 b
+  ecc.strength        8 
+
+
+#### only use when oob area was corrupted
+#WM7000# nand scrub -y 0x0 0x40000000 
+###
+
+Octeon sff7000(ram)# nand erase.chip
+
+NAND erase.chip: device 0 whole chip
+Skipping bad block at  0x18000000                                          
+Skipping bad block at  0x18040000                                          
+Skipping bad block at  0x38000000                                          
+Skipping bad block at  0x38040000                                          
+Erasing at 0x3ffc0000 -- 100% complete.
+OK
+
+
+setenv mtdparts mtdparts=octeon_nand0:0x30000000@0x0(root),0xF000000@0x31000000(kernel)
+
+mtdparts
+ubi part root
+ubi create root
+
+Octeon sff7000(ram)# mtdparts 
+
+device nand0 <octeon_nand0>, # parts = 2
+ #: name                size            offset          mask_flags
+ 0: root                0x30000000      0x00000000      0
+ 1: kernel              0x0f000000      0x31000000      0
+
+active partition: nand0,0 - (root) 0x30000000 @ 0x00000000
+
+defaults:
+mtdids  : nand0=octeon_nand0
+mtdparts: octeon_nand0:6m(bootloader)ro,2m(environment),8m(kernel),512m(rootfs)
+Octeon sff7000(ram)# ubi part root
+UBI: attaching mtd1 to ubi0
+UBI: physical eraseblock size:   262144 bytes (256 KiB)
+UBI: logical eraseblock size:    258048 bytes
+UBI: smallest flash I/O unit:    4096
+UBI: sub-page size:              1024
+UBI: VID header offset:          1024 (aligned 1024)
+UBI: data offset:                4096
+UBI: empty MTD device detected
+UBI: create volume table (copy #1)
+UBI: create volume table (copy #2)
+UBI: attached mtd1 to ubi0
+UBI: MTD device name:            "mtd=0"
+UBI: MTD device size:            768 MiB
+UBI: number of good PEBs:        3070
+UBI: number of bad PEBs:         2
+UBI: max. allowed volumes:       128
+UBI: wear-leveling threshold:    4096
+UBI: number of internal volumes: 1
+UBI: number of user volumes:     0
+UBI: available PEBs:             3036
+UBI: total number of reserved PEBs: 34
+UBI: number of PEBs reserved for bad PEB handling: 30
+UBI: max/mean erase counter: 1/0
+Octeon sff7000(ram)# ubi create root
+No size specified -> Using max size (783433728)
+Creating dynamic volume root of size 783433728
+
+
+             
+                  
+#####boot LINUX
+make menuconfig ARCH=mips
+(1)Device Drivers ---> <*> Memory Technology Device (MTD) support ---> <*> Enable UBI - Unsorted block images 
+(2)File systems --->[*] Miscellaneous filesystems ---> <*> UBIFS file system support
+
+
+/home/sdk312/sdk312p7/OCTEON-SDKwm/
+source env-setup OCTEON_CN71XX
+cd linux
+vi kernel/kernel.config 
+modify
+CONFIG_CAVIUM_OCTEON_NAND=y
+make kernel
+cd /tmp
+mkfs.ubifs -r _home_sdk312_sdk312p7_OCTEON-SDKwm_linux_embedded_rootfs-rootfs/  -m 4096 -e 258048 -c 3000 -o rootfs_wm3000.ubi
+cp rootfs_wm3000.ubi /media/sf_F_DRIVE/tftproot/rootfs_wm3000.ubi
+
+cd /home/sdk312/sdk312p7/OCTEON-SDKwm/linux/
+make kernel-deb
+cp kernel/linux/vmlinux.64 /media/sf_F_DRIVE/tftproot/vmlinux.64.deb.wm
+
+
+#######install mkfs.ubifs on CentOS Linux release 7.1.1503 (Core)###
+yum install zlib-devel
+yum install lzo-devel
+wget ftp://ftp.infradead.org/pub/mtd-utils/mtd-utils-1.5.0.tar.bz2
+tar xjvf mtd-utils-1.5.0.tar.bz2 
+cd mtd-utils-1.5.0/
+make
+make install
+[root@localhost mtd-utils-1.5.0]# mkfs.ubifs -V
+mkfs.ubifs 1.5.0
+####### 
+
+ 
+ 
+ 
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0;
+tftpboot 0 rootfs_wm3000.ubi
+ubi write $(fileaddr) root $(filesize)
+
+tftpboot 0 vmlinux.64.deb.wm;
+check the $(filesize) is not larger than 0x6000000
+nand write $(fileaddr) 0x31000000 0x6000000
+
+
+reset
+
+nand read $(loadaddr) 0x31000000 0x6000000
+bootoctlinux 0 numcores=2 endbootargs ubi.mtd=0 root=ubi0:root rootfstype=ubifs rw octeon-nand.wmboard=1
+
+
+
+
+
+

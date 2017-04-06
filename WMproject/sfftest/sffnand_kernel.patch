@@ -1,0 +1,219 @@
+diff -purBN --no-dereference OCTEON-SDK.orig/linux/kernel/kernel.config OCTEON-SDKsffnand/linux/kernel/kernel.config
+--- OCTEON-SDK.orig/linux/kernel/kernel.config	2017-02-07 13:34:29.979296652 +0800
++++ OCTEON-SDKsffnand/linux/kernel/kernel.config	2017-02-07 13:41:09.201455826 +0800
+@@ -69,7 +69,7 @@ CONFIG_CAVIUM_OCTEON_LOCK_L2_LOW_LEVEL_I
+ CONFIG_CAVIUM_OCTEON_LOCK_L2_INTERRUPT=y
+ CONFIG_CAVIUM_OCTEON_LOCK_L2_MEMCPY=y
+ CONFIG_CAVIUM_RESERVE32=0
+-# CONFIG_CAVIUM_OCTEON_NAND is not set
++CONFIG_CAVIUM_OCTEON_NAND=y
+ CONFIG_CAVIUM_OCTEON_RAPIDIO=y
+ CONFIG_RAPIDIO=y
+ CONFIG_CAVIUM_OCTEON_ERROR_TREE=y
+diff -purBN --no-dereference OCTEON-SDK.orig/linux/kernel/linux/arch/mips/cavium-octeon/octeon-nand.c OCTEON-SDKsffnand/linux/kernel/linux/arch/mips/cavium-octeon/octeon-nand.c
+--- OCTEON-SDK.orig/linux/kernel/linux/arch/mips/cavium-octeon/octeon-nand.c	2017-02-07 13:34:30.010296730 +0800
++++ OCTEON-SDKsffnand/linux/kernel/linux/arch/mips/cavium-octeon/octeon-nand.c	2017-02-07 13:41:25.995777013 +0800
+@@ -8,7 +8,7 @@
+  *
+  * Copyright (C) 2008 - 2012 Cavium, Inc.
+  */
+-
++#define WM_DEBUG 1
+ #include <asm/octeon/cvmx.h>
+ #include <asm/octeon/cvmx-nand.h>
+ #include <asm/octeon/octeon.h>
+@@ -1372,6 +1372,10 @@ static int octeon_nand_probe(struct plat
+ 		priv->mtd.name = name;
+ 		priv->mtd.dev.parent = &pdev->dev;
+ 
++#ifdef WM_DEBUG
++		printk("[%s][%d]numeraseregions %d\n", __func__, __LINE__, priv->mtd.numeraseregions);
++		priv->mtd.numeraseregions = 0;
++#endif		
+ 		mtd_device_parse_register(&priv->mtd, part_probes,
+ 					  NULL, NULL, 0);
+ 		octeon_nand_open_mtd[chip] = priv;
+diff -purBN --no-dereference OCTEON-SDK.orig/linux/kernel/linux/drivers/mtd/mtdcore.c OCTEON-SDKsffnand/linux/kernel/linux/drivers/mtd/mtdcore.c
+--- OCTEON-SDK.orig/linux/kernel/linux/drivers/mtd/mtdcore.c	2015-11-21 09:53:10.000000000 +0800
++++ OCTEON-SDKsffnand/linux/kernel/linux/drivers/mtd/mtdcore.c	2017-02-07 13:41:46.255230873 +0800
+@@ -20,7 +20,7 @@
+  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  *
+  */
+-
++#define WM_DEBUG
+ #include <linux/module.h>
+ #include <linux/kernel.h>
+ #include <linux/ptrace.h>
+@@ -408,6 +408,11 @@ int add_mtd_device(struct mtd_info *mtd)
+ 	   of this try_ nonsense, and no bitching about it
+ 	   either. :) */
+ 	__module_get(THIS_MODULE);
++
++#ifdef WM_DEBUG
++	printk("[%s][%d]index %d name %s numeraseregions %d\n", __func__, __LINE__, 
++				mtd->index, mtd->name, mtd->numeraseregions);
++#endif	
+ 	return 0;
+ 
+ fail_added:
+@@ -629,6 +634,11 @@ struct mtd_info *get_mtd_device(struct m
+ 		goto out;
+ 	}
+ 
++#ifdef WM_DEBUG
++	if(mtd != NULL)
++	printk("[%s][%d]num %d index %d numeraseregions %d\n", __func__, __LINE__, 
++		num, mtd->index, mtd->numeraseregions);
++#endif
+ 	err = __get_mtd_device(ret);
+ 	if (err)
+ 		ret = ERR_PTR(err);
+@@ -683,7 +693,10 @@ struct mtd_info *get_mtd_device_nm(const
+ 
+ 	if (!mtd)
+ 		goto out_unlock;
+-
++#ifdef WM_DEBUG
++	printk("[%s][%d]index %d numeraseregions %d\n", __func__, __LINE__, 
++		 mtd->index, mtd->numeraseregions);
++#endif
+ 	err = __get_mtd_device(mtd);
+ 	if (err)
+ 		goto out_unlock;
+diff -purBN --no-dereference OCTEON-SDK.orig/linux/kernel/linux/drivers/mtd/ubi/build.c OCTEON-SDKsffnand/linux/kernel/linux/drivers/mtd/ubi/build.c
+--- OCTEON-SDK.orig/linux/kernel/linux/drivers/mtd/ubi/build.c	2015-11-21 09:53:10.000000000 +0800
++++ OCTEON-SDKsffnand/linux/kernel/linux/drivers/mtd/ubi/build.c	2017-02-07 13:42:17.055875168 +0800
+@@ -28,7 +28,7 @@
+  * specified, UBI does not attach any MTD device, but it is possible to do
+  * later using the "UBI control device".
+  */
+-
++#define WM_DEBUG 1
+ #include <linux/err.h>
+ #include <linux/module.h>
+ #include <linux/moduleparam.h>
+@@ -501,7 +501,9 @@ static int uif_init(struct ubi_device *u
+ {
+ 	int i, err;
+ 	dev_t dev;
+-
++#ifdef WM_DEBUG
++	printk("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	*ref = 0;
+ 	sprintf(ubi->ubi_name, UBI_NAME_STR "%d", ubi->ubi_num);
+ 
+@@ -648,7 +650,7 @@ static int io_init(struct ubi_device *ub
+ 		 * guess we should just pick the largest region. But this is
+ 		 * not implemented.
+ 		 */
+-		ubi_err("multiple regions, not implemented");
++		ubi_err("multiple regions %d, not implemented", ubi->mtd->numeraseregions);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -868,6 +870,10 @@ int ubi_attach_mtd_dev(struct mtd_info *
+ 	struct ubi_device *ubi;
+ 	int i, err, ref = 0;
+ 
++#ifdef WM_DEBUG
++	printk("[%s][%d]\n", __func__, __LINE__);
++#endif
++
+ 	if (max_beb_per1024 < 0 || max_beb_per1024 > MAX_MTD_UBI_BEB_LIMIT)
+ 		return -EINVAL;
+ 
+@@ -969,7 +975,9 @@ int ubi_attach_mtd_dev(struct mtd_info *
+ 	init_rwsem(&ubi->fm_sem);
+ 
+ 	ubi_msg("attaching mtd%d to ubi%d", mtd->index, ubi_num);
+-
++#ifdef WM_DEBUG
++	printk("[%s][%d] mtd%d to ubi%d\n", __func__, __LINE__,  mtd->index, ubi_num);
++#endif
+ 	err = io_init(ubi, max_beb_per1024);
+ 	if (err)
+ 		goto out_free;
+@@ -996,7 +1004,9 @@ int ubi_attach_mtd_dev(struct mtd_info *
+ 		if (err)
+ 			goto out_detach;
+ 	}
+-
++#ifdef WM_DEBUG
++	printk("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	err = uif_init(ubi, &ref);
+ 	if (err)
+ 		goto out_detach;
+@@ -1012,7 +1022,9 @@ int ubi_attach_mtd_dev(struct mtd_info *
+ 			err);
+ 		goto out_debugfs;
+ 	}
+-
++#ifdef WM_DEBUG
++	printk("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	ubi_msg("attached mtd%d (name \"%s\", size %llu MiB) to ubi%d",
+ 		mtd->index, mtd->name, ubi->flash_size >> 20, ubi_num);
+ 	ubi_msg("PEB size: %d bytes (%d KiB), LEB size: %d bytes",
+@@ -1219,7 +1231,9 @@ static int __init ubi_init(void)
+ 		ubi_err("too many MTD devices, maximum is %d", UBI_MAX_DEVICES);
+ 		return -EINVAL;
+ 	}
+-
++#ifdef WM_DEBUG
++	printk("[%s][%d]mtd_devs %d\n", __func__, __LINE__, mtd_devs);
++#endif
+ 	/* Create base sysfs directory and sysfs files */
+ 	ubi_class = class_create(THIS_MODULE, UBI_NAME_STR);
+ 	if (IS_ERR(ubi_class)) {
+@@ -1227,7 +1241,9 @@ static int __init ubi_init(void)
+ 		ubi_err("cannot create UBI class");
+ 		goto out;
+ 	}
+-
++#ifdef WM_DEBUG
++	printk("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	err = class_create_file(ubi_class, &ubi_version);
+ 	if (err) {
+ 		ubi_err("cannot create sysfs file");
+@@ -1239,25 +1255,33 @@ static int __init ubi_init(void)
+ 		ubi_err("cannot register device");
+ 		goto out_version;
+ 	}
+-
++#ifdef WM_DEBUG
++	printk("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	ubi_wl_entry_slab = kmem_cache_create("ubi_wl_entry_slab",
+ 					      sizeof(struct ubi_wl_entry),
+ 					      0, 0, NULL);
+ 	if (!ubi_wl_entry_slab)
+ 		goto out_dev_unreg;
+-
++#ifdef WM_DEBUG
++	printk("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	err = ubi_debugfs_init();
+ 	if (err)
+ 		goto out_slab;
+ 
+-
++#ifdef WM_DEBUG
++	printk("[%s][%d]\n", __func__, __LINE__);
++#endif
+ 	/* Attach MTD devices */
+ 	for (i = 0; i < mtd_devs; i++) {
+ 		struct mtd_dev_param *p = &mtd_dev_param[i];
+ 		struct mtd_info *mtd;
+ 
+ 		cond_resched();
+-
++#ifdef WM_DEBUG
++		printk("[%s][%d]i %d, p->name %s\n", __func__, __LINE__, i, p->name);
++#endif
+ 		mtd = open_mtd_device(p->name);
+ 		if (IS_ERR(mtd)) {
+ 			err = PTR_ERR(mtd);
