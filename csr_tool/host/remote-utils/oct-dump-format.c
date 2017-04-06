@@ -24,7 +24,7 @@ void Parser_register(struct reg_info * reginfo)
 	if (ret != 0) {
 		/* This lists all csr names by partial or full basename */
 		fprintf(stderr, "CSR not found in list. Looking for prefix \"%s\"\n", reginfo->regname);
-		cvmx_csr_db_print_decode_by_prefix_node(0, octeon_model, reginfo->regname, 0);
+		//cvmx_csr_db_print_decode_by_prefix_node(0, octeon_model, reginfo->regname, 0);
 		ret = 0;
 		return ;
 	}

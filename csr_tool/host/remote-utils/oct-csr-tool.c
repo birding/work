@@ -7,8 +7,8 @@
 #include "cvmx-csr-db.h"
 #include "cvmx-version.h"
 
-
-#define OCT_CSR_TOOL_VERSION_STRING "1.1.7"
+//version 1.1.8 fixed bug in format function
+#define OCT_CSR_TOOL_VERSION_STRING "1.1.8"
 
 int octeon_model = -1;
 char * octeon_modelStr = NULL;
