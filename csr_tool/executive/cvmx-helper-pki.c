@@ -45,6 +45,7 @@
 #ifdef CVMX_BUILD_FOR_LINUX_KERNEL
 #include <linux/module.h>
 #include <asm/octeon/cvmx.h>
+#include <asm/octeon/octeon.h>
 #include <asm/octeon/cvmx-pki-defs.h>
 #include <asm/octeon/cvmx-pki.h>
 #include <asm/octeon/cvmx-pow.h>
@@ -2031,7 +2032,6 @@ int cvmx_helper_pki_route_prt_dmac(int xipd_port, uint64_t mac_addr, uint64_t ma
 	}
 	st_cfg.parm_cfg.qpg_base = index;
 	cvmx_pki_write_style_config(node, new_style, CVMX_PKI_CLUSTER_ALL, &st_cfg);
-	cvmx_helper_pki_route_dmac(node, style, 0xffffffffffff, 0xffffffffffff, new_style);
-	cvmx_helper_pki_route_dmac(node, style, 0x0a0203040506, 0xffffffffffff, new_style);
+	cvmx_helper_pki_route_dmac(node, style, mac_addr, mac_addr_mask, new_style);
 	return new_style;
 }

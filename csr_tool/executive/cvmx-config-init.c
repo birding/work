@@ -355,10 +355,15 @@ void cvmx_timer_config_init_from_cvmx_config(void)
 #define CVMX_FPA_TIMER_POOL -1
 #define CVMX_FPA_TIMER_POOL_SIZE 0
 #endif
-	timer_config.timer_pool.pool_num = CVMX_FPA_TIMER_POOL;
-	timer_config.timer_pool.buffer_size = CVMX_FPA_TIMER_POOL_SIZE;
-	timer_config.timer_pool.buffer_count = 0;
+	/* The following line will create 'TIMER' named block
+	 * and assign pointer to it to the global 'timer_config'
+	 */
 
+	cvmx_tim_set_fpa_pool_config(CVMX_FPA_TIMER_POOL, 1024,
+			CVMX_FPA_TIMER_POOL_SIZE);
+	timer_config->timer_pool.pool_num = CVMX_FPA_TIMER_POOL;
+	timer_config->timer_pool.buffer_size = CVMX_FPA_TIMER_POOL_SIZE;
+	timer_config->timer_pool.buffer_count = 0;
 }
 #endif
 

@@ -45,7 +45,7 @@
  * initialization and differentiation of roles within a single shared binary
  * executable image.
  *
- * <hr>$Revision: 113772 $<hr>
+ * <hr>$Revision: 156180 $<hr>
  *
  */
 
@@ -56,12 +56,14 @@
 #include <asm/arch/cvmx-asm.h>
 #include <asm/arch/cvmx-spinlock.h>
 #include <asm/arch/cvmx-coremask.h>
+#include <asm/arch/cvmx-bootmem.h>
 #elif defined(CVMX_BUILD_FOR_LINUX_KERNEL)
 #include <linux/ctype.h>
 #include <asm/octeon/cvmx.h>
 #include <asm/octeon/cvmx-asm.h>
 #include <asm/octeon/cvmx-spinlock.h>
 #include <asm/octeon/cvmx-coremask.h>
+#include <asm/octeon/cvmx-bootmem.h>
 #else
 #include <ctype.h>
 #include <errno.h>
@@ -70,6 +72,7 @@
 #include "cvmx-asm.h"
 #include "cvmx-spinlock.h"
 #include "cvmx-coremask.h"
+#include "cvmx-bootmem.h"
 #endif
 
 #define  CVMX_COREMASK_MAX_SYNCS  20	/* maximum number of coremasks for barrier sync */
@@ -92,6 +95,12 @@ CVMX_SHARED static struct {
 } state = {
 	{CVMX_SPINLOCK_UNLOCKED_VAL}, { {{{0,},}, {{0,},}, 0}, },
 };
+
+
+#ifndef CVMX_BUILD_FOR_LINUX_HOST
+/* when run on HOST cvmx_get_core_num() is not applicable,
+ * so this func as well
+ */
 
 /**
  * Wait (stall) until all cores in the given coremask has reached this point
@@ -146,6 +155,9 @@ void cvmx_coremask_barrier_sync(const cvmx_coremask_t *pcm)
 	assert(0);
 #endif
 }
+
+#endif
+
 
 int cvmx_coremask_str2bmp(cvmx_coremask_t *pcm, char *hexstr)
 {
@@ -317,3 +329,120 @@ void cvmx_coremask_print(const cvmx_coremask_t *pcm)
 		cvmx_printf("<EMPTY>");
 	cvmx_printf("\n");
 }
+
+
+/* Don't include cvmx_get_avail_coremask and cvmx_get_hardware_coremask while building for newlib.  */
+#if !defined(__OCTEON_NEWLIB__)
+
+/* local helping function - will work ONLY with size%8 = 0 (OK for this use) */
+static
+int __cvmx_copy_from_bootmem(int64_t bootmem_src_addr, void *dst_ptr, int size)
+{
+	int i;
+	int64_t base_addr = (1ull << 63) | bootmem_src_addr;
+	uint64_t *ptr64 = (uint64_t *)dst_ptr;
+
+	for (i = 0; i < size/8; i++) {
+		ptr64[i] = cvmx_read64_uint64(base_addr);
+		base_addr += 8;
+	}
+	return 0;
+}
+
+/*
+ * Gets the 'avail_coremask' from the dedicated (BOOTINFO) named block
+ * @param[out] coremask pointer where to copy avail_coremask
+ * @return 0 on success, -1 otherwise
+ */
+int cvmx_get_avail_coremask(cvmx_coremask_t *coremask)
+{
+	cvmx_cores_common_bootinfo_t ccbi;
+	const cvmx_bootmem_named_block_desc_t *ccbi_desc;
+	static cvmx_coremask_t avail_coremask = CVMX_COREMASK_EMPTY;
+	
+	if (coremask == NULL)
+		return -1; /* ERROR: wrong param - 'return -1' */
+	
+	if (!cvmx_coremask_is_empty(&avail_coremask)) {
+		/* return the cashed result */
+		cvmx_coremask_copy(coremask, &avail_coremask);
+		return 0;
+	}
+	
+	ccbi_desc =
+		cvmx_bootmem_find_named_block(CVMX_APP_COMMON_BOOTINFO_NAME);
+	if (!ccbi_desc) {
+		cvmx_dprintf("Info: named_block<%s> not found.\n",
+			     CVMX_APP_COMMON_BOOTINFO_NAME);
+		return -1;
+	}
+	if (ccbi_desc) { /* 'common bootinfo' named block is found - use it*/
+		__cvmx_copy_from_bootmem(ccbi_desc->base_addr, &ccbi,
+					sizeof(cvmx_cores_common_bootinfo_t));
+		/* Validate signature */
+		if (ccbi.magic != CVMX_COMMON_BOOTINFO_MAGIC)
+			return -1; /* if 'magic' does not match - exit */
+		/* the members from the initial(1) version are always valid */
+		/* only avail_coremask is need - fill it in */
+		cvmx_coremask_copy(coremask, &ccbi.avail_coremask);
+		/* the extra (version) members (if any) are valid when
+		 * (2 <= ccbi.version <= CVMX_COMMON_BOOTINFO_VERSION)
+		 * if (ccbi.version >= 2) { xxx = ccbi.ver2_member; }
+		 */
+		/* cache the result in the local static 'avail_coremask' */
+		cvmx_coremask_copy(&avail_coremask, coremask);
+	}
+	return 0;
+}
+
+
+/*
+ * Gets the 'hardware_coremask' from the dedicated (BOOTINFO) named block
+ * @param[out] coremask pointer where to copy hardware_coremask
+ * @return 0 on success, -1 otherwise
+ */
+int cvmx_get_hardware_coremask(cvmx_coremask_t *coremask)
+{
+	cvmx_cores_common_bootinfo_t ccbi;
+	const cvmx_bootmem_named_block_desc_t *ccbi_desc;
+	static cvmx_coremask_t hardware_coremask = CVMX_COREMASK_EMPTY;
+	
+	if (coremask == NULL)
+		return -1; /* ERROR: wrong param - 'return -1' */
+	
+	if (!cvmx_coremask_is_empty(&hardware_coremask)) {
+		/* return the cashed result */
+		cvmx_coremask_copy(coremask, &hardware_coremask);
+		return 0;
+	}
+	
+	/* get the hardware_coremask from the BOOTINFO name block */
+	ccbi_desc =
+		cvmx_bootmem_find_named_block(CVMX_APP_COMMON_BOOTINFO_NAME);
+	if (!ccbi_desc) {
+		cvmx_dprintf("Info: named_block<%s> not found.\n",
+			     CVMX_APP_COMMON_BOOTINFO_NAME);
+		return -1;
+	}
+	if (ccbi_desc) { /* 'common bootinfo' named block is found - use it*/
+		__cvmx_copy_from_bootmem(ccbi_desc->base_addr, &ccbi,
+					sizeof(cvmx_cores_common_bootinfo_t));
+		/* Validate signature */
+		if (ccbi.magic != CVMX_COMMON_BOOTINFO_MAGIC)
+			return -1; /* if 'magic' does not match - exit */
+		/* the members from the initial(1) version are always valid */
+		/* only hardware_coremask is need - fill it in */
+		cvmx_coremask_copy(coremask, &ccbi.hardware_coremask);
+		/* the extra (version) members (if any) are valid when
+		 * (2 <= ccbi.version <= CVMX_COMMON_BOOTINFO_VERSION)
+		 * if (ccbi.version >= 2) { xxx = ccbi.ver2_member; }
+		 */
+		/* cache the result in the local static 'hardware_coremask' */
+		cvmx_coremask_copy(&hardware_coremask, coremask);
+	}
+	return 0;
+}
+
+#endif
+
+

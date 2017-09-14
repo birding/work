@@ -42,7 +42,7 @@
  *
  * Interface to the hardware work queue timers.
  *
-`* <hr>$Revision: 137666 $<hr>
+`* <hr>$Revision: 156689 $<hr>
  */
 
 #ifndef __CVMX_TIM_H__
@@ -53,6 +53,7 @@
 #include "cvmx-wqe.h"
 #include "cvmx-spinlock.h"
 #include "cvmx-utils.h"
+//#include "cvmx-bootmem.h"
 
 #ifdef	__cplusplus
 /* *INDENT-OFF* */
@@ -64,16 +65,23 @@ extern "C" {
 
 static inline unsigned cvmx_tim_num_rings(void)
 {
+	static unsigned processed = 0;
+	if (processed)
+		return processed;
+	
 	if (OCTEON_IS_MODEL(OCTEON_CN68XX))
-		return  64; 
+		processed = 64;
 	else if (OCTEON_IS_MODEL(OCTEON_CN78XX)) 
-		return  64;
+		processed = 64;
 	else if (OCTEON_IS_MODEL(OCTEON_CN73XX)) 
-		return  64;
+		processed = 64;
 	else if (OCTEON_IS_MODEL(OCTEON_CNF75XX)) 
-		return  64;
+		processed = 64;
 	else
-		return 16;
+		processed = 16;
+
+	return processed;
+	
 }
 
 #define CVMX_TIM_NUM_BUCKETS  2048 /* According to HRM, this should be 4096; revisit */
@@ -83,6 +91,7 @@ static inline unsigned cvmx_tim_num_rings(void)
  * linux/arch/mips/include/uapi/asm/sysmips.h
  */
 #define MIPS_CAVIUM_ARM_TIMER	 2012
+#define MIPS_CAVIUM_DISARM_TIMER 2013
 
 #define TIM_DEBUG 0
 
@@ -121,11 +130,15 @@ typedef struct cvmx_tim_entry_chunk {
  */
 typedef struct {
 	volatile uint64_t first_chunk_addr;
+#if __BYTE_ORDER == __BIG_ENDIAN
 	volatile uint32_t num_entries;		    /**< Zeroed by HW after traversing list */
 	volatile uint32_t chunk_remainder;	    /**< Zeroed by HW after traversing list */
-
+#else
+	volatile uint32_t num_entries;		    /**< Zeroed by HW after traversing list */
+	volatile uint32_t chunk_remainder;	    /**< Zeroed by HW after traversing list */
+#endif
 	/* the remaining 16 bytes are not touched by hardware */
-	volatile cvmx_tim_entry_chunk_t *last_chunk;
+	volatile cvmx_tim_entry_chunk_t *last_chunk;/* this should be 8 bytes */
 	uint64_t pad;
 } cvmx_tim_bucket_entry_t;
 
@@ -140,10 +153,17 @@ typedef struct {
 	cvmx_tim_bucket_entry_t *bucket;	/**< The timer buckets. Array of [CVMX_TIM_NUM_TIMERS][CVMX_TIM_NUM_BUCKETS] */
 	uint64_t tick_cycles;			/**< How long a bucket represents */
 	uint64_t start_time;			/**< Time the timer started in cycles */
+#if __BYTE_ORDER == __BIG_ENDIAN
 	uint32_t bucket_shift;			/**< How long a bucket represents in ms */
 	uint32_t num_buckets;			/**< How many buckets per wheel */
 	uint32_t max_ticks;			/**< maximum number of ticks allowed for timer */
 	uint32_t num_rings;			/**< number of rings available */
+#else
+	uint32_t num_buckets;			/**< How many buckets per wheel */
+	uint32_t bucket_shift;			/**< How long a bucket represents in ms */
+	uint32_t num_rings;			/**< number of rings available */
+	uint32_t max_ticks;			/**< maximum number of ticks allowed for timer */
+#endif
 } cvmx_tim_t;
 
 /**
@@ -161,10 +181,17 @@ typedef struct
 	uint64_t	bucket;
 	uint64_t	tick_cycles;
 	uint64_t	start_time;
+#if __BYTE_ORDER == __BIG_ENDIAN
 	uint32_t	bucket_shift;
 	uint32_t	num_buckets;
 	uint32_t	max_ticks;
 	uint32_t	num_rings;
+#else
+	uint32_t	num_buckets;
+	uint32_t	bucket_shift;
+	uint32_t	num_rings;
+	uint32_t	max_ticks;
+#endif
 } cvmx_tim_kernel_t;
 
 /**
@@ -179,8 +206,13 @@ typedef struct
 {
 	uint64_t		wqe;
 	uint64_t		ticks_from_now;
+#if __BYTE_ORDER == __BIG_ENDIAN
 	uint32_t		timer_pool;
 	uint32_t		timer_pool_size;
+#else
+	uint32_t		timer_pool_size;
+	uint32_t		timer_pool;
+#endif
 	cvmx_tim_kernel_t	cvmx_tim;
 } cvmx_tim_info_t;
 
@@ -207,14 +239,17 @@ typedef struct
 	cvmx_fpa_pool_config_t timer_pool;	/* pool==aura on CN78XX */
 }cvmx_tim_config_t;
 
-extern CVMX_SHARED cvmx_tim_config_t timer_config;
+extern cvmx_tim_config_t *timer_config;
+extern const char tim_named_block_name[];
+extern void cvmx_create_tim_named_block_once(void);
 
 /**
  * Gets the fpa pool number of timer pool
  */
 static inline int64_t cvmx_fpa_get_timer_pool(void)
 {
-	return (timer_config.timer_pool.pool_num);
+	cvmx_create_tim_named_block_once();
+	return (timer_config->timer_pool.pool_num);
 }
 
 /**
@@ -222,7 +257,8 @@ static inline int64_t cvmx_fpa_get_timer_pool(void)
  */
 static inline uint64_t cvmx_fpa_get_timer_pool_block_size(void)
 {
-	return (timer_config.timer_pool.buffer_size);
+	cvmx_create_tim_named_block_once();
+	return (timer_config->timer_pool.buffer_size);
 }
 
 /**
@@ -230,7 +266,8 @@ static inline uint64_t cvmx_fpa_get_timer_pool_block_size(void)
  */
 static inline uint64_t cvmx_fpa_get_timer_pool_buffer_count(void)
 {
-	return (timer_config.timer_pool.buffer_count);
+	cvmx_create_tim_named_block_once();
+	return (timer_config->timer_pool.buffer_count);
 }
 
 /**
@@ -252,7 +289,7 @@ void cvmx_tim_get_fpa_pool_config(cvmx_fpa_pool_config_t *timer_pool);
 /**
  * Global structure holding the state of all timers.
  */
-CVMX_SHARED extern cvmx_tim_t cvmx_tim;
+extern cvmx_tim_t *cvmx_tim;
 
 /**
  * Setup a timer for use. Must be called before the timer
@@ -326,24 +363,21 @@ static inline cvmx_tim_status_t cvmx_tim_add_entry(cvmx_wqe_t * work_entry, uint
 #ifdef CVMX_BUILD_FOR_LINUX_USER
 	cvmx_tim_info_t	tim_info;
 
-	if (delete_info)
-		return CVMX_TIM_STATUS_NOT_SUPPORTED;
-
 	tim_info.wqe = cvmx_ptr_to_phys(work_entry);
 	tim_info.ticks_from_now = ticks_from_now;
 	tim_info.timer_pool = (uint32_t)cvmx_fpa_get_timer_pool();
 	tim_info.timer_pool_size =
 		(uint32_t)cvmx_fpa_get_timer_pool_block_size();
 
-	tim_info.cvmx_tim.bucket = CAST64(cvmx_tim.bucket);
-	tim_info.cvmx_tim.tick_cycles = cvmx_tim.tick_cycles;
-	tim_info.cvmx_tim.start_time = cvmx_tim.start_time;
-	tim_info.cvmx_tim.bucket_shift = cvmx_tim.bucket_shift;
-	tim_info.cvmx_tim.num_buckets = cvmx_tim.num_buckets;
-	tim_info.cvmx_tim.max_ticks = cvmx_tim.max_ticks;
-	tim_info.cvmx_tim.num_rings = cvmx_tim.num_rings;
+	tim_info.cvmx_tim.bucket = CAST64(cvmx_tim->bucket);
+	tim_info.cvmx_tim.tick_cycles = cvmx_tim->tick_cycles;
+	tim_info.cvmx_tim.start_time = cvmx_tim->start_time;
+	tim_info.cvmx_tim.bucket_shift = cvmx_tim->bucket_shift;
+	tim_info.cvmx_tim.num_buckets = cvmx_tim->num_buckets;
+	tim_info.cvmx_tim.max_ticks = cvmx_tim->max_ticks;
+	tim_info.cvmx_tim.num_rings = cvmx_tim->num_rings;
 
-	return (cvmx_tim_status_t)sysmips(MIPS_CAVIUM_ARM_TIMER, &tim_info);
+	return (cvmx_tim_status_t)sysmips(MIPS_CAVIUM_ARM_TIMER, &tim_info, delete_info);
 #else
 	cvmx_tim_bucket_entry_t *work_bucket_ptr;
 	uint64_t work_bucket;
@@ -355,7 +389,7 @@ static inline cvmx_tim_status_t cvmx_tim_add_entry(cvmx_wqe_t * work_entry, uint
 	const uint64_t core_num = cvmx_get_core_num();	/* One timer per processor, so use this to select */
 
 	/* Make sure the specified time won't wrap our bucket list */
-	if (cvmx_unlikely(ticks_from_now > cvmx_tim.max_ticks)) {
+	if (cvmx_unlikely(ticks_from_now > cvmx_tim->max_ticks)) {
 		cvmx_dprintf("cvmx_tim_add_entry: Tried to schedule work too far away.\n");
 		return CVMX_TIM_STATUS_TOO_FAR_AWAY;
 	}
@@ -385,11 +419,11 @@ static inline cvmx_tim_status_t cvmx_tim_add_entry(cvmx_wqe_t * work_entry, uint
 		work_bucket += ticks_from_now;
 	} else {
 	    /* FIXME: this version needs an explanation */
-	work_bucket = (((ticks_from_now * cvmx_tim.tick_cycles) + cycles - cvmx_tim.start_time)
-		       >> cvmx_tim.bucket_shift);
+	work_bucket = (((ticks_from_now * cvmx_tim->tick_cycles) + cycles - cvmx_tim->start_time)
+		       >> cvmx_tim->bucket_shift);
 	}
 
-	work_bucket_ptr = cvmx_tim.bucket + core_num * cvmx_tim.num_buckets + (work_bucket & (cvmx_tim.num_buckets - 1));
+	work_bucket_ptr = cvmx_tim->bucket + core_num * cvmx_tim->num_buckets + (work_bucket & (cvmx_tim->num_buckets - 1));
 	entries_per_chunk = (cvmx_fpa_get_timer_pool_block_size() / 8 - 1);
 
 	/* Check if we have room to add this entry into the existing list */
@@ -452,7 +486,7 @@ static inline cvmx_tim_status_t cvmx_tim_add_entry(cvmx_wqe_t * work_entry, uint
 		   freed, and possible allocated again. For this reason we store a
 		   commit cycle count in the delete structure. If we are after this
 		   count we will refuse to delete the timer entry. */
-		delete_info->commit_cycles = cycles + (ticks_from_now - 2) * cvmx_tim.tick_cycles;
+		delete_info->commit_cycles = cycles + (ticks_from_now - 2) * cvmx_tim->tick_cycles;
 		delete_info->timer_entry_ptr = (uint64_t *) tim_entry_ptr;	/* Cast to non-volatile type */
 	}
 
@@ -476,6 +510,9 @@ static inline cvmx_tim_status_t cvmx_tim_add_entry(cvmx_wqe_t * work_entry, uint
  */
 static inline cvmx_tim_status_t cvmx_tim_delete_entry(cvmx_tim_delete_t * delete_info)
 {
+#ifdef CVMX_BUILD_FOR_LINUX_USER
+	return (cvmx_tim_status_t)sysmips(MIPS_CAVIUM_DISARM_TIMER, delete_info, NULL);
+#else
 	const uint64_t cycles = cvmx_clock_get_count(CVMX_CLOCK_TIM);
 
 	if ((int64_t) (cycles - delete_info->commit_cycles) < 0) {
@@ -486,6 +523,7 @@ static inline cvmx_tim_status_t cvmx_tim_delete_entry(cvmx_tim_delete_t * delete
 		/* Timer is passed the commit time. It cannot be stopped */
 		return CVMX_TIM_STATUS_BUSY;
 	}
+#endif /* CVMX_BUILD_FOR_LINUX_USER */
 }
 
 #ifdef	__cplusplus

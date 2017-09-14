@@ -42,7 +42,7 @@
  *
  * Interface to the Mips interrupts.
  *
- * <hr>$Revision: 135591 $<hr>
+ * <hr>$Revision: 147960 $<hr>
  */
 #ifndef __U_BOOT__
 #if __GNUC__ >= 4
@@ -1639,6 +1639,9 @@ static unsigned int cvmx_interrupt_map_ciu3(cvmx_irq_t e)
 		break;
 	case CVMX_IRQ_UART0 + 1:
 		hw_int = 0x08040;
+		break;
+	case CVMX_IRQ_WDOG0 ... (CVMX_IRQ_WDOG0 + 47):
+		hw_int = (e - CVMX_IRQ_WDOG0) + 0x1200;
 		break;
 	default:
 		cvmx_warn("cvmx_interrupt_map: Illegal irq_number %d\n", e);

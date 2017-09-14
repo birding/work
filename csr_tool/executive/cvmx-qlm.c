@@ -42,7 +42,7 @@
  *
  * Helper utilities for qlm.
  *
- * <hr>$Revision: 144112 $<hr>
+ * <hr>$Revision: 154266 $<hr>
  */
 #ifdef CVMX_BUILD_FOR_LINUX_KERNEL
 #include <asm/octeon/cvmx.h>
@@ -2309,10 +2309,10 @@ int __cvmx_qlm_rx_equalization(int node, int qlm, int lane)
 			cvmx_gserx_lanex_rx_vma_status_0_t rx_vma_status_0;
 			int dfe1, dfe2, dfe3, dfe4, dfe5, pre_ctle, post_ctle, ctle_pole, ctle_peak;
 # endif
-			cvmx_dprintf("%d:QLM%d: Lane %d RX equalization completed.\n",
+			cvmx_dprintf("%d:QLM%d: Lane%d: RX equalization completed.\n",
 				node, qlm, l);
-			cvmx_dprintf("%d:QLM%d: Tx Direction Hints TXPRE: %s, TXMAIN: %s, TXPOST: %s, Figure of Merit: %d\n",
-				node, qlm,
+			cvmx_dprintf("%d:QLM%d: Lane%d: Tx Direction Hints TXPRE: %s, TXMAIN: %s, TXPOST: %s, Figure of Merit: %d\n",
+				node, qlm, l,
 				dir_label[(rxx_eer.s.rxt_esm) & 0x3],
 				dir_label[((rxx_eer.s.rxt_esm) >> 2) & 0x3],
 				dir_label[((rxx_eer.s.rxt_esm) >> 4) & 0x3],
@@ -2399,6 +2399,41 @@ int cvmx_qlm_gser_errata_27882(int node, int qlm, int lane)
 	clifc2.s.ctlifc_ovrrd_req = 1;
 	cvmx_write_csr_node(node, CVMX_GSERX_LANEX_PCS_CTLIFC_2(lane, qlm), clifc2.u64);
 	return 0;
+}
+
+/**
+ * Updates the RX EQ Default Settings Update (CTLE Bias) to support longer SERDES channels
+ *
+ * @INTERNAL
+ *
+ * @param node	Node number to configure
+ * @param qlm	QLM number to configure
+ */
+void cvmx_qlm_gser_errata_25992(int node, int qlm)
+{
+	int lane;
+	int num_lanes = cvmx_qlm_get_lanes(qlm);
+
+	if (!(OCTEON_IS_MODEL(OCTEON_CN73XX_PASS1_0)
+	      || OCTEON_IS_MODEL(OCTEON_CN73XX_PASS1_1)
+	      || OCTEON_IS_MODEL(OCTEON_CN73XX_PASS1_2)
+	      || OCTEON_IS_MODEL(OCTEON_CN78XX_PASS1_X)))
+		return;
+
+	for (lane = 0; lane < num_lanes; lane++) {
+
+		cvmx_gserx_lanex_rx_ctle_ctrl_t rx_ctle_ctrl;
+		cvmx_gserx_lanex_rx_cfg_4_t rx_cfg_4;
+
+		rx_ctle_ctrl.u64 = cvmx_read_csr_node(node, CVMX_GSERX_LANEX_RX_CTLE_CTRL(lane, qlm));
+		rx_ctle_ctrl.s.pcs_sds_rx_ctle_bias_ctrl = 3;
+		cvmx_write_csr_node(node, CVMX_GSERX_LANEX_RX_CTLE_CTRL(lane, qlm), rx_ctle_ctrl.u64);
+
+		rx_cfg_4.u64 = cvmx_read_csr_node(node, CVMX_GSERX_LANEX_RX_CFG_4(lane, qlm));
+		rx_cfg_4.s.cfg_rx_errdet_ctrl = 0xcd6f;
+		cvmx_write_csr_node(node, CVMX_GSERX_LANEX_RX_CFG_4(lane, qlm), rx_cfg_4.u64);
+
+	}
 }
 
 void cvmx_qlm_display_registers(int qlm)

@@ -373,6 +373,15 @@ int cvmx_error_intsn_enable_v3(int node, uint32_t intsn);
 int cvmx_error_intsn_disable_v3(int node, uint32_t intsn);
 
 /**
+ * Clear interrupt for a specific INTSN.
+ *
+ * @param intsn Interrupt source number
+ *
+ * @return Zero on success, negative on failure.
+ */
+int cvmx_error_intsn_clear_v3(int node, uint32_t intsn);
+
+/**
  * Enable interrupts for a specific CSR(all the bits/intsn in the csr).
  *
  * @param node Node number
@@ -412,6 +421,16 @@ int cvmx_error_enable_group_v3(cvmx_error_group_t group, int xipd_port);
  * @return Zero.
  */
 int cvmx_error_disable_group_v3(cvmx_error_group_t group, int xipd_port);
+
+/**
+ * Clear all error registers for a logical group.
+ *
+ * @param group  Logical group to disable
+ * @param xipd_port  The IPD port value
+ *
+ * @return Zero.
+ */
+int cvmx_error_clear_group_v3(cvmx_error_group_t group, int xipd_port);
 
 #ifdef	__cplusplus
 /* *INDENT-OFF* */

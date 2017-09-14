@@ -327,9 +327,13 @@ int cvmx_helper_initialize_fpa(int packet_buffers, int work_queue_entries,
 	int packet_pool = (int)cvmx_fpa_get_packet_pool();
 	int wqe_pool = (int)cvmx_fpa_get_wqe_pool();
 	int outputbuffer_pool = (int)cvmx_fpa_get_pko_pool();
-	int timer_pool = (int)cvmx_fpa_get_timer_pool();
+	int timer_pool;
 	int dfa_pool = (int)cvmx_fpa_get_dfa_pool();
 	int rv;
+
+	cvmx_create_tim_named_block_once();
+
+	timer_pool = (int)cvmx_fpa_get_timer_pool();
 
 	rv = __cvmx_helper_initialize_fpa(packet_pool,
 					  cvmx_fpa_get_packet_pool_block_size(),

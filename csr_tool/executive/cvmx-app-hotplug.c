@@ -51,13 +51,19 @@
 #include "cvmx-mbox.h"
 #include "cvmx-debug.h"
 
-/* #define DEBUG 1 */
-
 static cvmx_app_hotplug_global_t *hotplug_global_ptr = 0;
 
 #ifdef CVMX_BUILD_FOR_LINUX_USER
 #include <unistd.h>
 #endif
+
+/* You can temporary enable debugging by
+ * #define DEBUG
+ * but this will produce unstabilities:
+ *  - timeouts waiting for cores to be unplugged
+ *  - hotplug_app is not hotplug activated/registered, etc.
+ * For production use 'DEBUG' SHOULD BE DISABLED!!!
+ */
 
 #ifndef CVMX_BUILD_FOR_LINUX_USER
 
@@ -765,7 +771,7 @@ int cvmx_app_hotplug_get_index(const struct cvmx_coremask *pcm)
  * @return             Returns hotplug info struct on success, NULL on failure
  *
  */
-cvmx_app_hotplug_info_t *cvmx_app_hotplug_get_info_at_index(int index)
+static cvmx_app_hotplug_info_t *cvmx_app_hotplug_get_info_at_index(int index)
 {
 	cvmx_app_hotplug_info_t *hip;
 	cvmx_app_hotplug_global_t *hgp;

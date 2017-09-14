@@ -42,23 +42,26 @@
  *
  * Support library for the hardware work queue timers.
  *
- * <hr>$Revision: 117659 $<hr>
+ * <hr>$Revision: 156689 $<hr>
  */
 
 #include "cvmx.h"
 #include "cvmx-sysinfo.h"
-#include "cvmx-tim.h"
 #include "cvmx-bootmem.h"
 #include "cvmx-helper-fpa.h"
+#include "cvmx-tim.h"
 
 /* CSR typedefs have been moved to cvmx-tim-defs.h */
 
 /**
  * Global structure holding the state of all timers.
  */
-CVMX_SHARED cvmx_tim_t cvmx_tim;
-
-CVMX_SHARED cvmx_tim_config_t timer_config = {.timer_pool = {3,1024,16} };
+	/* The cvmx_tim and timer_config structures was moved from CVMX_SHARED
+	 * to new named block, in order to provide shared accses among multiple
+	 * loadsets. Below are the pointers which will be mapped to them
+	 */
+	cvmx_tim_config_t 	*timer_config = NULL;
+	cvmx_tim_t 		*cvmx_tim = NULL;
 
 /**
  * Setup a timer for use. Must be called before the timer
@@ -85,8 +88,8 @@ int cvmx_tim_setup(uint64_t tick, uint64_t max_ticks)
 	int i;
 	uint32_t temp;
 	int timer_thr = 1024; 
-	int timer_pool = (int)cvmx_fpa_get_timer_pool();
-	uint64_t timer_pool_size = cvmx_fpa_get_timer_pool_block_size();
+	int timer_pool;
+	uint64_t timer_pool_size;
 	uint64_t mem_block_size = 0;
 	cvmx_tim_bucket_entry_t *bucket;
 	unsigned num_rings = cvmx_octeon_num_cores();
@@ -98,6 +101,9 @@ int cvmx_tim_setup(uint64_t tick, uint64_t max_ticks)
 	if (tim_clock_hz == 0)
 		tim_clock_hz = 800000000;
 
+	timer_pool = (int)cvmx_fpa_get_timer_pool();
+	timer_pool_size = cvmx_fpa_get_timer_pool_block_size();
+	
 	if (OCTEON_IS_MODEL(OCTEON_CN68XX)) {
 		cvmx_tim_fr_rn_tt_t fr_tt;
 		fr_tt.u64 = cvmx_read_csr(CVMX_TIM_FR_RN_TT);
@@ -132,7 +138,7 @@ int cvmx_tim_setup(uint64_t tick, uint64_t max_ticks)
 	cvmx_tim_stop();
 
 	/* Reinitialize out timer state */
-	memset(&cvmx_tim, 0, sizeof(cvmx_tim));
+	memset(cvmx_tim, 0, sizeof(*cvmx_tim));
 
 	if (tick_ns < hw_tick_ns_allowed) {
 		cvmx_dprintf("ERROR: cvmx_tim_setup: Requested tick %lu(ns) is smaller than"
@@ -149,11 +155,11 @@ int cvmx_tim_setup(uint64_t tick, uint64_t max_ticks)
 			break;
 	}
 
-	cvmx_tim.max_ticks = (uint32_t) max_ticks;
-	cvmx_tim.bucket_shift = (uint32_t) (i - 1 + 10);	/* To make wrap around calc easier */
-	cvmx_tim.tick_cycles = tick * tim_clock_hz / 1000000; /* Cycles per input tick value, also cycles per bucket */
+	cvmx_tim->max_ticks = (uint32_t) max_ticks;
+	cvmx_tim->bucket_shift = (uint32_t) (i - 1 + 10);	/* To make wrap around calc easier */
+	cvmx_tim->tick_cycles = tick * tim_clock_hz / 1000000; /* Cycles per input tick value, also cycles per bucket */
 
-	temp = (max_ticks * cvmx_tim.tick_cycles) >> cvmx_tim.bucket_shift;
+	temp = (max_ticks * cvmx_tim->tick_cycles) >> cvmx_tim->bucket_shift;
 
 	/* Round up to nearest power of 2 */
 	temp -= 1;
@@ -163,29 +169,29 @@ int cvmx_tim_setup(uint64_t tick, uint64_t max_ticks)
 	temp = temp | (temp >> 8);
 	temp = temp | (temp >> 16);
 	
-	cvmx_tim.num_buckets = temp + 1;
-	cvmx_tim.num_rings = num_rings;
+	cvmx_tim->num_buckets = temp + 1;
+	cvmx_tim->num_rings = num_rings;
 
 #if TIM_DEBUG
-	cvmx_dprintf("INFO: cvmx_tim_setup: tick_cycles=%lu, bucket_shift=%d, num_buckets=%d, max_ticks=%d\n", cvmx_tim.tick_cycles, 
-				cvmx_tim.bucket_shift, cvmx_tim.num_buckets, cvmx_tim.max_ticks);
+	cvmx_dprintf("INFO: cvmx_tim_setup: tick_cycles=%lu, bucket_shift=%d, num_buckets=%d, max_ticks=%d\n", cvmx_tim->tick_cycles, 
+				cvmx_tim->bucket_shift, cvmx_tim->num_buckets, cvmx_tim->max_ticks);
 #endif
 
 	/* Ensure input params fall into permitted ranges */
-	if ((cvmx_tim.num_buckets < 3) || cvmx_tim.num_buckets > 1048576) {
+	if ((cvmx_tim->num_buckets < 3) || cvmx_tim->num_buckets > 1048576) {
 		cvmx_dprintf("ERROR: cvmx_tim_setup: num_buckets out of range\n");
 		return error;
 	}
 
 	/* Allocate the timer buckets from hardware addressable memory */
-	mem_block_size = num_rings * cvmx_tim.num_buckets * sizeof(cvmx_tim_bucket_entry_t);
+	mem_block_size = num_rings * cvmx_tim->num_buckets * sizeof(cvmx_tim_bucket_entry_t);
 
-	cvmx_tim.bucket = cvmx_bootmem_alloc(mem_block_size, CVMX_CACHE_LINE_SIZE);
-	if (cvmx_tim.bucket == NULL) {
+	cvmx_tim->bucket = cvmx_bootmem_alloc(mem_block_size, CVMX_CACHE_LINE_SIZE);
+	if (cvmx_tim->bucket == NULL) {
 		cvmx_dprintf("ERROR: cvmx_tim_setup: allocation problem, size = %luKB\n", (unsigned long int)(mem_block_size/1000));
 		return error;
 	}
-	memset(cvmx_tim.bucket, 0, mem_block_size);
+	memset(cvmx_tim->bucket, 0, mem_block_size);
 
 #ifndef CVMX_BUILD_FOR_LINUX_KERNEL
 	/* Initialize FPA pool for timer buffers */
@@ -196,11 +202,11 @@ int cvmx_tim_setup(uint64_t tick, uint64_t max_ticks)
 		OCTEON_IS_MODEL(OCTEON_CN73XX) ||
 		OCTEON_IS_MODEL(OCTEON_CNF75XX))
 	{
-		if(timer_config.timer_pool.buffer_count != 0)
+		if(timer_config->timer_pool.buffer_count != 0)
 		{
 			if(__cvmx_helper_initialize_fpa_pool(timer_pool,
 				timer_pool_size,
-				timer_config.timer_pool.buffer_count,
+				timer_config->timer_pool.buffer_count,
 				"TIM Chunks"))
 			{
 				cvmx_dprintf("ERROR: %s: failed\n", __func__);
@@ -211,20 +217,20 @@ int cvmx_tim_setup(uint64_t tick, uint64_t max_ticks)
 			cvmx_dprintf("INFO: %s: timer_pool = %d, timer_pool_size = %lu, buffer_count = %lu\n", 
 				__func__,
 				timer_pool, timer_pool_size,
-				timer_config.timer_pool.buffer_count);
+				timer_config->timer_pool.buffer_count);
 #endif
 		}
 	}
 #endif	/* !CVMX_BUILD_FOR_LINUX_KERNEL */
 
-	cvmx_tim.start_time = 0;
+	cvmx_tim->start_time = 0;
 
 	/* Loop through all timers */
 	for(timer_id = 0; timer_id < num_rings; timer_id++)
 	{
-		int interval = ((1 << (cvmx_tim.bucket_shift - 10)) - 1); /* Required in ticks */
+		int interval = ((1 << (cvmx_tim->bucket_shift - 10)) - 1); /* Required in ticks */
 		
-		bucket = cvmx_tim.bucket + timer_id * cvmx_tim.num_buckets;
+		bucket = cvmx_tim->bucket + timer_id * cvmx_tim->num_buckets;
 		
 		if (OCTEON_IS_MODEL(OCTEON_CN68XX)) {
 			cvmx_tim_ringx_ctl0_t ring_ctl0;
@@ -241,7 +247,7 @@ int cvmx_tim_setup(uint64_t tick, uint64_t max_ticks)
 			reg_flags.u64 = cvmx_read_csr(CVMX_TIM_REG_FLAGS);
 			ring_ctl1.u64 = 0;
 			ring_ctl1.s.cpool = ((reg_flags.s.ena_dfb == 0) ? timer_pool : 0);
-			ring_ctl1.s.bsize = cvmx_tim.num_buckets - 1;
+			ring_ctl1.s.bsize = cvmx_tim->num_buckets - 1;
 			cvmx_write_csr(CVMX_TIM_RINGX_CTL1(timer_id), ring_ctl1.u64);
 
 			ring_ctl0.u64 = 0;
@@ -269,7 +275,7 @@ int cvmx_tim_setup(uint64_t tick, uint64_t max_ticks)
 
 			/* 2. Wait 1 ring interval period, in core_clocks */
 			interval =  cvmx_clock_get_count(CVMX_CLOCK_CORE) *
-				(long long) cvmx_tim.tick_cycles /
+				(long long) cvmx_tim->tick_cycles /
 				(long long) tim_clock_hz ;
 			cvmx_wait(interval);
 			
@@ -305,7 +311,7 @@ int cvmx_tim_setup(uint64_t tick, uint64_t max_ticks)
 			cvmx_write_csr(CVMX_TIM_RINGX_CTL2(timer_id), ring_ctl2.u64);
 
 			/* 7. Setup timings (CTL0) */
-			interval = cvmx_tim.tick_cycles;
+			interval = cvmx_tim->tick_cycles;
 			expire_offset = interval + (timer_id * interval / num_rings);
 #if TIM_DEBUG
 			cvmx_dprintf("INFO: %s: Timer%lu: "
@@ -330,7 +336,7 @@ int cvmx_tim_setup(uint64_t tick, uint64_t max_ticks)
 			ring_ctl1.cn78xx.ena_ldwb = 1;	/* DWB */
 			ring_ctl1.cn78xx.bucket = 0;	/* 1st bucket */
 			ring_ctl1.cn78xx.intc = 1; /* error interrupts not supported yet */
-			ring_ctl1.cn78xx.bsize = cvmx_tim.num_buckets - 1;
+			ring_ctl1.cn78xx.bsize = cvmx_tim->num_buckets - 1;
 			ring_ctl1.cn78xx.ena = 1;
 			cvmx_write_csr(CVMX_TIM_RINGX_CTL1(timer_id), ring_ctl1.u64);
 #if TIM_DEBUG
@@ -351,7 +357,7 @@ int cvmx_tim_setup(uint64_t tick, uint64_t max_ticks)
 			/* Tell the hardware where about the bucket array */
 			config_ring0.u64 = 0;
 			config_ring0.s.first_bucket = cvmx_ptr_to_phys(bucket) >> 5;
-			config_ring0.s.num_buckets = cvmx_tim.num_buckets - 1;
+			config_ring0.s.num_buckets = cvmx_tim->num_buckets - 1;
 			config_ring0.s.ring = timer_id;
 			cvmx_write_csr(CVMX_TIM_MEM_RING0, config_ring0.u64);
 
@@ -396,7 +402,7 @@ void cvmx_tim_start(void)
 #endif
 
 	/* Remember when we started the timers */
-	cvmx_tim.start_time = cvmx_clock_get_count(CVMX_CLOCK_TIM);
+	cvmx_tim->start_time = cvmx_clock_get_count(CVMX_CLOCK_TIM);
 	cvmx_write_csr(CVMX_TIM_REG_FLAGS, control.u64);
 }
 
@@ -445,7 +451,7 @@ void cvmx_tim_shutdown(void)
 	cvmx_tim_stop();
 
 	entries_per_chunk = timer_pool_size / 8 - 1;
-	num_rings = cvmx_tim.num_rings;
+	num_rings = cvmx_tim->num_rings;
 
 	/* Now walk all buckets freeing the chunks */
 	for (timer_id = 0; timer_id < num_rings; timer_id++) {
@@ -453,10 +459,10 @@ void cvmx_tim_shutdown(void)
 		cvmx_dprintf("INFO: %s: Ring %u\n", __func__,
 			(unsigned) timer_id);
 #endif
-		for (bucket = 0; bucket < cvmx_tim.num_buckets; bucket++) {
+		for (bucket = 0; bucket < cvmx_tim->num_buckets; bucket++) {
 			uint64_t chunk_addr;
 			uint64_t next_chunk_addr;
-			cvmx_tim_bucket_entry_t *bucket_ptr = cvmx_tim.bucket + timer_id * cvmx_tim.num_buckets + bucket;
+			cvmx_tim_bucket_entry_t *bucket_ptr = cvmx_tim->bucket + timer_id * cvmx_tim->num_buckets + bucket;
 			CVMX_PREFETCH128(CAST64(bucket_ptr));	/* prefetch the next cacheline for future buckets */
 
 			/* Each bucket contains a list of chunks */
@@ -479,6 +485,35 @@ void cvmx_tim_shutdown(void)
 	}
 }
 
+const char tim_named_block_name[CVMX_BOOTMEM_NAME_LEN] = "TIMER_NAMED_BLOCK";
+
+void cvmx_create_tim_named_block_once(void)
+{
+	if (timer_config)
+		return;	/* tim_named_block already created - return */
+
+	/* Create named block (allocate memory) for struct timer_control and
+	 * struct cvmx_tim and assign the global timer_config to point there
+	 */
+	timer_config =
+	(cvmx_tim_config_t *) cvmx_bootmem_alloc_named_range_once(
+		sizeof(cvmx_tim_config_t) + sizeof(cvmx_tim_t),
+		0, 0,
+		32, tim_named_block_name,
+		NULL
+	);
+	if (timer_config == NULL) {
+		return;	/* out of memory */
+	}
+	/* set defaults */
+	timer_config->timer_pool.pool_num = 3;
+	timer_config->timer_pool.buffer_size = 1024;
+	timer_config->timer_pool.buffer_count = 16;
+	/* The struct cvmx_tim will be immediately after the struct timer_config
+	 * Assign the global cvmx_tim to point to it
+	 */
+	cvmx_tim = (void *)timer_config + sizeof(cvmx_tim_config_t);
+}
 
 void cvmx_tim_set_fpa_pool_config(int64_t pool, uint64_t buffer_size,
 			       uint64_t buffer_count)
@@ -486,13 +521,28 @@ void cvmx_tim_set_fpa_pool_config(int64_t pool, uint64_t buffer_size,
 #if TIM_DEBUG
 	cvmx_dprintf("INFO: cvmx_tim_set_fpa_pool_config: pool = %lu, buffer_size = %lu, buffer_count = %lu\n", pool, buffer_size, buffer_count);
 #endif
-	
-	timer_config.timer_pool.pool_num = pool;
-	timer_config.timer_pool.buffer_size = buffer_size;
-	timer_config.timer_pool.buffer_count = buffer_count;
+	/* Create named block (allocate memory) for struct timer_control and
+	 * struct cvmx_tim and assign the global timer_config to point there
+	 */
+	cvmx_create_tim_named_block_once();
+	if (timer_config == NULL) {
+		return;	/* out of memory */
+	}
+	timer_config->timer_pool.pool_num = pool;
+	timer_config->timer_pool.buffer_size = buffer_size;
+	timer_config->timer_pool.buffer_count = buffer_count;
 }
 
 void cvmx_tim_get_fpa_pool_config(cvmx_fpa_pool_config_t *timer_pool)
 {
-	*timer_pool = timer_config.timer_pool;
+	/* Create named block (allocate memory) for struct timer_control and
+	 * struct cvmx_tim and assign the global timer_config to point there
+	 */
+	cvmx_create_tim_named_block_once();
+	if (timer_config == NULL) {
+		timer_pool = NULL;
+		return;	/* out of memory */
+	}
+
+	*timer_pool = timer_config->timer_pool;
 }

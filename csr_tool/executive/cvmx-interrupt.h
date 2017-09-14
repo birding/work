@@ -42,7 +42,7 @@
  *
  * Interface to the Mips interrupts.
  *
- * <hr>$Revision: 135591 $<hr>
+ * <hr>$Revision: 153454 $<hr>
  */
 #ifndef __CVMX_INTERRUPT_H__
 #define __CVMX_INTERRUPT_H__
@@ -106,7 +106,7 @@ typedef enum {
 
 	/* 32 WDOG interrupts. */
 	CVMX_IRQ_WDOG0,
-	CVMX_IRQ_NAND = CVMX_IRQ_WDOG0 + 32,	/* Added in CN52XX */
+	CVMX_IRQ_NAND = CVMX_IRQ_WDOG0 + 48,	/* Added in CN52XX */
 	CVMX_IRQ_MIO,		/* Added in CN63XX */
 	CVMX_IRQ_IOB,		/* Added in CN63XX */
 	CVMX_IRQ_FPA,		/* Added in CN63XX */
@@ -223,7 +223,8 @@ static inline uint32_t cvmx_interrupt_disable_save(void)
 }
 
 /* Restore the contents of the cop0 status register.  Used with
-** cvmx_interrupt_disable_save to allow recursive interrupt disabling */ static inline void cvmx_interrupt_restore(uint32_t flags)
+** cvmx_interrupt_disable_save to allow recursive interrupt disabling */
+static inline void cvmx_interrupt_restore(uint32_t flags)
 {
 	/* If flags value indicates interrupts should be enabled, then enable them */
 	if (flags & 1) {

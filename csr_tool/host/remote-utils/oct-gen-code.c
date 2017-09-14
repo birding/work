@@ -67,6 +67,16 @@ int generate_code(char * inputfile, char * outputfile, int cpuid, char *pattern)
 		printf("input open failed\n"); 
 		return -1;
 	}
+
+	memset(outbuf, 0, MAX_LINE);
+	sprintf(outbuf, "static void %s_read_csr(char * name, uint64_t addr)\n"
+		"{\n"
+		"\tuint64_t csr_addr= addr |(1ull <<63);\n"
+		"\tunsigned long long val=(unsigned long long)cvmx_read_csr(csr_addr);\n"
+		"\tif(val) cvmx_dprintf(\"%%s 0x%%llx 0x%%llx\\n\", name, (unsigned long long)addr, val);\n"
+		"}\n\n", pattern);
+	fwrite (outbuf , strlen(outbuf), 1 , outfile);
+
 	
 	memset(outbuf, 0, MAX_LINE);
 	sprintf(outbuf, "void %s_registers_dump(void)\n{\n", pattern);
@@ -111,10 +121,16 @@ int generate_code(char * inputfile, char * outputfile, int cpuid, char *pattern)
 						pcie_port,
 						buf, (unsigned long long)csr_addr);
 		}else{
+#if 0		
 			sprintf(outbuf, "\tcvmx_dprintf(\"%s 0x%llx 0x%%llx\\n\","
 						"(long long)cvmx_read_csr(0x%llx));\n", 
 						buf, (unsigned long long)csr_addr, 
 						(unsigned long long)(csr_addr|(1ull <<63)));
+#else
+			sprintf(outbuf, "\t%s_read_csr(\"%s\", 0x%llx);\n",
+						pattern,	buf, (unsigned long long)csr_addr 
+						);
+#endif
 		}
 		
 		fwrite (outbuf , strlen(outbuf), 1 , outfile);

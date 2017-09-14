@@ -139,6 +139,7 @@ EXEC_OBJS_$(d)  :=  \
 	$(EXEC_OBJ_DIR)/cvmx-helper-pko.o \
 	$(EXEC_OBJ_DIR)/cvmx-helper-pko3.o \
 	$(EXEC_OBJ_DIR)/cvmx-helper-rgmii.o \
+	$(EXEC_OBJ_DIR)/cvmx-helper-sfp.o \
 	$(EXEC_OBJ_DIR)/cvmx-helper-sgmii.o \
 	$(EXEC_OBJ_DIR)/cvmx-helper-spi.o \
 	$(EXEC_OBJ_DIR)/cvmx-helper-srio.o \

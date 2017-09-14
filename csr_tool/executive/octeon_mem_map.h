@@ -60,6 +60,13 @@ address.
     the base to base + 124K
 */
 #define SE_APP_EXCEPTION_BASE 0x2000
+/* We do not really need 16K for exception vectors - 4K are enough
+ * This will allow to have bigger number of hotplug_app running
+ * at the same time and described in hotplug_named block structure.
+ * For CN78xx, up to 48 cores can run up to 48 different hotplug_apps.
+ * If you see a issue do '#define SE_APP_EXCEPTION_SIZE 0x1000'.
+ * I am not changing it now for backword compatibility reason.
+ */
 #define SE_APP_EXCEPTION_SIZE 0x4000
 
 #define BOOTLOADER_DEBUG_REG_SAVE_SIZE  (CVMX_MAX_CORES * DEBUG_NUMREGS * 8)

@@ -1341,9 +1341,9 @@ EXPORT_SYMBOL(cvmx_pki_get_stats);
  */
 void cvmx_pki_clear_port_stats(int node, uint64_t port)
 {
-	int iface = cvmx_helper_get_interface_num(port);
+	int xipd = cvmx_helper_node_to_ipd_port(node, port);
+	int xiface = cvmx_helper_get_interface_num(xipd);
 	int index = cvmx_helper_get_interface_index_num(port);
-	int xiface = cvmx_helper_node_interface_to_xiface(node, iface);
 	int pknd = cvmx_helper_get_pknd(xiface, index);
 
 	cvmx_pki_statx_stat0_t stat0;

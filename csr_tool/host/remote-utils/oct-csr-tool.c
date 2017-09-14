@@ -8,7 +8,8 @@
 #include "cvmx-version.h"
 
 //version 1.1.8 fixed bug in format function
-#define OCT_CSR_TOOL_VERSION_STRING "1.1.8"
+//version 1.1.9 gen_code: print only when val is not zero; SDK3.1.2-p10
+#define OCT_CSR_TOOL_VERSION_STRING "1.1.9"
 
 int octeon_model = -1;
 char * octeon_modelStr = NULL;

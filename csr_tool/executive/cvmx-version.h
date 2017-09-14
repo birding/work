@@ -44,5 +44,5 @@
 **     10.9.0 == 10.09.00 > 09.10.00 == 9.10.0 
 ** 
 */ 
-#define OCTEON_SDK_VERSION_NUM  301020591ull
-#define OCTEON_SDK_VERSION_STRING   "Cavium Inc. OCTEON SDK version 3.1.2-p7, build 591"
+#define OCTEON_SDK_VERSION_NUM  301020597ull
+#define OCTEON_SDK_VERSION_STRING   "Cavium Inc. OCTEON SDK version 3.1.2-p10, build 597"

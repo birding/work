@@ -42,7 +42,7 @@
  *
  * Small helper utilities.
  *
- * <hr>$Revision: 127654 $<hr>
+ * <hr>$Revision: 153454 $<hr>
  */
 
 #ifndef __CVMX_HELPER_UTIL_H__
@@ -422,4 +422,14 @@ extern void cvmx_helper_show_stats(int port);
  */
 #define	NUM_ELEMENTS(arr) (sizeof(arr)/sizeof((arr)[0]))
 
+#ifndef CVMX_BUILD_FOR_LINUX_KERNEL
+/**
+ * Prints out a buffer with the address, hex bytes, and ASCII
+ *
+ * @param	addr	Start address to print on the left
+ * @param[in]	buffer	array of bytes to print
+ * @param	count	Number of bytes to print
+ */
+void cvmx_print_buffer_u8(unsigned addr, const uint8_t *buffer, size_t count);
+#endif
 #endif /* __CVMX_HELPER_H__ */
