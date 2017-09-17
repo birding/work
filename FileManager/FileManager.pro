@@ -15,12 +15,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    database.cpp \
-    diskinfo.cpp
+    diskinfo.cpp \
+    workthread.cpp
 
 HEADERS  += mainwindow.h \
-    database.h \
-    diskinfo.h
+    diskinfo.h \
+    workthread.h
 
 FORMS    += mainwindow.ui
 

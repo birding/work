@@ -1,0 +1,193 @@
+
+setenv mtdparts mtdparts=octeon_nand0:0x30000000@0x0(root)
+setenv mtdparts mtdparts=octeon_nand0:0x30000000@0x0(root),0xF000000@0x31000000(kernel)
+
+
+nand erase 0x30000000 0x10000000
+
+
+nand read $(loadaddr) 0x30000000 0x6000
+md $(loadaddr)
+
+nand read $(loadaddr) 0x10000000 0x6000
+md $(loadaddr)
+
+
+nand read $(loadaddr) 0x31000000 0x6000
+nand read $(loadaddr) 0x30000000 0x100  ??
+nand read $(loadaddr) 0x30001000 0x100  --ok
+nand read $(loadaddr) 0x3003f000 0x100  --ok
+nand read $(loadaddr) 0x30040000 0x100  ??
+nand read $(loadaddr) 0x30041000 0x100  --ok
+
+md $(loadaddr)
+
+
+
+
+@@@
+setenv mtdparts mtdparts=octeon_nand0:0x10000000@0x0(kernel),0x30000000@0x10000000(root)
+saveenv
+reset
+nand erase.chip
+
+mtdparts
+ubi part root
+ubi create root
+
+nand read $(loadaddr) 0x00000000 0x1000 -- error
+nand read $(loadaddr) 0x00001000 0x1000
+nand read $(loadaddr) 0x10000000 0x1000
+md $(loadaddr)
+
+
+
+
+cd /home/card/openwrt_sff71/openwrt-release/chaos_calmer/build_dir/target-mips64-octeon-linux-gnu/
+cp /media/sf_F_DRIVE/tftproot/vmlinux.64.deb.wm.openwrt root-cn71xx/
+mkfs.ubifs -r root-cn71xx/  -m 4096 -e 258048 -c 3000 -o openwrt_wm_linux.ubi
+cp openwrt_wm_linux.ubi /media/sf_F_DRIVE/tftproot/openwrt_wm_linux.ubi
+
+setenv mtdparts mtdparts=octeon_nand0:0x30000000@0x0(root),0xF000000@0x31000000(kernel)
+nand erase.chip
+
+mtdparts
+ubi part root
+ubi create root
+setenv serverip 172.16.1.1;setenv ipaddr 172.16.1.2;setenv ethact octrgmii0;
+tftpboot 0 openwrt_wm_linux.ubi
+ubi write $(fileaddr) root $(filesize)
+
+ubi part root
+ubifsmount ubi0:root
+ubifsls
+ubifsload $(loadaddr) vmlinux.64.deb.wm.openwrt
+ubifsumount
+bootoctlinux 0 numcores=2 endbootargs ubi.mtd=1 root=ubi0:root rootfstype=ubifs rw octeon-nand.wmboard=1
+
+
+
+//for auto-reboot testing -- success
+setenv readkernel 'ubi part root;ubifsmount ubi0:root;ubifsload $(loadaddr) vmlinux.64.deb.wm.openwrt;'
+setenv bootnand 'bootoctlinux 0 numcores=2 endbootargs ubi.mtd=1 root=ubi0:root rootfstype=ubifs rw octeon-nand.wmboard=1'
+setenv bootcmd 'run readkernel;run bootnand;'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////for debug
+Creating 5 MTD partitions on "omap2-nand":
+    0x00000000-0x00080000 : "X-Loader"
+    0x00080000-0x00260000 : "U-Boot"
+    0x00260000-0x00280000 : "U-Boot Env"
+    0x00280000-0x00680000 : "Kernel"
+    0x00680000-0x08000000 : "File System"
+    UBI: attaching mtd4 to ubi0
+    UBI: physical eraseblock size: 131072 bytes (128 KiB)
+    UBI: logical eraseblock size: 129024 bytes
+    UBI: smallest flash I/O unit: 2048
+    UBI: sub-page size: 512
+    UBI: VID header offset: 512 (aligned 512)
+    UBI: data offset: 2048
+    UBI: attached mtd4 to ubi0
+    UBI: MTD device name: "File System"
+    UBI: MTD device size: 121 MiB
+    UBI: number of good PEBs: 970
+    UBI: number of bad PEBs: 2
+    UBI: max. allowed volumes: 128
+    UBI: wear-leveling threshold: 4096
+    UBI: number of internal volumes: 1
+    UBI: number of user volumes: 1
+    UBI: available PEBs: 0
+    UBI: total number of reserved PEBs: 970
+    UBI: number of PEBs reserved for bad PEB handling: 9
+    UBI: max/mean erase counter: 2/0 
+cat /proc/partitions
+
+major minor  #blocks  name
+
+  31     0       1536 mtdblock0
+
+  31     1        256 mtdblock1
+
+  31     2       4096 mtdblock2
+
+  31     3      16384 mtdblock3
+
+  31     4     239616 mtdblock4 
+    
+##WM board
+.277146] L2 lock: memcpy 1152 bytes
+[    5.892671] octeon-nand 1070001000000.nand-flash-interface: ONFI not supported for chip 2
+[    5.900854] octeon-nand 1070001000000.nand-flash-interface: Parameter header: 98 d3 91 26
+[    5.909026] Using hardware ECC syndrome support
+[    5.913553] NAND chip 2 using hw_bch ECC for 8 bits of correction per 512 byte block.  ECC size is 15 bytes
+[    5.923285] [octeon_nand_probe][1403]chip 2
+[   11.009884] NAND 2 OOB size: 256, write size: 4096, erase size: 262144
+[   11.016412] NAND device: Manufacturer ID: 0x98, Chip ID: 0xd3 (Toshiba NAND 1GiB 3,3V 8-bit), 1024MiB, page size: 4096, OOB size: 256
+[   11.028408] Scanning device for bad blocks
+[   22.235055] Bad eraseblock 1536 at 0x000018000000
+[   22.239809] Bad eraseblock 1537 at 0x000018040000
+[   22.430527] Bad eraseblock 3584 at 0x000038000000
+[   22.435271] Bad eraseblock 3585 at 0x000038040000
+[   22.486968] [add_mtd_device][413]index 1 name octeon_nand0 numeraseregions 0
+[   22.494031] [octeon_nand_probe][1434]chip 2
+[   22.499187] UBI: attaching mtd1 to ubi0
+[   23.868604] UBI: scanning is finished
+[   23.880983] UBI: attached mtd1 (name "octeon_nand0", size 1024 MiB) to ubi0
+[   23.887945] UBI: PEB size: 262144 bytes (256 KiB), LEB size: 258048 bytes
+[   23.894745] UBI: min./max. I/O unit sizes: 4096/4096, sub-page size 1024
+[   23.901449] UBI: VID header offset: 1024 (aligned 1024), data offset: 4096
+[   23.908316] UBI: good PEBs: 4092, bad PEBs: 4, corrupted PEBs: 0
+[   23.914320] UBI: user volume: 1, internal volumes: 1, max. volumes count: 128
+[   23.921452] UBI: max/mean erase counter: 4/1, WL threshold: 4096, image sequence number: 0
+[   23.929713] UBI: available PEBs: 976, total reserved PEBs: 3116, PEBs reserved for bad PEB handling: 76
+[   23.939109] UBI: background thread "ubi_bgt0d" started, PID 1048
+[   23.939112] drivers/rtc/hctosys.c: unable to open rtc device (rtc0)
+[   23.952596] UBIFS: background thread "ubifs_bgt0_0" started, PID 1050
+[   24.047061] UBIFS: mounted UBI device 0, volume 0, name "root"
+[   24.052912] UBIFS: LEB size: 258048 bytes (252 KiB), min./max. I/O unit sizes: 4096 bytes/4096 bytes
+[   24.062041] UBIFS: FS size: 771563520 bytes (735 MiB, 2990 LEBs), journal size 9420800 bytes (8 MiB, 37 LEBs)
+[   24.071948] UBIFS: reserved for root: 0 bytes (0 KiB)
+[   24.076999] UBIFS: media format: w4/r0 (latest is w4/r0), UUID 8A6C21F5-3CE3-4BE4-B880-DCCF69E4AD4E, small LPT model
+[   24.090262] VFS: Mounted root (ubifs filesystem) on device 0:12.
+[   24.096366] Freeing unused kernel memory: 284K (ffffffff81089000 - ffffffff810d0000)
+[   24.283160] init: Console is alive
+[   24.287190] init: - watchdog -
+
+root@OpenWrt:/# cat /proc/partitions
+major minor  #blocks  name
+
+  31        0       4096 mtdblock0
+  31        1    1048576 mtdblock1         --------------?????
+
+linux/kernel/linux/drivers/mtd/mtdpart.c:633:   printk(KERN_NOTICE "Creating %d MTD partitions on \"%s\":\n", nbparts, master->name);
+root@OpenWrt:/# cat /proc/sys/kernel/printk
+7       4       1       7
+root@OpenWrt:/# cat /proc/mtd 
+dev:    size   erasesize  name
+mtd0: 00400000 00001000 "spi32766.0"
+mtd1: 40000000 00040000 "octeon_nand0"  ---- Œ Ã‚
+
+[   22.486968] [add_mtd_device][413]index 1 name octeon_nand0 numeraseregions 0
+mtd_device_parse_register
+
+
+
+//// for test....
+setenv ubiargs 'ubi.mtd=1 root=ubi0:root rootfstype=ubifs rw'
+setenv mtdargs 'mtdparts=octeon_nand0:0x30000000@0x0(root),0xF000000@0x31000000(kernel)'
+bootoctlinux 0 numcores=2 endbootargs $(ubiargs) $(mtdargs) octeon-nand.wmboard=1
+
+cat /proc/mtd
+

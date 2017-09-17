@@ -1,0 +1,117 @@
+###generate patch###
+mkdir /home/sdk312/sdk312p7/OCTEON-SDKwmpatch/
+cd /home/sdk312/sdk312p7/OCTEON-SDKwmpatch/
+rpm -ivh  --prefix=/home/sdk312/sdk312p7/OCTEON-SDKwmpatch/ --force /media/sf_F_DRIVE/SDK/SDK312/OCTEON-SDK-3.1.2-568.i386.rpm 
+rpm -ivh  --prefix=/home/sdk312/sdk312p7/OCTEON-SDKwmpatch/ --force /media/sf_F_DRIVE/SDK/SDK312/OCTEON-LINUX-3.1.2-568.i386.rpm 
+cd OCTEON-SDK/
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/sdk.patch 
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/linux.patch
+patch -s -p1 < /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/sdk-ejtag.patch  
+rm tools
+tar -xf /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/tools-3.1.2_build_49.tgz
+ln -s tools-3.1.2_build_49 tools
+/home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/octeon_copy_3_1_2_p7_files.sh /home/sdk312/sdk312p7/sdk-3.1.2-patch_release7/
+
+cd /home/sdk312/sdk312p7/OCTEON-SDKwmpatch/
+mv OCTEON-SDK/ OCTEON-SDK.orig
+
+#install SDK again
+cd /home/sdk312/sdk312p7/OCTEON-SDKwmpatch/
+mv OCTEON-SDK/ OCTEON-SDK.wm
+cd OCTEON-SDK.wm
+patch -s -p1 < /media/sf_F_DRIVE/WM71/board20170213openwrt_uboot.patch 
+patch -s -p1 < /media/sf_F_DRIVE/WM71/board20170213openwrt_executive.patch
+patch -s -p1 < /media/sf_F_DRIVE/WM71/board20170213openwrt_linux.patch
+#merger the code to OCTEON-SDK.wm
+
+cd /home/sdk312/sdk312p7/OCTEON-SDKwmpatch/
+diff -purBN --no-dereference OCTEON-SDK.orig/bootloader/u-boot/ OCTEON-SDK.wm/bootloader/u-boot/ > board20170220_uboot.patch 
+diff -purBN --no-dereference OCTEON-SDK.orig/executive/ OCTEON-SDK.wm/executive/ > board20170220_executive.patch 
+diff -purBN --no-dereference OCTEON-SDK.orig/linux/kernel/ OCTEON-SDK.wm/linux/kernel/ > board20170220_linux.patch 
+
+cp *.patch /media/sf_F_DRIVE/WM71/
+cd /home/sdk312/sdk312p7/
+rm OCTEON-SDKwmpatch -rf
+
+##source code####
+
+#install SDK again
+
+patch -s -p1 < /media/sf_F_DRIVE/WM71/board20170210_uboot.patch 
+patch -s -p1 < /media/sf_F_DRIVE/WM71/board20170210_executive.patch
+patch -s -p1 < /media/sf_F_DRIVE/WM71/board20170210_linux.patch
+
+###########################
+
+
+
+Octeon sff7000(ram)# mii info
+PHY 0x00: OUI = 0x5043, Model = 0x1D, Rev = 0x01,  10baseT, HDX
+PHY 0x1C: OUI = 0x5043, Model = 0x2A, Rev = 0x02,  10baseT, HDX
+PHY 0x1D: OUI = 0x5043, Model = 0x2A, Rev = 0x02,  10baseT, HDX
+PHY 0x1E: OUI = 0x5043, Model = 0x2A, Rev = 0x02,  10baseT, HDX
+PHY 0x1F: OUI = 0x5043, Model = 0x2A, Rev = 0x02, 1000baseT, FDX
+
+Octeon sff7000(ram)# mdio list
+mdio-octeon0:
+0 - Marvell 88E1518 <--> octrgmii0
+28 - Marvell 88E15480 <--> octeth0
+29 - Marvell 88E15480 <--> octeth1
+30 - Marvell 88E15480 <--> octeth2
+31 - Marvell 88E15480 <--> octeth3
+
+读取phyid
+Octeon sff7000(ram)# mdio write octeth3 22 0
+Octeon sff7000(ram)# mdio read octeth3 2
+Reading from bus mdio-octeon0
+PHY at address 31:
+0x2 - 0x141
+Octeon sff7000(ram)# mdio read octeth3 3
+Reading from bus mdio-octeon0
+PHY at address 31:
+0x3 - 0xea2
+
+获取eth3 link status (插入网线)
+Octeon sff7000(ram)# mdio write octeth3 22 0
+Octeon sff7000(ram)# mdio read octeth3 17
+Reading from bus mdio-octeon0
+PHY at address 31:
+0x11 - 0xbc48
+获取eth3 link status (拔掉网线)
+Octeon sff7000(ram)# mdio read octeth3 17
+Reading from bus mdio-octeon0
+PHY at address 31:
+0x11 - 0x8040
+
+
+LED mdio write octeth3 22 3
+Octeon sff7000(ram)# mdio write octeth3 22 3
+force blink
+Octeon sff7000(ram)# mdio write octeth3 16 0xbbbb
+force on
+Octeon sff7000(ram)# mdio write octeth3 16 0x9999
+
+Octeon sff7000(ram)# mdio write octeth3 22 3
+Octeon sff7000(ram)# mdio write octeth3 16 0xbbbb
+Octeon sff7000(ram)# mdio write octeth2 22 3     
+Octeon sff7000(ram)# mdio write octeth2 16 0xbbbb
+Octeon sff7000(ram)# mdio write octeth1 22 3     
+Octeon sff7000(ram)# mdio write octeth1 16 0xbbbb
+Octeon sff7000(ram)# mdio write octeth0 22 3     
+Octeon sff7000(ram)# mdio write octeth0 16 0xbbbb
+
+
+mdio write octeth3 22 3
+mdio write octeth3 16 0x1111
+mdio write octeth3 16 0xb0   -- 绿灯
+mdio write octeth3 16 0xb00  -- 黄灯
+mdio write octeth3 16 0x100  -- ok
+mdio read octeth3 16
+  
+
+
+setenv ipaddr 172.16.1.2
+setenv serverip 172.16.1.1
+setenv ethact octeth3
+tftpboot 0 u-boot-octeon_sff7000_wm.bin
+sf probe; sf update $(fileaddr) 0x100000 $(filesize); reset

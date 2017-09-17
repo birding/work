@@ -12,6 +12,7 @@ int database_open(void)
                               , QMessageBox::Cancel);
         return false;
     }
+    return 0;
 }
 
 database::database()

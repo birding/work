@@ -1,12 +1,7 @@
 #include "diskinfo.h"
-#include <QFileInfo>
-#include <QDebug>
-#include <QDir>
-#include <QDateTime>
 
 DiskInfo::DiskInfo()
 {
-    DBname = "FileDB";
 }
 
 int DiskInfo::DirCheck(QString dir)
@@ -24,6 +19,7 @@ int DiskInfo::CreateDB(void)
     QDir mDir;
     qDebug() << mDir.currentPath();
 
+    DBname = "FileDB";
     QString mPath = mDir.currentPath()+"/" + DBname;
     qDebug() << mPath;
 
@@ -37,7 +33,7 @@ int DiskInfo::CreateDB(void)
     return ret;
 }
 
-QString DiskInfo::CreateDisk(QString dName)
+QString DiskInfo::CreateDisk(QString srcDir, QString dName)
 {
     QDir mDir;
 
@@ -59,24 +55,50 @@ QString DiskInfo::CreateDisk(QString dName)
     mDir.mkpath(mPath);
     qDebug()<< dName + " Created";
 
-    DiskDir = mPath;
-    return DiskDir;
+    baseDestDir = mPath;
+    baseSrcDir = srcDir;
+    return baseDestDir;
 }
 
-int DiskInfo::BuildDisk(QString srcBaseDir, QString destDiskDir)
+void DiskInfo::BuildDisk(int)
 {
-    QDir sdir(srcBaseDir);
-    QDir dDir(destDiskDir);
+    QDir sdir(baseSrcDir);
+    QDir dDir(baseDestDir);
 
-    qDebug() << "srcBase:" + srcBaseDir +" destBase:" +destDiskDir;
+    qDebug() << "srcBase:" + baseSrcDir +" destBase:" +baseSrcDir;
     qDebug() << "dDir.currentPath:" << dDir.currentPath();
     qDebug() << "dDir.absolutePath:" << dDir.absolutePath();
     qDebug() << "sdir.currentPath:" << sdir.currentPath();
     qDebug() << "sdir.absolutePath:"<< sdir.absolutePath();
 
+    SrcFileCount = DiskFileCount(sdir);
+    currentFileIndex = 0;
+    //qDebug() << "SrcFileCount: " << SrcFileCount;
+
     BuildDisk2(sdir, dDir);
-    return 0;
+
+    emit sBuildProgress("done!");
+    return ;
 }
+
+int DiskInfo::DiskFileCount(QDir sdir)
+{
+    int count = sdir.entryInfoList().count() - 2; //"." and ".."
+
+    foreach(QFileInfo mfi ,sdir.entryInfoList())
+    {
+        if(mfi.isDir())
+        {
+            if(mfi.fileName()=="." || mfi.fileName() == "..") continue;
+
+            sdir.cd(mfi.fileName());
+            count = count + DiskFileCount(sdir);
+            sdir.cdUp();
+        }
+    }
+    return count;
+}
+
 
 int DiskInfo::BuildDisk2(QDir sdir, QDir dDir)
 {
@@ -84,36 +106,51 @@ int DiskInfo::BuildDisk2(QDir sdir, QDir dDir)
     {
         if(mfi.isFile())
         {
-            qDebug()<< "File :" << mfi.absoluteFilePath() << "size " << mfi.size()
-                    << " name:" << mfi.fileName();
+            currentFileIndex++;
+            //qDebug() << "("<< currentFileIndex << "/" << SrcFileCount<< ")"
+            //        << "File :" << mfi.absoluteFilePath() << "size " << mfi.size()
+            //        << " name:" << mfi.fileName();
 
             QString filepath = dDir.absolutePath()+ "/"+ mfi.fileName();// + ".txt";
             //qDebug()<< "Filepath:" << filepath;
             QFile file( filepath );
             file.open( QIODevice::ReadWrite | QIODevice::Text );
             QTextStream fout(&file);
-            fout << "FilePath:" << mfi.absoluteFilePath() << " size:" << mfi.size()
-                 << " name:" << mfi.fileName() << " Time:" << mfi.created().toString(Qt::ISODate) ;
+            fout << "FilePath:" << mfi.absoluteFilePath() << endl;
+            fout << "size:" << mfi.size() << endl;
+            fout << "name:" << mfi.fileName() << endl;
+            fout << "Time:" << mfi.created().toString(Qt::ISODate) << endl;
             fout.flush();
             file.close();
         }else
         {
             if(mfi.fileName()=="." || mfi.fileName() == "..") continue;
-            qDebug() << "Entry Dir" << mfi.absoluteFilePath();
+            //qDebug() << "Entry Dir" << mfi.absoluteFilePath();
 
             QString dirpath = dDir.absolutePath()+ "/" + mfi.fileName();
-            dDir.mkdir(dirpath);
 
+            dDir.mkdir(dirpath);
             dDir.cd(mfi.fileName());
-            qDebug() << "old sdir:" << sdir.absolutePath() << " " << mfi.fileName();
+            //qDebug() << "old sdir:" << sdir.absolutePath() << " " << mfi.fileName();
             sdir.cd(mfi.absoluteFilePath());
-            qDebug() << "new sdir:" << sdir.absolutePath();
-            qDebug() << "new dest dir:" << dDir.absolutePath();
+
+            currentFileIndex++;
+
+            //qDebug() << "("<< currentFileIndex << "/" << SrcFileCount<< ")"
+            //         << "Dir: " << mfi.absoluteFilePath();
+
+            //qDebug() << "new sdir:" << sdir.absolutePath();
+            //qDebug() << "new dest dir:" << dDir.absolutePath();
             BuildDisk2(sdir, dDir);
             dDir.cdUp();
             sdir.cdUp();
         }
+
+        QString progress = QString("(%1/%2)%3").arg(currentFileIndex).arg(SrcFileCount)
+                .arg(mfi.absoluteFilePath());
+        emit sBuildProgress(progress);
     }
+
     return 0;
 }
 

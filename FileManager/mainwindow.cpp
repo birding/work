@@ -2,16 +2,19 @@
 #include "ui_mainwindow.h"
 #include <QFileDialog>
 #include <QDebug>
-#include "diskinfo.h"
+
+#define FILEMANAGER_VERSION "FileManager V0.0.1"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->pushButton->setText("DISK: ");
 
-    ui->textEditDir->setText("F:/BDI");
+    this->setWindowTitle(FILEMANAGER_VERSION);
+    ui->pushButton->setText("DISK: ");
+    //ui->textEditDir->setText("C:/");
+    ui->textEditDir->setText("F:/BDI/");
     ui->textEdit_diskname->setText("Disk1");
 }
 
@@ -31,9 +34,16 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pB_Gen_clicked()
 {
-    DiskInfo dinfo;
+
     QString srcDir = ui->textEditDir->toPlainText();
     QString dstDiskName = ui->textEdit_diskname->toPlainText();
+
+    ui->pB_Gen->setEnabled(0);
+    if(BuildThreadA.isRunning())
+    {
+        ui->textBrowser->append("generator thread is running!");
+        return ;
+    }
 
     ui->textBrowser->setText(srcDir);
 
@@ -42,12 +52,44 @@ void MainWindow::on_pB_Gen_clicked()
         ui->textBrowser->append(srcDir + " is not a directory!");
         return;
     }
-    ui->textBrowser->append("input DIR is detected");
+    ui->textBrowser->append(QString("input DIR is detected:%1").arg(srcDir));
+    qDebug() << "srcDir:" + srcDir;
 
     dinfo.CreateDB();
-    QString destDir = dinfo.CreateDisk(dstDiskName);
-    qDebug() << "srcDir:" + srcDir;
-    dinfo.BuildDisk(srcDir, destDir);
+    QString destDir = dinfo.CreateDisk(srcDir, dstDiskName);
+    ui->textBrowser->append(QString("DestDir:%1").arg(destDir));
+    qDebug() << "srcDir:" + destDir;
 
+    //dinfo.BuildDisk(0);
+
+    //QObject::connect(&BuildThreadA,SIGNAL(mySignal(QString)),this,SLOT(mySlot(QString)));
+    //QObject::connect(&BuildThreadA,SIGNAL(mySignal(QString)),this,SLOT(getProgress(QString)));
+    QObject::connect(&dinfo,SIGNAL(sBuildProgress(QString)),this,SLOT(getProgress(QString)));
+    BuildThreadA.setMessage("A");
+    BuildThreadA.setDiskInfo(&dinfo);
+    BuildThreadA.start();
 }
 
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    qDebug() << "closing";
+    if(BuildThreadA.isRunning())
+    {
+        qDebug() << "thread is running";
+        //QObject::disconnect(&dinfo,SIGNAL(BuildProgress(QString)),this,SLOT(getProgress(QString)));
+        BuildThreadA.stop();
+        BuildThreadA.wait();
+    }
+    qDebug() << "closed";
+}
+
+void MainWindow::mySlot(QString message)
+{
+    qDebug() << "aa:" << message;
+}
+
+void MainWindow::getProgress(QString message)
+{
+    ui->textBrowser->append(message);
+}

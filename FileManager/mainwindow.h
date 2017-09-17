@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include<QThread>
+#include "workthread.h"
+#include "diskinfo.h"
 
 namespace Ui {
 class MainWindow;
@@ -15,13 +18,22 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+public slots:
+    void mySlot(QString message);
+    void getProgress(QString message);
+
 private slots:
     void on_pushButton_clicked();
-
     void on_pB_Gen_clicked();
 
 private:
     Ui::MainWindow *ui;
+    WorkThread BuildThreadA;
+    DiskInfo dinfo;
+
+protected:
+    void closeEvent(QCloseEvent *event);
+
 };
 
 #endif // MAINWINDOW_H
