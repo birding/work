@@ -44,17 +44,18 @@ QString DiskInfo::CreateDisk(QString srcDir, QString dName)
 
     if(mDir.exists(mPath))
     {
-        qDebug()<<"warning Already exists";
-        bool ret = mDir.rmdir(mPath);
-        if(false == ret)
+        emit sBuildProgress("warning Already exists");
+        //bool ret = mDir.rmdir(mPath);
+        //if(false == ret)
         {
-            qDebug()<<"rmdir failed!";
+            //qDebug()<<"rmdir failed!";
+            //emit sBuildProgress("remove destDir failed");
         }
+    }else{
+        emit sBuildProgress("create destDir");
+        mDir.mkpath(mPath);
+        qDebug()<< dName + " Created";
     }
-
-    mDir.mkpath(mPath);
-    qDebug()<< dName + " Created";
-
     baseDestDir = mPath;
     baseSrcDir = srcDir;
     return baseDestDir;
@@ -77,7 +78,7 @@ void DiskInfo::BuildDisk(int)
 
     BuildDisk2(sdir, dDir);
 
-    emit sBuildProgress("done!");
+    emit sBuildProgressDone();
     return ;
 }
 

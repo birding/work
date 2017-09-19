@@ -16,6 +16,11 @@ MainWindow::MainWindow(QWidget *parent) :
     //ui->textEditDir->setText("C:/");
     ui->textEditDir->setText("F:/BDI/");
     ui->textEdit_diskname->setText("Disk1");
+
+    //QObject::connect(&BuildThreadA,SIGNAL(mySignal(QString)),this,SLOT(mySlot(QString)));
+    //QObject::connect(&BuildThreadA,SIGNAL(mySignal(QString)),this,SLOT(getProgress(QString)));
+    QObject::connect(&dinfo,SIGNAL(sBuildProgress(QString)),this,SLOT(getProgress(QString)));
+    QObject::connect(&dinfo,SIGNAL(sBuildProgressDone()),this,SLOT(getProgressDone()));
 }
 
 MainWindow::~MainWindow()
@@ -45,7 +50,8 @@ void MainWindow::on_pB_Gen_clicked()
         return ;
     }
 
-    ui->textBrowser->setText(srcDir);
+    ui->textBrowser->append(QDateTime::currentDateTime().toString("## yyyy-MM-dd hh:mm:ss ddd ##"));
+    ui->textBrowser->append(srcDir);
 
     if(false == dinfo.DirCheck(srcDir))
     {
@@ -62,9 +68,6 @@ void MainWindow::on_pB_Gen_clicked()
 
     //dinfo.BuildDisk(0);
 
-    //QObject::connect(&BuildThreadA,SIGNAL(mySignal(QString)),this,SLOT(mySlot(QString)));
-    //QObject::connect(&BuildThreadA,SIGNAL(mySignal(QString)),this,SLOT(getProgress(QString)));
-    QObject::connect(&dinfo,SIGNAL(sBuildProgress(QString)),this,SLOT(getProgress(QString)));
     BuildThreadA.setMessage("A");
     BuildThreadA.setDiskInfo(&dinfo);
     BuildThreadA.start();
@@ -82,6 +85,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         BuildThreadA.wait();
     }
     qDebug() << "closed";
+    event->accept();
 }
 
 void MainWindow::mySlot(QString message)
@@ -92,4 +96,12 @@ void MainWindow::mySlot(QString message)
 void MainWindow::getProgress(QString message)
 {
     ui->textBrowser->append(message);
+}
+
+void MainWindow::getProgressDone()
+{
+    ui->textBrowser->append("done!");
+    ui->textBrowser->append(QDateTime::currentDateTime().toString("## yyyy-MM-dd hh:mm:ss ddd ##"));
+    ui->textBrowser->append("\n\n");
+    ui->pB_Gen->setEnabled(true);
 }

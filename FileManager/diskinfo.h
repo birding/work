@@ -23,6 +23,7 @@ public:
 
 signals:
     void sBuildProgress(QString message);
+    void sBuildProgressDone();
 
 private:
     QString DBname;

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include<QThread>
+#include <QCloseEvent>
 #include "workthread.h"
 #include "diskinfo.h"
 
@@ -21,6 +22,7 @@ public:
 public slots:
     void mySlot(QString message);
     void getProgress(QString message);
+    void getProgressDone();
 
 private slots:
     void on_pushButton_clicked();
