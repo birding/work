@@ -11,7 +11,7 @@ picthread::picthread()
 void picthread::run()
 {
     while (1) {
-        msleep(interval);
+        msleep(interval*1000);
         if(state)
         {
             //qDebug("thread running");

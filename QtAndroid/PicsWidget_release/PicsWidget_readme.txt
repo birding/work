@@ -6,8 +6,9 @@ pic_oops.jpg
 pics.dir_config_win.txt
 
 release:
-build-PicsWidget-Desktop_Qt_5_9_2_MinGW_32bit-Release\release\
-C:\Qt\Qt5.9.2\5.9.2\mingw53_32\bin\Qt5Widgets.dll
+build-PicsWidget-Desktop_Qt_5_9_2_MinGW_32bit-Release\release\PicsWidget.exe
+C:\Qt\Qt5.9.2\5.9.2\mingw53_32\bin\
+Qt5Widgets.dll, Qt5Gui.dll, libgcc_s_dw2-1.dll, Qt5Core.dll, libstdc++-6.dll, libwinpthread-1.dll
 
 
 Android:

@@ -52,13 +52,13 @@ void configfile::reload()
     qDebug("[%d]%s", __LINE__, CfgFile.toLocal8Bit().constData());
     if(false == QFile::exists(CfgFile))
     {
-        QMessageBox::information(NULL,"reload config","check cfgfile failed!");
+        QMessageBox::information(NULL,"reload config","error: no pic cfgfile!");
         return ;
     }
 
     QFile file(CfgFile);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        QMessageBox::information(NULL,"reload config","open cfgfile failed!");
+        QMessageBox::information(NULL,"reload config","open pic cfgfile failed!");
          return;
     }
 

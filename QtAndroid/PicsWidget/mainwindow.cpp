@@ -19,9 +19,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     pConFile = new configfile();
+    pThread = new picthread();
+    pSetting = new Dialog_setting();
 
     //qDebug("this width %d height %d", this->width(),this->height());
     ui->setupUi(this);
+    this->setWindowTitle(QString("Pics ") + QString(PICSWIDGET_VERSION));
 
     picLabel =ui->piclabel;
     picLabel->setAlignment(Qt::AlignCenter);
@@ -39,18 +42,57 @@ MainWindow::MainWindow(QWidget *parent) :
     loadimage();
 
     //qDebug("[%d]", __LINE__);
-    pThread = new picthread();
     ui->pushButton_play->setText("pause");
     pThread->state = true;
-    //sqDebug("[%d]", __LINE__);
+    pThread->interval = 2;
     pThread->start();
+
+    pSetting->setGobalEnv(pThread, pConFile);
+    pSetting->setWindowFlags(pSetting->windowFlags()&~Qt::WindowCloseButtonHint&~Qt::WindowContextHelpButtonHint);
+    pSetting->setWindowFlags(pSetting->windowFlags()|Qt::WindowStaysOnTopHint);
+
     QObject::connect(pThread,SIGNAL(updateSignal()),this,SLOT(getUpdateEvent()));
+    QObject::connect(pSetting,SIGNAL(sig_Setting_ret(int, int)),this,SLOT(handle_Setting_Event(int, int)));
+
 }
 
 void MainWindow::getUpdateEvent()
 {
     //qDebug("slot >> get updateSignal");
     loadimage();
+}
+
+void MainWindow::handle_Setting_Event(int event, int val)
+{
+    //qDebug("slot >> get setting event %d", event);
+    if(event == Setting_EVENT_CLOSE)
+    {
+        ui->pushButton_Setting->setEnabled(true);
+        return ;
+    }
+
+    if(event == Setting_EVENT_Reload_pics)
+    {
+        setThreadState(false);
+
+        pConFile->reload();
+        qDebug("reload done");
+        loadimage();
+        setThreadState(true);
+        return ;
+    }
+
+    if(event == Setting_EVENT_Update_invl)
+    {
+        setThreadState(false);
+
+        pThread->interval = val;
+        qDebug("interval %d done", val);
+
+        setThreadState(true);
+        return ;
+    }
+    return ;
 }
 
 int MainWindow::loadimage()
@@ -63,13 +105,6 @@ int MainWindow::loadimage()
     ui->label_ind->setText(labtxt);
     ui->label_ind->repaint();
 
-    //qDebug("[%d]%s", __LINE__, qPrintable(picFile));
-    if(false == QFile::exists(picFile))
-    {
-        QMessageBox::information(NULL,"load img","check file failed!");
-        return 0;
-    }
-
     if(picFile.contains(".jpg")|| picFile.contains(".bmp")
             || picFile.contains(".png"))
     {
@@ -80,10 +115,19 @@ int MainWindow::loadimage()
         return 0;
     }
 
+    if(false == QFile::exists(picFile))
+    {
+        //QMessageBox::information(NULL,"load img","check file failed!");
+        ui->piclabel->setText("error: no picfile!");
+        return 0;
+    }
+	
     QPixmap pixmap;
     if(! ( pixmap.load(picFile) ) ) {
-                QMessageBox::information(NULL,"load image","pic failed!");
-                setThreadState(false);
+                //QMessageBox::information(NULL,"load image","pic failed!");
+                ui->piclabel->setText("load picfile failed!");
+                qDebug("[%d]%s load picfile failed!", __LINE__, qPrintable(picFile));
+                //setThreadState(false);
                 return -1;
      }
 
@@ -128,23 +172,14 @@ void MainWindow::on_pushButton_play_clicked()
 
 void MainWindow::on_pushButton_Setting_clicked()
 {
-    setThreadState(false);
-
+    //setThreadState(false);
     qDebug("setting begin");
-    Dialog_setting setting;
 
-    setting.setMainWindows(this);
+    pSetting->show();
+    ui->pushButton_Setting->setEnabled(false);
 
-    if ( setting.exec() == QDialog::Accepted)
-    {
-        qDebug("[%d] %s", __LINE__, qPrintable(this->pConFile->CfgDir));
-        qDebug("[%d] %d", __LINE__, this->pThread->interval);
-
-        pConFile->reload();
-        qDebug("reload done");
-    }
     qDebug("end");
-    setThreadState(true);
+    //setThreadState(true);
 }
 
 void MainWindow::on_pushButton_pre_clicked()
