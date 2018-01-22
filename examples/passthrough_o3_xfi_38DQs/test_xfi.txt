@@ -1,0 +1,139 @@
+
+
+#########################################
+EBB7800 MCU Command> display_interface
+
+Current interface configurations:
+    QLM 0 is configured for SGMII at 1.25 Gbd
+    QLM 4 is configured for XLAUI at 10.3125 Gbd
+    QLM 5 is configured for XFI at 10.3125 Gbd
+
+
+setenv qlm0:0_mode sgmii
+setenv qlm4:0_mode xlaui
+setenv qlm5:0_mode xfi
+setenv bgx_for_mix0 0x800
+
+setenv ipaddr 192.168.16.78
+setenv serverip 192.168.16.1
+
+tftpboot 0 u-boot-octeon_ebb7800_sdk312p12.bin
+bootloaderupdate
+
+tftpboot 0 traffic-gen-sdk312p8.78.noflow
+bootoct 0 numcores=48
+
+
+setenv bootcmd_tftp 'setenv ipaddr 192.168.16.78;setenv serverip 192.168.16.1;tftpboot 0 traffic-gen-sdk312p8.78.noflow;bootoct 0 numcores=48'
+setenv bootcmd 'run bootcmd_tftp'
+
+hide 0x810 0x830
+tx.count 0xb00 1
+dest.mac 0xb00 00:0f:b7:00:81:e4
+start 0xb00
+
+dest.mac 0xb10 00:0f:b7:00:81:e4
+tx.percent 0xb00 120
+
+#############################################
+
+EBB7304 MCU Command> display_interface
+
+Current interface configurations:
+    QLM 2 is configured for SGMII at 1.25 Gbd
+    QLM 3 is configured for XFI at 10.3125 Gbd
+    DLM 5 & 6 is configured for XFI at 10.3125 Gbd
+    
+qlm2_mode=sgmii
+qlm3_mode=xfi
+qlm5_mode=xfi
+qlm6_mode=xfi
+ethact=octeth0
+
+setenv qlm3_mode xfi,no_phy
+setenv qlm5_mode xfi,no_phy
+setenv qlm6_mode xfi,no_phy
+
+setenv ipaddr 192.168.16.73
+setenv serverip 192.168.16.1
+
+tftpboot 0 traffic-gen-sdk312p8.73.noflow
+bootoct 0 numcores=16
+
+scp passthrough root@10.142.5.30:/tftpboot/passthrough_pir
+cp passthrough /media/sf_F_DRIVE/passthrough_pir
+
+tftpboot 0 passthrough_pir
+bootoct 0 numcores=16
+
+setenv bootcmd_tftp 'setenv ipaddr 192.168.16.73;setenv serverip 192.168.16.1;tftpboot 0 passthrough_pir;bootoct 0 numcores=16'
+setenv bootcmd 'run bootcmd_tftp'
+
+###
+
+EBB7304 board revision major:2, minor:0, serial #: 1550-2.0-00019
+OCTEON CN7360-AAP pass 1.1, Core clock: 1800 MHz, IO clock: 1000 MHz, DDR clock: 800 MHz (1600 Mhz DDR)
+Base DRAM address used by u-boot: 0x40f000000, size: 0x1000000
+DRAM: 16 GiB
+
+###
+tx.percent 0xb00 100
+
+tx.size 0xb00 1000  -- rx 1000Mbps@122070pps
+tx.size 0xb00 1020  -- rx 980Mbps @117325pps
+tx.size 0xb00 1024  -- rx 984Mbps
+tx.size 0xb00 1025  -- rx 943Mbps
+tx.size 0xb00 1026  -- rx 944Mbps @112369pps
+tx.size 0xb00 1027  -- rx 945Mbps
+tx.size 0xb00 1028  -- rx 946Mbps
+tx.size 0xb00 1029  -- rx 947Mbps @112369pps
+tx.size 0xb00 1100  -- rx 1000Mbps@111210pps
+tx.size 0xb00 1280  -- rx 979Mbps @93850pps
+tx.size 0xb00 1400  -- rx 972Mbps @85315pps
+tx.size 0xb00 1500  -- rx 1000Mbps@82024pps
+tx.size 0xb00 1518  -- rx 965Mbps @78203pps
+
+tx.percent 0xb00 100
+
+
+#32DQ#
+Command  82(INS)> tx.size 0xb10 64
+Command  83(INS)> tx.size 0xb00 9600
+tx.percent 0xb00 100
+tx.percent 0xb10 100
+tx.percent 0xb10 10
+output 1000Mbps
+
+
+
+
+
+H3C reported that they couldn't hit 38x1Gbps@1024byte in their CN73XX system. I can reproduce this issue on EVB7304 board.
+The example code was attached.
+
+
+commments about the testing code.
+1.configure QLM3 in XFI mode, DLM5/6 in XFI mode
+2.configure internal loopbacke on bgx1(QLM3)
+3.traffic flow:
+traffic (1Gbps)(MAC 00:0f:b7:00:81:e4) in bgx2, change mac to 00:0f:b7:01:81:e4), out to bgx1 DQ0
+traffic (with MAC 00:0f:b7:01:81:e4) in bgx1, change mac to 00:0f:b7:02:81:e4), out to bgx1 DQ1
+traffic (with MAC 00:0f:b7:02:81:e4) in bgx1, change mac to 00:0f:b7:02:81:e4), out to bgx1 DQ2
+...
+traffic (with MAC 00:0f:b7:25:81:e4) in bgx1, change mac to 00:0f:b7:26:81:e4), out to bgx1 DQ37
+traffic (with MAC 00:0f:b7:26:81:e4) in bgx1, out to bgx2(observer the result)
+
+the performance results:
+if packet.size is 1000byte  -- output on bgx2 1000Mbps@122070pps
+if packet.size is 1020  -- output on bgx2 980Mbps @117325pps
+if packet.size is 1024  -- output on bgx2 984Mbps
+if packet.size is 1025  -- output on bgx2 943Mbps
+if packet.size is 1026  -- output on bgx2 944Mbps @112369pps
+if packet.size is 1027  -- output on bgx2 945Mbps
+if packet.size is 1028  -- output on bgx2 946Mbps
+if packet.size is 1029  -- output on bgx2 947Mbps @112369pps
+if packet.size is 1100  -- output on bgx2 1000Mbps@111210pps
+if packet.size is 1280  -- output on bgx2 979Mbps @93850pps
+if packet.size is 1400  -- output on bgx2 972Mbps @85315pps
+if packet.size is 1500  -- output on bgx2 1000Mbps@82024pps
+if packet.size is 1518  -- output on bgx2 965Mbps @78203pps

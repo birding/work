@@ -1,0 +1,72 @@
+
+
+#########################################
+EBB7800 MCU Command> display_interface
+
+Current interface configurations:
+    QLM 0 is configured for SGMII at 1.25 Gbd
+    QLM 4 is configured for XLAUI at 10.3125 Gbd
+    QLM 5 is configured for XFI at 10.3125 Gbd
+
+
+setenv qlm0:0_mode sgmii
+setenv qlm4:0_mode xlaui
+setenv qlm5:0_mode xfi
+setenv bgx_for_mix0 0x800
+
+setenv ipaddr 192.168.16.78
+setenv serverip 192.168.16.1
+
+tftpboot 0 u-boot-octeon_ebb7800_sdk312p12.bin
+bootloaderupdate
+
+tftpboot 0 traffic-gen-sdk312p8.78.noflow
+bootoct 0 numcores=48
+
+hide 0x810,0x820,0x830
+tx.count 0xb00 1
+dest.mac 0xb00 00:0f:b7:00:81:e4
+
+#############################################
+
+EBB7304 MCU Command> display_interface
+
+Current interface configurations:
+    QLM 2 is configured for SGMII at 1.25 Gbd
+    QLM 3 is configured for XLAUI at 10.3125 Gbd
+    DLM 5 & 6 is configured for XFI at 10.3125 Gbd
+    
+qlm2_mode=sgmii
+qlm3_mode=xlaui
+qlm5_mode=xfi
+qlm6_mode=xfi
+ethact=octeth0
+
+
+setenv ipaddr 192.168.16.73
+setenv serverip 192.168.16.1
+
+tftpboot 0 traffic-gen-sdk312p8.73.noflow
+bootoct 0 numcores=16
+
+scp passthrough root@10.142.5.30:/tftpboot/passthrough_pir
+
+tftpboot 0 passthrough_pir
+bootoct 0 numcores=16
+
+setenv bootcmd_tftp 'setenv ipaddr 192.168.16.73;setenv serverip 192.168.16.1;tftpboot 0 passthrough_pir;bootoct 0 numcores=16'
+setenv bootcmd 'run bootcmd_tftp'
+
+tx.percent 0xb00 100
+1000Mbps in --- 600Mbps out x 32 -- 20Gbps@60byte
+limit to 75Mbps: 100Mbps in -- 75Mbps out  @60byte
+发现大包 512和1518字节可以线速1G ，但1024、 1280 、1400等字节只能到98%。
+limit to 75Mbps: 100Mbps in -- 75Mbps out  @1024byte
+
+limit to 1000Mbps: 1500Mbps in -- 1000Mbps out  @1024byte
+limit to 1000Mbps: 1500Mbps in -- 1000Mbps out  @1280byte
+
+#####################################
+
+
+
