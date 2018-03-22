@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title_file }}</title>
+    <meta http-equiv="refresh" content="5;url={{ next_url }}">
+    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='img_div.css') }}">-->
+    <style>
+        body{
+            background-color:#888888;
+        }
+    </style>
+</head>
+<body>
+<!--
+    <h1>{{ next_url }}</h1>
+    <h1>{{ pic }}</h1>
+-->
+
+
+    <div class="scale" id="div_screen" style="display:table-cell;text-align:center;vertical-align:middle">
+        <img src="{{ pic }}" border="0" width="0" height="0" onload="AutoResizeImage(0xffff,0xffff,this)">
+    </div>
+    <br>
+    <hr>
+    <br>
+    <br>
+    <hr>
+    <form action="#" method="get" name="form1" id="form1" >
+    <!--尺寸调试-->
+    浏览器窗口 的 实际高度: <input type="text" name="availHeight" size="4"><br>
+    浏览器窗口 的 实际宽度: <input type="text" name="availWidth" size="4"><br>
+    image高度: <input type="text" name="imgHeight" size="4"> to
+                <input type="text" name="imgLastHeight" size="4"> <br>
+    image宽度: <input type="text" name="imgWidth" size="4"> to
+                <input type="text" name="imgLastWidth" size="4">   <br>
+    </form>
+<script type="text/javascript">
+<!--
+var winWidth = 0;
+var winHeight = 0;
+
+function AutoResizeDIV(){
+    var div1 = document.getElementById('div_screen');
+    //div1.style.height="600px";
+    maxHeight=winHeight*0.8
+    div1.style.height=maxHeight+"px";
+    div1.style.width=winWidth+"px";
+    //alert(div1.style.height);
+    //alert(div1.style.width);
+}
+
+function findDimensions() //函数：获取尺寸
+{
+//获取窗口宽度
+if (window.innerWidth)
+winWidth = window.innerWidth;
+else if ((document.body) && (document.body.clientWidth))
+winWidth = document.body.clientWidth;
+//获取窗口高度
+if (window.innerHeight)
+winHeight = window.innerHeight;
+else if ((document.body) && (document.body.clientHeight))
+winHeight = document.body.clientHeight;
+//通过深入Document内部对body进行检测，获取窗口大小
+if (document.documentElement  && document.documentElement.clientHeight && document.documentElement.clientWidth)
+{
+winHeight = document.documentElement.clientHeight;
+winWidth = document.documentElement.clientWidth;
+}
+//结果输出至两个文本框
+document.form1.availHeight.value= winHeight;
+document.form1.availWidth.value= winWidth;
+
+AutoResizeDIV();
+}
+
+findDimensions();
+//调用函数，获取数值
+window.onresize=findDimensions;
+
+
+function AutoResizeImage(maxWidth,maxHeight,objImg){
+var img = new Image();
+img.src = objImg.src;
+var hRatio;
+var wRatio;
+var Ratio = 1;
+var w = img.width;
+var h = img.height;
+
+document.form1.imgHeight.value= h;
+document.form1.imgWidth.value= w;
+
+if (maxWidth ==0xffff && maxHeight==0xffff){
+maxWidth=winWidth-10
+maxHeight=winHeight*0.9
+}
+
+wRatio = maxWidth / w;
+hRatio = maxHeight / h;
+if (maxWidth ==0 && maxHeight==0){
+Ratio = 1;
+}else if (maxWidth==0){//
+if (hRatio<1) Ratio = hRatio;
+}else if (maxHeight==0){
+if (wRatio<1) Ratio = wRatio;
+}else if (wRatio<1 || hRatio<1){
+Ratio = (wRatio<=hRatio?wRatio:hRatio);
+}
+if (Ratio<1){
+w = w * Ratio;
+h = h * Ratio;
+}
+objImg.height = h;
+objImg.width = w;
+
+document.form1.imgLastHeight.value= h;
+document.form1.imgLastWidth.value= w;
+}
+</script>
+
+
+</body>
+</html>

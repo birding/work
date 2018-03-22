@@ -1,0 +1,5 @@
+.scale img{
+    background-size:contain|cover;
+    height: 50%;
+    width: 50%
+}

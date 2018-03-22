@@ -1,0 +1,47 @@
+
+C:\Users\Shanping>python --version
+Python 2.7.14
+
+C:\Users\Shanping>pip install virtualenv
+Collecting virtualenv
+  Downloading virtualenv-15.1.0-py2.py3-none-any.whl (1.8MB)
+    100% |████████████████████████████████| 1.8MB 459kB/s
+Installing collected packages: virtualenv
+Successfully installed virtualenv-15.1.0
+
+
+cd f:\python\web
+
+
+f:\python\web>virtualenv env
+New python executable in f:\python\web\env\Scripts\python.exe
+Installing setuptools, pip, wheel...done.
+
+f:\python\web>env\Scripts\activate
+(env) f:\python\web>
+
+(env) f:\python\web>pip install flask
+...
+Successfully installed Jinja2-2.10 MarkupSafe-1.0 Werkzeug-0.14.1 click-6.7 flask-0.12.2 itsdangerous-0.24
+
+
+(env) f:\python\web>python hello.py
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ 
+ 
+###
+F:\python\web\env\Scripts>activate
+
+(env) F:\python\web\env\Scripts>python
+Python 2.7.14 (v2.7.14:84471935ed, Sep 16 2017, 20:25:58) [MSC v.1500 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import flask
+>>> print flask.__version__
+0.12.2
+>>>
+
+http://www.bjhee.com/flask-2.html
+http://www.bjhee.com/jinja2-statement.html
+
+页面的自动刷新以及跳转：
+http://blog.csdn.net/kuyuyingzi/article/details/21971073
