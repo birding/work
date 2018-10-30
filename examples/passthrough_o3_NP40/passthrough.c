@@ -61,10 +61,13 @@
 #include "cvmx-config-parse.h"
 #include "cvmx-atomic.h"
 #include "cvmx-pki.h"
+#include "cvmx-wqe.h"
 #include "cvmx-helper-pki.h"
 #include "cvmx-helper-bgx.h"
 
 #include "passthrough.h"
+#include "../ctlPlane_NP40/ctlPlane.h"
+
 
 /* Compile-time configuration: */
 /* The following two conditionals are set in Makefile */
@@ -98,6 +101,24 @@ static unsigned int term_num;
 
 static int volatile core_unplug_requested  = 0;
 static int volatile app_shutdown_requested = 0;
+
+struct iphdr {
+#if defined(__LITTLE_ENDIAN_BITFIELD)
+	uint8_t ihl:4, version:4;
+#else
+	uint8_t version:4, ihl:4;
+#endif
+	uint8_t tos;
+	uint16_t tot_len;
+	uint16_t id;
+	uint16_t frag_off;
+	uint8_t ttl;
+	uint8_t protocol;
+	uint16_t check;
+	uint32_t saddr;
+	uint32_t daddr;
+	/*The options start here. */
+};
 
 #undef max
 #define max(a, b) ((b > a) ? (b) : (a))
@@ -231,10 +252,34 @@ static int application_shutdown_simple_exec(int node)
 	return result;
 }
 
-#define TAG_MAXNUM 0x10000
+static __inline__ int memcmp_header(unsigned long * src, unsigned long * dst)
+{
+	if(*src != *dst){
+		return -1;
+	}
+	dst++;
+	src++;
+	if(*src != *dst){
+		return -1;
+	}
+	return 0;
+}
+static __inline__ int memcpy_header(unsigned long * src, unsigned long * dst)
+{
+	*dst = *src;
+	src++;
+	dst++;
+	*dst = *src;
+	return 0;
+}
+
+
+
 int session_init(void)
 {
 	char *alloc_name = "session_counter\0\0";
+	char *stable_name = "session_table\0\0";	
+	char *failure_name = "hash_failure\0\0";		
 	const cvmx_bootmem_named_block_desc_t *block_desc = NULL;
 	unsigned long size;
 	void *ptr;
@@ -245,23 +290,56 @@ int session_init(void)
 		printf("%s is alloced\n", alloc_name);
 		return -1;
 	}
-
-	size=TAG_MAXNUM*sizeof(unsigned long)*16;
-	/* Atomically allocate named block once, and zero it by default */
+	size=TAG_MAXNUM*sizeof(unsigned long)*HASH_LEN;
 	ptr = cvmx_bootmem_alloc_named_range_once(size, 0ull, 0ull, 
 			128, alloc_name, NULL);
-
 	if(ptr == NULL){
 		printf("no enough memory for 0x%lx\n", size);
 		return -1;
 	}
 	memset(ptr, 0, size);
-	printf("counter memory %p 0x%lx\n", ptr, size);
+	np_printf("[%s][%d]counter memory %p 0x%lx\n", __func__, __LINE__, ptr, size);
+
+
+	/* Find the named block in case it has been created already */
+	block_desc = cvmx_bootmem_find_named_block(failure_name);
+	if (block_desc) {
+		printf("%s is alloced\n", failure_name);
+		return -1;
+	}
+	size=48*sizeof(unsigned long);
+	ptr = cvmx_bootmem_alloc_named_range_once(size, 0ull, 0ull, 
+			128, failure_name, NULL);
+	if(ptr == NULL){
+		printf("no enough memory for 0x%lx\n", size);
+		return -1;
+	}
+	memset(ptr, 0, size);
+	np_printf("[%s][%d]failure memory %p 0x%lx\n", __func__, __LINE__, ptr, size);
+
+
+
+	/* Find the named block in case it has been created already */
+	block_desc = cvmx_bootmem_find_named_block(stable_name);
+	if (block_desc) {
+		printf("%s is alloced\n", stable_name);
+		return -1;
+	}
+	size=TAG_MAXNUM*sizeof(struct stable)*HASH_LEN;
+	ptr = cvmx_bootmem_alloc_named_range_once(size, 0ull, 0ull, 
+			128, stable_name, NULL);
+	if(ptr == NULL){
+		printf("no enough memory for 0x%lx\n", size);
+		return -1;
+	}
+	memset(ptr, 0, size);
+	np_printf("[%s][%d]stable memory %p 0x%lx\n", __func__, __LINE__, ptr, size);
+
 	return 0;
 }
 
 unsigned long * pCouBase=NULL;
-void session_statistics(cvmx_wqe_t *work)
+void hash_statistics(cvmx_wqe_t *work)
 {
 	unsigned long * ptr;
 	unsigned core = cvmx_get_local_core_num();
@@ -278,6 +356,7 @@ void session_statistics(cvmx_wqe_t *work)
 			return ;
 		}
 		pCouBase = (unsigned long *)((1ull << 63) |block_desc->base_addr);
+		np_printf("[%s][%d][%d]pCouBase %p \n", __func__, __LINE__, core, pCouBase);
 	}
 
 	tagval = work->word1.tag&0xffff;
@@ -285,6 +364,107 @@ void session_statistics(cvmx_wqe_t *work)
 	*ptr = *ptr + 1;
 }
 
+unsigned long * pFailureBase=NULL;
+void hash_failure_statistics(void)
+{
+	unsigned long * ptr;
+	unsigned core = cvmx_get_local_core_num();
+	
+	if(pFailureBase==NULL)
+	{
+		char *failure_name = "hash_failure\0\0";
+		const cvmx_bootmem_named_block_desc_t *block_desc;
+		
+		block_desc = cvmx_bootmem_find_named_block(failure_name);
+		if (block_desc == NULL) {
+			printf("%s is not alloced\n", failure_name);
+			return ;
+		}
+		pFailureBase = (unsigned long *)((1ull << 63) |block_desc->base_addr);
+		np_printf("[%s][%d][%d]pFailureBase %p \n", __func__, __LINE__, core, pFailureBase);
+	}
+
+	ptr = pFailureBase + core ;
+	*ptr = *ptr + 1;
+}
+
+stable_t * pTableBase=NULL;
+void session_table(cvmx_wqe_t *work)
+{
+	stable_t * ptr;
+	stable_t * pTbl;
+	int tagval;
+	int i;
+	stable_t pktHeader;
+	
+	if(pTableBase == NULL)
+	{
+		char *stable_name = "session_table\0\0";
+		const cvmx_bootmem_named_block_desc_t *block_desc;
+		
+		block_desc = cvmx_bootmem_find_named_block(stable_name);
+		if (block_desc == NULL) {
+			printf("%s is not alloced\n", stable_name);
+			return ;
+		}
+		pTableBase = (stable_t *)((1ull << 63) |block_desc->base_addr);
+		np_printf("[%s][%d]pTableBase %p \n", __func__, __LINE__, pTableBase);
+	}
+	
+	if(cvmx_wqe_is_l3_ipv4(work)){
+		struct iphdr   * ip4;
+		unsigned short *L4header=0;
+		ip4 = (struct iphdr *)((uint8_t *) cvmx_phys_to_ptr(cvmx_wqe_get_pki_pkt_ptr(work).addr)
+						+ cvmx_wqe_get_l3_offset(work) );
+		L4header = (unsigned short *)(ip4 + 1);
+		pktHeader.srcip = ip4->saddr;
+		pktHeader.dstip = ip4->daddr;
+		pktHeader.srcport = *L4header;
+		pktHeader.dstport = *(L4header++);
+		pktHeader.proto = ip4->protocol;
+		pktHeader.valid = 1;
+	}else{
+		memset(&pktHeader, 0, sizeof(stable_t));
+	}
+	tagval = work->word1.tag&0xffff;
+	ptr = pTableBase + tagval*HASH_LEN;
+	for(i=0; i<HASH_LEN; i++){
+		int ret ;
+		pTbl =ptr + i;
+		ret = memcmp_header((unsigned long *)pTbl, (unsigned long *)&pktHeader);
+		if(ret == 0)
+			break;
+	}
+	if(i<HASH_LEN){
+		//found the entry
+		cvmx_atomic_add32_nosync((int32_t *)&pTbl->age_count, 1);
+		nppkt_printf("[%s][%d]found pTbl %p \n", __func__, __LINE__, pTbl);
+		dump_session_table(pTbl);
+	}else{
+		//add an entry
+		for(i=0; i<HASH_LEN; i++){
+			pTbl =ptr + i;
+			if(0 == pTbl->valid){
+			  	cvmx_spinlock_lock(&pTbl->lock);
+				if(0 != pTbl->valid){
+					cvmx_spinlock_unlock(&pTbl->lock);
+					continue;
+				}
+				nppkt_printf("[%s][%d]add to pTbl %p \n", __func__, __LINE__, pTbl);
+				dump_session_table(&pktHeader);
+				memcpy_header((unsigned long *)&pktHeader, (unsigned long *)pTbl);
+				pTbl->age_count=1;
+				cvmx_spinlock_unlock(&pTbl->lock);
+				dump_session_table(pTbl);
+				break;
+			}
+		}
+		if(i == HASH_LEN){
+			hash_failure_statistics();
+			nppkt_printf("can not find a table for flow\n");
+		}
+	}
+}
 
 /**
  * The main loop using the new API
@@ -417,7 +597,10 @@ void app_o78_main_loop(void)
 			continue;
 		}
 #endif
-		session_statistics(work);
+#if 0
+		hash_statistics(work);
+#endif
+		session_table(work);
 
 		queue = cvmx_pko3_get_queue_base(port);
 

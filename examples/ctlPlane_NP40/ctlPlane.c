@@ -53,6 +53,7 @@
 #include "cvmx-helper-util.h"
 #include "cvmx-bootmem.h"
 
+#include "ctlPlane.h"
 
 int main(void)
 {
@@ -60,15 +61,12 @@ int main(void)
 	struct cvmx_coremask coremask;
 	unsigned core = cvmx_get_local_core_num();
 	
-    printf("\n");
-    printf("\n");
-    printf("Hello world!\n");
+    printf("Hello world on core %d!\n", core);
 
 	cvmx_user_app_init();
 	sysinfo = cvmx_sysinfo_get();
 	cvmx_coremask_copy(&coremask, &sysinfo->core_mask);
 
-	 printf("core %d\n", core);
 #if 0
 	 cvmx_coremask_barrier_sync(&coremask);
 	if (cvmx_is_init_core()) {
@@ -87,35 +85,104 @@ int main(void)
 	}
 #endif
 
+#if 0
 	cvmx_coremask_barrier_sync(&coremask);
 	if (cvmx_is_init_core()) {
 		char *alloc_name = "session_counter\0\0";
 		const cvmx_bootmem_named_block_desc_t *block_desc;
 		unsigned long * pCouBase=NULL;
-		int i=0, j=0;
-		
+		int i=0,j=0;
+
+		printf("\n" );
 		block_desc = cvmx_bootmem_find_named_block(alloc_name);
 		if (block_desc != NULL) {
 			pCouBase = (unsigned long *)((1ull << 63) |block_desc->base_addr);
 		}
-
+		np_printf("[%s][%d][%d]pCouBase %p \n", __func__, __LINE__, core, pCouBase);
 		if(pCouBase != NULL)
 		{
-		#define TAG_MAXNUM 0x10000
 			for(i=0; i< TAG_MAXNUM; i++){
 				unsigned long counter;
 				counter=0;
-				for(j=0; j<16; j++){
+				for(j=0; j<HASH_LEN; j++){
 					counter += pCouBase[i+j*TAG_MAXNUM];
 				}
 				if(counter)
-					printf("session 0x%x: %ld\n", i, counter);
+					printf("hash counter 0x%x: %ld\n", i, counter);
 			}
 		}
 		
 	}
-
+#endif
 	cvmx_coremask_barrier_sync(&coremask);
-    printf("Hello example run successfully.\n");
+	if (cvmx_is_init_core()) {
+		char *failure_name = "hash_failure\0\0";
+		const cvmx_bootmem_named_block_desc_t *block_desc;
+		unsigned long * pFailureBase=NULL;
+		int i=0;
+
+		printf("\n" );
+		block_desc = cvmx_bootmem_find_named_block(failure_name);
+		if (block_desc != NULL) {
+			pFailureBase = (unsigned long *)((1ull << 63) |block_desc->base_addr);
+		}
+		np_printf("[%s][%d][%d]pCouBase %p \n", __func__, __LINE__, core, pFailureBase);
+		if(pFailureBase != NULL)
+		{
+			unsigned long counter;
+			counter=0;
+			for(i=0; i< 48; i++){				
+				counter += pFailureBase[i];
+			}
+			if(counter)
+				printf("hash failure counter %ld\n", counter);
+		}
+		
+	}
+	cvmx_coremask_barrier_sync(&coremask);
+
+	if (cvmx_is_init_core()) {
+		const cvmx_bootmem_named_block_desc_t *block_desc;
+		stable_t * pTableBase=NULL;
+		int i=0;
+		int active_count, aged_count;
+
+		char *stable_name = "session_table\0\0";
+		printf("\n" );
+		block_desc = cvmx_bootmem_find_named_block(stable_name);
+		if (block_desc == NULL) {
+			printf("%s is not alloced\n", stable_name);
+			return -1;
+		}
+		pTableBase = (stable_t *)((1ull << 63) |block_desc->base_addr);
+		if(pTableBase == NULL){
+			printf("%s memory has errors\n", stable_name);
+		}
+		np_printf("[%s][%d][%d]pTableBase %p \n", __func__, __LINE__, core, pTableBase);
+
+		active_count=0;
+		aged_count=0;
+		for(i=0; i<TAG_MAXNUM*HASH_LEN; i++){
+			stable_t * pStbl = (stable_t *)pTableBase +i;
+			if(0 != pStbl->age_count){
+				nppkt_printf("[%s][%d]found pTbl %p age_count %d, valid %d\n", __func__, __LINE__, 
+						pStbl, pStbl->age_count, pStbl->valid);
+				dump_session_table(pStbl);
+				active_count++;
+				pStbl->age_count=0;				
+			}else{
+				if(0 != pStbl->valid){
+					dump_session_table(pStbl);
+					pStbl->valid = 0;
+					aged_count++;
+				}
+			}
+		}
+		CVMX_SYNCS;
+		printf("totol of active session is %d\n", active_count);
+		printf("%d session tables were deleted \n", aged_count);
+	}
+	cvmx_coremask_barrier_sync(&coremask);
+    printf(" example exit \n");
     return 0;
 }
