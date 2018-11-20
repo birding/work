@@ -1,0 +1,24 @@
+#simple make file
+
+CROSS_COMPILE := /home/sdk620/sdk620p3/OCTEONTX-SDK/tools/bin/aarch64-thunderx-linux-gnu-
+
+CC=${CROSS_COMPILE}gcc
+
+CFLAGS= -I ./txcsr \
+	-I ./txcsr/bdk \
+	-D_FILE_OFFSET_BITS=64 \
+	-D_LARGEFILE64_SOURCE \
+	-Wall -std=gnu99
+
+OBJ= txcsr/txcsr.o \
+	txcsr/helper.o \
+	txcsr/bdk/bdk-csrs.o \
+	txcsr/bdk/bdk-csr-db.o
+
+all: txcsr_tool
+
+txcsr_tool: ${OBJ}
+	${CC} -o txcsr_arm ${OBJ} ${CFLAGS}
+
+clean:
+	rm -rf *.o txcsr_arm txcsr/bdk/*.o txcsr/*.o

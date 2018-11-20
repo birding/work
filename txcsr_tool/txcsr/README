@@ -1,0 +1,162 @@
+
+This directory contains  CSR tool to read and write CSR/System registers from
+linux shell on thunderx boards.
+
+NOTE: Some registers cannot be read/write/accessed from userspace(EL0) refer HRM.
+
+
+Files include :
+================
+
+1. bdk directory : contains source code required to access registers(physical address).
+2. helper.c      : functions to assist csr tool(e.g.: find out board model)
+3. helper.h	 : header file that includes function prototypes(functions defined in helper.c)
+4. Makefile	 : to comipile source code and generate object file(txcsr)
+5. txcsr.c	 : source of thunderx csr tool
+
+Steps to compile:
+=================
+
+on X86:
+
+make CROSS_COMPILE=aarch64-thunderx-linux-gnu-
+
+note: if you have building from sdk, CROSS_COMPILE will set by default.
+
+on thunderx:
+
+make
+
+
+How to run :
+============
+
+Execute "txcsr" object file with sudo/root permissions
+try ./txcsr --help for usage
+
+Examples:
+=========
+I. READ operation
+
+For CSR registers :
+=================
+	1. sudo ./txcsr RST_BOOT
+		OUTPUT : Value of RST_BOOT [0x000087e006001600] :[0x0800261c00000004]
+
+	2. sudo ./txcsr 0x000087e006001600
+		OUTPUT : Value of RST_BOOT [0x000087e006001600] :[0x0800261c00000004]
+
+	3. sudo ./txcsr  -a 10 DBGX_MIDR_EL1
+
+	 where a is alpha of DBGX_MIDR_EL1, X in DBGX can take values from 0 to 47,
+	 a specifies offset of register to be read, refer HRM for more details.
+
+		OUTPUT Value of DBGX_MIDR_EL1 [0x000087a008500d00] :[0x00000000430f0a10]
+
+	4. sudo ./txcsr -a 1 -b 1 NIC_PF_VFX_MBOXX
+
+	a: alpha X in VFX can take values from 0 to 127 i
+	b: beta X in MBOXX can take either 0/1;
+	a,b together specify offset
+
+		OUTPUT : Value of NIC_PF_VFX_MBOXX [0x0000843020202038] :[0x0000000000000000]
+
+	note: refer HRM for appropriate values of a, b
+
+	5. sudo ./txcsr -a 1 -b 1 -g 1 NIC_QSX_RQX_STATX
+
+	a: alpha X in QS can take values from 0 to 127
+	b: beta X in RQX can take values from 0 to 7
+	g: gamma X in STATX can take either 0/1;
+	a,b,g together specify offset
+
+		OUTPUT : Value of NIC_PF_VFX_MBOXX [0x0000843020202038] :[0x0000000000000000]
+
+	note: refer HRM for appropriate values of a, b, g
+
+For system registers :
+====================
+	i) Before accessing system registers, DAP_IMP_DAR[caben] must be set.
+	   i.e. default value of DAP_IMP_DAR is 0x23F, after setting DAP_IMP_DAR[caben] bit value 
+	   becomes 0x63F so to set DAP_IMP_DAR[caben] bit perform following write operation on 
+	   DAP_IMP_DAR register
+	
+		sudo ./txcsr DAP_IMP_DAR 0x63F
+
+	  This operation is required only for the first sysreg access, subsequent sysreg accesses 
+	  do not require above write operation to be performed.   
+
+	ii) Syntax to access sysreg of a core,
+		sudo ./txcsr <sysreg-name> -p <processor/core-number> <options>
+	
+	    Example : sudo ./txcsr AP_CVM_POWER_EL1  -p 1
+
+		  Value of AP_CVM_POWER_EL1 [0x000087b0000a2c10] :[0xa523ff3002ffff00]	
+
+note : default value of processor-number (-p option) is zero(0)
+
+A warning, the DAP access to other cores doesn't work on CN88XX pass 1.x. You can only access on 
+pass 2.0 and higher, and CN81XX or CN83XX
+
+
+II. WRITE operation
+
+For CSR registers :
+=================
+
+	sudo ./txcsr  [options] <reg-name> <value-to-be-written>
+
+	E.g.: sudo ./txcsr  -a 0 -b 0 L2C_TADX_PFCX 0x100
+	      OUTPUT :  Register being written :L2C_TADX_PFCX
+			Write operation successful !
+			After write,value of L2C_TADX_PFCX [0x000087e050010100]: 0x0000000000000100
+
+For system registers :
+====================
+        i) Before accessing system registers, DAP_IMP_DAR[caben] must be set.
+           i.e. default value of DAP_IMP_DAR is 0x23F, after setting DAP_IMP_DAR[caben] bit value 
+	   becomes 0x63F so to set DAP_IMP_DAR[caben] bit perform following write operation on 
+	   DAP_IMP_DAR register
+
+                sudo ./txcsr DAP_IMP_DAR 0x63F
+
+          This operation is required only for the first sysreg access, subsequent sysreg accesses 
+	  do not require above write operation to be performed.
+
+        ii) Syntax to access sysreg of a core,
+                sudo ./txcsr <sysreg-name> -p <processor/core-number> <options> <value-to-be-written> 
+
+            Example : sudo ./txcsr AP_CVM_ACCESS_EL3 0x1ff
+			 Register being written : AP_CVM_ACCESS_EL3
+
+			 Write operation successful !
+			 After write,value of AP_CVM_ACCESS_EL3 [0x000087b00003ac18]: 0x000000000000013f			
+
+note : default value of processor-number (-p option) is zero(0)
+
+A warning, the DAP access to other cores doesn't work on CN88XX pass 1.x. You can only access on 
+pass 2.0 and higher, and CN81XX or CN83XX
+
+III. SPECIAL functions
+Special functions implemented include :
+
+1. Print CPU Frequency:
+
+	sudo ./txcsr --cpufreq
+
+2. List registers of a particular block:
+
+	sudo ./txcsr --listreg <block-name>
+
+3. Print tool version:
+
+	sudo ./txcsr --version
+
+4. To display L2C TAD register contents for performance monitoring
+
+	sudo ./txcsr --l2stats
+Known registers that can't be accessed :
+========================================
+
+ ROM_MEM(0..2047)
+
