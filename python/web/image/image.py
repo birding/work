@@ -38,19 +38,15 @@ def hello(idx):
 
 @app.route('/get_local_img/')
 def get_local_img():
-    print "aa"
+    print "get_local_img start"
     local_img = request.args.get('file')
-    print "text %s" % local_img
-    # return "text %s" % local_img
-    # file_path = 'F:/pictures/2017/IMG_20170128_153405.jpg'
-    # file_path = 'F:/pictures/2017/111.jpg'
+    print "local uri: %s" % local_img
+
     if os.path.exists(local_img):
         file_path = local_img
     else:
         file_path = 'static/images/pic_oops.jpg'
     if os.path.exists(file_path):
-        print " file path %s" % file_path
-        # resp = make_response(send_file(file_path, mimetype='image/jpg'))
         resp = make_response(send_file(file_path))
         return resp
     else:
@@ -61,19 +57,25 @@ def get_local_img():
 
 @app.route('/images_local/<int:idx>/')
 def show_images_local(idx):
-    print "cc"
+    print "show_images_local start"
+    equiv_str = "refresh"
     if idx == 0:
         cur_file = 'static/images/pic_loading.jpg'
     elif idx == -1:
         cur_file = 'static/images/pic_oops.jpg'
     else:
-        if app.config['RANDOM_SET'] == 1:
+        # if AUTO_REFRESH is 0, RANDOM_SET will not take effect(it is always 1).
+        if app.config['AUTO_REFRESH'] == 0:
+            idx = random.randint(1, image_db.total_pics)
+            equiv_str = "none"
+        elif app.config['RANDOM_SET'] == 1:
             idx = random.randint(1, image_db.total_pics)
 
         line, cur_file=image_db.read_uri(idx)
         print "uri file %s" % cur_file
+        # if read_uri didn't find the file, line != idx. otherwise line == idx
         if line != idx:
-            idx = line;
+            idx = line
 
     cur_file = cur_file.replace('\\', '/')
     print "cur_file %s" % cur_file
@@ -82,12 +84,13 @@ def show_images_local(idx):
     pic = 'http://%s:%d/get_local_img/?file=%s' % (app.config['IP_ADDRESS'], app.config['WEB_PORT'], cur_file)
     print "pic %s" % pic
     title_file =  os.path.basename(cur_file)
-    return render_template("base.html", pic=pic, next_url=next_url, title_file=title_file)
 
+    return render_template("base.html", pic=pic, next_url=next_url, title_file=title_file, equiv_str=equiv_str)
 
+'''
 @app.route('/images/<int:idx>/')
 def show_images(idx):
-    print "bb"
+    print "show_images start"
     if idx == 0:
         cur_file = 'static/images/pic_loading.jpg'
     elif idx == -1:
@@ -105,6 +108,7 @@ def show_images(idx):
     next_url=url_for('show_images',idx=idx+1)
     print "pci %s" % pic
     return render_template("base.html", pic=pic, next_url=next_url)
+'''
 
 
 if __name__ == '__main__':

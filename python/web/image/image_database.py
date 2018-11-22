@@ -36,13 +36,13 @@ class ImageDB:
                 print "dirName : %s" % dirname
                 print "dirName2 : %s" % join(dirname, "*.jpg")
                 pics = glob(join(dirname, "*.jpg"))
-                print "pics : %s" % pics
+                # print "pics : %s" % pics
 
                 self.total_pics += len(pics)
                 print "pic count : %d %d" % (len(pics), self.total_pics)
 
                 sample_list = [line + '\n' for line in pics]
-                print "sample_list : %s" % sample_list
+                # print "sample_list : %s" % sample_list
 
                 pics_config.writelines(sample_list)
             pics_config.close()

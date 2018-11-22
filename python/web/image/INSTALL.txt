@@ -35,7 +35,7 @@ Successfully installed Jinja2-2.10 MarkupSafe-1.0 Werkzeug-0.14.1 click-6.7 flas
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
  
  
-###
+##test virtualenv##
 F:\python\web\env\Scripts>activate
 
 (env) F:\python\web\env\Scripts>python
@@ -49,7 +49,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 F:\python\web\env\Scripts\activate
 
-#modify the dirs
+##modify the dirs##
 C:\Users\Shanping>type f:\python\web\image\dirs_config_win.txt
 static\images\2013
 F:\pictures\2013
@@ -59,7 +59,7 @@ F:\pictures\2016
 F:\pictures\2017
 F:\pictures\2018
 
-#modify the IP address and web port
+##modify the IP address and web port##
 C:\Users\Shanping>type f:\python\web\image\config.py
 DIR_FILE = 'dirs_config_win.txt'
 PICS_FILE = 'pics_files.txt'
@@ -67,7 +67,11 @@ IP_ADDRESS = '192.168.1.110'
 WEB_PORT = 80
 RANDOM_SET = 1
 
-
+##run##
 cd F:\python\web\image\
+F:\python\web\env\Scripts\activate
 python image.py
 
+##access web##
+http://127.0.0.1/
+http://127.0.0.1/images_local/1/

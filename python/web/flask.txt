@@ -45,3 +45,37 @@ http://www.bjhee.com/jinja2-statement.html
 
 页面的自动刷新以及跳转：
 http://blog.csdn.net/kuyuyingzi/article/details/21971073
+
+The Flask Mega-Tutorial
+http://www.pythondoc.com/flask-mega-tutorial/
+
+
+
+Powered By Flask
+This is a list of websites and projects that disclosed that they are running on Flask
+http://flask.pocoo.org/community/poweredby/
+
+personal website
+
+
+Todo List
+http://greyli.com/flask-practice-to-do-items-todo-list/
+
+
+https://github.com/honmaple/maple-bbs
+https://github.com/honmaple/maple-blog
+
+FlaskBB
+https://github.com/sh4nks/flaskbb
+https://forums.flaskbb.org/
+
+
+june  = Python Flask + SQLite + Node.js、
+https://github.com/pythoncn/june
+
+使用Flask搭建一个流媒体服务器：
+https://blog.csdn.net/kamidox/article/details/40562067
+Flask入门之上传文件到服务器：
+https://www.cnblogs.com/wongbingming/p/6802660.html
+
+https://github.com/greyli/helloflask
