@@ -9,12 +9,9 @@ echo 当前bat文件短路径：%~sdp0
 cd /D %~dp0
 echo 当前路径：%cd%
 
-Rem cmd /k "env\Scripts\activate & python main.py"
+set "PATH=C:\Python36;C:\Python36\Scripts;%PATH%"
+rem echo %PATH%
 
-env\Scripts\activate & python main.py
-
-REM python main.py
-
-env\Scripts\deactivate.bat
+cmd /k "python --version && pip -V"
 
 pause

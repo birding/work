@@ -1,4 +1,4 @@
-
+#! python2
 # -*- coding: utf-8 -*-
 
 # change format
@@ -52,7 +52,7 @@ def set_format_daily(workbook, sh_name):
     worksheet.set_column(2, 2, 8, format_category)  # ProductLine
     worksheet.set_column(3, 3, 13, format_category)  # Project
     worksheet.set_column(4, 4, 35, format_left)  # Issue Description
-    worksheet.set_column(5, 5, 60, format_left)  # Status
+    worksheet.set_column(5, 5, 70, format_left)  # Status
     worksheet.set_column(6, 6, None, format_center)  # Duration
     # set_row(row, height, cell_format, options)
     worksheet.set_row(0, None, header_format)
@@ -67,6 +67,7 @@ def set_format_next(workbook, sh_name):
     worksheet.set_column(2, 2, 13, format_category)  # Project
     worksheet.set_column(3, 3, 35, format_left)  # Issue Description
     worksheet.set_column(4, 4, 60, format_left)  # Actions
+    worksheet.set_column(5, 5, 12, format_left)  # Actions
     # set_row(row, height, cell_format, options)
     worksheet.set_row(0, None, header_format)
 

@@ -33,7 +33,7 @@
 int bdk_csr_decode(const char *name, uint64_t value, int inf_id[]);
 int reg_addr_to_name(uint64_t reg_address, char *reg_name);
 void name_suggestion(char *name);
-void name_suggestion_for_details(char * app, char *name, int mode);
+void name_suggestion_for_details(char *app,  char * model, char * mode, char *name);
 const __bdk_csr_db_type_t *__bdk_csr_lookup(const char *name, int inf_id[]);
 
 static int verbose, processor_num = 0, g_mul = 0;
@@ -82,9 +82,7 @@ static void usage()
 		\n\t\tSpecial functions use\n\n\
 		--cpufreq              Prints CPU Frequency\n\
 		--listreg <block-name> List available registers for a block eg: SATAX block\n\
-		--listregd0 <block-name> List details of available registers for a block eg: SATAX block\n\
-		--listregd1 <block-name> List details of available registers for a block eg: SATAX block\n\
-		--listregd2 <block-name> List details of available registers for a block eg: SATAX block\n\
+		--listregdetail <model> <mode> <block-name> List details of available registers for a block eg: SATAX block\n\
 		--l2stats	       Displays L2C TAD register contents for performance monitoring\n\n\
 		\n============================================================================================\n\
 		\nNOTE: \n1. If register address address is known read/write can be done as :\n\
@@ -1283,27 +1281,14 @@ int do_spl_functions (int argc, char **argv)
 		exit(0);
 	}
 
-	if (!strcmp(argv[1], "--listregd0")) {
-		if (argc != 3)
+	if (!strcmp(argv[1], "--listregdetail")) {
+		if (argc < 5)
 			usage();
-		debug_print("Selected option : to list details of registers of block-name: %s\n", argv[2]);
-		name_suggestion_for_details(argv[0], argv[2], 0);
+
+		debug_print("Selected option : to list details of registers of block-name: %s\n", argv[4]);
+		name_suggestion_for_details(argv[0], argv[2], argv[3], argv[4]);
 		exit(0);
 	}
-	if (!strcmp(argv[1], "--listregd1")) {
-		if (argc != 3)
-			usage();
-		debug_print("Selected option : to list details of registers of block-name: %s\n", argv[2]);
-		name_suggestion_for_details(argv[0], argv[2], 1);
-		exit(0);
-	}
-	if (!strcmp(argv[1], "--listregd2")) {
-		if (argc != 3)
-			usage();
-		debug_print("Selected option : to list details of registers of block-name: %s\n", argv[2]);
-		name_suggestion_for_details(argv[0], argv[2], 2);
-		exit(0);
-	}	
 	
 	if (!strcmp(argv[1], "--help")) {
 		usage();

@@ -17,26 +17,36 @@ extern int __bdk_csr_db_string_count( void );
     which has a null CSR at __bdk_csr_db_csr[0] */
 static const int16_t *csr_list = NULL;
 
-const int16_t * get_db_list()
+const int16_t * get_db_list(char * modelstr)
 {
         const __bdk_csr_db_map_t *map = __bdk_csr_db;
 		
 #ifdef _X86_HOST_
 	int iCpu;
-	uint32_t model;
-	printf("Select CPU model:\n\t[1]CN81XXP1_0\n\t[2]CN83XXP1_0\n"
-			">> ");
-	scanf("%d",&iCpu);
-	switch(iCpu)
-	{
-		case 2:
-			model=CAVIUM_CN83XX_PASS1_X;
-			break;				
-		case 1:
-			model=CAVIUM_CN81XX_PASS1_X;
-			break;
-		default:
-			return NULL;
+	uint32_t model=0;
+
+	if(modelstr != NULL){
+		if (strncasecmp(modelstr, "cn83xx", strlen(modelstr)) == 0){
+			model = CAVIUM_CN83XX_PASS1_X;
+		}
+		//printf("[%d]%s\n", __LINE__, modelstr);
+	}
+
+	if(model == 0){		
+		printf("Select CPU model:\n\t[1]CN81XXP1_0\n\t[2]CN83XXP1_0\n"
+				">> ");
+		scanf("%d",&iCpu);
+		switch(iCpu)
+		{
+			case 2:
+				model=CAVIUM_CN83XX_PASS1_X;
+				break;				
+			case 1:
+				model=CAVIUM_CN81XX_PASS1_X;
+				break;
+			default:
+				return NULL;
+		}
 	}
         while (map->model && (map->model != model))
             map++;
@@ -121,15 +131,12 @@ void display_range_list(const __bdk_csr_db_type_t  *db, char * pre, int index)
 /*
  * mode=0: list info 
  */
-void display_matched_result(int mode, char * app, int index)
+void display_matched_result(char * mode, char * app, int index)
 {
 	const __bdk_csr_db_type_t *db = &__bdk_csr_db_csr[csr_list[index]];
 	const char * ptr = __bdk_csr_db_string + db->name_index*2;
 
-	if(mode==0){
-		//./txcsr_tool --listregd0 usb
-		//  USBDRDX_MSIX_PBAX [0 1] [0 0]
-		// --finish
+	if (strncasecmp(mode, "mode0", strlen(mode)) == 0){
 		printf("\n%s ",  ptr);			
 		for (int i=0; i<BDK_CSR_DB_MAX_PARAM; i++)
 		{
@@ -145,7 +152,7 @@ void display_matched_result(int mode, char * app, int index)
 			}
 
 		}
-	}else if(1==mode){
+	}else if (strncasecmp(mode, "mode1", strlen(mode)) == 0){
 	// ./txcsr_tool --listregd1 usb
 	// ./txcsr_tool USBDRDX_MSIX_PBAX a[0-1] b[0-0]
 	// ./txcsr_tool USBDRDX_UAHC_CONFIG a[0-1]
@@ -158,7 +165,7 @@ void display_matched_result(int mode, char * app, int index)
 		
 		display_range(db);
 		
-	}else if(2 == mode){
+	}else if (strncasecmp(mode, "mode2", strlen(mode)) == 0){
 		//./txcsr_tool --listregd2 sata
 		//--finish
 		char pbuf[128];
@@ -173,15 +180,15 @@ void display_matched_result(int mode, char * app, int index)
 	
 }
 
-#define version_str "ver:1.1.1 "
+#define version_str "ver:1.1.2 "
 
-void name_suggestion_for_details(char *app, char *name, int mode)
+void name_suggestion_for_details(char *app,  char * model, char * mode, char *name)
 {
 	int idx=0, count=0;
 
 	printf("%s\n\n", version_str);
 
-	csr_list = get_db_list();
+	csr_list = get_db_list(model);
 	if(NULL == csr_list)
 		return;
 
