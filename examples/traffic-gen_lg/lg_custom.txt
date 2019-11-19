@@ -1,0 +1,99 @@
+[root@ThC docs]# pwd
+/home/liquidio/docs
+[root@ThC docs]# cat ./load_trafficgen.sh
+#!/bin/sh
+
+cd /home/sdk312/sdk312p14/OCTEON-SDK
+source ./env-setup OCTEON_CN23XX
+
+set -x
+export OCTEON_REMOTE_PROTOCOL=pci
+oct-remote-reset; oct-remote-bootcmd 'a';
+sleep 1
+oct-remote-load 0 $OCTEON_ROOT/examples/traffic-gen/traffic-gen
+sleep 1
+oct-remote-bootcmd 'bootoct 0 numcores=12'
+
+
+loopback 0xa00 internal
+tx.count 0xa00 1
+row 6 77 off
+rx.display 0xa00 on
+
+start 0xa00
+
+tx.size 0xa00 128
+tx.data[0] 0xa00 0x000fb71173c5000f
+tx.data[1] 0xa00 0xb71173c408004500
+tx.data[2] 0xa00 0x00ee39e30000ff11
+tx.data[3] 0xa00 0x7712020202020303
+tx.data[4] 0xa00 0x030304c4119400da
+tx.data[5] 0xa00 0x7bdfffffffffffff
+
+tx.data[5] 0xa00 0x7bdfff000000ffff
+tx.data[5] 0xa00 0x7bdf00000000ffff
+
+
+    WORD00: 00006a0001000000 aura=0x0 apad=6 chan=0xa00 bufs=1 style=0x0 pknd=0x0
+    WORD01: 003c00000a000000 len=60 grp=0x0 tt=ORDERED tag=0x0a000000
+    WORD02: 0220020100000000 lcty=8(IP4) lfty=17(UDP)
+    WORD03: 3fca00010855c036 size=16330 addr=0x10855c036
+    WORD04: 00002200000e0000 lcptr=14 lfptr=34
+                 000fb730f78b000f
+                 b730f78a08004500
+                 002e000000000411
+                 a1f90a0000630a01
+                 006310001001001a
+                 0000616263646566
+                 6768696a6b6c6d6e
+                 6f707172
+
+
+Command  18(INS)> start 0xa00
+    WORD00: 00006a0001050000 aura=0x0 apad=6 chan=0xa00 bufs=1 style=0x5 pknd=0x0
+    WORD01: 008400000a000000 len=132 grp=0x0 tt=ORDERED tag=0x0a000000
+    WORD02: 0220020100000000 lcty=8(IP4) lfty=17(UDP)
+    WORD03: 3fca000108564036 size=16330 addr=0x108564036
+    WORD04: 00002200000e0000 lcptr=14 lfptr=34
+                 000fb71173c5000f
+                 b71173c408004500
+                 00ee39e30000ff11
+                 7712020202020303
+                 030304c4119400da
+                 7bdfffffffffffff
+                 6768696a6b6c6d6e
+                 6f70717273747576
+                 7778797a61626364
+                 65666768696a6b6c
+                 6d6e6f7071727374
+                 75767778797a6162
+                 636465666768696a
+                 6b6c6d6e6f707172
+                 737475767778797a
+                 6162636465666768
+                 8372386b
+
+    WORD00: 00006a0001090000 aura=0x0 apad=6 chan=0xa00 bufs=1 style=0x9 pknd=0x0
+    WORD01: 008400000fff0000 len=132 grp=0x0 tt=ORDERED tag=0x0fff0000
+    WORD02: 0220020100000000 lcty=8(IP4) lfty=17(UDP)
+    WORD03: 00ca00010855c036 size=202 addr=0x10855c036
+    WORD04: 00002200000e0000 lcptr=14 lfptr=34
+                 000fb71173c5000f
+                 b71173c408004500
+                 00ee39e30000ff11
+                 7712020202020303
+                 030304c4119400da
+                 7bdfff000000ffff
+                 6768696a6b6c6d6e
+                 6f70717273747576
+                 7778797a61626364
+                 65666768696a6b6c
+                 6d6e6f7071727374
+                 75767778797a6162
+                 636465666768696a
+                 6b6c6d6e6f707172
+                 737475767778797a
+                 6162636465666768
+                 3f66982a
+
+
