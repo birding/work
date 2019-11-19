@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rootNode from="Disk_DellInspironR14" name="DellInspironR14" sync_date="2019-10-15 19:19:16" to="Disk_ThCenter">
+	<rootdir disk="e:" name="pytool" type="backup">
+		<dir name="FilesTransfer">
+			<file date="20191015-16:41:57" name="Disk_ThCenter.xml" size="790967"/>
+			<file date="20191015-16:42:13" name="diff_ThCenter_to_DellInspironR14.xml" size="16777"/>
+		</dir>
+	</rootdir>
+	<destinfo>
+		<rootNode name="ThCenter">
+			<rootdir disk="/home/yisp" name="b64vedio" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="Backup" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="Desktop" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="MARL2019" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="OS_ISO" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="pictures" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="pytool" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="SDK" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="Supports" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="Tech" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="tools" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="tools_free" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="work" type="backup">
+			</rootdir>
+		</rootNode>
+	</destinfo>
+</rootNode>

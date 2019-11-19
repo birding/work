@@ -1,0 +1,189 @@
+2019-09-05 10:45:20 - root - INFO: - 
+logger is starting
+2019-09-05 10:45:24 - root - INFO: - 
+#comparing [static]c:\SDK  with  [temp]\\10.21.128.144\root\home\yisp\SDK
+2019-09-05 10:45:25 - root - INFO: - WARNING: create new file 	=> \\10.21.128.144\root\home\yisp\SDK\SDK101906\openwrt-18.06.2-SDK10.0-PR2003.zip
+2019-09-05 10:45:25 - root - INFO: - WARNING: create new file 	=> \\10.21.128.144\root\home\yisp\SDK\SDK101906\vpp-armada-SDK10.0-PR2003.zip
+2019-09-05 10:45:25 - root - INFO: - 
+#comparing [temp]\\10.21.128.144\root\home\yisp\SDK  with  [static]c:\SDK
+2019-09-05 10:45:25 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK230
+2019-09-05 10:45:25 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-2014.10-r106729.tgz
+2019-09-05 10:45:25 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\bdk-source-r106729.tgz
+2019-09-05 10:45:25 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-2015.07-r121915.tgz
+2019-09-05 10:45:25 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\RE BDK Source Code.msg
+2019-09-05 10:45:25 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-octeon3-release-2016.12.1.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-octeon3-release-2016.12.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\BDK\BDK_usage
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\thunderX
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\Nitrox
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\OpenWRTv2.2
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\ODP
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-OPENSSL-ENGINE-6.2.0-02.x86_64-README.txt
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\octtx-odp-user-guide.pdf
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-DDF-LINUX-6.2.0-10.x86_64-README.txt
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX_SE2_QuickStart.pdf
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-helper-guide.pdf
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-application-api.pdf
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CPT-DRIVER-6.2.0-GA-RELEASE-NOTES.txt
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\se2-ga-engineering.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-README-1st-P3.pdf
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-OPENSSL-ENGINE-6.2.0-02.x86_64.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SE2-6.2.0-build31.x86_64.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\sdk-6.2.0-patch_release_1.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEON_SE-to-SE2_PortingGD.pdf
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-IPSEC-DPDK-6.2.0-build04.x86_64.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CPT-DRIVER-6.2.0-build02.x86_64.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-IPSEC-DPDK-6.2.0-GA-README.TXT
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CRYPTO-DPDK-README.TXT
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-platform-api-guide.pdf
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\opendataplane.pdf
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-README-1st.pdf
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SDK-6.2.0-build26.x86_64.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\README_OCTEONTX_SDK-620-GA.txt
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CRYPTO-DPDK-6.1.0-build01.x86_64.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\OpenWRT_v1.9
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\QLogic
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK600
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\ubuntu_16.04.2_rootfs.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\Software Development Options with OCTEON TX - 20 March 2017.pdf
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\Cavium OCTEON TX CN81008300 KVMQEMU
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\thunderx-tools-421.tar.bz2
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\ubuntu_1604-dpdk.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\DPDK-README.txt
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\odp-thunderx-1.11.0.0_CAVIUM_RELEASE_1.zip
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\CN8300_KVM_QEMU_HOW_TO.rar
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\se2-octeontx-rel5
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\Cavium OCTEON TX CN81008300 KVMQEMU.tar.gz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\CN8300_KVM_QEMU_HOW_TO
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\tools-gcc-6.2.tar.bz2
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\How-To-Restore-Ubuntu-16.04.2.txt
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\dpdk-81xx-v16.04-prerelease.tar.bz2
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\samsung
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\How-To-Restore-Ubuntu-16.04.txt
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-SDK-6.1.0-build11.x86_64.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\README_OCTEONTX-SDK-610-prerelease.txt
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-CRYPTO-DPDK-README.TXT
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\se2-octeontx-rel5.tar.gz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\dpdk-thunderx-v16.07-mq.tar.bz2
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\odp-thunderx-master.zip
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-CRYPTO-DPDK-6.1.0-build01.x86_64.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-SDK-6.1-p3.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\OCTEON-LINUX-1.6.0-221.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SNORT
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\liquidIO
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK1.9
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK220
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\OCTEON-SDK-1.6.0-221.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p9.1_supplemental.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p2.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-23.i386.zip
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p10_install.sh
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312-p7a.patch
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\CNNIC-SDK-SRC-3.1.2-59.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p3.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p12.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p6.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-LINUX-3.1.2-568.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p4.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p14.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-21.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\CNNIC-SDK-SRC-3.1.2-48.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p11.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ZLIB-CORE-3.1.2-08.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-IP-3.1.2-109.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p13_install.sh
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\tools-3.1.2_build54.tar.gz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p8_install.sh
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-SDK-3.1.2-568.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p13.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\CTEON-TOOLCHAIN-3.1.x-BUILD-54-README.txt
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-OPENSSL-3.1.2-29.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\lte-sdk3.1.2-201709211415-r1663.tar.bz2
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-CRYPTO-CORE-3.1.2-10.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\lte-sdk3.1.2-201706071009-r1580.tar.bz2
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p12_install.sh
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p11_install.sh
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p10.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p7.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-IPSEC-3.1.2-75.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-27.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk-3.1.2-p5.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p8.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ENGINE-LINUX-3.1.2-15.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p9.1.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\Reg remote-utils compilation fails with SDK-3.1.2+p9.1 on CentOS7RHEL7.msg
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p4_install.sh
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ZLIB-LINUX-3.1.2-07.i386.rpm
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\ADK-3.1.2
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\sdk101906rc_buildroot_dl.tar.gz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\sdk10-ga-19.06.1_buildroot_dl.tar.gz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\sdk10-ED1001_buildroot_dl.tar.gz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\sdk10-PR2001_buildroot_dl.tar.gz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK101906\Datang
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\SDK_10.0-19.06_CN96XX-19.05.10.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\sdk10-PR2003_buildroot_dl.tar.gz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\sdk10-190603_buildroot_dl.tar.gz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK510
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK311
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_H3C_20180813.zip
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-Patch-02.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_kingsoft_20181106.zip
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\patch-01-Nitrox-V-enable-lower-cores.tar.gz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\Nginx_Perf_Testing
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-04.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.3-01
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-Patch-01.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_H3C_20180813.txt
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\Patch-02.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\20181106release
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02-Patch-04.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-IPSec-Linux-SDK-0.2-04.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.3-01.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK2.0.txt
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-1.2-Linux-Driver-1.1-patch.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\cav_nginx_nblock-patch-01
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\broadwell_patch.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\20180919release_for_kuaishou
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\Nginx_Perf_Testing.tar.gz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\N5-NGINX-Perf-Testing.pdf
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2.17
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02-Patch-03.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2-Patch-01.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\cav_nginx_nblock-patch-01.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-session-resumption-Patch-01.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.4.14
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.4.14.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.2-07.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-2.0_GA-01
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-1.2-Linux-Driver-1.1-patch
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2.17.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-hybrid-offload-Patch-01.tgz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_forali0608.tar.gz
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-2.0_GA-01
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK310
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\linux2.6
+2019-09-05 10:45:26 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK101902
+2019-09-05 10:45:26 - root - INFO: - [2s][0.0Bps]
+2019-09-05 10:45:26 - root - INFO: - ...
+2019-09-05 10:45:37 - root - INFO: - 
+logger is starting
+2019-09-05 10:45:41 - root - INFO: - 
+#sync up [static]c:\SDK  with  [temp]\\10.21.128.144\root\home\yisp\SDK
+2019-09-05 10:46:14 - root - INFO: - new: c:\SDK\SDK101906\openwrt-18.06.2-SDK10.0-PR2003.zip ==> \\10.21.128.144\root\home\yisp\SDK\SDK101906\openwrt-18.06.2-SDK10.0-PR2003.zip [11.1MB]
+2019-09-05 10:46:19 - root - INFO: - -- done      
+2019-09-05 10:46:19 - root - INFO: - [5s][2.1MBps]
+2019-09-05 10:46:19 - root - INFO: - new: c:\SDK\SDK101906\vpp-armada-SDK10.0-PR2003.zip ==> \\10.21.128.144\root\home\yisp\SDK\SDK101906\vpp-armada-SDK10.0-PR2003.zip [13.3KB]
+2019-09-05 10:46:19 - root - INFO: - -- done      
+2019-09-05 10:46:19 - root - INFO: - [0s][164.5KBps]
+2019-09-05 10:46:20 - root - INFO: - 
+#sync up [temp]\\10.21.128.144\root\home\yisp\SDK  with  [static]c:\SDK
+2019-09-05 10:46:20 - root - INFO: - ----skip static directory:c:\SDK
+2019-09-05 10:46:20 - root - INFO: - [39s][291.9KBps]
+2019-09-05 10:46:20 - root - INFO: - ...
+2019-09-07 07:42:46 - root - INFO: - 
+logger is starting
+2019-09-07 07:42:52 - root - INFO: - 
+##start sync [Backup] with 2 directories 
+2019-09-07 07:42:52 - root - INFO: - 
+#comparing [static]c:\Backup  with  [temp]\\10.21.128.144\root\home\yisp\Backup

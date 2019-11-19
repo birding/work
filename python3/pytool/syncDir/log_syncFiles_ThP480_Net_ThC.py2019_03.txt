@@ -1,0 +1,135 @@
+2019-03-25 07:58:40 - root - INFO: - 
+logger is starting
+2019-03-25 07:58:43 - root - INFO: - 
+##start sync [MARL2019] with 2 directories 
+2019-03-25 07:58:43 - root - INFO: - 
+#comparing [static]c:\MARL2019 with [temp]\\10.21.148.112\root\home\yisp\MARL2019
+2019-03-25 07:59:01 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.148.112\root\home\yisp\MARL2019\Supports\H3C\20190320bdk_margin\test.txt ([20190322 20:38:42][3170B]->[20190320 12:16:36][3183B])
+2019-03-25 07:59:29 - root - INFO: - WARNING: create new directory 	=> \\10.21.148.112\root\home\yisp\MARL2019\Tech\map
+2019-03-25 07:59:32 - root - INFO: - WARNING: create new file 	=> \\10.21.148.112\root\home\yisp\MARL2019\Tech\python3\syncDir\syncFiles_ThP480_Net_home_v0.py
+2019-03-25 07:59:34 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.148.112\root\home\yisp\MARL2019\Tech\raspbian\Summary.docx ([20190323 07:13:39][22845B]->[20190304 18:46:57][22620B])
+2019-03-25 07:59:46 - root - INFO: - WARNING: create new file 	=> \\10.21.148.112\root\home\yisp\MARL2019\work\CN78XX\AN-180-CN7XXX_Boot_Methods_r5.pdf
+2019-03-25 07:59:56 - root - INFO: - WARNING: create new file 	=> \\10.21.148.112\root\home\yisp\MARL2019\work\marvell\KSO\SHANPING_YI_FY2020_Q1_FAE_KSO_20MAR2019.xlsx
+2019-03-25 08:00:19 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.148.112\root\home\yisp\MARL2019\work\personal\2019weekly\20190322.xlsx ([20190324 18:36:26][20760B]->[20190322 09:14:36][20473B])
+2019-03-25 08:00:22 - root - INFO: - 
+#comparing [temp]\\10.21.148.112\root\home\yisp\MARL2019 with [static]c:\MARL2019
+2019-03-25 08:00:33 - root - INFO: - 
+##start sync [SDK] with 2 directories 
+2019-03-25 08:00:33 - root - INFO: - 
+#comparing [static]c:\SDK with [temp]\\10.21.148.112\root\home\yisp\SDK
+2019-03-25 08:00:36 - root - INFO: - WARNING: create new file 	=> \\10.21.148.112\root\home\yisp\SDK\BDK\octeon3-bdk-octeon3-release-2017.12.tgz
+2019-03-25 08:00:37 - root - INFO: - WARNING: create new file 	=> \\10.21.148.112\root\home\yisp\SDK\SDK101906\SDK10_19.06.0_RC-Readme.txt
+2019-03-25 08:00:37 - root - INFO: - 
+#comparing [temp]\\10.21.148.112\root\home\yisp\SDK with [static]c:\SDK
+2019-03-25 08:00:37 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK230
+2019-03-25 08:00:37 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-2014.10-r106729.tgz
+2019-03-25 08:00:37 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\bdk-source-r106729.tgz
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-2015.07-r121915.tgz
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\RE BDK Source Code.msg
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-octeon3-release-2016.12.1.tgz
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-octeon3-release-2016.12.tgz
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\BDK\BDK_usage
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\thunderX
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\Nitrox
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\OpenWRTv2.2
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\ODP
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK620
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\OpenWRT_v1.9
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\QLogic
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK600
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new file 	=> c:\SDK\OCTEON-LINUX-1.6.0-221.i386.rpm
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SNORT
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\liquidIO
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK1.9
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK220
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new file 	=> c:\SDK\OCTEON-SDK-1.6.0-221.i386.rpm
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK312
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\ADK-3.1.2
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK510
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK311
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK310
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\linux2.6
+2019-03-25 08:00:38 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK101902
+2019-03-25 08:00:38 - root - INFO: - 
+##start sync [syncDir] with 2 directories 
+2019-03-25 08:00:38 - root - INFO: - 
+#comparing [temp]c:\syncDir with [temp]\\10.21.148.112\root\home\yisp\syncDir
+2019-03-25 08:00:39 - root - INFO: - WARNING: create new file 	=> \\10.21.148.112\root\home\yisp\syncDir\log_syncFiles_ThP480_Net_home.py2019_03.txt
+2019-03-25 08:00:39 - root - INFO: - WARNING: create new file 	=> \\10.21.148.112\root\home\yisp\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_03.txt
+2019-03-25 08:00:42 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.148.112\root\home\yisp\syncDir\syncFiles_ThP480_Net_home.py ([20190323 12:37:37][10665B]->[20190322 12:38:00][9768B])
+2019-03-25 08:00:42 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.148.112\root\home\yisp\syncDir\syncFiles_ThP480_Net_ThC.py ([20190325 07:58:35][10695B]->[20190322 12:36:39][9798B])
+2019-03-25 08:00:42 - root - INFO: - 
+#comparing [temp]\\10.21.148.112\root\home\yisp\syncDir with [temp]c:\syncDir
+2019-03-25 08:00:43 - root - INFO: - [120s][0.0Bps]
+2019-03-25 08:00:43 - root - INFO: - ...
+2019-03-25 08:01:58 - root - INFO: - 
+logger is starting
+2019-03-25 08:02:02 - root - INFO: - 
+##start sync [MARL2019] with 2 directories 
+2019-03-25 08:02:02 - root - INFO: - 
+#sync up [static]c:\MARL2019 with [temp]\\10.21.148.112\root\home\yisp\MARL2019
+2019-03-25 08:02:20 - root - INFO: - update: c:\MARL2019\Supports\H3C\20190320bdk_margin\test.txt[3.1KB] ==> \\10.21.148.112\root\home\yisp\MARL2019\Supports\H3C\20190320bdk_margin\test.txt ([20190322 20:38:42][3170B]->[20190320 12:16:36][3183B])
+2019-03-25 08:02:21 - root - INFO: - -- done      
+2019-03-25 08:02:21 - root - INFO: - [0s][4.6KBps]
+2019-03-25 08:02:42 - root - INFO: - new: c:\MARL2019\Tech\map\map_v0.zip ==> \\10.21.148.112\root\home\yisp\MARL2019\Tech\map\map_v0.zip [2.9KB]
+2019-03-25 08:02:43 - root - INFO: - -- done      
+2019-03-25 08:02:43 - root - INFO: - [0s][3.8KBps]
+2019-03-25 08:02:43 - root - INFO: - new: c:\MARL2019\Tech\map\map_v2.zip ==> \\10.21.148.112\root\home\yisp\MARL2019\Tech\map\map_v2.zip [3.3KB]
+2019-03-25 08:02:43 - root - INFO: - -- done      
+2019-03-25 08:02:43 - root - INFO: - [0s][4.1KBps]
+2019-03-25 08:02:46 - root - INFO: - new: c:\MARL2019\Tech\python3\syncDir\syncFiles_ThP480_Net_home_v0.py ==> \\10.21.148.112\root\home\yisp\MARL2019\Tech\python3\syncDir\syncFiles_ThP480_Net_home_v0.py [9.5KB]
+2019-03-25 08:02:47 - root - INFO: - -- done      
+2019-03-25 08:02:47 - root - INFO: - [0s][13.8KBps]
+2019-03-25 08:02:49 - root - INFO: - update: c:\MARL2019\Tech\raspbian\Summary.docx[22.3KB] ==> \\10.21.148.112\root\home\yisp\MARL2019\Tech\raspbian\Summary.docx ([20190323 07:13:39][22845B]->[20190304 18:46:57][22620B])
+2019-03-25 08:02:50 - root - INFO: - -- done      
+2019-03-25 08:02:50 - root - INFO: - [1s][18.5KBps]
+2019-03-25 08:02:59 - root - INFO: - new: c:\MARL2019\work\CN78XX\AN-180-CN7XXX_Boot_Methods_r5.pdf ==> \\10.21.148.112\root\home\yisp\MARL2019\work\CN78XX\AN-180-CN7XXX_Boot_Methods_r5.pdf [489.2KB]
+2019-03-25 08:03:10 - root - INFO: - -- done      
+2019-03-25 08:03:10 - root - INFO: - [10s][47.8KBps]
+2019-03-25 08:03:23 - root - INFO: - new: c:\MARL2019\work\marvell\KSO\SHANPING_YI_FY2020_Q1_FAE_KSO_20MAR2019.xlsx ==> \\10.21.148.112\root\home\yisp\MARL2019\work\marvell\KSO\SHANPING_YI_FY2020_Q1_FAE_KSO_20MAR2019.xlsx [26.8KB]
+2019-03-25 08:03:25 - root - INFO: - -- done      
+2019-03-25 08:03:25 - root - INFO: - [1s][17.4KBps]
+2019-03-25 08:03:34 - root - INFO: - update: c:\MARL2019\work\marvell\marvell.txt[4.8KB] ==> \\10.21.148.112\root\home\yisp\MARL2019\work\marvell\marvell.txt ([20190325 08:03:05][4872B]->[20190321 11:40:32][4756B])
+2019-03-25 08:03:35 - root - INFO: - -- done      
+2019-03-25 08:03:35 - root - INFO: - [0s][5.8KBps]
+2019-03-25 08:03:54 - root - INFO: - update: c:\MARL2019\work\personal\2019weekly\20190322.xlsx[20.3KB] ==> \\10.21.148.112\root\home\yisp\MARL2019\work\personal\2019weekly\20190322.xlsx ([20190324 18:36:26][20760B]->[20190322 09:14:36][20473B])
+2019-03-25 08:03:55 - root - INFO: - -- done      
+2019-03-25 08:03:55 - root - INFO: - [1s][15.1KBps]
+2019-03-25 08:03:59 - root - INFO: - 
+#sync up [temp]\\10.21.148.112\root\home\yisp\MARL2019 with [static]c:\MARL2019
+2019-03-25 08:03:59 - root - INFO: - ----skip static directory:c:\MARL2019
+2019-03-25 08:03:59 - root - INFO: - 
+##start sync [SDK] with 2 directories 
+2019-03-25 08:03:59 - root - INFO: - 
+#sync up [static]c:\SDK with [temp]\\10.21.148.112\root\home\yisp\SDK
+2019-03-25 08:04:01 - root - INFO: - new: c:\SDK\BDK\octeon3-bdk-octeon3-release-2017.12.tgz ==> \\10.21.148.112\root\home\yisp\SDK\BDK\octeon3-bdk-octeon3-release-2017.12.tgz [14.9MB]
+2019-03-25 08:06:32 - root - INFO: - -- done      
+2019-03-25 08:06:32 - root - INFO: - [150s][101.3KBps]
+2019-03-25 08:06:33 - root - INFO: - new: c:\SDK\SDK101906\SDK10_19.06.0_RC-Readme.txt ==> \\10.21.148.112\root\home\yisp\SDK\SDK101906\SDK10_19.06.0_RC-Readme.txt [852.0B]
+2019-03-25 08:06:34 - root - INFO: - -- done      
+2019-03-25 08:06:34 - root - INFO: - [0s][1.4KBps]
+2019-03-25 08:06:34 - root - INFO: - 
+#sync up [temp]\\10.21.148.112\root\home\yisp\SDK with [static]c:\SDK
+2019-03-25 08:06:34 - root - INFO: - ----skip static directory:c:\SDK
+2019-03-25 08:06:34 - root - INFO: - 
+##start sync [syncDir] with 2 directories 
+2019-03-25 08:06:34 - root - INFO: - 
+#sync up [temp]c:\syncDir with [temp]\\10.21.148.112\root\home\yisp\syncDir
+2019-03-25 08:06:35 - root - INFO: - new: c:\syncDir\log_syncFiles_ThP480_Net_home.py2019_03.txt ==> \\10.21.148.112\root\home\yisp\syncDir\log_syncFiles_ThP480_Net_home.py2019_03.txt [93.2KB]
+2019-03-25 08:06:36 - root - INFO: - -- done      
+2019-03-25 08:06:36 - root - INFO: - [1s][63.4KBps]
+2019-03-25 08:06:36 - root - INFO: - new: c:\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_03.txt ==> \\10.21.148.112\root\home\yisp\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_03.txt [10.6KB]
+2019-03-25 08:06:37 - root - INFO: - -- done      
+2019-03-25 08:06:37 - root - INFO: - [0s][15.5KBps]
+2019-03-25 08:06:40 - root - INFO: - update: c:\syncDir\syncFiles_ThP480_Net_home.py[10.4KB] ==> \\10.21.148.112\root\home\yisp\syncDir\syncFiles_ThP480_Net_home.py ([20190323 12:37:37][10665B]->[20190322 12:38:00][9768B])
+2019-03-25 08:06:41 - root - INFO: - -- done      
+2019-03-25 08:06:41 - root - INFO: - [0s][15.9KBps]
+2019-03-25 08:06:41 - root - INFO: - update: c:\syncDir\syncFiles_ThP480_Net_ThC.py[10.4KB] ==> \\10.21.148.112\root\home\yisp\syncDir\syncFiles_ThP480_Net_ThC.py ([20190325 07:58:35][10695B]->[20190322 12:36:39][9798B])
+2019-03-25 08:06:42 - root - INFO: - -- done      
+2019-03-25 08:06:42 - root - INFO: - [0s][14.8KBps]
+2019-03-25 08:06:42 - root - INFO: - 
+#sync up [temp]\\10.21.148.112\root\home\yisp\syncDir with [temp]c:\syncDir
+2019-03-25 08:06:42 - root - INFO: - [280s][56.8KBps]
+2019-03-25 08:06:42 - root - INFO: - ...

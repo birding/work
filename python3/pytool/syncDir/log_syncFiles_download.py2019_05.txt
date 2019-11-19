@@ -1,0 +1,60 @@
+2019-05-06 13:36:01 - root - INFO: - 
+logger is starting
+2019-05-06 13:36:03 - root - INFO: - 
+#comparing [temp]C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training  with  [temp]\\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training
+2019-05-06 13:36:35 - root - INFO: - 
+#comparing [temp]\\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training  with  [temp]C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training
+2019-05-06 13:36:52 - root - INFO: - WARNING: create new file 	=> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\05 Data Plane and Reference SW.mp4
+2019-05-06 13:36:52 - root - INFO: - WARNING: create new file 	=> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\Thumbs.db
+2019-05-06 13:36:52 - root - INFO: - WARNING: create new file 	=> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\04 Unified SDK Orientation.mp4
+2019-05-06 13:36:52 - root - INFO: - WARNING: create new file 	=> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\~$Unified-SDK-Orientation-MikeCherba_24APR2019.pptx
+2019-05-06 13:36:52 - root - INFO: - WARNING: create new file 	=> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\03 OCTEON TX2 Boot Process.mp4
+2019-05-06 13:36:52 - root - INFO: - WARNING: create new file 	=> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\02 OCTEON-III TX TX2 Based System Hardware.mp4
+2019-05-06 13:36:52 - root - INFO: - WARNING: create new file 	=> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\01 OCTEON TX and TX2.mp4
+2019-05-06 13:36:52 - root - INFO: - [48s][0.0Bps]
+2019-05-06 13:36:52 - root - INFO: - ...
+2019-05-06 13:37:11 - root - INFO: - 
+logger is starting
+2019-05-06 13:37:17 - root - INFO: - 
+##start sync [download] with 2 directories 
+2019-05-06 13:37:17 - root - INFO: - 
+#sync up [temp]C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training  with  [static]\\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training
+2019-05-06 13:37:17 - root - INFO: - ----skip static directory:\\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training
+2019-05-06 13:37:17 - root - INFO: - 
+#sync up [static]\\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training  with  [temp]C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training
+2019-05-06 13:37:27 - root - INFO: - new: \\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training\05 Data Plane and Reference SW.mp4 ==> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\05 Data Plane and Reference SW.mp4 [1.2GB]
+2019-05-06 13:38:47 - root - INFO: - -- done      
+2019-05-06 13:38:47 - root - INFO: - [80s][14.8MBps]
+2019-05-06 13:39:09 - root - INFO: - new: \\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training\Thumbs.db ==> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\Thumbs.db [11.5KB]
+2019-05-06 13:56:06 - root - INFO: - 
+logger is starting
+2019-05-06 13:56:10 - root - INFO: - 
+##start sync [download] with 2 directories 
+2019-05-06 13:56:10 - root - INFO: - 
+#sync up [temp]C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training  with  [static]\\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training
+2019-05-06 13:56:10 - root - INFO: - ----skip static directory:\\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training
+2019-05-06 13:56:10 - root - INFO: - 
+#sync up [static]\\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training  with  [temp]C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training
+2019-05-06 13:56:15 - root - INFO: - new: \\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training\05 Data Plane and Reference SW.mp4 ==> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\05 Data Plane and Reference SW.mp4 [1.2GB]
+2019-05-06 14:29:23 - root - INFO: - -- done      
+2019-05-06 14:29:23 - root - INFO: - [1987s][612.0KBps]
+2019-05-06 14:29:25 - root - INFO: - new: \\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training\Thumbs.db ==> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\Thumbs.db [11.5KB]
+2019-05-06 14:29:27 - root - INFO: - -- done      
+2019-05-06 14:29:27 - root - INFO: - [2s][5.1KBps]
+2019-05-06 14:29:28 - root - INFO: - new: \\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training\04 Unified SDK Orientation.mp4 ==> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\04 Unified SDK Orientation.mp4 [1.3GB]
+2019-05-06 15:07:02 - root - INFO: - -- done      
+2019-05-06 15:07:02 - root - INFO: - [2254s][594.3KBps]
+2019-05-06 15:07:04 - root - INFO: - new: \\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training\~$Unified-SDK-Orientation-MikeCherba_24APR2019.pptx ==> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\~$Unified-SDK-Orientation-MikeCherba_24APR2019.pptx [165.0B]
+2019-05-06 15:07:06 - root - INFO: - -- done      
+2019-05-06 15:07:06 - root - INFO: - [1s][100.0Bps]
+2019-05-06 15:07:07 - root - INFO: - new: \\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training\03 OCTEON TX2 Boot Process.mp4 ==> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\03 OCTEON TX2 Boot Process.mp4 [1.2GB]
+2019-05-06 15:45:15 - root - INFO: - -- done      
+2019-05-06 15:45:15 - root - INFO: - [2287s][542.0KBps]
+2019-05-06 15:45:16 - root - INFO: - new: \\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training\02 OCTEON-III TX TX2 Based System Hardware.mp4 ==> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\02 OCTEON-III TX TX2 Based System Hardware.mp4 [1.2GB]
+2019-05-06 16:27:54 - root - INFO: - -- done      
+2019-05-06 16:27:54 - root - INFO: - [2558s][505.6KBps]
+2019-05-06 16:27:55 - root - INFO: - new: \\sj1svm1.caveonetworks.com\FAE-from-castr1\Training\Cavium Training\2019\IPBU Disty FAE Training\01 OCTEON TX and TX2.mp4 ==> C:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\01 OCTEON TX and TX2.mp4 [1.2GB]
+2019-05-06 17:03:28 - root - INFO: - -- done      
+2019-05-06 17:03:28 - root - INFO: - [2133s][608.4KBps]
+2019-05-06 17:03:28 - root - INFO: - [11237s][568.4KBps]
+2019-05-06 17:03:28 - root - INFO: - ...

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rootNode name="DellInspironR14">
+	<rootdir disk="d:" name="b64vedio" type="backup"></rootdir>
+	<rootdir disk="d:" name="Backup" type="backup"></rootdir>
+	<rootdir disk="e:" name="Desktop" type="backup"></rootdir>
+	<rootdir disk="e:" name="MARL2019" type="backup"></rootdir>
+	<rootdir disk="e:" name="OS_ISO" type="backup"></rootdir>
+	<rootdir disk="e:" name="pictures" type="backup"></rootdir>
+	<rootdir disk="e:" name="pytool" type="backup"></rootdir>
+	<rootdir disk="e:" name="SDK" type="backup"></rootdir>
+	<rootdir disk="e:" name="Supports" type="backup"></rootdir>
+	<rootdir disk="e:" name="Tech" type="backup"></rootdir>
+	<rootdir disk="e:" name="tools" type="backup"></rootdir>
+	<rootdir disk="e:" name="tools_free" type="backup"></rootdir>
+	<rootdir disk="e:" name="work" type="backup"></rootdir>
+</rootNode>

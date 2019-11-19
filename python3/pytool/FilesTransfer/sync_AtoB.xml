@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rootNode from="Disk_ThP480" name="ThP480" sync_date="2019-10-10 16:26:59" to="Disk_ThCenter">
+	<rootdir disk="c:" name="MARL2019" type="static">
+		<dir name="Supports">
+			<dir name="SDK_EBB">
+				<dir name="SDK10">
+					<file date="20191010-13:05:48" name="sdk10_0_1_0.txt" size="3356"/>
+				</dir>
+			</dir>
+		</dir>
+		<dir name="work">
+			<dir name="personal">
+				<dir name="2019weekly">
+					<file date="20191010-15:27:51" name="20190927.xlsx" size="20828"/>
+				</dir>
+			</dir>
+		</dir>
+	</rootdir>
+	<rootdir disk="c:" name="pytool" type="backup">
+		<dir name="syncDir">
+			<file date="20191010-11:21:15" name="log_syncFiles_ThP480_Net_ThC.py2019_10.txt" size="115673"/>
+		</dir>
+	</rootdir>
+</rootNode>

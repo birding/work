@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rootNode name="ThCenter">
+	<rootdir disk="\\10.21.128.101\root\home\yisp" name="b64vedio" type="backup"></rootdir>
+	<rootdir disk="\\10.21.128.101\root\home\yisp" name="Backup" type="backup"></rootdir>
+	<rootdir disk="\\10.21.128.101\root\home\yisp" name="Desktop" type="backup"></rootdir>
+	<rootdir disk="\\10.21.128.101\root\home\yisp" name="MARL2019" type="backup"></rootdir>
+	<rootdir disk="\\10.21.128.101\root\home\yisp" name="OS_ISO" type="backup"></rootdir>
+	<rootdir disk="\\10.21.128.101\root\home\yisp" name="pictures" type="backup"></rootdir>
+	<rootdir disk="\\10.21.128.101\root\home\yisp" name="pytool" type="backup"></rootdir>
+	<rootdir disk="\\10.21.128.101\root\home\yisp" name="SDK" type="backup"></rootdir>
+	<rootdir disk="\\10.21.128.101\root\home\yisp" name="Supports" type="backup"></rootdir>
+	<rootdir disk="\\10.21.128.101\root\home\yisp" name="Tech" type="backup"></rootdir>
+	<rootdir disk="\\10.21.128.101\root\home\yisp" name="tools" type="backup"></rootdir>
+	<rootdir disk="\\10.21.128.101\root\home\yisp" name="tools_free" type="backup"></rootdir>
+	<rootdir disk="\\10.21.128.101\root\home\yisp" name="work" type="backup"></rootdir>
+</rootNode>

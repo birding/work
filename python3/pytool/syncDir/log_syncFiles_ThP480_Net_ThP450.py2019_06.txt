@@ -1,0 +1,590 @@
+2019-06-14 20:26:35 - root - INFO: - 
+logger is starting
+2019-06-14 20:26:38 - root - INFO: - 
+#comparing [temp]c:\pytool  with  [temp]\\172.16.1.108\f\pytool
+2019-06-14 20:26:39 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\pytool\FilesAnalysis\analysis_result.csv
+2019-06-14 20:26:39 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\pytool\FilesAnalysis\filesAnalysis_ThP480_Net_home.py_0.csv ([20190607 20:15:35][49428B]->[20190413 15:31:52][26462B])
+2019-06-14 20:26:39 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\pytool\FilesAnalysis\__pycache__\filesAnalysis_lib.cpython-36.pyc ([20190607 20:13:13][4159B]->[20190413 15:31:04][4107B])
+2019-06-14 20:26:39 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\pytool\syncDir\log_syncFiles_ThP480_Net_home.py2019_06.txt
+2019-06-14 20:26:39 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_05.txt ([20190528 15:46:53][63352B]->[20190524 11:28:28][39757B])
+2019-06-14 20:26:39 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_06.txt
+2019-06-14 20:26:39 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_05.txt ([20190524 21:12:27][204098B]->[20190524 15:39:29][10464B])
+2019-06-14 20:26:39 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_06.txt
+2019-06-14 20:26:39 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\pytool\syncDir\syncFiles_lib2.py ([20190524 17:07:25][11360B]->[20190510 07:33:30][11344B])
+2019-06-14 20:26:39 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\pytool\syncDir\syncFiles_lib3.py ([20190524 17:06:50][11320B]->[20190524 15:38:24][11344B])
+2019-06-14 20:26:39 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\pytool\syncDir\syncFiles_ThP480_Net_ThC.py ([20190612 17:02:42][3242B]->[20190413 16:07:25][3242B])
+2019-06-14 20:26:39 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\pytool\syncDir\__pycache__\syncFiles_lib3.cpython-36.pyc ([20190524 21:10:21][7032B]->[20190524 15:38:34][7032B])
+2019-06-14 20:26:39 - root - INFO: - 
+#comparing [temp]\\172.16.1.108\f\pytool  with  [temp]c:\pytool
+2019-06-14 20:26:39 - root - INFO: - WARNING: create new file 	=> c:\pytool\syncDir\log_syncFiles_ThP450_USB.py2019_06.txt
+2019-06-14 20:26:39 - root - INFO: - WARNING: file doesn't match 	=> c:\pytool\syncDir\syncFiles_ThP450_USB.py ([20190614 19:06:10][2892B]->[20190409 21:43:10][2897B])
+2019-06-14 20:26:39 - root - INFO: - [1s][0.0Bps]
+2019-06-14 20:26:39 - root - INFO: - ...
+2019-06-14 20:27:08 - root - INFO: - 
+logger is starting
+2019-06-14 20:27:14 - root - INFO: - 
+#sync up [temp]c:\pytool  with  [temp]\\172.16.1.108\f\pytool
+2019-06-14 20:27:14 - root - INFO: - new: c:\pytool\FilesAnalysis\analysis_result.csv ==> \\172.16.1.108\f\pytool\FilesAnalysis\analysis_result.csv [6.2KB]
+2019-06-14 20:27:15 - root - INFO: - -- done      
+2019-06-14 20:27:15 - root - INFO: - [0s][31.0KBps]
+2019-06-14 20:27:15 - root - INFO: - update: c:\pytool\FilesAnalysis\filesAnalysis_ThP480_Net_home.py_0.csv[48.3KB] ==> \\172.16.1.108\f\pytool\FilesAnalysis\filesAnalysis_ThP480_Net_home.py_0.csv ([20190607 20:15:35][49428B]->[20190413 15:31:52][26462B])
+2019-06-14 20:27:16 - root - INFO: - -- done      
+2019-06-14 20:27:16 - root - INFO: - [1s][45.9KBps]
+2019-06-14 20:27:16 - root - INFO: - update: c:\pytool\FilesAnalysis\__pycache__\filesAnalysis_lib.cpython-36.pyc[4.1KB] ==> \\172.16.1.108\f\pytool\FilesAnalysis\__pycache__\filesAnalysis_lib.cpython-36.pyc ([20190607 20:13:13][4159B]->[20190413 15:31:04][4107B])
+2019-06-14 20:27:17 - root - INFO: - -- done      
+2019-06-14 20:27:17 - root - INFO: - [0s][6.4KBps]
+2019-06-14 20:27:17 - root - INFO: - new: c:\pytool\syncDir\log_syncFiles_ThP480_Net_home.py2019_06.txt ==> \\172.16.1.108\f\pytool\syncDir\log_syncFiles_ThP480_Net_home.py2019_06.txt [54.3KB]
+2019-06-14 20:27:17 - root - INFO: - -- done      
+2019-06-14 20:27:17 - root - INFO: - [0s][152.5KBps]
+2019-06-14 20:27:17 - root - INFO: - update: c:\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_05.txt[61.9KB] ==> \\172.16.1.108\f\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_05.txt ([20190528 15:46:53][63352B]->[20190524 11:28:28][39757B])
+2019-06-14 20:27:18 - root - INFO: - -- done      
+2019-06-14 20:27:18 - root - INFO: - [0s][168.5KBps]
+2019-06-14 20:27:18 - root - INFO: - new: c:\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_06.txt ==> \\172.16.1.108\f\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_06.txt [39.5KB]
+2019-06-14 20:27:18 - root - INFO: - -- done      
+2019-06-14 20:27:18 - root - INFO: - [0s][136.9KBps]
+2019-06-14 20:27:18 - root - INFO: - update: c:\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_05.txt[199.3KB] ==> \\172.16.1.108\f\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_05.txt ([20190524 21:12:27][204098B]->[20190524 15:39:29][10464B])
+2019-06-14 20:27:19 - root - INFO: - -- done      
+2019-06-14 20:27:19 - root - INFO: - [0s][360.7KBps]
+2019-06-14 20:27:19 - root - INFO: - new: c:\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_06.txt ==> \\172.16.1.108\f\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_06.txt [5.1KB]
+2019-06-14 20:27:19 - root - INFO: - -- done      
+2019-06-14 20:27:19 - root - INFO: - [0s][29.5KBps]
+2019-06-14 20:27:19 - root - INFO: - update: c:\pytool\syncDir\syncFiles_lib2.py[11.1KB] ==> \\172.16.1.108\f\pytool\syncDir\syncFiles_lib2.py ([20190524 17:07:25][11360B]->[20190510 07:33:30][11344B])
+2019-06-14 20:27:19 - root - INFO: - -- done      
+2019-06-14 20:27:19 - root - INFO: - [0s][45.2KBps]
+2019-06-14 20:27:19 - root - INFO: - update: c:\pytool\syncDir\syncFiles_lib3.py[11.1KB] ==> \\172.16.1.108\f\pytool\syncDir\syncFiles_lib3.py ([20190524 17:06:50][11320B]->[20190524 15:38:24][11344B])
+2019-06-14 20:27:20 - root - INFO: - -- done      
+2019-06-14 20:27:20 - root - INFO: - [0s][36.9KBps]
+2019-06-14 20:27:20 - root - INFO: - update: c:\pytool\syncDir\syncFiles_ThP480_Net_ThC.py[3.2KB] ==> \\172.16.1.108\f\pytool\syncDir\syncFiles_ThP480_Net_ThC.py ([20190612 17:02:42][3242B]->[20190413 16:07:25][3242B])
+2019-06-14 20:27:20 - root - INFO: - -- done      
+2019-06-14 20:27:20 - root - INFO: - [0s][14.9KBps]
+2019-06-14 20:27:20 - root - INFO: - update: c:\pytool\syncDir\__pycache__\syncFiles_lib3.cpython-36.pyc[6.9KB] ==> \\172.16.1.108\f\pytool\syncDir\__pycache__\syncFiles_lib3.cpython-36.pyc ([20190524 21:10:21][7032B]->[20190524 15:38:34][7032B])
+2019-06-14 20:27:20 - root - INFO: - -- done      
+2019-06-14 20:27:20 - root - INFO: - [0s][33.1KBps]
+2019-06-14 20:27:20 - root - INFO: - 
+#sync up [temp]\\172.16.1.108\f\pytool  with  [temp]c:\pytool
+2019-06-14 20:27:20 - root - INFO: - new: \\172.16.1.108\f\pytool\syncDir\log_syncFiles_ThP450_USB.py2019_06.txt ==> c:\pytool\syncDir\log_syncFiles_ThP450_USB.py2019_06.txt [260.8KB]
+2019-06-14 20:27:21 - root - INFO: - -- done      
+2019-06-14 20:27:21 - root - INFO: - [0s][897.0KBps]
+2019-06-14 20:27:21 - root - INFO: - update: \\172.16.1.108\f\pytool\syncDir\syncFiles_ThP450_USB.py[2.8KB] ==> c:\pytool\syncDir\syncFiles_ThP450_USB.py ([20190614 19:06:10][2892B]->[20190409 21:43:10][2897B])
+2019-06-14 20:27:21 - root - INFO: - -- done      
+2019-06-14 20:27:21 - root - INFO: - [0s][36.3KBps]
+2019-06-14 20:27:21 - root - INFO: - [6s][109.1KBps]
+2019-06-14 20:27:21 - root - INFO: - ...
+2019-06-14 20:27:27 - root - INFO: - 
+logger is starting
+2019-06-14 20:27:33 - root - INFO: - 
+##start sync [Backup] with 2 directories 
+2019-06-14 20:27:33 - root - INFO: - 
+#comparing [static]c:\Backup  with  [temp]\\172.16.1.108\f\Backup
+2019-06-14 20:27:33 - root - INFO: - 
+#comparing [temp]\\172.16.1.108\f\Backup  with  [static]c:\Backup
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new directory 	=> c:\Backup\BaiduYunDownload
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new directory 	=> c:\Backup\BDI3000
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2013.pst
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2013.pst.b64
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2014.pst
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2014.pst.b64
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2015.pst
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2015.pst.b64
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2016.pst
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2016.pst.b64
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2017.pst
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2017.pst.b64
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018.pst
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018.pst.b64
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018H2.pst
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018H2.pst.b64
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new directory 	=> c:\Backup\Email\email
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\readme.txt
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new directory 	=> c:\Backup\FAETraining
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new directory 	=> c:\Backup\gateway
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new directory 	=> c:\Backup\novel
+2019-06-14 20:27:33 - root - INFO: - 
+##start sync [MARL2019] with 2 directories 
+2019-06-14 20:27:33 - root - INFO: - 
+#comparing [static]c:\MARL2019  with  [temp]\\172.16.1.108\f\MARL2019
+2019-06-14 20:27:33 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Desktop\011001900211_90439665.pdf
+2019-06-14 20:27:34 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.108\f\MARL2019\Desktop\20190605
+2019-06-14 20:27:34 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Desktop\concur.txt
+2019-06-14 20:27:34 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Desktop\jd.com_011001900211-86681366.pdf
+2019-06-14 20:27:34 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Desktop\NXP-SoC.txt
+2019-06-14 20:27:34 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Desktop\Travel application 53D201900529 for Shanping Yi (1392.31 USD).msg
+2019-06-14 20:27:36 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\FAETraining\201904\CN96XX_DMA-SDP.PPTX
+2019-06-14 20:27:36 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\FAETraining\201904\PCIE on CN96xx.ppt
+2019-06-14 20:27:37 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\personal\yihuaiyu.pdf
+2019-06-14 20:27:37 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\personal\yihuaiyuan.pdf
+2019-06-14 20:27:37 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.108\f\MARL2019\Supports\Baidu
+2019-06-14 20:27:37 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Supports\CN96xx engagement summary - H3C.pptx
+2019-06-14 20:27:38 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\MARL2019\Supports\EB83_SDK6.xmind ([20190605 17:09:58][309724B]->[20190430 09:46:37][295198B])
+2019-06-14 20:27:39 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Supports\H3C\20190418_2GHz_pkohang\30k寄存器值.rar
+2019-06-14 20:27:41 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.108\f\MARL2019\Supports\H3C\20190510bdi3000_forcnf75\from_TME
+2019-06-14 20:27:41 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Supports\H3C\20190513-Travel.txt
+2019-06-14 20:27:41 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Supports\H3C\20190514pkohang_from_Security\adjust_rr-code.txt
+2019-06-14 20:27:42 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\MARL2019\Supports\H3C\H3C_Projects.xmind ([20190605 15:49:57][270489B]->[20190410 17:25:17][253262B])
+2019-06-14 20:27:42 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Supports\IPBU China tracking 05-07-19 -  H3C.xlsx
+2019-06-14 20:27:44 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\DB-cn9131\boot_log.txt
+2019-06-14 20:27:44 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\DB-cn9131\readme.txt ([20190529 09:34:25][14273B]->[20190412 08:12:20][14154B])
+2019-06-14 20:27:44 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\DB-cn9131\sdk190601-dpdk.txt
+2019-06-14 20:27:44 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\dpdk_performance_numbers.pdf
+2019-06-14 20:27:45 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\EBB83_SDK6XX\sdk620p3-dpdk-pktgen.txt
+2019-06-14 20:27:45 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\EBB83_SDK6XX\sdk620p3-dpdk.txt
+2019-06-14 20:27:45 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\espressobin\wifi.txt
+2019-06-14 20:27:46 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SDK10\sdk101906.txt ([20190606 07:22:44][10003B]->[20190430 13:36:46][5385B])
+2019-06-14 20:27:46 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SFF8304\boot.txt ([20190612 15:20:02][8066B]->[20190430 13:36:24][7891B])
+2019-06-14 20:27:46 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SFF8304\fedex
+2019-06-14 20:27:46 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SFF8304\sdk10.190601.txt
+2019-06-14 20:27:46 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SFF8304\sff8304_log.txt
+2019-06-14 20:27:46 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.108\f\MARL2019\Tech\python3\capture
+2019-06-14 20:27:48 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\Tech\Training_Courses.xmind
+2019-06-14 20:27:50 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\work\CN91XX\CN9130_CRB_R1P2_SCH_PDF_20190605.7z
+2019-06-14 20:27:50 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\work\CN96XX\CN92_93_96XX_Issues_v1.3.pdf
+2019-06-14 20:27:50 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\work\CN96XX\CN96XX-CN93XX-CN92XX-PWR-AD-0.994.pdf
+2019-06-14 20:27:50 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\work\CN96XX\US Government End-User Notification.pdf
+2019-06-14 20:27:50 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\work\CNF75XX\CNF73XX-HM-1.3P.pdf
+2019-06-14 20:27:50 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\work\CNF75XX\EBB75-UG-0.95.pdf
+2019-06-14 20:27:50 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\work\marvell\ADP\capture_190608-152257-espp.png
+2019-06-14 20:27:50 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\work\marvell\ADP\capture_190608-152511-etrade.png
+2019-06-14 20:27:52 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\MARL2019\work\marvell\marvell.txt ([20190614 07:50:25][5460B]->[20190518 17:51:03][5309B])
+2019-06-14 20:27:54 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\work\personal\2019weekly\20190318.txt
+2019-06-14 20:27:54 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\MARL2019\work\personal\2019weekly\20190524.xlsx ([20190530 18:38:25][20804B]->[20190524 11:28:13][20029B])
+2019-06-14 20:27:54 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\work\personal\2019weekly\20190530.xlsx
+2019-06-14 20:27:54 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\work\personal\2019weekly\20190606.xlsx
+2019-06-14 20:27:54 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\work\personal\2019weekly\20190613.xlsx
+2019-06-14 20:27:54 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\MARL2019\work\personal\2019weekly\Summary-20190613164944.xlsx
+2019-06-14 20:27:55 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.108\f\MARL2019\work\reference
+2019-06-14 20:27:55 - root - INFO: - 
+#comparing [temp]\\172.16.1.108\f\MARL2019  with  [static]c:\MARL2019
+2019-06-14 20:27:55 - root - INFO: - WARNING: create new file 	=> c:\MARL2019\Supports\H3C\20190305cn83xx_pcie2sata\sata issue.xmind
+2019-06-14 20:27:56 - root - INFO: - WARNING: create new file 	=> c:\MARL2019\Tech\AI.xmind
+2019-06-14 20:27:57 - root - INFO: - WARNING: create new file 	=> c:\MARL2019\work\personal\2019weekly\Summary-20190226115649.xlsx
+2019-06-14 20:27:57 - root - INFO: - WARNING: create new file 	=> c:\MARL2019\work\personal\2019weekly\Summary-20190318184409.xlsx
+2019-06-14 20:27:57 - root - INFO: - 
+##start sync [pytool] with 2 directories 
+2019-06-14 20:27:57 - root - INFO: - 
+#comparing [temp]c:\pytool  with  [temp]\\172.16.1.108\f\pytool
+2019-06-14 20:27:57 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.108\f\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_06.txt ([20190614 20:27:56][17860B]->[20190614 20:26:40][5458B])
+2019-06-14 20:27:57 - root - INFO: - 
+#comparing [temp]\\172.16.1.108\f\pytool  with  [temp]c:\pytool
+2019-06-14 20:27:57 - root - INFO: - 
+##start sync [SDK] with 2 directories 
+2019-06-14 20:27:57 - root - INFO: - 
+#comparing [static]c:\SDK  with  [temp]\\172.16.1.108\f\SDK
+2019-06-14 20:27:58 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\SDK\SDK101906\SDK10.0_19.06.1_sdk-source-patches.zip
+2019-06-14 20:27:58 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\SDK\SDK101906\SDK10.0_19.06.1_sdk-toolchain.zip
+2019-06-14 20:27:58 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\SDK\SDK101906\SDK10_19.06.1-README.txt
+2019-06-14 20:27:58 - root - INFO: - WARNING: create new file 	=> \\172.16.1.108\f\SDK\SDK101906\SKD10.0_19.06.1_documentation.zip
+2019-06-14 20:27:59 - root - INFO: - 
+#comparing [temp]\\172.16.1.108\f\SDK  with  [static]c:\SDK
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\ADK-3.1.2
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\bdk-source-r106729.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\BDK\BDK_usage
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-2014.10-r106729.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-2015.07-r121915.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-octeon3-release-2016.12.1.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-octeon3-release-2016.12.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\RE BDK Source Code.msg
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\linux2.6
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\liquidIO
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\Nitrox
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\20180919release_for_kuaishou
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\20181106release
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\broadwell_patch.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\cav_nginx_nblock-patch-01
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\cav_nginx_nblock-patch-01.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-04.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-Patch-02.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-session-resumption-Patch-01.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.2-07.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.3-01
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.3-01.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.4.14
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.4.14.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-2.0_GA-01
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-IPSec-Linux-SDK-0.2-04.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-1.2-Linux-Driver-1.1-patch
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-1.2-Linux-Driver-1.1-patch.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02-Patch-03.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02-Patch-04.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-hybrid-offload-Patch-01.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-Patch-01.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2-Patch-01.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2.17
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2.17.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-2.0_GA-01
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\N5-NGINX-Perf-Testing.pdf
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\Nginx_Perf_Testing
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\Nginx_Perf_Testing.tar.gz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK2.0.txt
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_forali0608.tar.gz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_H3C_20180813.txt
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_H3C_20180813.zip
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_kingsoft_20181106.zip
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\patch-01-Nitrox-V-enable-lower-cores.tar.gz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\Patch-02.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\OCTEON-LINUX-1.6.0-221.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\OCTEON-SDK-1.6.0-221.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\ODP
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\OpenWRTv2.2
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\OpenWRT_v1.9
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\QLogic
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK1.9
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK101902
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK220
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK230
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK310
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK311
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\CNNIC-SDK-SRC-3.1.2-48.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\CNNIC-SDK-SRC-3.1.2-59.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\lte-sdk3.1.2-201706071009-r1580.tar.bz2
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\lte-sdk3.1.2-201709211415-r1663.tar.bz2
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-CRYPTO-CORE-3.1.2-10.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ENGINE-LINUX-3.1.2-15.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-21.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-23.i386.zip
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-27.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-IP-3.1.2-109.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-IPSEC-3.1.2-75.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-LINUX-3.1.2-568.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-OPENSSL-3.1.2-29.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-SDK-3.1.2-568.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ZLIB-CORE-3.1.2-08.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ZLIB-LINUX-3.1.2-07.i386.rpm
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\Reg remote-utils compilation fails with SDK-3.1.2+p9.1 on CentOS7RHEL7.msg
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk-3.1.2-p5.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312-p7a.patch
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p10_install.sh
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p11_install.sh
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p12_install.sh
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p13_install.sh
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p4_install.sh
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p8_install.sh
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p10.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p11.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p12.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p13.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p14.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p2.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p3.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p4.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p6.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p7.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p8.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p9.1.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p9.1_supplemental.tgz
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK510
+2019-06-14 20:27:59 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK600
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\Cavium OCTEON TX CN81008300 KVMQEMU
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\Cavium OCTEON TX CN81008300 KVMQEMU.tar.gz
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\CN8300_KVM_QEMU_HOW_TO
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\CN8300_KVM_QEMU_HOW_TO.rar
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\dpdk-81xx-v16.04-prerelease.tar.bz2
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\DPDK-README.txt
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\dpdk-thunderx-v16.07-mq.tar.bz2
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\How-To-Restore-Ubuntu-16.04.2.txt
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\How-To-Restore-Ubuntu-16.04.txt
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-CRYPTO-DPDK-6.1.0-build01.x86_64.rpm
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-CRYPTO-DPDK-README.TXT
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-SDK-6.1-p3.tgz
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-SDK-6.1.0-build11.x86_64.rpm
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\odp-thunderx-1.11.0.0_CAVIUM_RELEASE_1.zip
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\odp-thunderx-master.zip
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\README_OCTEONTX-SDK-610-prerelease.txt
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\samsung
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\se2-octeontx-rel5
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\se2-octeontx-rel5.tar.gz
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\Software Development Options with OCTEON TX - 20 March 2017.pdf
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\thunderx-tools-421.tar.bz2
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\tools-gcc-6.2.tar.bz2
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\ubuntu_16.04.2_rootfs.tgz
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\ubuntu_1604-dpdk.tgz
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CPT-DRIVER-6.2.0-build02.x86_64.rpm
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CPT-DRIVER-6.2.0-GA-RELEASE-NOTES.txt
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-DDF-LINUX-6.2.0-10.x86_64-README.txt
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-IPSEC-DPDK-6.2.0-build04.x86_64.rpm
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-IPSEC-DPDK-6.2.0-GA-README.TXT
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-OPENSSL-ENGINE-6.2.0-02.x86_64-README.txt
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-OPENSSL-ENGINE-6.2.0-02.x86_64.rpm
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SDK-6.2.0-build26.x86_64.rpm
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SDK-6.2.0-p3.tgz
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SDK-6.2.0-SE2-p3.tgz
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OcteonTX-SDK-UG_6.2.0.pdf
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SE2-6.2.0-build31.x86_64.rpm
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX_SE2_QuickStart.pdf
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEON_SE-to-SE2_PortingGD.pdf
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\octtx-odp-user-guide.pdf
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\opendataplane.pdf
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\README_OCTEONTX_SDK-620-GA.txt
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\sdk-6.2.0-patch_release_1.tgz
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-application-api.pdf
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\se2-ga-engineering.tgz
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-helper-guide.pdf
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-platform-api-guide.pdf
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-README-1st-P3.pdf
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-README-1st.pdf
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SNORT
+2019-06-14 20:28:00 - root - INFO: - WARNING: create new directory 	=> c:\SDK\thunderX
+2019-06-14 20:28:00 - root - INFO: - [27s][0.0Bps]
+2019-06-14 20:28:00 - root - INFO: - ...
+2019-06-14 20:31:45 - root - INFO: - 
+logger is starting
+2019-06-14 20:31:49 - root - INFO: - 
+##start sync [Backup] with 2 directories 
+2019-06-14 20:31:49 - root - INFO: - 
+#sync up [static]c:\Backup  with  [temp]\\172.16.1.108\f\Backup
+2019-06-14 20:31:49 - root - INFO: - 
+#sync up [temp]\\172.16.1.108\f\Backup  with  [static]c:\Backup
+2019-06-14 20:31:49 - root - INFO: - ----skip static directory:c:\Backup
+2019-06-14 20:31:49 - root - INFO: - 
+##start sync [MARL2019] with 2 directories 
+2019-06-14 20:31:50 - root - INFO: - 
+#sync up [static]c:\MARL2019  with  [temp]\\172.16.1.108\f\MARL2019
+2019-06-14 20:31:50 - root - INFO: - new: c:\MARL2019\Desktop\011001900211_90439665.pdf ==> \\172.16.1.108\f\MARL2019\Desktop\011001900211_90439665.pdf [36.8KB]
+2019-06-14 20:31:50 - root - INFO: - -- done      
+2019-06-14 20:31:50 - root - INFO: - [0s][74.8KBps]
+2019-06-14 20:31:50 - root - INFO: - new: c:\MARL2019\Desktop\20190605\011001900211_44174026.pdf ==> \\172.16.1.108\f\MARL2019\Desktop\20190605\011001900211_44174026.pdf [28.0KB]
+2019-06-14 20:31:51 - root - INFO: - -- done      
+2019-06-14 20:31:51 - root - INFO: - [0s][72.4KBps]
+2019-06-14 20:31:51 - root - INFO: - new: c:\MARL2019\Desktop\20190605\011001900211_63457980.pdf ==> \\172.16.1.108\f\MARL2019\Desktop\20190605\011001900211_63457980.pdf [41.2KB]
+2019-06-14 20:31:51 - root - INFO: - -- done      
+2019-06-14 20:31:51 - root - INFO: - [0s][136.1KBps]
+2019-06-14 20:31:51 - root - INFO: - new: c:\MARL2019\Desktop\20190605\155.jpg ==> \\172.16.1.108\f\MARL2019\Desktop\20190605\155.jpg [95.3KB]
+2019-06-14 20:31:51 - root - INFO: - -- done      
+2019-06-14 20:31:51 - root - INFO: - [0s][278.8KBps]
+2019-06-14 20:31:51 - root - INFO: - new: c:\MARL2019\Desktop\20190605\185.jpg ==> \\172.16.1.108\f\MARL2019\Desktop\20190605\185.jpg [97.1KB]
+2019-06-14 20:31:52 - root - INFO: - -- done      
+2019-06-14 20:31:52 - root - INFO: - [0s][342.2KBps]
+2019-06-14 20:31:52 - root - INFO: - new: c:\MARL2019\Desktop\20190605\20190605.pdf ==> \\172.16.1.108\f\MARL2019\Desktop\20190605\20190605.pdf [969.2KB]
+2019-06-14 20:31:54 - root - INFO: - -- done      
+2019-06-14 20:31:54 - root - INFO: - [2s][473.6KBps]
+2019-06-14 20:31:54 - root - INFO: - new: c:\MARL2019\Desktop\20190605\cell.docx ==> \\172.16.1.108\f\MARL2019\Desktop\20190605\cell.docx [204.8KB]
+2019-06-14 20:31:56 - root - INFO: - -- done      
+2019-06-14 20:31:56 - root - INFO: - [1s][109.2KBps]
+2019-06-14 20:31:56 - root - INFO: - new: c:\MARL2019\Desktop\20190605\chinaUnicom201905170952095298483765118511089715.pdf ==> \\172.16.1.108\f\MARL2019\Desktop\20190605\chinaUnicom201905170952095298483765118511089715.pdf [34.5KB]
+2019-06-14 20:31:56 - root - INFO: - -- done      
+2019-06-14 20:31:56 - root - INFO: - [0s][129.8KBps]
+2019-06-14 20:31:56 - root - INFO: - new: c:\MARL2019\Desktop\20190605\ChinaUnicomCards20190423075301.xls ==> \\172.16.1.108\f\MARL2019\Desktop\20190605\ChinaUnicomCards20190423075301.xls [30.0KB]
+2019-06-14 20:31:56 - root - INFO: - -- done      
+2019-06-14 20:31:56 - root - INFO: - [0s][105.3KBps]
+2019-06-14 20:31:56 - root - INFO: - new: c:\MARL2019\Desktop\20190605\ChinaUnicomCards20190517095002.xls ==> \\172.16.1.108\f\MARL2019\Desktop\20190605\ChinaUnicomCards20190517095002.xls [30.0KB]
+2019-06-14 20:31:56 - root - INFO: - -- done      
+2019-06-14 20:31:56 - root - INFO: - [0s][95.0KBps]
+2019-06-14 20:31:56 - root - INFO: - new: c:\MARL2019\Desktop\20190605\Travel application 53D201900394 for Shanping Yi (1038.46 USD).msg ==> \\172.16.1.108\f\MARL2019\Desktop\20190605\Travel application 53D201900394 for Shanping Yi (1038.46 USD).msg [122.0KB]
+2019-06-14 20:31:57 - root - INFO: - -- done      
+2019-06-14 20:31:57 - root - INFO: - [0s][292.2KBps]
+2019-06-14 20:31:57 - root - INFO: - new: c:\MARL2019\Desktop\20190605\wKj6yFzZ9dyIP5vIAACuxbbIeyEAAH7xwDqmMAAAK7d934.pdf ==> \\172.16.1.108\f\MARL2019\Desktop\20190605\wKj6yFzZ9dyIP5vIAACuxbbIeyEAAH7xwDqmMAAAK7d934.pdf [43.7KB]
+2019-06-14 20:31:57 - root - INFO: - -- done      
+2019-06-14 20:31:57 - root - INFO: - [0s][111.2KBps]
+2019-06-14 20:31:57 - root - INFO: - new: c:\MARL2019\Desktop\concur.txt ==> \\172.16.1.108\f\MARL2019\Desktop\concur.txt [67.0B]
+2019-06-14 20:31:58 - root - INFO: - -- done      
+2019-06-14 20:31:58 - root - INFO: - [1s][64.6Bps]
+2019-06-14 20:31:59 - root - INFO: - new: c:\MARL2019\Desktop\jd.com_011001900211-86681366.pdf ==> \\172.16.1.108\f\MARL2019\Desktop\jd.com_011001900211-86681366.pdf [107.7KB]
+2019-06-14 20:31:59 - root - INFO: - -- done      
+2019-06-14 20:31:59 - root - INFO: - [0s][217.0KBps]
+2019-06-14 20:31:59 - root - INFO: - new: c:\MARL2019\Desktop\NXP-SoC.txt ==> \\172.16.1.108\f\MARL2019\Desktop\NXP-SoC.txt [82.0B]
+2019-06-14 20:31:59 - root - INFO: - -- done      
+2019-06-14 20:31:59 - root - INFO: - [0s][297.0Bps]
+2019-06-14 20:31:59 - root - INFO: - new: c:\MARL2019\Desktop\Travel application 53D201900529 for Shanping Yi (1392.31 USD).msg ==> \\172.16.1.108\f\MARL2019\Desktop\Travel application 53D201900529 for Shanping Yi (1392.31 USD).msg [91.0KB]
+2019-06-14 20:32:00 - root - INFO: - -- done      
+2019-06-14 20:32:00 - root - INFO: - [0s][193.3KBps]
+2019-06-14 20:32:00 - root - INFO: - new: c:\MARL2019\FAETraining\201904\CN96XX_DMA-SDP.PPTX ==> \\172.16.1.108\f\MARL2019\FAETraining\201904\CN96XX_DMA-SDP.PPTX [1.2MB]
+2019-06-14 20:32:02 - root - INFO: - -- done      
+2019-06-14 20:32:02 - root - INFO: - [1s][646.8KBps]
+2019-06-14 20:32:02 - root - INFO: - new: c:\MARL2019\FAETraining\201904\PCIE on CN96xx.ppt ==> \\172.16.1.108\f\MARL2019\FAETraining\201904\PCIE on CN96xx.ppt [1.9MB]
+2019-06-14 20:32:04 - root - INFO: - -- done      
+2019-06-14 20:32:04 - root - INFO: - [2s][759.4KBps]
+2019-06-14 20:32:05 - root - INFO: - new: c:\MARL2019\personal\yihuaiyu.pdf ==> \\172.16.1.108\f\MARL2019\personal\yihuaiyu.pdf [41.4KB]
+2019-06-14 20:32:05 - root - INFO: - -- done      
+2019-06-14 20:32:05 - root - INFO: - [0s][110.5KBps]
+2019-06-14 20:32:05 - root - INFO: - new: c:\MARL2019\personal\yihuaiyuan.pdf ==> \\172.16.1.108\f\MARL2019\personal\yihuaiyuan.pdf [41.0KB]
+2019-06-14 20:32:06 - root - INFO: - -- done      
+2019-06-14 20:32:06 - root - INFO: - [0s][111.7KBps]
+2019-06-14 20:32:06 - root - INFO: - new: c:\MARL2019\Supports\Baidu\NITROX Introduction for Baidu.pdf ==> \\172.16.1.108\f\MARL2019\Supports\Baidu\NITROX Introduction for Baidu.pdf [3.0MB]
+2019-06-14 20:32:10 - root - INFO: - -- done      
+2019-06-14 20:32:10 - root - INFO: - [4s][716.1KBps]
+2019-06-14 20:32:10 - root - INFO: - new: c:\MARL2019\Supports\Baidu\NITROX Introduction for Baidu.pptx ==> \\172.16.1.108\f\MARL2019\Supports\Baidu\NITROX Introduction for Baidu.pptx [698.7KB]
+2019-06-14 20:32:12 - root - INFO: - -- done      
+2019-06-14 20:32:12 - root - INFO: - [1s][410.9KBps]
+2019-06-14 20:32:12 - root - INFO: - new: c:\MARL2019\Supports\Baidu\SmartNiC_for_Baidu.pdf ==> \\172.16.1.108\f\MARL2019\Supports\Baidu\SmartNiC_for_Baidu.pdf [1.3MB]
+2019-06-14 20:32:14 - root - INFO: - -- done      
+2019-06-14 20:32:14 - root - INFO: - [1s][728.1KBps]
+2019-06-14 20:32:14 - root - INFO: - new: c:\MARL2019\Supports\Baidu\SmartNiC_for_Baidu.pptx ==> \\172.16.1.108\f\MARL2019\Supports\Baidu\SmartNiC_for_Baidu.pptx [807.8KB]
+2019-06-14 20:32:15 - root - INFO: - -- done      
+2019-06-14 20:32:15 - root - INFO: - [1s][605.5KBps]
+2019-06-14 20:32:15 - root - INFO: - new: c:\MARL2019\Supports\CN96xx engagement summary - H3C.pptx ==> \\172.16.1.108\f\MARL2019\Supports\CN96xx engagement summary - H3C.pptx [226.0KB]
+2019-06-14 20:32:17 - root - INFO: - -- done      
+2019-06-14 20:32:17 - root - INFO: - [1s][169.4KBps]
+2019-06-14 20:32:17 - root - INFO: - update: c:\MARL2019\Supports\EB83_SDK6.xmind[302.5KB] ==> \\172.16.1.108\f\MARL2019\Supports\EB83_SDK6.xmind ([20190605 17:09:58][309724B]->[20190430 09:46:37][295198B])
+2019-06-14 20:32:19 - root - INFO: - -- done      
+2019-06-14 20:32:19 - root - INFO: - [2s][143.9KBps]
+2019-06-14 20:32:48 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190418_2GHz_pkohang\30k寄存器值.rar ==> \\172.16.1.108\f\MARL2019\Supports\H3C\20190418_2GHz_pkohang\30k寄存器值.rar [5.3KB]
+2019-06-14 20:32:48 - root - INFO: - -- done      
+2019-06-14 20:32:48 - root - INFO: - [0s][9.7KBps]
+2019-06-14 20:32:49 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190510bdi3000_forcnf75\from_TME\cn7800multi.cfg ==> \\172.16.1.108\f\MARL2019\Supports\H3C\20190510bdi3000_forcnf75\from_TME\cn7800multi.cfg [18.6KB]
+2019-06-14 20:32:49 - root - INFO: - -- done      
+2019-06-14 20:32:49 - root - INFO: - [0s][73.2KBps]
+2019-06-14 20:32:49 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190510bdi3000_forcnf75\from_TME\regCN7800.def ==> \\172.16.1.108\f\MARL2019\Supports\H3C\20190510bdi3000_forcnf75\from_TME\regCN7800.def [7.8KB]
+2019-06-14 20:32:49 - root - INFO: - -- done      
+2019-06-14 20:32:49 - root - INFO: - [0s][30.2KBps]
+2019-06-14 20:32:49 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190513-Travel.txt ==> \\172.16.1.108\f\MARL2019\Supports\H3C\20190513-Travel.txt [233.0B]
+2019-06-14 20:32:49 - root - INFO: - -- done      
+2019-06-14 20:32:49 - root - INFO: - [0s][1.2KBps]
+2019-06-14 20:32:50 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\adjust_rr-code.txt ==> \\172.16.1.108\f\MARL2019\Supports\H3C\20190514pkohang_from_Security\adjust_rr-code.txt [2.2KB]
+2019-06-14 20:32:50 - root - INFO: - -- done      
+2019-06-14 20:32:50 - root - INFO: - [0s][9.2KBps]
+2019-06-14 20:32:59 - root - INFO: - update: c:\MARL2019\Supports\H3C\H3C_Projects.xmind[264.1KB] ==> \\172.16.1.108\f\MARL2019\Supports\H3C\H3C_Projects.xmind ([20190605 15:49:57][270489B]->[20190410 17:25:17][253262B])
+2019-06-14 20:33:03 - root - INFO: - -- done      
+2019-06-14 20:33:03 - root - INFO: - [3s][72.5KBps]
+2019-06-14 20:33:25 - root - INFO: - new: c:\MARL2019\Supports\IPBU China tracking 05-07-19 -  H3C.xlsx ==> \\172.16.1.108\f\MARL2019\Supports\IPBU China tracking 05-07-19 -  H3C.xlsx [107.7KB]
+2019-06-14 20:33:27 - root - INFO: - -- done      
+2019-06-14 20:33:27 - root - INFO: - [2s][39.3KBps]
+2019-06-14 20:33:29 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\DB-cn9131\boot_log.txt ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\DB-cn9131\boot_log.txt [39.7KB]
+2019-06-14 20:33:29 - root - INFO: - -- done      
+2019-06-14 20:33:29 - root - INFO: - [0s][145.4KBps]
+2019-06-14 20:33:29 - root - INFO: - update: c:\MARL2019\Supports\SDK_EBB\DB-cn9131\readme.txt[13.9KB] ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\DB-cn9131\readme.txt ([20190529 09:34:25][14273B]->[20190412 08:12:20][14154B])
+2019-06-14 20:33:29 - root - INFO: - -- done      
+2019-06-14 20:33:29 - root - INFO: - [0s][43.0KBps]
+2019-06-14 20:33:29 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\DB-cn9131\sdk190601-dpdk.txt ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\DB-cn9131\sdk190601-dpdk.txt [3.1KB]
+2019-06-14 20:33:30 - root - INFO: - -- done      
+2019-06-14 20:33:30 - root - INFO: - [0s][15.5KBps]
+2019-06-14 20:33:30 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\dpdk_performance_numbers.pdf ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\dpdk_performance_numbers.pdf [635.3KB]
+2019-06-14 20:33:32 - root - INFO: - -- done      
+2019-06-14 20:33:32 - root - INFO: - [2s][287.3KBps]
+2019-06-14 20:33:33 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\EBB83_SDK6XX\sdk620p3-dpdk-pktgen.txt ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\EBB83_SDK6XX\sdk620p3-dpdk-pktgen.txt [978.0B]
+2019-06-14 20:33:33 - root - INFO: - -- done      
+2019-06-14 20:33:33 - root - INFO: - [0s][8.1KBps]
+2019-06-14 20:33:33 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\EBB83_SDK6XX\sdk620p3-dpdk.txt ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\EBB83_SDK6XX\sdk620p3-dpdk.txt [6.0KB]
+2019-06-14 20:33:33 - root - INFO: - -- done      
+2019-06-14 20:33:33 - root - INFO: - [0s][28.9KBps]
+2019-06-14 20:33:34 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\espressobin\wifi.txt ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\espressobin\wifi.txt [2.3KB]
+2019-06-14 20:33:34 - root - INFO: - -- done      
+2019-06-14 20:33:34 - root - INFO: - [0s][15.9KBps]
+2019-06-14 20:33:34 - root - INFO: - update: c:\MARL2019\Supports\SDK_EBB\SDK10\sdk101906.txt[9.8KB] ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SDK10\sdk101906.txt ([20190606 07:22:44][10003B]->[20190430 13:36:46][5385B])
+2019-06-14 20:33:35 - root - INFO: - -- done      
+2019-06-14 20:33:35 - root - INFO: - [0s][39.0KBps]
+2019-06-14 20:33:35 - root - INFO: - update: c:\MARL2019\Supports\SDK_EBB\SFF8304\boot.txt[7.9KB] ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SFF8304\boot.txt ([20190612 15:20:02][8066B]->[20190430 13:36:24][7891B])
+2019-06-14 20:33:35 - root - INFO: - -- done      
+2019-06-14 20:33:35 - root - INFO: - [0s][33.0KBps]
+2019-06-14 20:33:35 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SFF8304\fedex\20190605Yi Shanping.pdf ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SFF8304\fedex\20190605Yi Shanping.pdf [84.7KB]
+2019-06-14 20:33:35 - root - INFO: - -- done      
+2019-06-14 20:33:35 - root - INFO: - [0s][291.1KBps]
+2019-06-14 20:33:35 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SFF8304\fedex\A进口确认函 excel.xls ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SFF8304\fedex\A进口确认函 excel.xls [57.5KB]
+2019-06-14 20:33:36 - root - INFO: - -- done      
+2019-06-14 20:33:36 - root - INFO: - [0s][187.5KBps]
+2019-06-14 20:33:36 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SFF8304\fedex\催办通知书1_FedEx.jpg ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SFF8304\fedex\催办通知书1_FedEx.jpg [617.8KB]
+2019-06-14 20:33:37 - root - INFO: - -- done      
+2019-06-14 20:33:37 - root - INFO: - [1s][531.7KBps]
+2019-06-14 20:33:37 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SFF8304\fedex\催办通知书2_FedEx.jpg ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SFF8304\fedex\催办通知书2_FedEx.jpg [137.8KB]
+2019-06-14 20:33:37 - root - INFO: - -- done      
+2019-06-14 20:33:37 - root - INFO: - [0s][358.1KBps]
+2019-06-14 20:33:37 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SFF8304\fedex\报关资料明细表.xls ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SFF8304\fedex\报关资料明细表.xls [35.0KB]
+2019-06-14 20:33:38 - root - INFO: - -- done      
+2019-06-14 20:33:38 - root - INFO: - [0s][75.2KBps]
+2019-06-14 20:33:38 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SFF8304\fedex\调单介绍信_美满.doc ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SFF8304\fedex\调单介绍信_美满.doc [21.5KB]
+2019-06-14 20:33:39 - root - INFO: - -- done      
+2019-06-14 20:33:39 - root - INFO: - [1s][20.3KBps]
+2019-06-14 20:33:39 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SFF8304\sdk10.190601.txt ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SFF8304\sdk10.190601.txt [3.7KB]
+2019-06-14 20:33:39 - root - INFO: - -- done      
+2019-06-14 20:33:39 - root - INFO: - [0s][18.2KBps]
+2019-06-14 20:33:39 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SFF8304\sff8304_log.txt ==> \\172.16.1.108\f\MARL2019\Supports\SDK_EBB\SFF8304\sff8304_log.txt [80.4KB]
+2019-06-14 20:33:39 - root - INFO: - -- done      
+2019-06-14 20:33:39 - root - INFO: - [0s][267.5KBps]
+2019-06-14 20:33:40 - root - INFO: - new: c:\MARL2019\Tech\python3\capture\CaptureScreen.bat ==> \\172.16.1.108\f\MARL2019\Tech\python3\capture\CaptureScreen.bat [375.0B]
+2019-06-14 20:33:40 - root - INFO: - -- done      
+2019-06-14 20:33:40 - root - INFO: - [0s][2.5KBps]
+2019-06-14 20:33:40 - root - INFO: - new: c:\MARL2019\Tech\python3\capture\CaptureScreen.bat - Shortcut.lnk ==> \\172.16.1.108\f\MARL2019\Tech\python3\capture\CaptureScreen.bat - Shortcut.lnk [1.3KB]
+2019-06-14 20:33:40 - root - INFO: - -- done      
+2019-06-14 20:33:40 - root - INFO: - [0s][7.5KBps]
+2019-06-14 20:33:40 - root - INFO: - new: c:\MARL2019\Tech\python3\capture\python3.bat ==> \\172.16.1.108\f\MARL2019\Tech\python3\capture\python3.bat [291.0B]
+2019-06-14 20:33:40 - root - INFO: - -- done      
+2019-06-14 20:33:40 - root - INFO: - [0s][1.2KBps]
+2019-06-14 20:33:41 - root - INFO: - new: c:\MARL2019\Tech\python3\capture\readme.txt ==> \\172.16.1.108\f\MARL2019\Tech\python3\capture\readme.txt [736.0B]
+2019-06-14 20:33:41 - root - INFO: - -- done      
+2019-06-14 20:33:41 - root - INFO: - [0s][4.1KBps]
+2019-06-14 20:33:41 - root - INFO: - new: c:\MARL2019\Tech\python3\capture\screen.py ==> \\172.16.1.108\f\MARL2019\Tech\python3\capture\screen.py [390.0B]
+2019-06-14 20:33:41 - root - INFO: - -- done      
+2019-06-14 20:33:41 - root - INFO: - [0s][1.8KBps]
+2019-06-14 20:33:43 - root - INFO: - new: c:\MARL2019\Tech\Training_Courses.xmind ==> \\172.16.1.108\f\MARL2019\Tech\Training_Courses.xmind [82.5KB]
+2019-06-14 20:33:43 - root - INFO: - -- done      
+2019-06-14 20:33:43 - root - INFO: - [0s][185.3KBps]
+2019-06-14 20:33:45 - root - INFO: - new: c:\MARL2019\work\CN91XX\CN9130_CRB_R1P2_SCH_PDF_20190605.7z ==> \\172.16.1.108\f\MARL2019\work\CN91XX\CN9130_CRB_R1P2_SCH_PDF_20190605.7z [916.7KB]
+2019-06-14 20:33:47 - root - INFO: - -- done      
+2019-06-14 20:33:47 - root - INFO: - [2s][390.1KBps]
+2019-06-14 20:33:47 - root - INFO: - new: c:\MARL2019\work\CN96XX\CN92_93_96XX_Issues_v1.3.pdf ==> \\172.16.1.108\f\MARL2019\work\CN96XX\CN92_93_96XX_Issues_v1.3.pdf [384.0KB]
+2019-06-14 20:33:48 - root - INFO: - -- done      
+2019-06-14 20:33:48 - root - INFO: - [0s][390.8KBps]
+2019-06-14 20:33:48 - root - INFO: - new: c:\MARL2019\work\CN96XX\CN96XX-CN93XX-CN92XX-PWR-AD-0.994.pdf ==> \\172.16.1.108\f\MARL2019\work\CN96XX\CN96XX-CN93XX-CN92XX-PWR-AD-0.994.pdf [80.0KB]
+2019-06-14 20:33:48 - root - INFO: - -- done      
+2019-06-14 20:33:48 - root - INFO: - [0s][200.2KBps]
+2019-06-14 20:33:49 - root - INFO: - new: c:\MARL2019\work\CN96XX\US Government End-User Notification.pdf ==> \\172.16.1.108\f\MARL2019\work\CN96XX\US Government End-User Notification.pdf [25.0KB]
+2019-06-14 20:33:49 - root - INFO: - -- done      
+2019-06-14 20:33:49 - root - INFO: - [0s][104.5KBps]
+2019-06-14 20:33:49 - root - INFO: - new: c:\MARL2019\work\CNF75XX\CNF73XX-HM-1.3P.pdf ==> \\172.16.1.108\f\MARL2019\work\CNF75XX\CNF73XX-HM-1.3P.pdf [28.8MB]
+2019-06-14 20:34:44 - root - INFO: - -- done      
+2019-06-14 20:34:44 - root - INFO: - [55s][533.2KBps]
+2019-06-14 20:34:44 - root - INFO: - new: c:\MARL2019\work\CNF75XX\EBB75-UG-0.95.pdf ==> \\172.16.1.108\f\MARL2019\work\CNF75XX\EBB75-UG-0.95.pdf [2.0MB]
+2019-06-14 20:34:48 - root - INFO: - -- done      
+2019-06-14 20:34:48 - root - INFO: - [3s][600.0KBps]
+2019-06-14 20:34:48 - root - INFO: - new: c:\MARL2019\work\marvell\ADP\capture_190608-152257-espp.png ==> \\172.16.1.108\f\MARL2019\work\marvell\ADP\capture_190608-152257-espp.png [91.1KB]
+2019-06-14 20:34:48 - root - INFO: - -- done      
+2019-06-14 20:34:48 - root - INFO: - [0s][316.7KBps]
+2019-06-14 20:34:48 - root - INFO: - new: c:\MARL2019\work\marvell\ADP\capture_190608-152511-etrade.png ==> \\172.16.1.108\f\MARL2019\work\marvell\ADP\capture_190608-152511-etrade.png [165.7KB]
+2019-06-14 20:34:48 - root - INFO: - -- done      
+2019-06-14 20:34:48 - root - INFO: - [0s][491.6KBps]
+2019-06-14 20:34:50 - root - INFO: - update: c:\MARL2019\work\marvell\marvell.txt[5.3KB] ==> \\172.16.1.108\f\MARL2019\work\marvell\marvell.txt ([20190614 07:50:25][5460B]->[20190518 17:51:03][5309B])
+2019-06-14 20:34:50 - root - INFO: - -- done      
+2019-06-14 20:34:50 - root - INFO: - [0s][21.8KBps]
+2019-06-14 20:34:52 - root - INFO: - new: c:\MARL2019\work\personal\2019weekly\20190318.txt ==> \\172.16.1.108\f\MARL2019\work\personal\2019weekly\20190318.txt [77.0B]
+2019-06-14 20:34:52 - root - INFO: - -- done      
+2019-06-14 20:34:52 - root - INFO: - [0s][475.4Bps]
+2019-06-14 20:34:52 - root - INFO: - update: c:\MARL2019\work\personal\2019weekly\20190524.xlsx[20.3KB] ==> \\172.16.1.108\f\MARL2019\work\personal\2019weekly\20190524.xlsx ([20190530 18:38:25][20804B]->[20190524 11:28:13][20029B])
+2019-06-14 20:34:53 - root - INFO: - -- done      
+2019-06-14 20:34:53 - root - INFO: - [0s][46.4KBps]
+2019-06-14 20:34:53 - root - INFO: - new: c:\MARL2019\work\personal\2019weekly\20190530.xlsx ==> \\172.16.1.108\f\MARL2019\work\personal\2019weekly\20190530.xlsx [18.7KB]
+2019-06-14 20:34:53 - root - INFO: - -- done      
+2019-06-14 20:34:53 - root - INFO: - [0s][65.2KBps]
+2019-06-14 20:34:53 - root - INFO: - new: c:\MARL2019\work\personal\2019weekly\20190606.xlsx ==> \\172.16.1.108\f\MARL2019\work\personal\2019weekly\20190606.xlsx [19.9KB]
+2019-06-14 20:34:53 - root - INFO: - -- done      
+2019-06-14 20:34:53 - root - INFO: - [0s][58.1KBps]
+2019-06-14 20:34:53 - root - INFO: - new: c:\MARL2019\work\personal\2019weekly\20190613.xlsx ==> \\172.16.1.108\f\MARL2019\work\personal\2019weekly\20190613.xlsx [19.5KB]
+2019-06-14 20:34:54 - root - INFO: - -- done      
+2019-06-14 20:34:54 - root - INFO: - [0s][52.8KBps]
+2019-06-14 20:34:54 - root - INFO: - new: c:\MARL2019\work\personal\2019weekly\Summary-20190613164944.xlsx ==> \\172.16.1.108\f\MARL2019\work\personal\2019weekly\Summary-20190613164944.xlsx [22.7KB]
+2019-06-14 20:34:54 - root - INFO: - -- done      
+2019-06-14 20:34:54 - root - INFO: - [0s][60.1KBps]
+2019-06-14 20:34:54 - root - INFO: - new: c:\MARL2019\work\reference\IHI0069D_gic_architecture_specification-3.0.pdf ==> \\172.16.1.108\f\MARL2019\work\reference\IHI0069D_gic_architecture_specification-3.0.pdf [4.2MB]
+2019-06-14 20:35:05 - root - INFO: - -- done      
+2019-06-14 20:35:05 - root - INFO: - [10s][422.2KBps]
+2019-06-14 20:35:05 - root - INFO: - 
+#sync up [temp]\\172.16.1.108\f\MARL2019  with  [static]c:\MARL2019
+2019-06-14 20:35:05 - root - INFO: - ----skip static directory:c:\MARL2019
+2019-06-14 20:35:05 - root - INFO: - 
+##start sync [pytool] with 2 directories 
+2019-06-14 20:35:05 - root - INFO: - 
+#sync up [temp]c:\pytool  with  [temp]\\172.16.1.108\f\pytool
+2019-06-14 20:35:06 - root - INFO: - update: c:\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_06.txt[56.1KB] ==> \\172.16.1.108\f\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_06.txt ([20190614 20:34:57][57447B]->[20190614 20:26:40][5458B])
+2019-06-14 20:35:06 - root - INFO: - -- done      
+2019-06-14 20:35:06 - root - INFO: - [0s][181.1KBps]
+2019-06-14 20:35:06 - root - INFO: - 
+#sync up [temp]\\172.16.1.108\f\pytool  with  [temp]c:\pytool
+2019-06-14 20:35:07 - root - INFO: - 
+##start sync [SDK] with 2 directories 
+2019-06-14 20:35:07 - root - INFO: - 
+#sync up [static]c:\SDK  with  [temp]\\172.16.1.108\f\SDK
+2019-06-14 20:35:08 - root - INFO: - new: c:\SDK\SDK101906\SDK10.0_19.06.1_sdk-source-patches.zip ==> \\172.16.1.108\f\SDK\SDK101906\SDK10.0_19.06.1_sdk-source-patches.zip [738.8MB]
+2019-06-14 20:50:51 - root - INFO: - -- done      
+2019-06-14 20:50:51 - root - INFO: - [943s][801.5KBps]
+2019-06-14 20:50:51 - root - INFO: - new: c:\SDK\SDK101906\SDK10.0_19.06.1_sdk-toolchain.zip ==> \\172.16.1.108\f\SDK\SDK101906\SDK10.0_19.06.1_sdk-toolchain.zip [436.1MB]
+2019-06-14 20:58:39 - root - INFO: - -- done      
+2019-06-14 20:58:39 - root - INFO: - [467s][954.5KBps]
+2019-06-14 20:58:39 - root - INFO: - new: c:\SDK\SDK101906\SDK10_19.06.1-README.txt ==> \\172.16.1.108\f\SDK\SDK101906\SDK10_19.06.1-README.txt [849.0B]
+2019-06-14 20:58:39 - root - INFO: - -- done      
+2019-06-14 20:58:39 - root - INFO: - [0s][5.2KBps]
+2019-06-14 20:58:39 - root - INFO: - new: c:\SDK\SDK101906\SKD10.0_19.06.1_documentation.zip ==> \\172.16.1.108\f\SDK\SDK101906\SKD10.0_19.06.1_documentation.zip [24.3MB]
+2019-06-14 20:59:07 - root - INFO: - -- done      
+2019-06-14 20:59:07 - root - INFO: - [27s][892.9KBps]
+2019-06-14 20:59:07 - root - INFO: - 
+#sync up [temp]\\172.16.1.108\f\SDK  with  [static]c:\SDK
+2019-06-14 20:59:08 - root - INFO: - ----skip static directory:c:\SDK
+2019-06-14 20:59:08 - root - INFO: - [1638s][781.1KBps]
+2019-06-14 20:59:08 - root - INFO: - ...

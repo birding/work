@@ -1,0 +1,1023 @@
+2019-05-10 07:23:58 - root - INFO: - 
+logger is starting
+2019-05-10 07:24:03 - root - INFO: - 
+#comparing [static]c:\Backup  with  [temp]\\172.16.1.150\usbdisk\Backup
+2019-05-10 07:24:04 - root - INFO: - 
+#comparing [temp]\\172.16.1.150\usbdisk\Backup  with  [static]c:\Backup
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new directory 	=> c:\Backup\BaiduYunDownload
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new directory 	=> c:\Backup\bak80GB
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new directory 	=> c:\Backup\BDI3000
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2013.pst
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2013.pst.b64
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2014.pst
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2014.pst.b64
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2015.pst
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2015.pst.b64
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2016.pst
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2016.pst.b64
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2017.pst
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2017.pst.b64
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018.pst
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018.pst.b64
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018H2.pst
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018H2.pst.b64
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new directory 	=> c:\Backup\Email\email
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\readme.txt
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new directory 	=> c:\Backup\FAETraining
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new directory 	=> c:\Backup\gateway
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\inspiron-14r-se-7420_Owner's Manual_zh-cn.pdf
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new file 	=> c:\Backup\inspiron-14r-se-7420_Setup Guide_zh-cn.pdf
+2019-05-10 07:24:04 - root - INFO: - WARNING: create new directory 	=> c:\Backup\novel
+2019-05-10 07:24:04 - root - INFO: - [1s][0.0Bps]
+2019-05-10 07:24:04 - root - INFO: - ...
+2019-05-10 07:24:27 - root - INFO: - 
+logger is starting
+2019-05-10 07:24:38 - root - INFO: - 
+#sync up [temp]c:\pytool  with  [temp]\\172.16.1.150\usbdisk\pytool
+2019-05-10 07:24:40 - root - INFO: - new: c:\pytool\syncDir\log_syncFiles_download.py2019_05.txt ==> \\172.16.1.150\usbdisk\pytool\syncDir\log_syncFiles_download.py2019_05.txt [6.4KB]
+2019-05-10 07:24:40 - root - INFO: - -- done      
+2019-05-10 07:24:40 - root - INFO: - [0s][16.7KBps]
+2019-05-10 07:24:40 - root - INFO: - update: c:\pytool\syncDir\log_syncFiles_ThP480_Net_home.py2019_04.txt[96.7KB] ==> \\172.16.1.150\usbdisk\pytool\syncDir\log_syncFiles_ThP480_Net_home.py2019_04.txt ([20190430 19:38:11][99014B]->[20190430 19:12:58][88780B])
+2019-05-10 07:28:56 - root - INFO: - 
+logger is starting
+2019-05-10 07:29:01 - root - INFO: - 
+#sync up [temp]c:\pytool  with  [temp]\\172.16.1.150\usbdisk\pytool
+2019-05-10 07:29:02 - root - INFO: - update: c:\pytool\syncDir\log_syncFiles_ThP480_Net_home.py2019_04.txt[96.7KB] ==> \\172.16.1.150\usbdisk\pytool\syncDir\log_syncFiles_ThP480_Net_home.py2019_04.txt ([20190430 19:38:11][99014B]->[20190430 19:12:58][88780B])
+2019-05-10 07:32:48 - root - INFO: - 
+logger is starting
+2019-05-10 07:32:53 - root - INFO: - 
+#sync up [temp]c:\pytool  with  [temp]\\172.16.1.150\usbdisk\pytool
+2019-05-10 07:32:54 - root - INFO: - update: c:\pytool\syncDir\log_syncFiles_ThP480_Net_home.py2019_04.txt[96.7KB] ==> \\172.16.1.150\usbdisk\pytool\syncDir\log_syncFiles_ThP480_Net_home.py2019_04.txt ([20190430 19:38:11][99014B]->[20190430 19:12:58][88780B])
+2019-05-10 07:32:57 - root - INFO: - -- done      
+2019-05-10 07:32:57 - root - INFO: - [3s][30.1KBps]
+2019-05-10 07:32:57 - root - INFO: - new: c:\pytool\syncDir\log_syncFiles_ThP480_Net_home.py2019_05.txt ==> \\172.16.1.150\usbdisk\pytool\syncDir\log_syncFiles_ThP480_Net_home.py2019_05.txt [4.3KB]
+2019-05-10 07:32:57 - root - INFO: - -- done      
+2019-05-10 07:32:57 - root - INFO: - [0s][27.0KBps]
+2019-05-10 07:32:57 - root - INFO: - update: c:\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_04.txt[161.6KB] ==> \\172.16.1.150\usbdisk\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_04.txt ([20190430 19:35:50][165528B]->[20190429 19:03:36][165349B])
+2019-05-10 07:32:58 - root - INFO: - -- done      
+2019-05-10 07:32:58 - root - INFO: - [0s][244.2KBps]
+2019-05-10 07:32:58 - root - INFO: - new: c:\pytool\syncDir\syncFiles_download.py ==> \\172.16.1.150\usbdisk\pytool\syncDir\syncFiles_download.py [881.0B]
+2019-05-10 07:32:58 - root - INFO: - -- done      
+2019-05-10 07:32:58 - root - INFO: - [0s][5.0KBps]
+2019-05-10 07:32:58 - root - INFO: - update: c:\pytool\syncDir\syncFiles_lib2.py[11.0KB] ==> \\172.16.1.150\usbdisk\pytool\syncDir\syncFiles_lib2.py ([20190510 07:23:54][11280B]->[20190409 21:40:08][11213B])
+2019-05-10 07:32:58 - root - INFO: - -- done      
+2019-05-10 07:32:58 - root - INFO: - [0s][49.5KBps]
+2019-05-10 07:32:58 - root - INFO: - update: c:\pytool\syncDir\syncFiles_lib3.py[11.0KB] ==> \\172.16.1.150\usbdisk\pytool\syncDir\syncFiles_lib3.py ([20190510 07:32:42][11300B]->[20190409 21:15:37][11169B])
+2019-05-10 07:32:59 - root - INFO: - -- done      
+2019-05-10 07:32:59 - root - INFO: - [0s][22.1KBps]
+2019-05-10 07:32:59 - root - INFO: - update: c:\pytool\syncDir\syncFiles_ThP480_Net_home.py[3.1KB] ==> \\172.16.1.150\usbdisk\pytool\syncDir\syncFiles_ThP480_Net_home.py ([20190430 19:38:00][3205B]->[20190413 16:08:16][3201B])
+2019-05-10 07:32:59 - root - INFO: - -- done      
+2019-05-10 07:32:59 - root - INFO: - [0s][17.7KBps]
+2019-05-10 07:32:59 - root - INFO: - update: c:\pytool\syncDir\__pycache__\syncFiles_lib3.cpython-36.pyc[6.8KB] ==> \\172.16.1.150\usbdisk\pytool\syncDir\__pycache__\syncFiles_lib3.cpython-36.pyc ([20190510 07:32:48][7012B]->[20190409 21:22:22][6894B])
+2019-05-10 07:32:59 - root - INFO: - -- done      
+2019-05-10 07:32:59 - root - INFO: - [0s][40.6KBps]
+2019-05-10 07:32:59 - root - INFO: - 
+#sync up [temp]\\172.16.1.150\usbdisk\pytool  with  [temp]c:\pytool
+2019-05-10 07:33:00 - root - INFO: - [6s][44.4KBps]
+2019-05-10 07:33:00 - root - INFO: - ...
+2019-05-10 07:33:34 - root - INFO: - 
+logger is starting
+2019-05-10 07:33:40 - root - INFO: - 
+#comparing [static]c:\Backup  with  [temp]\\172.16.1.150\usbdisk\Backup
+2019-05-10 07:33:40 - root - INFO: - 
+#comparing [temp]\\172.16.1.150\usbdisk\Backup  with  [static]c:\Backup
+2019-05-10 07:33:40 - root - INFO: - WARNING: create new directory 	=> c:\Backup\BaiduYunDownload
+2019-05-10 07:33:40 - root - INFO: - WARNING: create new directory 	=> c:\Backup\bak80GB
+2019-05-10 07:33:40 - root - INFO: - WARNING: create new directory 	=> c:\Backup\BDI3000
+2019-05-10 07:33:40 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2013.pst
+2019-05-10 07:33:40 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2013.pst.b64
+2019-05-10 07:33:40 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2014.pst
+2019-05-10 07:33:40 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2014.pst.b64
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2015.pst
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2015.pst.b64
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2016.pst
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2016.pst.b64
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2017.pst
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2017.pst.b64
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018.pst
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018.pst.b64
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018H2.pst
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018H2.pst.b64
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new directory 	=> c:\Backup\Email\email
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\readme.txt
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new directory 	=> c:\Backup\FAETraining
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new directory 	=> c:\Backup\gateway
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new file 	=> c:\Backup\inspiron-14r-se-7420_Owner's Manual_zh-cn.pdf
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new file 	=> c:\Backup\inspiron-14r-se-7420_Setup Guide_zh-cn.pdf
+2019-05-10 07:33:41 - root - INFO: - WARNING: create new directory 	=> c:\Backup\novel
+2019-05-10 07:33:41 - root - INFO: - [0s][0.0Bps]
+2019-05-10 07:33:41 - root - INFO: - ...
+2019-05-10 07:33:47 - root - INFO: - 
+logger is starting
+2019-05-10 07:33:50 - root - INFO: - 
+#comparing [static]c:\SDK  with  [temp]\\172.16.1.150\usbdisk\SDK
+2019-05-10 07:33:51 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.150\usbdisk\SDK\Nitrox3
+2019-05-10 07:33:51 - root - INFO: - 
+#comparing [temp]\\172.16.1.150\usbdisk\SDK  with  [static]c:\SDK
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\ADK-3.1.2
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\bdk-source-r106729.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\BDK\BDK_usage
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-2014.10-r106729.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-2015.07-r121915.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-octeon3-release-2016.12.1.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-octeon3-release-2016.12.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\RE BDK Source Code.msg
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\linux2.6
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\liquidIO
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\Nitrox
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.4.14.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\20180919release_for_kuaishou
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\20181106release
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\broadwell_patch.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\cav_nginx_nblock-patch-01
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\cav_nginx_nblock-patch-01.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-04.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-Patch-02.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-session-resumption-Patch-01.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.2-07.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.3-01
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.3-01.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.4.14
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-2.0_GA-01
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-IPSec-Linux-SDK-0.2-04.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-1.2-Linux-Driver-1.1-patch
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-1.2-Linux-Driver-1.1-patch.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02-Patch-03.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02-Patch-04.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-hybrid-offload-Patch-01.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-Patch-01.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2-Patch-01.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2.17
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2.17.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-2.0_GA-01
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\N5-NGINX-Perf-Testing.pdf
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\Nginx_Perf_Testing
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\Nginx_Perf_Testing.tar.gz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK2.0.txt
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_forali0608.tar.gz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_H3C_20180813.txt
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_H3C_20180813.zip
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_kingsoft_20181106.zip
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\patch-01-Nitrox-V-enable-lower-cores.tar.gz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\Patch-02.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\OCTEON-LINUX-1.6.0-221.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\OCTEON-SDK-1.6.0-221.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\ODP
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\OpenWRTv2.2
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\OpenWRT_v1.9
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\QLogic
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK1.9
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK101902
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\sdk101906rc_buildroot_dl.tar.gz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK220
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK230
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK310
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK311
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-SDK-3.1.2-568.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\CNNIC-SDK-SRC-3.1.2-48.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\CNNIC-SDK-SRC-3.1.2-59.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\CTEON-TOOLCHAIN-3.1.x-BUILD-54-README.txt
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\lte-sdk3.1.2-201706071009-r1580.tar.bz2
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\lte-sdk3.1.2-201709211415-r1663.tar.bz2
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-CRYPTO-CORE-3.1.2-10.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ENGINE-LINUX-3.1.2-15.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-21.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-23.i386.zip
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-27.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-IP-3.1.2-109.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-IPSEC-3.1.2-75.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-LINUX-3.1.2-568.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-OPENSSL-3.1.2-29.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ZLIB-CORE-3.1.2-08.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ZLIB-LINUX-3.1.2-07.i386.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\Reg remote-utils compilation fails with SDK-3.1.2+p9.1 on CentOS7RHEL7.msg
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk-3.1.2-p5.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312-p7a.patch
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p10_install.sh
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p11_install.sh
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p12_install.sh
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p13_install.sh
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p4_install.sh
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p8_install.sh
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p10.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p11.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p12.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p13.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p14.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p2.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p3.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p4.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p6.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p7.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p8.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p9.1.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p9.1_supplemental.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\tools-3.1.2_build54.tar.gz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK510
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK600
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\Cavium OCTEON TX CN81008300 KVMQEMU
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\Cavium OCTEON TX CN81008300 KVMQEMU.tar.gz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\CN8300_KVM_QEMU_HOW_TO
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\CN8300_KVM_QEMU_HOW_TO.rar
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\dpdk-81xx-v16.04-prerelease.tar.bz2
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\DPDK-README.txt
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\dpdk-thunderx-v16.07-mq.tar.bz2
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\How-To-Restore-Ubuntu-16.04.2.txt
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\How-To-Restore-Ubuntu-16.04.txt
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-CRYPTO-DPDK-6.1.0-build01.x86_64.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-CRYPTO-DPDK-README.TXT
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-SDK-6.1-p3.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-SDK-6.1.0-build11.x86_64.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\odp-thunderx-1.11.0.0_CAVIUM_RELEASE_1.zip
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\odp-thunderx-master.zip
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\README_OCTEONTX-SDK-610-prerelease.txt
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\samsung
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\se2-octeontx-rel5
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\se2-octeontx-rel5.tar.gz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\Software Development Options with OCTEON TX - 20 March 2017.pdf
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\thunderx-tools-421.tar.bz2
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\tools-gcc-6.2.tar.bz2
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\ubuntu_16.04.2_rootfs.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\ubuntu_1604-dpdk.tgz
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OcteonTX-SDK-UG_6.2.0.pdf
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CPT-DRIVER-6.2.0-build02.x86_64.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CPT-DRIVER-6.2.0-GA-RELEASE-NOTES.txt
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CRYPTO-DPDK-6.1.0-build01.x86_64.rpm
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CRYPTO-DPDK-README.TXT
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-DDF-LINUX-6.2.0-10.x86_64-README.txt
+2019-05-10 07:33:52 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-IPSEC-DPDK-6.2.0-build04.x86_64.rpm
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-IPSEC-DPDK-6.2.0-GA-README.TXT
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-OPENSSL-ENGINE-6.2.0-02.x86_64-README.txt
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-OPENSSL-ENGINE-6.2.0-02.x86_64.rpm
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SDK-6.2.0-build26.x86_64.rpm
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SDK-6.2.0-p3.tgz
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SDK-6.2.0-SE2-p3.tgz
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SE2-6.2.0-build31.x86_64.rpm
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX_SE2_QuickStart.pdf
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEON_SE-to-SE2_PortingGD.pdf
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\octtx-odp-user-guide.pdf
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\opendataplane.pdf
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\README_OCTEONTX_SDK-620-GA.txt
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\sdk-6.2.0-patch_release_1.tgz
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-application-api.pdf
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\se2-ga-engineering.tgz
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-helper-guide.pdf
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-platform-api-guide.pdf
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-README-1st-P3.pdf
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-README-1st.pdf
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SNORT
+2019-05-10 07:33:53 - root - INFO: - WARNING: create new directory 	=> c:\SDK\thunderX
+2019-05-10 07:33:53 - root - INFO: - [2s][0.0Bps]
+2019-05-10 07:33:53 - root - INFO: - ...
+2019-05-10 07:34:08 - root - INFO: - 
+logger is starting
+2019-05-10 07:34:12 - root - INFO: - 
+#sync up [static]c:\SDK  with  [temp]\\172.16.1.150\usbdisk\SDK
+2019-05-10 07:34:13 - root - INFO: - new: c:\SDK\Nitrox3\CNN35XX-Driver-SDK-KVM-Xen-PF-UserGuide-r6.2.0_v3.pdf ==> \\172.16.1.150\usbdisk\SDK\Nitrox3\CNN35XX-Driver-SDK-KVM-Xen-PF-UserGuide-r6.2.0_v3.pdf [860.8KB]
+2019-05-10 07:34:14 - root - INFO: - -- done      
+2019-05-10 07:34:14 - root - INFO: - [1s][615.8KBps]
+2019-05-10 07:34:14 - root - INFO: - new: c:\SDK\Nitrox3\CNN35XX-Driver-SDK-UserGuide-r6.2.0_v3.pdf ==> \\172.16.1.150\usbdisk\SDK\Nitrox3\CNN35XX-Driver-SDK-UserGuide-r6.2.0_v3.pdf [349.7KB]
+2019-05-10 07:34:16 - root - INFO: - -- done      
+2019-05-10 07:34:16 - root - INFO: - [1s][249.6KBps]
+2019-05-10 07:34:16 - root - INFO: - new: c:\SDK\Nitrox3\CNN35XX-SSL-SDK-UserGuide-r6.2.0_v3.pdf ==> \\172.16.1.150\usbdisk\SDK\Nitrox3\CNN35XX-SSL-SDK-UserGuide-r6.2.0_v3.pdf [336.8KB]
+2019-05-10 07:34:17 - root - INFO: - -- done      
+2019-05-10 07:34:17 - root - INFO: - [0s][373.0KBps]
+2019-05-10 07:34:17 - root - INFO: - new: c:\SDK\Nitrox3\NITROX-Driver-Linux-SDK-6.2.0_GA-01.i386.rpm ==> \\172.16.1.150\usbdisk\SDK\Nitrox3\NITROX-Driver-Linux-SDK-6.2.0_GA-01.i386.rpm [1.2MB]
+2019-05-10 07:34:19 - root - INFO: - -- done      
+2019-05-10 07:34:19 - root - INFO: - [2s][522.1KBps]
+2019-05-10 07:34:19 - root - INFO: - new: c:\SDK\Nitrox3\NITROX-SSL-SDK-6.2.0-01.tgz ==> \\172.16.1.150\usbdisk\SDK\Nitrox3\NITROX-SSL-SDK-6.2.0-01.tgz [338.9KB]
+2019-05-10 07:34:21 - root - INFO: - -- done      
+2019-05-10 07:34:21 - root - INFO: - [1s][210.0KBps]
+2019-05-10 07:34:21 - root - INFO: - 
+#sync up [temp]\\172.16.1.150\usbdisk\SDK  with  [static]c:\SDK
+2019-05-10 07:34:21 - root - INFO: - ----skip static directory:c:\SDK
+2019-05-10 07:34:21 - root - INFO: - [9s][324.8KBps]
+2019-05-10 07:34:21 - root - INFO: - ...
+2019-05-10 07:34:38 - root - INFO: - 
+logger is starting
+2019-05-10 07:34:41 - root - INFO: - 
+#comparing [static]c:\MARL2019  with  [temp]\\172.16.1.150\usbSSSdisk\MARL2019
+2019-05-10 07:34:41 - root - INFO: - @@dest disk not exist: \\172.16.1.150\usbSSSdisk
+2019-05-10 07:34:41 - root - INFO: - 
+#comparing [temp]\\172.16.1.150\usbSSSdisk\MARL2019  with  [static]c:\MARL2019
+2019-05-10 07:34:41 - root - INFO: - @@src dir not exist: \\172.16.1.150\usbSSSdisk\MARL2019
+2019-05-10 07:34:41 - root - INFO: - [0s][0.0Bps]
+2019-05-10 07:34:41 - root - INFO: - ...
+2019-05-10 07:35:27 - root - INFO: - 
+logger is starting
+2019-05-10 07:35:29 - root - INFO: - 
+#comparing [static]c:\MARL2019  with  [temp]\\172.16.1.150\usbdisk\MARL2019
+2019-05-10 07:35:30 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.150\usbdisk\MARL2019\Desktop\20190505
+2019-05-10 07:35:30 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.150\usbdisk\MARL2019\Desktop\arm-core.txt ([20190507 12:10:06][765B]->[20190429 15:12:12][744B])
+2019-05-10 07:35:31 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\Desktop\Intel-Skylake.jpg
+2019-05-10 07:35:31 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\Desktop\intel.txt
+2019-05-10 07:35:31 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019
+2019-05-10 07:35:31 - root - INFO: - WARNING in size: file doesn't match 	=> \\172.16.1.150\usbdisk\MARL2019\FAETraining\201904\CN96 SSO.PPT ([20190415 10:20:22][3111936B]->[20190415 10:20:22][3109376B])
+2019-05-10 07:35:31 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\FAETraining\201904\cn96xx cpt hardware and software.pptx
+2019-05-10 07:35:31 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.150\usbdisk\MARL2019\FAETraining\201904\readme.txt ([20190506 21:48:13][621B]->[20190418 16:57:30][455B])
+2019-05-10 07:35:34 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190418_2GHz_pkohang\20190505.txt
+2019-05-10 07:35:34 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190418_2GHz_pkohang\32GE_traffic_flow.png
+2019-05-10 07:35:35 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190508Security_pkohang
+2019-05-10 07:35:35 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\csr_tool-1.1.12.zip
+2019-05-10 07:35:36 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\H3C_Projects.vsd
+2019-05-10 07:35:37 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\liquidio\liquidi_for_H3C_hangzhou.pptx
+2019-05-10 07:35:37 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\SDK_EBB\CN83XX_Benchmark_SNORT_hs_4.7.0.xlsx
+2019-05-10 07:35:38 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\SDK_EBB\espressobin\ESPRESSObin_V4_Schematics.pdf
+2019-05-10 07:35:44 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\work\marvell\KSO\Please_DocuSign_FY20_Comp_Plan_for_Yi_Shanpi.pdf
+2019-05-10 07:35:44 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.150\usbdisk\MARL2019\work\marvell\KSO\SHANPING_YI_FY2020_Q1_FAE_KSO_20MAR2019.xlsx ([20190508 09:50:40][27553B]->[20190322 12:18:21][27431B])
+2019-05-10 07:35:44 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\work\marvell\KSO\SHANPING_YI_FY2020_Q2_FAE_KSO_8MAY2019.xlsx
+2019-05-10 07:35:45 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.150\usbdisk\MARL2019\work\marvell\marvell.txt ([20190507 10:04:40][5279B]->[20190416 20:03:58][4982B])
+2019-05-10 07:35:47 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.150\usbdisk\MARL2019\work\personal\2019weekly\20190426.xlsx ([20190509 20:55:05][21398B]->[20190430 10:33:11][19781B])
+2019-05-10 07:35:47 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\work\personal\2019weekly\20190510.xlsx
+2019-05-10 07:35:47 - root - INFO: - 
+#comparing [temp]\\172.16.1.150\usbdisk\MARL2019  with  [static]c:\MARL2019
+2019-05-10 07:35:47 - root - INFO: - WARNING: create new file 	=> c:\MARL2019\Desktop\011001600111_65087221.pdf
+2019-05-10 07:35:47 - root - INFO: - WARNING: create new file 	=> c:\MARL2019\Desktop\011001600111_65984805.pdf
+2019-05-10 07:35:47 - root - INFO: - WARNING: create new file 	=> c:\MARL2019\Desktop\chinaunicom01100190021122005976.pdf
+2019-05-10 07:35:47 - root - INFO: - WARNING in size: file doesn't match 	=> c:\MARL2019\FAETraining\201904\CN96 SSO.PPT ([20190415 10:20:22][3109376B]->[20190415 10:20:22][3111936B])
+2019-05-10 07:35:49 - root - INFO: - [20s][0.0Bps]
+2019-05-10 07:35:49 - root - INFO: - ...
+2019-05-10 07:37:45 - root - INFO: - 
+logger is starting
+2019-05-10 07:37:49 - root - INFO: - 
+#sync up [static]c:\MARL2019  with  [temp]\\172.16.1.150\usbdisk\MARL2019
+2019-05-10 07:37:50 - root - INFO: - new: c:\MARL2019\Desktop\20190505\011001600111_65087221.pdf ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\20190505\011001600111_65087221.pdf [74.4KB]
+2019-05-10 07:37:50 - root - INFO: - -- done      
+2019-05-10 07:37:50 - root - INFO: - [0s][267.0KBps]
+2019-05-10 07:37:50 - root - INFO: - new: c:\MARL2019\Desktop\20190505\011001600111_65984805.pdf ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\20190505\011001600111_65984805.pdf [74.5KB]
+2019-05-10 07:37:50 - root - INFO: - -- done      
+2019-05-10 07:37:50 - root - INFO: - [0s][251.9KBps]
+2019-05-10 07:37:50 - root - INFO: - new: c:\MARL2019\Desktop\20190505\155.jfif ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\20190505\155.jfif [95.4KB]
+2019-05-10 07:37:50 - root - INFO: - -- done      
+2019-05-10 07:37:50 - root - INFO: - [0s][327.9KBps]
+2019-05-10 07:37:51 - root - INFO: - new: c:\MARL2019\Desktop\20190505\185.jfif ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\20190505\185.jfif [97.3KB]
+2019-05-10 07:37:51 - root - INFO: - -- done      
+2019-05-10 07:37:51 - root - INFO: - [0s][173.6KBps]
+2019-05-10 07:37:51 - root - INFO: - new: c:\MARL2019\Desktop\20190505\20190505.pdf ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\20190505\20190505.pdf [622.6KB]
+2019-05-10 07:37:53 - root - INFO: - -- done      
+2019-05-10 07:37:53 - root - INFO: - [1s][398.2KBps]
+2019-05-10 07:37:53 - root - INFO: - new: c:\MARL2019\Desktop\20190505\cellphone1904.docx ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\20190505\cellphone1904.docx [205.2KB]
+2019-05-10 07:37:53 - root - INFO: - -- done      
+2019-05-10 07:37:53 - root - INFO: - [0s][480.9KBps]
+2019-05-10 07:37:53 - root - INFO: - new: c:\MARL2019\Desktop\20190505\chinaunicom01100190021122005976.pdf ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\20190505\chinaunicom01100190021122005976.pdf [34.4KB]
+2019-05-10 07:37:53 - root - INFO: - -- done      
+2019-05-10 07:37:53 - root - INFO: - [0s][174.5KBps]
+2019-05-10 07:37:53 - root - INFO: - update: c:\MARL2019\Desktop\arm-core.txt[765.0B] ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\arm-core.txt ([20190507 12:10:06][765B]->[20190429 15:12:12][744B])
+2019-05-10 07:37:53 - root - INFO: - -- done      
+2019-05-10 07:37:53 - root - INFO: - [0s][4.7KBps]
+2019-05-10 07:37:54 - root - INFO: - new: c:\MARL2019\Desktop\Intel-Skylake.jpg ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\Intel-Skylake.jpg [313.7KB]
+2019-05-10 07:37:54 - root - INFO: - -- done      
+2019-05-10 07:37:54 - root - INFO: - [0s][461.6KBps]
+2019-05-10 07:37:54 - root - INFO: - new: c:\MARL2019\Desktop\intel.txt ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\intel.txt [109.0B]
+2019-05-10 07:37:54 - root - INFO: - -- done      
+2019-05-10 07:37:54 - root - INFO: - [0s][989.4Bps]
+2019-05-10 07:37:54 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\00-Armada_v8_SoC.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\00-Armada_v8_SoC.pdf [5.2MB]
+2019-05-10 07:38:03 - root - INFO: - -- done      
+2019-05-10 07:38:03 - root - INFO: - [8s][616.2KBps]
+2019-05-10 07:38:03 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\01-Collaterals_v2.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\01-Collaterals_v2.pdf [5.8MB]
+2019-05-10 07:38:15 - root - INFO: - -- done      
+2019-05-10 07:38:15 - root - INFO: - [12s][486.0KBps]
+2019-05-10 07:38:15 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\01_Overview.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\01_Overview.mp4 [207.4MB]
+2019-05-10 07:43:03 - root - INFO: - -- done      
+2019-05-10 07:43:03 - root - INFO: - [287s][739.5KBps]
+2019-05-10 07:43:03 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\02-DGL Schematics And Layout.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\02-DGL Schematics And Layout.pdf [3.3MB]
+2019-05-10 07:43:09 - root - INFO: - -- done      
+2019-05-10 07:43:09 - root - INFO: - [6s][510.5KBps]
+2019-05-10 07:43:09 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\02_Hardware.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\02_Hardware.mp4 [121.9MB]
+2019-05-10 07:46:01 - root - INFO: - -- done      
+2019-05-10 07:46:01 - root - INFO: - [171s][726.9KBps]
+2019-05-10 07:46:01 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\03-DDR_training.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\03-DDR_training.pdf [2.3MB]
+2019-05-10 07:46:05 - root - INFO: - -- done      
+2019-05-10 07:46:05 - root - INFO: - [3s][703.0KBps]
+2019-05-10 07:46:05 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\03_DDR.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\03_DDR.mp4 [124.3MB]
+2019-05-10 07:48:54 - root - INFO: - -- done      
+2019-05-10 07:48:54 - root - INFO: - [169s][752.8KBps]
+2019-05-10 07:48:54 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\04-Armada-BSP-Overview.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\04-Armada-BSP-Overview.pdf [1.1MB]
+2019-05-10 07:48:55 - root - INFO: - -- done      
+2019-05-10 07:48:55 - root - INFO: - [1s][666.8KBps]
+2019-05-10 07:48:55 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\04_BSP.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\04_BSP.mp4 [28.2MB]
+2019-05-10 07:49:46 - root - INFO: - -- done      
+2019-05-10 07:49:46 - root - INFO: - [50s][567.8KBps]
+2019-05-10 07:49:46 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\05-BSP-Release-and-Setup.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\05-BSP-Release-and-Setup.pdf [618.1KB]
+2019-05-10 07:49:47 - root - INFO: - -- done      
+2019-05-10 07:49:47 - root - INFO: - [0s][619.6KBps]
+2019-05-10 07:49:47 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\05_8KBootRom.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\05_8KBootRom.mp4 [58.0MB]
+2019-05-10 07:51:06 - root - INFO: - -- done      
+2019-05-10 07:51:06 - root - INFO: - [78s][756.3KBps]
+2019-05-10 07:51:06 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\06-Armada-8K_BootROM.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\06-Armada-8K_BootROM.pdf [721.0KB]
+2019-05-10 07:51:08 - root - INFO: - -- done      
+2019-05-10 07:51:08 - root - INFO: - [2s][272.2KBps]
+2019-05-10 07:51:08 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\06A-7K 8K Secure Boot.v1.2.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\06A-7K 8K Secure Boot.v1.2.pdf [368.4KB]
+2019-05-10 07:51:09 - root - INFO: - -- done      
+2019-05-10 07:51:09 - root - INFO: - [0s][483.6KBps]
+2019-05-10 07:51:09 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\06_SecureBoot.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\06_SecureBoot.mp4 [43.5MB]
+2019-05-10 07:52:11 - root - INFO: - -- done      
+2019-05-10 07:52:11 - root - INFO: - [61s][720.8KBps]
+2019-05-10 07:52:11 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\07-Armada-3K_BootROM.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\07-Armada-3K_BootROM.pdf [373.9KB]
+2019-05-10 07:52:12 - root - INFO: - -- done      
+2019-05-10 07:52:12 - root - INFO: - [0s][475.7KBps]
+2019-05-10 07:52:12 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\07_3KBootRom.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\07_3KBootRom.mp4 [14.3MB]
+2019-05-10 07:52:33 - root - INFO: - -- done      
+2019-05-10 07:52:33 - root - INFO: - [20s][698.6KBps]
+2019-05-10 07:52:33 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\08-ARM-Trusted-Firmware.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\08-ARM-Trusted-Firmware.pdf [654.6KB]
+2019-05-10 07:52:34 - root - INFO: - -- done      
+2019-05-10 07:52:34 - root - INFO: - [1s][588.8KBps]
+2019-05-10 07:52:34 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\08_ATF.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\08_ATF.mp4 [28.8MB]
+2019-05-10 07:53:16 - root - INFO: - -- done      
+2019-05-10 07:53:16 - root - INFO: - [42s][693.6KBps]
+2019-05-10 07:53:16 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\09-Device-Tree-Basics.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\09-Device-Tree-Basics.pdf [360.7KB]
+2019-05-10 07:53:17 - root - INFO: - -- done      
+2019-05-10 07:53:17 - root - INFO: - [0s][552.3KBps]
+2019-05-10 07:53:17 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\09_DeviceTree.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\09_DeviceTree.mp4 [26.2MB]
+2019-05-10 07:53:58 - root - INFO: - -- done      
+2019-05-10 07:53:58 - root - INFO: - [40s][662.3KBps]
+2019-05-10 07:53:58 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\10-UBoot-BSP.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\10-UBoot-BSP.pdf [944.5KB]
+2019-05-10 07:53:59 - root - INFO: - -- done      
+2019-05-10 07:53:59 - root - INFO: - [1s][658.2KBps]
+2019-05-10 07:53:59 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\10_u-boot_BSP.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\10_u-boot_BSP.mp4 [33.2MB]
+2019-05-10 07:54:47 - root - INFO: - -- done      
+2019-05-10 07:54:47 - root - INFO: - [48s][703.1KBps]
+2019-05-10 07:54:47 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\11-Linux-BSP.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\11-Linux-BSP.pdf [728.0KB]
+2019-05-10 07:54:49 - root - INFO: - -- done      
+2019-05-10 07:54:49 - root - INFO: - [1s][652.8KBps]
+2019-05-10 07:54:49 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\11_HandsOn.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\11_HandsOn.mp4 [18.1MB]
+2019-05-10 07:55:15 - root - INFO: - -- done      
+2019-05-10 07:55:15 - root - INFO: - [26s][692.5KBps]
+2019-05-10 07:55:15 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\12 - Armada_Networking_SDK-intro.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\12 - Armada_Networking_SDK-intro.pdf [2.3MB]
+2019-05-10 07:55:19 - root - INFO: - -- done      
+2019-05-10 07:55:19 - root - INFO: - [3s][654.0KBps]
+2019-05-10 07:55:19 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\12_Linux.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\12_Linux.mp4 [34.4MB]
+2019-05-10 07:56:09 - root - INFO: - -- done      
+2019-05-10 07:56:09 - root - INFO: - [50s][699.2KBps]
+2019-05-10 07:56:09 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\13-Virtualization.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\13-Virtualization.pdf [1.1MB]
+2019-05-10 07:56:11 - root - INFO: - -- done      
+2019-05-10 07:56:11 - root - INFO: - [2s][565.9KBps]
+2019-05-10 07:56:11 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\13_AVS.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\13_AVS.mp4 [67.6MB]
+2019-05-10 07:57:51 - root - INFO: - -- done      
+2019-05-10 07:57:51 - root - INFO: - [99s][697.1KBps]
+2019-05-10 07:57:51 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\14-XDB Basics.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\14-XDB Basics.pdf [643.2KB]
+2019-05-10 07:57:52 - root - INFO: - -- done      
+2019-05-10 07:57:52 - root - INFO: - [0s][665.3KBps]
+2019-05-10 07:57:52 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\14_PPV2.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\14_PPV2.mp4 [88.8MB]
+2019-05-10 08:00:05 - root - INFO: - -- done      
+2019-05-10 08:00:05 - root - INFO: - [133s][682.3KBps]
+2019-05-10 08:00:05 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\15-AVS_Training_.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\15-AVS_Training_.pdf [1.1MB]
+2019-05-10 08:00:09 - root - INFO: - -- done      
+2019-05-10 08:00:09 - root - INFO: - [3s][292.6KBps]
+2019-05-10 08:00:09 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\15_Virtualization.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\15_Virtualization.mp4 [19.7MB]
+2019-05-10 08:00:37 - root - INFO: - -- done      
+2019-05-10 08:00:37 - root - INFO: - [27s][736.5KBps]
+2019-05-10 08:00:37 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\16_XDB.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\16_XDB.mp4 [7.6MB]
+2019-05-10 08:00:48 - root - INFO: - -- done      
+2019-05-10 08:00:48 - root - INFO: - [10s][717.8KBps]
+2019-05-10 08:00:48 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\Armada Hands On.pdf ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Armada_3Day_Training\Armada Hands On.pdf [1.6MB]
+2019-05-10 08:00:50 - root - INFO: - -- done      
+2019-05-10 08:00:50 - root - INFO: - [2s][690.7KBps]
+2019-05-10 08:00:50 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\01 OCTEON TX and TX2.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Disty FAE Training\01 OCTEON TX and TX2.mp4 [1.2GB]
+2019-05-10 08:32:42 - root - INFO: - -- done      
+2019-05-10 08:32:42 - root - INFO: - [1911s][678.9KBps]
+2019-05-10 08:32:42 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\02 OCTEON-III TX TX2 Based System Hardware.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Disty FAE Training\02 OCTEON-III TX TX2 Based System Hardware.mp4 [1.2GB]
+2019-05-10 09:06:22 - root - INFO: - -- done      
+2019-05-10 09:06:22 - root - INFO: - [2019s][640.3KBps]
+2019-05-10 09:06:22 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\03 OCTEON TX2 Boot Process.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Disty FAE Training\03 OCTEON TX2 Boot Process.mp4 [1.2GB]
+2019-05-10 09:35:41 - root - INFO: - -- done      
+2019-05-10 09:35:41 - root - INFO: - [1759s][704.7KBps]
+2019-05-10 09:35:41 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\04 Unified SDK Orientation.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Disty FAE Training\04 Unified SDK Orientation.mp4 [1.3GB]
+2019-05-10 10:04:50 - root - INFO: - -- done      
+2019-05-10 10:04:50 - root - INFO: - [1748s][766.3KBps]
+2019-05-10 10:04:50 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\05 Data Plane and Reference SW.mp4 ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Disty FAE Training\05 Data Plane and Reference SW.mp4 [1.2GB]
+2019-05-10 10:32:43 - root - INFO: - -- done      
+2019-05-10 10:32:43 - root - INFO: - [1673s][726.9KBps]
+2019-05-10 10:32:43 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\OCTEON TX and TX2 Overview-SteveWatt-24APR2019.pptx ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Disty FAE Training\OCTEON TX and TX2 Overview-SteveWatt-24APR2019.pptx [1.5MB]
+2019-05-10 10:32:46 - root - INFO: - -- done      
+2019-05-10 10:32:46 - root - INFO: - [2s][694.5KBps]
+2019-05-10 10:32:46 - root - INFO: - new: c:\MARL2019\FAETraining\2019\IPBU Disty FAE Training\Unified-SDK-Orientation-MikeCherba_24APR2019.pptx ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\2019\IPBU Disty FAE Training\Unified-SDK-Orientation-MikeCherba_24APR2019.pptx [417.4KB]
+2019-05-10 10:32:47 - root - INFO: - -- done      
+2019-05-10 10:32:47 - root - INFO: - [0s][531.8KBps]
+2019-05-10 10:32:47 - root - INFO: - new: c:\MARL2019\FAETraining\201904\CN96 SSO.PPT ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\201904\CN96 SSO.PPT [3.0MB]
+2019-05-10 10:32:50 - root - INFO: - -- done      
+2019-05-10 10:32:50 - root - INFO: - [3s][851.5KBps]
+2019-05-10 10:32:50 - root - INFO: - new: c:\MARL2019\FAETraining\201904\cn96xx cpt hardware and software.pptx ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\201904\cn96xx cpt hardware and software.pptx [681.9KB]
+2019-05-10 10:32:51 - root - INFO: - -- done      
+2019-05-10 10:32:51 - root - INFO: - [1s][644.8KBps]
+2019-05-10 10:32:51 - root - INFO: - update: c:\MARL2019\FAETraining\201904\readme.txt[621.0B] ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\201904\readme.txt ([20190506 21:48:13][621B]->[20190418 16:57:30][455B])
+2019-05-10 10:32:51 - root - INFO: - -- done      
+2019-05-10 10:32:51 - root - INFO: - [0s][4.1KBps]
+2019-05-10 10:32:54 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190418_2GHz_pkohang\20190505.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190418_2GHz_pkohang\20190505.txt [821.0B]
+2019-05-10 10:32:55 - root - INFO: - -- done      
+2019-05-10 10:32:55 - root - INFO: - [0s][5.1KBps]
+2019-05-10 10:32:55 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190418_2GHz_pkohang\32GE_traffic_flow.png ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190418_2GHz_pkohang\32GE_traffic_flow.png [47.7KB]
+2019-05-10 10:32:55 - root - INFO: - -- done      
+2019-05-10 10:32:55 - root - INFO: - [0s][271.3KBps]
+2019-05-10 10:32:55 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190508Security_pkohang\hang.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190508Security_pkohang\hang.txt [23.1KB]
+2019-05-10 10:32:55 - root - INFO: - -- done      
+2019-05-10 10:32:55 - root - INFO: - [0s][149.2KBps]
+2019-05-10 10:32:55 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190508Security_pkohang\hang.txt.readable ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190508Security_pkohang\hang.txt.readable [120.4KB]
+2019-05-10 10:32:56 - root - INFO: - -- done      
+2019-05-10 10:32:56 - root - INFO: - [0s][429.9KBps]
+2019-05-10 10:32:56 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190508Security_pkohang\normal.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190508Security_pkohang\normal.txt [21.6KB]
+2019-05-10 10:32:56 - root - INFO: - -- done      
+2019-05-10 10:32:56 - root - INFO: - [0s][59.8KBps]
+2019-05-10 10:32:56 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190508Security_pkohang\normal.txt.readable ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190508Security_pkohang\normal.txt.readable [112.3KB]
+2019-05-10 10:32:56 - root - INFO: - -- done      
+2019-05-10 10:32:56 - root - INFO: - [0s][451.2KBps]
+2019-05-10 10:32:56 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190508Security_pkohang\PKO.reg.code ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190508Security_pkohang\PKO.reg.code [3.7MB]
+2019-05-10 10:33:01 - root - INFO: - -- done      
+2019-05-10 10:33:01 - root - INFO: - [5s][749.8KBps]
+2019-05-10 10:33:01 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190508Security_pkohang\readme.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190508Security_pkohang\readme.txt [273.0B]
+2019-05-10 10:33:01 - root - INFO: - -- done      
+2019-05-10 10:33:01 - root - INFO: - [0s][2.2KBps]
+2019-05-10 10:33:01 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190508Security_pkohang\发送失败pko寄存器打印.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190508Security_pkohang\发送失败pko寄存器打印.txt [28.3KB]
+2019-05-10 10:33:02 - root - INFO: - -- done      
+2019-05-10 10:33:02 - root - INFO: - [0s][166.7KBps]
+2019-05-10 10:33:02 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190508Security_pkohang\发送成功pko寄存器.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190508Security_pkohang\发送成功pko寄存器.txt [26.5KB]
+2019-05-10 10:33:02 - root - INFO: - -- done      
+2019-05-10 10:33:02 - root - INFO: - [0s][150.9KBps]
+2019-05-10 10:33:02 - root - INFO: - new: c:\MARL2019\Supports\H3C\csr_tool-1.1.12.zip ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\csr_tool-1.1.12.zip [5.6MB]
+2019-05-10 10:33:14 - root - INFO: - -- done      
+2019-05-10 10:33:14 - root - INFO: - [11s][482.4KBps]
+2019-05-10 10:33:14 - root - INFO: - new: c:\MARL2019\Supports\H3C\H3C_Projects.vsd ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\H3C_Projects.vsd [332.5KB]
+2019-05-10 10:33:15 - root - INFO: - -- done      
+2019-05-10 10:33:15 - root - INFO: - [0s][429.9KBps]
+2019-05-10 10:33:15 - root - INFO: - new: c:\MARL2019\Supports\liquidio\liquidIO_for_H3C_hangzhou20190510.pptx ==> \\172.16.1.150\usbdisk\MARL2019\Supports\liquidio\liquidIO_for_H3C_hangzhou20190510.pptx [1.3MB]
+2019-05-10 10:33:18 - root - INFO: - -- done      
+2019-05-10 10:33:18 - root - INFO: - [2s][491.6KBps]
+2019-05-10 10:33:19 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\CN83XX_Benchmark_SNORT_hs_4.7.0.xlsx ==> \\172.16.1.150\usbdisk\MARL2019\Supports\SDK_EBB\CN83XX_Benchmark_SNORT_hs_4.7.0.xlsx [16.9KB]
+2019-05-10 10:33:19 - root - INFO: - -- done      
+2019-05-10 10:33:19 - root - INFO: - [0s][77.0KBps]
+2019-05-10 10:33:20 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\espressobin\ESPRESSObin_V4_Schematics.pdf ==> \\172.16.1.150\usbdisk\MARL2019\Supports\SDK_EBB\espressobin\ESPRESSObin_V4_Schematics.pdf [287.4KB]
+2019-05-10 10:33:21 - root - INFO: - -- done      
+2019-05-10 10:33:21 - root - INFO: - [0s][343.5KBps]
+2019-05-10 10:33:22 - root - INFO: - new: c:\MARL2019\Tech\AI.xmind ==> \\172.16.1.150\usbdisk\MARL2019\Tech\AI.xmind [24.6KB]
+2019-05-10 10:33:22 - root - INFO: - -- done      
+2019-05-10 10:33:22 - root - INFO: - [0s][133.3KBps]
+2019-05-10 10:33:26 - root - INFO: - new: c:\MARL2019\work\marvell\KSO\Please_DocuSign_FY20_Comp_Plan_for_Yi_Shanpi.pdf ==> \\172.16.1.150\usbdisk\MARL2019\work\marvell\KSO\Please_DocuSign_FY20_Comp_Plan_for_Yi_Shanpi.pdf [920.1KB]
+2019-05-10 10:33:28 - root - INFO: - -- done      
+2019-05-10 10:33:28 - root - INFO: - [1s][568.9KBps]
+2019-05-10 10:33:28 - root - INFO: - update: c:\MARL2019\work\marvell\KSO\SHANPING_YI_FY2020_Q1_FAE_KSO_20MAR2019.xlsx[26.9KB] ==> \\172.16.1.150\usbdisk\MARL2019\work\marvell\KSO\SHANPING_YI_FY2020_Q1_FAE_KSO_20MAR2019.xlsx ([20190508 09:50:40][27553B]->[20190322 12:18:21][27431B])
+2019-05-10 10:33:28 - root - INFO: - -- done      
+2019-05-10 10:33:28 - root - INFO: - [0s][109.2KBps]
+2019-05-10 10:33:28 - root - INFO: - new: c:\MARL2019\work\marvell\KSO\SHANPING_YI_FY2020_Q2_FAE_KSO_8MAY2019.xlsx ==> \\172.16.1.150\usbdisk\MARL2019\work\marvell\KSO\SHANPING_YI_FY2020_Q2_FAE_KSO_8MAY2019.xlsx [26.8KB]
+2019-05-10 10:33:28 - root - INFO: - -- done      
+2019-05-10 10:33:28 - root - INFO: - [0s][60.4KBps]
+2019-05-10 10:33:29 - root - INFO: - update: c:\MARL2019\work\marvell\marvell.txt[5.2KB] ==> \\172.16.1.150\usbdisk\MARL2019\work\marvell\marvell.txt ([20190507 10:04:40][5279B]->[20190416 20:03:58][4982B])
+2019-05-10 10:33:29 - root - INFO: - -- done      
+2019-05-10 10:33:29 - root - INFO: - [0s][22.1KBps]
+2019-05-10 10:33:31 - root - INFO: - update: c:\MARL2019\work\personal\2019weekly\20190426.xlsx[20.9KB] ==> \\172.16.1.150\usbdisk\MARL2019\work\personal\2019weekly\20190426.xlsx ([20190509 20:55:05][21398B]->[20190430 10:33:11][19781B])
+2019-05-10 10:33:32 - root - INFO: - -- done      
+2019-05-10 10:33:32 - root - INFO: - [0s][86.4KBps]
+2019-05-10 10:33:32 - root - INFO: - new: c:\MARL2019\work\personal\2019weekly\20190510.xlsx ==> \\172.16.1.150\usbdisk\MARL2019\work\personal\2019weekly\20190510.xlsx [19.4KB]
+2019-05-10 10:33:32 - root - INFO: - -- done      
+2019-05-10 10:33:32 - root - INFO: - [0s][85.9KBps]
+2019-05-10 10:33:32 - root - INFO: - 
+#sync up [temp]\\172.16.1.150\usbdisk\MARL2019  with  [static]c:\MARL2019
+2019-05-10 10:33:32 - root - INFO: - ----skip static directory:c:\MARL2019
+2019-05-10 10:33:32 - root - INFO: - [10543s][700.1KBps]
+2019-05-10 10:33:32 - root - INFO: - ...
+2019-05-23 15:15:28 - root - INFO: - 
+logger is starting
+2019-05-23 15:15:32 - root - INFO: - 
+#comparing [static]c:\Backup  with  [temp]\\172.16.1.150\usbdisk\Backup
+2019-05-23 15:15:35 - root - INFO: - 
+#comparing [temp]\\172.16.1.150\usbdisk\Backup  with  [static]c:\Backup
+2019-05-23 15:15:35 - root - INFO: - WARNING: create new directory 	=> c:\Backup\BaiduYunDownload
+2019-05-23 15:15:35 - root - INFO: - WARNING: create new directory 	=> c:\Backup\bak80GB
+2019-05-23 15:15:35 - root - INFO: - WARNING: create new directory 	=> c:\Backup\BDI3000
+2019-05-23 15:15:35 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2013.pst
+2019-05-23 15:15:35 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2013.pst.b64
+2019-05-23 15:15:35 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2014.pst
+2019-05-23 15:15:35 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2014.pst.b64
+2019-05-23 15:15:35 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2015.pst
+2019-05-23 15:15:35 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2015.pst.b64
+2019-05-23 15:15:35 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2016.pst
+2019-05-23 15:15:35 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2016.pst.b64
+2019-05-23 15:15:36 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2017.pst
+2019-05-23 15:15:36 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2017.pst.b64
+2019-05-23 15:15:36 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018.pst
+2019-05-23 15:15:36 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018.pst.b64
+2019-05-23 15:15:36 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018H2.pst
+2019-05-23 15:15:36 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018H2.pst.b64
+2019-05-23 15:15:36 - root - INFO: - WARNING: create new directory 	=> c:\Backup\Email\email
+2019-05-23 15:15:36 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\readme.txt
+2019-05-23 15:15:36 - root - INFO: - WARNING: create new directory 	=> c:\Backup\FAETraining
+2019-05-23 15:15:36 - root - INFO: - WARNING: create new directory 	=> c:\Backup\gateway
+2019-05-23 15:15:36 - root - INFO: - WARNING: create new file 	=> c:\Backup\inspiron-14r-se-7420_Owner's Manual_zh-cn.pdf
+2019-05-23 15:15:36 - root - INFO: - WARNING: create new file 	=> c:\Backup\inspiron-14r-se-7420_Setup Guide_zh-cn.pdf
+2019-05-23 15:15:36 - root - INFO: - WARNING: create new directory 	=> c:\Backup\novel
+2019-05-23 15:15:36 - root - INFO: - [3s][0.0Bps]
+2019-05-23 15:15:36 - root - INFO: - ...
+2019-05-23 15:15:42 - root - INFO: - 
+logger is starting
+2019-05-23 15:16:05 - root - INFO: - 
+logger is starting
+2019-05-23 15:16:09 - root - INFO: - 
+#comparing [static]c:\MARL2019  with  [temp]\\172.16.1.150\usbdisk\MARL2019
+2019-05-23 15:16:10 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.150\usbdisk\MARL2019\Desktop\arm-core.txt ([20190510 15:30:33][900B]->[20190507 12:10:06][765B])
+2019-05-23 15:16:10 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.150\usbdisk\MARL2019\Desktop\New folder
+2019-05-23 15:16:10 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\Desktop\Travel application 53D201900394 for Shanping Yi (1038.46 USD).msg
+2019-05-23 15:16:13 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\FAETraining\201904\cn96xx GIC GTI.pptx
+2019-05-23 15:16:13 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.150\usbdisk\MARL2019\FAETraining\201904\readme.txt ([20190514 17:17:53][771B]->[20190506 21:48:13][621B])
+2019-05-23 15:16:14 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\FAETraining\OpenWRT_demo_15April2019.docx
+2019-05-23 15:16:17 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190418_2GHz_pkohang\20190521.txt
+2019-05-23 15:16:18 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190510bdi3000_forcnf75
+2019-05-23 15:16:18 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514meeting
+2019-05-23 15:16:18 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514pkohang_from_Security
+2019-05-23 15:16:18 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190521.txt
+2019-05-23 15:16:18 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190521bdk_on_ebb7800
+2019-05-23 15:16:19 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\liquidio\Run_SDK312_on_Liquidio2_Adapter.docx
+2019-05-23 15:16:21 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\SDK_EBB\espressobin\ubuntu.txt ([20190516 13:40:33][5630B]->[20190307 16:07:58][5585B])
+2019-05-23 15:16:22 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\Supports\SDK_EBB\SFF8304\software.txt
+2019-05-23 15:16:22 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.150\usbdisk\MARL2019\Tech\AI.xmind ([20190514 21:35:55][81320B]->[20190510 09:12:17][25224B])
+2019-05-23 15:16:22 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.150\usbdisk\MARL2019\Tech\cn83xx_regtool
+2019-05-23 15:16:25 - root - INFO: - WARNING: create new directory 	=> \\172.16.1.150\usbdisk\MARL2019\work\CN71XX
+2019-05-23 15:16:26 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\work\CN78XX\CN78XX_Issues_v1.19.pdf
+2019-05-23 15:16:28 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\work\marvell\marketing\04212019_IPBU_PLU_v6.2.pdf
+2019-05-23 15:16:29 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.150\usbdisk\MARL2019\work\marvell\marvell.txt ([20190518 17:51:03][5309B]->[20190507 10:04:40][5279B])
+2019-05-23 15:16:30 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.150\usbdisk\MARL2019\work\personal\2019weekly\20190510.xlsx ([20190517 07:07:38][20660B]->[20190510 06:27:14][19838B])
+2019-05-23 15:16:30 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\MARL2019\work\personal\2019weekly\20190516.xlsx
+2019-05-23 15:16:31 - root - INFO: - 
+#comparing [temp]\\172.16.1.150\usbdisk\MARL2019  with  [static]c:\MARL2019
+2019-05-23 15:16:31 - root - INFO: - WARNING: create new file 	=> c:\MARL2019\Desktop\ChinaUnicomCards20190423075301.xls
+2019-05-23 15:16:33 - root - INFO: - [24s][0.0Bps]
+2019-05-23 15:16:33 - root - INFO: - ...
+2019-05-23 15:18:29 - root - INFO: - 
+logger is starting
+2019-05-23 15:18:34 - root - INFO: - 
+#sync up [static]c:\MARL2019  with  [temp]\\172.16.1.150\usbdisk\MARL2019
+2019-05-23 15:18:35 - root - INFO: - update: c:\MARL2019\Desktop\arm-core.txt[900.0B] ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\arm-core.txt ([20190510 15:30:33][900B]->[20190507 12:10:06][765B])
+2019-05-23 15:18:36 - root - INFO: - -- done      
+2019-05-23 15:18:36 - root - INFO: - [0s][1.6KBps]
+2019-05-23 15:18:36 - root - INFO: - new: c:\MARL2019\Desktop\New folder\011001900211_44174026.pdf ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\New folder\011001900211_44174026.pdf [28.0KB]
+2019-05-23 15:18:36 - root - INFO: - -- done      
+2019-05-23 15:18:36 - root - INFO: - [0s][85.1KBps]
+2019-05-23 15:18:36 - root - INFO: - new: c:\MARL2019\Desktop\New folder\011001900211_63457980.pdf ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\New folder\011001900211_63457980.pdf [41.2KB]
+2019-05-23 15:18:37 - root - INFO: - -- done      
+2019-05-23 15:18:37 - root - INFO: - [0s][140.2KBps]
+2019-05-23 15:18:37 - root - INFO: - new: c:\MARL2019\Desktop\New folder\chinaUnicom201905170952095298483765118511089715.pdf ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\New folder\chinaUnicom201905170952095298483765118511089715.pdf [34.5KB]
+2019-05-23 15:18:37 - root - INFO: - -- done      
+2019-05-23 15:18:37 - root - INFO: - [0s][125.8KBps]
+2019-05-23 15:18:37 - root - INFO: - new: c:\MARL2019\Desktop\New folder\ChinaUnicomCards20190423075301.xls ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\New folder\ChinaUnicomCards20190423075301.xls [30.0KB]
+2019-05-23 15:18:37 - root - INFO: - -- done      
+2019-05-23 15:18:37 - root - INFO: - [0s][76.8KBps]
+2019-05-23 15:18:37 - root - INFO: - new: c:\MARL2019\Desktop\New folder\ChinaUnicomCards20190517095002.xls ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\New folder\ChinaUnicomCards20190517095002.xls [30.0KB]
+2019-05-23 15:18:38 - root - INFO: - -- done      
+2019-05-23 15:18:38 - root - INFO: - [0s][88.9KBps]
+2019-05-23 15:18:38 - root - INFO: - new: c:\MARL2019\Desktop\New folder\wKj6yFzZ9dyIP5vIAACuxbbIeyEAAH7xwDqmMAAAK7d934.pdf ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\New folder\wKj6yFzZ9dyIP5vIAACuxbbIeyEAAH7xwDqmMAAAK7d934.pdf [43.7KB]
+2019-05-23 15:18:38 - root - INFO: - -- done      
+2019-05-23 15:18:38 - root - INFO: - [0s][112.1KBps]
+2019-05-23 15:18:38 - root - INFO: - new: c:\MARL2019\Desktop\Travel application 53D201900394 for Shanping Yi (1038.46 USD).msg ==> \\172.16.1.150\usbdisk\MARL2019\Desktop\Travel application 53D201900394 for Shanping Yi (1038.46 USD).msg [122.0KB]
+2019-05-23 15:18:39 - root - INFO: - -- done      
+2019-05-23 15:18:39 - root - INFO: - [0s][212.5KBps]
+2019-05-23 15:18:41 - root - INFO: - new: c:\MARL2019\FAETraining\201904\cn96xx GIC GTI.pptx ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\201904\cn96xx GIC GTI.pptx [514.2KB]
+2019-05-23 15:18:42 - root - INFO: - -- done      
+2019-05-23 15:18:42 - root - INFO: - [1s][285.0KBps]
+2019-05-23 15:18:43 - root - INFO: - update: c:\MARL2019\FAETraining\201904\readme.txt[771.0B] ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\201904\readme.txt ([20190514 17:17:53][771B]->[20190506 21:48:13][621B])
+2019-05-23 15:18:43 - root - INFO: - -- done      
+2019-05-23 15:18:43 - root - INFO: - [0s][1.6KBps]
+2019-05-23 15:18:44 - root - INFO: - new: c:\MARL2019\FAETraining\OpenWRT_demo_15April2019.docx ==> \\172.16.1.150\usbdisk\MARL2019\FAETraining\OpenWRT_demo_15April2019.docx [2.4MB]
+2019-05-23 15:18:52 - root - INFO: - -- done      
+2019-05-23 15:18:52 - root - INFO: - [8s][292.9KBps]
+2019-05-23 15:18:54 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190418_2GHz_pkohang\20190521.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190418_2GHz_pkohang\20190521.txt [412.0B]
+2019-05-23 15:18:54 - root - INFO: - -- done      
+2019-05-23 15:18:54 - root - INFO: - [0s][2.4KBps]
+2019-05-23 15:18:55 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190510bdi3000_forcnf75\bdi3000_start.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190510bdi3000_forcnf75\bdi3000_start.txt [1.9KB]
+2019-05-23 15:18:55 - root - INFO: - -- done      
+2019-05-23 15:18:55 - root - INFO: - [0s][12.3KBps]
+2019-05-23 15:18:55 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190510bdi3000_forcnf75\error.log ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190510bdi3000_forcnf75\error.log [6.7KB]
+2019-05-23 15:18:56 - root - INFO: - -- done      
+2019-05-23 15:18:56 - root - INFO: - [0s][33.3KBps]
+2019-05-23 15:18:56 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514meeting\liquidIO_for_H3C.pdf ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514meeting\liquidIO_for_H3C.pdf [1.7MB]
+2019-05-23 15:19:02 - root - INFO: - -- done      
+2019-05-23 15:19:02 - root - INFO: - [5s][288.4KBps]
+2019-05-23 15:19:02 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514meeting\liquidIO_for_H3C_hangzhou20190510.pptx ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514meeting\liquidIO_for_H3C_hangzhou20190510.pptx [1.3MB]
+2019-05-23 15:19:08 - root - INFO: - -- done      
+2019-05-23 15:19:08 - root - INFO: - [6s][200.2KBps]
+2019-05-23 15:19:08 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514meeting\liquidIO_for_H3C_hangzhou20190514.pptx ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514meeting\liquidIO_for_H3C_hangzhou20190514.pptx [940.1KB]
+2019-05-23 15:19:11 - root - INFO: - -- done      
+2019-05-23 15:19:11 - root - INFO: - [3s][295.7KBps]
+2019-05-23 15:19:11 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514meeting\marvell_processor_update.pptx ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514meeting\marvell_processor_update.pptx [8.7MB]
+2019-05-23 15:19:52 - root - INFO: - -- done      
+2019-05-23 15:19:52 - root - INFO: - [40s][221.0KBps]
+2019-05-23 15:19:52 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514meeting\Soc_Roadmap.pdf ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514meeting\Soc_Roadmap.pdf [807.1KB]
+2019-05-23 15:19:54 - root - INFO: - -- done      
+2019-05-23 15:19:54 - root - INFO: - [2s][319.2KBps]
+2019-05-23 15:19:54 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\1.abnormal_on_fault_CPU.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514pkohang_from_Security\1.abnormal_on_fault_CPU.txt [45.3KB]
+2019-05-23 15:19:55 - root - INFO: - -- done      
+2019-05-23 15:19:55 - root - INFO: - [0s][154.0KBps]
+2019-05-23 15:19:55 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\1.abnormal_PKO.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514pkohang_from_Security\1.abnormal_PKO.txt [23.3KB]
+2019-05-23 15:19:55 - root - INFO: - -- done      
+2019-05-23 15:19:55 - root - INFO: - [0s][102.8KBps]
+2019-05-23 15:19:55 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\1.abnormal_PKO.txt.readable ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514pkohang_from_Security\1.abnormal_PKO.txt.readable [120.3KB]
+2019-05-23 15:19:55 - root - INFO: - -- done      
+2019-05-23 15:19:55 - root - INFO: - [0s][244.8KBps]
+2019-05-23 15:19:55 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\1.发生故障异常CPU收发寄存器打印.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514pkohang_from_Security\1.发生故障异常CPU收发寄存器打印.txt [55.4KB]
+2019-05-23 15:19:56 - root - INFO: - -- done      
+2019-05-23 15:19:56 - root - INFO: - [0s][164.9KBps]
+2019-05-23 15:19:56 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\2.normal_on_fault_CPU.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514pkohang_from_Security\2.normal_on_fault_CPU.txt [30.6KB]
+2019-05-23 15:19:56 - root - INFO: - -- done      
+2019-05-23 15:19:56 - root - INFO: - [0s][127.2KBps]
+2019-05-23 15:19:56 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\2.normal_PKO.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514pkohang_from_Security\2.normal_PKO.txt [16.1KB]
+2019-05-23 15:19:56 - root - INFO: - -- done      
+2019-05-23 15:19:56 - root - INFO: - [0s][56.7KBps]
+2019-05-23 15:19:56 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\2.normal_PKO.txt.readable ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514pkohang_from_Security\2.normal_PKO.txt.readable [123.3KB]
+2019-05-23 15:19:57 - root - INFO: - -- done      
+2019-05-23 15:19:57 - root - INFO: - [0s][139.5KBps]
+2019-05-23 15:19:57 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\2.发生故障正常CPU寄存器打印.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514pkohang_from_Security\2.发生故障正常CPU寄存器打印.txt [43.0KB]
+2019-05-23 15:19:58 - root - INFO: - -- done      
+2019-05-23 15:19:58 - root - INFO: - [0s][136.4KBps]
+2019-05-23 15:19:58 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\PKO.reg.code ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514pkohang_from_Security\PKO.reg.code [3.7MB]
+2019-05-23 15:20:11 - root - INFO: - -- done      
+2019-05-23 15:20:11 - root - INFO: - [13s][278.4KBps]
+2019-05-23 15:20:11 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\pko3_config_dump.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514pkohang_from_Security\pko3_config_dump.txt [10.3KB]
+2019-05-23 15:20:11 - root - INFO: - -- done      
+2019-05-23 15:20:11 - root - INFO: - [0s][43.4KBps]
+2019-05-23 15:20:11 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\readme.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514pkohang_from_Security\readme.txt [1.1KB]
+2019-05-23 15:20:12 - root - INFO: - -- done      
+2019-05-23 15:20:12 - root - INFO: - [0s][5.8KBps]
+2019-05-23 15:20:12 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\正常收发寄存器打印.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190514pkohang_from_Security\正常收发寄存器打印.txt [57.2KB]
+2019-05-23 15:20:12 - root - INFO: - -- done      
+2019-05-23 15:20:12 - root - INFO: - [0s][178.9KBps]
+2019-05-23 15:20:12 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190521.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190521.txt [243.0B]
+2019-05-23 15:20:12 - root - INFO: - -- done      
+2019-05-23 15:20:12 - root - INFO: - [0s][1.4KBps]
+2019-05-23 15:20:12 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190521bdk_on_ebb7800\bdk.log ==> \\172.16.1.150\usbdisk\MARL2019\Supports\H3C\20190521bdk_on_ebb7800\bdk.log [2.6KB]
+2019-05-23 15:20:12 - root - INFO: - -- done      
+2019-05-23 15:20:12 - root - INFO: - [0s][15.0KBps]
+2019-05-23 15:20:13 - root - INFO: - new: c:\MARL2019\Supports\liquidio\Run_SDK312_on_Liquidio2_Adapter.docx ==> \\172.16.1.150\usbdisk\MARL2019\Supports\liquidio\Run_SDK312_on_Liquidio2_Adapter.docx [19.0KB]
+2019-05-23 15:20:13 - root - INFO: - -- done      
+2019-05-23 15:20:13 - root - INFO: - [0s][68.6KBps]
+2019-05-23 15:20:15 - root - INFO: - update: c:\MARL2019\Supports\SDK_EBB\espressobin\ubuntu.txt[5.5KB] ==> \\172.16.1.150\usbdisk\MARL2019\Supports\SDK_EBB\espressobin\ubuntu.txt ([20190516 13:40:33][5630B]->[20190307 16:07:58][5585B])
+2019-05-23 15:20:16 - root - INFO: - -- done      
+2019-05-23 15:20:16 - root - INFO: - [0s][7.8KBps]
+2019-05-23 15:20:17 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SFF8304\software.txt ==> \\172.16.1.150\usbdisk\MARL2019\Supports\SDK_EBB\SFF8304\software.txt [800.0B]
+2019-05-23 15:20:17 - root - INFO: - -- done      
+2019-05-23 15:20:17 - root - INFO: - [0s][4.3KBps]
+2019-05-23 15:20:17 - root - INFO: - update: c:\MARL2019\Tech\AI.xmind[79.4KB] ==> \\172.16.1.150\usbdisk\MARL2019\Tech\AI.xmind ([20190514 21:35:55][81320B]->[20190510 09:12:17][25224B])
+2019-05-23 15:20:17 - root - INFO: - -- done      
+2019-05-23 15:20:17 - root - INFO: - [0s][169.0KBps]
+2019-05-23 15:20:17 - root - INFO: - new: c:\MARL2019\Tech\cn83xx_regtool\cn83_txcsr.sh ==> \\172.16.1.150\usbdisk\MARL2019\Tech\cn83xx_regtool\cn83_txcsr.sh [2.6KB]
+2019-05-23 15:20:18 - root - INFO: - -- done      
+2019-05-23 15:20:18 - root - INFO: - [0s][16.3KBps]
+2019-05-23 15:20:18 - root - INFO: - new: c:\MARL2019\Tech\cn83xx_regtool\reg_dump_NIC.sh ==> \\172.16.1.150\usbdisk\MARL2019\Tech\cn83xx_regtool\reg_dump_NIC.sh [777.4KB]
+2019-05-23 15:20:20 - root - INFO: - -- done      
+2019-05-23 15:20:20 - root - INFO: - [2s][370.0KBps]
+2019-05-23 15:20:23 - root - INFO: - new: c:\MARL2019\work\CN71XX\CN70-71XX_Issues_v1.8.pdf ==> \\172.16.1.150\usbdisk\MARL2019\work\CN71XX\CN70-71XX_Issues_v1.8.pdf [403.3KB]
+2019-05-23 15:20:24 - root - INFO: - -- done      
+2019-05-23 15:20:24 - root - INFO: - [1s][325.7KBps]
+2019-05-23 15:20:24 - root - INFO: - new: c:\MARL2019\work\CN71XX\CN70XX-CN71XX-DDR4-AD-1.1P.pdf ==> \\172.16.1.150\usbdisk\MARL2019\work\CN71XX\CN70XX-CN71XX-DDR4-AD-1.1P.pdf [717.6KB]
+2019-05-23 15:20:27 - root - INFO: - -- done      
+2019-05-23 15:20:27 - root - INFO: - [3s][237.5KBps]
+2019-05-23 15:20:27 - root - INFO: - new: c:\MARL2019\work\CN71XX\CN71XX-HM-1.6P.pdf ==> \\172.16.1.150\usbdisk\MARL2019\work\CN71XX\CN71XX-HM-1.6P.pdf [48.4MB]
+2019-05-23 15:22:48 - root - INFO: - -- done      
+2019-05-23 15:22:48 - root - INFO: - [140s][353.9KBps]
+2019-05-23 15:22:48 - root - INFO: - new: c:\MARL2019\work\CN78XX\CN78XX_Issues_v1.19.pdf ==> \\172.16.1.150\usbdisk\MARL2019\work\CN78XX\CN78XX_Issues_v1.19.pdf [1.0MB]
+2019-05-23 15:22:51 - root - INFO: - -- done      
+2019-05-23 15:22:51 - root - INFO: - [2s][356.1KBps]
+2019-05-23 15:22:53 - root - INFO: - new: c:\MARL2019\work\marvell\marketing\04212019_IPBU_PLU_v6.2.pdf ==> \\172.16.1.150\usbdisk\MARL2019\work\marvell\marketing\04212019_IPBU_PLU_v6.2.pdf [2.6MB]
+2019-05-23 15:22:59 - root - INFO: - -- done      
+2019-05-23 15:22:59 - root - INFO: - [6s][407.4KBps]
+2019-05-23 15:23:00 - root - INFO: - update: c:\MARL2019\work\marvell\marvell.txt[5.2KB] ==> \\172.16.1.150\usbdisk\MARL2019\work\marvell\marvell.txt ([20190518 17:51:03][5309B]->[20190507 10:04:40][5279B])
+2019-05-23 15:23:01 - root - INFO: - -- done      
+2019-05-23 15:23:01 - root - INFO: - [0s][5.4KBps]
+2019-05-23 15:23:04 - root - INFO: - update: c:\MARL2019\work\personal\2019weekly\20190510.xlsx[20.2KB] ==> \\172.16.1.150\usbdisk\MARL2019\work\personal\2019weekly\20190510.xlsx ([20190517 07:07:38][20660B]->[20190510 06:27:14][19838B])
+2019-05-23 15:23:05 - root - INFO: - -- done      
+2019-05-23 15:23:05 - root - INFO: - [0s][23.0KBps]
+2019-05-23 15:23:05 - root - INFO: - new: c:\MARL2019\work\personal\2019weekly\20190516.xlsx ==> \\172.16.1.150\usbdisk\MARL2019\work\personal\2019weekly\20190516.xlsx [20.8KB]
+2019-05-23 15:23:05 - root - INFO: - -- done      
+2019-05-23 15:23:05 - root - INFO: - [0s][75.5KBps]
+2019-05-23 15:23:05 - root - INFO: - 
+#sync up [temp]\\172.16.1.150\usbdisk\MARL2019  with  [static]c:\MARL2019
+2019-05-23 15:23:05 - root - INFO: - ----skip static directory:c:\MARL2019
+2019-05-23 15:23:05 - root - INFO: - [271s][282.2KBps]
+2019-05-23 15:23:06 - root - INFO: - ...
+2019-05-23 15:23:11 - root - INFO: - 
+logger is starting
+2019-05-23 15:23:15 - root - INFO: - 
+#comparing [temp]c:\pytool  with  [temp]\\172.16.1.150\usbdisk\pytool
+2019-05-23 15:23:16 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.150\usbdisk\pytool\syncDir\log_syncFiles_ThP480_Net_home.py2019_05.txt ([20190523 15:23:08][80767B]->[20190510 07:32:54][4556B])
+2019-05-23 15:23:16 - root - INFO: - WARNING: create new file 	=> \\172.16.1.150\usbdisk\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_05.txt
+2019-05-23 15:23:16 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.150\usbdisk\pytool\syncDir\syncFiles_lib2.py ([20190510 07:33:30][11344B]->[20190510 07:23:54][11280B])
+2019-05-23 15:23:16 - root - INFO: - WARNING: file doesn't match 	=> \\172.16.1.150\usbdisk\pytool\syncDir\syncFiles_ThP480_Net_home.py ([20190510 07:35:24][3202B]->[20190430 19:38:00][3205B])
+2019-05-23 15:23:16 - root - INFO: - 
+#comparing [temp]\\172.16.1.150\usbdisk\pytool  with  [temp]c:\pytool
+2019-05-23 15:23:16 - root - INFO: - [1s][0.0Bps]
+2019-05-23 15:23:16 - root - INFO: - ...
+2019-05-23 15:23:25 - root - INFO: - 
+logger is starting
+2019-05-23 15:23:50 - root - INFO: - 
+logger is starting
+2019-05-23 15:23:57 - root - INFO: - 
+#sync up [temp]c:\pytool  with  [temp]\\172.16.1.150\usbdisk\pytool
+2019-05-23 15:23:58 - root - INFO: - update: c:\pytool\syncDir\log_syncFiles_ThP480_Net_home.py2019_05.txt[80.0KB] ==> \\172.16.1.150\usbdisk\pytool\syncDir\log_syncFiles_ThP480_Net_home.py2019_05.txt ([20190523 15:23:57][81933B]->[20190510 07:32:54][4556B])
+2019-05-23 15:23:59 - root - INFO: - -- done      
+2019-05-23 15:23:59 - root - INFO: - [0s][272.4KBps]
+2019-05-23 15:23:59 - root - INFO: - new: c:\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_05.txt ==> \\172.16.1.150\usbdisk\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_05.txt [14.3KB]
+2019-05-23 15:23:59 - root - INFO: - -- done      
+2019-05-23 15:23:59 - root - INFO: - [0s][69.8KBps]
+2019-05-23 15:23:59 - root - INFO: - update: c:\pytool\syncDir\syncFiles_lib2.py[11.1KB] ==> \\172.16.1.150\usbdisk\pytool\syncDir\syncFiles_lib2.py ([20190510 07:33:30][11344B]->[20190510 07:23:54][11280B])
+2019-05-23 15:24:00 - root - INFO: - -- done      
+2019-05-23 15:24:00 - root - INFO: - [0s][53.4KBps]
+2019-05-23 15:24:00 - root - INFO: - update: c:\pytool\syncDir\syncFiles_ThP480_Net_home.py[3.1KB] ==> \\172.16.1.150\usbdisk\pytool\syncDir\syncFiles_ThP480_Net_home.py ([20190510 07:35:24][3202B]->[20190430 19:38:00][3205B])
+2019-05-23 15:24:00 - root - INFO: - -- done      
+2019-05-23 15:24:00 - root - INFO: - [0s][16.2KBps]
+2019-05-23 15:24:00 - root - INFO: - 
+#sync up [temp]\\172.16.1.150\usbdisk\pytool  with  [temp]c:\pytool
+2019-05-23 15:24:00 - root - INFO: - [3s][34.8KBps]
+2019-05-23 15:24:00 - root - INFO: - ...
+2019-05-23 15:24:57 - root - INFO: - 
+logger is starting
+2019-05-23 15:25:01 - root - INFO: - 
+#comparing [static]c:\SDK  with  [temp]\\172.16.1.150\usbdisk\SDK
+2019-05-23 15:25:03 - root - INFO: - 
+#comparing [temp]\\172.16.1.150\usbdisk\SDK  with  [static]c:\SDK
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\ADK-3.1.2
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\bdk-source-r106729.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\BDK\BDK_usage
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-2014.10-r106729.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-2015.07-r121915.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-octeon3-release-2016.12.1.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-octeon3-release-2016.12.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\RE BDK Source Code.msg
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\linux2.6
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\liquidIO
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\Nitrox
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.4.14.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\20180919release_for_kuaishou
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\20181106release
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\broadwell_patch.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\cav_nginx_nblock-patch-01
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\cav_nginx_nblock-patch-01.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-04.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-Patch-02.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-session-resumption-Patch-01.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.2-07.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.3-01
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.3-01.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.4.14
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-2.0_GA-01
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-IPSec-Linux-SDK-0.2-04.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-1.2-Linux-Driver-1.1-patch
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-1.2-Linux-Driver-1.1-patch.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02-Patch-03.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02-Patch-04.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-hybrid-offload-Patch-01.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-Patch-01.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2-Patch-01.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2.17
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2.17.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-2.0_GA-01
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\N5-NGINX-Perf-Testing.pdf
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\Nginx_Perf_Testing
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\Nginx_Perf_Testing.tar.gz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK2.0.txt
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_forali0608.tar.gz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_H3C_20180813.txt
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_H3C_20180813.zip
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_kingsoft_20181106.zip
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\patch-01-Nitrox-V-enable-lower-cores.tar.gz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\Patch-02.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\OCTEON-LINUX-1.6.0-221.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\OCTEON-SDK-1.6.0-221.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\ODP
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\OpenWRTv2.2
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\OpenWRT_v1.9
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\QLogic
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK1.9
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK101902
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\sdk101906rc_buildroot_dl.tar.gz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK220
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK230
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK310
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK311
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-SDK-3.1.2-568.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\CNNIC-SDK-SRC-3.1.2-48.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\CNNIC-SDK-SRC-3.1.2-59.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\CTEON-TOOLCHAIN-3.1.x-BUILD-54-README.txt
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\lte-sdk3.1.2-201706071009-r1580.tar.bz2
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\lte-sdk3.1.2-201709211415-r1663.tar.bz2
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-CRYPTO-CORE-3.1.2-10.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ENGINE-LINUX-3.1.2-15.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-21.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-23.i386.zip
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-27.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-IP-3.1.2-109.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-IPSEC-3.1.2-75.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-LINUX-3.1.2-568.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-OPENSSL-3.1.2-29.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ZLIB-CORE-3.1.2-08.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ZLIB-LINUX-3.1.2-07.i386.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\Reg remote-utils compilation fails with SDK-3.1.2+p9.1 on CentOS7RHEL7.msg
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk-3.1.2-p5.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312-p7a.patch
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p10_install.sh
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p11_install.sh
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p12_install.sh
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p13_install.sh
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p4_install.sh
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p8_install.sh
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p10.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p11.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p12.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p13.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p14.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p2.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p3.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p4.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p6.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p7.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p8.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p9.1.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p9.1_supplemental.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\tools-3.1.2_build54.tar.gz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK510
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK600
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\Cavium OCTEON TX CN81008300 KVMQEMU
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\Cavium OCTEON TX CN81008300 KVMQEMU.tar.gz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\CN8300_KVM_QEMU_HOW_TO
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\CN8300_KVM_QEMU_HOW_TO.rar
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\dpdk-81xx-v16.04-prerelease.tar.bz2
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\DPDK-README.txt
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\dpdk-thunderx-v16.07-mq.tar.bz2
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\How-To-Restore-Ubuntu-16.04.2.txt
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\How-To-Restore-Ubuntu-16.04.txt
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-CRYPTO-DPDK-6.1.0-build01.x86_64.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-CRYPTO-DPDK-README.TXT
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-SDK-6.1-p3.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-SDK-6.1.0-build11.x86_64.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\odp-thunderx-1.11.0.0_CAVIUM_RELEASE_1.zip
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\odp-thunderx-master.zip
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\README_OCTEONTX-SDK-610-prerelease.txt
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\samsung
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\se2-octeontx-rel5
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\se2-octeontx-rel5.tar.gz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\Software Development Options with OCTEON TX - 20 March 2017.pdf
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\thunderx-tools-421.tar.bz2
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\tools-gcc-6.2.tar.bz2
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\ubuntu_16.04.2_rootfs.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\ubuntu_1604-dpdk.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OcteonTX-SDK-UG_6.2.0.pdf
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CPT-DRIVER-6.2.0-build02.x86_64.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CPT-DRIVER-6.2.0-GA-RELEASE-NOTES.txt
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CRYPTO-DPDK-6.1.0-build01.x86_64.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CRYPTO-DPDK-README.TXT
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-DDF-LINUX-6.2.0-10.x86_64-README.txt
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-IPSEC-DPDK-6.2.0-build04.x86_64.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-IPSEC-DPDK-6.2.0-GA-README.TXT
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-OPENSSL-ENGINE-6.2.0-02.x86_64-README.txt
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-OPENSSL-ENGINE-6.2.0-02.x86_64.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SDK-6.2.0-build26.x86_64.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SDK-6.2.0-p3.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SDK-6.2.0-SE2-p3.tgz
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SE2-6.2.0-build31.x86_64.rpm
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX_SE2_QuickStart.pdf
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEON_SE-to-SE2_PortingGD.pdf
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\octtx-odp-user-guide.pdf
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\opendataplane.pdf
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\README_OCTEONTX_SDK-620-GA.txt
+2019-05-23 15:25:04 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\sdk-6.2.0-patch_release_1.tgz
+2019-05-23 15:25:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-application-api.pdf
+2019-05-23 15:25:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\se2-ga-engineering.tgz
+2019-05-23 15:25:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-helper-guide.pdf
+2019-05-23 15:25:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-platform-api-guide.pdf
+2019-05-23 15:25:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-README-1st-P3.pdf
+2019-05-23 15:25:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-README-1st.pdf
+2019-05-23 15:25:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SNORT
+2019-05-23 15:25:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\thunderX
+2019-05-23 15:25:05 - root - INFO: - [4s][0.0Bps]
+2019-05-23 15:25:05 - root - INFO: - ...
+2019-05-23 15:25:17 - root - INFO: - 
+logger is starting
+2019-05-23 15:25:22 - root - INFO: - 
+logger is starting
+2019-05-23 15:25:23 - root - INFO: - 
+#comparing [static]c:\Backup  with  [temp]\\172.16.1.150\usbdisk\Backup
+2019-05-23 15:25:24 - root - INFO: - 
+#comparing [temp]\\172.16.1.150\usbdisk\Backup  with  [static]c:\Backup
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new directory 	=> c:\Backup\BaiduYunDownload
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new directory 	=> c:\Backup\bak80GB
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new directory 	=> c:\Backup\BDI3000
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2013.pst
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2013.pst.b64
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2014.pst
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2014.pst.b64
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2015.pst
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2015.pst.b64
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2016.pst
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2016.pst.b64
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2017.pst
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2017.pst.b64
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018.pst
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018.pst.b64
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018H2.pst
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018H2.pst.b64
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new directory 	=> c:\Backup\Email\email
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\readme.txt
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new directory 	=> c:\Backup\FAETraining
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new directory 	=> c:\Backup\gateway
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\inspiron-14r-se-7420_Owner's Manual_zh-cn.pdf
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new file 	=> c:\Backup\inspiron-14r-se-7420_Setup Guide_zh-cn.pdf
+2019-05-23 15:25:24 - root - INFO: - WARNING: create new directory 	=> c:\Backup\novel
+2019-05-23 15:25:24 - root - INFO: - [0s][0.0Bps]
+2019-05-23 15:25:24 - root - INFO: - ...

@@ -1,0 +1,51 @@
+﻿rootdir,fileurl,type
+Backup,inspiron-14r-se-7420_Owner's Manual_zh-cn.pdf,file
+Backup,inspiron-14r-se-7420_Setup Guide_zh-cn.pdf,file
+MARL2019,aa.txt,file
+MARL2019,work\marvell\marketing\CN83xx_cn9130_price.msg,file
+MARL2019,Supports/foxconn/20190923/session1.log,file
+MARL2019,Supports\foxconn\20190923\session1-2.log,file
+MARL2019,Supports\foxconn\20190923\session2-1.log,file
+MARL2019,Supports\foxconn\20190923\session3-1.log,file
+MARL2019,Supports\foxconn\20190923\session4-1.log,file
+MARL2019,Supports\foxconn\20190923\session4-2.log,file
+MARL2019,Supports\foxconn\20190923\session4-3.log,file
+pytool,FilesTransfer_bak20191010.zip,file
+SDK,NitroxV\20181106release,dir
+SDK,liquidIO/snic_1.6.2_fw_reboot_x86_call_trace_fix,dir
+Supports,Qlogic\sugon\2x20G_linkissue\bnx2x-1.714.13_1_FEC_disabled,dir
+Supports,Qlogic\sugon\2x20G_linkissue\bnx2x-1.714.13_3_FEC_disabled,dir
+Supports,Qlogic\sugon\20180704_4x10G\1.bin,file
+Supports,liquidIO\baidu\20180629_baidu_fw_for_oem\baidu_snic_fw_perset,dir
+Tech,python3\voice\aip-python-sdk-2.2.9,dir
+Tech,python3\voice\speech-demo-master,dir
+Tech,QT\test\csr_tool_release1.1.10,dir
+Tech,QT\test\csr_tool_release1.1.11,dir
+Tech,QT\test\csr_tool_win_SI,dir
+Tech,QT\test\csr_tool_win\release.zip,file
+Tech,python\Python基础教程.pdf,file
+Tech,python\Python学习手册(第4版).pdf,file
+tools,python-3.6.8-amd64.exe,file
+work,programmerguide\vol1\00_FUNDAMENTALS_ALL_CHAPTERS_June_2009.pdf,file
+work,marvell\marketing\CN83xx_cn9130_price.msg,file
+work,CN7XXX/CN71XX/CN70-71XX_Issues_v1.8.pdf,file
+work,CN7XXX/AN-180-CN7XXX_Boot_Methods_r5.pdf,file
+work,CN7XXX\CNF75XX\CNF75XX-HM-1.5PS.pdf,file
+work,CN7XXX\CNF75XX\CNF75XX-HM-1.5P.pdf,file
+work,tools,dir
+work,otherProjects\atheros\iperf_win.zip,file
+work,Thunder\云计算网络技术和sdn.ppt,file
+work,personal\visa2016\Cavium Worldwide Sales Conference 2016.htm,file
+work,personal\visa\美国-在职证明-fixed.doc,file
+work,personal\visa\20140819_nonimmigrant.doc,file
+work,personal\contract\入职保密协议.pdf,file
+pytool,FilesTransfer\1.filesCollect.py,file
+pytool,FilesTransfer\2.diff_AtoB.py,file
+pytool,FilesTransfer\3.copy_diff.py,file
+pytool,FilesTransfer\4.syncToDisk.py,file
+pytool,FilesTransfer\5.filesAnalysis.py,file
+pytool,FilesTransfer\6.deleteFiles.py,file
+MARL2019,Supports\H3C\20190514pkohang_from_Security\vim_replace.txt,file
+Backup,FAETraining\2017.4.11Cavium training\C_QLogic_Ethernet_Sessions\~$China_04a_QLogic-Ethernet-Feature-Details-RDMA_Karl-Erickson_12Apr2017_v6-30min.pptx,file
+Backup,FAETraining\Cavium_Tech_Training_Fall_2017\Thumbs.db,file
+Backup,FAETraining\Cavium_Tech_Training_Fall_2017\~$2017_HQ_China_FAE_Training_Agenda_FINAL.xlsx,file

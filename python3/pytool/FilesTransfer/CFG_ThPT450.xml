@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rootNode name="ThPT450">
+	<rootdir disk="g:" name="b64vedio" type="backup"></rootdir>
+	<rootdir disk="g:" name="Backup" type="backup"></rootdir>
+	<rootdir disk="f:" name="Desktop" type="backup"></rootdir>
+	<rootdir disk="f:" name="MARL2019" type="backup"></rootdir>
+	<rootdir disk="f:" name="OS_ISO" type="backup"></rootdir>
+	<rootdir disk="f:" name="pictures" type="backup"></rootdir>
+	<rootdir disk="f:" name="pytool" type="backup"></rootdir>
+	<rootdir disk="f:" name="SDK" type="backup"></rootdir>
+	<rootdir disk="f:" name="Supports" type="backup"></rootdir>
+	<rootdir disk="f:" name="Tech" type="backup"></rootdir>
+	<rootdir disk="f:" name="tools" type="backup"></rootdir>
+	<rootdir disk="f:" name="tools_free" type="backup"></rootdir>
+	<rootdir disk="f:" name="work" type="backup"></rootdir>
+</rootNode>

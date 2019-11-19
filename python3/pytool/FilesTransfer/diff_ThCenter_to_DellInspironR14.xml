@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rootNode from="Disk_ThCenter" name="ThCenter" sync_date="2019-10-15 16:42:13" to="Disk_DellInspironR14">
+	<rootdir disk="/home/yisp" name="Backup" type="backup">
+		<dir name="BaiduYunDownload">
+			<dir name="汽车品牌biao">
+				<file date="20180720-08:49:48" name="AutoBrand.mdf" size="3145728"/>
+				<file date="20180720-08:49:48" name="AutoBrand_log.ldf" size="1048576"/>
+			</dir>
+		</dir>
+	</rootdir>
+	<rootdir disk="/home/yisp" name="MARL2019" type="backup">
+		<dir name="Desktop">
+			<file date="20191011-14:52:20" name="011001900311_61688034.pdf" size="37388"/>
+			<dir name="20190905">
+				<file date="20190829-12:37:42" name="011001900411_48745850.pdf" size="64705"/>
+				<file date="20190902-16:35:07" name="155.jpg" size="131762"/>
+				<file date="20190902-16:35:16" name="185.jpg" size="136702"/>
+				<file date="20190903-16:14:17" name="20190905.pdf" size="704231"/>
+				<file date="20190812-10:49:28" name="Travel application 53D201900695 for Shanping Yi (1007.69 USD).msg" size="115712"/>
+				<file date="20190903-11:09:31" name="cellphone0906.docx" size="281381"/>
+				<file date="20190903-11:05:08" name="chinaunicom01100190041119362079.pdf" size="35335"/>
+				<file date="20190812-11:08:09" name="滴滴出行行程报销单.pdf" size="101227"/>
+				<file date="20190812-11:08:13" name="滴滴电子发票.pdf" size="38897"/>
+			</dir>
+			<dir name="20191008">
+				<file date="20191008-11:56:42" name="155.jpg" size="121200"/>
+				<file date="20191008-11:56:58" name="185.jpg" size="126065"/>
+				<file date="20191009-08:04:06" name="20191009.pdf" size="898148"/>
+				<file date="20190929-09:09:58" name="ChinaUnicomCards20190903110340.xls" size="30720"/>
+				<file date="20190929-09:12:17" name="ChinaUnicomCards20190929090142.xls" size="30720"/>
+				<file date="20191008-15:32:40" name="Travel application 53D201900925 for Shanping Yi (101.54 USD).msg" size="118784"/>
+				<file date="20191008-11:59:27" name="chinaunicom.docx" size="260187"/>
+				<file date="20190929-09:03:15" name="chinaunicom201909290902552554986362618511089715.pdf" size="35343"/>
+				<file date="20190930-12:14:50" name="滴滴出行行程报销单.pdf" size="107555"/>
+				<file date="20190930-12:14:50" name="滴滴电子发票.pdf" size="38098"/>
+				<file date="20190905-08:26:47" name="美满电子科技（北京）有限公司.pdf" size="37266"/>
+			</dir>
+		</dir>
+		<dir name="FAETraining">
+			<dir name="201910">
+				<file date="20191008-08:00:34" name="GMT20190925-160336_DPDK-deep-.m4a" size="39324197"/>
+				<file date="20191008-08:02:04" name="GMT20190925-160336_DPDK-deep-_1920x1080-Part I.mp4" size="109106629"/>
+				<file date="20191008-08:03:05" name="GMT20191002--DPDK DEEP DIVE PART II.m4a" size="33274918"/>
+				<file date="20191008-08:05:09" name="GMT20191002-DPDK DEEP DIVE PART II-3840x2160.mp4" size="163630921"/>
+				<file date="20191008-08:00:03" name="OCTEON_TX2_DPDK_Training.pdf" size="4359378"/>
+			</dir>
+		</dir>
+		<dir name="Supports">
+			<dir name="H3C">
+				<dir name="20190514pkohang_from_Security">
+					<dir name="20190807">
+						<file date="20190807-15:22:37" name="20190807_LMCL2C_registers_dump.txt" size="22091"/>
+						<file date="20190807-15:24:46" name="20190807_LMCL2C_registers_dump.txt.readable" size="192391"/>
+						<file date="20190807-15:20:13" name="20190807_PKO_configuration_dump.txt" size="17821"/>
+						<file date="20190807-15:23:07" name="20190807_PKO_registers_dump.txt" size="24532"/>
+						<file date="20190807-15:24:23" name="20190807_PKO_registers_dump.txt.readable" size="126938"/>
+					</dir>
+					<dir name="20190829">
+						<file date="20190829-10:59:57" name="20190829register_all_dump_code.zip" size="402276"/>
+						<dir name="Desktop">
+							<file date="20190910-16:08:23" name="20190829_failed_bgx.txt" size="110094"/>
+							<file date="20190829-11:01:19" name="20190829_failed_bgx.txt.readable" size="560426"/>
+							<file date="20190829-11:02:24" name="20190829_failed_fpa.txt" size="373820"/>
+							<file date="20190829-11:02:38" name="20190829_failed_fpa.txt.readable" size="1361410"/>
+							<file date="20190829-10:34:38" name="20190829_failed_lmc_l2c.txt" size="21653"/>
+							<file date="20190829-11:02:52" name="20190829_failed_lmc_l2c.txt.readable" size="187683"/>
+							<file date="20190829-11:03:39" name="20190829_failed_pko.txt" size="24868"/>
+							<file date="20190829-11:03:51" name="20190829_failed_pko.txt.readable" size="126937"/>
+							<file date="20190906-10:27:47" name="20190829_normal_bgx.txt" size="109110"/>
+							<file date="20190829-11:04:03" name="20190829_normal_bgx.txt.readable" size="556604"/>
+							<file date="20190829-11:04:32" name="20190829_normal_fpa.txt" size="373834"/>
+							<file date="20190829-11:04:45" name="20190829_normal_fpa.txt.readable" size="1361375"/>
+							<file date="20190829-09:57:18" name="20190829_normal_lmc_l2c.txt" size="22044"/>
+							<file date="20190829-11:04:55" name="20190829_normal_lmc_l2c.txt.readable" size="191591"/>
+							<file date="20190829-10:33:02" name="20190829_normal_pko.txt" size="18022"/>
+							<file date="20190829-11:05:05" name="20190829_normal_pko.txt.readable" size="89130"/>
+							<file date="20190829-11:05:42" name="20190829registers_value.zip" size="142747"/>
+							<file date="20190828-08:54:50" name="异常寄存器.txt" size="687094"/>
+							<file date="20190828-08:58:02" name="正常寄存器.txt" size="650986"/>
+						</dir>
+						<file date="20190829-09:54:19" name="Desktop.rar" size="123736"/>
+					</dir>
+					<dir name="20190910">
+						<file date="20190910-16:06:40" name="20190910_failed_bgx.txt" size="75106"/>
+						<file date="20190910-15:39:19" name="20190910_failed_fpa.txt" size="272802"/>
+						<file date="20190910-15:08:43" name="20190910_failed_lmc_l2c.txt" size="5240"/>
+						<file date="20190910-16:00:25" name="20190910_failed_pko.txt" size="16015"/>
+						<file date="20190910-15:03:46" name="异常寄存器打印.log" size="642115"/>
+					</dir>
+					<dir name="20190912">
+						<dir name="20190912故障寄存器打印">
+							<file date="20190916-11:53:00" name="20190912failed.txt.readable" size="2061687"/>
+							<file date="20190916-11:52:10" name="20190912normal.txt.readable" size="2066923"/>
+							<file date="20190912-16:32:49" name="20190912故障寄存器打印.txt" size="368401"/>
+							<file date="20190912-16:32:57" name="20190912正常寄存器.txt" size="369249"/>
+						</dir>
+						<file date="20190912-16:19:49" name="20190912故障寄存器打印.zip" size="94058"/>
+						<dir name="3组寄存器打印">
+							<file date="20190828-08:54:50" name="异常寄存器20190829.txt" size="687094"/>
+							<file date="20190912-15:04:56" name="异常寄存器20190912.txt" size="626620"/>
+							<file date="20190912-14:19:04" name="异常寄存器20190913.txt" size="639900"/>
+							<file date="20190828-08:58:02" name="正常寄存器20190829.txt" size="650986"/>
+							<file date="20190912-15:27:44" name="正常寄存器20190912.txt" size="628836"/>
+							<file date="20190912-14:19:50" name="正常寄存器20190913.txt" size="642898"/>
+						</dir>
+						<file date="20190916-11:47:57" name="3组寄存器打印.zip" size="481966"/>
+					</dir>
+				</dir>
+				<dir name="20190904sr88_sdk">
+					<file date="20190904-12:47:02" name="build_sdk.log" size="555210"/>
+				</dir>
+				<dir name="20190920pcie_chamber">
+					<file date="20190920-19:28:16" name="dump_reg_error.txt" size="103912"/>
+					<file date="20190920-19:28:11" name="dump_reg_ok.txt" size="348580"/>
+					<file date="20190920-19:28:27" name="pint_cfg_error.txt" size="93224"/>
+					<file date="20190920-19:28:23" name="pint_cfg_ok.txt" size="487472"/>
+				</dir>
+			</dir>
+			<dir name="Nitrox">
+				<dir name="kuaishou">
+					<file date="20190929-08:17:27" name="sdk_install.txt" size="3291"/>
+				</dir>
+			</dir>
+			<dir name="PowerControl">
+				<file date="20190902-13:41:15" name="python.txt" size="128"/>
+				<dir name="serial">
+					<file date="20190902-13:35:16" name="connect1.py" size="664"/>
+					<file date="20190902-13:29:42" name="connectall.py" size="664"/>
+					<file date="20190902-13:36:58" name="disconnect1.py" size="664"/>
+					<file date="20190902-13:31:25" name="disconnectall.py" size="664"/>
+					<file date="20190902-12:49:07" name="listcom.py" size="267"/>
+					<file date="20190902-13:28:12" name="readstatus.py" size="664"/>
+				</dir>
+				<file date="20190902-14:12:35" name="test.txt" size="694"/>
+				<file date="20190902-10:36:52" name="串口调试软件.exe" size="286720"/>
+				<file date="20190902-10:36:48" name="志远电子继电器板自定义协议V2.3.pdf" size="116897"/>
+			</dir>
+			<dir name="SDK_EBB">
+				<dir name="SDK10">
+					<file date="20191012-11:15:35" name="PR2006_build_a3720_bootloader.log" size="16498"/>
+					<file date="20191014-15:24:55" name="PR2006_sdk.txt" size="4419"/>
+				</dir>
+				<dir name="cn9130-crb">
+					<file date="20190909-20:20:12" name="MACCHIATObin.txt" size="75"/>
+					<file date="20190909-19:26:34" name="boot_select.txt" size="213"/>
+					<file date="20190909-14:09:01" name="crb_defalut_mmc.log" size="37248"/>
+				</dir>
+				<dir name="cn96xx-crb">
+					<file date="20191014-11:24:02" name="PR2003_crb.txt" size="11767"/>
+					<dir name="hyperscan_issue">
+						<file date="20190911-21:41:43" name="Snort-literal_multi_threads.sh" size="537"/>
+						<file date="20190917-08:20:26" name="Snort-literal_multi_threads_x86.sh" size="702"/>
+						<file date="20190911-21:45:46" name="Teakettle_multi_threads.sh" size="535"/>
+						<file date="20190917-08:24:54" name="Teakettle_multi_threads_x86.sh" size="712"/>
+						<file date="20190902-17:41:14" name="cn96.txt" size="1222"/>
+						<file date="20190929-08:48:31" name="hyperscan_multi_threads.xlsx" size="13257"/>
+						<file date="20190903-09:18:13" name="pcapscan_multi_threads.sh" size="899"/>
+						<file date="20190916-19:22:27" name="x86_PC.txt" size="4052"/>
+					</dir>
+				</dir>
+				<dir name="espressobin">
+					<dir name="uart-images">
+						<file date="20190722-16:53:12" name="TIM_ATF.bin" size="3120"/>
+						<file date="20190722-16:53:12" name="atf-ntim.txt" size="11224"/>
+						<file date="20190722-16:53:12" name="boot-image_h.bin" size="758548"/>
+						<file date="20190722-16:53:12" name="wtmi_h.bin" size="12225"/>
+					</dir>
+				</dir>
+			</dir>
+			<dir name="ValkyrieTester">
+				<file date="20190904-14:43:55" name="L23-Scripting-Documentation.pdf" size="954575"/>
+				<file date="20190904-14:43:50" name="Re configuration guide.msg" size="1057280"/>
+				<file date="20190812-15:14:08" name="Xena2889_Step-by-Step_Guide.pdf" size="2993761"/>
+				<file date="20190812-15:14:08" name="Xena3918_Step-by-Step_Guide.pdf" size="1551565"/>
+				<file date="20190917-11:24:32" name="setting.txt" size="447"/>
+				<file date="20190813-17:04:14" name="xena_cfg.vmcfg" size="9905"/>
+			</dir>
+			<dir name="foxconn">
+				<dir name="20190923">
+					<file date="20190923-19:03:37" name="20190923.zip" size="65846"/>
+					<file date="20190920-08:18:32" name="Request for Foxconn Tianjin factory onsite support for new ThunderX2 failure happen recently.msg" size="138752"/>
+					<file date="20190923-19:02:36" name="foxconn.xlsx" size="10336"/>
+					<file date="20190923-16:58:54" name="session1-2.log" size="9598"/>
+					<file date="20190923-16:41:06" name="session1.log" size="9598"/>
+					<file date="20190923-17:10:44" name="session2-1.log" size="129998"/>
+					<file date="20190923-17:18:16" name="session3-1.log" size="49888"/>
+					<file date="20190923-17:28:20" name="session4-1.log" size="41648"/>
+					<file date="20190923-17:33:35" name="session4-2.log" size="55215"/>
+					<file date="20190923-17:40:45" name="session4-3.log" size="39004"/>
+				</dir>
+			</dir>
+		</dir>
+		<dir name="Tech">
+			<file date="20191011-16:58:45" name="shell.txt" size="442"/>
+			<file date="20190910-15:20:59" name="vim_replace.txt" size="72"/>
+		</dir>
+		<dir name="personal">
+			<dir name="resume">
+				<file date="20190906-08:14:59" name="20190905_Graphcore.doc" size="73216"/>
+				<file date="20190906-08:14:59" name="Resume-Shanping.Yi.doc" size="73216"/>
+			</dir>
+		</dir>
+		<dir name="work">
+			<dir name="CN73XX">
+				<file date="20190828-12:31:12" name="CN73XX_Issues_v1.13.pdf" size="741942"/>
+			</dir>
+			<dir name="CNF95XX">
+				<file date="20190822-13:43:44" name="CNF95XX-DS-0.92E.pdf" size="1300560"/>
+				<file date="20190822-13:43:35" name="CNF95XX-HM-0.92E.pdf" size="44193553"/>
+			</dir>
+			<dir name="personal">
+				<dir name="2019weekly">
+					<file date="20191015-09:25:01" name="20191011.xlsx" size="20818"/>
+				</dir>
+			</dir>
+		</dir>
+	</rootdir>
+	<rootdir disk="/home/yisp" name="pytool" type="backup">
+		<dir name="FilesTransfer">
+			<file date="20191014-21:19:40" name="3.copy_diff.py" size="7312"/>
+			<file date="20191015-08:07:52" name="4.syncToDisk.py" size="6141"/>
+			<file date="20191015-11:44:29" name="5.filesAnalysis.py" size="3955"/>
+			<file date="20191015-13:34:27" name="6.deleteFiles.py" size="5292"/>
+			<file date="20191014-18:22:30" name="Disk_DellInspironR14.xml" size="822146"/>
+			<file date="20191015-13:29:14" name="Disk_ThCenter.xml" size="802211"/>
+			<file date="20191015-10:20:57" name="Disk_ThP480.xml" size="122774"/>
+			<file date="20191015-13:30:34" name="ThCenter_analysis_result.csv" size="212867"/>
+			<file date="20191015-11:44:08" name="ThP480_analysis_result.csv" size="7059"/>
+			<dir name="__pycache__">
+				<file date="20191015-10:13:09" name="lib3copyFile.cpython-36.pyc" size="3747"/>
+				<file date="20191015-08:11:01" name="lib3copyFile.cpython-37.pyc" size="3759"/>
+			</dir>
+			<file date="20191015-13:42:47" name="delete_files.csv" size="668"/>
+			<file date="20191014-21:42:26" name="diff_DellInspironR14_to_ThCenter.xml" size="3663"/>
+			<file date="20191014-21:21:43" name="diff_ThCenter_to_DellInspironR14.xml" size="15212"/>
+			<file date="20191015-08:10:58" name="lib3copyFile.py" size="5377"/>
+			<file date="20191015-10:03:59" name="readme_python3_on_centos.txt" size="2124"/>
+		</dir>
+	</rootdir>
+	<rootdir disk="/home/yisp" name="SDK" type="backup">
+		<dir name="SDK10">
+			<dir name="PR2006">
+				<file date="20190917-11:46:47" name="documentation.zip" size="38430018"/>
+				<file date="20190927-13:46:54" name="hyperscan-SDK10.0-PR2006.zip" size="122773392"/>
+				<file date="20191014-15:50:19" name="sdk10-PR2006_buildroot_dl.tar.gz" size="3536058756"/>
+				<file date="20190917-13:19:58" name="sources.tar.bz2" size="908157449"/>
+			</dir>
+			<dir name="sdk10.0.1.0">
+				<file date="20191008-17:15:07" name="PLEASE-READ-THIS-FIRST.txt" size="514"/>
+				<file date="20191008-17:15:41" name="SDK-10.0.1.0-Sep QA release_Readme.pdf" size="356110"/>
+				<file date="20191009-08:07:08" name="base_sdk-sdk10.0-1-sources.zip" size="442867856"/>
+				<file date="20191008-17:19:51" name="documentation.zip" size="38162758"/>
+				<file date="20191009-09:39:48" name="hyperscan.zip" size="122760616"/>
+				<file date="20191009-09:43:22" name="openssl-engine-dpdk.zip" size="460868076"/>
+				<file date="20191008-17:28:15" name="toolchain.tar.bz2" size="457466356"/>
+			</dir>
+		</dir>
+		<dir name="liquidIO">
+			<dir name="snic_1.6.2_fw_reboot_x86_call_trace_fix">
+				<file date="20180222-01:50:00" name="README" size="937"/>
+				<file date="20180222-01:49:54" name="snic_1.6.2_fw_reboot_x86_call_trace_fix.patch" size="4618"/>
+			</dir>
+		</dir>
+	</rootdir>
+	<rootdir disk="/home/yisp" name="tools" type="backup">
+		<dir name="viso2010">
+			<dir name="visio2010_12530">
+				<dir name="visio2010激活工具">
+					<file date="20120516-21:45:54" name="使用说明.txt" size="800"/>
+				</dir>
+				<file date="20120516-21:44:36" name="使用方法.txt" size="442"/>
+				<file date="20120417-15:15:30" name="注册软件.reg" size="855"/>
+			</dir>
+		</dir>
+	</rootdir>
+	<destinfo>
+		<rootNode name="DellInspironR14">
+			<rootdir disk="d:" name="b64vedio" type="backup">
+			</rootdir>
+			<rootdir disk="d:" name="Backup" type="backup">
+			</rootdir>
+			<rootdir disk="e:" name="Desktop" type="backup">
+			</rootdir>
+			<rootdir disk="e:" name="MARL2019" type="backup">
+			</rootdir>
+			<rootdir disk="e:" name="OS_ISO" type="backup">
+			</rootdir>
+			<rootdir disk="e:" name="pictures" type="backup">
+			</rootdir>
+			<rootdir disk="e:" name="pytool" type="backup">
+			</rootdir>
+			<rootdir disk="e:" name="SDK" type="backup">
+			</rootdir>
+			<rootdir disk="e:" name="Supports" type="backup">
+			</rootdir>
+			<rootdir disk="e:" name="Tech" type="backup">
+			</rootdir>
+			<rootdir disk="e:" name="tools" type="backup">
+			</rootdir>
+			<rootdir disk="e:" name="tools_free" type="backup">
+			</rootdir>
+			<rootdir disk="e:" name="work" type="backup">
+			</rootdir>
+		</rootNode>
+	</destinfo>
+</rootNode>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rootNode from="Disk_ThP480" name="ThP480" sync_date="2019-10-30 19:07:31" to="Disk_ThCenter">
+	<rootdir disk="c:" name="MARL2019" type="static">
+		<dir name="Desktop">
+			<file date="20191030-13:25:29" name="011001600111_66392021.pdf" size="75974"/>
+			<file date="20191015-13:14:15" name="011001900411_47565103.pdf" size="64487"/>
+			<file date="20191021-14:25:02" name="011001900411_71102664.pdf" size="64709"/>
+			<file date="20191030-13:26:13" name="04459682.pdf" size="50480"/>
+		</dir>
+		<dir name="Supports">
+			<file date="20191029-08:06:10" name="Boards_tracking_list.xlsx" size="15272"/>
+			<dir name="H3C">
+				<dir name="20191025_dpdk_build">
+					<file date="20191025-13:29:51" name="h3c_msr_cn96xx_dpdk_build.txt" size="1966"/>
+				</dir>
+				<file date="20191030-07:57:15" name="20191029_A3720.txt" size="164"/>
+				<file date="20191029-09:47:22" name="H3C_Projects.pptx" size="334784"/>
+				<file date="20191029-09:56:56" name="H3C_Projects.xmind" size="322174"/>
+			</dir>
+			<dir name="SDK_EBB">
+				<dir name="SDK10">
+					<file date="20191025-13:55:46" name="PR2006_sdk.txt" size="7639"/>
+					<file date="20191018-19:35:45" name="sdk10_0_1_0-openwrt.txt" size="2978"/>
+					<file date="20191018-19:33:55" name="sdk10_0_1_0.txt" size="6091"/>
+				</dir>
+				<dir name="cn96xx-crb">
+					<file date="20191030-10:56:01" name="PR2006_crb.txt" size="8803"/>
+				</dir>
+				<dir name="espressobin">
+					<file date="20191015-15:52:02" name="bootloader_building.log" size="8304"/>
+				</dir>
+			</dir>
+			<dir name="liquidio">
+				<file date="20191025-08:30:39" name="LiquidIO_USECASE-OCTEON_DEBUG.pdf" size="786648"/>
+				<file date="20191025-08:30:40" name="LiquidIO_USECASE-OCTEON_DEBUG.pptx" size="255436"/>
+			</dir>
+		</dir>
+		<dir name="Tech">
+			<dir name="python3">
+				<dir name="FilesAnalysis">
+					<file date="20190413-16:11:31" name="filesAnalysis_ThC_USB.py" size="3157"/>
+					<file date="20190901-09:57:14" name="filesAnalysis_ThP450.py" size="3020"/>
+					<file date="20190413-16:14:13" name="filesAnalysis_ThP480_Net_home.py" size="3205"/>
+					<file date="20190901-19:45:30" name="filesAnalysis_lib.py" size="6543"/>
+					<file date="20190901-09:54:08" name="readme.txt" size="457"/>
+				</dir>
+				<dir name="syncDir">
+					<file date="20191010-11:20:27" name="readme.txt" size="431"/>
+					<file date="20190830-02:44:42" name="syncFiles_Dell_InspironR14_USB.py" size="2880"/>
+					<file date="20190807-07:25:08" name="syncFiles_ThC_USB.py" size="3144"/>
+					<file date="20190901-09:51:56" name="syncFiles_ThP450_USB.py" size="2888"/>
+					<file date="20191009-08:10:10" name="syncFiles_ThP480_Net_ThC.py" size="3251"/>
+					<file date="20190823-17:49:44" name="syncFiles_ThP480_Net_ThP450.py" size="3124"/>
+					<file date="20190624-10:36:57" name="syncFiles_ThP480_Net_home.py" size="3202"/>
+					<file date="20191011-11:58:42" name="syncFiles_download.py" size="1074"/>
+					<file date="20190624-10:36:03" name="syncFiles_lib2.py" size="11360"/>
+					<file date="20191009-08:43:23" name="syncFiles_lib3.py" size="11320"/>
+				</dir>
+			</dir>
+			<file date="20191030-13:22:07" name="shell.txt" size="860"/>
+		</dir>
+		<dir name="work">
+			<dir name="CN96XX">
+				<file date="20191029-08:19:47" name="CN96XX-DS-C-3.1E.pdf" size="1568173"/>
+				<file date="20191029-08:19:38" name="CN96XX-HM-C-3.1E.pdf" size="45684759"/>
+			</dir>
+			<dir name="marvell">
+				<dir name="KSO">
+					<file date="20191029-09:34:55" name="FAE Quarterly Summary Presentation 2019.Oct_syi.pptx" size="232470"/>
+					<file date="20191021-22:34:39" name="FAE Quarterly Summary Presentation Template 2019.Oct.pptx" size="238854"/>
+					<file date="20191025-14:45:23" name="SHANPING_YI_FY2020_Q3_FAE_KSO_25OCT2019.xlsx" size="27674"/>
+					<file date="20191025-14:28:16" name="SHANPING_YI_FY2020_Q4_FAE_KSO_25OCT2019.xlsx" size="27112"/>
+				</dir>
+			</dir>
+			<dir name="personal">
+				<dir name="2019weekly">
+					<file date="20191017-15:44:45" name="20191011.xlsx" size="21252"/>
+					<file date="20191023-18:57:44" name="20191018.xlsx" size="20825"/>
+					<file date="20191030-18:18:52" name="20191025.xlsx" size="21027"/>
+					<file date="20191025-14:54:19" name="Summary-20191025145418.xlsx" size="35479"/>
+					<file date="20191025-14:53:29" name="weekly_merger_python3.py" size="4850"/>
+				</dir>
+			</dir>
+			<dir name="reference">
+				<file date="20191025-17:02:11" name="IHI0073A_arm_neon_intrinsics_ref.pdf" size="4340904"/>
+			</dir>
+		</dir>
+	</rootdir>
+	<rootdir disk="c:" name="pytool" type="backup">
+		<dir name="FilesTransfer">
+			<file date="20191030-19:06:48" name="1.deleteFiles.py" size="5740"/>
+			<file date="20191013-17:48:07" name="CFG_ThPT450.xml" size="865"/>
+			<file date="20191021-20:44:48" name="DellInspironR14_analysis_result.csv" size="291946"/>
+			<file date="20191021-20:44:32" name="Disk_DellInspironR14.xml" size="875171"/>
+			<file date="20191030-08:21:59" name="Disk_ThCenter.xml" size="863500"/>
+			<file date="20191020-16:31:29" name="Disk_ThPT450.xml" size="874719"/>
+			<file date="20191015-16:42:14" name="diff_ThCenter_to_DellInspironR14.xml" size="16777"/>
+			<file date="20191020-16:33:37" name="diff_ThPT450_to_ThCenter.xml" size="83510"/>
+		</dir>
+	</rootdir>
+	<destinfo>
+		<rootNode name="ThCenter">
+			<rootdir disk="/home/yisp" name="b64vedio" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="Backup" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="Desktop" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="MARL2019" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="OS_ISO" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="pictures" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="pytool" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="SDK" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="Supports" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="Tech" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="tools" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="tools_free" type="backup">
+			</rootdir>
+			<rootdir disk="/home/yisp" name="work" type="backup">
+			</rootdir>
+		</rootNode>
+	</destinfo>
+</rootNode>

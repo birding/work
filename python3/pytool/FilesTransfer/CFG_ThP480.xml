@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rootNode name="ThP480">
+	<rootdir disk="c:" name="MARL2019" type="static"></rootdir>
+	<rootdir disk="c:" name="pytool" type="backup"></rootdir>
+	<rootdir disk="c:" name="SDK" type="static"></rootdir>
+</rootNode>

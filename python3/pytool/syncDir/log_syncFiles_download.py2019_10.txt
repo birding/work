@@ -1,0 +1,46 @@
+2019-10-11 12:00:15 - root - INFO: - 
+logger is starting
+2019-10-11 12:00:19 - root - INFO: - 
+#comparing [temp]/home/usbdisk/USBDisk  with  [static]/mnt/usbdisk/USBDisk
+2019-10-11 12:00:19 - root - INFO: - 
+#comparing [static]/mnt/usbdisk/USBDisk  with  [temp]/home/usbdisk/USBDisk
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/MARL2019/personal/闽侯路小学.txt
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new directory 	=> /home/usbdisk/USBDisk/pytool/FilesAnalysis/__pycache__
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/pytool/FilesAnalysis/analysis_result.csv
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/pytool/FilesAnalysis/filesAnalysis_ThP450.py_0.csv
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/pytool/syncDir/log_syncFiles_ThC_USB.py2019_08.txt
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/pytool/syncDir/readme.txt
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/pytool/syncDir/log_syncFiles_ThP480_Net_ThC.py2019_10.txt
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/pytool/syncDir/log_syncFiles_ThP480_Net_ThC.py2019_09.txt
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/pytool/syncDir/syncFiles_lib3.py
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/pytool/syncDir/log_syncFiles_ThP450_USB.py2019_09.txt
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/pytool/syncDir/log_syncFiles_ThP480_Net_ThP450.py2019_09.txt
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new directory 	=> /home/usbdisk/USBDisk/pytool/syncDir/__pycache__
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/pytool/syncDir/log_syncFiles_ThP480_Net_ThP450.py2019_08.txt
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/pytool/syncDir/log_syncFiles_ThP480_Net_ThC.py2019_08.txt
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/pytool/syncDir/log_syncFiles_ThP450_USB.py2019_06.txt
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/SDK/SDK101906/toolchain-238.tar.bz2
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/SDK/SDK101906/vpp-armada-SDK10.0-PR2003.zip
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/SDK/SDK101906/SDK10.0-PR2003_base_sdk_toolchain.zip
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/SDK/SDK101906/openssl-engine-SDK10.0-PR2003-documentation.zip
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/SDK/SDK101906/hyperscan-SDK10.0-PR2003.zip
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/SDK/SDK101906/PR2001.zip
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/SDK/SDK101906/sdk10-PR2001_buildroot_dl.tar.gz
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/SDK/SDK101906/sdk10-PR2003_buildroot_dl.tar.gz
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/SDK/SDK101906/base_sdk-SDK10.0-PR2003.zip
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/SDK/SDK101906/SDK10.0-PR2003_base_sdk_sdk-src.zip
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/SDK/SDK101906/openssl-engine-SDK10.0-PR2003.zip
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/SDK/SDK101906/openwrt-18.06.2-SDK10.0-PR2003.zip
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new file 	=> /home/usbdisk/USBDisk/SDK/SDK101906/base_sdk-SDK10.0-PR2003-documentation.zip
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new directory 	=> /home/usbdisk/USBDisk/SDK/NitroxV
+2019-10-11 12:00:19 - root - INFO: - WARNING: create new directory 	=> /home/usbdisk/USBDisk/tools
+2019-10-11 12:00:19 - root - INFO: - [0s][0.0Bps]
+2019-10-11 12:00:19 - root - INFO: - ...
+2019-10-11 12:00:33 - root - INFO: - 
+logger is starting
+2019-10-11 12:00:44 - root - INFO: - 
+#sync up [temp]/home/usbdisk/USBDisk  with  [static]/mnt/usbdisk/USBDisk
+2019-10-11 12:00:44 - root - INFO: - ----skip static directory:/mnt/usbdisk/USBDisk
+2019-10-11 12:00:44 - root - INFO: - 
+#sync up [static]/mnt/usbdisk/USBDisk  with  [temp]/home/usbdisk/USBDisk
+2019-10-11 12:00:44 - root - INFO: - new: /mnt/usbdisk/USBDisk/MARL2019/personal/闽侯路小学.txt ==> /home/usbdisk/USBDisk/MARL2019/personal/闽侯路小学.txt [183.0B]

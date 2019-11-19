@@ -1,0 +1,1110 @@
+2019-10-09 08:08:44 - root - INFO: - 
+logger is starting
+2019-10-09 08:08:59 - root - INFO: - 
+logger is starting
+2019-10-09 08:09:03 - root - INFO: - 
+##start sync [Backup] with 2 directories 
+2019-10-09 08:09:03 - root - INFO: - 
+#comparing [static]c:\Backup  with  [temp]\\10.21.128.144\root\home\yisp\Backup
+2019-10-09 08:10:44 - root - INFO: - 
+logger is starting
+2019-10-09 08:10:46 - root - INFO: - 
+##start sync [Backup] with 2 directories 
+2019-10-09 08:10:46 - root - INFO: - 
+#comparing [static]c:\Backup  with  [temp]\\10.21.128.101\root\home\yisp\Backup
+2019-10-09 08:10:47 - root - INFO: - 
+#comparing [temp]\\10.21.128.101\root\home\yisp\Backup  with  [static]c:\Backup
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\inspiron-14r-se-7420_Owner's Manual_zh-cn.pdf
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new directory 	=> c:\Backup\FAETraining
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new directory 	=> c:\Backup\gateway
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2013.pst.b64
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\readme.txt
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2013.pst
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2015.pst.b64
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new directory 	=> c:\Backup\Email\email
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2014.pst.b64
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2016.pst
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018H2.pst
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2014.pst
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018.pst.b64
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2016.pst.b64
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018.pst
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2017.pst
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2018H2.pst.b64
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2017.pst.b64
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\Email\2015.pst
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new directory 	=> c:\Backup\BaiduYunDownload
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new directory 	=> c:\Backup\novel
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> c:\Backup\inspiron-14r-se-7420_Setup Guide_zh-cn.pdf
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new directory 	=> c:\Backup\BDI3000
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new directory 	=> c:\Backup\bak80GB
+2019-10-09 08:10:47 - root - INFO: - 
+##start sync [MARL2019] with 2 directories 
+2019-10-09 08:10:47 - root - INFO: - 
+#comparing [static]c:\MARL2019  with  [temp]\\10.21.128.101\root\home\yisp\MARL2019
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20190905
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\laptops.txt
+2019-10-09 08:10:47 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\PCIe.txt
+2019-10-09 08:10:48 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\FAETraining\201910
+2019-10-09 08:10:48 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\FAETraining\All in one PDF.pdf
+2019-10-09 08:10:48 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\personal\resume
+2019-10-09 08:10:48 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\personal\闽侯路小学.txt
+2019-10-09 08:10:48 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\Boards_tracking_list.xlsx
+2019-10-09 08:10:49 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\foxconn\20190923
+2019-10-09 08:10:50 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829
+2019-10-09 08:10:50 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190910
+2019-10-09 08:10:50 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912
+2019-10-09 08:10:50 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20191008.txt
+2019-10-09 08:10:50 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\BGX.reg.code
+2019-10-09 08:10:50 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\registers_dump_code.zip
+2019-10-09 08:10:50 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\vim_replace.txt
+2019-10-09 08:10:50 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190904sr88_sdk
+2019-10-09 08:10:50 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190920pcie_chamber
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\csr_tool-1.1.12\oct-linux-csr.txt
+2019-10-09 08:10:55 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\H3C_Projects.xmind ([20190903 12:05:13][360705B]->[20190813 15:45:29][311641B])
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\liquidio\20190423_lio3.txt
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\liquidio\20190916ChinaMobile.txt
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\liquidio\liquidIO_for_ChinaMobile_201909.pptx
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\Nitrox\kuaishou
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\PowerControl
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn9130-crb
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\cn96xx-crb-b0-emmc-boot.log
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\cn96xx-crb-b0-spi-boot.log
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\cn96xx-crb_hyperscan_bench.log
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\cn96xx-crb_hyperscan_snort.log
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\coremark.txt
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\coremark_test.txt
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\openssl_no_engine_pr2003.txt
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\openssl_speed_async_pr2003-cn96.log
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\openssl_speed_pr2003-cn96.log
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\performance.xlsx
+2019-10-09 08:10:55 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\PR2001_crb.txt ([20190828 10:53:43][5077B]->[20190815 11:02:18][5038B])
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\PR2003_crb.txt
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\PR2006_crb.txt
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\Re about CN96 CRB SDK version support 100G25G.msg
+2019-10-09 08:10:55 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\rss.log
+2019-10-09 08:10:56 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\espressobin\uart-images
+2019-10-09 08:10:56 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\espressobin\uart_boot.txt
+2019-10-09 08:10:56 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\espressobin\WtpDownload.zip
+2019-10-09 08:10:56 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\buildroot_boot_PR2003_cn9131.log
+2019-10-09 08:10:56 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\build_boot_a3720.log
+2019-10-09 08:10:56 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\hyperscan_x86_build.txt
+2019-10-09 08:10:56 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\openssl-dpdk-engine-pr2003-cn96.txt
+2019-10-09 08:10:56 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\PR2003_3720.txt
+2019-10-09 08:10:56 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\PR2003_build_bootloader.txt
+2019-10-09 08:10:56 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\PR2003_cn9130-crb.txt
+2019-10-09 08:10:56 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\PR2003_hyperscan.txt
+2019-10-09 08:10:56 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\PR2006_sdk.txt
+2019-10-09 08:10:56 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\PR2006_sdk_25G.txt
+2019-10-09 08:10:56 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\Supports\ValkyrieTester
+2019-10-09 08:10:57 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.128.101\root\home\yisp\MARL2019\work\centos7.docx ([20190829 14:42:02][43701B]->[20190422 14:00:38][43656B])
+2019-10-09 08:10:57 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\MARL2019\work\CN73XX
+2019-10-09 08:10:58 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\work\CN91XX\CN91XX-CRB Hardware Manual-v1.1.pdf
+2019-10-09 08:10:58 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.128.101\root\home\yisp\MARL2019\work\marvell\marvell.txt ([20190919 20:11:34][5710B]->[20190717 20:29:19][5699B])
+2019-10-09 08:10:59 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.128.101\root\home\yisp\MARL2019\work\personal\2019weekly\20190823.xlsx ([20190829 20:41:57][20045B]->[20190823 08:30:57][21204B])
+2019-10-09 08:10:59 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\work\personal\2019weekly\20190830.xlsx
+2019-10-09 08:10:59 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\work\personal\2019weekly\20190905.xlsx
+2019-10-09 08:10:59 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\work\personal\2019weekly\20190912.xlsx
+2019-10-09 08:10:59 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\work\personal\2019weekly\20190919.xlsx
+2019-10-09 08:10:59 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\MARL2019\work\personal\2019weekly\20190927.xlsx
+2019-10-09 08:10:59 - root - INFO: - 
+#comparing [temp]\\10.21.128.101\root\home\yisp\MARL2019  with  [static]c:\MARL2019
+2019-10-09 08:11:01 - root - INFO: - WARNING: create new file 	=> c:\MARL2019\Supports\H3C\H3C_Projects.vsd
+2019-10-09 08:11:02 - root - INFO: - WARNING: create new file 	=> c:\MARL2019\Supports\20190423_lio3.txt
+2019-10-09 08:11:03 - root - INFO: - WARNING: create new file 	=> c:\MARL2019\Desktop\滴滴电子发票.pdf
+2019-10-09 08:11:03 - root - INFO: - WARNING: create new file 	=> c:\MARL2019\Desktop\滴滴出行行程报销单.pdf
+2019-10-09 08:11:03 - root - INFO: - WARNING: create new file 	=> c:\MARL2019\Desktop\51发票1010.txt
+2019-10-09 08:11:03 - root - INFO: - WARNING: create new file 	=> c:\MARL2019\Desktop\Travel application 53D201900695 for Shanping Yi (1007.69 USD).msg
+2019-10-09 08:11:03 - root - INFO: - 
+##start sync [pytool] with 2 directories 
+2019-10-09 08:11:03 - root - INFO: - 
+#comparing [temp]c:\pytool  with  [temp]\\10.21.128.101\root\home\yisp\pytool
+2019-10-09 08:11:03 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.128.101\root\home\yisp\pytool\FilesAnalysis\analysis_result.csv ([20190901 11:58:27][301383B]->[20190607 20:15:47][6323B])
+2019-10-09 08:11:03 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.128.101\root\home\yisp\pytool\FilesAnalysis\filesAnalysis_lib.py ([20190901 11:45:29][6543B]->[20190413 16:50:53][6123B])
+2019-10-09 08:11:04 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\pytool\FilesAnalysis\filesAnalysis_ThP450.py
+2019-10-09 08:11:04 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\pytool\FilesAnalysis\filesAnalysis_ThP450.py_0.csv
+2019-10-09 08:11:04 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\pytool\FilesAnalysis\readme.txt
+2019-10-09 08:11:04 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.128.101\root\home\yisp\pytool\FilesAnalysis\__pycache__\filesAnalysis_lib.cpython-36.pyc ([20190901 11:45:34][4375B]->[20190607 20:13:13][4159B])
+2019-10-09 08:11:04 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP450_USB.py2019_06.txt ([20190615 07:53:31][603081B]->[20190614 20:14:58][267038B])
+2019-10-09 08:11:04 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP450_USB.py2019_09.txt
+2019-10-09 08:11:04 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_08.txt ([20190829 16:19:05][96198B]->[20190823 09:49:23][76994B])
+2019-10-09 08:11:04 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_09.txt
+2019-10-09 08:11:04 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_10.txt
+2019-10-09 08:11:04 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_08.txt
+2019-10-09 08:11:04 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_09.txt
+2019-10-09 08:11:04 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.128.101\root\home\yisp\pytool\syncDir\syncFiles_ThP450_USB.py ([20190901 09:51:56][2888B]->[20190624 10:36:44][2892B])
+2019-10-09 08:11:04 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.128.101\root\home\yisp\pytool\syncDir\syncFiles_ThP480_Net_ThC.py ([20191009 08:10:10][3251B]->[20190625 18:08:13][3251B])
+2019-10-09 08:11:04 - root - INFO: - 
+#comparing [temp]\\10.21.128.101\root\home\yisp\pytool  with  [temp]c:\pytool
+2019-10-09 08:11:04 - root - INFO: - WARNING: file doesn't match 	=> c:\pytool\syncDir\readme.txt ([20190823 09:49:10][419B]->[20190823 09:47:59][431B])
+2019-10-09 08:11:04 - root - INFO: - WARNING: file doesn't match 	=> c:\pytool\syncDir\syncFiles_ThP480_Net_ThP450.py ([20190823 09:49:43][3124B]->[20190823 09:47:49][3124B])
+2019-10-09 08:11:04 - root - INFO: - 
+##start sync [SDK] with 2 directories 
+2019-10-09 08:11:04 - root - INFO: - 
+#comparing [static]c:\SDK  with  [temp]\\10.21.128.101\root\home\yisp\SDK
+2019-10-09 08:11:04 - root - INFO: - WARNING: create new file 	=> \\10.21.128.101\root\home\yisp\SDK\NitroxV\20181106release.zip
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> \\10.21.128.101\root\home\yisp\SDK\SDK10\sdk10.0.1.0
+2019-10-09 08:11:05 - root - INFO: - 
+#comparing [temp]\\10.21.128.101\root\home\yisp\SDK  with  [static]c:\SDK
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK230
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-2014.10-r106729.tgz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\bdk-source-r106729.tgz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-2015.07-r121915.tgz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\RE BDK Source Code.msg
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-octeon3-release-2016.12.1.tgz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\BDK\octeon3-bdk-octeon3-release-2016.12.tgz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\BDK\BDK_usage
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\thunderX
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\Nitrox
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\OpenWRTv2.2
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\ODP
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-OPENSSL-ENGINE-6.2.0-02.x86_64-README.txt
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\octtx-odp-user-guide.pdf
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-DDF-LINUX-6.2.0-10.x86_64-README.txt
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX_SE2_QuickStart.pdf
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-helper-guide.pdf
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-application-api.pdf
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CPT-DRIVER-6.2.0-GA-RELEASE-NOTES.txt
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\se2-ga-engineering.tgz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-README-1st-P3.pdf
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-OPENSSL-ENGINE-6.2.0-02.x86_64.rpm
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SE2-6.2.0-build31.x86_64.rpm
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\sdk-6.2.0-patch_release_1.tgz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEON_SE-to-SE2_PortingGD.pdf
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-IPSEC-DPDK-6.2.0-build04.x86_64.rpm
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CPT-DRIVER-6.2.0-build02.x86_64.rpm
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-IPSEC-DPDK-6.2.0-GA-README.TXT
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CRYPTO-DPDK-README.TXT
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-platform-api-guide.pdf
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\opendataplane.pdf
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\SE2-README-1st.pdf
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-SDK-6.2.0-build26.x86_64.rpm
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\README_OCTEONTX_SDK-620-GA.txt
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK620\OCTEONTX-CRYPTO-DPDK-6.1.0-build01.x86_64.rpm
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\OpenWRT_v1.9
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\QLogic
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK600
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\ubuntu_16.04.2_rootfs.tgz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\Software Development Options with OCTEON TX - 20 March 2017.pdf
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\Cavium OCTEON TX CN81008300 KVMQEMU
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\thunderx-tools-421.tar.bz2
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\ubuntu_1604-dpdk.tgz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\DPDK-README.txt
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\odp-thunderx-1.11.0.0_CAVIUM_RELEASE_1.zip
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\CN8300_KVM_QEMU_HOW_TO.rar
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\se2-octeontx-rel5
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\Cavium OCTEON TX CN81008300 KVMQEMU.tar.gz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\CN8300_KVM_QEMU_HOW_TO
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\tools-gcc-6.2.tar.bz2
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\How-To-Restore-Ubuntu-16.04.2.txt
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\dpdk-81xx-v16.04-prerelease.tar.bz2
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK610\samsung
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\How-To-Restore-Ubuntu-16.04.txt
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-SDK-6.1.0-build11.x86_64.rpm
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\README_OCTEONTX-SDK-610-prerelease.txt
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-CRYPTO-DPDK-README.TXT
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\se2-octeontx-rel5.tar.gz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\dpdk-thunderx-v16.07-mq.tar.bz2
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\odp-thunderx-master.zip
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-CRYPTO-DPDK-6.1.0-build01.x86_64.rpm
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK610\OCTEONTX-SDK-6.1-p3.tgz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\OCTEON-LINUX-1.6.0-221.i386.rpm
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SNORT
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\liquidIO
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK10\PR2006\sdk10-PR2006_buildroot_dl.tar.gz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK1.9
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK220
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\OCTEON-SDK-1.6.0-221.i386.rpm
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p9.1_supplemental.tgz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p2.tgz
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-23.i386.zip
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p10_install.sh
+2019-10-09 08:11:05 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312-p7a.patch
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\CNNIC-SDK-SRC-3.1.2-59.i386.rpm
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p3.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p12.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p6.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-LINUX-3.1.2-568.i386.rpm
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p4.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-21.i386.rpm
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\CNNIC-SDK-SRC-3.1.2-48.i386.rpm
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p11.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ZLIB-CORE-3.1.2-08.i386.rpm
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-IP-3.1.2-109.i386.rpm
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p13_install.sh
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\tools-3.1.2_build54.tar.gz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p8_install.sh
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-SDK-3.1.2-568.i386.rpm
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p13.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\CTEON-TOOLCHAIN-3.1.x-BUILD-54-README.txt
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-OPENSSL-3.1.2-29.i386.rpm
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\lte-sdk3.1.2-201709211415-r1663.tar.bz2
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-CRYPTO-CORE-3.1.2-10.i386.rpm
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\lte-sdk3.1.2-201706071009-r1580.tar.bz2
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p12_install.sh
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p11_install.sh
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p10.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p7.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-IPSEC-3.1.2-75.i386.rpm
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-HFA-SDK-3.1.2-27.i386.rpm
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk-3.1.2-p5.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p8.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ENGINE-LINUX-3.1.2-15.i386.rpm
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk_3.1.2_update_p9.1.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\Reg remote-utils compilation fails with SDK-3.1.2+p9.1 on CentOS7RHEL7.msg
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\sdk312p4_install.sh
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK312\OCTEON-ZLIB-LINUX-3.1.2-07.i386.rpm
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\ADK-3.1.2
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\sdk101906rc_buildroot_dl.tar.gz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\sdk10-ga-19.06.1_buildroot_dl.tar.gz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\sdk10-ED1001_buildroot_dl.tar.gz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\sdk10-PR2001_buildroot_dl.tar.gz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK101906\Datang
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\SDK_10.0-19.06_CN96XX-19.05.10.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\sdk10-PR2003_buildroot_dl.tar.gz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\SDK101906\sdk10-190603_buildroot_dl.tar.gz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK510
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK311
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_H3C_20180813.zip
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-Patch-02.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_kingsoft_20181106.zip
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\patch-01-Nitrox-V-enable-lower-cores.tar.gz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\Nginx_Perf_Testing
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-04.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.3-01
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-Patch-01.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_for_H3C_20180813.txt
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\Patch-02.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02-Patch-04.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-IPSec-Linux-SDK-0.2-04.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.3-01.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK2.0.txt
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-1.2-Linux-Driver-1.1-patch.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\cav_nginx_nblock-patch-01
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\broadwell_patch.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\20180919release_for_kuaishou
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\Nginx_Perf_Testing.tar.gz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\N5-NGINX-Perf-Testing.pdf
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2.17
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-02-Patch-03.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2-Patch-01.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\cav_nginx_nblock-patch-01.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.1-session-resumption-Patch-01.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.4.14
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.4.14.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-1.2-07.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-Driver-Linux-KVM-XEN-PF-SDK-2.0_GA-01
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-1.2-Linux-Driver-1.1-patch
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.2.17.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-1.1-hybrid-offload-Patch-01.tgz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new file 	=> c:\SDK\NitroxV\NitroxV_SDK_forali0608.tar.gz
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\NitroxV\CNN55XX-SSL-SDK-2.0_GA-01
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK310
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\linux2.6
+2019-10-09 08:11:06 - root - INFO: - WARNING: create new directory 	=> c:\SDK\SDK101902
+2019-10-09 08:11:06 - root - INFO: - [19s][0.0Bps]
+2019-10-09 08:11:06 - root - INFO: - ...
+2019-10-09 08:13:29 - root - INFO: - 
+logger is starting
+2019-10-09 08:13:38 - root - INFO: - 
+##start sync [Backup] with 2 directories 
+2019-10-09 08:13:38 - root - INFO: - 
+#sync up [static]c:\Backup  with  [temp]\\10.21.128.101\root\home\yisp\Backup
+2019-10-09 08:13:38 - root - INFO: - 
+#sync up [temp]\\10.21.128.101\root\home\yisp\Backup  with  [static]c:\Backup
+2019-10-09 08:13:38 - root - INFO: - ----skip static directory:c:\Backup
+2019-10-09 08:13:38 - root - INFO: - 
+##start sync [MARL2019] with 2 directories 
+2019-10-09 08:13:38 - root - INFO: - 
+#sync up [static]c:\MARL2019  with  [temp]\\10.21.128.101\root\home\yisp\MARL2019
+2019-10-09 08:13:38 - root - INFO: - new: c:\MARL2019\Desktop\20190905\011001900411_48745850.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20190905\011001900411_48745850.pdf [63.2KB]
+2019-10-09 08:13:38 - root - INFO: - -- done      
+2019-10-09 08:13:38 - root - INFO: - [0s][357.5KBps]
+2019-10-09 08:13:38 - root - INFO: - new: c:\MARL2019\Desktop\20190905\155.jpg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20190905\155.jpg [128.7KB]
+2019-10-09 08:13:39 - root - INFO: - -- done      
+2019-10-09 08:13:39 - root - INFO: - [0s][1019.5KBps]
+2019-10-09 08:13:39 - root - INFO: - new: c:\MARL2019\Desktop\20190905\185.jpg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20190905\185.jpg [133.5KB]
+2019-10-09 08:13:39 - root - INFO: - -- done      
+2019-10-09 08:13:39 - root - INFO: - [0s][1.1MBps]
+2019-10-09 08:13:39 - root - INFO: - new: c:\MARL2019\Desktop\20190905\20190905.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20190905\20190905.pdf [687.7KB]
+2019-10-09 08:13:39 - root - INFO: - -- done      
+2019-10-09 08:13:39 - root - INFO: - [0s][865.3KBps]
+2019-10-09 08:13:39 - root - INFO: - new: c:\MARL2019\Desktop\20190905\cellphone0906.docx ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20190905\cellphone0906.docx [274.8KB]
+2019-10-09 08:13:40 - root - INFO: - -- done      
+2019-10-09 08:13:40 - root - INFO: - [0s][938.4KBps]
+2019-10-09 08:13:40 - root - INFO: - new: c:\MARL2019\Desktop\20190905\chinaunicom01100190041119362079.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20190905\chinaunicom01100190041119362079.pdf [34.5KB]
+2019-10-09 08:13:40 - root - INFO: - -- done      
+2019-10-09 08:13:40 - root - INFO: - [0s][255.4KBps]
+2019-10-09 08:13:40 - root - INFO: - new: c:\MARL2019\Desktop\20190905\Travel application 53D201900695 for Shanping Yi (1007.69 USD).msg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20190905\Travel application 53D201900695 for Shanping Yi (1007.69 USD).msg [113.0KB]
+2019-10-09 08:13:40 - root - INFO: - -- done      
+2019-10-09 08:13:40 - root - INFO: - [0s][646.3KBps]
+2019-10-09 08:13:40 - root - INFO: - new: c:\MARL2019\Desktop\20190905\滴滴出行行程报销单.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20190905\滴滴出行行程报销单.pdf [98.9KB]
+2019-10-09 08:13:40 - root - INFO: - -- done      
+2019-10-09 08:13:40 - root - INFO: - [0s][647.5KBps]
+2019-10-09 08:13:40 - root - INFO: - new: c:\MARL2019\Desktop\20190905\滴滴电子发票.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20190905\滴滴电子发票.pdf [38.0KB]
+2019-10-09 08:13:40 - root - INFO: - -- done      
+2019-10-09 08:13:40 - root - INFO: - [0s][278.2KBps]
+2019-10-09 08:13:40 - root - INFO: - new: c:\MARL2019\Desktop\20191008\155.jpg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\155.jpg [118.4KB]
+2019-10-09 08:13:41 - root - INFO: - -- done      
+2019-10-09 08:13:41 - root - INFO: - [0s][970.7KBps]
+2019-10-09 08:13:41 - root - INFO: - new: c:\MARL2019\Desktop\20191008\185.jpg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\185.jpg [123.1KB]
+2019-10-09 08:13:41 - root - INFO: - -- done      
+2019-10-09 08:13:41 - root - INFO: - [0s][1.0MBps]
+2019-10-09 08:13:41 - root - INFO: - new: c:\MARL2019\Desktop\20191008\20191009.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\20191009.pdf [877.1KB]
+2019-10-09 08:13:42 - root - INFO: - -- done      
+2019-10-09 08:13:42 - root - INFO: - [0s][913.1KBps]
+2019-10-09 08:13:42 - root - INFO: - new: c:\MARL2019\Desktop\20191008\chinaunicom.docx ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\chinaunicom.docx [254.1KB]
+2019-10-09 08:13:42 - root - INFO: - -- done      
+2019-10-09 08:13:42 - root - INFO: - [0s][1.1MBps]
+2019-10-09 08:13:42 - root - INFO: - new: c:\MARL2019\Desktop\20191008\chinaunicom201909290902552554986362618511089715.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\chinaunicom201909290902552554986362618511089715.pdf [34.5KB]
+2019-10-09 08:13:42 - root - INFO: - -- done      
+2019-10-09 08:13:42 - root - INFO: - [0s][250.0KBps]
+2019-10-09 08:13:42 - root - INFO: - new: c:\MARL2019\Desktop\20191008\ChinaUnicomCards20190903110340.xls ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\ChinaUnicomCards20190903110340.xls [30.0KB]
+2019-10-09 08:13:42 - root - INFO: - -- done      
+2019-10-09 08:13:42 - root - INFO: - [0s][213.4KBps]
+2019-10-09 08:13:42 - root - INFO: - new: c:\MARL2019\Desktop\20191008\ChinaUnicomCards20190929090142.xls ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\ChinaUnicomCards20190929090142.xls [30.0KB]
+2019-10-09 08:13:42 - root - INFO: - -- done      
+2019-10-09 08:13:42 - root - INFO: - [0s][265.9KBps]
+2019-10-09 08:13:42 - root - INFO: - new: c:\MARL2019\Desktop\20191008\Travel application 53D201900925 for Shanping Yi (101.54 USD).msg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\Travel application 53D201900925 for Shanping Yi (101.54 USD).msg [116.0KB]
+2019-10-09 08:13:42 - root - INFO: - -- done      
+2019-10-09 08:13:42 - root - INFO: - [0s][860.7KBps]
+2019-10-09 08:13:42 - root - INFO: - new: c:\MARL2019\Desktop\20191008\滴滴出行行程报销单.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\滴滴出行行程报销单.pdf [105.0KB]
+2019-10-09 08:13:43 - root - INFO: - -- done      
+2019-10-09 08:13:43 - root - INFO: - [0s][548.5KBps]
+2019-10-09 08:13:43 - root - INFO: - new: c:\MARL2019\Desktop\20191008\滴滴电子发票.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\滴滴电子发票.pdf [37.2KB]
+2019-10-09 08:13:43 - root - INFO: - -- done      
+2019-10-09 08:13:43 - root - INFO: - [0s][223.3KBps]
+2019-10-09 08:13:43 - root - INFO: - new: c:\MARL2019\Desktop\20191008\美满电子科技（北京）有限公司.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\美满电子科技（北京）有限公司.pdf [36.4KB]
+2019-10-09 08:13:43 - root - INFO: - -- done      
+2019-10-09 08:13:43 - root - INFO: - [0s][275.5KBps]
+2019-10-09 08:13:43 - root - INFO: - new: c:\MARL2019\Desktop\laptops.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\laptops.txt [660.0B]
+2019-10-09 08:13:43 - root - INFO: - -- done      
+2019-10-09 08:13:43 - root - INFO: - [0s][8.2KBps]
+2019-10-09 08:13:43 - root - INFO: - new: c:\MARL2019\Desktop\PCIe.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\PCIe.txt [1.1KB]
+2019-10-09 08:13:43 - root - INFO: - -- done      
+2019-10-09 08:13:43 - root - INFO: - [0s][13.4KBps]
+2019-10-09 08:13:44 - root - INFO: - new: c:\MARL2019\FAETraining\201910\GMT20190925-160336_DPDK-deep-.m4a ==> \\10.21.128.101\root\home\yisp\MARL2019\FAETraining\201910\GMT20190925-160336_DPDK-deep-.m4a [37.5MB]
+2019-10-09 08:13:56 - root - INFO: - -- done      
+2019-10-09 08:13:56 - root - INFO: - [12s][3.0MBps]
+2019-10-09 08:13:56 - root - INFO: - new: c:\MARL2019\FAETraining\201910\GMT20190925-160336_DPDK-deep-_1920x1080-Part I.mp4 ==> \\10.21.128.101\root\home\yisp\MARL2019\FAETraining\201910\GMT20190925-160336_DPDK-deep-_1920x1080-Part I.mp4 [104.1MB]
+2019-10-09 08:14:28 - root - INFO: - -- done      
+2019-10-09 08:14:28 - root - INFO: - [31s][3.3MBps]
+2019-10-09 08:14:28 - root - INFO: - new: c:\MARL2019\FAETraining\201910\GMT20191002--DPDK DEEP DIVE PART II.m4a ==> \\10.21.128.101\root\home\yisp\MARL2019\FAETraining\201910\GMT20191002--DPDK DEEP DIVE PART II.m4a [31.7MB]
+2019-10-09 08:14:39 - root - INFO: - -- done      
+2019-10-09 08:14:39 - root - INFO: - [10s][3.0MBps]
+2019-10-09 08:14:39 - root - INFO: - new: c:\MARL2019\FAETraining\201910\GMT20191002-DPDK DEEP DIVE PART II-3840x2160.mp4 ==> \\10.21.128.101\root\home\yisp\MARL2019\FAETraining\201910\GMT20191002-DPDK DEEP DIVE PART II-3840x2160.mp4 [156.1MB]
+2019-10-09 08:15:25 - root - INFO: - -- done      
+2019-10-09 08:15:25 - root - INFO: - [46s][3.4MBps]
+2019-10-09 08:15:25 - root - INFO: - new: c:\MARL2019\FAETraining\201910\OCTEON_TX2_DPDK_Training.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\FAETraining\201910\OCTEON_TX2_DPDK_Training.pdf [4.2MB]
+2019-10-09 08:15:27 - root - INFO: - -- done      
+2019-10-09 08:15:27 - root - INFO: - [2s][1.8MBps]
+2019-10-09 08:15:27 - root - INFO: - new: c:\MARL2019\FAETraining\All in one PDF.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\FAETraining\All in one PDF.pdf [3.2MB]
+2019-10-09 08:15:29 - root - INFO: - -- done      
+2019-10-09 08:15:29 - root - INFO: - [1s][1.6MBps]
+2019-10-09 08:15:30 - root - INFO: - new: c:\MARL2019\personal\resume\20190905_Graphcore.doc ==> \\10.21.128.101\root\home\yisp\MARL2019\personal\resume\20190905_Graphcore.doc [71.5KB]
+2019-10-09 08:15:30 - root - INFO: - -- done      
+2019-10-09 08:15:30 - root - INFO: - [0s][427.7KBps]
+2019-10-09 08:15:30 - root - INFO: - new: c:\MARL2019\personal\resume\Resume-Shanping.Yi.doc ==> \\10.21.128.101\root\home\yisp\MARL2019\personal\resume\Resume-Shanping.Yi.doc [71.5KB]
+2019-10-09 08:15:30 - root - INFO: - -- done      
+2019-10-09 08:15:30 - root - INFO: - [0s][521.7KBps]
+2019-10-09 08:15:30 - root - INFO: - new: c:\MARL2019\personal\闽侯路小学.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\personal\闽侯路小学.txt [139.0B]
+2019-10-09 08:15:30 - root - INFO: - -- done      
+2019-10-09 08:15:30 - root - INFO: - [0s][2.1KBps]
+2019-10-09 08:15:30 - root - INFO: - new: c:\MARL2019\Supports\Boards_tracking_list.xlsx ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\Boards_tracking_list.xlsx [14.6KB]
+2019-10-09 08:15:30 - root - INFO: - -- done      
+2019-10-09 08:15:30 - root - INFO: - [0s][64.8KBps]
+2019-10-09 08:15:30 - root - INFO: - new: c:\MARL2019\Supports\foxconn\20190923\20190923.zip ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\foxconn\20190923\20190923.zip [64.3KB]
+2019-10-09 08:15:31 - root - INFO: - -- done      
+2019-10-09 08:15:31 - root - INFO: - [0s][163.9KBps]
+2019-10-09 08:15:31 - root - INFO: - new: c:\MARL2019\Supports\foxconn\20190923\foxconn.xlsx ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\foxconn\20190923\foxconn.xlsx [10.1KB]
+2019-10-09 08:15:31 - root - INFO: - -- done      
+2019-10-09 08:15:31 - root - INFO: - [0s][66.4KBps]
+2019-10-09 08:15:31 - root - INFO: - new: c:\MARL2019\Supports\foxconn\20190923\Request for Foxconn Tianjin factory onsite support for new ThunderX2 failure happen recently.msg ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\foxconn\20190923\Request for Foxconn Tianjin factory onsite support for new ThunderX2 failure happen recently.msg [135.5KB]
+2019-10-09 08:15:31 - root - INFO: - -- done      
+2019-10-09 08:15:31 - root - INFO: - [0s][956.4KBps]
+2019-10-09 08:15:31 - root - INFO: - new: c:\MARL2019\Supports\foxconn\20190923\session1-2.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\foxconn\20190923\session1-2.log [9.4KB]
+2019-10-09 08:15:31 - root - INFO: - -- done      
+2019-10-09 08:15:31 - root - INFO: - [0s][104.0KBps]
+2019-10-09 08:15:31 - root - INFO: - new: c:\MARL2019\Supports\foxconn\20190923\session1.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\foxconn\20190923\session1.log [9.4KB]
+2019-10-09 08:15:31 - root - INFO: - -- done      
+2019-10-09 08:15:31 - root - INFO: - [0s][105.2KBps]
+2019-10-09 08:15:31 - root - INFO: - new: c:\MARL2019\Supports\foxconn\20190923\session2-1.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\foxconn\20190923\session2-1.log [127.0KB]
+2019-10-09 08:15:32 - root - INFO: - -- done      
+2019-10-09 08:15:32 - root - INFO: - [0s][798.1KBps]
+2019-10-09 08:15:32 - root - INFO: - new: c:\MARL2019\Supports\foxconn\20190923\session3-1.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\foxconn\20190923\session3-1.log [48.7KB]
+2019-10-09 08:15:32 - root - INFO: - -- done      
+2019-10-09 08:15:32 - root - INFO: - [0s][427.1KBps]
+2019-10-09 08:15:32 - root - INFO: - new: c:\MARL2019\Supports\foxconn\20190923\session4-1.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\foxconn\20190923\session4-1.log [40.7KB]
+2019-10-09 08:15:32 - root - INFO: - -- done      
+2019-10-09 08:15:32 - root - INFO: - [0s][363.3KBps]
+2019-10-09 08:15:32 - root - INFO: - new: c:\MARL2019\Supports\foxconn\20190923\session4-2.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\foxconn\20190923\session4-2.log [53.9KB]
+2019-10-09 08:15:32 - root - INFO: - -- done      
+2019-10-09 08:15:32 - root - INFO: - [0s][471.8KBps]
+2019-10-09 08:15:32 - root - INFO: - new: c:\MARL2019\Supports\foxconn\20190923\session4-3.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\foxconn\20190923\session4-3.log [38.1KB]
+2019-10-09 08:15:32 - root - INFO: - -- done      
+2019-10-09 08:15:32 - root - INFO: - [0s][354.7KBps]
+2019-10-09 08:15:33 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\20190829register_all_dump_code.zip ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\20190829register_all_dump_code.zip [392.8KB]
+2019-10-09 08:15:34 - root - INFO: - -- done      
+2019-10-09 08:15:34 - root - INFO: - [0s][435.4KBps]
+2019-10-09 08:15:34 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829registers_value.zip ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829registers_value.zip [139.4KB]
+2019-10-09 08:15:35 - root - INFO: - -- done      
+2019-10-09 08:15:35 - root - INFO: - [1s][119.9KBps]
+2019-10-09 08:15:35 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_bgx.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_bgx.txt [107.5KB]
+2019-10-09 08:15:35 - root - INFO: - -- done      
+2019-10-09 08:15:35 - root - INFO: - [0s][704.5KBps]
+2019-10-09 08:15:35 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_bgx.txt.readable ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_bgx.txt.readable [547.3KB]
+2019-10-09 08:15:36 - root - INFO: - -- done      
+2019-10-09 08:15:36 - root - INFO: - [0s][1.5MBps]
+2019-10-09 08:15:36 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_fpa.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_fpa.txt [365.1KB]
+2019-10-09 08:15:36 - root - INFO: - -- done      
+2019-10-09 08:15:36 - root - INFO: - [0s][1.3MBps]
+2019-10-09 08:15:36 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_fpa.txt.readable ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_fpa.txt.readable [1.3MB]
+2019-10-09 08:15:37 - root - INFO: - -- done      
+2019-10-09 08:15:37 - root - INFO: - [0s][1.8MBps]
+2019-10-09 08:15:37 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_lmc_l2c.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_lmc_l2c.txt [21.1KB]
+2019-10-09 08:15:37 - root - INFO: - -- done      
+2019-10-09 08:15:37 - root - INFO: - [0s][212.6KBps]
+2019-10-09 08:15:37 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_lmc_l2c.txt.readable ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_lmc_l2c.txt.readable [183.3KB]
+2019-10-09 08:15:37 - root - INFO: - -- done      
+2019-10-09 08:15:37 - root - INFO: - [0s][1.0MBps]
+2019-10-09 08:15:37 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_pko.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_pko.txt [24.3KB]
+2019-10-09 08:15:37 - root - INFO: - -- done      
+2019-10-09 08:15:37 - root - INFO: - [0s][255.6KBps]
+2019-10-09 08:15:37 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_pko.txt.readable ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_failed_pko.txt.readable [124.0KB]
+2019-10-09 08:15:37 - root - INFO: - -- done      
+2019-10-09 08:15:37 - root - INFO: - [0s][860.7KBps]
+2019-10-09 08:15:37 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_bgx.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_bgx.txt [106.6KB]
+2019-10-09 08:15:37 - root - INFO: - -- done      
+2019-10-09 08:15:37 - root - INFO: - [0s][791.6KBps]
+2019-10-09 08:15:37 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_bgx.txt.readable ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_bgx.txt.readable [543.6KB]
+2019-10-09 08:15:38 - root - INFO: - -- done      
+2019-10-09 08:15:38 - root - INFO: - [0s][1.5MBps]
+2019-10-09 08:15:38 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_fpa.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_fpa.txt [365.1KB]
+2019-10-09 08:15:38 - root - INFO: - -- done      
+2019-10-09 08:15:38 - root - INFO: - [0s][1.3MBps]
+2019-10-09 08:15:38 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_fpa.txt.readable ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_fpa.txt.readable [1.3MB]
+2019-10-09 08:15:39 - root - INFO: - -- done      
+2019-10-09 08:15:39 - root - INFO: - [0s][1.9MBps]
+2019-10-09 08:15:39 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_lmc_l2c.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_lmc_l2c.txt [21.5KB]
+2019-10-09 08:15:39 - root - INFO: - -- done      
+2019-10-09 08:15:39 - root - INFO: - [0s][232.2KBps]
+2019-10-09 08:15:39 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_lmc_l2c.txt.readable ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_lmc_l2c.txt.readable [187.1KB]
+2019-10-09 08:15:39 - root - INFO: - -- done      
+2019-10-09 08:15:39 - root - INFO: - [0s][1.0MBps]
+2019-10-09 08:15:39 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_pko.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_pko.txt [17.6KB]
+2019-10-09 08:15:39 - root - INFO: - -- done      
+2019-10-09 08:15:39 - root - INFO: - [0s][195.6KBps]
+2019-10-09 08:15:39 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_pko.txt.readable ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\20190829_normal_pko.txt.readable [87.0KB]
+2019-10-09 08:15:39 - root - INFO: - -- done      
+2019-10-09 08:15:39 - root - INFO: - [0s][689.0KBps]
+2019-10-09 08:15:39 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\异常寄存器.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\异常寄存器.txt [671.0KB]
+2019-10-09 08:15:40 - root - INFO: - -- done      
+2019-10-09 08:15:40 - root - INFO: - [0s][1.5MBps]
+2019-10-09 08:15:40 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\正常寄存器.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop\正常寄存器.txt [635.7KB]
+2019-10-09 08:15:40 - root - INFO: - -- done      
+2019-10-09 08:15:40 - root - INFO: - [0s][1.6MBps]
+2019-10-09 08:15:40 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop.rar ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190829\Desktop.rar [120.8KB]
+2019-10-09 08:15:41 - root - INFO: - -- done      
+2019-10-09 08:15:41 - root - INFO: - [0s][231.5KBps]
+2019-10-09 08:15:41 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190910\20190910_failed_bgx.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190910\20190910_failed_bgx.txt [73.3KB]
+2019-10-09 08:15:41 - root - INFO: - -- done      
+2019-10-09 08:15:41 - root - INFO: - [0s][575.2KBps]
+2019-10-09 08:15:41 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190910\20190910_failed_fpa.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190910\20190910_failed_fpa.txt [266.4KB]
+2019-10-09 08:15:41 - root - INFO: - -- done      
+2019-10-09 08:15:41 - root - INFO: - [0s][1.2MBps]
+2019-10-09 08:15:41 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190910\20190910_failed_lmc_l2c.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190910\20190910_failed_lmc_l2c.txt [5.1KB]
+2019-10-09 08:15:41 - root - INFO: - -- done      
+2019-10-09 08:15:41 - root - INFO: - [0s][61.4KBps]
+2019-10-09 08:15:41 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190910\20190910_failed_pko.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190910\20190910_failed_pko.txt [15.6KB]
+2019-10-09 08:15:41 - root - INFO: - -- done      
+2019-10-09 08:15:41 - root - INFO: - [0s][168.8KBps]
+2019-10-09 08:15:41 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190910\异常寄存器打印.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190910\异常寄存器打印.log [627.1KB]
+2019-10-09 08:15:42 - root - INFO: - -- done      
+2019-10-09 08:15:42 - root - INFO: - [0s][1.5MBps]
+2019-10-09 08:15:42 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\20190912故障寄存器打印\20190912failed.txt.readable ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\20190912故障寄存器打印\20190912failed.txt.readable [2.0MB]
+2019-10-09 08:15:42 - root - INFO: - -- done      
+2019-10-09 08:15:42 - root - INFO: - [0s][2.2MBps]
+2019-10-09 08:15:42 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\20190912故障寄存器打印\20190912normal.txt.readable ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\20190912故障寄存器打印\20190912normal.txt.readable [2.0MB]
+2019-10-09 08:15:43 - root - INFO: - -- done      
+2019-10-09 08:15:43 - root - INFO: - [0s][2.2MBps]
+2019-10-09 08:15:43 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\20190912故障寄存器打印\20190912故障寄存器打印.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\20190912故障寄存器打印\20190912故障寄存器打印.txt [359.8KB]
+2019-10-09 08:15:44 - root - INFO: - -- done      
+2019-10-09 08:15:44 - root - INFO: - [0s][1.3MBps]
+2019-10-09 08:15:44 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\20190912故障寄存器打印\20190912正常寄存器.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\20190912故障寄存器打印\20190912正常寄存器.txt [360.6KB]
+2019-10-09 08:15:44 - root - INFO: - -- done      
+2019-10-09 08:15:44 - root - INFO: - [0s][1.3MBps]
+2019-10-09 08:15:44 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\20190912故障寄存器打印.zip ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\20190912故障寄存器打印.zip [91.9KB]
+2019-10-09 08:15:44 - root - INFO: - -- done      
+2019-10-09 08:15:44 - root - INFO: - [0s][225.4KBps]
+2019-10-09 08:15:44 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\3组寄存器打印\异常寄存器20190829.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\3组寄存器打印\异常寄存器20190829.txt [671.0KB]
+2019-10-09 08:15:45 - root - INFO: - -- done      
+2019-10-09 08:15:45 - root - INFO: - [0s][1.5MBps]
+2019-10-09 08:15:45 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\3组寄存器打印\异常寄存器20190912.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\3组寄存器打印\异常寄存器20190912.txt [611.9KB]
+2019-10-09 08:15:45 - root - INFO: - -- done      
+2019-10-09 08:15:45 - root - INFO: - [0s][1.5MBps]
+2019-10-09 08:15:45 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\3组寄存器打印\异常寄存器20190913.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\3组寄存器打印\异常寄存器20190913.txt [624.9KB]
+2019-10-09 08:15:46 - root - INFO: - -- done      
+2019-10-09 08:15:46 - root - INFO: - [0s][1.5MBps]
+2019-10-09 08:15:46 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\3组寄存器打印\正常寄存器20190829.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\3组寄存器打印\正常寄存器20190829.txt [635.7KB]
+2019-10-09 08:15:46 - root - INFO: - -- done      
+2019-10-09 08:15:46 - root - INFO: - [0s][1.5MBps]
+2019-10-09 08:15:46 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\3组寄存器打印\正常寄存器20190912.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\3组寄存器打印\正常寄存器20190912.txt [614.1KB]
+2019-10-09 08:15:46 - root - INFO: - -- done      
+2019-10-09 08:15:46 - root - INFO: - [0s][1.5MBps]
+2019-10-09 08:15:46 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\3组寄存器打印\正常寄存器20190913.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\3组寄存器打印\正常寄存器20190913.txt [627.8KB]
+2019-10-09 08:15:47 - root - INFO: - -- done      
+2019-10-09 08:15:47 - root - INFO: - [0s][1.5MBps]
+2019-10-09 08:15:47 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\3组寄存器打印.zip ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20190912\3组寄存器打印.zip [470.7KB]
+2019-10-09 08:15:48 - root - INFO: - -- done      
+2019-10-09 08:15:48 - root - INFO: - [1s][363.4KBps]
+2019-10-09 08:15:48 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\20191008.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\20191008.txt [126.0B]
+2019-10-09 08:15:48 - root - INFO: - -- done      
+2019-10-09 08:15:48 - root - INFO: - [0s][1.9KBps]
+2019-10-09 08:15:48 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\BGX.reg.code ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\BGX.reg.code [235.6KB]
+2019-10-09 08:15:48 - root - INFO: - -- done      
+2019-10-09 08:15:48 - root - INFO: - [0s][1.1MBps]
+2019-10-09 08:15:49 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\registers_dump_code.zip ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\registers_dump_code.zip [337.6KB]
+2019-10-09 08:15:49 - root - INFO: - -- done      
+2019-10-09 08:15:49 - root - INFO: - [0s][527.9KBps]
+2019-10-09 08:15:49 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190514pkohang_from_Security\vim_replace.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190514pkohang_from_Security\vim_replace.txt [72.0B]
+2019-10-09 08:15:49 - root - INFO: - -- done      
+2019-10-09 08:15:49 - root - INFO: - [0s][1.0KBps]
+2019-10-09 08:15:49 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190904sr88_sdk\build_sdk.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190904sr88_sdk\build_sdk.log [542.2KB]
+2019-10-09 08:15:50 - root - INFO: - -- done      
+2019-10-09 08:15:50 - root - INFO: - [0s][1.3MBps]
+2019-10-09 08:15:50 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190920pcie_chamber\dump_reg_error.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190920pcie_chamber\dump_reg_error.txt [101.5KB]
+2019-10-09 08:15:50 - root - INFO: - -- done      
+2019-10-09 08:15:50 - root - INFO: - [0s][727.3KBps]
+2019-10-09 08:15:50 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190920pcie_chamber\dump_reg_ok.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190920pcie_chamber\dump_reg_ok.txt [340.4KB]
+2019-10-09 08:15:50 - root - INFO: - -- done      
+2019-10-09 08:15:50 - root - INFO: - [0s][1.3MBps]
+2019-10-09 08:15:50 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190920pcie_chamber\pint_cfg_error.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190920pcie_chamber\pint_cfg_error.txt [91.0KB]
+2019-10-09 08:15:50 - root - INFO: - -- done      
+2019-10-09 08:15:50 - root - INFO: - [0s][728.4KBps]
+2019-10-09 08:15:50 - root - INFO: - new: c:\MARL2019\Supports\H3C\20190920pcie_chamber\pint_cfg_ok.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\20190920pcie_chamber\pint_cfg_ok.txt [476.0KB]
+2019-10-09 08:15:51 - root - INFO: - -- done      
+2019-10-09 08:15:51 - root - INFO: - [0s][1.5MBps]
+2019-10-09 08:15:55 - root - INFO: - new: c:\MARL2019\Supports\H3C\csr_tool-1.1.12\oct-linux-csr.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\csr_tool-1.1.12\oct-linux-csr.txt [781.0B]
+2019-10-09 08:15:55 - root - INFO: - -- done      
+2019-10-09 08:15:55 - root - INFO: - [0s][10.5KBps]
+2019-10-09 08:15:55 - root - INFO: - update: c:\MARL2019\Supports\H3C\H3C_Projects.xmind[352.3KB] ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\H3C\H3C_Projects.xmind ([20190903 12:05:13][360705B]->[20190813 15:45:29][311641B])
+2019-10-09 08:15:56 - root - INFO: - -- done      
+2019-10-09 08:15:56 - root - INFO: - [0s][783.1KBps]
+2019-10-09 08:15:56 - root - INFO: - new: c:\MARL2019\Supports\liquidio\20190423_lio3.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\liquidio\20190423_lio3.txt [175.0B]
+2019-10-09 08:15:56 - root - INFO: - -- done      
+2019-10-09 08:15:56 - root - INFO: - [0s][2.5KBps]
+2019-10-09 08:15:56 - root - INFO: - new: c:\MARL2019\Supports\liquidio\20190916ChinaMobile.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\liquidio\20190916ChinaMobile.txt [539.0B]
+2019-10-09 08:15:56 - root - INFO: - -- done      
+2019-10-09 08:15:56 - root - INFO: - [0s][7.5KBps]
+2019-10-09 08:15:56 - root - INFO: - new: c:\MARL2019\Supports\liquidio\liquidIO_for_ChinaMobile_201909.pptx ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\liquidio\liquidIO_for_ChinaMobile_201909.pptx [6.5MB]
+2019-10-09 08:15:59 - root - INFO: - -- done      
+2019-10-09 08:15:59 - root - INFO: - [2s][2.2MBps]
+2019-10-09 08:15:59 - root - INFO: - new: c:\MARL2019\Supports\Nitrox\kuaishou\sdk_install.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\Nitrox\kuaishou\sdk_install.txt [3.2KB]
+2019-10-09 08:15:59 - root - INFO: - -- done      
+2019-10-09 08:15:59 - root - INFO: - [0s][37.4KBps]
+2019-10-09 08:15:59 - root - INFO: - new: c:\MARL2019\Supports\PowerControl\python.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\PowerControl\python.txt [128.0B]
+2019-10-09 08:15:59 - root - INFO: - -- done      
+2019-10-09 08:15:59 - root - INFO: - [0s][1.9KBps]
+2019-10-09 08:15:59 - root - INFO: - new: c:\MARL2019\Supports\PowerControl\serial\connect1.py ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\PowerControl\serial\connect1.py [664.0B]
+2019-10-09 08:15:59 - root - INFO: - -- done      
+2019-10-09 08:15:59 - root - INFO: - [0s][9.3KBps]
+2019-10-09 08:15:59 - root - INFO: - new: c:\MARL2019\Supports\PowerControl\serial\connectall.py ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\PowerControl\serial\connectall.py [664.0B]
+2019-10-09 08:15:59 - root - INFO: - -- done      
+2019-10-09 08:15:59 - root - INFO: - [0s][8.8KBps]
+2019-10-09 08:15:59 - root - INFO: - new: c:\MARL2019\Supports\PowerControl\serial\disconnect1.py ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\PowerControl\serial\disconnect1.py [664.0B]
+2019-10-09 08:15:59 - root - INFO: - -- done      
+2019-10-09 08:15:59 - root - INFO: - [0s][9.0KBps]
+2019-10-09 08:15:59 - root - INFO: - new: c:\MARL2019\Supports\PowerControl\serial\disconnectall.py ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\PowerControl\serial\disconnectall.py [664.0B]
+2019-10-09 08:16:00 - root - INFO: - -- done      
+2019-10-09 08:16:00 - root - INFO: - [0s][9.4KBps]
+2019-10-09 08:16:00 - root - INFO: - new: c:\MARL2019\Supports\PowerControl\serial\listcom.py ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\PowerControl\serial\listcom.py [267.0B]
+2019-10-09 08:16:00 - root - INFO: - -- done      
+2019-10-09 08:16:00 - root - INFO: - [0s][3.7KBps]
+2019-10-09 08:16:00 - root - INFO: - new: c:\MARL2019\Supports\PowerControl\serial\readstatus.py ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\PowerControl\serial\readstatus.py [664.0B]
+2019-10-09 08:16:00 - root - INFO: - -- done      
+2019-10-09 08:16:00 - root - INFO: - [0s][8.9KBps]
+2019-10-09 08:16:00 - root - INFO: - new: c:\MARL2019\Supports\PowerControl\test.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\PowerControl\test.txt [694.0B]
+2019-10-09 08:16:00 - root - INFO: - -- done      
+2019-10-09 08:16:00 - root - INFO: - [0s][9.9KBps]
+2019-10-09 08:16:00 - root - INFO: - new: c:\MARL2019\Supports\PowerControl\串口调试软件.exe ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\PowerControl\串口调试软件.exe [280.0KB]
+2019-10-09 08:16:00 - root - INFO: - -- done      
+2019-10-09 08:16:00 - root - INFO: - [0s][1.5MBps]
+2019-10-09 08:16:00 - root - INFO: - new: c:\MARL2019\Supports\PowerControl\志远电子继电器板自定义协议V2.3.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\PowerControl\志远电子继电器板自定义协议V2.3.pdf [114.2KB]
+2019-10-09 08:16:00 - root - INFO: - -- done      
+2019-10-09 08:16:00 - root - INFO: - [0s][525.2KBps]
+2019-10-09 08:16:00 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn9130-crb\boot_select.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn9130-crb\boot_select.txt [213.0B]
+2019-10-09 08:16:00 - root - INFO: - -- done      
+2019-10-09 08:16:00 - root - INFO: - [0s][3.0KBps]
+2019-10-09 08:16:00 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn9130-crb\crb_defalut_mmc.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn9130-crb\crb_defalut_mmc.log [36.4KB]
+2019-10-09 08:16:01 - root - INFO: - -- done      
+2019-10-09 08:16:01 - root - INFO: - [0s][333.4KBps]
+2019-10-09 08:16:01 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn9130-crb\MACCHIATObin.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn9130-crb\MACCHIATObin.txt [75.0B]
+2019-10-09 08:16:01 - root - INFO: - -- done      
+2019-10-09 08:16:01 - root - INFO: - [0s][1.0KBps]
+2019-10-09 08:16:01 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\cn96xx-crb-b0-emmc-boot.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\cn96xx-crb-b0-emmc-boot.log [6.7KB]
+2019-10-09 08:16:01 - root - INFO: - -- done      
+2019-10-09 08:16:01 - root - INFO: - [0s][68.0KBps]
+2019-10-09 08:16:01 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\cn96xx-crb-b0-spi-boot.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\cn96xx-crb-b0-spi-boot.log [6.8KB]
+2019-10-09 08:16:01 - root - INFO: - -- done      
+2019-10-09 08:16:01 - root - INFO: - [0s][75.1KBps]
+2019-10-09 08:16:01 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\cn96xx-crb_hyperscan_bench.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\cn96xx-crb_hyperscan_bench.log [5.8KB]
+2019-10-09 08:16:01 - root - INFO: - -- done      
+2019-10-09 08:16:01 - root - INFO: - [0s][64.0KBps]
+2019-10-09 08:16:01 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\cn96xx-crb_hyperscan_snort.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\cn96xx-crb_hyperscan_snort.log [115.4KB]
+2019-10-09 08:16:01 - root - INFO: - -- done      
+2019-10-09 08:16:01 - root - INFO: - [0s][792.8KBps]
+2019-10-09 08:16:01 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\coremark.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\coremark.txt [7.8KB]
+2019-10-09 08:16:01 - root - INFO: - -- done      
+2019-10-09 08:16:01 - root - INFO: - [0s][82.8KBps]
+2019-10-09 08:16:01 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\coremark_test.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\coremark_test.txt [2.9KB]
+2019-10-09 08:16:01 - root - INFO: - -- done      
+2019-10-09 08:16:01 - root - INFO: - [0s][37.0KBps]
+2019-10-09 08:16:01 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\cn96.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\cn96.txt [1.2KB]
+2019-10-09 08:16:01 - root - INFO: - -- done      
+2019-10-09 08:16:01 - root - INFO: - [0s][16.1KBps]
+2019-10-09 08:16:01 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\hyperscan_multi_threads.xlsx ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\hyperscan_multi_threads.xlsx [12.9KB]
+2019-10-09 08:16:02 - root - INFO: - -- done      
+2019-10-09 08:16:02 - root - INFO: - [0s][83.0KBps]
+2019-10-09 08:16:02 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\pcapscan_multi_threads.sh ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\pcapscan_multi_threads.sh [899.0B]
+2019-10-09 08:16:02 - root - INFO: - -- done      
+2019-10-09 08:16:02 - root - INFO: - [0s][12.7KBps]
+2019-10-09 08:16:02 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\Snort-literal_multi_threads.sh ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\Snort-literal_multi_threads.sh [537.0B]
+2019-10-09 08:16:02 - root - INFO: - -- done      
+2019-10-09 08:16:02 - root - INFO: - [0s][7.7KBps]
+2019-10-09 08:16:02 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\Snort-literal_multi_threads_x86.sh ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\Snort-literal_multi_threads_x86.sh [702.0B]
+2019-10-09 08:16:02 - root - INFO: - -- done      
+2019-10-09 08:16:02 - root - INFO: - [0s][9.9KBps]
+2019-10-09 08:16:02 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\Teakettle_multi_threads.sh ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\Teakettle_multi_threads.sh [535.0B]
+2019-10-09 08:16:02 - root - INFO: - -- done      
+2019-10-09 08:16:02 - root - INFO: - [0s][7.7KBps]
+2019-10-09 08:16:02 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\Teakettle_multi_threads_x86.sh ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\Teakettle_multi_threads_x86.sh [712.0B]
+2019-10-09 08:16:02 - root - INFO: - -- done      
+2019-10-09 08:16:02 - root - INFO: - [0s][10.1KBps]
+2019-10-09 08:16:02 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\x86_PC.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\hyperscan_issue\x86_PC.txt [4.0KB]
+2019-10-09 08:16:02 - root - INFO: - -- done      
+2019-10-09 08:16:02 - root - INFO: - [0s][47.0KBps]
+2019-10-09 08:16:02 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\openssl_no_engine_pr2003.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\openssl_no_engine_pr2003.txt [21.2KB]
+2019-10-09 08:16:02 - root - INFO: - -- done      
+2019-10-09 08:16:02 - root - INFO: - [0s][214.7KBps]
+2019-10-09 08:16:02 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\openssl_speed_async_pr2003-cn96.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\openssl_speed_async_pr2003-cn96.log [18.9KB]
+2019-10-09 08:16:02 - root - INFO: - -- done      
+2019-10-09 08:16:02 - root - INFO: - [0s][197.1KBps]
+2019-10-09 08:16:02 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\openssl_speed_pr2003-cn96.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\openssl_speed_pr2003-cn96.log [21.7KB]
+2019-10-09 08:16:02 - root - INFO: - -- done      
+2019-10-09 08:16:02 - root - INFO: - [0s][225.9KBps]
+2019-10-09 08:16:02 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\performance.xlsx ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\performance.xlsx [11.2KB]
+2019-10-09 08:16:02 - root - INFO: - -- done      
+2019-10-09 08:16:02 - root - INFO: - [0s][79.0KBps]
+2019-10-09 08:16:03 - root - INFO: - update: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\PR2001_crb.txt[5.0KB] ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\PR2001_crb.txt ([20190828 10:53:43][5077B]->[20190815 11:02:18][5038B])
+2019-10-09 08:16:03 - root - INFO: - -- done      
+2019-10-09 08:16:03 - root - INFO: - [0s][51.1KBps]
+2019-10-09 08:16:03 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\PR2003_crb.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\PR2003_crb.txt [11.2KB]
+2019-10-09 08:16:03 - root - INFO: - -- done      
+2019-10-09 08:16:03 - root - INFO: - [0s][118.6KBps]
+2019-10-09 08:16:03 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\PR2006_crb.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\PR2006_crb.txt [7.0KB]
+2019-10-09 08:16:03 - root - INFO: - -- done      
+2019-10-09 08:16:03 - root - INFO: - [0s][77.3KBps]
+2019-10-09 08:16:03 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\Re about CN96 CRB SDK version support 100G25G.msg ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\Re about CN96 CRB SDK version support 100G25G.msg [98.0KB]
+2019-10-09 08:16:03 - root - INFO: - -- done      
+2019-10-09 08:16:03 - root - INFO: - [0s][743.3KBps]
+2019-10-09 08:16:03 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\cn96xx-crb\rss.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\cn96xx-crb\rss.log [1.5KB]
+2019-10-09 08:16:03 - root - INFO: - -- done      
+2019-10-09 08:16:03 - root - INFO: - [0s][21.1KBps]
+2019-10-09 08:16:03 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\espressobin\uart-images\atf-ntim.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\espressobin\uart-images\atf-ntim.txt [11.0KB]
+2019-10-09 08:16:04 - root - INFO: - -- done      
+2019-10-09 08:16:04 - root - INFO: - [0s][114.9KBps]
+2019-10-09 08:16:04 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\espressobin\uart-images\boot-image_h.bin ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\espressobin\uart-images\boot-image_h.bin [740.8KB]
+2019-10-09 08:16:04 - root - INFO: - -- done      
+2019-10-09 08:16:04 - root - INFO: - [0s][2.1MBps]
+2019-10-09 08:16:04 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\espressobin\uart-images\TIM_ATF.bin ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\espressobin\uart-images\TIM_ATF.bin [3.0KB]
+2019-10-09 08:16:04 - root - INFO: - -- done      
+2019-10-09 08:16:04 - root - INFO: - [0s][41.8KBps]
+2019-10-09 08:16:04 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\espressobin\uart-images\wtmi_h.bin ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\espressobin\uart-images\wtmi_h.bin [11.9KB]
+2019-10-09 08:16:04 - root - INFO: - -- done      
+2019-10-09 08:16:04 - root - INFO: - [0s][157.5KBps]
+2019-10-09 08:16:04 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\espressobin\uart_boot.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\espressobin\uart_boot.txt [2.7KB]
+2019-10-09 08:16:04 - root - INFO: - -- done      
+2019-10-09 08:16:04 - root - INFO: - [0s][35.1KBps]
+2019-10-09 08:16:04 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\espressobin\WtpDownload.zip ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\espressobin\WtpDownload.zip [34.5MB]
+2019-10-09 08:16:18 - root - INFO: - -- done      
+2019-10-09 08:16:18 - root - INFO: - [13s][2.6MBps]
+2019-10-09 08:16:18 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SDK10\buildroot_boot_PR2003_cn9131.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\buildroot_boot_PR2003_cn9131.log [1.7MB]
+2019-10-09 08:16:19 - root - INFO: - -- done      
+2019-10-09 08:16:19 - root - INFO: - [0s][1.9MBps]
+2019-10-09 08:16:19 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SDK10\build_boot_a3720.log ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\build_boot_a3720.log [10.7KB]
+2019-10-09 08:16:19 - root - INFO: - -- done      
+2019-10-09 08:16:19 - root - INFO: - [0s][104.5KBps]
+2019-10-09 08:16:19 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SDK10\hyperscan_x86_build.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\hyperscan_x86_build.txt [8.7KB]
+2019-10-09 08:16:19 - root - INFO: - -- done      
+2019-10-09 08:16:19 - root - INFO: - [0s][90.1KBps]
+2019-10-09 08:16:19 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SDK10\openssl-dpdk-engine-pr2003-cn96.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\openssl-dpdk-engine-pr2003-cn96.txt [4.2KB]
+2019-10-09 08:16:19 - root - INFO: - -- done      
+2019-10-09 08:16:19 - root - INFO: - [0s][48.8KBps]
+2019-10-09 08:16:19 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SDK10\PR2003_3720.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\PR2003_3720.txt [1.7KB]
+2019-10-09 08:16:19 - root - INFO: - -- done      
+2019-10-09 08:16:19 - root - INFO: - [0s][21.4KBps]
+2019-10-09 08:16:19 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SDK10\PR2003_build_bootloader.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\PR2003_build_bootloader.txt [3.0KB]
+2019-10-09 08:16:19 - root - INFO: - -- done      
+2019-10-09 08:16:19 - root - INFO: - [0s][37.7KBps]
+2019-10-09 08:16:19 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SDK10\PR2003_cn9130-crb.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\PR2003_cn9130-crb.txt [7.4KB]
+2019-10-09 08:16:19 - root - INFO: - -- done      
+2019-10-09 08:16:19 - root - INFO: - [0s][78.7KBps]
+2019-10-09 08:16:19 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SDK10\PR2003_hyperscan.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\PR2003_hyperscan.txt [5.1KB]
+2019-10-09 08:16:19 - root - INFO: - -- done      
+2019-10-09 08:16:19 - root - INFO: - [0s][58.4KBps]
+2019-10-09 08:16:19 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SDK10\PR2006_sdk.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\PR2006_sdk.txt [4.2KB]
+2019-10-09 08:16:19 - root - INFO: - -- done      
+2019-10-09 08:16:19 - root - INFO: - [0s][51.8KBps]
+2019-10-09 08:16:19 - root - INFO: - new: c:\MARL2019\Supports\SDK_EBB\SDK10\PR2006_sdk_25G.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\SDK_EBB\SDK10\PR2006_sdk_25G.txt [4.0KB]
+2019-10-09 08:16:19 - root - INFO: - -- done      
+2019-10-09 08:16:19 - root - INFO: - [0s][47.8KBps]
+2019-10-09 08:16:20 - root - INFO: - new: c:\MARL2019\Supports\ValkyrieTester\L23-Scripting-Documentation.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\ValkyrieTester\L23-Scripting-Documentation.pdf [932.2KB]
+2019-10-09 08:16:22 - root - INFO: - -- done      
+2019-10-09 08:16:22 - root - INFO: - [2s][395.9KBps]
+2019-10-09 08:16:22 - root - INFO: - new: c:\MARL2019\Supports\ValkyrieTester\Re configuration guide.msg ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\ValkyrieTester\Re configuration guide.msg [1.0MB]
+2019-10-09 08:16:24 - root - INFO: - -- done      
+2019-10-09 08:16:24 - root - INFO: - [2s][432.8KBps]
+2019-10-09 08:16:24 - root - INFO: - new: c:\MARL2019\Supports\ValkyrieTester\setting.txt ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\ValkyrieTester\setting.txt [447.0B]
+2019-10-09 08:16:25 - root - INFO: - -- done      
+2019-10-09 08:16:25 - root - INFO: - [0s][6.3KBps]
+2019-10-09 08:16:25 - root - INFO: - new: c:\MARL2019\Supports\ValkyrieTester\Xena2889_Step-by-Step_Guide.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\ValkyrieTester\Xena2889_Step-by-Step_Guide.pdf [2.9MB]
+2019-10-09 08:16:26 - root - INFO: - -- done      
+2019-10-09 08:16:26 - root - INFO: - [1s][2.0MBps]
+2019-10-09 08:16:26 - root - INFO: - new: c:\MARL2019\Supports\ValkyrieTester\Xena3918_Step-by-Step_Guide.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\ValkyrieTester\Xena3918_Step-by-Step_Guide.pdf [1.5MB]
+2019-10-09 08:16:27 - root - INFO: - -- done      
+2019-10-09 08:16:27 - root - INFO: - [0s][1.7MBps]
+2019-10-09 08:16:27 - root - INFO: - new: c:\MARL2019\Supports\ValkyrieTester\xena_cfg.vmcfg ==> \\10.21.128.101\root\home\yisp\MARL2019\Supports\ValkyrieTester\xena_cfg.vmcfg [9.7KB]
+2019-10-09 08:16:27 - root - INFO: - -- done      
+2019-10-09 08:16:27 - root - INFO: - [0s][109.1KBps]
+2019-10-09 08:16:28 - root - INFO: - update: c:\MARL2019\work\centos7.docx[42.7KB] ==> \\10.21.128.101\root\home\yisp\MARL2019\work\centos7.docx ([20190829 14:42:02][43701B]->[20190422 14:00:38][43656B])
+2019-10-09 08:16:28 - root - INFO: - -- done      
+2019-10-09 08:16:28 - root - INFO: - [0s][128.4KBps]
+2019-10-09 08:16:28 - root - INFO: - new: c:\MARL2019\work\CN73XX\CN73XX_Issues_v1.13.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\work\CN73XX\CN73XX_Issues_v1.13.pdf [724.6KB]
+2019-10-09 08:16:29 - root - INFO: - -- done      
+2019-10-09 08:16:29 - root - INFO: - [0s][1004.1KBps]
+2019-10-09 08:16:29 - root - INFO: - new: c:\MARL2019\work\CN91XX\CN91XX-CRB Hardware Manual-v1.1.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\work\CN91XX\CN91XX-CRB Hardware Manual-v1.1.pdf [5.4MB]
+2019-10-09 08:16:32 - root - INFO: - -- done      
+2019-10-09 08:16:32 - root - INFO: - [2s][2.1MBps]
+2019-10-09 08:16:32 - root - INFO: - update: c:\MARL2019\work\marvell\marvell.txt[5.6KB] ==> \\10.21.128.101\root\home\yisp\MARL2019\work\marvell\marvell.txt ([20190919 20:11:34][5710B]->[20190717 20:29:19][5699B])
+2019-10-09 08:16:33 - root - INFO: - -- done      
+2019-10-09 08:16:33 - root - INFO: - [0s][40.7KBps]
+2019-10-09 08:16:33 - root - INFO: - update: c:\MARL2019\work\personal\2019weekly\20190823.xlsx[19.6KB] ==> \\10.21.128.101\root\home\yisp\MARL2019\work\personal\2019weekly\20190823.xlsx ([20190829 20:41:57][20045B]->[20190823 08:30:57][21204B])
+2019-10-09 08:16:33 - root - INFO: - -- done      
+2019-10-09 08:16:33 - root - INFO: - [0s][87.2KBps]
+2019-10-09 08:16:33 - root - INFO: - new: c:\MARL2019\work\personal\2019weekly\20190830.xlsx ==> \\10.21.128.101\root\home\yisp\MARL2019\work\personal\2019weekly\20190830.xlsx [20.6KB]
+2019-10-09 08:16:34 - root - INFO: - -- done      
+2019-10-09 08:16:34 - root - INFO: - [0s][111.1KBps]
+2019-10-09 08:16:34 - root - INFO: - new: c:\MARL2019\work\personal\2019weekly\20190905.xlsx ==> \\10.21.128.101\root\home\yisp\MARL2019\work\personal\2019weekly\20190905.xlsx [22.3KB]
+2019-10-09 08:16:34 - root - INFO: - -- done      
+2019-10-09 08:16:34 - root - INFO: - [0s][126.7KBps]
+2019-10-09 08:16:34 - root - INFO: - new: c:\MARL2019\work\personal\2019weekly\20190912.xlsx ==> \\10.21.128.101\root\home\yisp\MARL2019\work\personal\2019weekly\20190912.xlsx [19.7KB]
+2019-10-09 08:16:34 - root - INFO: - -- done      
+2019-10-09 08:16:34 - root - INFO: - [0s][113.5KBps]
+2019-10-09 08:16:34 - root - INFO: - new: c:\MARL2019\work\personal\2019weekly\20190919.xlsx ==> \\10.21.128.101\root\home\yisp\MARL2019\work\personal\2019weekly\20190919.xlsx [20.3KB]
+2019-10-09 08:16:34 - root - INFO: - -- done      
+2019-10-09 08:16:34 - root - INFO: - [0s][115.5KBps]
+2019-10-09 08:16:34 - root - INFO: - new: c:\MARL2019\work\personal\2019weekly\20190927.xlsx ==> \\10.21.128.101\root\home\yisp\MARL2019\work\personal\2019weekly\20190927.xlsx [19.8KB]
+2019-10-09 08:16:34 - root - INFO: - -- done      
+2019-10-09 08:16:34 - root - INFO: - [0s][118.7KBps]
+2019-10-09 08:16:34 - root - INFO: - 
+#sync up [temp]\\10.21.128.101\root\home\yisp\MARL2019  with  [static]c:\MARL2019
+2019-10-09 08:16:34 - root - INFO: - ----skip static directory:c:\MARL2019
+2019-10-09 08:16:34 - root - INFO: - 
+##start sync [pytool] with 2 directories 
+2019-10-09 08:16:34 - root - INFO: - 
+#sync up [temp]c:\pytool  with  [temp]\\10.21.128.101\root\home\yisp\pytool
+2019-10-09 08:16:34 - root - INFO: - update: c:\pytool\FilesAnalysis\analysis_result.csv[294.3KB] ==> \\10.21.128.101\root\home\yisp\pytool\FilesAnalysis\analysis_result.csv ([20190901 11:58:27][301383B]->[20190607 20:15:47][6323B])
+2019-10-09 08:16:35 - root - INFO: - -- done      
+2019-10-09 08:16:35 - root - INFO: - [0s][480.4KBps]
+2019-10-09 08:16:35 - root - INFO: - update: c:\pytool\FilesAnalysis\filesAnalysis_lib.py[6.4KB] ==> \\10.21.128.101\root\home\yisp\pytool\FilesAnalysis\filesAnalysis_lib.py ([20190901 11:45:29][6543B]->[20190413 16:50:53][6123B])
+2019-10-09 08:16:35 - root - INFO: - -- done      
+2019-10-09 08:16:35 - root - INFO: - [0s][61.5KBps]
+2019-10-09 08:16:35 - root - INFO: - new: c:\pytool\FilesAnalysis\filesAnalysis_ThP450.py ==> \\10.21.128.101\root\home\yisp\pytool\FilesAnalysis\filesAnalysis_ThP450.py [2.9KB]
+2019-10-09 08:16:35 - root - INFO: - -- done      
+2019-10-09 08:16:35 - root - INFO: - [0s][38.8KBps]
+2019-10-09 08:16:35 - root - INFO: - new: c:\pytool\FilesAnalysis\filesAnalysis_ThP450.py_0.csv ==> \\10.21.128.101\root\home\yisp\pytool\FilesAnalysis\filesAnalysis_ThP450.py_0.csv [928.9KB]
+2019-10-09 08:16:36 - root - INFO: - -- done      
+2019-10-09 08:16:36 - root - INFO: - [0s][1.5MBps]
+2019-10-09 08:16:36 - root - INFO: - new: c:\pytool\FilesAnalysis\readme.txt ==> \\10.21.128.101\root\home\yisp\pytool\FilesAnalysis\readme.txt [457.0B]
+2019-10-09 08:16:36 - root - INFO: - -- done      
+2019-10-09 08:16:36 - root - INFO: - [0s][6.4KBps]
+2019-10-09 08:16:36 - root - INFO: - update: c:\pytool\FilesAnalysis\__pycache__\filesAnalysis_lib.cpython-36.pyc[4.3KB] ==> \\10.21.128.101\root\home\yisp\pytool\FilesAnalysis\__pycache__\filesAnalysis_lib.cpython-36.pyc ([20190901 11:45:34][4375B]->[20190607 20:13:13][4159B])
+2019-10-09 08:16:36 - root - INFO: - -- done      
+2019-10-09 08:16:36 - root - INFO: - [0s][47.1KBps]
+2019-10-09 08:16:36 - root - INFO: - update: c:\pytool\syncDir\log_syncFiles_ThP450_USB.py2019_06.txt[588.9KB] ==> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP450_USB.py2019_06.txt ([20190615 07:53:31][603081B]->[20190614 20:14:58][267038B])
+2019-10-09 08:16:37 - root - INFO: - -- done      
+2019-10-09 08:16:37 - root - INFO: - [0s][1.3MBps]
+2019-10-09 08:16:37 - root - INFO: - new: c:\pytool\syncDir\log_syncFiles_ThP450_USB.py2019_09.txt ==> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP450_USB.py2019_09.txt [544.2KB]
+2019-10-09 08:16:37 - root - INFO: - -- done      
+2019-10-09 08:16:37 - root - INFO: - [0s][1.4MBps]
+2019-10-09 08:16:37 - root - INFO: - update: c:\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_08.txt[93.9KB] ==> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_08.txt ([20190829 16:19:05][96198B]->[20190823 09:49:23][76994B])
+2019-10-09 08:16:37 - root - INFO: - -- done      
+2019-10-09 08:16:37 - root - INFO: - [0s][566.8KBps]
+2019-10-09 08:16:37 - root - INFO: - new: c:\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_09.txt ==> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_09.txt [19.0KB]
+2019-10-09 08:16:37 - root - INFO: - -- done      
+2019-10-09 08:16:37 - root - INFO: - [0s][198.4KBps]
+2019-10-09 08:16:37 - root - INFO: - new: c:\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_10.txt ==> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_10.txt [91.2KB]
+2019-10-09 08:16:38 - root - INFO: - -- done      
+2019-10-09 08:16:38 - root - INFO: - [0s][670.5KBps]
+2019-10-09 08:16:38 - root - INFO: - new: c:\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_08.txt ==> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_08.txt [250.1KB]
+2019-10-09 08:16:38 - root - INFO: - -- done      
+2019-10-09 08:16:38 - root - INFO: - [0s][1.1MBps]
+2019-10-09 08:16:38 - root - INFO: - new: c:\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_09.txt ==> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP480_Net_ThP450.py2019_09.txt [35.7KB]
+2019-10-09 08:16:38 - root - INFO: - -- done      
+2019-10-09 08:16:38 - root - INFO: - [0s][310.2KBps]
+2019-10-09 08:16:38 - root - INFO: - update: c:\pytool\syncDir\syncFiles_ThP450_USB.py[2.8KB] ==> \\10.21.128.101\root\home\yisp\pytool\syncDir\syncFiles_ThP450_USB.py ([20190901 09:51:56][2888B]->[20190624 10:36:44][2892B])
+2019-10-09 08:16:38 - root - INFO: - -- done      
+2019-10-09 08:16:38 - root - INFO: - [0s][31.3KBps]
+2019-10-09 08:16:38 - root - INFO: - update: c:\pytool\syncDir\syncFiles_ThP480_Net_ThC.py[3.2KB] ==> \\10.21.128.101\root\home\yisp\pytool\syncDir\syncFiles_ThP480_Net_ThC.py ([20191009 08:10:10][3251B]->[20190625 18:08:13][3251B])
+2019-10-09 08:16:38 - root - INFO: - -- done      
+2019-10-09 08:16:38 - root - INFO: - [0s][34.5KBps]
+2019-10-09 08:16:38 - root - INFO: - 
+#sync up [temp]\\10.21.128.101\root\home\yisp\pytool  with  [temp]c:\pytool
+2019-10-09 08:16:38 - root - INFO: - update: \\10.21.128.101\root\home\yisp\pytool\syncDir\readme.txt[419.0B] ==> c:\pytool\syncDir\readme.txt ([20190823 09:49:10][419B]->[20190823 09:47:59][431B])
+2019-10-09 08:16:38 - root - INFO: - -- done      
+2019-10-09 08:16:38 - root - INFO: - [0s][7.4KBps]
+2019-10-09 08:16:38 - root - INFO: - update: \\10.21.128.101\root\home\yisp\pytool\syncDir\syncFiles_ThP480_Net_ThP450.py[3.1KB] ==> c:\pytool\syncDir\syncFiles_ThP480_Net_ThP450.py ([20190823 09:49:43][3124B]->[20190823 09:47:49][3124B])
+2019-10-09 08:16:38 - root - INFO: - -- done      
+2019-10-09 08:16:38 - root - INFO: - [0s][80.3KBps]
+2019-10-09 08:16:39 - root - INFO: - 
+##start sync [SDK] with 2 directories 
+2019-10-09 08:16:39 - root - INFO: - 
+#sync up [static]c:\SDK  with  [temp]\\10.21.128.101\root\home\yisp\SDK
+2019-10-09 08:16:39 - root - INFO: - new: c:\SDK\NitroxV\20181106release.zip ==> \\10.21.128.101\root\home\yisp\SDK\NitroxV\20181106release.zip [922.1KB]
+2019-10-09 08:16:42 - root - INFO: - -- done      
+2019-10-09 08:16:42 - root - INFO: - [3s][300.2KBps]
+2019-10-09 08:16:42 - root - INFO: - new: c:\SDK\SDK10\sdk10.0.1.0\base_sdk-sdk10.0-1-sources.zip ==> \\10.21.128.101\root\home\yisp\SDK\SDK10\sdk10.0.1.0\base_sdk-sdk10.0-1-sources.zip [422.4MB]
+2019-10-09 08:18:49 - root - INFO: - -- done      
+2019-10-09 08:18:49 - root - INFO: - [126s][3.3MBps]
+2019-10-09 08:18:49 - root - INFO: - new: c:\SDK\SDK10\sdk10.0.1.0\documentation.zip ==> \\10.21.128.101\root\home\yisp\SDK\SDK10\sdk10.0.1.0\documentation.zip [36.4MB]
+2019-10-09 08:19:08 - root - INFO: - -- done      
+2019-10-09 08:19:08 - root - INFO: - [19s][1.9MBps]
+2019-10-09 08:19:08 - root - INFO: - new: c:\SDK\SDK10\sdk10.0.1.0\PLEASE-READ-THIS-FIRST.txt ==> \\10.21.128.101\root\home\yisp\SDK\SDK10\sdk10.0.1.0\PLEASE-READ-THIS-FIRST.txt [514.0B]
+2019-10-09 08:19:08 - root - INFO: - -- done      
+2019-10-09 08:19:08 - root - INFO: - [0s][7.2KBps]
+2019-10-09 08:19:08 - root - INFO: - new: c:\SDK\SDK10\sdk10.0.1.0\SDK-10.0.1.0-Sep QA release_Readme.pdf ==> \\10.21.128.101\root\home\yisp\SDK\SDK10\sdk10.0.1.0\SDK-10.0.1.0-Sep QA release_Readme.pdf [347.8KB]
+2019-10-09 08:19:08 - root - INFO: - -- done      
+2019-10-09 08:19:08 - root - INFO: - [0s][1.3MBps]
+2019-10-09 08:19:08 - root - INFO: - new: c:\SDK\SDK10\sdk10.0.1.0\toolchain.tar.bz2 ==> \\10.21.128.101\root\home\yisp\SDK\SDK10\sdk10.0.1.0\toolchain.tar.bz2 [436.3MB]
+2019-10-09 08:21:30 - root - INFO: - -- done      
+2019-10-09 08:21:30 - root - INFO: - [141s][3.1MBps]
+2019-10-09 08:21:30 - root - INFO: - 
+#sync up [temp]\\10.21.128.101\root\home\yisp\SDK  with  [static]c:\SDK
+2019-10-09 08:21:30 - root - INFO: - ----skip static directory:c:\SDK
+2019-10-09 08:21:30 - root - INFO: - [472s][2.8MBps]
+2019-10-09 08:21:30 - root - INFO: - ...
+2019-10-09 08:24:01 - root - INFO: - 
+logger is starting
+2019-10-09 08:24:06 - root - INFO: - 
+#sync up [static]c:\MARL2019  with  [temp]\\10.21.128.101\root\home\yisp\MARL2019
+2019-10-09 08:24:07 - root - INFO: - new: c:\MARL2019\Desktop\20191008\155.jpg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\155.jpg [118.4KB]
+2019-10-09 08:24:07 - root - INFO: - -- done      
+2019-10-09 08:24:07 - root - INFO: - [0s][1.0MBps]
+2019-10-09 08:24:07 - root - INFO: - new: c:\MARL2019\Desktop\20191008\185.jpg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\185.jpg [123.1KB]
+2019-10-09 08:24:07 - root - INFO: - -- done      
+2019-10-09 08:24:07 - root - INFO: - [0s][1003.8KBps]
+2019-10-09 08:24:07 - root - INFO: - new: c:\MARL2019\Desktop\20191008\20191009.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\20191009.pdf [877.1KB]
+2019-10-09 08:24:08 - root - INFO: - -- done      
+2019-10-09 08:24:08 - root - INFO: - [0s][914.1KBps]
+2019-10-09 08:24:08 - root - INFO: - new: c:\MARL2019\Desktop\20191008\chinaunicom.docx ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\chinaunicom.docx [254.1KB]
+2019-10-09 08:24:08 - root - INFO: - -- done      
+2019-10-09 08:24:08 - root - INFO: - [0s][1.0MBps]
+2019-10-09 08:24:08 - root - INFO: - new: c:\MARL2019\Desktop\20191008\chinaunicom201909290902552554986362618511089715.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\chinaunicom201909290902552554986362618511089715.pdf [34.5KB]
+2019-10-09 08:24:08 - root - INFO: - -- done      
+2019-10-09 08:24:08 - root - INFO: - [0s][262.8KBps]
+2019-10-09 08:24:08 - root - INFO: - new: c:\MARL2019\Desktop\20191008\ChinaUnicomCards20190903110340.xls ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\ChinaUnicomCards20190903110340.xls [30.0KB]
+2019-10-09 08:24:08 - root - INFO: - -- done      
+2019-10-09 08:24:08 - root - INFO: - [0s][197.5KBps]
+2019-10-09 08:24:08 - root - INFO: - new: c:\MARL2019\Desktop\20191008\ChinaUnicomCards20190929090142.xls ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\ChinaUnicomCards20190929090142.xls [30.0KB]
+2019-10-09 08:24:08 - root - INFO: - -- done      
+2019-10-09 08:24:08 - root - INFO: - [0s][264.7KBps]
+2019-10-09 08:24:08 - root - INFO: - new: c:\MARL2019\Desktop\20191008\Travel application 53D201900925 for Shanping Yi (101.54 USD).msg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\Travel application 53D201900925 for Shanping Yi (101.54 USD).msg [116.0KB]
+2019-10-09 08:24:09 - root - INFO: - -- done      
+2019-10-09 08:24:09 - root - INFO: - [0s][732.5KBps]
+2019-10-09 08:24:09 - root - INFO: - new: c:\MARL2019\Desktop\20191008\滴滴出行行程报销单.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\滴滴出行行程报销单.pdf [105.0KB]
+2019-10-09 08:24:09 - root - INFO: - -- done      
+2019-10-09 08:24:09 - root - INFO: - [0s][556.6KBps]
+2019-10-09 08:24:09 - root - INFO: - new: c:\MARL2019\Desktop\20191008\滴滴电子发票.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\滴滴电子发票.pdf [37.2KB]
+2019-10-09 08:24:09 - root - INFO: - -- done      
+2019-10-09 08:24:09 - root - INFO: - [0s][282.8KBps]
+2019-10-09 08:24:09 - root - INFO: - new: c:\MARL2019\Desktop\20191008\美满电子科技（北京）有限公司.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\美满电子科技（北京）有限公司.pdf [36.4KB]
+2019-10-09 08:24:09 - root - INFO: - -- done      
+2019-10-09 08:24:09 - root - INFO: - [0s][207.8KBps]
+2019-10-09 08:24:21 - root - INFO: - 
+#sync up [temp]\\10.21.128.101\root\home\yisp\MARL2019  with  [static]c:\MARL2019
+2019-10-09 08:24:21 - root - INFO: - ----skip static directory:c:\MARL2019
+2019-10-09 08:24:21 - root - INFO: - [14s][117.8KBps]
+2019-10-09 08:24:21 - root - INFO: - ...
+2019-10-09 08:26:31 - root - INFO: - 
+logger is starting
+2019-10-09 08:26:36 - root - INFO: - 
+#sync up [static]c:\MARL2019  with  [temp]\\10.21.128.101\root\home\yisp\MARL2019
+2019-10-09 08:26:37 - root - INFO: - new: c:\MARL2019\Desktop\20191008\155.jpg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\155.jpg [118.4KB]
+2019-10-09 08:26:37 - root - INFO: - -- done      
+2019-10-09 08:26:37 - root - INFO: - [0s][804.8KBps]
+2019-10-09 08:26:37 - root - INFO: - new: c:\MARL2019\Desktop\20191008\185.jpg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\185.jpg [123.1KB]
+2019-10-09 08:26:37 - root - INFO: - -- done      
+2019-10-09 08:26:37 - root - INFO: - [0s][911.7KBps]
+2019-10-09 08:26:37 - root - INFO: - new: c:\MARL2019\Desktop\20191008\20191009.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\20191009.pdf [877.1KB]
+2019-10-09 08:26:38 - root - INFO: - -- done      
+2019-10-09 08:26:38 - root - INFO: - [0s][903.8KBps]
+2019-10-09 08:26:38 - root - INFO: - new: c:\MARL2019\Desktop\20191008\chinaunicom.docx ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\chinaunicom.docx [254.1KB]
+2019-10-09 08:26:38 - root - INFO: - -- done      
+2019-10-09 08:26:38 - root - INFO: - [0s][1.0MBps]
+2019-10-09 08:26:38 - root - INFO: - new: c:\MARL2019\Desktop\20191008\chinaunicom201909290902552554986362618511089715.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\chinaunicom201909290902552554986362618511089715.pdf [34.5KB]
+2019-10-09 08:26:39 - root - INFO: - -- done      
+2019-10-09 08:26:39 - root - INFO: - [0s][193.8KBps]
+2019-10-09 08:26:39 - root - INFO: - new: c:\MARL2019\Desktop\20191008\ChinaUnicomCards20190903110340.xls ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\ChinaUnicomCards20190903110340.xls [30.0KB]
+2019-10-09 08:26:39 - root - INFO: - -- done      
+2019-10-09 08:26:39 - root - INFO: - [0s][254.2KBps]
+2019-10-09 08:26:39 - root - INFO: - new: c:\MARL2019\Desktop\20191008\ChinaUnicomCards20190929090142.xls ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\ChinaUnicomCards20190929090142.xls [30.0KB]
+2019-10-09 08:26:39 - root - INFO: - -- done      
+2019-10-09 08:26:39 - root - INFO: - [0s][260.8KBps]
+2019-10-09 08:26:39 - root - INFO: - new: c:\MARL2019\Desktop\20191008\Travel application 53D201900925 for Shanping Yi (101.54 USD).msg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\Travel application 53D201900925 for Shanping Yi (101.54 USD).msg [116.0KB]
+2019-10-09 08:26:39 - root - INFO: - -- done      
+2019-10-09 08:26:39 - root - INFO: - [0s][754.7KBps]
+2019-10-09 08:26:39 - root - INFO: - new: c:\MARL2019\Desktop\20191008\滴滴出行行程报销单.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\滴滴出行行程报销单.pdf [105.0KB]
+2019-10-09 08:26:39 - root - INFO: - -- done      
+2019-10-09 08:26:39 - root - INFO: - [0s][688.3KBps]
+2019-10-09 08:26:39 - root - INFO: - new: c:\MARL2019\Desktop\20191008\滴滴电子发票.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\滴滴电子发票.pdf [37.2KB]
+2019-10-09 08:26:39 - root - INFO: - -- done      
+2019-10-09 08:26:39 - root - INFO: - [0s][222.7KBps]
+2019-10-09 08:26:39 - root - INFO: - new: c:\MARL2019\Desktop\20191008\美满电子科技（北京）有限公司.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\美满电子科技（北京）有限公司.pdf [36.4KB]
+2019-10-09 08:26:40 - root - INFO: - -- done      
+2019-10-09 08:26:40 - root - INFO: - [0s][276.9KBps]
+2019-10-09 08:26:51 - root - INFO: - 
+#sync up [temp]\\10.21.128.101\root\home\yisp\MARL2019  with  [static]c:\MARL2019
+2019-10-09 08:26:51 - root - INFO: - ----skip static directory:c:\MARL2019
+2019-10-09 08:26:51 - root - INFO: - [14s][119.7KBps]
+2019-10-09 08:26:51 - root - INFO: - ...
+2019-10-09 08:39:28 - root - INFO: - 
+logger is starting
+2019-10-09 08:39:31 - root - INFO: - 
+#sync up [static]c:\MARL2019  with  [temp]\\10.21.128.101\root\home\yisp\MARL2019
+2019-10-09 08:39:32 - root - INFO: - new: c:\MARL2019\Desktop\20191008\155.jpg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\155.jpg [118.4KB]
+2019-10-09 08:39:32 - root - INFO: - -- done      
+2019-10-09 08:39:32 - root - INFO: - [0s][939.5KBps]
+2019-10-09 08:39:32 - root - INFO: - new: c:\MARL2019\Desktop\20191008\185.jpg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\185.jpg [123.1KB]
+2019-10-09 08:39:32 - root - INFO: - -- done      
+2019-10-09 08:39:32 - root - INFO: - [0s][996.0KBps]
+2019-10-09 08:39:32 - root - INFO: - new: c:\MARL2019\Desktop\20191008\20191009.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\20191009.pdf [877.1KB]
+2019-10-09 08:39:33 - root - INFO: - -- done      
+2019-10-09 08:39:33 - root - INFO: - [0s][932.0KBps]
+2019-10-09 08:39:33 - root - INFO: - new: c:\MARL2019\Desktop\20191008\chinaunicom.docx ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\chinaunicom.docx [254.1KB]
+2019-10-09 08:39:33 - root - INFO: - -- done      
+2019-10-09 08:39:33 - root - INFO: - [0s][900.8KBps]
+2019-10-09 08:39:33 - root - INFO: - new: c:\MARL2019\Desktop\20191008\chinaunicom201909290902552554986362618511089715.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\chinaunicom201909290902552554986362618511089715.pdf [34.5KB]
+2019-10-09 08:39:33 - root - INFO: - -- done      
+2019-10-09 08:39:33 - root - INFO: - [0s][266.2KBps]
+2019-10-09 08:39:33 - root - INFO: - new: c:\MARL2019\Desktop\20191008\ChinaUnicomCards20190903110340.xls ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\ChinaUnicomCards20190903110340.xls [30.0KB]
+2019-10-09 08:39:34 - root - INFO: - -- done      
+2019-10-09 08:39:34 - root - INFO: - [0s][268.3KBps]
+2019-10-09 08:39:34 - root - INFO: - new: c:\MARL2019\Desktop\20191008\ChinaUnicomCards20190929090142.xls ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\ChinaUnicomCards20190929090142.xls [30.0KB]
+2019-10-09 08:39:34 - root - INFO: - -- done      
+2019-10-09 08:39:34 - root - INFO: - [0s][259.7KBps]
+2019-10-09 08:39:34 - root - INFO: - new: c:\MARL2019\Desktop\20191008\Travel application 53D201900925 for Shanping Yi (101.54 USD).msg ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\Travel application 53D201900925 for Shanping Yi (101.54 USD).msg [116.0KB]
+2019-10-09 08:39:34 - root - INFO: - -- done      
+2019-10-09 08:39:34 - root - INFO: - [0s][845.9KBps]
+2019-10-09 08:39:34 - root - INFO: - new: c:\MARL2019\Desktop\20191008\滴滴出行行程报销单.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\滴滴出行行程报销单.pdf [105.0KB]
+2019-10-09 08:39:34 - root - INFO: - -- done      
+2019-10-09 08:39:34 - root - INFO: - [0s][537.5KBps]
+2019-10-09 08:39:34 - root - INFO: - new: c:\MARL2019\Desktop\20191008\滴滴电子发票.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\滴滴电子发票.pdf [37.2KB]
+2019-10-09 08:39:34 - root - INFO: - -- done      
+2019-10-09 08:39:34 - root - INFO: - [0s][290.4KBps]
+2019-10-09 08:39:34 - root - INFO: - new: c:\MARL2019\Desktop\20191008\美满电子科技（北京）有限公司.pdf ==> \\10.21.128.101\root\home\yisp\MARL2019\Desktop\20191008\美满电子科技（北京）有限公司.pdf [36.4KB]
+2019-10-09 08:39:34 - root - INFO: - -- done      
+2019-10-09 08:39:34 - root - INFO: - [0s][279.9KBps]
+2019-10-09 08:39:46 - root - INFO: - 
+#sync up [temp]\\10.21.128.101\root\home\yisp\MARL2019  with  [static]c:\MARL2019
+2019-10-09 08:39:46 - root - INFO: - ----skip static directory:c:\MARL2019
+2019-10-09 08:39:46 - root - INFO: - [14s][118.3KBps]
+2019-10-09 08:39:46 - root - INFO: - ...
+2019-10-10 11:21:00 - root - INFO: - 
+logger is starting
+2019-10-10 11:21:09 - root - INFO: - 
+#sync up [temp]c:\pytool  with  [temp]\\10.21.128.101\root\home\yisp\pytool
+2019-10-10 11:21:09 - root - INFO: - new: c:\pytool\FilesTransfer\1.filesCollect_ThCenter.py ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\1.filesCollect_ThCenter.py [1.5KB]
+2019-10-10 11:21:09 - root - INFO: - -- done      
+2019-10-10 11:21:09 - root - INFO: - [0s][19.2KBps]
+2019-10-10 11:21:09 - root - INFO: - new: c:\pytool\FilesTransfer\1.filesCollect_ThP480.py ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\1.filesCollect_ThP480.py [1.1KB]
+2019-10-10 11:21:09 - root - INFO: - -- done      
+2019-10-10 11:21:09 - root - INFO: - [0s][15.3KBps]
+2019-10-10 11:21:09 - root - INFO: - new: c:\pytool\FilesTransfer\2.diff_AtoB.py ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\2.diff_AtoB.py [6.6KB]
+2019-10-10 11:21:09 - root - INFO: - -- done      
+2019-10-10 11:21:09 - root - INFO: - [0s][73.9KBps]
+2019-10-10 11:21:09 - root - INFO: - new: c:\pytool\FilesTransfer\3.copy_diff.py ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\3.copy_diff.py [5.9KB]
+2019-10-10 11:21:10 - root - INFO: - -- done      
+2019-10-10 11:21:10 - root - INFO: - [0s][68.5KBps]
+2019-10-10 11:21:10 - root - INFO: - new: c:\pytool\FilesTransfer\4.sync_diff_ToDisk.py ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\4.sync_diff_ToDisk.py [2.9KB]
+2019-10-10 11:21:10 - root - INFO: - -- done      
+2019-10-10 11:21:10 - root - INFO: - [0s][35.5KBps]
+2019-10-10 11:21:10 - root - INFO: - new: c:\pytool\FilesTransfer\Disk_ThCenter.xml ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\Disk_ThCenter.xml [2.5MB]
+2019-10-10 11:21:11 - root - INFO: - -- done      
+2019-10-10 11:21:11 - root - INFO: - [1s][1.7MBps]
+2019-10-10 11:21:11 - root - INFO: - new: c:\pytool\FilesTransfer\Disk_ThP480.xml ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\Disk_ThP480.xml [118.5KB]
+2019-10-10 11:21:11 - root - INFO: - -- done      
+2019-10-10 11:21:11 - root - INFO: - [0s][832.7KBps]
+2019-10-10 11:21:11 - root - INFO: - new: c:\pytool\FilesTransfer\lib3copyFile.py ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\lib3copyFile.py [5.2KB]
+2019-10-10 11:21:11 - root - INFO: - -- done      
+2019-10-10 11:21:11 - root - INFO: - [0s][63.3KBps]
+2019-10-10 11:21:11 - root - INFO: - new: c:\pytool\FilesTransfer\lib3filesCollect.py ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\lib3filesCollect.py [4.5KB]
+2019-10-10 11:21:11 - root - INFO: - -- done      
+2019-10-10 11:21:11 - root - INFO: - [0s][53.5KBps]
+2019-10-10 11:21:11 - root - INFO: - new: c:\pytool\FilesTransfer\python3.bat ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\python3.bat [295.0B]
+2019-10-10 11:21:12 - root - INFO: - -- done      
+2019-10-10 11:21:12 - root - INFO: - [0s][4.2KBps]
+2019-10-10 11:21:12 - root - INFO: - new: c:\pytool\FilesTransfer\readme.txt ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\readme.txt [1.4KB]
+2019-10-10 11:21:12 - root - INFO: - -- done      
+2019-10-10 11:21:12 - root - INFO: - [0s][19.0KBps]
+2019-10-10 11:21:12 - root - INFO: - new: c:\pytool\FilesTransfer\sync_AtoB.xml ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\sync_AtoB.xml [1.4KB]
+2019-10-10 11:21:12 - root - INFO: - -- done      
+2019-10-10 11:21:12 - root - INFO: - [0s][21.2KBps]
+2019-10-10 11:21:12 - root - INFO: - new: c:\pytool\FilesTransfer\testPC.xml ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\testPC.xml [257.0B]
+2019-10-10 11:21:12 - root - INFO: - -- done      
+2019-10-10 11:21:12 - root - INFO: - [0s][3.6KBps]
+2019-10-10 11:21:12 - root - INFO: - new: c:\pytool\FilesTransfer\__pycache__\copyFile_lib3.cpython-36.pyc ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\__pycache__\copyFile_lib3.cpython-36.pyc [2.9KB]
+2019-10-10 11:21:12 - root - INFO: - -- done      
+2019-10-10 11:21:12 - root - INFO: - [0s][41.6KBps]
+2019-10-10 11:21:12 - root - INFO: - new: c:\pytool\FilesTransfer\__pycache__\filesCollect_lib.cpython-36.pyc ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\__pycache__\filesCollect_lib.cpython-36.pyc [2.3KB]
+2019-10-10 11:21:12 - root - INFO: - -- done      
+2019-10-10 11:21:12 - root - INFO: - [0s][32.4KBps]
+2019-10-10 11:21:12 - root - INFO: - new: c:\pytool\FilesTransfer\__pycache__\lib3copyFile.cpython-36.pyc ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\__pycache__\lib3copyFile.cpython-36.pyc [3.6KB]
+2019-10-10 11:21:12 - root - INFO: - -- done      
+2019-10-10 11:21:12 - root - INFO: - [0s][51.4KBps]
+2019-10-10 11:21:12 - root - INFO: - new: c:\pytool\FilesTransfer\__pycache__\lib3filesCollect.cpython-36.pyc ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\__pycache__\lib3filesCollect.cpython-36.pyc [2.4KB]
+2019-10-10 11:21:12 - root - INFO: - -- done      
+2019-10-10 11:21:12 - root - INFO: - [0s][34.6KBps]
+2019-10-10 11:21:12 - root - INFO: - update: c:\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_10.txt[111.7KB] ==> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_10.txt ([20191010 11:21:11][114415B]->[20191009 08:39:55][109444B])
+2019-10-10 11:21:12 - root - INFO: - -- done      
+2019-10-10 11:21:12 - root - INFO: - [0s][694.2KBps]
+2019-10-10 11:21:12 - root - INFO: - update: c:\pytool\syncDir\readme.txt[431.0B] ==> \\10.21.128.101\root\home\yisp\pytool\syncDir\readme.txt ([20191010 11:20:27][431B]->[20190823 09:49:10][419B])
+2019-10-10 11:21:13 - root - INFO: - -- done      
+2019-10-10 11:21:13 - root - INFO: - [0s][4.1KBps]
+2019-10-10 11:21:13 - root - INFO: - update: c:\pytool\syncDir\__pycache__\syncFiles_lib3.cpython-36.pyc[6.9KB] ==> \\10.21.128.101\root\home\yisp\pytool\syncDir\__pycache__\syncFiles_lib3.cpython-36.pyc ([20191010 11:21:00][7032B]->[20191009 08:39:27][7133B])
+2019-10-10 11:21:13 - root - INFO: - -- done      
+2019-10-10 11:21:13 - root - INFO: - [0s][84.2KBps]
+2019-10-10 11:21:13 - root - INFO: - 
+#sync up [temp]\\10.21.128.101\root\home\yisp\pytool  with  [temp]c:\pytool
+2019-10-10 11:21:13 - root - INFO: - [4s][691.4KBps]
+2019-10-10 11:21:13 - root - INFO: - ...
+2019-10-10 18:53:31 - root - INFO: - 
+logger is starting
+2019-10-10 18:53:36 - root - INFO: - 
+#comparing [temp]c:\pytool  with  [temp]\\10.21.128.101\root\home\yisp\pytool
+2019-10-10 18:53:36 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\Disk_ThCenter.xml ([20191010 18:51:03][2579083B]->[20191010 16:24:07][2579416B])
+2019-10-10 18:53:36 - root - INFO: - WARNING: file doesn't match 	=> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_10.txt ([20191010 18:53:32][116053B]->[20191010 11:21:11][114685B])
+2019-10-10 18:53:37 - root - INFO: - 
+#comparing [temp]\\10.21.128.101\root\home\yisp\pytool  with  [temp]c:\pytool
+2019-10-10 18:53:37 - root - INFO: - [0s][0.0Bps]
+2019-10-10 18:53:37 - root - INFO: - ...
+2019-10-10 18:53:47 - root - INFO: - 
+logger is starting
+2019-10-10 18:53:52 - root - INFO: - 
+#sync up [temp]c:\pytool  with  [temp]\\10.21.128.101\root\home\yisp\pytool
+2019-10-10 18:53:53 - root - INFO: - update: c:\pytool\FilesTransfer\Disk_ThCenter.xml[2.5MB] ==> \\10.21.128.101\root\home\yisp\pytool\FilesTransfer\Disk_ThCenter.xml ([20191010 18:51:03][2579083B]->[20191010 16:24:07][2579416B])
+2019-10-10 18:53:54 - root - INFO: - -- done      
+2019-10-10 18:53:54 - root - INFO: - [1s][1.8MBps]
+2019-10-10 18:53:54 - root - INFO: - update: c:\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_10.txt[114.3KB] ==> \\10.21.128.101\root\home\yisp\pytool\syncDir\log_syncFiles_ThP480_Net_ThC.py2019_10.txt ([20191010 18:53:54][116995B]->[20191010 11:21:11][114685B])
